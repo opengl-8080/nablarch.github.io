@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.3.7. ポップアップ画面の作成 &mdash; ∇Nablarch  5u6 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="∇Nablarch  5u6 ドキュメント" href="../../../../../index.html"/>
+        <link rel="up" title="2.3. Getting Started" href="../index.html"/>
+        <link rel="next" title="2.3.8. 一括更新機能の作成" href="../project_bulk_update/index.html"/>
+        <link rel="prev" title="2.3.6. ファイルダウンロード機能の作成" href="../project_download/index.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u6</div>
+  </a>
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarchアプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">アプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/log4j_adaptor.html">log4jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">3. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/ui_dev/index.html">UI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/doc/index.html">Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/guide/index.html">JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/testing_framework/index.html">テスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/toolbox/index.html">ツールボックス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/UnpublishedMethodDetector/UnpublishedApi.html">1. 使用不許可APIチェックツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/PublishedApi/PublishedApiConfigGenerator.html">2. 使用許可API一覧作成ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspStaticAnalysis/index.html">3. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">5. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../previous_version/index.html">Previous Version</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../index.html">∇Nablarch </a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarchアプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">アプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="../../index.html">2. ウェブアプリケーション編</a> &raquo;</li>
+      
+          <li><a href="../index.html">2.3. Getting Started</a> &raquo;</li>
+      
+    <li>2.3.7. ポップアップ画面の作成</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="client-popup">
+<span id="id1"></span><h1>2.3.7. ポップアップ画面の作成<a class="headerlink" href="#client-popup" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Exampleアプリケーションを元にポップアップ画面の作成方法の解説を行う。</p>
+<dl class="docutils">
+<dt>作成する機能の説明</dt>
+<dd><ol class="first arabic simple">
+<li>プロジェクト詳細画面の変更ボタンを押下する。</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/popup-project_update_btn.png"><img alt="../../../../../_images/popup-project_update_btn.png" src="../../../../../_images/popup-project_update_btn.png" style="width: 844.8px; height: 189.6px;" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>顧客欄の検索ボタンを押下する。</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/popup-project_update.png"><img alt="../../../../../_images/popup-project_update.png" src="../../../../../_images/popup-project_update.png" style="width: 607.2px; height: 152.8px;" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>顧客検索画面がポップアップで表示される。検索ボタンを押下する。</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/popup-popup_init.png"><img alt="../../../../../_images/popup-popup_init.png" src="../../../../../_images/popup-popup_init.png" style="width: 528.8px; height: 443.2px;" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>検索結果の顧客IDのリンクを押下する。</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/popup-popup_search.png"><img alt="../../../../../_images/popup-popup_search.png" src="../../../../../_images/popup-popup_search.png" style="width: 527.2px; height: 232.0px;" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>顧客検索画面が閉じられ、プロジェクト変更画面の顧客ID及び顧客名に選択した値が設定される。</li>
+</ol>
+<blockquote class="last">
+<div><a class="reference internal image-reference" href="../../../../../_images/popup-complete.png"><img alt="../../../../../_images/popup-complete.png" src="../../../../../_images/popup-complete.png" style="width: 578.4px; height: 137.6px;" /></a>
+</div></blockquote>
+</dd>
+</dl>
+<div class="section" id="id2">
+<h2>2.3.7.1. ポップアップ画面を表示する<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ポップアップ画面の基本的な実装方法を、以下の順に説明する。</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference internal" href="#popup-open-popup"><span>ポップアップ画面を表示するボタンの作成</span></a></li>
+<li><a class="reference internal" href="#popup-action"><span>業務アクションメソッドの作成</span></a></li>
+<li><a class="reference internal" href="#popup-popup-jsp"><span>ポップアップ画面のJSPの作成</span></a></li>
+<li><a class="reference internal" href="#popup-parent-hand-over"><span>ポップアップ画面から親ウィンドウへ値を引き渡すJavaScriptの作成</span></a></li>
+</ol>
+</div></blockquote>
+<dl class="docutils" id="popup-open-popup">
+<dt>ポップアップ画面を表示するボタンの作成</dt>
+<dd><p class="first">プロジェクト変更画面に、顧客検索画面へ遷移するボタンを配置する。</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/project/update.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form</span> <span class="na">useToken=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">&quot;table&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;tbody&gt;</span>
+            <span class="c">&lt;!-- 顧客以外の入力欄は省略 --&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>
+                    顧客名
+                <span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;n:text</span> <span class="na">name=</span><span class="s">&quot;form.clientId&quot;</span> <span class="na">maxlength=</span><span class="s">&quot;10&quot;</span> <span class="na">readonly=</span><span class="s">&quot;true&quot;</span>
+                                <span class="na">cssClass=</span><span class="s">&quot;form-control input-label&quot;</span> <span class="na">tabindex=</span><span class="s">&quot;-1&quot;</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;n:text</span> <span class="na">name=</span><span class="s">&quot;form.clientName&quot;</span> <span class="na">maxlength=</span><span class="s">&quot;64&quot;</span> <span class="na">readonly=</span><span class="s">&quot;true&quot;</span>
+                                <span class="na">cssClass=</span><span class="s">&quot;form-control  input-label&quot;</span> <span class="na">tabindex=</span><span class="s">&quot;-1&quot;</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;n:forInputPage&gt;</span>
+<span class="hll">                        <span class="nt">&lt;n:a</span> <span class="na">href=</span><span class="s">&quot;/action/client/index&quot;</span> <span class="na">id=</span><span class="s">&quot;client_pop&quot;</span><span class="nt">&gt;</span>
+</span><span class="hll">                            <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;/images/glass.png&quot;</span> <span class="na">alt=</span><span class="s">&quot;glass&quot;</span><span class="nt">/&gt;</span>
+</span><span class="hll">                        <span class="nt">&lt;/n:a&gt;</span>
+</span>                    <span class="nt">&lt;/n:forInputPage&gt;</span>
+                    <span class="nt">&lt;n:error</span> <span class="na">errorCss=</span><span class="s">&quot;message-error&quot;</span> <span class="na">name=</span><span class="s">&quot;form.clientId&quot;</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;n:error</span> <span class="na">errorCss=</span><span class="s">&quot;message-error&quot;</span> <span class="na">name=</span><span class="s">&quot;form.clientName&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            <span class="c">&lt;!-- 顧客以外の入力欄は省略 --&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;title-nav page-footer&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+            <span class="c">&lt;!-- ボタン部分は省略 --&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="../../../libraries/tag.html#tag-using-get"><span>GETリクエストを行う場合、使用可能なカスタムタグが制限される</span></a> ため、ポップアップ画面への遷移はaタグ等で実装する。</li>
+</ul>
+</dd>
+<dt>ポップアップ画面を開くJavaScript関数の登録</dt>
+<dd><p class="first">顧客検索に遷移するボタンのクリックイベントに、ポップアップ画面を開くJavaScript関数を登録する。</p>
+<dl class="last docutils">
+<dt>projectInput.js</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// その他の関数は省略</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#client_pop&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span><span class="s2">&quot;clientSearch&quot;</span><span class="p">,</span><span class="s2">&quot;width=700,</span>
+<span class="s2">            height=500,resizable=yes,scrollbars=yes&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">});</span>
+
+    <span class="c1">// その他の関数は省略</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="popup-action">
+<dt>業務アクションメソッドの作成</dt>
+<dd><p class="first">顧客を検索し、選択の結果を親画面に引き渡す。</p>
+<p class="last">画面の初期表示処理の作成方法に関しては、 <a class="reference internal" href="../client_create/client_create1.html#client-create-1"><span>登録画面初期表示の作成</span></a> を参照。
+検索処理についても、サーバサイドの実装はプロジェクト検索と同様であるため説明を省略する。作成方法に関しては <a class="reference internal" href="../project_search/index.html#project-search"><span>検索機能の作成</span></a> を参照。</p>
+</dd>
+</dl>
+<dl class="docutils" id="popup-popup-jsp">
+<dt>ポップアップ画面のJSPの作成</dt>
+<dd><p class="first">リクエストの送信を介さずにポップアップ画面への入力値を親画面へ反映させるには、JavaScriptを用いて親画面のDOMを
+操作する。</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/client/index.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 検索結果の表示部分のみ記載 --&gt;</span>
+<span class="nt">&lt;n:form</span> <span class="na">method=</span><span class="s">&quot;GET&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- listSearchResultの属性指定は省略 --&gt;</span>
+    <span class="nt">&lt;app:listSearchResult&gt;</span>
+        <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;headerRowFragment&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>顧客ID<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>顧客名<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>業種<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/jsp:attribute&gt;</span>
+        <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;bodyRowFragment&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr</span> <span class="na">class=</span><span class="s">&quot;list-table x_color_row_table_target&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="c">&lt;!-- .clientLinkのonClickイベントによって親画面に値が設定される --&gt;</span>
+<span class="hll">                    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;clientLink&quot;</span><span class="nt">&gt;</span>
+</span><span class="hll">                        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">class=</span><span class="s">&quot;clientId&quot;</span>
+</span><span class="hll">                                <span class="na">value=</span><span class="s">&quot;&lt;n:write name=&#39;row.clientId&#39; /&gt;&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="hll">                        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">class=</span><span class="s">&quot;clientName&quot;</span>
+</span><span class="hll">                                <span class="na">value=</span><span class="s">&quot;&lt;n:write name=&#39;row.clientName&#39; /&gt;&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="hll">                        <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.clientId&quot;</span><span class="nt">/&gt;</span>
+</span><span class="hll">                    <span class="nt">&lt;/a&gt;</span>
+</span>                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.clientName&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.industryName&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/jsp:attribute&gt;</span>
+    <span class="nt">&lt;/app:listSearchResult&gt;</span>
+    <span class="nt">&lt;br/&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;title-nav&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn btn-raised btn-success clearButton&quot;</span><span class="nt">&gt;</span>クリア<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn btn-raised btn-default closeButton&quot;</span><span class="nt">&gt;</span>閉じる<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>ポップアップ画面で選択した顧客を親ウィンドウへ設定するために、後述のJavaScriptでDOMを操作する関数をクリックイベントとして登録する。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="popup-parent-hand-over">
+<dt>ポップアップ画面から親ウィンドウへ値を引き渡すJavaScript関数の作成</dt>
+<dd><dl class="first docutils">
+<dt>clientList.js</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 親ウィンドウの顧客名と顧客IDに、選択された顧客のIDと名前を設定するクリックイベントを登録する。</span>
+<span class="cm"> * 設定後、ウィンドウを閉じる。</span>
+<span class="cm"> */</span>
+ <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.clientLink&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nb">window</span><span class="p">.</span><span class="nx">opener</span><span class="p">.</span><span class="nx">setClientParam</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s2">&quot;.clientId&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+       <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s2">&quot;.clientName&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+   <span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+ <span class="p">});</span>
+</pre></div>
+</div>
+</dd>
+<dt>projectInput.js(親画面のjavaScript)</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">setClientParam</span><span class="p">(</span><span class="nx">clientId</span><span class="p">,</span> <span class="nx">clientName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;[name=&#39;form.clientId&#39;]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">clientId</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;[name=&#39;form.clientName&#39;]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">clientName</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>この実装のポイント</dt>
+<dd><ul class="first last simple">
+<li>親画面への参照は、グローバル変数 <cite>window</cite> に <cite>opener</cite> として登録されている。</li>
+<li><cite>window.opener</cite> を介して親画面の関数を呼び出し、ポップアップ画面からの入力値を反映する。</li>
+</ul>
+</dd>
+</dl>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">親画面からポップアップ画面を参照することも可能である。
+詳細は <a class="reference internal" href="../../../libraries/tag.html#tag-submit-access-open-window"><span>オープンしたウィンドウへのアクセス方法</span></a> を参照。</p>
+</div>
+</dd>
+</dl>
+<p>ポップアップ画面の解説は以上。</p>
+<p><a class="reference internal" href="../index.html#getting-started"><span>Getting Started TOPページへ</span></a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2016, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
