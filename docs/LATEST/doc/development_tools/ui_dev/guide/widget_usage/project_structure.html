@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.2.2.1. 業務画面JSP作成時のディレクトリ構造 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>2.2.2.1. 業務画面JSP作成時のディレクトリ構造 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.2. JSP/HTML作成ガイド" href="../index.html"/>
         <link rel="next" title="2.2.2.2. 統合開発環境を利用して業務画面JSPを作成する" href="develop_environment.html"/>
         <link rel="prev" title="2.2. JSP/HTML作成ガイド" href="../index.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -306,7 +306,7 @@
   <div class="section" id="jsp">
 <h1>2.2.2.1. 業務画面JSP作成時のディレクトリ構造<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>作成した業務画面JSPのレイアウトや動作をブラウザで確認するためには、以下のようなディレクトリ構造に従ってファイルを配置した上で「ローカル画面確認.bat」を実行する。</p>
-<a class="reference internal image-reference" href="../../../../_images/project_structure.png"><img alt="../../../../_images/project_structure.png" class="align-center" src="../../../../_images/project_structure.png" style="width: 525.6px; height: 627.2px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/project_structure.png"><img alt="../../../../_images/project_structure.png" class="align-center" src="../../../../_images/project_structure.png" style="width: 905.4px; height: 511.2px;" /></a>
 <p>なお、上記ディレクトリに格納されるファイルの詳細は以下の通りとなっている。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -319,22 +319,27 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>業務画面JSP</td>
-<td>サブシステムIDのディレクトリ直下（ <strong>ss11AC/</strong> など）に、作成する業務画面JSPを配置する。<br />
-ファイル名は、「 <strong>画面ID.jsp</strong> 」とする。<br />
-モック動作させる場合、これらのファイルをサブディレクトリに配置することはできない。</td>
-</tr>
-<tr class="row-odd"><td>WEB-INF</td>
+<tr class="row-even"><td>WEB-INF</td>
 <td>WEB-INF配下の構成は、サーバ上の構成と同じであり、中に含まれるファイルも原則同じものを使用する。<br />
 以下のようなファイルが含まれている。<br />
 * 業務画面テンプレート <br />
 * 業務画面部品（ウィジェット）|br|
+* 業務画面JSP
 ※本ディレクトリのコンテンツは、業務設計者・業務開発者は直接修正しない。</td>
 </tr>
+<tr class="row-odd"><td>業務画面JSP</td>
+<td><p class="first">サブシステムIDのディレクトリ直下（ <strong>ss11AC/</strong> など）に、作成する業務画面JSPを配置する。<br />
+ファイル名は、「 <strong>画面ID.jsp</strong> 」とする。<br />
+モック動作させる場合、これらのファイルをサブディレクトリに配置することはできない。</p>
+<p class="last">※WEB-INF配下に配置する</p>
+</td>
+</tr>
 <tr class="row-even"><td>include</td>
-<td>業務画面内の共通領域の内容を実装したJSPファイル群が配置されている。<br />
-テンプレートファイルからインクルードされている。<br />
-※本ディレクトリのコンテンツは、業務設計者・業務開発者は直接修正しない。</td>
+<td><p class="first">業務画面内の共通領域の内容を実装したJSPファイル群が配置されている。<br />
+テンプレートファイルからインクルードされている。<br /></p>
+<p class="last">※本ディレクトリのコンテンツは、業務設計者・業務開発者は直接修正しない。 <br />
+※WEB-INF配下に配置する</p>
+</td>
 </tr>
 <tr class="row-odd"><td>js</td>
 <td>ブラウザ上で動作するスクリプトが配置されている。<br />
@@ -390,7 +395,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

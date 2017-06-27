@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.3.8. 一括更新機能の作成 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>2.3.8. 一括更新機能の作成 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="2.3. Getting Started" href="../index.html"/>
         <link rel="next" title="2.4. 機能詳細" href="../../feature_details.html"/>
         <link rel="prev" title="2.3.7. ポップアップ画面の作成" href="../popup/index.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
@@ -400,7 +400,7 @@
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li>入れ子となったフォームに対しても  <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を実行するため、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a>
 などのバリデーション用のアノテーションを付与する。</li>
 </ul>
 </dd>
@@ -675,7 +675,7 @@ JSPでは、 <a class="reference internal" href="../../../libraries/session_stor
 <dd><ul class="first last">
 <li><p class="first">基本的な実装方法は  <a class="reference internal" href="../project_update/index.html#project-update-create-decide-action"><span>更新機能の作成：データベースを更新する業務アクションメソッドの作成</span></a> と同様である。</p>
 </li>
-<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a> を更新件数分実行する。
+<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a> を更新件数分実行する。
 排他制御エラーが発生した場合は全件の更新がロールバックされる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -683,10 +683,10 @@ JSPでは、 <a class="reference internal" href="../../../libraries/session_stor
 排他制御エラー画面へ遷移する。ハンドラによるエラー制御の作成方法は、 <a class="reference internal" href="../../feature_details/forward_error_page.html#forward-error-page-handler"><span>ハンドラで例外クラスに対応したエラーページに遷移させる</span></a> を参照。</p>
 </div>
 </li>
-<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html" title="nablarch.common.dao.UniversalDao">UniversalDao</a> には、エンティティのリストを引数に取る
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#batchUpdate(java.util.List)" title="nablarch.common.dao.UniversalDao.batchUpdate(java.util.List)">UniversalDao#batchUpdate</a> メソッドも用意されているが、
+<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html" title="nablarch.common.dao.UniversalDao">UniversalDao</a> には、エンティティのリストを引数に取る
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#batchUpdate(java.util.List)" title="nablarch.common.dao.UniversalDao.batchUpdate(java.util.List)">UniversalDao#batchUpdate</a> メソッドも用意されているが、
 このメソッドは <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-batch-execute"><span>バッチ実行</span></a> での使用を想定したものであり、排他制御を行わない。
-排他制御が必要である場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a>
+排他制御が必要である場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a>
 を使用すること。</p>
 </li>
 </ul>
@@ -733,7 +733,7 @@ JSPでは、 <a class="reference internal" href="../../../libraries/session_stor
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.17. 業務画面テンプレート &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>2.1.17. 業務画面テンプレート &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.18. UI部品ウィジェット" href="jsp_widgets.html"/>
         <link rel="prev" title="2.1.16. JavaScript UI部品" href="js_framework.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -341,7 +341,7 @@
 JSPタグファイルには基本的にページの構造のみを定義し、各共通領域の内容については
 それぞれ個別のインクルードJSPを用意してそこに記述する。</p>
 <p>JSPタグファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/tags/template/</strong> 配下となり、
-インクルードJSPファイルは <strong>(サーブレットコンテキストルート)/include</strong> 配下に配置する。</p>
+インクルードJSPファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/include</strong> 配下に配置する。</p>
 <p>インクルードJSPのうち、 <strong>HTMLヘッド部定義JSP</strong> と、 <strong>外部スクリプト定義JSP</strong> については、
 外部参照するCSS/JavaScriptの読み込みを制御しており、開発/本番切り替え時に書き換えの対象となるため、
 留意が必要である。</p>
@@ -351,11 +351,11 @@ JSPタグファイルには基本的にページの構造のみを定義し、�
 <h3>2.1.17.2.2. 構成ファイル一覧<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="22%" />
-<col width="6%" />
-<col width="6%" />
-<col width="25%" />
-<col width="41%" />
+<col width="18%" />
+<col width="5%" />
+<col width="5%" />
+<col width="20%" />
+<col width="51%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">名称</th>
@@ -400,10 +400,10 @@ JSPタグファイルには基本的にページの構造のみを定義し、�
 <tr class="row-even"><td>トップナビゲーション領域JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/ <br />
+<td>/WEB-INF/include/ <br />
 * app_top_nav.jsp <br />
 * subwindow_app_top_nav.jsp</td>
-<td>業務画面のトップナビゲーション領域を <br />
+<td>業務画面のトップナビゲーション領域を
 実装するJSP。<br />
 <br />
 <strong>subwindow_app_top_nav.jsp</strong>は、 <br />
@@ -412,36 +412,41 @@ JSPタグファイルには基本的にページの構造のみを定義し、�
 <tr class="row-odd"><td>ヘッダー領域JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/ <br />
+<td>/WEB-INF/include/ <br />
 * app_header.jsp <br />
 * subwindow_app_header.jsp</td>
-<td>業務画面のヘッダー領域を実装するJSP。 <br />
-<br />
+<td><dl class="first last docutils">
+<dt>業務画面のヘッダー領域を実装するJSP。 <br /></dt>
+<dd><br />
 <strong>subwindow_app_header.jsp</strong>は、 <br />
-サブウィンドウ用</td>
+サブウィンドウ用</dd>
+</dl>
+</td>
 </tr>
 <tr class="row-even"><td>サイドメニュー領域JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/app_aside.jsp</td>
-<td>業務画面のサイドメニュー領域を実装する <br />
-JSP。</td>
+<td>/WEB-INF/include/app_aside.jsp</td>
+<td>業務画面のサイドメニュー領域を実装するJSP。</td>
 </tr>
 <tr class="row-odd"><td>フッター領域JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/ <br />
+<td>/WEB-INF/include/ <br />
 * app_footer.jsp <br />
 * subwindow_app_footer.jsp</td>
-<td>業務画面のフッター領域を実装するJSP。<br />
-<br />
+<td><dl class="first last docutils">
+<dt>業務画面のフッター領域を実装するJSP。<br /></dt>
+<dd><br />
 <strong>subwindow_app_footer.jsp</strong>は、 <br />
-サブウィンドウ用</td>
+サブウィンドウ用</dd>
+</dl>
+</td>
 </tr>
 <tr class="row-even"><td>HTMLヘッド部定義JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/html_head.jsp</td>
+<td>/WEB-INF/include/html_head.jsp</td>
 <td>HTMLの&lt;head&gt;タグの内容を定義するJSP。<br />
 キャッシュ制御用の&lt;meta&gt;タグや、cssの <br />
 読み込みなどを制御している。</td>
@@ -449,16 +454,14 @@ JSP。</td>
 <tr class="row-odd"><td>外部スクリプト定義JSP</td>
 <td>△</td>
 <td>○</td>
-<td>/include/js_include.jsp</td>
-<td>HTMLの&lt;script&gt;タグによる外部スクリプト <br />
-参照を定義するJSP。</td>
+<td>/WEB-INF/include/js_include.jsp</td>
+<td>HTMLの&lt;script&gt;タグによる外部スクリプト参照を定義するJSP。</td>
 </tr>
 <tr class="row-even"><td>ローカル動作用スタブ</td>
 <td>○</td>
 <td>×</td>
 <td>/js/jsp/taglib/template.js</td>
-<td>ローカル動作時に当該のタグファイルを <br />
-読み込んでレンダリングするJavaScript。</td>
+<td>ローカル動作時に当該のタグファイルを読み込んでレンダリングするJavaScript。</td>
 </tr>
 </tbody>
 </table>
@@ -615,9 +618,9 @@ JavaScriptを記述する。ここ <br />
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
-<col width="25%" />
-<col width="52%" />
+<col width="16%" />
+<col width="24%" />
+<col width="60%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">名称</th>
@@ -627,22 +630,18 @@ JavaScriptを記述する。ここ <br />
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>HTMLヘッド部</td>
-<td>/include/html_head.jsp</td>
-<td><dl class="first last docutils">
-<dt><strong>&lt;head&gt;</strong>タグに以下の内容を出力する。<br /></dt>
-<dd><ul class="first last simple">
+<td>/WEB-INF/include/html_head.jsp</td>
+<td><p class="first"><strong>&lt;head&gt;</strong>タグに以下の内容を出力する。<br /></p>
+<ul class="last simple">
 <li><strong>&lt;meta&gt;</strong>タグ (キャッシュ関連のHTTPヘッダなど)</li>
 <li><strong>&lt;title&gt;</strong>タグ</li>
 <li><strong>&lt;link&gt;</strong>タグ (共通CSSファイルのインクルードなど)</li>
 </ul>
-</dd>
-</dl>
 </td>
 </tr>
 <tr class="row-odd"><td>JavaScriptファイルロード部</td>
-<td>/include/js_include.jsp</td>
-<td><strong>&lt;body&gt;</strong>の閉じタグの直前に、JavaScriptファイルの <br />
-読み込み処理(<strong>&lt;script src&gt;</strong>)を出力する。</td>
+<td>/WEB-INF/include/js_include.jsp</td>
+<td><strong>&lt;body&gt;</strong>の閉じタグの直前に、JavaScriptファイルの読み込み処理(<strong>&lt;script src&gt;</strong>)を出力する。</td>
 </tr>
 </tbody>
 </table>
@@ -807,9 +806,9 @@ JavaScriptはページの末端(&lt;body&gt; <br />
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
-<col width="20%" />
-<col width="26%" />
-<col width="54%" />
+<col width="19%" />
+<col width="32%" />
+<col width="50%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">名称</th>
@@ -819,26 +818,26 @@ JavaScriptはページの末端(&lt;body&gt; <br />
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>メインナビゲーション</td>
-<td>/include/app_top_nav.jsp</td>
+<td>/WEB-INF/include/app_top_nav.jsp</td>
 <td>メインナビゲーション領域に、ログインステータスや、
 トップレベルリンクなどを表示する。</td>
 </tr>
 <tr class="row-odd"><td>業務共通ヘッダ</td>
-<td>/include/app_header.jsp</td>
+<td>/WEB-INF/include/app_header.jsp</td>
 <td>ヘッダコンテンツ領域にブランドロゴや画面タイトルなどを
 表示する。</td>
 </tr>
 <tr class="row-even"><td>業務共通メニュー</td>
-<td>/include/app_aside.jsp</td>
+<td>/WEB-INF/include/app_aside.jsp</td>
 <td>サイドコンテンツ領域に業務メニューなどを表示する。</td>
 </tr>
 <tr class="row-odd"><td>業務共通フッター</td>
-<td>/include/app_footer.jsp</td>
+<td>/WEB-INF/include/app_footer.jsp</td>
 <td>フッターコンテンツ領域に著作権表示や
 プライバシーポリシーへのリンクなどを表示する。</td>
 </tr>
 <tr class="row-even"><td>グローバルエラー領域</td>
-<td>/include/app_error.jsp</td>
+<td>/WEB-INF/include/app_error.jsp</td>
 <td>グローバルエラーのメッセージを表示する。</td>
 </tr>
 </tbody>
@@ -934,7 +933,7 @@ JSPページテンプレートタグがインクルードしているJSP類も�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

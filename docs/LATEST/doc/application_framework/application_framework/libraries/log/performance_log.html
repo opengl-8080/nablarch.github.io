@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.1.2.3. パフォーマンスログの出力 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>7.1.1.2.3. パフォーマンスログの出力 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.1.1.2.4. HTTPアクセスログの出力" href="http_access_log.html"/>
         <link rel="prev" title="7.1.1.2.2. SQLログの出力" href="sql_log.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -357,16 +357,16 @@
 <h2><a class="toc-backref" href="#id9">7.1.1.2.3.2. 使用方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="performance-log-logging">
 <span id="id5"></span><h3><a class="toc-backref" href="#id10">7.1.1.2.3.2.1. パフォーマンスログを出力する</a><a class="headerlink" href="#performance-log-logging" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>パフォーマンスログは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> を使用して出力する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
-処理の開始時に呼び出す <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#start(java.lang.String)" title="nablarch.core.log.app.PerformanceLogUtil.start(java.lang.String)">PerformanceLogUtil#start</a> と
-終了時に呼び出す <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#end(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.log.app.PerformanceLogUtil.end(java.lang.String, java.lang.String, java.lang.Object...)">PerformanceLogUtil#end</a>
+<p>パフォーマンスログは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> を使用して出力する。
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
+処理の開始時に呼び出す <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#start(java.lang.String)" title="nablarch.core.log.app.PerformanceLogUtil.start(java.lang.String)">PerformanceLogUtil#start</a> と
+終了時に呼び出す <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#end(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.log.app.PerformanceLogUtil.end(java.lang.String, java.lang.String, java.lang.Object...)">PerformanceLogUtil#end</a>
 を提供する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#end(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.log.app.PerformanceLogUtil.end(java.lang.String, java.lang.String, java.lang.Object...)">PerformanceLogUtil#end</a>
-が呼ばれた時点で、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#start(java.lang.String)" title="nablarch.core.log.app.PerformanceLogUtil.start(java.lang.String)">PerformanceLogUtil#start</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#end(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.log.app.PerformanceLogUtil.end(java.lang.String, java.lang.String, java.lang.Object...)">PerformanceLogUtil#end</a>
+が呼ばれた時点で、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html#start(java.lang.String)" title="nablarch.core.log.app.PerformanceLogUtil.start(java.lang.String)">PerformanceLogUtil#start</a>
 で取得した日時とメモリ使用量を合わせて出力する。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> の使用例を下記に示す。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> の使用例を下記に示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// startメソッドでは、測定対象を識別するポイントを指定する。</span>
 <span class="c1">// 誤設定による無駄な出力を防ぐため、</span>
 <span class="c1">// このポイント名が設定ファイルに定義されていないとログは出力されない。</span>
@@ -384,9 +384,9 @@
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
 測定対象を <a class="reference internal" href="../log.html#log-execution-id"><span>実行時ID</span></a> ＋ポイント名で一意に識別している。
-このため、再帰呼び出しの中で <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a>
+このため、再帰呼び出しの中で <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a>
 を使用すると計測を実施出来ないため注意すること。</p>
 </div>
 </div>
@@ -398,7 +398,7 @@
 <dd><p class="first"></p>
 <dl class="last docutils">
 <dt>performanceLogFormatter.className</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/log/app/PerformanceLogFormatter.html" title="nablarch.core.log.app.PerformanceLogFormatter">PerformanceLogFormatter</a> を実装したクラス。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/log/app/PerformanceLogFormatter.html" title="nablarch.core.log.app.PerformanceLogFormatter">PerformanceLogFormatter</a> を実装したクラス。
 差し替える場合に指定する。</dd>
 <dt>performanceLogFormatter.format</dt>
 <dd><p class="first">パフォーマンスログの個別項目のフォーマット。</p>
@@ -501,7 +501,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.18. JSPカスタムタグ &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>7.18. JSPカスタムタグ &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.18.1. タグリファレンス" href="tag/tag_reference.html"/>
         <link rel="prev" title="7.17.4.2.2. 更新機能での実装例" href="session_store/update_example.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -468,7 +468,7 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 <div class="section" id="tag-setting">
 <span id="id6"></span><h3><a class="toc-backref" href="#id45">7.18.4.1. カスタムタグの設定を行う</a><a class="headerlink" href="#tag-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグの設定は、 <a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a> と
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a>
 により行う。</p>
 <dl class="docutils">
 <dt><a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a></dt>
@@ -482,13 +482,13 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </ul>
 <p class="last">このハンドラの設定値については、 <a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a> を参照。</p>
 </dd>
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a></dt>
 <dd><p class="first">カスタムタグのデフォルト値の設定を行うクラス。
 選択項目のラベルパターンなど、カスタムタグの属性は、個々の画面で毎回設定するよりも、
 アプリケーション全体で統一したデフォルト値を使用したい場合がある。
 そのため、カスタムタグのデフォルト値の設定をこのクラスで行う。</p>
 <p class="last">デフォルト値の設定は、 このクラスを <code class="docutils literal"><span class="pre">customTagConfig</span></code> という名前でコンポーネント定義に追加する。
-設定項目については、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a> を参照。</p>
+設定項目については、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a> を参照。</p>
 </dd>
 </dl>
 </div>
@@ -897,6 +897,12 @@ hiddenのデータ量が増えると、通信速度の低下、メモリ圧迫�
 そのため、hiddenタグの改竄や参照を防ぐことを目的に、カスタムタグではhidden暗号化機能を提供する。</p>
 <p>デフォルトで全ての <a class="reference internal" href="tag/tag_reference.html#tag-form-tag"><span>formタグ</span></a> で暗号化を行い、全てのリクエストで復号及び改竄チェックを行う。
 このため、アプリケーションプログラマは、hidden暗号化機能に関して実装する必要がない。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">仕様が複雑であり容易に使用することができない、また <a class="reference internal" href="#tag-window-scope"><span>ウィンドウスコープ</span></a> にあるように
+暗号化対象のデータの使用が非推奨であるため本機能も非推奨とする。
+このため、特に理由がない限り <a class="reference internal" href="#tag-use-hidden-encryption"><span>useHiddenEncryption</span></a> には <code class="docutils literal"><span class="pre">false</span></code> を設定すること。</p>
+</div>
 <dl class="docutils">
 <dt>hidden暗号化</dt>
 <dd><p class="first">hidden暗号化は、 <a class="reference internal" href="tag/tag_reference.html#tag-form-tag"><span>formタグ</span></a> と <a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a> により実現する。
@@ -906,10 +912,10 @@ hidden暗号化の処理イメージを以下に示す。
 <p class="last"></p>
 </dd>
 <dt>暗号化処理</dt>
-<dd><p class="first">暗号化は、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/encryption/Encryptor.html" title="nablarch.common.encryption.Encryptor">Encryptor</a> インタフェースを実装したクラスが行う。
+<dd><p class="first">暗号化は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/encryption/Encryptor.html" title="nablarch.common.encryption.Encryptor">Encryptor</a> インタフェースを実装したクラスが行う。
 フレームワークでは、デフォルトの暗号化アルゴリズムとして <code class="docutils literal"><span class="pre">AES(128bit)</span></code> を使用する。
 暗号化アルゴリズムを変更したい場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/encryption/Encryptor.html" title="nablarch.common.encryption.Encryptor">Encryptor</a> を実装したクラスを
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/encryption/Encryptor.html" title="nablarch.common.encryption.Encryptor">Encryptor</a> を実装したクラスを
 コンポーネント定義に <code class="docutils literal"><span class="pre">hiddenEncryptor</span></code> という名前で追加する。</p>
 <p>暗号化では、<a class="reference internal" href="tag/tag_reference.html#tag-form-tag"><span>formタグ</span></a> 毎に、 <a class="reference internal" href="tag/tag_reference.html#tag-form-tag"><span>formタグ</span></a> に含まれる以下のデータをまとめて暗号化し、
 1つのhiddenタグで出力する。</p>
@@ -949,16 +955,10 @@ hidden暗号化の処理イメージを以下に示す。
 このため、同じユーザであってもログインをやり直すと、ログイン前に使用していた画面から処理を継続できない。</dd>
 <dt>hidden暗号化の設定</dt>
 <dd><p class="first">hidden暗号化では、 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> により、以下の設定ができる。</p>
-<dl class="docutils">
+<dl class="docutils" id="tag-use-hidden-encryption">
 <dt>useHiddenEncryptionプロパティ</dt>
-<dd><p class="first">hidden暗号化を使用するか否か。
-デフォルトはtrue。
-開発時にHTMLソース上でhiddenタグの内容を確認する場合に指定する。</p>
-<div class="last admonition important">
-<p class="first admonition-title">重要</p>
-<p class="last">本番環境では必ず暗号化を行うこと。</p>
-</div>
-</dd>
+<dd>hidden暗号化を使用するか否か。
+デフォルトはtrue。</dd>
 <dt>noHiddenEncryptionRequestIdsプロパティ</dt>
 <dd>hidden暗号化を行わないリクエストID。</dd>
 </dl>
@@ -996,16 +996,16 @@ hidden暗号化の処理イメージを以下に示す。
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">この機能を使用するには、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/compositekey/CompositeKeyConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyConvertor">CompositeKeyConvertor</a> と
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/compositekey/CompositeKeyArrayConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyArrayConvertor">CompositeKeyArrayConvertor</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/compositekey/CompositeKeyConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyConvertor">CompositeKeyConvertor</a> と
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/compositekey/CompositeKeyArrayConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyArrayConvertor">CompositeKeyArrayConvertor</a>
 をコンポーネント定義に追加しておく必要がある。
 設定方法については、 <a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> を参照。</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">この機能は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/compositekey/CompositeKeyConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyConvertor">CompositeKeyConvertor</a> と
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/compositekey/CompositeKeyArrayConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyArrayConvertor">CompositeKeyArrayConvertor</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/compositekey/CompositeKeyConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyConvertor">CompositeKeyConvertor</a> と
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/compositekey/CompositeKeyArrayConvertor.html" title="nablarch.common.web.compositekey.CompositeKeyArrayConvertor">CompositeKeyArrayConvertor</a>
 を使用するため、 <a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a> でのみ使用できる。
 <a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> は対応していない。</p>
 </div>
@@ -1015,7 +1015,7 @@ hidden暗号化の処理イメージを以下に示す。
 <dl class="last docutils">
 <dt>フォーム</dt>
 <dd><p class="first">フォームでは、複合キーを保持するプロパティを
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/compositekey/CompositeKey.html" title="nablarch.common.web.compositekey.CompositeKey">CompositeKey</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/compositekey/CompositeKey.html" title="nablarch.common.web.compositekey.CompositeKey">CompositeKey</a>
 として定義する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderItemsForm</span> <span class="o">{</span>
 
@@ -1278,7 +1278,7 @@ JavaScriptの詳細については、 <a class="reference internal" href="#tag-o
 ボタンの場合は、disabled属性を有効にする。
 リンクの場合は、ラベルのみ表示するか、非活性リンク描画用JSPをインクルードする。
 JSPインクルードを行うには、 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSubmitLinkDisabledJsp(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setSubmitLinkDisabledJsp(java.lang.String)">submitLinkDisabledJspプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSubmitLinkDisabledJsp(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setSubmitLinkDisabledJsp(java.lang.String)">submitLinkDisabledJspプロパティ</a>
 を指定する。</dd>
 <dt>通常表示</dt>
 <dd>通常どおりタグが出力される。
@@ -1286,7 +1286,7 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 </dl>
 <p>デフォルトは、 <code class="docutils literal"><span class="pre">通常表示</span></code> である。
 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setDisplayMethod(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setDisplayMethod(java.lang.String)">displayMethodプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setDisplayMethod(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setDisplayMethod(java.lang.String)">displayMethodプロパティ</a>
 を指定することで、デフォルトを変更できる。</p>
 <p>個別に表示方法を変更したい場合は、displayMethod属性に指定する。</p>
 <dl class="docutils">
@@ -1355,7 +1355,7 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 </dd>
 </dl>
 <p>popupWindowName属性が指定されない場合、 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setPopupWindowName(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setPopupWindowName(java.lang.String)">popupWindowNameプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setPopupWindowName(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setPopupWindowName(java.lang.String)">popupWindowNameプロパティ</a>
 に指定したデフォルト値が使用される。
 デフォルト値が設定されていない場合、カスタムタグは、JavaScriptのDate関数から取得した現在時刻(ミリ秒)を新しいウィンドウの名前に使用する。
 デフォルト値の指定有無により、ポップアップのデフォルト動作が以下のとおり決まる。</p>
@@ -1435,7 +1435,7 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 <span id="id18"></span><h3><a class="toc-backref" href="#id59">7.18.4.15. ファイルダウンロードを行うボタン/リンクを作る</a><a class="headerlink" href="#tag-submit-download" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ファイルダウンロードを行うボタン/リンクを作るために、
 ダウンロード専用のサブミットを行うカスタムタグ(以降はダウンロードタグと称す)と
-アクションの実装を容易にする <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a>
+アクションの実装を容易にする <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a>
 のサブクラス(以降はダウンロードユーティリティと称す)を提供する。</p>
 <dl class="docutils">
 <dt>ダウンロードタグ</dt>
@@ -1447,15 +1447,15 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 </dd>
 <dt>ダウンロードユーティリティ</dt>
 <dd><dl class="first last docutils">
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/download/StreamResponse.html" title="nablarch.common.web.download.StreamResponse">StreamResponse</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/download/StreamResponse.html" title="nablarch.common.web.download.StreamResponse">StreamResponse</a></dt>
 <dd>ストリームからHTTPレスポンスメッセージを生成するクラス。
 ファイルシステム上のファイルやデータベースのBLOB型のカラムに格納したバイナリデータをダウンロードする場合に使用する。
 <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html" title="java.io.File">File</a> または <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/sql/Blob.html" title="java.sql.Blob">Blob</a> のダウンロードをサポートする。</dd>
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a></dt>
 <dd>データレコードからHTTPレスポンスメッセージを生成するクラス。
 検索結果など、アプリケーションで使用するデータをダウンロードする場合に使用する。
 ダウンロードされるデータは <a class="reference internal" href="data_io/data_format.html#data-format"><span>汎用データフォーマット</span></a> を使用してフォーマットされる。
-Map&lt;String, ?&gt;型データ( <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> など)のダウンロードをサポートする。</dd>
+Map&lt;String, ?&gt;型データ( <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> など)のダウンロードをサポートする。</dd>
 </dl>
 </dd>
 </dl>
@@ -1795,8 +1795,8 @@ field-separator:  <span class="s2">&quot;,&quot;</span>         <span class="c1"
 </div>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">トークンの発行は、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/token/RandomTokenGenerator.html" title="nablarch.common.web.token.RandomTokenGenerator">RandomTokenGenerator</a> が行う。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/token/RandomTokenGenerator.html" title="nablarch.common.web.token.RandomTokenGenerator">RandomTokenGenerator</a>
+<p class="last">トークンの発行は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/token/RandomTokenGenerator.html" title="nablarch.common.web.token.RandomTokenGenerator">RandomTokenGenerator</a> が行う。
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/token/RandomTokenGenerator.html" title="nablarch.common.web.token.RandomTokenGenerator">RandomTokenGenerator</a>
 では、16文字のランダムな文字列を生成する。
 トークンの発行処理を変更したい場合は、<a class="reference internal" href="#tag-double-submission-server-side-change"><span>サーバ側の二重サブミット防止で、トークンの発行処理を変更する</span></a> を参照。</p>
 </div>
@@ -1818,6 +1818,19 @@ field-separator:  <span class="s2">&quot;,&quot;</span>         <span class="c1"
 <dt><a class="reference internal" href="tag/tag_reference.html#tag-ignore-confirmation-tag"><span>ignoreConfirmationタグ</span></a></dt>
 <dd>確認画面で、確認画面向けの表示を無効化したい部分に指定する。
 例えば、チェックボックスを使用した項目で、確認画面でもチェック欄を表示したい場合などに使用する。</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>入力・確認画面の表示制御は入力系のタグが対象となる。
+ただし、以下のタグに関しては異なる動作となる。</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="tag/tag_reference.html#tag-plain-hidden-tag"><span>plainHiddenタグ</span></a></dt>
+<dd>画面遷移の状態などを画面間で受け渡す目的で使用することを想定し、入力・確認画面ともに出力する。</dd>
+<dt><a class="reference internal" href="tag/tag_reference.html#tag-hidden-store-tag"><span>hiddenStoreタグ</span></a></dt>
+<dd><a class="reference internal" href="session_store.html#session-store"><span>セッションストア</span></a> に保存したデータを画面間で受け渡すために使用するため、入力・確認画面ともに出力する。</dd>
+</dl>
+</div>
+<dl class="docutils">
 <dt>実装例</dt>
 <dd><p class="first">以下の画面出力を行うJSPの実装例を示す。</p>
 <img alt="../../../_images/make_common_input_confirm.png" src="../../../_images/make_common_input_confirm.png" />
@@ -2233,8 +2246,8 @@ HTMLエスケープを行わず、変数内のHTMLタグを直接出力したい
 <dt><a class="reference internal" href="tag/tag_reference.html#tag-pretty-print-tag"><span>prettyPrintタグ</span></a></dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">&lt;b&gt;</span></code> や <code class="docutils literal"><span class="pre">&lt;del&gt;</span></code> のような装飾系のHTMLタグをエスケープせずに出力するカスタムタグ。
 使用可能なHTMLタグ及び属性は、 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSafeTags(java.lang.String[])" title="nablarch.common.web.tag.CustomTagConfig.setSafeTags(java.lang.String[])">safeTagsプロパティ</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSafeAttributes(java.lang.String[])" title="nablarch.common.web.tag.CustomTagConfig.setSafeAttributes(java.lang.String[])">safeAttributesプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSafeTags(java.lang.String[])" title="nablarch.common.web.tag.CustomTagConfig.setSafeTags(java.lang.String[])">safeTagsプロパティ</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSafeAttributes(java.lang.String[])" title="nablarch.common.web.tag.CustomTagConfig.setSafeAttributes(java.lang.String[])">safeAttributesプロパティ</a>
 で任意に設定することができる。
 デフォルトで使用可能なタグ、属性はリンク先を参照。</p>
 <div class="last admonition important">
@@ -2283,8 +2296,8 @@ HTMLエスケープを行わず、変数内のHTMLタグを直接出力したい
 パターン文字列を省略した場合は、 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> (yyyymmddPatternプロパティ)に設定されたデフォルトのパターンを使用する。</p>
 <p>また、パターンの後に区切り文字 <code class="docutils literal"><span class="pre">|</span></code> を使用してフォーマットのロケールを指定できる。
 ロケールを明示的に指定しない場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> の言語を使用する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> が設定されていない場合は、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> の言語を使用する。
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> が設定されていない場合は、
 システムデフォルトロケール値を使用する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
@@ -2308,10 +2321,10 @@ HTMLエスケープを行わず、変数内のHTMLタグを直接出力したい
 <p><a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> のvalueFormat属性を指定した場合、
 入力画面にもフォーマットした値が出力される。
 入力された年月日をアクションで取得する場合は、 <a class="reference internal" href="#tag-window-scope"><span>ウィンドウスコープ</span></a> および
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/date/YYYYMMDDConvertor.html" title="nablarch.common.date.YYYYMMDDConvertor">Nablarch独自のバリデーションが提供する年月日コンバータ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/date/YYYYMMDDConvertor.html" title="nablarch.common.date.YYYYMMDDConvertor">Nablarch独自のバリデーションが提供する年月日コンバータ</a>
 を使用する。
 <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> と <a class="reference internal" href="#tag-window-scope"><span>ウィンドウスコープ</span></a> 、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/date/YYYYMMDDConvertor.html" title="nablarch.common.date.YYYYMMDDConvertor">年月日コンバータ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/date/YYYYMMDDConvertor.html" title="nablarch.common.date.YYYYMMDDConvertor">年月日コンバータ</a>
 が連携し、valueFormat属性に指定されたパターンを使用した値変換とバリデーションを行う。</p>
 <p class="last">なお、 <a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> は <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> のvalueFormat属性に対応していない。</p>
 </div>
@@ -2319,7 +2332,7 @@ HTMLエスケープを行わず、変数内のHTMLタグを直接出力したい
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference internal" href="#tag-window-scope"><span>ウィンドウスコープ</span></a> を使用しない場合は、 <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> のvalueFormat属性を指定しても
 valueFormat属性の値がサーバサイドに送信されないためバリデーションエラーが発生してしまう。
-その場合は <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/date/YYYYMMDD.html" title="nablarch.common.date.YYYYMMDD">YYYYMMDD</a> アノテーションのallowFormat属性を指定することで、
+その場合は <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/date/YYYYMMDD.html" title="nablarch.common.date.YYYYMMDD">YYYYMMDD</a> アノテーションのallowFormat属性を指定することで、
 入力値のチェックを行うことができる。</p>
 </div>
 </dd>
@@ -2338,7 +2351,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 パターンには
 <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html" title="java.text.SimpleDateFormat">SimpleDateFormat</a>
 が規定している構文を指定する。
-デフォルトでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> に設定された
+デフォルトでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> に設定された
 言語とタイムゾーンに応じた日時が出力される。
 また、パターン文字列の後に区切り文字 <code class="docutils literal"><span class="pre">|</span></code> を使用してロケールおよびタイムゾーンを明示的に指定することができる。</p>
 <p><a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> (dateTimePatternプロパティ、patternSeparatorプロパティ)を使用して、
@@ -2371,7 +2384,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 <p>値は <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Number.html" title="java.lang.Number">Number</a> 型又は数字の文字列を指定する。
 文字列の場合、3桁ごとの区切り文字(1,000,000のカンマ)を取り除いた後でフォーマットされる。
 パターンには <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html" title="java.text.DecimalFormat">DecimalFormat</a> が規定している構文を指定する。</p>
-<p>デフォルトでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> に設定された言語を使用して、
+<p>デフォルトでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> に設定された言語を使用して、
 言語に応じた形式で値が出力される。
 言語を直接指定することで、指定された言語に応じた形式で値を出力することもできる。
 言語の指定は、パターンの末尾に区切り文字 <code class="docutils literal"><span class="pre">|</span></code> を使用して言語を付加することで行う。</p>
@@ -2389,11 +2402,16 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </dl>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
+<p>本機能では値のフォーマットのみを行うため、丸め動作の設定は行わない。(<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html" title="java.text.DecimalFormat">DecimalFormat</a> のデフォルトが使用される。)</p>
+<p class="last">丸め処理を行いたい場合には、アプリケーション側で処理を行い、本機能を用いてフォーマット処理を行うこと。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
 <p><a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> のvalueFormat属性を指定した場合、入力画面にもフォーマットした値が出力される。
 入力された数値をアクションで取得する場合は数値コンバータ(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/convertor/BigDecimalConvertor.html" title="nablarch.core.validation.convertor.BigDecimalConvertor">BigDecimalConvertor</a> 、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/convertor/IntegerConvertor.html" title="nablarch.core.validation.convertor.IntegerConvertor">IntegerConvertor</a> 、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/convertor/LongConvertor.html" title="nablarch.core.validation.convertor.LongConvertor">LongConvertor</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/convertor/BigDecimalConvertor.html" title="nablarch.core.validation.convertor.BigDecimalConvertor">BigDecimalConvertor</a> 、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/convertor/IntegerConvertor.html" title="nablarch.core.validation.convertor.IntegerConvertor">IntegerConvertor</a> 、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/convertor/LongConvertor.html" title="nablarch.core.validation.convertor.LongConvertor">LongConvertor</a>
 )を使用する。
 <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> と数値コンバータが連携し、valueFormat属性に指定された言語に対応する値変換とバリデーションを行う。</p>
 <p class="last">なお、 <a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> は <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> のvalueFormat属性に対応していない。</p>
@@ -2426,9 +2444,9 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">エラー表示に使用するカスタムタグでは、リクエストスコープから
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a>
 を取得してエラーメッセージを出力する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> は、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> は、
 <a class="reference internal" href="../handlers/web_interceptor/on_error.html#on-error-interceptor"><span>OnErrorインターセプター</span></a> を使用して、リクエストスコープに設定する。</p>
 </div>
 <dl class="docutils" id="tag-write-error-errors-tag">
@@ -2748,9 +2766,9 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">カスタムタグでは、言語指定によるコード値の取得はできない。
-カスタムタグでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> のロケールを指定しないAPIを使用している。
+カスタムタグでは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> のロケールを指定しないAPIを使用している。
 言語指定でコード値を取得したい場合は、アクションで
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a>
 を使用して値を取得する。</p>
 </div>
 </div>
@@ -2809,7 +2827,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 <li><a class="reference internal" href="tag/tag_reference.html#tag-include-tag"><span>includeタグ</span></a> (インクルード)</li>
 </ul>
 <p>これらのカスタムタグでは、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/web/i18n/ResourcePathRule.html" title="nablarch.fw.web.i18n.ResourcePathRule">ResourcePathRule</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/web/i18n/ResourcePathRule.html" title="nablarch.fw.web.i18n.ResourcePathRule">ResourcePathRule</a>
 のサブクラスを使用して言語毎のリソースパスを取得することで切り替えを行う。
 デフォルトで提供するサブクラスについては、 <a class="reference internal" href="../handlers/web/http_response_handler.html#http-response-handler-change-content-path"><span>言語毎のコンテンツパスの切り替え</span></a> を参照。</p>
 <div class="admonition tip">
@@ -2914,11 +2932,11 @@ Pragma no-cache
 <div class="section" id="id32">
 <h3><a class="toc-backref" href="#id74">7.18.5.1. フォーマッタを追加する</a><a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>フォーマットは、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/ValueFormatter.html" title="nablarch.common.web.tag.ValueFormatter">ValueFormatter</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/ValueFormatter.html" title="nablarch.common.web.tag.ValueFormatter">ValueFormatter</a>
 インタフェースを実装したクラスが行う。
 実装したクラスをコンポーネント定義に追加することでフォーマットを変更することができる。</p>
 <p>コンポーネント定義への追加は、Map型でデータタイプ名をキーに、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/ValueFormatter.html" title="nablarch.common.web.tag.ValueFormatter">ValueFormatter</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/ValueFormatter.html" title="nablarch.common.web.tag.ValueFormatter">ValueFormatter</a>
 を実装したクラスを値に指定する。</p>
 <p>フレームワークがデフォルトでサポートしているフォーマットに対する設定例を以下に示す。</p>
 <p>フォーマッタのマップは、 <code class="docutils literal"><span class="pre">valueFormatters</span></code> という名前でコンポーネント定義に追加する。</p>
@@ -2942,10 +2960,10 @@ Pragma no-cache
 <div class="section" id="tag-submit-display-control-change">
 <span id="id33"></span><h3><a class="toc-backref" href="#id75">7.18.5.2. ボタン/リンクの表示制御に使う判定処理を変更する</a><a class="headerlink" href="#tag-submit-display-control-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-submit-display-control"><span>認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</span></a> に使用する判定処理を変更したい場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/DisplayControlChecker.html" title="nablarch.common.web.tag.DisplayControlChecker">DisplayControlChecker</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/DisplayControlChecker.html" title="nablarch.common.web.tag.DisplayControlChecker">DisplayControlChecker</a>
 インタフェースを実装することで変更できる。
 実装したクラスを <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setDisplayControlCheckers(java.util.List)" title="nablarch.common.web.tag.CustomTagConfig.setDisplayControlCheckers(java.util.List)">displayControlCheckersプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setDisplayControlCheckers(java.util.List)" title="nablarch.common.web.tag.CustomTagConfig.setDisplayControlCheckers(java.util.List)">displayControlCheckersプロパティ</a>
 に指定する。</p>
 <dl class="docutils">
 <dt>設定例</dt>
@@ -2986,7 +3004,7 @@ Pragma no-cache
 <span id="id35"></span><h3><a class="toc-backref" href="#id77">7.18.5.4. サーバ側の二重サブミット防止で、トークンの発行処理を変更する</a><a class="headerlink" href="#tag-double-submission-server-side-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-double-submission-server-side"><span>サーバ側の二重サブミット防止</span></a> を使用していて、
 トークンの発行処理を変更したい場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/token/TokenGenerator.html" title="nablarch.common.web.token.TokenGenerator">TokenGenerator</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/token/TokenGenerator.html" title="nablarch.common.web.token.TokenGenerator">TokenGenerator</a>
 インタフェースを実装することで変更できる。
 実装したクラスをコンポーネント定義に <code class="docutils literal"><span class="pre">tokenGenerator</span></code> という名前で追加する。</p>
 </div>
@@ -3128,9 +3146,9 @@ URIのhttpsとhttpを切り替えることができる。</p>
 コンテキストパスを使用してURIを組み立てる。
 そのため、secure属性を使用するアプリケーションでは、
 <a class="reference internal" href="#tag-setting"><span>カスタムタグの設定を行う</span></a> で
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setPort(int)" title="nablarch.common.web.tag.CustomTagConfig.setPort(int)">portプロパティ</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSecurePort(int)" title="nablarch.common.web.tag.CustomTagConfig.setSecurePort(int)">securePortプロパティ</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setHost(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setHost(java.lang.String)">hostプロパティ</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setPort(int)" title="nablarch.common.web.tag.CustomTagConfig.setPort(int)">portプロパティ</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setSecurePort(int)" title="nablarch.common.web.tag.CustomTagConfig.setSecurePort(int)">securePortプロパティ</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setHost(java.lang.String)" title="nablarch.common.web.tag.CustomTagConfig.setHost(java.lang.String)">hostプロパティ</a>
 を指定する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -3263,7 +3281,7 @@ https://sample.co.jp/&lt;コンテキストパス&gt;/action/logout
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.7. 二重サブミット防止機能のテスト実施方法" href="../02_RequestUnitTest/double_transmission.html"/>
         <link rel="prev" title="3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法" href="send_sync.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -337,10 +337,13 @@
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- HTTP通信用クライアント --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;defaultMessageSenderClient&quot;</span>
            <span class="na">class=</span><span class="s">&quot;nablarch.test.core.messaging.MockMessagingClient&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charset&quot;</span> <span class="na">value=</span><span class="s">&quot;Shift-JIS&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
 </div></blockquote>
+<p>なお、<code class="docutils literal"><span class="pre">charset</span></code>に、文字コード名を指定することでログに出力する文字コードを変更することができる。
+通常は省略可能で、省略した場合はUTF-8が使用される。</p>
 </div>
 </div>
 </div>
@@ -376,7 +379,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

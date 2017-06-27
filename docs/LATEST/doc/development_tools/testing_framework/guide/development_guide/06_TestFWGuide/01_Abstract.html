@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.1. 自動テストフレームワーク &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>3.2.1. 自動テストフレームワーク &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.2. データベースを使用するクラスのテスト" href="02_DbAccessTest.html"/>
         <link rel="prev" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -970,6 +970,35 @@ LF(0x0A)となる。</td>
 <li>テストソースコードの重複を大幅に削減できる(テストソースコード中に単純にリテラル値でデータを記載すると、データのバリエーションが増加すると重複したコードが作られてしまう)。</li>
 </ul>
 </div>
+<div class="section" id="auto-test-framework-multi-datatype">
+<span id="id33"></span><h3>3.2.1.5.3. 複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する<a class="headerlink" href="#auto-test-framework-multi-datatype" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>複数のデータタイプを使用する場合、使用するデータタイプごとにまとめてデータを記述すること。
+複数のデータタイプを混在させてデータを記述してしまうと、データの読み込みが途中で終了しテストが正しく実行されない。</p>
+<p>例えば、 以下のようにデータタイプを記述した場合、 <code class="docutils literal"><span class="pre">TABLE2</span></code> までのデータしか評価されず、
+<code class="docutils literal"><span class="pre">TABLE3</span></code> 以降のデータに誤りがあってもテストは成功してしまう。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>EXPECTED_TABLE=TABLE1
+:
+EXPECTED_COMPLETE_TABLE=TABLE2
+:
+EXPECTED_TABLE=TABLE3
+:
+EXPECTED_COMPLETE_TABLE=TABLE4
+:
+</pre></div>
+</div>
+<p>全てのデータが正しく評価されるようにするには、
+以下のようにデータタイプごとにまとめてデータを記述すること。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>EXPECTED_TABLE=TABLE1
+:
+EXPECTED_TABLE=TABLE3
+:
+EXPECTED_COMPLETE_TABLE=TABLE2
+:
+EXPECTED_COMPLETE_TABLE=TABLE4
+:
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1003,7 +1032,7 @@ LF(0x0A)となる。</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

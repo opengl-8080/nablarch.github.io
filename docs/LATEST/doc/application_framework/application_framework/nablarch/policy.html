@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="1. Nablarchアプリケーションフレームワークとは" href="index.html"/>
         <link rel="next" title="1.4. 稼動環境" href="platform.html"/>
         <link rel="prev" title="1.2. アーキテクチャ" href="architecture.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -400,7 +400,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 <div class="section" id="api">
 <span id="nablarch-architecture-backward-compatible"></span><h2><a class="toc-backref" href="#id16">1.3.10. アプリケーションで使用してもよいAPIについて</a><a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Nablarchでは、アプリケーション開発で必要になると想定したAPIを公開APIとして定義している。
-公開APIには <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/util/annotation/Published.html" title="nablarch.core.util.annotation.Published">Published</a> というアノテーションが付与され、どのクラスやメソッドが公開APIであるかがわかるようになっている。</p>
+公開APIには <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/util/annotation/Published.html" title="nablarch.core.util.annotation.Published">Published</a> というアノテーションが付与され、どのクラスやメソッドが公開APIであるかがわかるようになっている。</p>
 <p>公開APIは、アプリケーションで使用されるAPIであるため、バージョンアップ時に後方互換を維持し、アプリケーションに修正が発生しないようにしている。
 ただし、致命的な不具合と脆弱性の対応時には後方互換を維持できない場合もある。</p>
 </div>
@@ -416,7 +416,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 この機能では、許容するscaleの範囲を <code class="docutils literal"><span class="pre">-9999</span></code> から <code class="docutils literal"><span class="pre">9999</span></code> の範囲とし、この範囲を超える指数表現の値を変換しようとした場合、例外を送出しヒープが圧迫されないようにしている。</p>
 <p>なお、許容するscaleの範囲は設定で変更可能となっている。
 設定はシステムリポジトリ機能の環境設定ファイルに指定する。
-設定方法は、 <a class="reference internal" href="../libraries/repository.html#repository-environment-configuration"><span>環境依存値を設定する</span></a> を参照。</p>
+設定方法は、 <a class="reference internal" href="../libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
 <p>例えば、許容する範囲を <code class="docutils literal"><span class="pre">-10</span></code> から <code class="docutils literal"><span class="pre">10</span></code> としたい場合には、下のように設定を追加する。</p>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.max_scale</span><span class="o">=</span><span class="s">10</span>
 </pre></div>
@@ -454,7 +454,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

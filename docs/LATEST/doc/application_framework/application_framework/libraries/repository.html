@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.3. データベースアクセス" href="database_management.html"/>
         <link rel="prev" title="7.1.1.2.5. メッセージングログの出力" href="log/messaging_log.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -320,9 +320,9 @@
 <li><a class="reference internal" href="#repository-override-bean" id="id26">Java Beansオブジェクトの設定を上書きする</a></li>
 <li><a class="reference internal" href="#repository-property-type" id="id27">文字列や数値、真偽値を設定値として使う</a></li>
 <li><a class="reference internal" href="#listmap" id="id28">ListやMapを設定値として使う</a></li>
-<li><a class="reference internal" href="#repository-autowired" id="id29">型が一致するオブジェクトを自動インジェクションする</a></li>
+<li><a class="reference internal" href="#repository-autowired" id="id29">コンポーネントを自動的にインジェクションする</a></li>
 <li><a class="reference internal" href="#repository-split-xml" id="id30">コンポーネント設定ファイル(xml)を分割する</a></li>
-<li><a class="reference internal" href="#repository-environment-configuration" id="id31">環境依存値を設定する</a></li>
+<li><a class="reference internal" href="#repository-environment-configuration" id="id31">依存値を設定する</a></li>
 <li><a class="reference internal" href="#repository-user-environment-configuration" id="id32">コンポーネント設定ファイルから環境依存値を参照する</a></li>
 <li><a class="reference internal" href="#repository-overwrite-environment-configuration" id="id33">システムプロパティを使って環境依存値を上書きする</a></li>
 <li><a class="reference internal" href="#repository-factory-injection" id="id34">ファクトリクラスで生成したオブジェクトをインジェクションする</a></li>
@@ -350,7 +350,7 @@
 <li><a class="reference internal" href="#repository-definition-bean"><span>setterインジェクションができる。</span></a></li>
 <li><a class="reference internal" href="#repository-property-type"><span>文字列や数値、真偽値を使用できる。</span></a></li>
 <li><a class="reference internal" href="#repository-map-list"><span>ListやMapをインジェクションできる。</span></a></li>
-<li><a class="reference internal" href="#repository-autowired"><span>型が一致するsetterへの自動インジェクションができる。</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>型や名前が一致するsetterへの自動インジェクションができる。</span></a></li>
 <li><a class="reference internal" href="#repository-factory-injection"><span>ファクトリインジェクションができる。</span></a></li>
 <li><a class="reference internal" href="#repository-environment-configuration"><span>環境依存値を管理できる。</span></a></li>
 </ul>
@@ -397,8 +397,8 @@
 <li><a class="reference internal" href="#repository-override-bean"><span>Java Beansオブジェクトの設定を上書きする</span></a></li>
 <li><a class="reference internal" href="#repository-property-type"><span>文字列や数値、真偽値を設定値として使う</span></a></li>
 <li><a class="reference internal" href="#repository-map-list"><span>ListやMapを設定値として使う</span></a></li>
-<li><a class="reference internal" href="#repository-autowired"><span>型が一致するオブジェクトを自動インジェクションする</span></a></li>
-<li><a class="reference internal" href="#repository-environment-configuration"><span>環境依存値を設定する</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>コンポーネントを自動的にインジェクションする</span></a></li>
+<li><a class="reference internal" href="#repository-environment-configuration"><span>依存値を設定する</span></a></li>
 <li><a class="reference internal" href="#repository-user-environment-configuration"><span>コンポーネント設定ファイルから環境依存値を参照する</span></a></li>
 <li><a class="reference internal" href="#repository-factory-injection"><span>ファクトリクラスで生成したオブジェクトをインジェクションする</span></a></li>
 <li><a class="reference internal" href="#repository-initialize-object"><span>オブジェクトの初期化処理を行う</span></a></li>
@@ -612,15 +612,31 @@
 </dl>
 </div>
 <div class="section" id="repository-autowired">
-<span id="id9"></span><h3><a class="toc-backref" href="#id29">7.2.3.6. 型が一致するオブジェクトを自動インジェクションする</a><a class="headerlink" href="#repository-autowired" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>propertyの型に対応するオブジェクトがDIコンテナ内に1つしか存在しない場合、propertyの定義を省略しても自動的にインジェクションする機能を提供する。</p>
+<span id="id9"></span><h3><a class="toc-backref" href="#id29">7.2.3.6. コンポーネントを自動的にインジェクションする</a><a class="headerlink" href="#repository-autowired" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>コンポーネントのpropertyタグの定義を省略した場合でも、自動的にコンポーネントをインジェクションする機能を提供する。
+この機能ではcomponent要素のautowireType属性を使用することで、自動インジェクションタイプを指定することができる。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>自動インジェクション機能を使用するのではなく、propertyを定義し明示的にインジェクションする方法を推奨する。</p>
-<p class="last">なぜなら、この機能を使用すると最終的に生成されるオブジェクトの状態が、コンポーネント設定ファイル(xml)から読み取れない問題がある。
-また、派生開発で同一の型のオブジェクトの設定が増えた場合、propertyの定義が必要になるなどメンテナンス性が悪い問題がある。</p>
+<p>自動インジェクション機能を使用すると以下の問題があるため、autowireType属性には明示的に <cite>None</cite> を指定することを推奨する。</p>
+<ul class="last simple">
+<li>最終的に生成されるオブジェクトの状態が、コンポーネント設定ファイル(xml)から読み取れない。</li>
+<li>任意項目のプロパティ定義を省略した場合に、想定していないオブジェクトが自動的にインジェクションされてしまう可能性がある。</li>
+<li>型による自動インジェクションを使用し、派生開発で同一の型のオブジェクトの設定が増えた場合、
+propertyの定義が必要になるためメンテナンス性が悪い。</li>
+</ul>
 </div>
-<p>以下に自動インジェクションとなる例を示す。</p>
+<p>autowireType属性に指定可能なタイプは以下の通り。</p>
+<dl class="docutils">
+<dt>ByType</dt>
+<dd>DIコンテナ上にそのプロパティの型が1つしか存在しない場合に、そのコンポーネントを自動的にインジェクションする。
+デフォルトではこのタイプが使用される。</dd>
+<dt>ByName</dt>
+<dd>プロパティ名と一致する名称のコンポーネントが存在する場合に、そのコンポーネントを自動的にインジェクションする。
+なお、プロパティとコンポーネントの型が一致しない場合はエラーとなる。</dd>
+<dt>None</dt>
+<dd>自動インジェクションを行わない。</dd>
+</dl>
+<p>デフォルト(ByType)の設定で自動インジェクションする例を以下に示す。</p>
 <dl class="docutils">
 <dt>インジェクション対象のクラスを作成する</dt>
 <dd><p class="first">インジェクション対象のインタフェース及び実装クラスを作成する。
@@ -680,7 +696,7 @@
 </div>
 </div>
 <div class="section" id="repository-environment-configuration">
-<span id="id11"></span><h3><a class="toc-backref" href="#id31">7.2.3.8. 環境依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id31">7.2.3.8. 依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テスト環境や本番環境で異なる値(データベースの接続情報やディレクトリのパスなど)は、環境設定ファイルで管理することができる。</p>
 <p>環境設定ファイルは、以下のようにシンプルなkey-value形式で記述する。
 詳細な記述ルールは、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>環境設定ファイルの記述ルール</span></a> を参照。</p>
@@ -762,7 +778,7 @@ database.password <span class="o">=</span> sa
 <p>以下に手順を示す。</p>
 <dl class="docutils">
 <dt>ファクトリクラスを作成する</dt>
-<dd><p class="first">ファクトリクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> インタフェースを実装し作成する。</p>
+<dd><p class="first">ファクトリクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> インタフェースを実装し作成する。</p>
 <dl class="last docutils">
 <dt>実装例</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponentFactory</span> <span class="kd">implements</span> <span class="n">ComponentFactory</span><span class="o">&lt;</span><span class="n">SampleComponent</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -806,13 +822,13 @@ database.password <span class="o">=</span> sa
 <span id="id15"></span><h3><a class="toc-backref" href="#id35">7.2.3.12. オブジェクトの初期化処理を行う</a><a class="headerlink" href="#repository-initialize-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オブジェクトの初期化処理を行うためには、以下の手順が必要となる。</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> インタフェースを実装する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> インタフェースを実装する。</li>
 <li>コンポーネント設定ファイルに初期化対象のリストを設定する。</li>
 </ol>
 <p>以下に詳細な手順を示す。</p>
 <dl class="docutils">
 <dt>Initializableインタフェースを実装する</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize()" title="nablarch.core.repository.initialization.Initializable.initialize()">initialzie</a> で初期化処理を行う。</p>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize()" title="nablarch.core.repository.initialization.Initializable.initialize()">initialzie</a> で初期化処理を行う。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Initializable</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
     <span class="c1">// プロパティにインジェクションされた値などを元に初期化処理を行う</span>
@@ -822,7 +838,7 @@ database.password <span class="o">=</span> sa
 </div>
 </dd>
 <dt>コンポーネント設定ファイルに初期化対象のリストを設定する</dt>
-<dd><p class="first">初期化対象のオブジェクトを <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> に設定する。</p>
+<dd><p class="first">初期化対象のオブジェクトを <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> に設定する。</p>
 <p>初期化対象のオブジェクトの初期化順を意識する必要がある場合は、先に初期化を行いたいオブジェクトをより上に設定する。
 下の設定例の場合、以下の順で初期化が行われる。</p>
 <ol class="arabic simple">
@@ -832,7 +848,7 @@ database.password <span class="o">=</span> sa
 </ol>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> のコンポーネント名は、 必ず <strong>initializer</strong> とすること。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> のコンポーネント名は、 必ず <strong>initializer</strong> とすること。</p>
 </div>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 初期化対象のオブジェクトの設定 --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
@@ -879,7 +895,7 @@ database.password <span class="o">=</span> sa
 </div>
 <div class="section" id="id17">
 <h3><a class="toc-backref" href="#id37">7.2.3.14. システムリポジトリからオブジェクトを取得する</a><a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>システムリポジトリ上からオブジェクトを取得する場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a> クラスを使用する。</p>
+<p>システムリポジトリ上からオブジェクトを取得する場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a> クラスを使用する。</p>
 <p>なお、システムリポジトリには事前にDIコンテナの情報を設定しておく必要がある。
 詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span>DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
 <p>以下のように、component要素(listやmap要素を含む)に設定したname属性の値を指定して、オブジェクトを取得できる。</p>
@@ -977,7 +993,7 @@ efg
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

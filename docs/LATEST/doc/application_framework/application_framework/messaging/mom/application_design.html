@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.1.2. アプリケーションの責務配置 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>5.1.2. アプリケーションの責務配置 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="5.1. MOMによるメッセージング" href="index.html"/>
         <link rel="next" title="5.1.3. Getting Started" href="getting_started.html"/>
         <link rel="prev" title="5.1.1. アーキテクチャ概要" href="architecture.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -313,12 +313,12 @@
 <dl class="docutils">
 <dt>アクションクラス(action class)</dt>
 <dd><p class="first">アクションクラスは、データリーダ(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
 )が読み込んだ要求電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
 )を元に業務ロジックを実行し、応答電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/ResponseMessage.html" title="nablarch.fw.messaging.ResponseMessage">ResponseMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/ResponseMessage.html" title="nablarch.fw.messaging.ResponseMessage">ResponseMessage</a>
 )を返却する。</p>
 <p>例えば、要求電文の取り込みであれば、業務ロジックとして以下の処理を行う。</p>
 <ul class="simple">
@@ -333,16 +333,16 @@
 <li>応答不要メッセージングは、データ取り込みが目的で、業務ロジックは後続するバッチが行うため、
 バリデーションを行わない。</li>
 <li>応答不要メッセージングは電文を返さないので、
-処理結果として <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Success</a> を返す。</li>
+処理結果として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Success</a> を返す。</li>
 </ul>
 </div>
 </dd>
 <dt>フォームクラス(form class)</dt>
 <dd><p class="first">データリーダ(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
 )が読み込んだ要求電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
 )をマッピングするクラス。</p>
 <p>要求電文をバリデーションするためのアノテーションの設定や相関バリデーションのロジックを持つ。</p>
 <dl class="last docutils">
@@ -393,7 +393,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.2.3.1. ファイルをDBに登録するバッチの作成 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>4.2.3.1. ファイルをDBに登録するバッチの作成 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="4.2.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="4.2.4. 機能詳細" href="../../feature_details.html"/>
         <link rel="prev" title="4.2.3. Getting Started" href="../getting_started.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../example/index.html">Example</a><ul>
@@ -328,9 +328,8 @@
 <blockquote>
 <div><p>コマンドプロンプトから下記コマンドを実行する。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">$cd</span> <span class="o">{</span>nablarch-example-batchリポジトリ<span class="o">}</span>
-$java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class="p">;</span>.<span class="se">\t</span>arget<span class="se">\d</span>ependency<span class="se">\*</span> nablarch.fw.launcher.Main ^
-    -requestPath ImportZipCodeFileAction/ImportZipCodeFile ^
-    -diConfig classpath:com/example/import-zip-code-file.xml -userId 105
+$mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main ^
+    -Dexec.args<span class="o">=</span><span class="s2">&quot;&#39;-requestPath&#39; &#39;ImportZipCodeFileAction/ImportZipCodeFile&#39; &#39;-diConfig&#39; &#39;classpath:import-zip-code-file.xml&#39; &#39;-userId&#39; &#39;105&#39;&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -409,10 +408,10 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を用いてフォームにCSVをバインドするため、<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/databind/csv/Csv.html" title="nablarch.common.databind.csv.Csv">Csv</a>
-及び <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">CsvFormat</a> を付与する。</li>
+<li><a class="reference internal" href="../../../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を用いてフォームにCSVをバインドするため、<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/databind/csv/Csv.html" title="nablarch.common.databind.csv.Csv">Csv</a>
+及び <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">CsvFormat</a> を付与する。</li>
 <li><a class="reference internal" href="../../../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を実施するために、バリデーション用のアノテーションを付与する。</li>
-<li>行数プロパティを定義し、ゲッタに <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/databind/LineNumber.html" title="nablarch.common.databind.LineNumber">LineNumber</a> を付与することで、
+<li>行数プロパティを定義し、ゲッタに <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/databind/LineNumber.html" title="nablarch.common.databind.LineNumber">LineNumber</a> を付与することで、
 対象データが何行目のデータであるかを自動的に設定できる。</li>
 </ul>
 </dd>
@@ -421,7 +420,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 </dl>
 <dl class="docutils" id="getting-started-nablarch-batch-data-reader">
 <dt>データリーダの作成</dt>
-<dd><p class="first">ファイルを読み込んで一行ずつ業務アクションメソッドへ引き渡す、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> の実装クラスを作成する。</p>
+<dd><p class="first">ファイルを読み込んで一行ずつ業務アクションメソッドへ引き渡す、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> の実装クラスを作成する。</p>
 <dl class="docutils">
 <dt>ZipCodeFileReader.java</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ZipCodeFileReader</span> <span class="kd">implements</span> <span class="n">DataReader</span><span class="o">&lt;</span><span class="n">ZipCodeForm</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -508,7 +507,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 </dl>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> のように
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> のように
 <cite>hasNext</cite> メソッドを持たないクラスからデータを読み込む場合、イテレータを作成することでデータリーダの実装をシンプルにできる上、
 データ読み込み処理をバッチごとに実装する手間を省くことができる。
 イテレータの実装に関してはExampleアプリケーションの <cite>ObjectMapperIterator.java</cite> の実装を参照。</p>
@@ -524,7 +523,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 </ol>
 <dl class="docutils" id="getting-started-nablarch-batch-action">
 <dt>業務アクションの作成</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> を継承し、業務アクションクラスを作成する。</p>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> を継承し、業務アクションクラスを作成する。</p>
 <dl class="docutils">
 <dt>ImportZipCodeFileAction.java</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ImportZipCodeFileAction</span> <span class="kd">extends</span> <span class="n">BatchAction</span><span class="o">&lt;</span><span class="n">ZipCodeForm</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -568,7 +567,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li><cite>handle</cite> メソッドに、データリーダから渡された一行分のデータに対する処理を実装する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#insert(java.lang.Object)" title="nablarch.common.dao.UniversalDao.insert(java.lang.Object)">UniversalDao#insert</a> を使用して住所エンティティをデータベースに登録する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#insert(java.lang.Object)" title="nablarch.common.dao.UniversalDao.insert(java.lang.Object)">UniversalDao#insert</a> を使用して住所エンティティをデータベースに登録する。</li>
 <li><cite>createReader</cite> メソッドでは使用するデータリーダクラスのインスタンスを返却する。</li>
 </ul>
 </dd>
@@ -614,7 +613,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

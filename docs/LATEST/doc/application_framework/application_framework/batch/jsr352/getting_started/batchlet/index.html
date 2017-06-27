@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.3.1. 対象テーブルのデータを削除するバッチの作成(Batchletステップ) &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>4.1.3.1. 対象テーブルのデータを削除するバッチの作成(Batchletステップ) &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="4.1.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="4.1.3.2. データを導出するバッチの作成(Chunkステップ)" href="../chunk/index.html"/>
         <link rel="prev" title="4.1.3. Getting Started" href="../getting_started.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../example/index.html">Example</a><ul>
@@ -327,16 +327,9 @@
 <blockquote>
 <div><p>コマンドプロンプトから下記コマンドを実行する。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">$cd</span> <span class="o">{</span>nablarch-example-batch-eeシステムリポジトリ<span class="o">}</span>
-$java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class="p">;</span>.<span class="se">\t</span>arget<span class="se">\d</span>ependency<span class="se">\*</span> ^
-    com.nablarch.example.app.main.ExampleMain ^
-    etl-zip-code-csv-to-db-chunk
+$mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.batch.ee.Main ^
+    -Dexec.args<span class="o">=</span>etl-zip-code-csv-to-db-chunk
 </pre></div>
-</div>
-<div class="admonition tip" id="getting-started-batchlet-main-class">
-<p class="first admonition-title">ちなみに</p>
-<p class="last">ExampleMainクラスは、Example用に作成したバッチアプリケーションの起動クラスである。
-起動クラスは、アプリケーション要件に応じてアーキテクトが作成する。
-バッチ起動用クラスの詳細は、 <a class="reference internal" href="../../feature_details/run_batch_application.html#jsr352-run-batch-application"><span>バッチアプリケーションを起動する</span></a> を参照。</p>
 </div>
 <p>H2のコンソールから下記SQLを実行してデータが登録されたことを確認する。</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ZIP_CODE_DATA</span><span class="p">;</span>
@@ -350,9 +343,8 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 <blockquote>
 <div><p>コマンドプロンプトから下記コマンドを実行する。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">$cd</span> <span class="o">{</span>nablarch-example-batch-eeシステムリポジトリ<span class="o">}</span>
-$java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class="p">;</span>.<span class="se">\t</span>arget<span class="se">\d</span>ependency<span class="se">\*</span> ^
-    com.nablarch.example.app.main.ExampleMain ^
-    zip-code-truncate-table
+$mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.batch.ee.Main ^
+    -Dexec.args<span class="o">=</span>zip-code-truncate-table
 </pre></div>
 </div>
 </div></blockquote>
@@ -537,7 +529,7 @@ Named及びDependentアノテーションを設定することで、Batchlet実�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

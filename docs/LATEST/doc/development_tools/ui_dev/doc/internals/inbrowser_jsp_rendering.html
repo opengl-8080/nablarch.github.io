@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.15. 業務画面JSPローカル表示機能 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>2.1.15. 業務画面JSPローカル表示機能 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.16. JavaScript UI部品" href="js_framework.html"/>
         <link rel="prev" title="2.1.14. CSSフレームワーク" href="css_framework.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -455,6 +455,14 @@
 常に <cite>disabled=&#8221;disabled&#8221;</cite> が設定されているものとみなされる。
 このため <cite>disabled=&#8221;false&#8221;</cite> のように記述した場合に意図した通りの表示とならない。
 このような場合は単に <strong>disabled</strong> 属性を削除すること。</div></blockquote>
+<ol class="arabic simple" id="localrendering-limitation-eventconfirmtag" start="3">
+<li>イベントに関連した動作が不安定(ブラウザによって挙動も異なる)</li>
+</ol>
+<blockquote>
+<div><p>eventタグを使用した場合やJavaScriptでnablarch/ui/event.jsで定義されたイベントに対するリスナーを登録した場合の動作が、
+ブラウザによってことなったりリスナーがコールバックされないと言った問題がある。</p>
+<p>このため、これらの実装部分の確認はアプリケーションサーバにデプロイし行うこと。</p>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="id4">
@@ -672,7 +680,7 @@ JSPウィジェットを追加した場合は
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

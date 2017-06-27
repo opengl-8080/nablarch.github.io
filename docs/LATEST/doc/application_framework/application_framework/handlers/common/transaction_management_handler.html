@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.1.8. トランザクション制御ハンドラ &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>6.1.8. トランザクション制御ハンドラ &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.1. 共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.1.9. 認可チェックハンドラ" href="permission_check_handler.html"/>
         <link rel="prev" title="6.1.7. データベース接続管理ハンドラ" href="database_connection_management_handler.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -332,7 +332,7 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id10">6.1.8.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html" title="nablarch.common.handler.TransactionManagementHandler">nablarch.common.handler.TransactionManagementHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html" title="nablarch.common.handler.TransactionManagementHandler">nablarch.common.handler.TransactionManagementHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -366,18 +366,18 @@
 </div>
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id13">6.1.8.4. トランザクション制御対象の設定を行う</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このハンドラは、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionFactory(nablarch.core.transaction.TransactionFactory)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a>
-プロパティに設定されたファクトリクラス( <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラス)を使用してトランザクションの制御対象を取得しスレッド上で管理する。</p>
+<p>このハンドラは、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionFactory(nablarch.core.transaction.TransactionFactory)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a>
+プロパティに設定されたファクトリクラス( <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラス)を使用してトランザクションの制御対象を取得しスレッド上で管理する。</p>
 <p>スレッド上で管理する際には、トランザクションを識別するための名前を設定する。
-デフォルトでは、 <code class="docutils literal"><span class="pre">transaction</span></code> が使用されるが、任意の名前を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> プロパティに設定すること。
-<a class="reference internal" href="#transaction-management-handler-multi-transaction"><span>複数のトランザクションを使用する場合</span></a> は、  <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a>  プロパティへの値の設定が必須となる。</p>
+デフォルトでは、 <code class="docutils literal"><span class="pre">transaction</span></code> が使用されるが、任意の名前を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> プロパティに設定すること。
+<a class="reference internal" href="#transaction-management-handler-multi-transaction"><span>複数のトランザクションを使用する場合</span></a> は、  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a>  プロパティへの値の設定が必須となる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p><a class="reference internal" href="database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> で設定したデータベースに対するトランザクション制御を行う場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/DbConnectionManagementHandler.html#setConnectionName(java.lang.String)" title="nablarch.common.handler.DbConnectionManagementHandler.setConnectionName(java.lang.String)">DbConnectionManagementHandler#connectionName</a> に設定した値と同じ値を
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> プロパティに設定すること。</p>
-<p class="last">なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/DbConnectionManagementHandler.html#setConnectionName(java.lang.String)" title="nablarch.common.handler.DbConnectionManagementHandler.setConnectionName(java.lang.String)">DbConnectionManagementHandler#connectionName</a> に値を設定していない場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> への設定は省略して良い。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/DbConnectionManagementHandler.html#setConnectionName(java.lang.String)" title="nablarch.common.handler.DbConnectionManagementHandler.setConnectionName(java.lang.String)">DbConnectionManagementHandler#connectionName</a> に設定した値と同じ値を
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> プロパティに設定すること。</p>
+<p class="last">なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/DbConnectionManagementHandler.html#setConnectionName(java.lang.String)" title="nablarch.common.handler.DbConnectionManagementHandler.setConnectionName(java.lang.String)">DbConnectionManagementHandler#connectionName</a> に値を設定していない場合は、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionName(java.lang.String)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionName(java.lang.String)">transactionName</a> への設定は省略して良い。</p>
 </div>
 <p>以下の設定ファイル例を参考にし、このハンドラの設定を行うこと。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- トランザクション制御ハンドラ --&gt;</span>
@@ -398,7 +398,7 @@
 <h2><a class="toc-backref" href="#id14">6.1.8.5. 特定の例外の場合にトランザクションをコミットさせる</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このハンドラのデフォルト動作では、全てのエラー及び例外がロールバック対象となるが、
 発生した例外の内容によってはトランザクションをコミットしたい場合がある。</p>
-<p>この場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionCommitExceptions(java.util.List)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionCommitExceptions(java.util.List)">transactionCommitExceptions</a> プロパティに対して、
+<p>この場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/handler/TransactionManagementHandler.html#setTransactionCommitExceptions(java.util.List)" title="nablarch.common.handler.TransactionManagementHandler.setTransactionCommitExceptions(java.util.List)">transactionCommitExceptions</a> プロパティに対して、
 コミット対象の例外クラスを設定することで対応する。
 なお、設定した例外クラスのサブクラスもコミット対象となる。</p>
 <p>以下に設定例を示す。</p>
@@ -417,8 +417,8 @@
 <div class="section" id="id8">
 <h2><a class="toc-backref" href="#id15">6.1.8.6. トランザクション終了時に任意の処理を実行したい</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このハンドラでは、トランザクション終了(コミットやロールバック)時に、コールバック処理を行う。</p>
-<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装しているものとなる。
-もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
+<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装しているものとなる。
+もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
 <p>なお、トランザクションをロールバックする場合には、ロールバック後にコールバック処理を実行する。
 このため、コールバック処理は新しいトランザクションで実行され、コールバックが正常に終了するとコミットされる。</p>
 <div class="admonition important">
@@ -429,9 +429,9 @@
 <p>以下に例を示す。</p>
 <dl class="docutils">
 <dt>コールバック処理を行うハンドラの作成</dt>
-<dd><p class="first">以下実装例のように、  <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装したハンドラを作成する。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/TransactionEventCallback.html#transactionNormalEnd(TData,%20nablarch.fw.ExecutionContext)" title="nablarch.fw.TransactionEventCallback.transactionNormalEnd(TData,%20nablarch.fw.ExecutionContext)">transactionNormalEnd</a> にトランザクションコミット時のコールバック処理を実装し、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/TransactionEventCallback.html#transactionAbnormalEnd(java.lang.Throwable,%20TData,%20nablarch.fw.ExecutionContext)" title="nablarch.fw.TransactionEventCallback.transactionAbnormalEnd(java.lang.Throwable,%20TData,%20nablarch.fw.ExecutionContext)">transactionAbnormalEnd</a> にトランザクションロールバック時のコールバック処理を実装する。</p>
+<dd><p class="first">以下実装例のように、  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/TransactionEventCallback.html" title="nablarch.fw.TransactionEventCallback">TransactionEventCallback</a> を実装したハンドラを作成する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/TransactionEventCallback.html#transactionNormalEnd(TData,%20nablarch.fw.ExecutionContext)" title="nablarch.fw.TransactionEventCallback.transactionNormalEnd(TData,%20nablarch.fw.ExecutionContext)">transactionNormalEnd</a> にトランザクションコミット時のコールバック処理を実装し、
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/TransactionEventCallback.html#transactionAbnormalEnd(java.lang.Throwable,%20TData,%20nablarch.fw.ExecutionContext)" title="nablarch.fw.TransactionEventCallback.transactionAbnormalEnd(java.lang.Throwable,%20TData,%20nablarch.fw.ExecutionContext)">transactionAbnormalEnd</a> にトランザクションロールバック時のコールバック処理を実装する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SampleHandler</span>
     <span class="kd">implements</span> <span class="n">Handler</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;,</span> <span class="n">TransactionEventCallback</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span>
 
@@ -557,7 +557,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

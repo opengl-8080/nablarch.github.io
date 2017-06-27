@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.3.2. データを導出するバッチの作成(Chunkステップ) &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>4.1.3.2. データを導出するバッチの作成(Chunkステップ) &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="4.1.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="4.1.4. 機能詳細" href="../../feature_details.html"/>
         <link rel="prev" title="4.1.3.1. 対象テーブルのデータを削除するバッチの作成(Batchletステップ)" href="../batchlet/index.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../example/index.html">Example</a><ul>
@@ -323,14 +323,13 @@
 </div>
 </li>
 <li><p class="first">賞与計算バッチを実行</p>
-<p>コマンドプロンプトから賞与計算バッチを実行する。
-ExampleMainクラスについては、 <a class="reference internal" href="../batchlet/index.html#getting-started-batchlet-main-class"><span>ExampleMainクラスの説明</span></a> を参照。</p>
+<p>コマンドプロンプトから賞与計算バッチを実行する。</p>
 </li>
 </ol>
 <blockquote>
 <div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">$cd</span> <span class="o">{</span>nablarch-example-batch-eeシステムリポジトリ<span class="o">}</span>
-$java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class="p">;</span>.<span class="se">\t</span>arget<span class="se">\d</span>ependency<span class="se">\*</span> ^
-     com.nablarch.example.app.main.ExampleMain bonus-calculate
+$mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.batch.ee.Main ^
+    -Dexec.args<span class="o">=</span>bonus-calculate
 </pre></div>
 </div>
 </div></blockquote>
@@ -488,7 +487,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 詳細は、 <a class="reference internal" href="../batchlet/index.html#getting-started-batchlet-cdi"><span>BatchletのNamedとDependentの説明</span></a> を参照。</li>
 <li><cite>open</cite> メソッドで処理対象のデータを読み込む。</li>
 <li>SQLファイルの配置場所や作成方法などは、 <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-sql-file"><span>任意のSQL(SQLファイル)で検索する</span></a> を参照。</li>
-<li>大量のデータを読み込む場合は、メモリの逼迫を防ぐために <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#defer()" title="nablarch.common.dao.UniversalDao.defer()">UniversalDao#defer</a> を使用して
+<li>大量のデータを読み込む場合は、メモリの逼迫を防ぐために <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#defer()" title="nablarch.common.dao.UniversalDao.defer()">UniversalDao#defer</a> を使用して
 検索結果を <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-lazy-load"><span>遅延ロード</span></a> する。</li>
 <li><cite>readItem</cite> メソッドで読み込んだデータから一行分のデータを返却する。
 このメソッドで返却したオブジェクトが、後続する <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/api/chunk/ItemProcessor.html" title="javax.batch.api.chunk.ItemProcessor">ItemWriter</a> の <cite>processItem</cite> メソッドの引数として与えられる。</li>
@@ -619,7 +618,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/dao/UniversalDao.html#batchInsert(java.util.List)" title="nablarch.common.dao.UniversalDao.batchInsert(java.util.List)">UniversalDao#batchInsert</a> を使用してエンティティのリストを一括登録する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#batchInsert(java.util.List)" title="nablarch.common.dao.UniversalDao.batchInsert(java.util.List)">UniversalDao#batchInsert</a> を使用してエンティティのリストを一括登録する。</li>
 <li><cite>writeItems</cite> メソッド実行後にトランザクションがコミットされ、新たなトランザクションが開始される。</li>
 <li><cite>writeItems</cite> メソッド実行後、バッチ処理が <cite>readItem</cite> メソッド実行から繰り返される。</li>
 </ul>
@@ -699,7 +698,7 @@ $java -cp .<span class="se">\t</span>arget<span class="se">\*</span><span class=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

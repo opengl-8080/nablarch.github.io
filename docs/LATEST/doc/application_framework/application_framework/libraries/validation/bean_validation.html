@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.10. 入力値のチェック" href="../validation.html"/>
         <link rel="next" title="7.10.2. Nablarch Validation" href="nablarch_validation.html"/>
         <link rel="prev" title="7.10. 入力値のチェック" href="../validation.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -358,8 +358,8 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <p>Nablarchでは、よく使われるバリデータが提供されているため、基本的なバリデーションは何かを作りこむことなく利用できる。</p>
 <p>Nablarchで提供しているバリデータは以下のパッケージ内のアノテーション(注釈型)を参照。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/package-summary.html" title="nablarch.core.validation.ee.package-summary">nablarch.core.validation.ee</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/code/validator/ee/package-summary.html" title="nablarch.common.code.validator.ee.package-summary">nablarch.common.code.validator.ee</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/package-summary.html" title="nablarch.core.validation.ee.package-summary">nablarch.core.validation.ee</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/code/validator/ee/package-summary.html" title="nablarch.common.code.validator.ee.package-summary">nablarch.common.code.validator.ee</a></li>
 </ul>
 </div>
 </div>
@@ -401,7 +401,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <dl class="docutils">
 <dt>MessageInterpolatorの設定</dt>
 <dd><p class="first">Bean Validationでバリデーションエラーが発生した際のメッセージを構築するクラス( <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a> を実装したクラス)を設定する。</p>
-<p>設定を省略した場合(デフォルト)は、 <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を使用する <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> が使用される。</p>
+<p>設定を省略した場合(デフォルト)は、 <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を使用する <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> が使用される。</p>
 <p>例えば、Hibernate Validatorのプロパティファイルからメッセージを構築する実装を使用する場合には、以下のように設定する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -423,7 +423,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <h3><a class="toc-backref" href="#id28">7.10.1.3.2. バリデーションエラー時のエラーメッセージを定義する</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#bean-validation-configuration"><span>Bean Validationを使うための設定を行う</span></a> で説明したように、デフォルトでは <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を使用してバリデーションエラー時のメッセージを構築する。
 このため、メッセージの定義場所などの詳細は、 <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を参照すること。</p>
-<p>デフォルトの <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> を使用した場合のメッセージ定義ルールは以下のとおり。</p>
+<p>デフォルトの <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> を使用した場合のメッセージ定義ルールは以下のとおり。</p>
 <ul class="simple">
 <li>アノテーションの <code class="docutils literal"><span class="pre">message</span></code> 属性に指定された値が <code class="docutils literal"><span class="pre">{</span></code> 、<code class="docutils literal"><span class="pre">}</span></code> で囲まれていた場合のみ <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を使用してメッセージを構築する。</li>
 <li>メッセージテキスト内には、バリデーションのアノテーションの属性情報を埋め込むためのプレースホルダを使用できる。
@@ -524,7 +524,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 フィールド名がドメイン名となる。以下の例では <code class="docutils literal"><span class="pre">name</span></code> と <code class="docutils literal"><span class="pre">date</span></code> の２つのドメインが定義されている。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">必須項目を表す <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> アノテーションは、ドメインBeanに設定するのではなく個別のBean側に設定すること。
+<p class="last">必須項目を表す <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> アノテーションは、ドメインBeanに設定するのではなく個別のBean側に設定すること。
 必須かどうかはドメイン側で強制できるものではなく、機能の設計によるため。</p>
 </div>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
@@ -547,8 +547,8 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </dd>
 <dt>ドメインBeanを有効化</dt>
-<dd><p class="first">ドメインBeanを有効化するには、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスを作成する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/DomainManager.html#getDomainBean()" title="nablarch.core.validation.ee.DomainManager.getDomainBean()">getDomainBean</a> では、ドメインBeanのクラスオブジェクトを返す。</p>
+<dd><p class="first">ドメインBeanを有効化するには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスを作成する。
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/DomainManager.html#getDomainBean()" title="nablarch.core.validation.ee.DomainManager.getDomainBean()">getDomainBean</a> では、ドメインBeanのクラスオブジェクトを返す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainManager</span> <span class="kd">implements</span> <span class="n">DomainManager</span><span class="o">&lt;</span><span class="n">SampleDomainBean</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -560,7 +560,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <span class="o">}</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスの <cite>SampleDomainBean</cite> をコンポーネント定義ファイルに設定することで、
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> 実装クラスの <cite>SampleDomainBean</cite> をコンポーネント定義ファイルに設定することで、
 <cite>SampleDomainBean</cite> を使用したドメインバリデーションが有効となる。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- DomainManager実装クラスは、domainManagerという名前で設定すること --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;domainManager&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDomainManager&quot;</span><span class="nt">/&gt;</span>
@@ -568,7 +568,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </dd>
 <dt>各Beanでドメインバリデーションを使う</dt>
-<dd><p class="first">Beanのバリデーション対象プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a> アノテーションを設定することで、ドメインバリデーションが行われる。</p>
+<dd><p class="first">Beanのバリデーション対象プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a> アノテーションを設定することで、ドメインバリデーションが行われる。</p>
 <p>この例では、 <cite>userName</cite> に対して <cite>SampleDomainBean</cite> の <cite>name</cite> フィールドに設定したバリデーションが行われる。
 同じように <cite>birthday</cite> に対しては、 <cite>date</cite> フィールドに設定したバリデーションが行われる。</p>
 <p>※userNameは必須項目となる。</p>
@@ -599,9 +599,9 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <dd><p class="first">許容文字のセットは、以下のクラスの何れかを使って登録する。
 登録する際には、コンポーネント名には文字種を表す任意の名前を設定すること。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/validator/unicode/RangedCharsetDef.html" title="nablarch.core.validation.validator.unicode.RangedCharsetDef">RangedCharsetDef</a> (範囲で許容文字セットを登録する場合に使用する)</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/validator/unicode/LiteralCharsetDef.html" title="nablarch.core.validation.validator.unicode.LiteralCharsetDef">LiteralCharsetDef</a> (リテラルで許容文字を全て登録する場合に使用する)</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/validator/unicode/CompositeCharsetDef.html" title="nablarch.core.validation.validator.unicode.CompositeCharsetDef">CompositeCharsetDef</a> (複数のRangedCharsetDefやLiteralCharsetDefからなる許容文字を登録する場合に使用する)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/validator/unicode/RangedCharsetDef.html" title="nablarch.core.validation.validator.unicode.RangedCharsetDef">RangedCharsetDef</a> (範囲で許容文字セットを登録する場合に使用する)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/validator/unicode/LiteralCharsetDef.html" title="nablarch.core.validation.validator.unicode.LiteralCharsetDef">LiteralCharsetDef</a> (リテラルで許容文字を全て登録する場合に使用する)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/validator/unicode/CompositeCharsetDef.html" title="nablarch.core.validation.validator.unicode.CompositeCharsetDef">CompositeCharsetDef</a> (複数のRangedCharsetDefやLiteralCharsetDefからなる許容文字を登録する場合に使用する)</li>
 </ul>
 <p>設定例は以下のとおり。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 半角数字 --&gt;</span>
@@ -637,8 +637,8 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </dd>
 <dt>アノテーションで文字種を指定する</dt>
-<dd><p class="first">文字種バリデーションを行うプロパティには、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/SystemChar.html" title="nablarch.core.validation.ee.SystemChar">&#64;SystemChar</a> アノテーションを設定する。
-このアノテーションの <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/SystemChar.html#charsetDef()" title="nablarch.core.validation.ee.SystemChar.charsetDef()">charsetDef</a> 属性には、許容する文字種を表す名前を設定する。
+<dd><p class="first">文字種バリデーションを行うプロパティには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/SystemChar.html" title="nablarch.core.validation.ee.SystemChar">&#64;SystemChar</a> アノテーションを設定する。
+このアノテーションの <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/SystemChar.html#charsetDef()" title="nablarch.core.validation.ee.SystemChar.charsetDef()">charsetDef</a> 属性には、許容する文字種を表す名前を設定する。
 この名前は、上記のコンポーネント定義ファイルに文字種セットを登録した際のコンポーネント名となる。</p>
 <p>この例では、 <code class="docutils literal"><span class="pre">半角数字</span></code> を指定しているので、上記のコンポーネント定義に従い「0123456789」が許容される。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
@@ -658,7 +658,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 この問題を解決するために、一度チェックした文字の結果をキャッシュする仕組みを提供している。</p>
 <p>※原則キャッシュ機能は使わずに開発を進め、どうしても文字種バリデーションがボトルネックとなる場合に、キャッシュ機能を使うか否か検討すると良い。</p>
 <p>使い方は単純で、以下のコンポーネント定義のように、オリジナルの文字種セットの定義を、
-キャッシュ用の <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/validator/unicode/CachingCharsetDef.html" title="nablarch.core.validation.validator.unicode.CachingCharsetDef">CachingCharsetDef</a> に設定するだけである。</p>
+キャッシュ用の <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/validator/unicode/CachingCharsetDef.html" title="nablarch.core.validation.validator.unicode.CachingCharsetDef">CachingCharsetDef</a> に設定するだけである。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;半角数字&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.CachingCharsetDef&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charsetDef&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
@@ -730,8 +730,8 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <span id="id15"></span><h3><a class="toc-backref" href="#id34">7.10.1.3.8. 特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a><a class="headerlink" href="#bean-validation-create-message-for-property" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#bean-validation-database-validation"><span>データベースとの相関バリデーション</span></a> のようにアクションハンドラで行うバリデーションでエラーが発生した場合に、
 画面上で対象項目をエラーとしてハイライト表示したい場合がある。</p>
-<p>この場合には、下記の実装例のように <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ValidationUtil.html#createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.validation.ValidationUtil.createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)">ValidationUtil#createMessageForProperty</a>
-を使用してエラーメッセージを構築し、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を送出する。</p>
+<p>この場合には、下記の実装例のように <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ValidationUtil.html#createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)" title="nablarch.core.validation.ValidationUtil.createMessageForProperty(java.lang.String, java.lang.String, java.lang.Object...)">ValidationUtil#createMessageForProperty</a>
+を使用してエラーメッセージを構築し、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を送出する。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
         <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">createMessageForProperty</span><span class="o">(</span><span class="s">&quot;form.mailAddress&quot;</span><span class="o">,</span> <span class="s">&quot;duplicate.mailAddress&quot;</span><span class="o">));</span>
 </pre></div>
@@ -782,7 +782,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <dt>親BeanとネストしたBeanが1対Nの場合</dt>
 <dd><p class="first">ネストしたBeanをバリデーション対象にし、親のBean初期化時にネストしたBeanのフィールドも初期化する。
 ネストしたBeanの情報が必須(最低1つは選択 or 入力されていること)の場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/Size.html" title="nablarch.core.validation.ee.Size">Size</a> アノテーションを設定する。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/Size.html" title="nablarch.core.validation.ee.Size">Size</a> アノテーションを設定する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Sizeアノテーションを設定することで、必ず1つは選択されていることをバリデーションする。</span>
 <span class="nd">@Valid</span>
 <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">5</span><span class="o">)</span>
@@ -816,7 +816,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <p>ウェブアプリケーションのユーザ入力値のチェックは <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を使用して行う。
 詳細は、 <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を参照。</p>
 <p><a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> でBean Validationを使用するためには、コンポーネント定義ファイルへの設定が必要となる。
-以下例のように、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a> を <code class="docutils literal"><span class="pre">validationStrategy</span></code> という名前でコンポーネント定義すること。</p>
+以下例のように、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a> を <code class="docutils literal"><span class="pre">validationStrategy</span></code> という名前でコンポーネント定義すること。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;validationStrategy&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.validator.BeanValidationStrategy&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
@@ -841,7 +841,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <dt>コンポーネント設定ファイル</dt>
 <dd><p class="first">メッセージに項目名を含めるメッセージコンバータを生成するファクトリクラスを設定する。
 コンポーネント名には、 <code class="docutils literal"><span class="pre">constraintViolationConverterFactory</span></code> を設定し、
-クラス名には <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a> を設定する。</p>
+クラス名には <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a> を設定する。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;constraintViolationConverterFactory&quot;</span>
     <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -887,7 +887,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">メッセージへの項目名の追加方法を変更したい場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a>
+<p class="last">メッセージへの項目名の追加方法を変更したい場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a>
 を参考にし、プロジェクト側で実装を追加し対応すること。</p>
 </div>
 </div>
@@ -937,7 +937,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.6.7. マルチスレッド実行制御ハンドラ &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>6.6.7. マルチスレッド実行制御ハンドラ &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.8. リクエストスレッド内ループ制御ハンドラ" href="request_thread_loop_handler.html"/>
         <link rel="prev" title="6.6.6. プロセス多重起動防止ハンドラ" href="duplicate_process_check_handler.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -310,16 +310,17 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id9">ハンドラクラス名</a></li>
-<li><a class="reference internal" href="#id4" id="id10">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id5" id="id11">制約</a></li>
-<li><a class="reference internal" href="#multi-thread-execution-handler-thread-count" id="id12">スレッド数を指定する</a></li>
-<li><a class="reference internal" href="#multi-thread-execution-handler-callback" id="id13">スレッド起動前後で任意の処理を実行したい</a></li>
-<li><a class="reference internal" href="#id8" id="id14">データベース接続に関する設定について</a></li>
+<li><a class="reference internal" href="#id3" id="id10">ハンドラクラス名</a></li>
+<li><a class="reference internal" href="#id4" id="id11">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id5" id="id12">制約</a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-thread-count" id="id13">スレッド数を指定する</a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-callback" id="id14">スレッド起動前後で任意の処理を実行したい</a></li>
+<li><a class="reference internal" href="#id8" id="id15">データベース接続に関する設定について</a></li>
+<li><a class="reference internal" href="#id9" id="id16">サブスレッドでの例外発生時の振る舞い</a></li>
 </ul>
 </div>
 <p>本ハンドラは、サブスレッドを作成し、ハンドラキュー上の後続ハンドラの処理を各サブスレッド上で並行実行する。
-このハンドラでの処理結果は、各サブスレッドでの実行結果を集約したオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/Result.MultiStatus.html" title="nablarch.fw.Result.MultiStatus">MultiStatus</a>)となる。</p>
+このハンドラでの処理結果は、各サブスレッドでの実行結果を集約したオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/Result.MultiStatus.html" title="nablarch.fw.Result.MultiStatus">MultiStatus</a>)となる。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span>サブスレッド起動前のコールバック処理</span></a></li>
@@ -331,13 +332,13 @@
 <p>処理の流れは以下のとおり。</p>
 <a class="reference internal image-reference" href="../../../../_images/flow19.png"><img alt="../../../../_images/flow19.png" src="../../../../_images/flow19.png" style="width: 397.5px; height: 570.0px;" /></a>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id9">6.6.7.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">6.6.7.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/handler/MultiThreadExecutionHandler.html" title="nablarch.fw.handler.MultiThreadExecutionHandler">nablarch.fw.handler.MultiThreadExecutionHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/MultiThreadExecutionHandler.html" title="nablarch.fw.handler.MultiThreadExecutionHandler">nablarch.fw.handler.MultiThreadExecutionHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id10">6.6.7.2. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">6.6.7.2. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-standalone<span class="nt">&lt;/artifactId&gt;</span>
@@ -346,11 +347,11 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id11">6.6.7.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">6.6.7.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>特に無し</p>
 </div>
 <div class="section" id="multi-thread-execution-handler-thread-count">
-<span id="id6"></span><h2><a class="toc-backref" href="#id12">6.6.7.4. スレッド数を指定する</a><a class="headerlink" href="#multi-thread-execution-handler-thread-count" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id6"></span><h2><a class="toc-backref" href="#id13">6.6.7.4. スレッド数を指定する</a><a class="headerlink" href="#multi-thread-execution-handler-thread-count" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラはデフォルトでは、後続のサブスレッドを1つだけ起動し、ハンドラを実行する。</p>
 <p>後続の処理（例えばバッチアクションの処理）を並列化することで、パフォーマンス向上が見込まれる場合には、設定値を変更することで後続のハンドラの処理を多重化出来る。</p>
 <p>以下に例を示す。</p>
@@ -367,7 +368,7 @@
 </div>
 </div>
 <div class="section" id="multi-thread-execution-handler-callback">
-<span id="id7"></span><h2><a class="toc-backref" href="#id13">6.6.7.5. スレッド起動前後で任意の処理を実行したい</a><a class="headerlink" href="#multi-thread-execution-handler-callback" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id7"></span><h2><a class="toc-backref" href="#id14">6.6.7.5. スレッド起動前後で任意の処理を実行したい</a><a class="headerlink" href="#multi-thread-execution-handler-callback" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このハンドラは、サブスレッド起動前及び終了後にコールバック処理を行う。</p>
 <p>コールバック処理は以下の3つのポイントで実行される。</p>
 <ul class="simple">
@@ -375,8 +376,8 @@
 <li>サブスレッドで例外発生後の全スレッド終了後</li>
 <li>全サブスレッド終了後(サブスレッドで例外が発生した場合でも実行される)</li>
 </ul>
-<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装しているものとなる。
-もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/5u9/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
+<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装しているものとなる。
+もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">複数のハンドラがコールバック処理を実装していた場合で、コールバック処理中にエラーや例外が発生した場合は、 残りのハンドラに対するコールバック処理は実行しないため注意すること。</p>
@@ -426,12 +427,33 @@
 </div>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id14">6.6.7.6. データベース接続に関する設定について</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">6.6.7.6. データベース接続に関する設定について</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>親スレッド側の処理でデータベース接続が必要となる場合には、本ハンドラ以前に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> の設定が必要になる。
 サブスレッド側でデータベースに対するアクセスが必要な場合には、本ハンドラ以降のサブスレッドで実行されるハンドラ構成に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> の設定が必要となる。
 (親スレッド、サブスレッドともに、データベース接続とセットでトランザクション制御を行うハンドラも必要となる)</p>
 <p>このため、親スレッド及びサブスレッドの両方でデータベースアクセスを行うハンドラ構成の場合、最低でも2つのデータベース接続が使用される。
 サブスレッドが複数となる場合には、スレッド数分のデータベース接続が必要となる。例えば、サブスレッド数が10の場合、合計11個のデータベース接続が必要となる。</p>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id16">6.6.7.7. サブスレッドでの例外発生時の振る舞い</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サブスレッド内で予期せぬ例外が発生した場合は、バッチアプリケーションを異常終了させるために
+<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ThreadPoolExecutor.html#shutdownNow()" title="java.util.concurrent.ThreadPoolExecutor.shutdownNow()">ThreadPoolExecutor#shutdownNow()</a>
+を呼び出して、例外が発生していない他の処理中のサブスレッドを実行中のデータ処理完了後に安全に終了させる。</p>
+<p>サブスレッド側に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> 及び <a class="reference internal" href="../common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を設定して
+サブスレッド毎にトランザクション管理する場合に、サブスレッドで例外が発生した場合の親スレッド及びサブスレッドの動作を以下に示す。</p>
+<a class="reference internal image-reference" href="../../../../_images/exception_flow.png"><img alt="../../../../_images/exception_flow.png" src="../../../../_images/exception_flow.png" style="width: 508.5px; height: 243.75px;" /></a>
+<ol class="arabic simple">
+<li>例外が発生したサブスレッドは処理が中断されロールバックされる。</li>
+<li>親スレッドは各サブスレッドで使用されるデータリーダをクローズする。</li>
+<li>親スレッドは全てのサブスレッドに対し停止要求を行う。</li>
+<li>各サブスレッドは <code class="docutils literal"><span class="pre">2.</span></code> で既にデータリーダがクローズされているため、
+実行中の処理が終わったタイミングで正常終了する。</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html" title="java.lang.InterruptedException">InterruptedException</a> を捕捉している場合は、
+割り込み要求により安全に処理できないことを示しているため、例外を送出する等で処理を異常終了させること。</p>
+</div>
 </div>
 </div>
 
@@ -465,7 +487,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

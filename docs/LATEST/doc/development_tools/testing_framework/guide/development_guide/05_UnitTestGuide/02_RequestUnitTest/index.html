@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.2. リクエスト単体テストの実施方法 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>3.1.2. リクエスト単体テストの実施方法 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.3. リクエスト単体テストの実施方法(ファイルアップロード)" href="fileupload.html"/>
         <link rel="prev" title="3.1.1.2. Action/Componentのクラス単体テスト" href="../01_ClassUnitTest/02_componentUnitTest.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -668,13 +668,13 @@ Cookieを必要としないケースの場合には、以下例の8ケース目�
 <h3>3.1.2.4.3. スーパクラスのメソッド呼び出し<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストメソッド内で、スーパクラスの以下のいずれかのメソッドを呼び出す。</p>
 <ul class="simple">
-<li>void execute(String sheetName)</li>
-<li>void execute(String sheetName, Advice advice)</li>
+<li>void execute()</li>
+<li>void execute(Advice advice)</li>
 </ul>
-<p>通常の場合、execute(String sheetName)を使用する。</p>
+<p>通常の場合、execute()を使用する。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00101Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00101Normal&quot;</span><span class="o">);</span>
+    <span class="n">execute</span><span class="o">();</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -683,7 +683,7 @@ Cookieを必要としないケースの場合には、以下例の8ケース目�
 <p>スーパクラスでは、どんなテストケースでも必要となる処理を定型化しているが、
 テストケースによっては固有の処理が必要な場合がある。
 (例えば、リクエストスコープにエンティティが格納されており、その内容を確認したい場合等)。</p>
-<p>シート固有の準備処理、結果確認処理が必要な場合は、execute(String sheetName, Advice advice)を使用して、リクエスト送信前後に処理を挿し込むことができる。
+<p>シート固有の準備処理、結果確認処理が必要な場合は、execute(Advice advice)を使用して、リクエスト送信前後に処理を挿し込むことができる。
 BasicAdviceクラスには以下のメソッドが用意されており、それぞれリクエスト送信前、送信後にコールバックされる。</p>
 <ul class="simple">
 <li>void beforeExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
@@ -697,7 +697,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 </div>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00102Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testMenus00102Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// 【説明】本メソッドはリクエスト送信前に呼び出される。</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
@@ -721,7 +721,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 それぞれの検索結果が期待通りであることを検証している。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00103</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testMenus00103&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
                 <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
@@ -749,7 +749,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 それぞれの検索結果が期待通りであることを検証している。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
                 <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
@@ -780,7 +780,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 <p>別のFormを設定したプロパティの場合、そのFormを取得してEntityと同様にテストをすればよい。以下に例を示す。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSampleNormal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testSampleNormal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
                 <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
@@ -808,7 +808,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 その検索結果が期待通りであることを検証している。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>   <span class="c1">// 【説明】比較失敗時のメッセージ</span>
@@ -832,7 +832,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 <p>以下の例では、テスト対象実行後のリクエストパラメータが期待通りであることを検証している。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00302Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
 
@@ -858,7 +858,7 @@ Excelに記載した期待値と直接比較するメソッドが用意されて
 </ul>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00303Normal</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testUsers00303Normal&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
             <span class="c1">// 【説明】期待値をExcelファイルから取得</span>
@@ -907,7 +907,7 @@ Excelに記載した期待値と直接比較するメソッドが用意されて
 
 <span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRW11AC0104Download</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">execute</span><span class="o">(</span><span class="s">&quot;testRW11AC0104Download&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
         <span class="nd">@Override</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">String</span> <span class="n">msgOnFail</span> <span class="o">=</span> <span class="s">&quot;ダウンロードしたユーザ一覧照会結果のCSVファイルのアサートに失敗しました。&quot;</span><span class="o">;</span>
@@ -995,7 +995,7 @@ ThreadContextへの値設定はハンドラで実施される。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

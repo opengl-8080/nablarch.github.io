@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.2. Nablarch SQL Executor &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>4.2. Nablarch SQL Executor &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="4. アプリケーション開発時に使える便利なツール" href="../index.html"/>
         <link rel="next" title="4.3. 業務画面JSP検証ツール" href="../JspVerifier/JspVerifier.html"/>
         <link rel="prev" title="4.1.2. JSP静的解析ツール 設定変更ガイド" href="../JspStaticAnalysis/02_JspStaticAnalysisInstall.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../application_framework/example/index.html">Example</a><ul>
@@ -306,23 +306,24 @@
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id13">前提条件</a></li>
-<li><a class="reference internal" href="#id3" id="id14">インストール方法</a></li>
-<li><a class="reference internal" href="#db" id="id15">DB設定変更</a><ul>
-<li><a class="reference internal" href="#id4" id="id16">基本設定の変更</a></li>
-<li><a class="reference internal" href="#jdbc" id="id17">JDBCドライバの変更</a></li>
+<li><a class="reference internal" href="#id2" id="id14">前提条件</a></li>
+<li><a class="reference internal" href="#id3" id="id15">制約</a></li>
+<li><a class="reference internal" href="#id4" id="id16">インストール方法</a></li>
+<li><a class="reference internal" href="#db" id="id17">DB設定変更</a><ul>
+<li><a class="reference internal" href="#id5" id="id18">基本設定の変更</a></li>
+<li><a class="reference internal" href="#jdbc" id="id19">JDBCドライバの変更</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5" id="id18">起動方法</a></li>
-<li><a class="reference internal" href="#id6" id="id19">操作方法</a></li>
-<li><a class="reference internal" href="#id7" id="id20">関連ファイル</a></li>
-<li><a class="reference internal" href="#faq" id="id21">FAQ</a></li>
+<li><a class="reference internal" href="#id6" id="id20">起動方法</a></li>
+<li><a class="reference internal" href="#id7" id="id21">操作方法</a></li>
+<li><a class="reference internal" href="#id8" id="id22">関連ファイル</a></li>
+<li><a class="reference internal" href="#faq" id="id23">FAQ</a></li>
 </ul>
 </div>
 <p>Nablarch SQL ExecutorはNablarch特殊構文を含むSQLファイルを
 対話的に実行するツールである。</p>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id13">4.2.1. 前提条件</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">4.2.1. 前提条件</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>前提条件を以下に示す。</p>
 <ul class="simple">
 <li>FirefoxまたはChromeがインストール済みであること。</li>
@@ -332,17 +333,33 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id14">4.2.2. インストール方法</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">4.2.2. 制約</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本ツールには以下の制約がある。
+このため、これらのSQLを実行したい場合には、本ツールではなく使用するデータベース付属のSQL実行環境などを用いること。</p>
+<ul class="simple">
+<li>IN句に対して条件を設定することが出来ない</li>
+<li>WITH句で始まるSQLを実行することが出来ない</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>Nablarchでは2-way SQLとしてSQLを記述できる <a class="reference external" href="http://doma.readthedocs.io/ja/stable/">Doma(外部サイト)</a> 用の <a class="reference internal" href="../../../application_framework/adaptors/doma_adaptor.html#doma-adaptor"><span>アダプタ</span></a> を提供している。</p>
+<p>Domaを使用した場合、本ツールのような複雑なツールのセットアップを行わなくても、本番環境用に定義したSQLを簡単にテスト実行出来る。
+(動的な条件を構築するような場合でも、SQLを書き換えることなく実行できる)</p>
+<p class="last">このため、Domaの使用を検討することを推奨する。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id16">4.2.3. インストール方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下のサイトで公開されているリポジトリをcloneする。</p>
 <p><a class="reference external" href="https://github.com/nablarch/sql-executor">https://github.com/nablarch/sql-executor</a> (外部サイト)</p>
 </div>
 <div class="section" id="db">
-<h2><a class="toc-backref" href="#id15">4.2.3. DB設定変更</a><a class="headerlink" href="#db" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">4.2.4. DB設定変更</a><a class="headerlink" href="#db" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>使用するRDBMSに応じて設定変更を行う。</p>
-<div class="section" id="id4">
-<h3><a class="toc-backref" href="#id16">4.2.3.1. 基本設定の変更</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id18">4.2.4.1. 基本設定の変更</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="section" id="src-main-resources-db-config">
-<h4>4.2.3.1.1. src/main/resources/db.configの修正<a class="headerlink" href="#src-main-resources-db-config" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>4.2.4.1.1. src/main/resources/db.configの修正<a class="headerlink" href="#src-main-resources-db-config" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>接続URLやユーザ、パスワードを変更する場合、src/main/resources/db.configを修正する。</p>
 <p>以下に設定例を示す。</p>
 <p><strong>H2の設定例(デフォルト)</strong></p>
@@ -382,10 +399,10 @@ db.password=SAMPLE
 </div>
 </div>
 <div class="section" id="jdbc">
-<h3><a class="toc-backref" href="#id17">4.2.3.2. JDBCドライバの変更</a><a class="headerlink" href="#jdbc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">4.2.4.2. JDBCドライバの変更</a><a class="headerlink" href="#jdbc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>JDBCドライバを変更する場合、以下のファイルを修正する。</p>
 <div class="section" id="pom-xml">
-<h4>4.2.3.2.1. pom.xml<a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>4.2.4.2.1. pom.xml<a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>pom.xml中の「使用するRDBMSにあわせて、下記JDBCドライバの dependency を更新してください。」とのコメントがある箇所を修正する。</p>
 <p>以下、データベース毎の設定例を記述する。</p>
 <p><strong>H2の設定例(デフォルト)</strong></p>
@@ -446,7 +463,7 @@ db.password=SAMPLE
 </div>
 </div>
 <div class="section" id="src-main-resources-db-xml">
-<h4>4.2.3.2.2. src/main/resources/db.xml<a class="headerlink" href="#src-main-resources-db-xml" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>4.2.4.2.2. src/main/resources/db.xml<a class="headerlink" href="#src-main-resources-db-xml" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>JDBCドライバのクラス名とダイアレクトのクラス名を修正する。
 dataSourceコンポーネントのdriverClassNameプロパティに、ドライバのクラス名を設定する。</p>
 <p>該当箇所を以下に示す。</p>
@@ -510,8 +527,8 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2><a class="toc-backref" href="#id18">4.2.4. 起動方法</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id20">4.2.5. 起動方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><strong>Unix系の場合</strong></p>
 <p>以下のコマンドを実行する。</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>mvn compile exec:java
@@ -534,11 +551,11 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
 </ul>
 </div>
 </div>
-<div class="section" id="id6">
-<h2><a class="toc-backref" href="#id19">4.2.5. 操作方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id21">4.2.6. 操作方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>初回起動時では、カレントディレクトリ配下のSQLファイルの一覧を表示するが、
 存在しない場合は、以下のような画面が表示される。</p>
-<div class="figure" id="id8">
+<div class="figure" id="id9">
 <img alt="初期画面" src="../../../_images/initial_screen.png" />
 <p class="caption"><span class="caption-text">初期画面</span></p>
 </div>
@@ -546,12 +563,12 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
 をクリックすると
 その配下の検索してSQLファイルと各ファイルに記述されているステートメントの
 一覧を表示する。</p>
-<div class="figure" id="id9">
+<div class="figure" id="id10">
 <img alt="検索パス設定" src="../../../_images/setting_search_root_path.png" />
 <p class="caption"><span class="caption-text">検索パス設定</span></p>
 </div>
 <p>各ステートメント名をクリックすると、その内容と操作用のボタンが表示される。</p>
-<div class="figure" id="id10">
+<div class="figure" id="id11">
 <img alt="SQLステートメント一覧" src="../../../_images/browsing_sql_scripts.png" />
 <p class="caption"><span class="caption-text">SQLステートメント一覧</span></p>
 </div>
@@ -560,17 +577,17 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
 をクリックすることで、当該ステートメントを実行できる。</p>
 <p>また <strong>[Fill]</strong>
 をクリックすると、前回の実行時の入力フィールドの内容を復元する。</p>
-<div class="figure" id="id11">
+<div class="figure" id="id12">
 <img alt="SQL実行結果(クエリ)" src="../../../_images/running_sql_scripts.png" />
 <p class="caption"><span class="caption-text">SQL実行結果(クエリ)</span></p>
 </div>
-<div class="figure" id="id12">
+<div class="figure" id="id13">
 <img alt="SQL実行結果(DML)" src="../../../_images/running_dml_scripts.png" />
 <p class="caption"><span class="caption-text">SQL実行結果(DML)</span></p>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id20">4.2.6. 関連ファイル</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id22">4.2.7. 関連ファイル</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>実行時に、以下のログファイルが出力される。</p>
 <ul class="simple">
 <li>sql.log → SQL文の実行時ログ</li>
@@ -578,7 +595,7 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
 </ul>
 </div>
 <div class="section" id="faq">
-<h2><a class="toc-backref" href="#id21">4.2.7. FAQ</a><a class="headerlink" href="#faq" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">4.2.8. FAQ</a><a class="headerlink" href="#faq" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><strong>Q1</strong> :日付型(DATE/DATETIME/TIMESTAMP)フィールドへの値の設定はどのようにすればよいか？</p>
 <p><strong>A1</strong> :SQL92のDATE/DATETIMEリテラルと同じ書式で記述する。
 以下に例を示す。</p>
@@ -628,7 +645,7 @@ dataSourceコンポーネントのdriverClassNameプロパティに、ドライ�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

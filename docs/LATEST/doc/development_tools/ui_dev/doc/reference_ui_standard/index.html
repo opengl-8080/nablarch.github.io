@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.80. UI標準修正事例一覧 &mdash; ∇Nablarch  5u9 ドキュメント</title>
+  <title>2.1.80. UI標準修正事例一覧 &mdash; ∇Nablarch  5u10 ドキュメント</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="∇Nablarch  5u9 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.81. 標準プロジェクト構成" href="../structure/directory_layout.html"/>
         <link rel="prev" title="2.1.79. UIプラグイン一覧" href="../reference_ui_plugin/index.html"/> 
@@ -55,12 +55,11 @@
   
 
   
-    <div id="sidebar-version">Version: 5u9</div>
+    <div id="sidebar-version">Version: 5u10</div>
   </a>
 
   <div role="search">
     <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
-      <input type="hidden" id="document-version" value="5u9" />
       <input type="text" name="text" placeholder="Search docs on google" id="text"/>
       <input type="hidden" name="q" id="q"/>
     </form>
@@ -105,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -455,7 +455,7 @@
 <dt><strong>共通エラーメッセージの表示スタイル</strong></dt>
 <dd><strong>nablarch-css-common</strong> プラグインの <strong>ui_public/css/common/nablarch.less</strong> を修正する。</dd>
 <dt><strong>共通エラーメッセージの表示内容</strong></dt>
-<dd><strong>nablarch-template-page</strong> プラグインの <strong>ui_public/include/app_error.jsp</strong> を修正する。</dd>
+<dd><strong>nablarch-template-page</strong> プラグインの <strong>ui_public/WEB-INF/include/app_error.jsp</strong> を修正する。</dd>
 <dt><strong>共通エラーメッセージの表示位置</strong></dt>
 <dd><strong>nablarch-template-page</strong> プラグインの <strong>ui_public/WEB-INF/tags/template/page_template.tag</strong> を修正する。
 (上記インクルードファイルの読み込み位置を修正する。)</dd>
@@ -473,14 +473,14 @@
 このプラグインをカスタマイズすること。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><strong>nablarch-template-head</strong>の<strong>/ui_public/include/html_head.jsp</strong>で使用されることで、
+<p class="last"><strong>nablarch-template-head</strong>の<strong>/ui_public/WEB-INF/include/html_head.jsp</strong>で使用されることで、
 htmlのheadタグ内にmedia.tagの内容が出力される。</p>
 </div>
 </div>
 <div class="section" id="id10">
 <h3>2.1.80.4.2. 表示モードの切替えを無効化したい<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>PJの要件としてデスクトップ・ラップトップのみをサポートすればよい場合など、
-表示モードの切替え自体が不要な場合は <strong>ui_public/include/html_head.jsp</strong>
+表示モードの切替え自体が不要な場合は <strong>ui_public/WEB-INF/include/html_head.jsp</strong>
 の中で下記の2行以外の全ての <strong>&lt;n:link&gt;</strong> タグとIEコンディショナルコメントを削除すること。</p>
 <p>こうすることで、ウィンドウサイズにかかわらず常にワイドモードで表示するようになる。</p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/css/font-awesome.min.css&quot;</span> <span class="nt">/&gt;</span>
@@ -518,9 +518,10 @@ htmlのheadタグ内にmedia.tagの内容が出力される。</p>
           │            ├── header.less
           │            ├── header-narrow.less
           │            └── header-wide.less
-          └── include
-                 ├── app_header.jsp
-                 └── subwindow_app_header.jsp
+          └── WEB-INF
+                └── include
+                        ├── app_header.jsp
+                        └── subwindow_app_header.jsp
 </pre></div>
 </div>
 <p>このプラグインのスタイル定義は、各表示モードで以下のように読み込まれる。</p>
@@ -846,7 +847,7 @@ UI部品を修正する場合は、対応するプラグインをそれぞれ修
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u9',
+            VERSION:'5u10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
