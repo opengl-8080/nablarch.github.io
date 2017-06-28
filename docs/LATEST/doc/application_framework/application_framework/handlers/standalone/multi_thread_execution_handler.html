@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/multi_thread_execution_handler.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.8. リクエストスレッド内ループ制御ハンドラ" href="request_thread_loop_handler.html"/>
-        <link rel="prev" title="6.6.6. プロセス多重起動防止ハンドラ" href="duplicate_process_check_handler.html"/> 
+        <link rel="prev" title="6.6.6. プロセス多重起動防止ハンドラ" href="duplicate_process_check_handler.html"/>
+ 
 
   
   <script src="../../../../_static/js/modernizr.min.js"></script>
@@ -320,7 +323,7 @@
 </ul>
 </div>
 <p>本ハンドラは、サブスレッドを作成し、ハンドラキュー上の後続ハンドラの処理を各サブスレッド上で並行実行する。
-このハンドラでの処理結果は、各サブスレッドでの実行結果を集約したオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/Result.MultiStatus.html" title="nablarch.fw.Result.MultiStatus">MultiStatus</a>)となる。</p>
+このハンドラでの処理結果は、各サブスレッドでの実行結果を集約したオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.MultiStatus.html" title="nablarch.fw.Result.MultiStatus">MultiStatus</a>)となる。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span>サブスレッド起動前のコールバック処理</span></a></li>
@@ -334,7 +337,7 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id10">6.6.7.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/MultiThreadExecutionHandler.html" title="nablarch.fw.handler.MultiThreadExecutionHandler">nablarch.fw.handler.MultiThreadExecutionHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/MultiThreadExecutionHandler.html" title="nablarch.fw.handler.MultiThreadExecutionHandler">nablarch.fw.handler.MultiThreadExecutionHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -376,8 +379,8 @@
 <li>サブスレッドで例外発生後の全スレッド終了後</li>
 <li>全サブスレッド終了後(サブスレッドで例外が発生した場合でも実行される)</li>
 </ul>
-<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装しているものとなる。
-もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
+<p>コールバックされる処理は、このハンドラより後続に設定されたハンドラの中で、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装しているものとなる。
+もし、複数のハンドラが  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ExecutionHandlerCallback.html" title="nablarch.fw.handler.ExecutionHandlerCallback">ExecutionHandlerCallback</a> を実装している場合は、より手前に設定されているハンドラから順次コールバック処理を実行する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">複数のハンドラがコールバック処理を実装していた場合で、コールバック処理中にエラーや例外が発生した場合は、 残りのハンドラに対するコールバック処理は実行しないため注意すること。</p>

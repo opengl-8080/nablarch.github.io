@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/extension_components/etl/index.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch拡張コンポーネント" href="../index.html"/>
         <link rel="next" title="4. ETL Mavenプラグイン" href="etl_maven_plugin.html"/>
-        <link rel="prev" title="2.3. ワークフロー定義データ生成ツール" href="../workflow/tool/doc/index.html"/> 
+        <link rel="prev" title="2.3. ワークフロー定義データ生成ツール" href="../workflow/tool/doc/index.html"/>
+ 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -395,7 +398,7 @@
 <dl class="docutils" id="etl-sql-loader">
 <dt>Oracle SQL*Loaderを使用したデータのロード</dt>
 <dd><p class="first">Oracleデータベースに付属のSQL*Loaderユーティリティを用いたロード処理を行う。</p>
-<p class="last">JOB定義ファイルのExtractフェーズに対応するステップ定義に <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">sqlLoaderBatchlet</a> を設定することで、SQL*Loaderを使用したロードが行われる。</p>
+<p class="last">JOB定義ファイルのExtractフェーズに対応するステップ定義に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">sqlLoaderBatchlet</a> を設定することで、SQL*Loaderを使用したロードが行われる。</p>
 </dd>
 </dl>
 <dl class="last docutils" id="etl-chunk-loader">
@@ -403,13 +406,13 @@
 <dd><p class="first"><a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352</span></a> のChunkステップを使用して、ファイルからデータを読み込み順次ワークテーブルに登録(INSERT)を行う。</p>
 <p>JOB定義ファイルのExtractフェーズに対応するステップ定義は、以下のChunkステップを定義する。</p>
 <ul class="simple">
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> を登録する</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を登録する</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> を登録する</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を登録する</li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">ワークテーブルをクリーニングする必要がある場合には、データのロード処理の前にクリーニングのステップを配置すること。
-クリーニング処理を使用する場合には、JOB定義ファイルのクリーニングに対応するステップ定義に <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">tableCleaningBatchlet</a> を設定する。</p>
+クリーニング処理を使用する場合には、JOB定義ファイルのクリーニングに対応するステップ定義に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">tableCleaningBatchlet</a> を設定する。</p>
 </div>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -432,7 +435,7 @@
 <dl class="docutils">
 <dt>データのバリデーション</dt>
 <dd><p class="first">データのバリデーションを行う場合は、 JOB定義ファイルにバリデーション用のステップを定義する。
-バリデーションステップの定義には、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">validationBatchlet</a> を登録する。</p>
+バリデーションステップの定義には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">validationBatchlet</a> を登録する。</p>
 <p>バリデーションエラーが発生した場合、そのレコードの情報はワークテーブルと全く同じレイアウトのエラーテーブルに移動される。
 エラーの情報(エラー内容やエラーが発生した項目名)はアプリケーションログに出力される。</p>
 <p>バリデーションエラーが発生した場合の動作を次から選択できる。</p>
@@ -476,11 +479,11 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">洗い替えモード:</th><td class="field-body"><p class="first">既存のデータを全て削除後に登録処理を行う。</p>
-<p>JOB定義ファイルの該当ステップには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/DeleteInsertBatchlet.html" title="nablarch.etl.DeleteInsertBatchlet">deleteInsertBatchlet</a> を設定する。</p>
+<p>JOB定義ファイルの該当ステップには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DeleteInsertBatchlet.html" title="nablarch.etl.DeleteInsertBatchlet">deleteInsertBatchlet</a> を設定する。</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">マージモード:</th><td class="field-body"><p class="first">既存のデータが存在している場合には更新処理を、データが存在していない場合には、追加処理を行う。</p>
-<p class="last">JOB定義ファイルの該当ステップには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/MergeBatchlet.html" title="nablarch.etl.MergeBatchlet">mergeBatchlet</a> を設定する。</p>
+<p class="last">JOB定義ファイルの該当ステップには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/MergeBatchlet.html" title="nablarch.etl.MergeBatchlet">mergeBatchlet</a> を設定する。</p>
 </td>
 </tr>
 </tbody>
@@ -489,8 +492,8 @@
 分割実行する場合には、一度に実行する単位と実行対象を取得するための条件を設定する。</p>
 <p>データの変換がSQLでは実施できない場合(Javaのライブラリを使用する等)、以下のChunkステップをJOB定義ファイルの該当ステップに定義する。</p>
 <ul class="simple">
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を登録する</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を登録する</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を登録する</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を登録する</li>
 <li>processorには、プロジェクト側で独自にデータ変換処理を実装した <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/api/chunk/ItemProcessor.html" title="javax.batch.api.chunk.ItemProcessor">ItemProcessor</a> を登録する</li>
 </ul>
 <p class="last">Oracleデータベースの場合には、ダイレクトパスインサートモードを選択することで、一括でデータを登録することもできる。(洗い替えモードの場合のみ)</p>
@@ -498,8 +501,8 @@
 <dt>ファイル出力</dt>
 <dd><p class="first">データをファイルに出力する場合は、JOB定義ファイルの該当ステップに以下のChunkステップを定義する。</p>
 <ul class="last simple">
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を登録する</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">fileItemWriter</a> を登録する</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を登録する</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">fileItemWriter</a> を登録する</li>
 </ul>
 </dd>
 </dl>
@@ -639,7 +642,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>コンポーネント名は、 <code class="docutils literal"><span class="pre">etlConfigLoader</span></code> とすること。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/etl/config/JsonConfigLoader.html" title="nablarch.etl.config.JsonConfigLoader">JsonConfigLoader</a> の <code class="docutils literal"><span class="pre">configBasePath</span></code> プロパティにパスを設定すること。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/config/JsonConfigLoader.html" title="nablarch.etl.config.JsonConfigLoader">JsonConfigLoader</a> の <code class="docutils literal"><span class="pre">configBasePath</span></code> プロパティにパスを設定すること。</li>
 </ul>
 </dd>
 </dl>

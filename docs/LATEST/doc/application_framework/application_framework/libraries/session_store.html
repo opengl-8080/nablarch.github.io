@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/session_store.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.17.4.2.1. 登録機能での実装例" href="session_store/create_example.html"/>
-        <link rel="prev" title="7.16. サービス提供可否チェック" href="service_availability.html"/> 
+        <link rel="prev" title="7.16. サービス提供可否チェック" href="service_availability.html"/>
+ 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -343,7 +346,7 @@
 <img alt="../../../_images/session_store.png" src="../../../_images/session_store.png" />
 <ol class="arabic simple">
 <li><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の往路処理で、クッキーから取得したセッションIDをもとに、セッションストアからセッション変数をロードする。</li>
-<li>業務アクションから <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/SessionUtil.html" title="nablarch.common.web.session.SessionUtil">SessionUtil</a> を通して、セッション変数に対する読み書きを行う。</li>
+<li>業務アクションから <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionUtil.html" title="nablarch.common.web.session.SessionUtil">SessionUtil</a> を通して、セッション変数に対する読み書きを行う。</li>
 <li><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の復路処理で、セッション変数をセッションストアに保存する。</li>
 <li>JSPで参照できるように、セッション変数をリクエストスコープに設定する。(既にリクエストスコープに同名の値が存在する場合は設定しない。)</li>
 </ol>
@@ -353,7 +356,7 @@
 <ul class="last simple">
 <li><a class="reference internal" href="tag.html#tag-hidden-encryption"><span>hidden暗号化</span></a></li>
 <li><a class="reference internal" href="../handlers/web/session_concurrent_access_handler.html#session-concurrent-access-handler"><span>セッション並行アクセスハンドラ</span></a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/ExecutionContext.html" title="nablarch.fw.ExecutionContext">ExecutionContext</a> のセッションスコープにアクセスするAPI</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/ExecutionContext.html" title="nablarch.fw.ExecutionContext">ExecutionContext</a> のセッションスコープにアクセスするAPI</li>
 </ul>
 </div>
 <div class="admonition tip">
@@ -384,9 +387,9 @@
 <p>セッション変数をセッションストアに保存する際の直列化の仕組みを以下から選択できる。
 各機能の詳細はリンク先のJavadocを参照。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/encoder/JavaSerializeStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeStateEncoder">Java標準のシリアライズによる直列化(デフォルト)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/encoder/JavaSerializeEncryptStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeEncryptStateEncoder">Java標準のシリアライズによる直列化、および暗号化</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/encoder/JaxbStateEncoder.html" title="nablarch.common.web.session.encoder.JaxbStateEncoder">JAXBによるXMLベースの直列化</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/encoder/JavaSerializeStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeStateEncoder">Java標準のシリアライズによる直列化(デフォルト)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/encoder/JavaSerializeEncryptStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeEncryptStateEncoder">Java標準のシリアライズによる直列化、および暗号化</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/encoder/JaxbStateEncoder.html" title="nablarch.common.web.session.encoder.JaxbStateEncoder">JAXBによるXMLベースの直列化</a></li>
 </ul>
 </div>
 </div>
@@ -419,7 +422,7 @@
 <div class="section" id="session-store-use-config">
 <span id="id9"></span><h3><a class="toc-backref" href="#id31">7.17.4.1. セッションストアを使用するための設定を行う</a><a class="headerlink" href="#session-store-use-config" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>セッションストアを使用するためには、 <a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の設定に加えて、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/SessionManager.html" title="nablarch.common.web.session.SessionManager">SessionManager</a> をコンポーネント定義に設定する。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionManager.html" title="nablarch.common.web.session.SessionManager">SessionManager</a> をコンポーネント定義に設定する。</p>
 <p>以下に、標準で提供している全ての保存先を使用する場合の設定例を示す。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- &quot;sessionManager&quot;というコンポーネント名で設定する --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sessionManager&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.SessionManager&quot;</span><span class="nt">&gt;</span>
@@ -493,8 +496,8 @@
 </dd>
 </dl>
 <p>テーブル名およびカラム名は変更可能である。
-変更する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/store/DbStore.html#setUserSessionSchema(nablarch.common.web.session.store.UserSessionSchema)" title="nablarch.common.web.session.store.DbStore.setUserSessionSchema(nablarch.common.web.session.store.UserSessionSchema)">DbStore.userSessionSchema</a> に
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/store/UserSessionSchema.html" title="nablarch.common.web.session.store.UserSessionSchema">UserSessionSchema</a> のコンポーネントを定義する。</p>
+変更する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/store/DbStore.html#setUserSessionSchema(nablarch.common.web.session.store.UserSessionSchema)" title="nablarch.common.web.session.store.DbStore.setUserSessionSchema(nablarch.common.web.session.store.UserSessionSchema)">DbStore.userSessionSchema</a> に
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/store/UserSessionSchema.html" title="nablarch.common.web.session.store.UserSessionSchema">UserSessionSchema</a> のコンポーネントを定義する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userSessionSchema&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.store.UserSessionSchema&quot;</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- 設定値の詳細はJavadocを参照 --&gt;</span>
@@ -634,7 +637,7 @@ JSPからセッションストアで保持しているセッション変数の�
 <li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/javax/crypto/KeyGenerator.html" title="javax.crypto.KeyGenerator">KeyGenerator</a> を使用して鍵を生成する。</li>
 <li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/security/SecureRandom.html" title="java.security.SecureRandom">SecureRandom</a> を使用してIVを生成する。</li>
 </ul>
-<p class="last">なお、base64エンコードは <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/core/util/Base64Util.html" title="nablarch.core.util.Base64Util">Base64Util</a> や、
+<p class="last">なお、base64エンコードは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/util/Base64Util.html" title="nablarch.core.util.Base64Util">Base64Util</a> や、
 Java8で追加された <code class="docutils literal"><span class="pre">java.util.Base64.Encoder</span></code> を使用して行うと良い。</p>
 </dd>
 </dl>
@@ -648,7 +651,7 @@ Java8で追加された <code class="docutils literal"><span class="pre">java.ut
 <h3><a class="toc-backref" href="#id36">7.17.4.6. セッション変数に値が存在しない場合の遷移先画面を指定する</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>正常な画面遷移では必ずセッション変数が存在しているが、ブラウザの戻るボタンを使用され不正な画面遷移が行われることで、
 本来存在しているはずのセッション変数にアクセスできない場合がある。
-この場合、セッション変数が存在しないことを示す例外( <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/SessionKeyNotFoundException.html" title="nablarch.common.web.session.SessionKeyNotFoundException">SessionKeyNotFoundException</a> )が送出されるので、
+この場合、セッション変数が存在しないことを示す例外( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionKeyNotFoundException.html" title="nablarch.common.web.session.SessionKeyNotFoundException">SessionKeyNotFoundException</a> )が送出されるので、
 この例外を補足することで任意のエラーページに遷移させることが出来る。</p>
 <p>以下に実現方法を示す。</p>
 <dl class="docutils">
@@ -701,8 +704,8 @@ Java8で追加された <code class="docutils literal"><span class="pre">java.ut
 <h3><a class="toc-backref" href="#id38">7.17.5.1. セッション変数の保存先を追加する</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>セッション変数の保存先を追加するには以下の手順が必要となる。</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/SessionStore.html" title="nablarch.common.web.session.SessionStore">SessionStore</a> を継承し、追加したい保存先に対応したクラスを作成する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/session/SessionManager.html#setAvailableStores(java.util.List)" title="nablarch.common.web.session.SessionManager.setAvailableStores(java.util.List)">SessionManager.availableStores</a> に、作成したクラスのコンポーネント定義を追加する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionStore.html" title="nablarch.common.web.session.SessionStore">SessionStore</a> を継承し、追加したい保存先に対応したクラスを作成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionManager.html#setAvailableStores(java.util.List)" title="nablarch.common.web.session.SessionManager.setAvailableStores(java.util.List)">SessionManager.availableStores</a> に、作成したクラスのコンポーネント定義を追加する。</li>
 </ol>
 </div>
 </div>

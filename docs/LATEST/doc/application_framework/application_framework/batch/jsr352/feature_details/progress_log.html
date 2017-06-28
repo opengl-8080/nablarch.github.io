@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/feature_details/progress_log.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="4.1.4. 機能詳細" href="../feature_details.html"/>
         <link rel="next" title="4.1.4.10.3. 運用担当者向けのログ出力" href="operator_notice_log.html"/>
-        <link rel="prev" title="4.1.4.10.1. 運用方針" href="operation_policy.html"/> 
+        <link rel="prev" title="4.1.4.10.1. 運用方針" href="operation_policy.html"/>
+ 
 
   
   <script src="../../../../../_static/js/modernizr.min.js"></script>
@@ -375,8 +378,8 @@ Batchletで、ループを伴う処理を行う必要がある場合には、下
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>processメソッドの先頭で、処理対象件数(データベースへのcount結果やファイルのレコード数等)を取得し、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#setInputCount(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.setInputCount(long)">inputCount</a> に設定する。</li>
-<li>処理を行うループ処理内で、一定間隔ごとに進捗ログを出力する <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#outputProgressInfo(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.outputProgressInfo(long)">outputProgressInfo</a> を呼び出す。</li>
+<li>processメソッドの先頭で、処理対象件数(データベースへのcount結果やファイルのレコード数等)を取得し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#setInputCount(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.setInputCount(long)">inputCount</a> に設定する。</li>
+<li>処理を行うループ処理内で、一定間隔ごとに進捗ログを出力する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#outputProgressInfo(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.outputProgressInfo(long)">outputProgressInfo</a> を呼び出す。</li>
 </ul>
 </dd>
 <dt>実装例</dt>
@@ -434,8 +437,8 @@ Batchletで、ループを伴う処理を行う必要がある場合には、下
 <dd><dl class="first last docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>コンストラクタインジェクションを使用して、進捗ログを出力するインタフェース( <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html" title="nablarch.fw.batch.ee.progress.ProgressManager">ProgressManager</a> )をインジェクションする。</li>
-<li>openメソッドにて、処理対象件数(データベースへのcount結果やファイルのレコード数等)を取得し、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#setInputCount(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.setInputCount(long)">inputCount</a> に設定する。</li>
+<li>コンストラクタインジェクションを使用して、進捗ログを出力するインタフェース( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html" title="nablarch.fw.batch.ee.progress.ProgressManager">ProgressManager</a> )をインジェクションする。</li>
+<li>openメソッドにて、処理対象件数(データベースへのcount結果やファイルのレコード数等)を取得し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#setInputCount(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.setInputCount(long)">inputCount</a> に設定する。</li>
 </ul>
 </dd>
 <dt>実装例</dt>
@@ -517,7 +520,7 @@ Batchletで、ループを伴う処理を行う必要がある場合には、下
 これは、リスナーが処理済み件数として使用している <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/runtime/context/StepContext.html#getMetrics()" title="javax.batch.runtime.context.StepContext.getMetrics()">metrics</a>
 の読み込み済み件数が実態とずれることに起因する。</p>
 <p class="last">このため、Retrying Exceptionsを使用して例外発生時のリトライ処理を行いたい場合には、 <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/api/chunk/ItemWriter.html" title="javax.batch.api.chunk.ItemWriter">ItemWriter</a> の実装クラスにて処理済み件数を計算し、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#outputProgressInfo(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.outputProgressInfo(long)">outputProgressInfo</a> を使用して進捗ログの出力を行うこと。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/progress/ProgressManager.html#outputProgressInfo(long)" title="nablarch.fw.batch.ee.progress.ProgressManager.outputProgressInfo(long)">outputProgressInfo</a> を使用して進捗ログの出力を行うこと。</p>
 </div>
 </div>
 </div>

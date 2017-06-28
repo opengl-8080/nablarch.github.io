@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/data_read_handler.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.3. リトライハンドラ" href="retry_handler.html"/>
-        <link rel="prev" title="6.6.1. 共通起動ランチャ" href="main.html"/> 
+        <link rel="prev" title="6.6.1. 共通起動ランチャ" href="main.html"/>
+ 
 
   
   <script src="../../../../_static/js/modernizr.min.js"></script>
@@ -319,7 +322,7 @@
 <p><a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> を使用して、入力データの順次読み込みを行なうハンドラ。</p>
 <p>このハンドラは、実行コンテキスト上の <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> を使用し、業務処理に対する入力データを1件ずつ読み込み、
 それを引数として後続ハンドラに処理を委譲する。
-<a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> の終端に達した場合は、後続のハンドラを実行せずに、データの終端に達したことを示す <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却する。</p>
+<a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> の終端に達した場合は、後続のハンドラを実行せずに、データの終端に達したことを示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却する。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li>データリーダを使用して入力データの読み込み</li>
@@ -330,7 +333,7 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id7">6.6.2.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/handler/DataReadHandler.html" title="nablarch.fw.handler.DataReadHandler">nablarch.fw.handler.DataReadHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DataReadHandler.html" title="nablarch.fw.handler.DataReadHandler">nablarch.fw.handler.DataReadHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -344,12 +347,12 @@
 </div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id9">6.6.2.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ハンドラより手前のハンドラにて、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/ExecutionContext.html" title="nablarch.fw.ExecutionContext">ExecutionContext</a> に <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> を設定する必要がある。
-本ハンドラが呼び出されたタイミングで <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> が設定されていない場合、処理対象データ無しとして本ハンドラは処理を終了( <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却)する。</p>
+<p>本ハンドラより手前のハンドラにて、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/ExecutionContext.html" title="nablarch.fw.ExecutionContext">ExecutionContext</a> に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> を設定する必要がある。
+本ハンドラが呼び出されたタイミングで <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> が設定されていない場合、処理対象データ無しとして本ハンドラは処理を終了( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却)する。</p>
 </div>
 <div class="section" id="data-read-handler-max-count">
 <span id="id6"></span><h2><a class="toc-backref" href="#id10">6.6.2.4. 最大処理件数の設定</a><a class="headerlink" href="#data-read-handler-max-count" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ハンドラには、最大の処理件数を設定することが出来る。最大処理件数分のデータを処理し終わると、本ハンドラは処理対象レコードなしを示す  <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a>  を返却する。</p>
+<p>本ハンドラには、最大の処理件数を設定することが出来る。最大処理件数分のデータを処理し終わると、本ハンドラは処理対象レコードなしを示す  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a>  を返却する。</p>
 <p>この設定値は、大量データを処理するバッチ処理を数日に分けて処理させる場合などに指定する。
 この設定値を使用することで、最大100万件を処理するバッチを、日次で最大10万件だけ処理をさせ10日間かけて全件を処理させることが実現できる。</p>
 <p>以下に設定例を示す。</p>

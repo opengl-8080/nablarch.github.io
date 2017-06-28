@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/doma_adaptor.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
         <link rel="next" title="Example" href="../example/index.html"/>
-        <link rel="prev" title="JAX-RSアダプタ" href="jaxrs_adaptor.html"/> 
+        <link rel="prev" title="JAX-RSアダプタ" href="jaxrs_adaptor.html"/>
+ 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -326,7 +329,7 @@
 <li>Nablarchと同じように、実行時に動的にSQL文を構築することができる。</li>
 <li>2waySQLなので、NablarchのようにSQL文を書き換える必要がなく、SQLツール等でそのまま実行することができる。</li>
 </ul>
-<p>また、本アダプタを使用することで、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタで
+<p>また、本アダプタを使用することで、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタで
 指定したアクションのみトランザクション管理対象とすることができるため、
 不要なトランザクション制御処理を削減でき、パフォーマンスの向上が期待できる。</p>
 <div class="section" id="id2">
@@ -373,7 +376,7 @@
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>Daoアノテーションのconfig属性には <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaConfig.html" title="nablarch.integration.doma.DomaConfig">DomaConfig</a> を指定する</li>
+<li>Daoアノテーションのconfig属性には <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaConfig.html" title="nablarch.integration.doma.DomaConfig">DomaConfig</a> を指定する</li>
 </ul>
 </dd>
 </dl>
@@ -391,14 +394,14 @@
 <dt>ポイント</dt>
 <dd><ul class="first simple">
 <li>業務アクションメソッドをトランザクション管理対象とするため、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタを設定する</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaDaoRepository.html#get(java.lang.Class)" title="nablarch.integration.doma.DomaDaoRepository.get(java.lang.Class)">DomaDaoRepository#get</a> を使用してDaoの実装クラスをルックアップする</li>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタを設定する</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaDaoRepository.html#get(java.lang.Class)" title="nablarch.integration.doma.DomaDaoRepository.get(java.lang.Class)">DomaDaoRepository#get</a> を使用してDaoの実装クラスをルックアップする</li>
 </ul>
 <blockquote class="last">
 <div><div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">Domaでは注釈処理によってコンパイル時に自動的にDaoの実装クラスが生成されるため、コーディング時にはまだ実装クラスが存在しない。
-そのため、本アダプタではDaoの実装クラスをルックアップする機能として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaDaoRepository.html" title="nablarch.integration.doma.DomaDaoRepository">DomaDaoRepository</a> を提供している。</p>
+そのため、本アダプタではDaoの実装クラスをルックアップする機能として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaDaoRepository.html" title="nablarch.integration.doma.DomaDaoRepository">DomaDaoRepository</a> を提供している。</p>
 </div>
 </div></blockquote>
 </dd>
@@ -417,9 +420,9 @@
 </div>
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id14">別トランザクションで実行する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタによって開始されたトランザクションではなく、
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/Transactional.html" title="nablarch.integration.doma.Transactional">Transactional</a> インターセプタによって開始されたトランザクションではなく、
 別のトランザクションを使用してデータベースアクセスを行いたい場合がある。</p>
-<p>その場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaConfig.html#getTransactionManager()" title="nablarch.integration.doma.DomaConfig.getTransactionManager()">DomaConfig#getTransactionManager</a> で取得した
+<p>その場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaConfig.html#getTransactionManager()" title="nablarch.integration.doma.DomaConfig.getTransactionManager()">DomaConfig#getTransactionManager</a> で取得した
 <cite>TransactionManager</cite> を使用して別トランザクションでの制御を行う。</p>
 <p>実装例を以下に示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">DomaConfig</span><span class="o">.</span><span class="na">singleton</span><span class="o">()</span>
@@ -434,8 +437,8 @@
 <p>JSR352に準拠したバッチアプリケーションでDomaを使用するために、
 本アダプタでは以下のリスナーを提供している。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionStepListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionStepListener">DomaTransactionStepListener</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionItemWriteListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionItemWriteListener">DomaTransactionItemWriteListener</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionStepListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionStepListener">DomaTransactionStepListener</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionItemWriteListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionItemWriteListener">DomaTransactionItemWriteListener</a></li>
 </ul>
 <p>これらのリスナーをリスナーリストに定義することで、
 JSR352に準拠したバッチアプリケーションでもDomaを使用したデータベースアクセスを行うことができる。</p>
@@ -471,11 +474,11 @@ JSR352に準拠したバッチアプリケーションでもDomaを使用した�
 <h2><a class="toc-backref" href="#id16">JSR352に準拠したバッチアプリケーションで遅延ロードを行う</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>JSR352に準拠したバッチアプリケーションで大量データの読み込みを行う際に、遅延ロードを使用したい場合がある。</p>
 <p>その場合は、Daoアノテーションのconfig属性に
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaTransactionNotSupportedConfig.html" title="nablarch.integration.doma.DomaTransactionNotSupportedConfig">DomaTransactionNotSupportedConfig</a> を指定する。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaTransactionNotSupportedConfig.html" title="nablarch.integration.doma.DomaTransactionNotSupportedConfig">DomaTransactionNotSupportedConfig</a> を指定する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">config属性に <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaConfig.html" title="nablarch.integration.doma.DomaConfig">DomaConfig</a> を使用すると、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionItemWriteListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionItemWriteListener">DomaTransactionItemWriteListener</a>
+<p class="last">config属性に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaConfig.html" title="nablarch.integration.doma.DomaConfig">DomaConfig</a> を使用すると、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/batch/ee/listener/DomaTransactionItemWriteListener.html" title="nablarch.integration.doma.batch.ee.listener.DomaTransactionItemWriteListener">DomaTransactionItemWriteListener</a>
 によるトランザクションのコミットでストリームがクローズされるため、後続のレコードが読み込めなくなってしまう。</p>
 </div>
 <p>実装例を以下に示す。</p>
@@ -485,7 +488,7 @@ JSR352に準拠したバッチアプリケーションでもDomaを使用した�
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>Daoアノテーションのconfig属性には、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/integration/doma/DomaTransactionNotSupportedConfig.html" title="nablarch.integration.doma.DomaTransactionNotSupportedConfig">DomaTransactionNotSupportedConfig</a> を指定する。</li>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/doma/DomaTransactionNotSupportedConfig.html" title="nablarch.integration.doma.DomaTransactionNotSupportedConfig">DomaTransactionNotSupportedConfig</a> を指定する。</li>
 <li>検索結果は <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/stream/Stream.html" title="java.util.stream.Stream">Stream</a> で取得する。</li>
 </ul>
 </dd>

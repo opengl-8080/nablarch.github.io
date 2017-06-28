@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/getting_started/project_update/index.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="2.3. Getting Started" href="../index.html"/>
         <link rel="next" title="2.3.4. 削除機能の作成" href="../project_delete/index.html"/>
-        <link rel="prev" title="2.3.2. 検索機能の作成" href="../project_search/index.html"/> 
+        <link rel="prev" title="2.3.2. 検索機能の作成" href="../project_search/index.html"/>
+ 
 
   
   <script src="../../../../../_static/js/modernizr.min.js"></script>
@@ -452,14 +455,14 @@
 <dt>この実装のポイント</dt>
 <dd><ul class="first last">
 <li><p class="first">編集フォームに初期表示する値を取得するために、
-<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#findBySqlFile(java.lang.Class, java.lang.String, java.lang.Object)" title="nablarch.common.dao.UniversalDao.findBySqlFile(java.lang.Class, java.lang.String, java.lang.Object)">UniversalDao#findBySqlFile</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#findBySqlFile(java.lang.Class, java.lang.String, java.lang.Object)" title="nablarch.common.dao.UniversalDao.findBySqlFile(java.lang.Class, java.lang.String, java.lang.Object)">UniversalDao#findBySqlFile</a>
 を使用して一意キー検索を行う。
 <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-join"><span>テーブルをJOINした結果を取得する</span></a> ために、検索結果はBeanで受け付ける。
-一意キー検索では、対象データが存在しない場合 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> を送出する。</p>
+一意キー検索では、対象データが存在しない場合 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> を送出する。</p>
 <blockquote>
 <div><div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">Exampleアプリケーションでは、独自のエラー制御ハンドラを追加しているため、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> が発生した場合は404エラー画面へ遷移する。
+<p class="last">Exampleアプリケーションでは、独自のエラー制御ハンドラを追加しているため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> が発生した場合は404エラー画面へ遷移する。
 ハンドラによるエラー制御の作成方法は、 <a class="reference internal" href="../../feature_details/forward_error_page.html#forward-error-page-handler"><span>ハンドラで例外クラスに対応したエラーページに遷移させる</span></a> を参照。</p>
 </div>
 </div></blockquote>
@@ -521,7 +524,7 @@
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li>データベース検索が必要なバリデーションは業務アクションメソッドに記述する。
-データの存在確認をする場合、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#exists(java.lang.Class, java.lang.String, java.lang.Object)" title="nablarch.common.dao.UniversalDao.exists(java.lang.Class, java.lang.String, java.lang.Object)">UniversalDao#exists</a>
+データの存在確認をする場合、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#exists(java.lang.Class, java.lang.String, java.lang.Object)" title="nablarch.common.dao.UniversalDao.exists(java.lang.Class, java.lang.String, java.lang.Object)">UniversalDao#exists</a>
 を使用する。詳細は、 <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-database-validation"><span>データベース検索が必要なバリデーション</span></a> を参照。</li>
 <li>責務配置上 <a class="reference internal" href="../../../libraries/session_store.html#session-store-form"><span>フォームを直接セッションストアに格納すべきではない</span></a> ため、Beanへ詰め替える。</li>
 </ul>
@@ -624,11 +627,11 @@
 <dl class="last docutils">
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li>エンティティに更新したい値を設定し、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a> を使用してデータベースを更新する。
+<li>エンティティに更新したい値を設定し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#update(java.lang.Object)" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a> を使用してデータベースを更新する。
 更新処理では楽観的ロックが実行される。</li>
-<li>二重サブミットを防止するために、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/common/web/token/OnDoubleSubmission.html" title="nablarch.common.web.token.OnDoubleSubmission">&#64;OnDoubleSubmission</a> を付与する。</li>
+<li>二重サブミットを防止するために、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/OnDoubleSubmission.html" title="nablarch.common.web.token.OnDoubleSubmission">&#64;OnDoubleSubmission</a> を付与する。</li>
 <li>ブラウザ更新での再実行を防ぐために、レスポンスをリダイレクトする。
-リソースパスの書式については <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/web/ResourceLocator.html" title="nablarch.fw.web.ResourceLocator">ResourceLocator</a> を参照。</li>
+リソースパスの書式については <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html" title="nablarch.fw.web.ResourceLocator">ResourceLocator</a> を参照。</li>
 </ul>
 </dd>
 </dl>

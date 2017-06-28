@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/feature_details/error_processing.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="5.2.4. 機能詳細" href="../feature_details.html"/>
         <link rel="next" title="5.2.4.7.1. マルチプロセス化" href="multiple_process.html"/>
-        <link rel="prev" title="5.2.4. 機能詳細" href="../feature_details.html"/> 
+        <link rel="prev" title="5.2.4. 機能詳細" href="../feature_details.html"/>
+ 
 
   
   <script src="../../../../../_static/js/modernizr.min.js"></script>
@@ -311,7 +314,7 @@
 <span id="id1"></span><h1>5.2.4.6.1. データベースをキューとしたメッセージングのエラー処理<a class="headerlink" href="#db-messaging-error-processing" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="db-messaging-exclude-error-data">
 <span id="id2"></span><h2>5.2.4.6.1.1. エラーとなったデータを除外し処理を継続する<a class="headerlink" href="#db-messaging-exclude-error-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>エラーデータの除外は、例外発生時のコールバックメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/action/BatchActionBase.html#transactionFailure(D, nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchActionBase.transactionFailure(D, nablarch.fw.ExecutionContext)">transactionFailure</a>)で行う。</p>
+<p>エラーデータの除外は、例外発生時のコールバックメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionFailure(D, nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchActionBase.transactionFailure(D, nablarch.fw.ExecutionContext)">transactionFailure</a>)で行う。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">エラーデータを除外しなかった場合、エラーとなったデータが再び処理対象として抽出され、再度例外が発生する。
@@ -329,7 +332,7 @@
 </div>
 <div class="section" id="db-messaging-process-abnormal-end">
 <span id="id3"></span><h2>5.2.4.6.1.2. プロセスを異常終了させる<a class="headerlink" href="#db-messaging-process-abnormal-end" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>プロセスを異常終了させたい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/launcher/ProcessAbnormalEnd.html" title="nablarch.fw.launcher.ProcessAbnormalEnd">ProcessAbnormalEnd</a> を送出する。</p>
+<p>プロセスを異常終了させたい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/launcher/ProcessAbnormalEnd.html" title="nablarch.fw.launcher.ProcessAbnormalEnd">ProcessAbnormalEnd</a> を送出する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">プロセスを異常終了させると、テーブルキューの監視処理が終了するため、テーブルに未処理のデータが滞留することになり、データの取り込み遅延などが発生する。

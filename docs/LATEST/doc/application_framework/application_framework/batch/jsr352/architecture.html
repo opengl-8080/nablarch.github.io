@@ -31,10 +31,13 @@
   
 
   
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/architecture.html" />
+  
     <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="4.1. JSR352に準拠したバッチアプリケーション" href="index.html"/>
         <link rel="next" title="4.1.2. アプリケーションの責務配置" href="application_design.html"/>
-        <link rel="prev" title="4.1. JSR352に準拠したバッチアプリケーション" href="index.html"/> 
+        <link rel="prev" title="4.1. JSR352に準拠したバッチアプリケーション" href="index.html"/>
+ 
 
   
   <script src="../../../../_static/js/modernizr.min.js"></script>
@@ -355,11 +358,11 @@
 <p>Batchletタイプのバッチアプリケーションの処理の流れを以下に示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/batchlet-flow.png"><img alt="../../../../_images/batchlet-flow.png" src="../../../../_images/batchlet-flow.png" style="width: 428.25px; height: 150.75px;" /></a>
 <ol class="arabic simple">
-<li>JSR352のBatch RuntimeからBatchletステップ実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch RuntimeからBatchletステップ実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Batchletステップ実行前のリスナーを順次実行する。</li>
 <li>JSR352のBatch Runtimeから <cite>Batchlet</cite> が実行される。</li>
 <li><cite>Batchlet</cite> では業務ロジックを実行する。(Batchletの責務配置は、 <a class="reference internal" href="application_design.html#jsr352-batchlet-design"><span>Batchletの責務配置</span></a> を参照)</li>
-<li>JSR352のBatch RuntimeからBatchletステップ実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch RuntimeからBatchletステップ実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Batchletステップ実行後のリスナーを順次実行する。(No2とは逆順に実行する)</li>
 </ol>
 </div>
@@ -368,20 +371,20 @@
 <p>Chunkタイプのバッチアプリケーションの処理の流れを以下に示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/chunk-flow.png"><img alt="../../../../_images/chunk-flow.png" src="../../../../_images/chunk-flow.png" style="width: 538.5px; height: 285.0px;" /></a>
 <ol class="arabic simple">
-<li>JSR352のBatch RuntimeからChunkステップ実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch RuntimeからChunkステップ実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Chunkステップ実行前のリスナーを順次実行する。</li>
 <li>JSR352のBatch RuntimeからChunkステップの <cite>ItemReader</cite> が実行される。 <br />
 <cite>ItemReader</cite> では、入力データソースからデータを読み込む。</li>
 <li>JSR352のBatch RuntimeからChunkステップの <cite>ItemProcessor</cite> が実行される。 <br /></li>
 <li><cite>ItemProcessor</cite> は、 <cite>Form</cite> や <cite>Entity</cite> を使って業務ロジックを実行する。 <br />
 ※データーベースに対するデータの書き込みや更新はここでは実施しない。</li>
-<li>JSR352のBatch Runtimeから <cite>ItemWriter</cite> 実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/chunk/NablarchItemWriteListenerExecutor.html" title="nablarch.fw.batch.ee.listener.chunk.NablarchItemWriteListenerExecutor">NablarchItemWriteListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch Runtimeから <cite>ItemWriter</cite> 実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/NablarchItemWriteListenerExecutor.html" title="nablarch.fw.batch.ee.listener.chunk.NablarchItemWriteListenerExecutor">NablarchItemWriteListenerExecutor</a> が呼び出される。</li>
 <li><cite>ItemWriter</cite> 実行前のリスナーを順次実行する。</li>
 <li>JSR352のBatch RuntimeからChunkステップの <cite>ItemWriter</cite> が実行される。 <br />
 <cite>ItemWriter</cite> では、テーブルへの登録(更新、削除)やファイル出力処理などの結果反映処理を行う。</li>
-<li>JSR352のBatch Runtimeから <cite>ItemWriter</cite> 実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/chunk/NablarchItemWriteListenerExecutor.html" title="nablarch.fw.batch.ee.listener.chunk.NablarchItemWriteListenerExecutor">NablarchItemWriteListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch Runtimeから <cite>ItemWriter</cite> 実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/NablarchItemWriteListenerExecutor.html" title="nablarch.fw.batch.ee.listener.chunk.NablarchItemWriteListenerExecutor">NablarchItemWriteListenerExecutor</a> が呼び出される。</li>
 <li><cite>ItemWriter</cite> 実行後のリスナーを順次実行する。(No7とは逆順で実行する)</li>
-<li>JSR352のBatch RuntimeからChunkステップ実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
+<li>JSR352のBatch RuntimeからChunkステップ実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Chunkステップ実行後のリスナーを順次実行する。(No2とは逆順に実行する)</li>
 </ol>
 <p>※No3からNo10は、入力データソースのデータが終わるまで繰り返し実行される。</p>
@@ -396,24 +399,24 @@
 <dt>ジョブレベルリスナー</dt>
 <dd><p class="first">ジョブの起動及び終了直前にコールバックされるリスナー</p>
 <ul class="last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/job/JobProgressLogListener.html" title="nablarch.fw.batch.ee.listener.job.JobProgressLogListener">ジョブの起動、終了ログを出力するリスナー</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/job/DuplicateJobRunningCheckListener.html" title="nablarch.fw.batch.ee.listener.job.DuplicateJobRunningCheckListener">同一ジョブの多重起動防止リスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/job/JobProgressLogListener.html" title="nablarch.fw.batch.ee.listener.job.JobProgressLogListener">ジョブの起動、終了ログを出力するリスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/job/DuplicateJobRunningCheckListener.html" title="nablarch.fw.batch.ee.listener.job.DuplicateJobRunningCheckListener">同一ジョブの多重起動防止リスナー</a></li>
 </ul>
 </dd>
 <dt>ステップレベルリスナー</dt>
 <dd><p class="first">ステップの実行前及び実行後にコールバックされるリスナー</p>
 <ul class="last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/StepProgressLogListener.html" title="nablarch.fw.batch.ee.listener.step.StepProgressLogListener">ステップの開始、終了ログを出力するリスナー</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/DbConnectionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">データベースへの接続を行うリスナー</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/StepTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener">トランザクション制御を行うリスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/StepProgressLogListener.html" title="nablarch.fw.batch.ee.listener.step.StepProgressLogListener">ステップの開始、終了ログを出力するリスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/DbConnectionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">データベースへの接続を行うリスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/StepTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener">トランザクション制御を行うリスナー</a></li>
 </ul>
 </dd>
 <dt>ItemWriterレベルのリスナー</dt>
 <dd><p class="first"><cite>ItemWriter</cite> の実行前及び実行後にコールバックされるリスナー</p>
 <ul class="last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/chunk/ChunkProgressLogListener.html" title="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener">Chunkの進捗ログを出力するリスナー(非推奨)</a>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ChunkProgressLogListener.html" title="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener">Chunkの進捗ログを出力するリスナー(非推奨)</a>
 (<a class="reference internal" href="feature_details/progress_log.html#jsr352-progress-log"><span>進捗ログで出力される内容</span></a> を使用して進捗ログを出力すること)</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a></li>
 </ul>
 </dd>
 </dl>
@@ -448,7 +451,7 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/job/JobProgressLogListener.html" title="nablarch.fw.batch.ee.listener.job.JobProgressLogListener">ジョブの起動、終了ログを出力するリスナー</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/job/JobProgressLogListener.html" title="nablarch.fw.batch.ee.listener.job.JobProgressLogListener">ジョブの起動、終了ログを出力するリスナー</a></td>
 <td>起動するジョブ名をログに出力する。</td>
 <td>ジョブ名称とバッチステータスをログに出力する。</td>
 </tr>
@@ -471,17 +474,17 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/StepProgressLogListener.html" title="nablarch.fw.batch.ee.listener.step.StepProgressLogListener">ステップの開始、終了ログを出力するリスナー</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/StepProgressLogListener.html" title="nablarch.fw.batch.ee.listener.step.StepProgressLogListener">ステップの開始、終了ログを出力するリスナー</a></td>
 <td>実行するステップ名称をログに出力する。</td>
 <td>ステップ名称とステップステータスをログに出力する。</td>
 </tr>
 <tr class="row-odd"><td>2</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/DbConnectionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">データベースへの接続を行うリスナー</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/DbConnectionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.DbConnectionManagementListener">データベースへの接続を行うリスナー</a></td>
 <td>DB接続を取得する。</td>
 <td>DB接続を解放する。</td>
 </tr>
 <tr class="row-even"><td>3</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/step/StepTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener">トランザクション制御を行うリスナー</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/StepTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.step.StepTransactionManagementListener">トランザクション制御を行うリスナー</a></td>
 <td>トランザクションを開始する。</td>
 <td>トランザクションを終了(commit or rollback)する。</td>
 </tr>
@@ -504,7 +507,7 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u10/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a> <a class="footnote-reference" href="#chunk-tran" id="id9">[1]</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a> <a class="footnote-reference" href="#chunk-tran" id="id9">[1]</a></td>
 <td>&nbsp;</td>
 <td>トランザクションを終了(commit or rollback)する。</td>
 </tr>
