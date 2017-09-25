@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.8. リクエスト単体テストの実施方法(バッチ) &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>3.1.8. リクエスト単体テストの実施方法(バッチ) &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/batch.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.9. 取引単体テストの実施方法（バッチ）" href="../03_DealUnitTest/batch.html"/>
         <link rel="prev" title="3.1.7. 二重サブミット防止機能のテスト実施方法" href="double_transmission.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -343,10 +355,10 @@
 <div class="section" id="id4">
 <h2>3.1.8.3. テストデータの書き方<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テストデータを記載したExcelファイルは、クラス単体テストと同様にテストソースコードと同じディレクトリに同じ名前で格納する（拡張子のみ異なる）。</p>
-<p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Excelによるテストデータ記述</span></a>」を参照。</p>
+<p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span class="std std-ref">Excelによるテストデータ記述</span></a>」を参照。</p>
 <div class="section" id="id5">
 <h3>3.1.8.3.1. テストクラスで共通のデータベース初期値<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ウェブアプリケーションの場合と同様である。「<a class="reference internal" href="index.html#request-test-setup-db"><span>テストクラスで共通のデータベース初期値</span></a>」を参照。</p>
+<p>ウェブアプリケーションの場合と同様である。「<a class="reference internal" href="index.html#request-test-setup-db"><span class="std std-ref">テストクラスで共通のデータベース初期値</span></a>」を参照。</p>
 </div>
 <div class="section" id="batch-test-testcases">
 <span id="id6"></span><h3>3.1.8.3.2. テストケース一覧<a class="headerlink" href="#batch-test-testcases" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -378,59 +390,59 @@
 <td>必須</td>
 </tr>
 <tr class="row-odd"><td>setUpTable</td>
-<td>各テストケース実行前にデータベースに登録する場合は、同じシート内に記載したデータの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id7">[1]</a>。データの投入は自動テストフレーム
+<td>各テストケース実行前にデータベースに登録する場合は、同じシート内に記載したデータの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id7">[1]</a>。データの投入は自動テストフレーム
 ワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>setUpFile</td>
-<td>各テストケース実行前に入力用ファイルを作成する場合は、同じシート内に記載したデータの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id8">[1]</a>。ファイルの作成は自動テストフレーム
+<td>各テストケース実行前に入力用ファイルを作成する場合は、同じシート内に記載したデータの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id8">[1]</a>。ファイルの作成は自動テストフレーム
 ワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>expectedFile</td>
-<td>出力ファイルの内容を比較する場合、期待するファイルの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id9">[1]</a>。</td>
-<td>&nbsp;</td>
+<td>出力ファイルの内容を比較する場合、期待するファイルの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id9">[1]</a>。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>expectedTable</td>
-<td>データベースの内容を比較する場合、期待するテーブルの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id10">[1]</a>。</td>
-<td>&nbsp;</td>
+<td>データベースの内容を比較する場合、期待するテーブルの<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する<a class="footnote-reference" href="#id11" id="id10">[1]</a>。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>expectedLog</td>
 <td>期待するログメッセージを記載したLIST_MAPデータのIDを記載する。
 そのログメッセージが実際に出力されたかどうか、自動テストフレームワークにて検証される。
 (『<a class="reference internal" href="#id33">ログの結果検証</a>』を参照)</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>diConfig</td>
 <td>バッチを実行する際のコンポーネント設定ファイルへのパスを記載する。
-(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>コマンドライン引数</span></a>を参照)</td>
+(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span class="std std-ref">コマンドライン引数</span></a>を参照)</td>
 <td>必須</td>
 </tr>
 <tr class="row-odd"><td>requestPath</td>
 <td>バッチを実行する際のリクエストパスを記載する。
-(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>コマンドライン引数</span></a>を参照)</td>
+(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span class="std std-ref">コマンドライン引数</span></a>を参照)</td>
 <td>必須</td>
 </tr>
 <tr class="row-even"><td>userId</td>
 <td>バッチ実行ユーザIDを記載する。
-(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>コマンドライン引数</span></a>を参照)</td>
+(<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span class="std std-ref">コマンドライン引数</span></a>を参照)</td>
 <td>必須</td>
 </tr>
 <tr class="row-odd"><td>expectedMessage</td>
-<td>メッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>メッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>responseMessage</td>
-<td>メッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>メッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>expectedMessageByClient</td>
-<td>HTTPメッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>HTTPメッセージ同期送信を行う場合、期待する要求電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>responseMessageByClient</td>
-<td>HTTPメッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
-<td>&nbsp;</td>
+<td>HTTPメッセージ同期送信を行う場合、返却する応答電文の <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">グループID</span></a>を記載する。メッセージの作成は自動テストフレームワークにより行われる。</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +457,7 @@
 </table>
 <div class="section" id="id12">
 <h4>3.1.8.3.2.1. コマンドライン引数<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>テストデータで、<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>コマンドライン引数</span></a>を指定する方法を説明する。</p>
+<p>テストデータで、<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span class="std std-ref">コマンドライン引数</span></a>を指定する方法を説明する。</p>
 <p>バッチ起動時の引数を指定するには、<code class="docutils literal"><span class="pre">args[n]</span></code>（<strong>添字nは0以上の整数</strong>）という形式でカラムを追加する。</p>
 <blockquote>
 <div><table border="1" class="docutils">
@@ -460,7 +472,7 @@
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">no</th>
 <th class="head">case</th>
-<th class="head">...</th>
+<th class="head">…</th>
 <th class="head">args[0]</th>
 <th class="head">args[1]</th>
 <th class="head">args[2]</th>
@@ -469,7 +481,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
 <td>xxxのケース</td>
-<td>...</td>
+<td>…</td>
 <td>第1引数</td>
 <td>第2引数</td>
 <td>第3引数</td>
@@ -495,7 +507,7 @@
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">no</th>
 <th class="head">case</th>
-<th class="head">...</th>
+<th class="head">…</th>
 <th class="head">paramA</th>
 <th class="head">paramB</th>
 </tr>
@@ -503,7 +515,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
 <td>xxxのケース</td>
-<td>...</td>
+<td>…</td>
 <td>valueA</td>
 <td>valueB</td>
 </tr>
@@ -523,7 +535,7 @@
 バッチでは、データベース、入力ファイルの準備を行う。</p>
 <div class="section" id="id14">
 <h4>3.1.8.3.3.1. データベースの準備<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><a class="reference internal" href="index.html#request-test-testcases"><span>オンライン</span></a>と同様に、グループIDで対応付けを行う。</p>
+<p><a class="reference internal" href="index.html#request-test-testcases"><span class="std std-ref">オンライン</span></a>と同様に、グループIDで対応付けを行う。</p>
 </div>
 <div class="section" id="how-to-setup-fixed-length-file">
 <span id="id15"></span><h4>3.1.8.3.3.2. 固定長ファイルの準備<a class="headerlink" href="#how-to-setup-fixed-length-file" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -542,27 +554,27 @@
 <tr class="row-odd"><td rowspan="6">レコード種別</td>
 <td>フィールド名称(1)</td>
 <td>フィールド名称(2)</td>
-<td>...  <a class="footnote-reference" href="#id18" id="id16">[2]</a></td>
+<td>…  <a class="footnote-reference" href="#id18" id="id16">[2]</a></td>
 </tr>
 <tr class="row-even"><td>データ型(1)</td>
 <td>データ型(2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-odd"><td>フィールド長(1)</td>
 <td>フィールド長(2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-even"><td>データ(1-1)</td>
 <td>データ(2-1)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-odd"><td>データ(1-2)</td>
 <td>データ(2-2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
-<tr class="row-even"><td>... <a class="footnote-reference" href="#id19" id="id17">[3]</a></td>
-<td>...</td>
-<td>...</td>
+<tr class="row-even"><td>… <a class="footnote-reference" href="#id19" id="id17">[3]</a></td>
+<td>…</td>
+<td>…</td>
 </tr>
 </tbody>
 </table>
@@ -632,7 +644,7 @@
 <p class="first admonition-title">ちなみに</p>
 <p>「符号無数値」および「符号付数値」のデータ型を使用する場合、そのデータには、固定長ファイルから入力する値（固定長ファイルへ出力する値）をそのまま記載すること。
 すなわち固定長ファイルにパディング文字や符号が存在する場合は、それらの記載まで行う必要がある。</p>
-<p>以下に、データ型が符号付数値の場合に表したい値とその表現方法の例を示す。（フォーマット定義： フィールド長10桁、パディング文字&#8216;0&#8217;、小数点必要、符号位置固定、正の符号不要）</p>
+<p>以下に、データ型が符号付数値の場合に表したい値とその表現方法の例を示す。（フォーマット定義： フィールド長10桁、パディング文字’0』、小数点必要、符号位置固定、正の符号不要）</p>
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
@@ -725,19 +737,19 @@
 <tr class="row-odd"><td rowspan="4">ヘッダ</td>
 <td>レコード区分</td>
 <td>FILLER</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>半角数字</td>
 <td>半角</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>1</td>
 <td>10</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>0</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td rowspan="5">データ</td>
 <td>レコード区分</td>
@@ -775,24 +787,24 @@
 </tr>
 <tr class="row-odd"><td>8</td>
 <td>2</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td rowspan="4">エンド</td>
 <td>レコード区分</td>
 <td>FILLER</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>半角数字</td>
 <td>半角</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>1</td>
 <td>10</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>9</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -819,16 +831,16 @@
 </tr>
 <tr class="row-odd"><td rowspan="3">ヘッダ</td>
 <td>レコード区分</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>半角数字</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>0</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td rowspan="4">データ</td>
 <td>レコード区分</td>
@@ -850,28 +862,28 @@
 <tr class="row-even"><td rowspan="3">トレーラ</td>
 <td>レコード区分</td>
 <td>レコード件数</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>半角数字</td>
 <td>数値</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>8</td>
 <td>2</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td rowspan="3">エンド</td>
 <td>レコード区分</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>半角数字</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>9</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -915,7 +927,7 @@
 それぞれのデータとテストケース一覧とをIDで紐付けする。</p>
 <div class="section" id="id22">
 <h4>3.1.8.3.4.1. 期待するデータベースの状態<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><a class="reference internal" href="index.html#request-test-expected-tables"><span>オンライン</span></a>と同様に、期待するデータベースの状態をテストケース一覧とリンクさせる。</p>
+<p><a class="reference internal" href="index.html#request-test-expected-tables"><span class="std std-ref">オンライン</span></a>と同様に、期待するデータベースの状態をテストケース一覧とリンクさせる。</p>
 </div>
 <div class="section" id="id23">
 <h4>3.1.8.3.4.2. 期待する固定長ファイル<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -1038,7 +1050,7 @@ IDの記述方法だけが異なる。
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id34">[4]</a></td><td><strong>N</strong>は1以上の整数を指定することで複数の値（連続する値であること）
-(例) messsage1, message2...</td></tr>
+(例) messsage1, message2…</td></tr>
 </tbody>
 </table>
 <div class="admonition tip">
@@ -1076,7 +1088,7 @@ IDの記述方法だけが異なる。
 <tr class="row-odd"><td>FATAL</td>
 <td>NB11AA0109</td>
 <td>エラーが発生しました。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1120,7 +1132,7 @@ LIST_MAP要素が存在しない場合には、本フレームワークは期待
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

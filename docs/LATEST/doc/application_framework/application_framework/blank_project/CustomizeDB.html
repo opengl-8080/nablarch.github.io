@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
         <link rel="next" title="8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法" href="addin_gsp.html"/>
         <link rel="prev" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +382,7 @@
 <h4>8.5.1.2.1.2. Oracle<a class="headerlink" href="#oracle" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>OracleのJDBCドライバはMavenのセントラルリポジトリに公開されていないため、ローカルのMavenリポジトリに登録する必要がある。</p>
 <p>JDBCドライバをWebから取得する場合は、以下のサイトから入手する。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="38%" />
 <col width="63%" />
@@ -387,7 +399,7 @@
 </tbody>
 </table>
 <p>以下に、入手したJDBCドライバをローカルのMavenリポジトリに登録するコマンドの例を示す。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.oracle -DartifactId<span class="o">=</span>ojdbc6 -Dversion<span class="o">=</span>11.2.0.2.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>ojdbc6.jar
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.oracle -DartifactId<span class="o">=</span>ojdbc6 -Dversion<span class="o">=</span><span class="m">11</span>.2.0.2.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>ojdbc6.jar
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -403,7 +415,7 @@
 <h4>8.5.1.2.1.4. DB2<a class="headerlink" href="#db2" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>DB2のJDBCドライバはMavenのセントラルリポジトリに公開されていないため、ローカルのMavenリポジトリに登録する必要がある。</p>
 <p>JDBCドライバをWebから取得する場合は、以下のサイトから入手する。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="38%" />
 <col width="63%" />
@@ -421,7 +433,7 @@ and Downloads - Japan</td>
 </tbody>
 </table>
 <p>以下に、入手したJDBCドライバをローカルのMavenリポジトリに登録するコマンドの例を示す。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.ibm -DartifactId<span class="o">=</span>db2jcc4 -Dversion<span class="o">=</span>10.5.0.7 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>db2jcc4.jar
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.ibm -DartifactId<span class="o">=</span>db2jcc4 -Dversion<span class="o">=</span><span class="m">10</span>.5.0.7 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>db2jcc4.jar
 </pre></div>
 </div>
 </div>
@@ -429,7 +441,7 @@ and Downloads - Japan</td>
 <h4>8.5.1.2.1.5. SQLServer<a class="headerlink" href="#sqlserver" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>SQLServerのJDBCドライバはMavenのセントラルリポジトリに公開されていないため、ローカルのMavenリポジトリに登録する必要がある。</p>
 <p>JDBCドライバをWebから取得する場合は、以下のサイトから入手する。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="67%" />
 <col width="33%" />
@@ -446,7 +458,7 @@ and Downloads - Japan</td>
 </tbody>
 </table>
 <p>以下に、入手したJDBCドライバをローカルのMavenリポジトリに登録するコマンドの例を示す。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.microsoft -DartifactId<span class="o">=</span>sqljdbc4 -Dversion<span class="o">=</span>4.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>sqljdbc4.jar
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.microsoft -DartifactId<span class="o">=</span>sqljdbc4 -Dversion<span class="o">=</span><span class="m">4</span>.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>sqljdbc4.jar
 </pre></div>
 </div>
 </div>
@@ -457,7 +469,7 @@ and Downloads - Japan</td>
 <div class="section" id="config">
 <h3><a class="toc-backref" href="#id21">8.5.1.3.1. configファイルの修正</a><a class="headerlink" href="#config" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>env.config内の以下の箇所を修正する。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="26%" />
 <col width="21%" />
@@ -760,14 +772,14 @@ nablarch.db.schema=SAMPLE
 <span class="nt">&lt;/dependencies&gt;</span>
 </pre></div>
 </div>
-<p>dependency要素内の各要素については、<a class="reference internal" href="#customizedbprofiles"><span>(本番環境でJNDIからコネクションを取得するプロジェクトの場合)profiles要素内</span></a> と同じ記述を行う。</p>
+<p>dependency要素内の各要素については、<a class="reference internal" href="#customizedbprofiles"><span class="std std-ref">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)profiles要素内</span></a> と同じ記述を行う。</p>
 </div>
 </div>
 <div class="section" id="jndi-src-main-resources">
 <span id="customizedbwebcomponentconfiguration"></span><h3><a class="toc-backref" href="#id23">8.5.1.3.3. (本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</a><a class="headerlink" href="#jndi-src-main-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本番環境でJNDIからコネクションを取得するプロジェクトの場合、src/main/resourcesに配置しているコンポーネント定義ファイルにプロジェクトが使用するデータベースのDialectクラスが記述されている。
 各プロジェクトのコンポーネント定義ファイル名は以下となる。</p>
-<table border="1" class="docutils">
+<table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -793,7 +805,7 @@ nablarch.db.schema=SAMPLE
 </pre></div>
 </div>
 <p>Nablarchには以下のDialectクラスが用意されている。使用するデータベースに対応したDialectクラスに修正すること。</p>
-<table border="1" class="docutils">
+<table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -823,7 +835,7 @@ nablarch.db.schema=SAMPLE
 <h3><a class="toc-backref" href="#id24">8.5.1.3.4. (本番環境でローカルにコネクションプールを作成するプロジェクトの場合)data-source.xml  (src/main/resources/)</a><a class="headerlink" href="#data-source-xml-src-main-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本番環境でローカルにコネクションプールを作成するプロジェクトの場合、data-source.xmlにプロジェクトが使用するデータベースのDialectクラスが記述されている。</p>
 <p>このDialectクラスを、使用するデータベースに対応したDialectクラスに修正する。</p>
-<p>使用するDialectクラスは、<a class="reference internal" href="#customizedbwebcomponentconfiguration"><span>(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</span></a> と同一である。</p>
+<p>使用するDialectクラスは、<a class="reference internal" href="#customizedbwebcomponentconfiguration"><span class="std std-ref">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</span></a> と同一である。</p>
 </div>
 <div class="section" id="unit-test-xml-src-test-resources">
 <h3><a class="toc-backref" href="#id25">8.5.1.3.5. unit-test.xml  (src/test/resources)</a><a class="headerlink" href="#unit-test-xml-src-test-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -872,7 +884,7 @@ nablarch.db.schema=SAMPLE
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id14">[1]</a></td><td><p class="first">gsp-dba-maven-pluginを使用するためには、別途設定が必要である。</p>
-<p class="last">設定については <a class="reference internal" href="addin_gsp.html"><em>gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</em></a> を参照。</p>
+<p class="last">設定については <a class="reference internal" href="addin_gsp.html"><span class="doc">gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</span></a> を参照。</p>
 </td></tr>
 </tbody>
 </table>
@@ -903,10 +915,10 @@ SET SCHEMA sample;
 <h2><a class="toc-backref" href="#id29">8.5.1.5. 動作確認</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下の手順を参照し、動作確認を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="setup_blankProject/setup_Web.html#firststepwebstartuptest"><span>ウェブの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_WebService.html#firststepwebservicestartuptest"><span>RESTfulウェブサービスの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_Jbatch.html#firststepbatcheestartuptest"><span>JSR352に準拠したバッチの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_NablarchBatch.html#firststepbatchstartuptest"><span>Nablarchバッチの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_Web.html#firststepwebstartuptest"><span class="std std-ref">ウェブの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_WebService.html#firststepwebservicestartuptest"><span class="std std-ref">RESTfulウェブサービスの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_Jbatch.html#firststepbatcheestartuptest"><span class="std std-ref">JSR352に準拠したバッチの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_NablarchBatch.html#firststepbatchstartuptest"><span class="std std-ref">Nablarchバッチの疎通確認</span></a></li>
 </ul>
 </div>
 </div>
@@ -941,7 +953,7 @@ SET SCHEMA sample;
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

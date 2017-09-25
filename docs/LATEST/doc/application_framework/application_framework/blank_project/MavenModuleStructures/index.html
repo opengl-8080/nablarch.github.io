@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.4. Mavenアーキタイプの構成 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>8.4. Mavenアーキタイプの構成 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/MavenModuleStructures/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="8. ブランクプロジェクト" href="../index.html"/>
         <link rel="next" title="8.5. 初期セットアップ後に必要となる設定変更" href="../ModifySettings.html"/>
         <link rel="prev" title="8.3.6. 初期セットアップ手順 補足事項" href="../firstStep_appendix/firststep_complement.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -361,7 +373,7 @@
 <p>nablarch-web-archetypeとnablarch-batch-archetypeのアーキタイプを使用し、
 プロジェクト生成中に入力する <code class="docutils literal"><span class="pre">artifactId</span></code> に、 <code class="docutils literal"><span class="pre">pj-web</span></code> , <code class="docutils literal"><span class="pre">pj-batch</span></code> をそれぞれ指定した場合、以下のような構成となる。</p>
 <img alt="../../../../_images/maven_archetype.png" src="../../../../_images/maven_archetype.png" />
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="24%" />
 <col width="21%" />
@@ -389,7 +401,7 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">自動生成エンティティは <a class="reference external" href="https://github.com/coastland/gsp-dba-maven-plugin">gsp-dba-maven-plugin(外部サイト)</a> を使用した場合に生成される。
-使用する場合は、<a class="reference internal" href="../addin_gsp.html"><em>gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</em></a> に記載されている設定を行う必要がある。</p>
+使用する場合は、<a class="reference internal" href="../addin_gsp.html"><span class="doc">gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</span></a> に記載されている設定を行う必要がある。</p>
 </div>
 </div>
 <div class="section" id="id3">
@@ -470,7 +482,7 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 <h4>8.4.2.2.2. ツールの設定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>toolsフォルダには、Mavenと連携させて使用するツールの設定ファイルが含まれている。
 以下に主なディレクトリとファイルを示す。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="31%" />
 <col width="69%" />
@@ -646,7 +658,7 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 <li>JDBCドライバ</li>
 </ul>
 </li>
-<li><a class="reference internal" href="../firstStep_appendix/firststep_complement.html#firststepbuiltintools"><span>アーキタイプから生成したプロジェクトに組み込まれているツール</span></a> に記載されているツールの設定。以下のような設定が存在する。<ul>
+<li><a class="reference internal" href="../firstStep_appendix/firststep_complement.html#firststepbuiltintools"><span class="std std-ref">アーキタイプから生成したプロジェクトに組み込まれているツール</span></a> に記載されているツールの設定。以下のような設定が存在する。<ul>
 <li><a class="reference external" href="https://github.com/coastland/gsp-dba-maven-plugin">gsp-dba-maven-plugin(外部サイト)</a> で利用するデータベース接続設定（JDBC接続URLやデータベーススキーマなど）</li>
 <li>カバレッジ設定</li>
 </ul>
@@ -657,7 +669,7 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 <span id="id15"></span><h4>8.4.2.6.1. プロファイル一覧<a class="headerlink" href="#mavenmodulestructuresprofileslist" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>定義されているプロファイルの詳細については、各プロジェクトの <code class="docutils literal"><span class="pre">pom.xml</span></code> を参照。</p>
 <p>以下に定義されているプロファイルを示す。</p>
-<table border="1" class="white-space-normal docutils">
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="18%" />
 <col width="82%" />
@@ -699,8 +711,8 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 <div class="section" id="id17">
 <h4>8.4.2.6.2. ビルドフェーズに追加されているゴール一覧<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>Mavenのデフォルトのビルドフェーズ定義に加えて、以下のゴールが実行されるように設定されている。</p>
-<p>設定の詳細については、各プロジェクトの <code class="docutils literal"><span class="pre">pom.xml</span></code> 及び、 <a class="reference internal" href="#about-maven-parent-module"><span>nablarch-archetype-parent(親プロジェクト)</span></a> の <code class="docutils literal"><span class="pre">pom.xml</span></code> を参照のこと。</p>
-<table border="1" class="white-space-normal docutils">
+<p>設定の詳細については、各プロジェクトの <code class="docutils literal"><span class="pre">pom.xml</span></code> 及び、 <a class="reference internal" href="#about-maven-parent-module"><span class="std std-ref">nablarch-archetype-parent(親プロジェクト)</span></a> の <code class="docutils literal"><span class="pre">pom.xml</span></code> を参照のこと。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="23%" />
 <col width="36%" />
@@ -730,12 +742,12 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 </div>
 <div class="section" id="id18">
 <h4>8.4.2.6.3. コンパイルに関する設定<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>設定内容については、各プロジェクトの <code class="docutils literal"><span class="pre">pom.xml</span></code> 及び、 <a class="reference internal" href="#about-maven-parent-module"><span>nablarch-archetype-parent(親プロジェクト)</span></a> の <code class="docutils literal"><span class="pre">pom.xml</span></code> を参照。</p>
+<p>設定内容については、各プロジェクトの <code class="docutils literal"><span class="pre">pom.xml</span></code> 及び、 <a class="reference internal" href="#about-maven-parent-module"><span class="std std-ref">nablarch-archetype-parent(親プロジェクト)</span></a> の <code class="docutils literal"><span class="pre">pom.xml</span></code> を参照。</p>
 </div>
 <div class="section" id="id19">
 <h4>8.4.2.6.4. ツールの設定<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>ツールの設定は、<code class="docutils literal"><span class="pre">pom.xml</span></code> (各プロジェクト及び、 <a class="reference internal" href="#about-maven-parent-module"><span>nablarch-archetype-parent(親プロジェクト)</span></a> )に記載されている。
-親プロジェクトに記載されているツールについては、 <a class="reference internal" href="../firstStep_appendix/firststep_complement.html#firststepbuiltintools"><span>アーキタイプから生成したプロジェクトに組み込まれているツール</span></a> を参照。</p>
+<p>ツールの設定は、<code class="docutils literal"><span class="pre">pom.xml</span></code> (各プロジェクト及び、 <a class="reference internal" href="#about-maven-parent-module"><span class="std std-ref">nablarch-archetype-parent(親プロジェクト)</span></a> )に記載されている。
+親プロジェクトに記載されているツールについては、 <a class="reference internal" href="../firstStep_appendix/firststep_complement.html#firststepbuiltintools"><span class="std std-ref">アーキタイプから生成したプロジェクトに組み込まれているツール</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id20">
@@ -796,7 +808,7 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
 <li>社内用と社外用で二つのウェブアプリケーションを作成するようなケースでは、無理に一つのMavenプロジェクトにまとめず、個別にMavenプロジェクトを作ること。</li>
 <li>複数のアプリケーションが存在し、共通化したいライブラリが存在する場合は、共通ライブラリを配置するMavenプロジェクトを作る。</li>
 <li>実行制御基盤を追加した際は、実行制御基盤毎にMavenプロジェクトを作る。例えば、メッセージング実行制御基盤を使用したアプリケーションを追加する場合は、新しくMavenプロジェクトを作る。</li>
-<li>必要以上にプロジェクトは分割しない。詳細は、 <a class="reference internal" href="#mavenmodulestructuresproblemsofexcessivelydivided"><span>プロジェクトを過度に分割した場合の問題点</span></a> を参照。</li>
+<li>必要以上にプロジェクトは分割しない。詳細は、 <a class="reference internal" href="#mavenmodulestructuresproblemsofexcessivelydivided"><span class="std std-ref">プロジェクトを過度に分割した場合の問題点</span></a> を参照。</li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -846,7 +858,7 @@ nablarch-archetype-parentに記載された設定を確認したい場合は、�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

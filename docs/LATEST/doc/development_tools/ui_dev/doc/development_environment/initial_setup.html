@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.8. UI開発基盤の導入 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>2.1.8. UI開発基盤の導入 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/development_environment/initial_setup.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.9. UI標準のカスタマイズとUI開発基盤への反映" href="modifying_code_and_testing.html"/>
         <link rel="prev" title="2.1.7. 基盤部品のテスト実施項目" href="../testing.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -311,12 +323,12 @@
 <p>本節では、Nablarch UI開発基盤をプロジェクトの開発環境に導入する手順を述べる。
 UI開発基盤の導入時に以下の手順を実施すればよく、各担当者が個別に実施する必要はない。</p>
 <p>以下の手順で使用するインストール用コマンドの詳細仕様については、
-<a class="reference internal" href="../plugin_build.html"><em>プラグインビルドコマンド仕様</em></a> を参照すること。</p>
+<a class="reference internal" href="../plugin_build.html"><span class="doc">プラグインビルドコマンド仕様</span></a> を参照すること。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">本節では、UI開発基盤用プロジェクトテンプレートを使用したUI開発基盤の導入手順を記載している。
-UI開発基盤用プロジェクトテンプレートは <a class="reference internal" href="../internals/css_framework.html"><em>CSSフレームワーク</em></a> を使用しているため、
-<a class="reference internal" href="../internals/multicol_css_framework.html"><em>マルチレイアウト用CSSフレームワーク</em></a> を使用する場合には、 <a class="reference internal" href="../internals/multicol_css_framework.html#apply-multicol-layout"><span>マルチレイアウトモードの適用方法</span></a>
+UI開発基盤用プロジェクトテンプレートは <a class="reference internal" href="../internals/css_framework.html"><span class="doc">CSSフレームワーク</span></a> を使用しているため、
+<a class="reference internal" href="../internals/multicol_css_framework.html"><span class="doc">マルチレイアウト用CSSフレームワーク</span></a> を使用する場合には、 <a class="reference internal" href="../internals/multicol_css_framework.html#apply-multicol-layout"><span class="std std-ref">マルチレイアウトモードの適用方法</span></a>
 を参考に導入用の設定を行うこと。</p>
 </div>
 <div class="section" id="id1">
@@ -336,7 +348,7 @@ UI開発基盤用プロジェクトテンプレートは <a class="reference int
 </div>
 <div class="section" id="java-home">
 <h3>2.1.8.1.2. 2. 環境変数 <strong>JAVA_HOME</strong> の設定<a class="headerlink" href="#java-home" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>本節で使用する <a class="reference internal" href="../plugin_build.html#ui-demo"><span>サーバ動作確認用サーバ起動コマンド</span></a> は環境変数 <strong>JAVA_HOME</strong> の設定が前提となっているため、
+<p>本節で使用する <a class="reference internal" href="../plugin_build.html#ui-demo"><span class="std std-ref">サーバ動作確認用サーバ起動コマンド</span></a> は環境変数 <strong>JAVA_HOME</strong> の設定が前提となっているため、
 環境変数 <strong>JAVA_HOME</strong> にJDKのインストールディレクトリパスを設定する。</p>
 </div>
 </div>
@@ -374,7 +386,7 @@ UI開発基盤用プロジェクトテンプレートは <a class="reference int
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">ここで展開される各ディレクトリの内容については
-<a class="reference internal" href="../structure/directory_layout.html"><em>標準プロジェクト構成</em></a> で解説する。</p>
+<a class="reference internal" href="../structure/directory_layout.html"><span class="doc">標準プロジェクト構成</span></a> で解説する。</p>
 </div>
 <div class="section" id="id3">
 <h3>2.1.8.2.1. 1. プロジェクトルートの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -401,8 +413,8 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <div class="section" id="id6">
 <h3>2.1.8.2.4. 4. ブランクプロジェクトのセットアップ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
-<div><a class="reference internal" href="#clone-project-template"><span>3. UI開発基盤用プロジェクトテンプレートの取得</span></a> で取得したプロジェクトテンプレートにブランクプロジェクトをセットアップする。
-セットアップ方法は、 <a class="reference internal" href="../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><em>ウェブプロジェクトの初期セットアップ</em></a> を参照すること。</div></blockquote>
+<div><a class="reference internal" href="#clone-project-template"><span class="std std-ref">3. UI開発基盤用プロジェクトテンプレートの取得</span></a> で取得したプロジェクトテンプレートにブランクプロジェクトをセットアップする。
+セットアップ方法は、 <a class="reference internal" href="../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><span class="doc">ウェブプロジェクトの初期セットアップ</span></a> を参照すること。</div></blockquote>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">ここでは、ブランクプロジェクトを生成する際、 <code class="docutils literal"><span class="pre">artifactId</span></code> に <cite>web</cite> と指定すること。</p>
@@ -411,8 +423,8 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <p class="first admonition-title">ちなみに</p>
 <p>mavenのインストールや設定を行っていない場合には、以下を参考にそれぞれを実施してからセットアップを行うこと。</p>
 <ul class="last simple">
-<li><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/maven.html"><em>Apache Mavenについて</em></a></li>
-<li><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/beforeFirstStep.html"><em>初期セットアップの前に</em></a></li>
+<li><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/maven.html"><span class="doc">Apache Mavenについて</span></a></li>
+<li><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/beforeFirstStep.html"><span class="doc">初期セットアップの前に</span></a></li>
 </ul>
 </div>
 </div>
@@ -442,7 +454,7 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <span class="o">[</span>INFO<span class="o">]</span> Scanning <span class="k">for</span> projects...
 <span class="o">[</span>INFO<span class="o">]</span>
 <span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-<span class="o">[</span>INFO<span class="o">]</span> Building nablarch-dev-tool-server 1.0.0
+<span class="o">[</span>INFO<span class="o">]</span> Building nablarch-dev-tool-server <span class="m">1</span>.0.0
 <span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
 
 <span class="c1">### 中略 ###</span>
@@ -450,8 +462,8 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
 <span class="o">[</span>INFO<span class="o">]</span> BUILD SUCCESS
 <span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-<span class="o">[</span>INFO<span class="o">]</span> Total time: 1.949 s
-<span class="o">[</span>INFO<span class="o">]</span> Finished at: 2016-10-05T16:30:40+09:00
+<span class="o">[</span>INFO<span class="o">]</span> Total time: <span class="m">1</span>.949 s
+<span class="o">[</span>INFO<span class="o">]</span> Finished at: <span class="m">2016</span>-10-05T16:30:40+09:00
 <span class="o">[</span>INFO<span class="o">]</span> Final Memory: 21M/211M
 <span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
 npm WARN package.json nablarch-css-base@1.0.0 No repository field.
@@ -483,7 +495,7 @@ font-awesome@4.0.3 node_modules/font-awesome
 <p><cite>nablarch_plugins_bundle/bin/setup.bat</cite> では以下の二つの処理を行っており、
 セットアップ後の状態はそれぞれ以下のようになる。</p>
 <ul>
-<li><p class="first"><a class="reference internal" href="#ui-test-server"><span>6. UI開発基盤テスト用プロジェクトの動作確認</span></a> で使用するモジュールのビルド</p>
+<li><p class="first"><a class="reference internal" href="#ui-test-server"><span class="std std-ref">6. UI開発基盤テスト用プロジェクトの動作確認</span></a> で使用するモジュールのビルド</p>
 <p><cite>nablarch-plugins-bundle/node_modules/nablarch-dev-tool-server/ui_test/tools</cite> 配下に
 サーバ動作確認用のバイナリとライブラリが追加される。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>プロジェクトルート/
@@ -529,7 +541,7 @@ font-awesome@4.0.3 node_modules/font-awesome
 <h3>2.1.8.3.2. 2. プロジェクトで使用するプラグインの選定<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><cite>web_project/ui_plugins/package.json</cite> を任意のテキストエディタで開く。</p>
 <p>このファイルは以下のような構造を持ち、プロジェクトで使用する
-<a class="reference internal" href="../structure/plugins.html"><em>UIプラグイン</em></a> の名称とそのバージョンが列挙されている。</p>
+<a class="reference internal" href="../structure/plugins.html"><span class="doc">UIプラグイン</span></a> の名称とそのバージョンが列挙されている。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">//---- 前略 ----//</span>
 
 <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span>
@@ -556,11 +568,11 @@ font-awesome@4.0.3 node_modules/font-awesome
 </div>
 <p>このエントリを削除することによって、プロジェクト側で使用しないプラグインを
 インストールの対象から除去することができる。
-各プラグインの内容については <a class="reference internal" href="../structure/plugins.html"><em>UIプラグイン</em></a> の項を参照すること。</p>
+各プラグインの内容については <a class="reference internal" href="../structure/plugins.html"><span class="doc">UIプラグイン</span></a> の項を参照すること。</p>
 <p>削除したプラグインがlessファイルを含んでいる場合、プロジェクトではそのlessファイルも
-使用できなくなるため、 <a class="reference internal" href="../plugin_build.html#lessimport-less"><span>lessインポート定義ファイル</span></a> から、当該プラグインのlessファイルの
+使用できなくなるため、 <a class="reference internal" href="../plugin_build.html#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a> から、当該プラグインのlessファイルの
 import定義を削除する必要がある。</p>
-<p><a class="reference internal" href="../plugin_build.html#lessimport-less"><span>lessインポート定義ファイル</span></a> には、以下のようにプロジェクトが各表示モードで使用するlessファイルの
+<p><a class="reference internal" href="../plugin_build.html#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a> には、以下のようにプロジェクトが各表示モードで使用するlessファイルの
 import定義が列挙されている。</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span>@import &quot;../../node_modules/nablarch-css-core/ui_public/css/core/reset&quot;;
 @import &quot;../../node_modules/nablarch-css-core/ui_public/css/core/css3&quot;;
@@ -573,7 +585,7 @@ import定義が列挙されている。</p>
 @import &quot;../../node_modules/web_project-template-error/ui_public/css/template/errorpage&quot;;
 </pre></div>
 </div>
-<p>上記で削除したプラグインに対応するlessファイルは、それぞれの <a class="reference internal" href="../plugin_build.html#lessimport-less"><span>lessインポート定義ファイル</span></a> から削除する必要がある。
+<p>上記で削除したプラグインに対応するlessファイルは、それぞれの <a class="reference internal" href="../plugin_build.html#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a> から削除する必要がある。
 本手順の場合は、以下の6ファイルから削除する。</p>
 <ul class="simple">
 <li><cite>web_project/ui_plugins/css/ui_local/compact.less</cite></li>
@@ -593,7 +605,7 @@ import定義が列挙されている。</p>
 <div class="section" id="id9">
 <h3>2.1.8.3.3. 3. プロジェクトへのプラグインインストール<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>インストールコマンドにプロジェクトルートを設定し実行する。
-(コマンドの詳細については <a class="reference internal" href="../plugin_build.html"><em>プラグインビルドコマンド仕様</em></a> を参照)</p>
+(コマンドの詳細については <a class="reference internal" href="../plugin_build.html"><span class="doc">プラグインビルドコマンド仕様</span></a> を参照)</p>
 <dl class="docutils">
 <dt><strong>1. PROJECT_ROOTの設定</strong></dt>
 <dd><cite>nablarch_plugins_bundle/bin/install.bat</cite> を任意のテキストエディタで開き、
@@ -669,7 +681,7 @@ halting <span class="nb">local</span> repository ...
 <div class="section" id="executing-ui-build">
 <span id="id10"></span><h3>2.1.8.3.4. 4. UI部品のビルドと配置<a class="headerlink" href="#executing-ui-build" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ビルドコマンド用設定ファイルにデプロイ対象プロジェクトを設定しUIビルドコマンドを実行する。
-(設定ファイルとコマンドの詳細については <a class="reference internal" href="../plugin_build.html"><em>プラグインビルドコマンド仕様</em></a> を参照)</p>
+(設定ファイルとコマンドの詳細については <a class="reference internal" href="../plugin_build.html"><span class="doc">プラグインビルドコマンド仕様</span></a> を参照)</p>
 <dl class="docutils">
 <dt><strong>1. デプロイ対象プロジェクトの設定</strong></dt>
 <dd><cite>web_project/ui_plugins/pjconf.json</cite> を任意のテキストエディタで開き、
@@ -709,7 +721,7 @@ UI資源が展開される。</p>
 <td><div class="first last line-block">
 <div class="line">主に設計工程で作成する業務画面JSPを格納するプロジェクト。</div>
 <div class="line">サーバサイドの仕組みなしで、画面の表示や動作のデモを行うことができる。</div>
-<div class="line">使用方法については、 <a class="reference internal" href="../../guide/index.html#ui-dev-howto-make-jsp"><span>JSP/HTML作成ガイド</span></a> を参照すること。</div>
+<div class="line">使用方法については、 <a class="reference internal" href="../../guide/index.html#ui-dev-howto-make-jsp"><span class="std std-ref">JSP/HTML作成ガイド</span></a> を参照すること。</div>
 </div>
 </td>
 </tr>
@@ -759,11 +771,11 @@ PJ側でのカスタマイズの問題なのかを確認する際にも利用す
 <a class="reference internal image-reference" href="../../../../_images/ui_test_server_top.png"><img alt="../../../../_images/ui_test_server_top.png" src="../../../../_images/ui_test_server_top.png" style="width: 540.0px; height: 514.4px;" /></a>
 </div>
 <p>コマンドを実行したコンソール内に以下のようなメッセージが表示されるのを確認できるまで待つ。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>2014-05-05 16:28:24.022:INFO::Logging to STDERR via org.mortbay.log.StdErrLog
-2014-05-05 16:28:24.058:INFO::jetty-6.1.24
-2014-05-05 16:28:24.300 -INFO- ROO <span class="o">[</span>null<span class="o">]</span> load component config file. <span class="nv">file</span> <span class="o">=</span> classpath:web-component-configuration.xml
-2014-05-05 16:28:24.331 -INFO- ROO <span class="o">[</span>null<span class="o">]</span> <span class="o">[</span>nablarch.fw.web.servlet.NablarchServletContextListener#contextInitialized<span class="o">]</span> initialization completed.
-2014-05-05 16:28:24.383:INFO::Started SocketConnector@0.0.0.0:7777
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">2014</span>-05-05 <span class="m">16</span>:28:24.022:INFO::Logging to STDERR via org.mortbay.log.StdErrLog
+<span class="m">2014</span>-05-05 <span class="m">16</span>:28:24.058:INFO::jetty-6.1.24
+<span class="m">2014</span>-05-05 <span class="m">16</span>:28:24.300 -INFO- ROO <span class="o">[</span>null<span class="o">]</span> load component config file. <span class="nv">file</span> <span class="o">=</span> classpath:web-component-configuration.xml
+<span class="m">2014</span>-05-05 <span class="m">16</span>:28:24.331 -INFO- ROO <span class="o">[</span>null<span class="o">]</span> <span class="o">[</span>nablarch.fw.web.servlet.NablarchServletContextListener#contextInitialized<span class="o">]</span> initialization completed.
+<span class="m">2014</span>-05-05 <span class="m">16</span>:28:24.383:INFO::Started SocketConnector@0.0.0.0:7777
 </pre></div>
 </div>
 <p>メッセージが確認できたら
@@ -864,7 +876,7 @@ Nablarch開発元で行う改修とを正しくマージすることが困難、
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

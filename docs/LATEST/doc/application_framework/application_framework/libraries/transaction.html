@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.8. トランザクション管理 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>7.8. トランザクション管理 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/transaction.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.9. 静的データのキャッシュ" href="static_data_cache.html"/>
         <link rel="prev" title="7.7. メール送信" href="mail.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -335,11 +347,11 @@
 <p>データベースやメッセージキューといったトランザクション制御が必要となるリソースに対するトランザクション管理が出来る。</p>
 <p>データベースに対するトランザクション制御の詳細は以下を参照。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#transaction-database"><span>データベースに対するトランザクション制御を行う</span></a></li>
-<li><a class="reference internal" href="#transaction-timeout"><span>データベースに対するトランザクションタイムアウトを適用する</span></a></li>
+<li><a class="reference internal" href="#transaction-database"><span class="std std-ref">データベースに対するトランザクション制御を行う</span></a></li>
+<li><a class="reference internal" href="#transaction-timeout"><span class="std std-ref">データベースに対するトランザクションタイムアウトを適用する</span></a></li>
 </ul>
 <p>新たなリソースに対して、トランザクション制御を行う要件が出た場合には、本機能で定められたインタフェースを実装することで容易に実現できる。
-詳細は、 <a class="reference internal" href="#transaction-addresource"><span>トランザクション対象のリソースを追加する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="#transaction-addresource"><span class="std std-ref">トランザクション対象のリソースを追加する</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -362,8 +374,8 @@
 <span id="id7"></span><h3><a class="toc-backref" href="#id15">7.8.3.1. データベースに対するトランザクション制御を行う</a><a class="headerlink" href="#transaction-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント定義ファイルにJDBCを使用したトランザクション制御を追加することで、データベースに対するトランザクション制御が実現出来る。
 なお、データベースに対する接続設定が行われていることが前提となる。</p>
-<p>データベース接続方法の詳細は、 <a class="reference internal" href="database/database.html#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照。</p>
-<p>なお、1SQL単位などの粒度の小さいトランザクションを使用する場合は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span>現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照に設定及び実装を行うこと。</p>
+<p>データベース接続方法の詳細は、 <a class="reference internal" href="database/database.html#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> を参照。</p>
+<p>なお、1SQL単位などの粒度の小さいトランザクションを使用する場合は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span class="std std-ref">現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照に設定及び実装を行うこと。</p>
 <dl class="docutils">
 <dt>コンポーネント定義例</dt>
 <dd><p class="first">JDBC用のトランザクションクラスを生成するファクトリクラス( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/JdbcTransactionFactory.html" title="nablarch.core.db.transaction.JdbcTransactionFactory">JdbcTransactionFactory</a> )をコンポーネント定義ファイルに設定する。</p>
@@ -384,7 +396,7 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">上記に設定したクラスを直接使用することは基本的にない。
-トランザクション制御を必要とする場合には、 <a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使用すること。</p>
+トランザクション制御を必要とする場合には、 <a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使用すること。</p>
 </div>
 </div>
 <div class="section" id="transaction-timeout">
@@ -400,7 +412,7 @@
 </div>
 <dl class="docutils">
 <dt>トランザクションタイムアウトのチェックを開始するタイミング</dt>
-<dd><p class="first">トランザクションの開始時( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#begin()" title="nablarch.core.transaction.Transaction.begin()">Transaction#begin()</a> )にチェックが開始される。</p>
+<dd><p class="first">トランザクションの開始時( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#begin--" title="nablarch.core.transaction.Transaction.begin()">Transaction#begin()</a> )にチェックが開始される。</p>
 <p class="last">複数のトランザクションを使用した場合（例えば、トランザクション内で別トランザクションを実行した場合）は、
 トランザクションごとにタイムアウトのチェックを行う。</p>
 </dd>
@@ -419,7 +431,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </dd>
 <dt>クエリータイムアウト例外発生時</dt>
 <dd><p class="first">クエリータイムアウトを示す例外が発生した場合で、トランザクションタイムアウト秒数を超過していた場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionTimeoutException.html" title="nablarch.core.transaction.TransactionTimeoutException">TransactionTimeoutException</a> を送出する。
-クエリータイムアウト例外か否かは、データベース機能の <a class="reference internal" href="database/database.html#database-dialect"><span>ダイアレクト</span></a> を用いて判定する。</p>
+クエリータイムアウト例外か否かは、データベース機能の <a class="reference internal" href="database/database.html#database-dialect"><span class="std std-ref">ダイアレクト</span></a> を用いて判定する。</p>
 <p>処理時間の長いSQL文(単純に重いSQLやロック開放待ちのSQL)が実行された場合、制御がデータベースから戻ってこない可能性がある。
 このため、トランザクションタイムアウトの残り秒数を <cite>java.sql.Statement#setQueryTimeout</cite> に設定し、
 トランザクションタイムアウト秒数超過時には強制的に実行をキャンセルしている。</p>
@@ -456,8 +468,8 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </div>
 </dd>
 <dt>トランザクションタイムアウト時間のリセットタイミング</dt>
-<dd>トランザクションを明示的に開始した場合( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#begin()" title="nablarch.core.transaction.Transaction.begin()">Transaction#begin</a> を呼び出した場合)に、トランザクションタイムアウト時間がリセットされる。
-トランザクションの終了時( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#commit()" title="nablarch.core.transaction.Transaction.commit()">Transaction#commit</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#rollback()" title="nablarch.core.transaction.Transaction.rollback()">Transaction#rollback</a> )では、
+<dd>トランザクションを明示的に開始した場合( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#begin--" title="nablarch.core.transaction.Transaction.begin()">Transaction#begin</a> を呼び出した場合)に、トランザクションタイムアウト時間がリセットされる。
+トランザクションの終了時( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#commit--" title="nablarch.core.transaction.Transaction.commit()">Transaction#commit</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/Transaction.html#rollback--" title="nablarch.core.transaction.Transaction.rollback()">Transaction#rollback</a> )では、
 トランザクションタイムアウトの残り時間はリセットされないので注意すること。</dd>
 </dl>
 </div>
@@ -471,7 +483,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 <ol class="arabic simple">
 <li>トランザクション実装の追加</li>
 <li>トランザクションを生成するためのファクトリ実装の追加</li>
-<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</li>
+<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</li>
 </ol>
 <p>以下に詳細な手順を示す。</p>
 <dl class="docutils">
@@ -524,7 +536,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </pre></div>
 </div>
 </dd>
-<dt><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</dt>
+<dt><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</dt>
 <dd><p class="first">Nablarchの標準ハンドラに含まれるトランザクション制御ハンドラを使うことでトランザクション制御が実現出来る。</p>
 <p>以下の例のように、追加したファクトリクラスを、トランザクション制御ハンドラに設定する。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span> <span class="c">&lt;!-- トランザクション制御ハンドラ --&gt;</span>
@@ -574,7 +586,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

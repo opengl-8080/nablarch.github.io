@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.16. JavaScript UI部品 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>2.1.16. JavaScript UI部品 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/js_framework.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.17. 業務画面テンプレート" href="jsp_page_templates.html"/>
         <link rel="prev" title="2.1.15. 業務画面JSPローカル表示機能" href="inbrowser_jsp_rendering.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -310,7 +322,7 @@
 <h1>2.1.16. JavaScript UI部品<a class="headerlink" href="#javascript-ui" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1.16.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> は、カレンダー表示やページ内タブページのように、
+<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は、カレンダー表示やページ内タブページのように、
 通常のHTMLの範疇では実現できないUI機能を実装するJavaScript部品群である。
 これらの部品群は、以下の指針に基づき、独自実装されている。</p>
 <ul class="simple">
@@ -319,7 +331,7 @@
 <li>可能な限りJavaScriptを直接記述しなくてもカスタマイズできるようにする。</li>
 <li>UI標準に準じた挙動、統一的なデザインが実現されること。</li>
 </ul>
-<p>利用可能な各部品の仕様については <a class="reference internal" href="../reference_js_framework.html"><em>JavaScript UI部品一覧</em></a> を参照すること。</p>
+<p>利用可能な各部品の仕様については <a class="reference internal" href="../reference_js_framework.html"><span class="doc">JavaScript UI部品一覧</span></a> を参照すること。</p>
 <div class="section" id="id2">
 <h3>2.1.16.1.1. 使用例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下のソースコードは、画面内の入力要素に対してカレンダー入力部品を使用している例である。</p>
@@ -336,11 +348,11 @@
 </pre></div>
 </div>
 <p><cite>&lt;button&gt;</cite> 要素に指定された <strong>class</strong> 属性の内容に注目してほしい。
-ここでは、 <cite>&lt;button&gt;</cite> 要素に適用する <a class="reference internal" href=""><em>JavaScript UI部品</em></a> を指定する <strong>マーカCSS</strong> と呼ばれる識別子(<strong>nablarch_DatePicker</strong>)
+ここでは、 <cite>&lt;button&gt;</cite> 要素に適用する <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> を指定する <strong>マーカCSS</strong> と呼ばれる識別子(<strong>nablarch_DatePicker</strong>)
 の後に当該の部品の挙動を定義する各種オプション(<strong>-format yyyy/MM/dd -locale ja -input effectiveDate</strong>)
 が続いている。
-このように <a class="reference internal" href=""><em>JavaScript UI部品</em></a> の利用するには上記のようなCSSの指定のみを行えばよく、JavaScriptを直接記述する必要はない。</p>
-<p><strong>注)</strong>  <a class="reference internal" href=""><em>JavaScript UI部品</em></a> は基本的には <a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> 内で使用することを想定しており、
+このように <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> の利用するには上記のようなCSSの指定のみを行えばよく、JavaScriptを直接記述する必要はない。</p>
+<p><strong>注)</strong>  <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は基本的には <a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> 内で使用することを想定しており、
 一般の業務画面実装者がこれらのAPIを直接使用することは想定していない。</p>
 </div>
 <div class="section" id="id3">
@@ -379,7 +391,7 @@
 </div>
 <div class="section" id="id4">
 <h2>2.1.16.2. 初期処理<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> の初期処理は各業務画面のJSPから参照している <cite>/js/nablarch.js</cite> もしくは
+<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> の初期処理は各業務画面のJSPから参照している <cite>/js/nablarch.js</cite> もしくは
 それをミニファイした <cite>/js/nablarch-minify.js</cite> によって行われる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -390,9 +402,9 @@
 業務画面JSPのDOM構造が確定した時点(ドキュメントロード)の処理の2段階に分けて実行される。</p>
 <div class="section" id="id5">
 <h3>2.1.16.2.1. スクリプトロード時の挙動<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> は AMD(Asynchronous Module Definition) 形式に沿って実装されており、
+<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は AMD(Asynchronous Module Definition) 形式に沿って実装されており、
 AMDモジュール管理ライブラリである <strong>require.js</strong> により、動的にロードもしくは事前にミニファイされる。</p>
-<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> のロードは <cite>/js/nablarch.js</cite> 内の以下の処理によって開始される。</p>
+<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> のロードは <cite>/js/nablarch.js</cite> 内の以下の処理によって開始される。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// 初期ロード対象コンポーネント</span>
 <span class="nx">require</span><span class="p">([</span><span class="s2">&quot;nablarch/ui&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ui</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -639,21 +651,21 @@ UI部品を作成する方法について解説する。</p>
 <dt><strong>1. モジュール定義ファイル(.js)</strong></dt>
 <dd><p class="first">ウィジェットの処理を記述したJavaScriptファイルである。
 以下の場所に配置する。:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/js/(PJ名)/ui/(ウィジェット名).js
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="p">(</span><span class="n">PJ名</span><span class="p">)</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">js</span>
 </pre></div>
 </div>
 </dd>
 <dt><strong>2. テンプレートファイル(.template)</strong></dt>
 <dd><p class="first">ウィジェット内のUIを定義するHTMLファイルである。
 モジュール定義ファイルと同じ場所に配置する。:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/js/(PJ名)/ui/(ウィジェット名).template
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="p">(</span><span class="n">PJ名</span><span class="p">)</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">template</span>
 </pre></div>
 </div>
 </dd>
 <dt><strong>3. スタイル定義(.less)</strong></dt>
 <dd><p class="first">ウィジェットのスタイルを定義するCSS(LESS)ファイルである。
 以下の場所に配置する。:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/css/ui/(ウィジェット名).less
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">css</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">less</span>
 </pre></div>
 </div>
 </dd>
@@ -857,7 +869,7 @@ UI部品を作成する方法について解説する。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

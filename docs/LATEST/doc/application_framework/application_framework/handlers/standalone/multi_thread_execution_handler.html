@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.6.7. マルチスレッド実行制御ハンドラ &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>6.6.7. マルチスレッド実行制御ハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/multi_thread_execution_handler.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.8. リクエストスレッド内ループ制御ハンドラ" href="request_thread_loop_handler.html"/>
         <link rel="prev" title="6.6.6. プロセス多重起動防止ハンドラ" href="duplicate_process_check_handler.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -326,11 +338,11 @@
 このハンドラでの処理結果は、各サブスレッドでの実行結果を集約したオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.MultiStatus.html" title="nablarch.fw.Result.MultiStatus">MultiStatus</a>)となる。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span>サブスレッド起動前のコールバック処理</span></a></li>
-<li><a class="reference internal" href="#multi-thread-execution-handler-thread-count"><span>サブスレッドの起動</span></a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span class="std std-ref">サブスレッド起動前のコールバック処理</span></a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-thread-count"><span class="std std-ref">サブスレッドの起動</span></a></li>
 <li>サブスレッドでの後続ハンドラの実行</li>
-<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span>サブスレッドで例外及びエラー発生時のコールバック処理</span></a></li>
-<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span>サブスレッドでの処理終了後のコールバック処理</span></a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span class="std std-ref">サブスレッドで例外及びエラー発生時のコールバック処理</span></a></li>
+<li><a class="reference internal" href="#multi-thread-execution-handler-callback"><span class="std std-ref">サブスレッドでの処理終了後のコールバック処理</span></a></li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
 <a class="reference internal image-reference" href="../../../../_images/flow19.png"><img alt="../../../../_images/flow19.png" src="../../../../_images/flow19.png" style="width: 397.5px; height: 570.0px;" /></a>
@@ -388,12 +400,12 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p>コールバック処理で行ったデータベース処理は、親スレッド側のハンドラキューに設定されたデータベース接続とトランザクションが使用される。
-このため、これらの処理で行った更新処理は本ハンドラ終了後に、親スレッド側に設定された <a class="reference internal" href="../common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> で確定(コミット)される。</p>
+このため、これらの処理で行った更新処理は本ハンドラ終了後に、親スレッド側に設定された <a class="reference internal" href="../common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> で確定(コミット)される。</p>
 <p>もし、コールバック処理内で行った処理を即確定する必要がある場合には、親スレッド側に設定されたデータベース接続ではなく、個別のトランザクションを使用して処理を行うこと。</p>
 <p>詳細は、以下を参照。</p>
 <ul class="last simple">
-<li><a class="reference internal" href="../../libraries/database/universal_dao.html#universal-dao-transaction"><span>ユニバーサルDAOで個別トランザクションを使用する</span></a></li>
-<li><a class="reference internal" href="../../libraries/database/database.html#database-new-transaction"><span>データベースアクセス機能で個別トランザクションを使用する</span></a></li>
+<li><a class="reference internal" href="../../libraries/database/universal_dao.html#universal-dao-transaction"><span class="std std-ref">ユニバーサルDAOで個別トランザクションを使用する</span></a></li>
+<li><a class="reference internal" href="../../libraries/database/database.html#database-new-transaction"><span class="std std-ref">データベースアクセス機能で個別トランザクションを使用する</span></a></li>
 </ul>
 </div>
 <p>以下にコールバック処理の実装例を示す。</p>
@@ -431,8 +443,8 @@
 </div>
 <div class="section" id="id8">
 <h2><a class="toc-backref" href="#id15">6.6.7.6. データベース接続に関する設定について</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>親スレッド側の処理でデータベース接続が必要となる場合には、本ハンドラ以前に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> の設定が必要になる。
-サブスレッド側でデータベースに対するアクセスが必要な場合には、本ハンドラ以降のサブスレッドで実行されるハンドラ構成に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> の設定が必要となる。
+<p>親スレッド側の処理でデータベース接続が必要となる場合には、本ハンドラ以前に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> の設定が必要になる。
+サブスレッド側でデータベースに対するアクセスが必要な場合には、本ハンドラ以降のサブスレッドで実行されるハンドラ構成に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> の設定が必要となる。
 (親スレッド、サブスレッドともに、データベース接続とセットでトランザクション制御を行うハンドラも必要となる)</p>
 <p>このため、親スレッド及びサブスレッドの両方でデータベースアクセスを行うハンドラ構成の場合、最低でも2つのデータベース接続が使用される。
 サブスレッドが複数となる場合には、スレッド数分のデータベース接続が必要となる。例えば、サブスレッド数が10の場合、合計11個のデータベース接続が必要となる。</p>
@@ -440,9 +452,9 @@
 <div class="section" id="id9">
 <h2><a class="toc-backref" href="#id16">6.6.7.7. サブスレッドでの例外発生時の振る舞い</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>サブスレッド内で予期せぬ例外が発生した場合は、バッチアプリケーションを異常終了させるために
-<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ThreadPoolExecutor.html#shutdownNow()" title="java.util.concurrent.ThreadPoolExecutor.shutdownNow()">ThreadPoolExecutor#shutdownNow()</a>
+<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html#shutdownNow--" title="java.util.concurrent.ThreadPoolExecutor.shutdownNow()">ThreadPoolExecutor#shutdownNow()</a>
 を呼び出して、例外が発生していない他の処理中のサブスレッドを実行中のデータ処理完了後に安全に終了させる。</p>
-<p>サブスレッド側に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> 及び <a class="reference internal" href="../common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を設定して
+<p>サブスレッド側に <a class="reference internal" href="../common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> 及び <a class="reference internal" href="../common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を設定して
 サブスレッド毎にトランザクション管理する場合に、サブスレッドで例外が発生した場合の親スレッド及びサブスレッドの動作を以下に示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/exception_flow.png"><img alt="../../../../_images/exception_flow.png" src="../../../../_images/exception_flow.png" style="width: 508.5px; height: 243.75px;" /></a>
 <ol class="arabic simple">
@@ -454,7 +466,7 @@
 </ol>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last"><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html" title="java.lang.InterruptedException">InterruptedException</a> を捕捉している場合は、
+<p class="last"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html" title="java.lang.InterruptedException">InterruptedException</a> を捕捉している場合は、
 割り込み要求により安全に処理できないことを示しているため、例外を送出する等で処理を異常終了させること。</p>
 </div>
 </div>
@@ -490,7 +502,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.2.3.1. テーブルキューを監視し未処理データを取り込むアプリケーションの作成 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>5.2.3.1. テーブルキューを監視し未処理データを取り込むアプリケーションの作成 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/getting_started/table_queue.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="5.2.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="5.2.4. 機能詳細" href="../feature_details.html"/>
         <link rel="prev" title="5.2.3. Getting Started" href="../getting_started.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -341,8 +353,8 @@
 <li>アプリケーションを実行する。</li>
 </ol>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">$cd</span> nablarch-example-db-queue
-$mvn clean package
-$mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main ^
+<span class="nv">$mvn</span> clean package
+<span class="nv">$mvn</span> exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main ^
     -Dexec.args<span class="o">=</span><span class="s2">&quot;&#39;-diConfig&#39; &#39;com/nablarch/example/app/batch/project-creation-service.xml&#39; &#39;-requestPath&#39; &#39;ProjectCreationService&#39; &#39;-userId&#39; &#39;samp&#39;&quot;</span>
 </pre></div>
 </div>
@@ -421,8 +433,8 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 </div>
 <div class="section" id="id3">
 <h2>5.2.3.1.2. テーブルを監視するためのリーダを生成する<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、テーブルを監視するリーダを生成するメソッドを作成する。</p>
-<p><a class="reference internal" href="../architecture.html#db-messaging-architecture-reader"><span>データベースキューで使用するリーダ</span></a> に記載がある通り、
+<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、テーブルを監視するリーダを生成するメソッドを作成する。</p>
+<p><a class="reference internal" href="../architecture.html#db-messaging-architecture-reader"><span class="std std-ref">データベースキューで使用するリーダ</span></a> に記載がある通り、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> をリーダとして生成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
@@ -481,7 +493,7 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#createReader(nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchAction.createReader(nablarch.fw.ExecutionContext)">createReader</a> を実装し、
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#createReader-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.createReader(nablarch.fw.ExecutionContext)">createReader</a> を実装し、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> を生成する。</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> には以下を指定する。<ul>
 <li>データベースから検索を行うためのリーダ(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader</a>)</li>
@@ -493,7 +505,7 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 <li>未処理データを検索するための <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a></li>
 <li>未処理データの悲観ロックを行う
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordListener.html" title="nablarch.fw.reader.DatabaseRecordListener">DatabaseRecordListener</a> の実装クラス。
-詳細は、<a class="reference internal" href="../feature_details/multiple_process.html#db-messaging-multiple-process"><span>マルチプロセス化</span></a> を参照。</li>
+詳細は、<a class="reference internal" href="../feature_details/multiple_process.html#db-messaging-multiple-process"><span class="std std-ref">マルチプロセス化</span></a> を参照。</li>
 </ul>
 </li>
 <li>SQLファイルでは、以下のSQLを定義する。<ul>
@@ -502,14 +514,14 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 <code class="docutils literal"><span class="pre">STATUS</span></code> カラムの値が <code class="docutils literal"><span class="pre">0</span></code> 、かつ <code class="docutils literal"><span class="pre">PROCESS_ID</span></code> カラムの値が自身のプロセスIDであるレコードを取得するSQL</li>
 </ul>
 </li>
-<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>
+<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="id4">
 <h2>5.2.3.1.3. 未処理データを元に業務処理を実行する<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、業務処理を実装するメソッドを作成する。</p>
+<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、業務処理を実装するメソッドを作成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
@@ -536,7 +548,7 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#handle(D, nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchAction.handle(D, nablarch.fw.ExecutionContext)">handle</a> メソッドに業務処理を実装する。
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#handle-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.handle(D-nablarch.fw.ExecutionContext)">handle</a> メソッドに業務処理を実装する。
 (処理内容の詳細な説明は、Example依存のため省略する。)</li>
 <li>正常に処理したことを示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却する。
 処理が失敗した場合、例外を送出するため、常に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却すれば良い。</li>
@@ -546,7 +558,7 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 </div>
 <div class="section" id="id5">
 <h2>5.2.3.1.4. 処理済みデータのステータスを更新する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、ステータスを更新するメソッドを作成する。</p>
+<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、ステータスを更新するメソッドを作成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><dl class="first last docutils">
@@ -600,12 +612,12 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>正常に処理できたレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess(D, nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D, nablarch.fw.ExecutionContext)">transactionSuccess</a> に実装する。
+<li>正常に処理できたレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionSuccess</a> に実装する。
 (正常に処理できた場合(例外が送出されなかった場合)、このメソッドがNablarchによりコールバックされる。)</li>
-<li>正常に処理できなかったレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess(D, nablarch.fw.ExecutionContext)" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D, nablarch.fw.ExecutionContext)">transactionFailure</a> に実装する。
+<li>正常に処理できなかったレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionFailure</a> に実装する。
 (処理中に例外やエラーが送出されたレコードの場合、このメソッドがNablarchによりコールバックされる)</li>
 <li>SQLでは、指定のレコードのステータスを更新する。</li>
-<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>
+<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
@@ -642,7 +654,7 @@ $mvn exec:java -Dexec.mainClass<span class="o">=</span>nablarch.fw.launcher.Main
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

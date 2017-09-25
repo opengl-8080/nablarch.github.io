@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>4.1.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/architecture.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="4.1. JSR352に準拠したバッチアプリケーション" href="index.html"/>
         <link rel="next" title="4.1.2. アプリケーションの責務配置" href="application_design.html"/>
         <link rel="prev" title="4.1. JSR352に準拠したバッチアプリケーション" href="index.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -313,20 +325,25 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id14">バッチアプリケーションの構成</a></li>
-<li><a class="reference internal" href="#jsr352-batch-type" id="id15">バッチの種類</a></li>
-<li><a class="reference internal" href="#id6" id="id16">バッチアプリケーションの処理の流れ</a><ul>
-<li><a class="reference internal" href="#batchlet" id="id17">Batchlet</a></li>
-<li><a class="reference internal" href="#chunk" id="id18">Chunk</a></li>
+<li><a class="reference internal" href="#id3" id="id17">バッチアプリケーションの構成</a></li>
+<li><a class="reference internal" href="#jsr352-batch-type" id="id18">バッチの種類</a></li>
+<li><a class="reference internal" href="#id6" id="id19">バッチアプリケーションの処理の流れ</a><ul>
+<li><a class="reference internal" href="#batchlet" id="id20">Batchlet</a></li>
+<li><a class="reference internal" href="#chunk" id="id21">Chunk</a></li>
+<li><a class="reference internal" href="#jsr352-batch-error-flow" id="id22">例外(エラー含む)発生時の処理の流れ</a><ul>
+<li><a class="reference internal" href="#id8" id="id23">例外発生時のバッチの状態</a></li>
+<li><a class="reference internal" href="#id9" id="id24">ログ出力</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#jsr352-listener" id="id19">バッチアプリケーションで使用するリスナー</a></li>
-<li><a class="reference internal" href="#id8" id="id20">最小のリスナー構成</a></li>
-<li><a class="reference internal" href="#jsr352-listener-definition" id="id21">リスナーの指定方法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jsr352-listener" id="id25">バッチアプリケーションで使用するリスナー</a></li>
+<li><a class="reference internal" href="#id11" id="id26">最小のリスナー構成</a></li>
+<li><a class="reference internal" href="#jsr352-listener-definition" id="id27">リスナーの指定方法</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id14">4.1.1.1. バッチアプリケーションの構成</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">4.1.1.1. バッチアプリケーションの構成</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> に準拠したバッチアプリケーションを実行するためには、 <a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> の実装が必要となる。
 実装は、主に以下の2つから選択することになるが、ドキュメントが豊富であること及びMaven Centralからライブラリを取得出来る手軽さから <a class="reference external" href="https://jberet.gitbooks.io/jberet-user-guide/content/">jBeret(外部サイト、英語)</a> の使用を推奨する。</p>
 <ul class="simple">
@@ -335,9 +352,16 @@
 </ul>
 <p>以下に構成を示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/jsr352-configuration-diagram.png"><img alt="../../../../_images/jsr352-configuration-diagram.png" src="../../../../_images/jsr352-configuration-diagram.png" style="width: 915.75px; height: 458.25px;" /></a>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>JobContext及びStepContextの一時領域( <code class="docutils literal"><span class="pre">TransientUserData</span></code> )を使用することは
+グローバル領域に値を保持することと同義となるため、アプリケーション側で使用してはならない。</p>
+<p class="last">なお、StepContextの一時領域については、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/cdi/StepScoped.html" title="nablarch.fw.batch.ee.cdi.StepScoped">StepScoped</a> でステップ内で値を共有をするために使用しているため、
+アプリケーション側ではStepContextの一時領域は使用できない。</p>
+</div>
 </div>
 <div class="section" id="jsr352-batch-type">
-<span id="id5"></span><h2><a class="toc-backref" href="#id15">4.1.1.2. バッチの種類</a><a class="headerlink" href="#jsr352-batch-type" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id18">4.1.1.2. バッチの種類</a><a class="headerlink" href="#jsr352-batch-type" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> では、バッチの実装方法として <cite>Batchlet</cite> と <cite>Chunk</cite> の2種類の方法がある。
 どちらのタイプを使用するのが適切かは、以下を参照しバッチごとに判断すること。</p>
 <dl class="docutils" id="jsr352-batch-type-batchlet">
@@ -352,22 +376,22 @@
 </dl>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id16">4.1.1.3. バッチアプリケーションの処理の流れ</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">4.1.1.3. バッチアプリケーションの処理の流れ</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="batchlet">
-<span id="jsr352-batch-flow-batchlet"></span><h3><a class="toc-backref" href="#id17">4.1.1.3.1. Batchlet</a><a class="headerlink" href="#batchlet" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="jsr352-batch-flow-batchlet"></span><h3><a class="toc-backref" href="#id20">4.1.1.3.1. Batchlet</a><a class="headerlink" href="#batchlet" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Batchletタイプのバッチアプリケーションの処理の流れを以下に示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/batchlet-flow.png"><img alt="../../../../_images/batchlet-flow.png" src="../../../../_images/batchlet-flow.png" style="width: 428.25px; height: 150.75px;" /></a>
 <ol class="arabic simple">
 <li>JSR352のBatch RuntimeからBatchletステップ実行前のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Batchletステップ実行前のリスナーを順次実行する。</li>
 <li>JSR352のBatch Runtimeから <cite>Batchlet</cite> が実行される。</li>
-<li><cite>Batchlet</cite> では業務ロジックを実行する。(Batchletの責務配置は、 <a class="reference internal" href="application_design.html#jsr352-batchlet-design"><span>Batchletの責務配置</span></a> を参照)</li>
+<li><cite>Batchlet</cite> では業務ロジックを実行する。(Batchletの責務配置は、 <a class="reference internal" href="application_design.html#jsr352-batchlet-design"><span class="std std-ref">Batchletの責務配置</span></a> を参照)</li>
 <li>JSR352のBatch RuntimeからBatchletステップ実行後のコールバック処理として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/step/NablarchStepListenerExecutor.html" title="nablarch.fw.batch.ee.listener.step.NablarchStepListenerExecutor">NablarchStepListenerExecutor</a> が呼び出される。</li>
 <li>Batchletステップ実行後のリスナーを順次実行する。(No2とは逆順に実行する)</li>
 </ol>
 </div>
 <div class="section" id="chunk">
-<span id="jsr352-batch-flow-chunk"></span><h3><a class="toc-backref" href="#id18">4.1.1.3.2. Chunk</a><a class="headerlink" href="#chunk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="jsr352-batch-flow-chunk"></span><h3><a class="toc-backref" href="#id21">4.1.1.3.2. Chunk</a><a class="headerlink" href="#chunk" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Chunkタイプのバッチアプリケーションの処理の流れを以下に示す。</p>
 <a class="reference internal image-reference" href="../../../../_images/chunk-flow.png"><img alt="../../../../_images/chunk-flow.png" src="../../../../_images/chunk-flow.png" style="width: 538.5px; height: 285.0px;" /></a>
 <ol class="arabic simple">
@@ -388,11 +412,36 @@
 <li>Chunkステップ実行後のリスナーを順次実行する。(No2とは逆順に実行する)</li>
 </ol>
 <p>※No3からNo10は、入力データソースのデータが終わるまで繰り返し実行される。</p>
-<p>Chunkステップの責務配置については、 <a class="reference internal" href="application_design.html#jsr352-chunk-design"><span>Chunkの責務配置</span></a> を参照</p>
+<p>Chunkステップの責務配置については、 <a class="reference internal" href="application_design.html#jsr352-chunk-design"><span class="std std-ref">Chunkの責務配置</span></a> を参照</p>
+</div>
+<div class="section" id="jsr352-batch-error-flow">
+<span id="id7"></span><h3><a class="toc-backref" href="#id22">4.1.1.3.3. 例外(エラー含む)発生時の処理の流れ</a><a class="headerlink" href="#jsr352-batch-error-flow" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バッチ実行中に例外が発生した場合、Nablarchでは例外の捕捉は行わずJSR352の実装側で例外ハンドリングを行う方針としている。
+これは、JSR352に準拠したバッチアプリケーション特有の振る舞いであり、他の基盤( <a class="reference internal" href="../../web/index.html#web-application"><span class="std std-ref">Webアプリケーション</span></a> や <a class="reference internal" href="../nablarch_batch/index.html#nablarch-batch"><span class="std std-ref">Nablarchバッチアプリケーション</span></a> など)とは異なる振る舞いである点に注意すること。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>JSR352に準拠したバッチアプリケーションがこのようなアーキテクチャを採用した理由は以下の通り。</p>
+<p class="last">JSR352に準拠したバッチアプリケーションは、JSR352上でNablarchを利用するためのコンポーネントのみの提供であり、実行制御自体はJSR352実装によって行われる。
+このため、Nablarchにより全ての例外を捕捉し処理を行うことは不可能であり、例外制御がNablarchとJSR352で分散することで設計などが複雑化するのを防ぐためこのような方針としている。</p>
+</div>
+<div class="section" id="id8">
+<h4><a class="toc-backref" href="#id23">4.1.1.3.3.1. 例外発生時のバッチの状態</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>上述したように、例外発生時の制御は全てJSR352の実装が行う。
+このため、例外発生時のバッチの状態(batch statusやexit status)については、 <a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> の仕様を参照すること。
+また、例外の種類に応じたリトライや継続有無などもジョブ定義に従った動作となる。ジョブ定義の詳細は、 <a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> の仕様を参照すること。</p>
+<p>例外発生後のJavaプロセスから戻されるリターンコードについては、 <a class="reference internal" href="feature_details/operation_policy.html#jsr352-failure-monitoring"><span class="std std-ref">障害監視</span></a> を参照。</p>
+</div>
+<div class="section" id="id9">
+<h4><a class="toc-backref" href="#id24">4.1.1.3.3.2. ログ出力</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>JSR352の実装で補足された例外の情報は、JSR352の実装によりログ出力される。
+ログの設定(フォーマットや出力先などの設定)は、JSR352実装が使用しているロギングフレームワークのマニュアルなどを参照して行うこと。</p>
+<p>なお、アプリケーションで明示的に出力するエラーログ等をJSR352と同じログファイルに出力したい場合には、
+<a class="reference internal" href="../../../adaptors/log_adaptor.html#log-adaptor"><span class="std std-ref">logアダプタ</span></a> を使用してJSR352の実装とロギングフレームワークを統一することで対応できる。</p>
+</div>
 </div>
 </div>
 <div class="section" id="jsr352-listener">
-<span id="id7"></span><h2><a class="toc-backref" href="#id19">4.1.1.4. バッチアプリケーションで使用するリスナー</a><a class="headerlink" href="#jsr352-listener" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id25">4.1.1.4. バッチアプリケーションで使用するリスナー</a><a class="headerlink" href="#jsr352-listener" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> に準拠したバッチアプリケーションでは、 <a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> の仕様で定められているリスナーを使用してNablarchのハンドラ相当のことを実現する。</p>
 <p>標準では、以下のリスナーを提供してる。</p>
 <dl class="docutils">
@@ -415,7 +464,7 @@
 <dd><p class="first"><cite>ItemWriter</cite> の実行前及び実行後にコールバックされるリスナー</p>
 <ul class="last simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ChunkProgressLogListener.html" title="nablarch.fw.batch.ee.listener.chunk.ChunkProgressLogListener">Chunkの進捗ログを出力するリスナー(非推奨)</a>
-(<a class="reference internal" href="feature_details/progress_log.html#jsr352-progress-log"><span>進捗ログで出力される内容</span></a> を使用して進捗ログを出力すること)</li>
+(<a class="reference internal" href="feature_details/progress_log.html#jsr352-progress-log"><span class="std std-ref">進捗ログで出力される内容</span></a> を使用して進捗ログを出力すること)</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a></li>
 </ul>
 </dd>
@@ -426,16 +475,16 @@
 このため、Nablarchでは以下の対応を行うことで、リスナーを指定した順で実行出来るよう対応している。</p>
 <ul class="simple">
 <li>各レベルのリスナーには、リスナーの実行順を保証するリスナーのみを設定する</li>
-<li>リスナーの実行順を保証するリスナーは、 <a class="reference internal" href="../../libraries/repository.html#repository"><span>システムリポジトリ</span></a> からリスナーリストを取得し、定義順にリスナーを実行する。</li>
+<li>リスナーの実行順を保証するリスナーは、 <a class="reference internal" href="../../libraries/repository.html#repository"><span class="std std-ref">システムリポジトリ</span></a> からリスナーリストを取得し、定義順にリスナーを実行する。</li>
 </ul>
-<p class="last">実際のリスナーの定義方法は、 <a class="reference internal" href="#jsr352-listener-definition"><span>リスナーの指定方法</span></a> を参照。</p>
+<p class="last">実際のリスナーの定義方法は、 <a class="reference internal" href="#jsr352-listener-definition"><span class="std std-ref">リスナーの指定方法</span></a> を参照。</p>
 </div>
 </div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id20">4.1.1.5. 最小のリスナー構成</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id26">4.1.1.5. 最小のリスナー構成</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最小のリスナー構成を以下に示す。この構成でプロジェクト要件を満たすことができない場合は、リスナーの追加などにより対応すること。</p>
-<table border="1" class="white-space-normal docutils" id="id11">
-<caption><span class="caption-text">ジョブレベルの最小リスナー構成</span><a class="headerlink" href="#id11" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id14">
+<caption><span class="caption-text">ジョブレベルの最小リスナー構成</span><a class="headerlink" href="#id14" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="5%" />
 <col width="35%" />
@@ -457,8 +506,8 @@
 </tr>
 </tbody>
 </table>
-<table border="1" class="white-space-normal docutils" id="id12">
-<caption><span class="caption-text">ステップレベルの最小リスナー構成</span><a class="headerlink" href="#id12" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id15">
+<caption><span class="caption-text">ステップレベルの最小リスナー構成</span><a class="headerlink" href="#id15" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="5%" />
 <col width="35%" />
@@ -490,8 +539,8 @@
 </tr>
 </tbody>
 </table>
-<table border="1" class="white-space-normal docutils" id="id13">
-<caption><span class="caption-text"><cite>ItemWriter</cite> レベルの最小リスナー構成</span><a class="headerlink" href="#id13" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id16">
+<caption><span class="caption-text"><cite>ItemWriter</cite> レベルの最小リスナー構成</span><a class="headerlink" href="#id16" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="5%" />
 <col width="35%" />
@@ -507,8 +556,8 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a> <a class="footnote-reference" href="#chunk-tran" id="id9">[1]</a></td>
-<td>&nbsp;</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/batch/ee/listener/chunk/ItemWriteTransactionManagementListener.html" title="nablarch.fw.batch.ee.listener.chunk.ItemWriteTransactionManagementListener">トランザクション制御を行うリスナー</a> <a class="footnote-reference" href="#chunk-tran" id="id12">[1]</a></td>
+<td>&#160;</td>
 <td>トランザクションを終了(commit or rollback)する。</td>
 </tr>
 </tbody>
@@ -516,12 +565,12 @@
 <table class="docutils footnote" frame="void" id="chunk-tran" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[1]</a></td><td><cite>ItemWriter</cite> レベルのリスナーで行うトランザクション制御は、ステップレベルで開始されたトランザクションに対して行う。</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id12">[1]</a></td><td><cite>ItemWriter</cite> レベルのリスナーで行うトランザクション制御は、ステップレベルで開始されたトランザクションに対して行う。</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="jsr352-listener-definition">
-<span id="id10"></span><h2><a class="toc-backref" href="#id21">4.1.1.6. リスナーの指定方法</a><a class="headerlink" href="#jsr352-listener-definition" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id13"></span><h2><a class="toc-backref" href="#id27">4.1.1.6. リスナーの指定方法</a><a class="headerlink" href="#jsr352-listener-definition" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>各レベルに対してリスナーリストを定義する方法について説明する。</p>
 <p>リスナーリストを定義するには、以下の手順が必要になる。</p>
 <ol class="arabic simple">
@@ -604,9 +653,9 @@
 <li>デフォルトのジョブレベルのリスナーリストのコンポーネント名は、 <code class="docutils literal"><span class="pre">jobListeners</span></code> とする。</li>
 <li>デフォルトのステップレベルのリスナーリストのコンポーネント名は、 <code class="docutils literal"><span class="pre">stepListeners</span></code> とする。</li>
 <li>デフォルトのItemWriterレベルのリスナーリストのコンポーネント名は、 <code class="docutils literal"><span class="pre">itemWriteListeners</span></code> とする。</li>
-<li>デフォルトのリスナーリスト定義を上書きする場合は、コンポーネント名称を「ジョブ名称 + &#8221;.&#8221; + 上書き対象のコンポーネント名」とする。 <br />
+<li>デフォルトのリスナーリスト定義を上書きする場合は、コンポーネント名称を「ジョブ名称 + 「.」 + 上書き対象のコンポーネント名」とする。 <br />
 例えば、「sample-job」でジョブレベルの定義を上書きする場合は、コンポーネント名を <code class="docutils literal"><span class="pre">sample-job.jobListeners</span></code> としてリスナーリストを定義する。</li>
-<li>特定のステップでデフォルトのリスナーリスト定義を上書きする場合は、コンポーネント名称を「ジョブ名称 + &#8221;.&#8221; + ステップ名称 + &#8221;.&#8221; + 上書き対象のコンポーネント名」とする。 <br />
+<li>特定のステップでデフォルトのリスナーリスト定義を上書きする場合は、コンポーネント名称を「ジョブ名称 + 「.」 + ステップ名称 + 「.」 + 上書き対象のコンポーネント名」とする。 <br />
 例えば、「sample-job」で定義されている「sample-step」で、デフォルトのステップレベルのリスナーリスト定義を上書きする場合は、コンポーネント名を <code class="docutils literal"><span class="pre">sample-job.sample-step.stepListeners</span></code> としてリスナーリストを定義する。</li>
 <li>特定のステップで上書き出来るリスナーリストは、ステップレベルとItemWriterレベルのリスナーリストのみである。</li>
 </ul>
@@ -645,7 +694,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

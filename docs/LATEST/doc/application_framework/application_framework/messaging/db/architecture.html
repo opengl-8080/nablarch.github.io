@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.2.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>5.2.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/architecture.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="5.2. テーブルをキューとして使ったメッセージング" href="index.html"/>
         <link rel="next" title="5.2.2. アプリケーションの責務配置" href="application_design.html"/>
         <link rel="prev" title="5.2. テーブルをキューとして使ったメッセージング" href="index.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -332,17 +344,17 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id10">5.2.1.1. 構成</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Nablarchバッチアプリケーションと同じ構成となる。
-詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-structure"><span>Nablarchバッチアプリケーションの構成</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-structure"><span class="std std-ref">Nablarchバッチアプリケーションの構成</span></a> を参照。</p>
 </div>
 <div class="section" id="id">
 <h2><a class="toc-backref" href="#id11">5.2.1.2. リクエストパスによるアクションとリクエストIDの指定</a><a class="headerlink" href="#id" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースをキューとして扱うメッセージング処理では、Nablarchバッチアプリケーションと同じように
 コマンドライン引数で実行するアクションとリクエストIDを指定する。</p>
-<p>詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-resolve-action"><span>NablarchバッチアプリケーションのアクションとリクエストIDの指定</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-resolve-action"><span class="std std-ref">NablarchバッチアプリケーションのアクションとリクエストIDの指定</span></a> を参照。</p>
 </div>
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id12">5.2.1.3. 処理の流れ</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Nablarchバッチアプリケーションと同じ処理の流れとなる。詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-process-flow"><span>Nablarchバッチアプリケーションの処理の流れ</span></a> を参照。</p>
+<p>Nablarchバッチアプリケーションと同じ処理の流れとなる。詳細は、 <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-process-flow"><span class="std std-ref">Nablarchバッチアプリケーションの処理の流れ</span></a> を参照。</p>
 </div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id13">5.2.1.4. 使用するハンドラ</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -352,37 +364,37 @@
 <dl class="docutils">
 <dt>リクエストやレスポンスの変換を行うハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../handlers/standalone/status_code_convert_handler.html#status-code-convert-handler"><span>ステータスコード→プロセス終了コード変換ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/standalone/data_read_handler.html#data-read-handler"><span>データリードハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/status_code_convert_handler.html#status-code-convert-handler"><span class="std std-ref">ステータスコード→プロセス終了コード変換ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/data_read_handler.html#data-read-handler"><span class="std std-ref">データリードハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>実行制御を行うハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../handlers/standalone/duplicate_process_check_handler.html#duplicate-process-check-handler"><span>プロセス多重起動防止ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span>リクエストディスパッチハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/standalone/multi_thread_execution_handler.html#multi-thread-execution-handler"><span>マルチスレッド実行制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span>プロセス停止制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/standalone/request_thread_loop_handler.html#request-thread-loop-handler"><span>リクエストスレッド内ループ制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/duplicate_process_check_handler.html#duplicate-process-check-handler"><span class="std std-ref">プロセス多重起動防止ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span class="std std-ref">リクエストディスパッチハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/multi_thread_execution_handler.html#multi-thread-execution-handler"><span class="std std-ref">マルチスレッド実行制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span class="std std-ref">リトライハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span class="std std-ref">プロセス停止制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/standalone/request_thread_loop_handler.html#request-thread-loop-handler"><span class="std std-ref">リクエストスレッド内ループ制御ハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>データベースに関連するハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>エラー処理に関するハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../handlers/common/global_error_handler.html#global-error-handler"><span>グローバルエラーハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/global_error_handler.html#global-error-handler"><span class="std std-ref">グローバルエラーハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>その他</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span>スレッドコンテキスト変数削除ハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/common/ServiceAvailabilityCheckHandler.html#serviceavailabilitycheckhandler"><span>サービス提供可否チェックハンドラ</span></a></li>
-<li><a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span class="std std-ref">スレッドコンテキスト変数削除ハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/ServiceAvailabilityCheckHandler.html#serviceavailabilitycheckhandler"><span class="std std-ref">サービス提供可否チェックハンドラ</span></a></li>
+<li><a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a></li>
 </ul>
 </dd>
 </dl>
@@ -391,7 +403,7 @@
 <h2><a class="toc-backref" href="#id14">5.2.1.5. ハンドラの最小構成</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースをキューとして扱うメッセージング処理の必要最小限のハンドラキューを以下に示す。
 これをベースに、プロジェクト要件に従ってNablarchの標準ハンドラやプロジェクトで作成したカスタムハンドラの追加を行う。</p>
-<table border="1" class="white-space-normal docutils" id="id9">
+<table border="1" class="colwidths-given white-space-normal docutils" id="id9">
 <caption><span class="caption-text">最小ハンドラ構成</span><a class="headerlink" href="#id9" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="4%" />
@@ -412,50 +424,50 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference internal" href="../../handlers/standalone/status_code_convert_handler.html#status-code-convert-handler"><span>ステータスコード→プロセス終了コード変換ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/status_code_convert_handler.html#status-code-convert-handler"><span class="std std-ref">ステータスコード→プロセス終了コード変換ハンドラ</span></a></td>
 <td>メイン</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>ステータスコードをプロセス終了コードに変換する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>2</td>
-<td><a class="reference internal" href="../../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span>スレッドコンテキスト変数削除ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span class="std std-ref">スレッドコンテキスト変数削除ハンドラ</span></a></td>
 <td>メイン</td>
-<td>&nbsp;</td>
-<td><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> でスレッドローカル上に設定した値を全て削除する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> でスレッドローカル上に設定した値を全て削除する。</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>3</td>
-<td><a class="reference internal" href="../../handlers/common/global_error_handler.html#global-error-handler"><span>グローバルエラーハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/common/global_error_handler.html#global-error-handler"><span class="std std-ref">グローバルエラーハンドラ</span></a></td>
 <td>メイン</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>実行時例外、またはエラーの場合、ログ出力を行う。</td>
 </tr>
 <tr class="row-odd"><td>4</td>
-<td><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a></td>
 <td>メイン</td>
 <td>コマンドライン引数からリクエストID、ユーザID等のスレッドコンテキスト変数を初期化する。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>5</td>
-<td><a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span class="std std-ref">リトライハンドラ</span></a></td>
 <td>メイン</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>リトライ可能な実行時例外を捕捉し、かつリトライ上限に達していなければ後続のハンドラを再実行する。</td>
 </tr>
 <tr class="row-odd"><td>6</td>
-<td><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a>
+<td><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a>
 (初期処理/終了処理用)</td>
 <td>メイン</td>
 <td>DB接続を取得する。</td>
 <td>DB接続を解放する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>7</td>
-<td><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a>
+<td><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a>
 (初期処理/終了処理用)</td>
 <td>メイン</td>
 <td>トランザクションを開始する。</td>
@@ -463,53 +475,53 @@
 <td>トランザクションをロールバックする。</td>
 </tr>
 <tr class="row-odd"><td>8</td>
-<td><a class="reference internal" href="../../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span>リクエストディスパッチハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span class="std std-ref">リクエストディスパッチハンドラ</span></a></td>
 <td>メイン</td>
 <td>コマンドライン引数をもとに呼び出すアクションを決定する。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>9</td>
-<td><a class="reference internal" href="../../handlers/standalone/multi_thread_execution_handler.html#multi-thread-execution-handler"><span>マルチスレッド実行制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/multi_thread_execution_handler.html#multi-thread-execution-handler"><span class="std std-ref">マルチスレッド実行制御ハンドラ</span></a></td>
 <td>メイン</td>
 <td>サブスレッドを作成し、後続ハンドラの処理を並行実行する。</td>
 <td>全スレッドの正常終了まで待機する。</td>
 <td>処理中のスレッドが完了するまで待機し起因例外を再送出する。</td>
 </tr>
 <tr class="row-odd"><td>10</td>
-<td><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a>
+<td><a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a>
 (業務処理用)</td>
 <td>サブ</td>
 <td>DB接続を取得する。</td>
 <td>DB接続を解放する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>11</td>
-<td><a class="reference internal" href="../../handlers/standalone/request_thread_loop_handler.html#request-thread-loop-handler"><span>リクエストスレッド内ループ制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/request_thread_loop_handler.html#request-thread-loop-handler"><span class="std std-ref">リクエストスレッド内ループ制御ハンドラ</span></a></td>
 <td>サブ</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>再度後続のハンドラに処理を委譲する。</td>
 <td>例外/エラーに応じたログ出処理と再送出を行う。</td>
 </tr>
 <tr class="row-odd"><td>12</td>
-<td><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span>プロセス停止制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span class="std std-ref">プロセス停止制御ハンドラ</span></a></td>
 <td>サブ</td>
 <td>リクエストテーブル上の処理停止フラグがオンであった場合は、後続ハンドラの処理は行なわずにプロセス停止例外(
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>
 )を送出する。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>13</td>
-<td><a class="reference internal" href="../../handlers/standalone/data_read_handler.html#data-read-handler"><span>データリードハンドラ</span></a></td>
+<td><a class="reference internal" href="../../handlers/standalone/data_read_handler.html#data-read-handler"><span class="std std-ref">データリードハンドラ</span></a></td>
 <td>サブ</td>
 <td>データリーダを使用してレコードを1件読み込み、後続ハンドラの引数として渡す。
-また <a class="reference internal" href="../../libraries/log.html#log-execution-id"><span>実行時ID</span></a> を採番する。</td>
-<td>&nbsp;</td>
+また <a class="reference internal" href="../../libraries/log.html#log-execution-id"><span class="std std-ref">実行時ID</span></a> を採番する。</td>
+<td>&#160;</td>
 <td>読み込んだレコードをログ出力した後、元例外を再送出する。</td>
 </tr>
 <tr class="row-odd"><td>14</td>
-<td><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a>
+<td><a class="reference internal" href="../../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a>
 (業務処理用)</td>
 <td>サブ</td>
 <td>トランザクションを開始する。</td>
@@ -580,7 +592,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

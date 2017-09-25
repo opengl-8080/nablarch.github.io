@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.9. マルチパートリクエストハンドラ &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>6.2.9. マルチパートリクエストハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/multipart_handler.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.10. セッション変数保存ハンドラ" href="SessionStoreHandler.html"/>
         <link rel="prev" title="6.2.8. HTTPアクセスログハンドラ" href="http_access_log_handler.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -366,7 +378,7 @@
 </div>
 <div class="section" id="id7">
 <h2><a class="toc-backref" href="#id17">6.2.9.5. アップロードファイルの一時保存先を指定する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>アップロードファイルの一時保存先ディレクトリは、 <a class="reference internal" href="../../libraries/file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> に設定する。</p>
+<p>アップロードファイルの一時保存先ディレクトリは、 <a class="reference internal" href="../../libraries/file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する。</p>
 <p>ファイルパス管理に一時保存先ディレクトリの指定がない場合は、デフォルトの保存先としてシステムプロパティの <cite>java.io.tmpdir</cite> の値を使用する。</p>
 <p>以下に一時ファイルの保存先ディレクトリの設定例を示す。</p>
 <dl class="docutils">
@@ -391,7 +403,7 @@
 <p class="first admonition-title">ちなみに</p>
 <p>上記の例では、保存先ディレクトリを直接指定しているが、この値は環境ごとに異なることが想定される。
 このため、直接コンポーネント設定ファイルに設定するのではなく、環境設定ファイルに設定することを推奨する。</p>
-<p class="last">詳細は、<a class="reference internal" href="../../libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
+<p class="last">詳細は、<a class="reference internal" href="../../libraries/repository.html#repository-environment-configuration"><span class="std std-ref">依存値を設定する</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="multipart-handler-file-limit">
@@ -426,18 +438,18 @@
 </ul>
 <p>自動削除設定は、デフォルトで有効に設定されている。
 この設定は本番環境で安易に無効にすると、大量の一時ファイルがディスク上に残り、最悪の場合ディスクフルの原因となるため注意すること。</p>
-<p>設定値を無効にする場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/UploadSettings.html#setAutoCleaning(boolean)" title="nablarch.fw.web.upload.UploadSettings.setAutoCleaning(boolean)">UploadSettings#autoCleaning</a> に <cite>false</cite> を設定する。</p>
+<p>設定値を無効にする場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/UploadSettings.html#setAutoCleaning-boolean-" title="nablarch.fw.web.upload.UploadSettings.setAutoCleaning(boolean)">UploadSettings#autoCleaning</a> に <cite>false</cite> を設定する。</p>
 </div>
 <div class="section" id="id10">
 <h2><a class="toc-backref" href="#id20">6.2.9.8. マルチパート解析エラー及びファイルサイズ上限超過時の遷移先画面を設定する</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このハンドラでは、マルチパート解析エラー <a class="footnote-reference" href="#part-error" id="id11">[1]</a> や <a class="reference internal" href="#multipart-handler-file-limit"><span>ファイルサイズの上限超過時</span></a> に、
+<p>このハンドラでは、マルチパート解析エラー <a class="footnote-reference" href="#part-error" id="id11">[1]</a> や <a class="reference internal" href="#multipart-handler-file-limit"><span class="std std-ref">ファイルサイズの上限超過時</span></a> に、
 不正なリクエストとしてクライアントに <cite>400(BadRequest)</cite> を返却する。</p>
 <p>このため、 <cite>400(BadRequest)</cite> に対応したエラーページの設定を <cite>web.xml</cite> に行う必要がある。
 <cite>web.xml</cite> へのエラーページ設定を省略した場合は、ウェブアプリケーションサーバが持つデフォルトのページなどがクライアントに返却される。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">このハンドラは、<a class="reference internal" href="#multipart-handler-constraint"><span>制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
-このため、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の後続に設定される <a class="reference internal" href="HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a> の <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span>デフォルトページの設定</span></a> は使用することができない。</p>
+<p class="last">このハンドラは、<a class="reference internal" href="#multipart-handler-constraint"><span class="std std-ref">制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
+このため、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> の後続に設定される <a class="reference internal" href="HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a> の <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span class="std std-ref">デフォルトページの設定</span></a> は使用することができない。</p>
 </div>
 <table class="docutils footnote" frame="void" id="part-error" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -458,8 +470,8 @@
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart(java.lang.String)" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
 </ul>
 </dd>
 </dl>
@@ -479,11 +491,11 @@
 </pre></div>
 </div>
 <p>アップロードファイルを処理する詳細な実装方法は、以下のドキュメントを参照。
-なお、 <a class="reference internal" href="../../libraries/data_converter.html#data-converter"><span>様々なフォーマットのデータへのアクセス</span></a> に記載がある通り、 <a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> が推奨となる。
-(<a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> で扱うことのできない形式の場合は、 <a class="reference internal" href="../../libraries/data_io/data_format.html#data-format"><span>汎用データフォーマット</span></a> を使用すること。)</p>
+なお、 <a class="reference internal" href="../../libraries/data_converter.html#data-converter"><span class="std std-ref">様々なフォーマットのデータへのアクセス</span></a> に記載がある通り、 <a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> が推奨となる。
+(<a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> で扱うことのできない形式の場合は、 <a class="reference internal" href="../../libraries/data_io/data_format.html#data-format"><span class="std std-ref">汎用データフォーマット</span></a> を使用すること。)</p>
 <ul class="simple">
-<li><a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind-upload-file"><span>データバインドを使ってアップロードファイルを処理する</span></a></li>
-<li><a class="reference internal" href="../../libraries/data_io/data_format.html#data-format-load-upload-file"><span>汎用データフォーマットを使ってアップロードファイルを処理する</span></a></li>
+<li><a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind-upload-file"><span class="std std-ref">データバインドを使ってアップロードファイルを処理する</span></a></li>
+<li><a class="reference internal" href="../../libraries/data_io/data_format.html#data-format-load-upload-file"><span class="std std-ref">汎用データフォーマットを使ってアップロードファイルを処理する</span></a></li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -531,7 +543,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

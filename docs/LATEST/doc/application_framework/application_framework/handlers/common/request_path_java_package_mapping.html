@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.1.3. リクエストディスパッチハンドラ &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>6.1.3. リクエストディスパッチハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/common/request_path_java_package_mapping.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.1. 共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.1.4. リクエストハンドラエントリ" href="request_handler_entry.html"/>
         <link rel="prev" title="6.1.2. 出力ファイル開放ハンドラ" href="file_record_writer_dispose_handler.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -323,8 +335,8 @@
 </ul>
 </div>
 <p>本ハンドラは、アプリケーションの機能ごとに行う処理を記載するアクションに処理を委譲する。
-本ハンドラは、主に <a class="reference internal" href="../../messaging/index.html#messaging"><span>メッセージング</span></a> の機能で、任意のアクションにディスパッチする目的で使用する。</p>
-<p>本ハンドラでは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Request.html#getRequestPath()" title="nablarch.fw.Request.getRequestPath()">Request#getRequestPath()</a> で取得した
+本ハンドラは、主に <a class="reference internal" href="../../messaging/index.html#messaging"><span class="std std-ref">メッセージング</span></a> の機能で、任意のアクションにディスパッチする目的で使用する。</p>
+<p>本ハンドラでは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Request.html#getRequestPath--" title="nablarch.fw.Request.getRequestPath()">Request#getRequestPath()</a> で取得した
 リクエストパスを元に、ディスパッチ先のアクションを選択する。
 リクエストパスの形式は以下を想定している。</p>
 <p>リクエストパスの形式: /&lt;basePath&gt;/&lt;className&gt;</p>
@@ -352,8 +364,8 @@
 <code class="docutils literal"><span class="pre">/batch/ExampleBatchAction</span></code> のようにリクエストパスを指定する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">通常、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Request.html#getRequestPath()" title="nablarch.fw.Request.getRequestPath()">Request#getRequestPath()</a> で取得されるリクエストパスは、
-<a class="reference internal" href="../standalone/main.html#main"><span>共通起動ランチャ</span></a> に記載の通り、コマンドラインで起動する際に <code class="docutils literal"><span class="pre">-requestPath</span></code> オプションで指定する。</p>
+<p class="last">通常、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Request.html#getRequestPath--" title="nablarch.fw.Request.getRequestPath()">Request#getRequestPath()</a> で取得されるリクエストパスは、
+<a class="reference internal" href="../standalone/main.html#main"><span class="std std-ref">共通起動ランチャ</span></a> に記載の通り、コマンドラインで起動する際に <code class="docutils literal"><span class="pre">-requestPath</span></code> オプションで指定する。</p>
 </div>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
@@ -400,7 +412,7 @@
 <span id="id7"></span><h2><a class="toc-backref" href="#id14">6.1.3.5. 複数パッケージのクラスにディスパッチする</a><a class="headerlink" href="#request-path-java-package-mapping-multi-package-dispatch" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラを使ってディスパッチする場合、ディスパッチ先のクラスは、リクエストパスの指定によって複数振り分けることができる。
 この際は、リクエストパスでクラス名を指定する箇所で、ベースパッケージからの相対パッケージ名を指定する。</p>
-<p>たとえば上記 <a class="reference internal" href="#request-path-java-package-mapping-path-setting"><span>ベースパッケージ、ベースパスの設定</span></a> の設定を行った際に、 <code class="docutils literal"><span class="pre">nablarch.application.xxx.ExampleBatchAction</span></code>
+<p>たとえば上記 <a class="reference internal" href="#request-path-java-package-mapping-path-setting"><span class="std std-ref">ベースパッケージ、ベースパスの設定</span></a> の設定を行った際に、 <code class="docutils literal"><span class="pre">nablarch.application.xxx.ExampleBatchAction</span></code>
 クラスにディスパッチする場合、リクエストパスには <code class="docutils literal"><span class="pre">/app/action/xxx/ExampleBatchAction</span></code> を指定すればよい。</p>
 </div>
 <div class="section" id="id8">
@@ -421,7 +433,7 @@
 </div>
 <div class="section" id="request-path-java-package-mapping-optional-package-dispatch">
 <span id="id9"></span><h2><a class="toc-backref" href="#id16">6.1.3.7. 複雑なパッケージへのディスパッチ</a><a class="headerlink" href="#request-path-java-package-mapping-optional-package-dispatch" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#request-path-java-package-mapping-multi-package-dispatch"><span>複数パッケージのクラスにディスパッチする</span></a> で示した方法では、
+<p><a class="reference internal" href="#request-path-java-package-mapping-multi-package-dispatch"><span class="std std-ref">複数パッケージのクラスにディスパッチする</span></a> で示した方法では、
 「アクションを配置するパッケージを同じパッケージ配下のサブパッケージにまとめないといけない」制約がある。
 本ハンドラでは、このようなディスパッチでは問題がある場合に、 アクションを配置するパッケージをリクエストパスごとに別々に設定する方法を提供している。</p>
 <p>たとえば、以下のようなリクエストパスとディスパッチ先を設定する場合を考える。</p>
@@ -501,7 +513,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

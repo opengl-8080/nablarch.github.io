@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/send_sync.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法" href="http_send_sync.html"/>
         <link rel="prev" title="3.1.4. 取引単体テストの実施方法" href="index.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -344,7 +356,7 @@
 また、要求電文についてはフォーマットのみ定義する。</p>
 <p>ExcelファイルはリクエストID<a class="footnote-reference" href="#id6" id="id5">[1]</a>ごとに用意する。また、ファイルの名前はリクエストIDと一致させる。
 たとえば、リクエストIDが「RM21AA0101」ならば、ファイルの名前は「RM21AA0101.xlsx」となる。
-ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span>Excelファイルの配置場所の設定</span></a>を参照。</p>
+ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span class="std std-ref">Excelファイルの配置場所の設定</span></a>を参照。</p>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -382,41 +394,41 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>識別子</td>
-<td colspan="3">&nbsp;</td>
+<td colspan="3">&#160;</td>
 </tr>
 <tr class="row-even"><td>ディレクティブ行</td>
 <td>ディレクティブの設定値</td>
-<td colspan="2">&nbsp;</td>
+<td colspan="2">&#160;</td>
 </tr>
-<tr class="row-odd"><td>...  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
-<td>...</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>…  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
+<td>…</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td rowspan="6">no</td>
 <td>フィールド名称(1)</td>
 <td>フィールド名称(2)</td>
-<td>...  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
+<td>…  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
 </tr>
 <tr class="row-odd"><td>データ型(1)</td>
 <td>データ型(2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-even"><td>フィールド長(1)</td>
 <td>フィールド長(2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-odd"><td>データ(1-1)</td>
 <td>データ(2-1)</td>
-<td>...</td>
+<td>…</td>
 </tr>
 <tr class="row-even"><td>データ(1-2)</td>
 <td>データ(2-2)</td>
-<td>...</td>
+<td>…</td>
 </tr>
-<tr class="row-odd"><td>... <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
-<td>...</td>
-<td>...</td>
+<tr class="row-odd"><td>… <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
+<td>…</td>
+<td>…</td>
 </tr>
 </tbody>
 </table>
@@ -565,8 +577,8 @@ file.path.send.sync.test.data<span class="o">=</span>file:///C:/nablarch/workspa
 <li>Map形式の場合</li>
 </ul>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>2011-10-26 13:16:10.958 MESSAGING_SEND_MAP request <span class="nv">id</span><span class="o">=[</span>RM11AD0101<span class="o">]</span>. following message has been sent:
-  message fw <span class="nv">header</span> <span class="o">=</span> <span class="o">{</span><span class="nv">requestId</span><span class="o">=</span>RM11AD0101, <span class="nv">testCount</span><span class="o">=</span>, <span class="nv">resendFlag</span><span class="o">=</span>0, <span class="nv">reserved</span><span class="o">=}</span>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">2011</span>-10-26 <span class="m">13</span>:16:10.958 MESSAGING_SEND_MAP request <span class="nv">id</span><span class="o">=[</span>RM11AD0101<span class="o">]</span>. following message has been sent:
+  message fw <span class="nv">header</span> <span class="o">=</span> <span class="o">{</span><span class="nv">requestId</span><span class="o">=</span>RM11AD0101, <span class="nv">testCount</span><span class="o">=</span>, <span class="nv">resendFlag</span><span class="o">=</span><span class="m">0</span>, <span class="nv">reserved</span><span class="o">=}</span>
   message <span class="nv">body</span>      <span class="o">=</span> <span class="o">{</span><span class="nv">authors</span><span class="o">=</span>test3, <span class="nv">title</span><span class="o">=</span>test1, <span class="nv">publisher</span><span class="o">=</span>test2<span class="o">}</span>
 </pre></div>
 </div>
@@ -575,7 +587,7 @@ file.path.send.sync.test.data<span class="o">=</span>file:///C:/nablarch/workspa
 <li>CSV形式の場合</li>
 </ul>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>2011-10-26 13:16:10.958 MESSAGING_SEND_CSV request <span class="nv">id</span><span class="o">=[</span>RM11AD0102<span class="o">]</span>. following message has been sent:
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">2011</span>-10-26 <span class="m">13</span>:16:10.958 MESSAGING_SEND_CSV request <span class="nv">id</span><span class="o">=[</span>RM11AD0102<span class="o">]</span>. following message has been sent:
 header:
 <span class="s2">&quot;requestId&quot;</span>,<span class="s2">&quot;testCount&quot;</span>,<span class="s2">&quot;resendFlag&quot;</span>,<span class="s2">&quot;reserved&quot;</span>
 <span class="s2">&quot;RM11AD0102&quot;</span>,<span class="s2">&quot;&quot;</span>,<span class="s2">&quot;0&quot;</span>,<span class="s2">&quot;&quot;</span>
@@ -591,7 +603,7 @@ body:
 writer.MESSAGING_CSV.className<span class="o">=</span>nablarch.core.log.basic.FileLogWriter
 writer.MESSAGING_CSV.filePath<span class="o">=</span>./messaging-evidence.log
 writer.MESSAGING_CSV.formatter.className<span class="o">=</span>nablarch.core.log.basic.BasicLogFormatter
-writer.MESSAGING_CSV.formatter.format<span class="o">=</span>$message$
+writer.MESSAGING_CSV.formatter.format<span class="o">=</span><span class="nv">$message</span>$
 
 <span class="c1"># CSV形式のメッセージログのロガー</span>
 loggers.MESSAGING_CSV.nameRegex<span class="o">=</span>MESSAGING_CSV
@@ -704,7 +716,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

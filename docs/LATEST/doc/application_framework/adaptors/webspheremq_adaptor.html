@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IBM WebSphere MQアダプタ &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>IBM WebSphere MQアダプタ &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/webspheremq_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
         <link rel="next" title="JAX-RSアダプタ" href="jaxrs_adaptor.html"/>
         <link rel="prev" title="ルーティングアダプタ" href="router_adaptor.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -105,9 +108,10 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">アダプタ</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="log_adaptor.html">logアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="router_adaptor.html">ルーティングアダプタ</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -314,7 +326,7 @@
 <li><a class="reference internal" href="#id5" id="id8">分散トランザクションを利用する</a></li>
 </ul>
 </div>
-<p><a class="reference internal" href="../application_framework/messaging/mom/index.html#mom-messaging"><span>NablarchのMOMメッセージング機能</span></a> で <a class="reference external" href="http://www-03.ibm.com/software/products/ja/websphere-mq">IBM WebSphere MQ(外部サイト、英語)</a> を使用するためのアダプタを提供する。</p>
+<p><a class="reference internal" href="../application_framework/messaging/mom/index.html#mom-messaging"><span class="std std-ref">NablarchのMOMメッセージング機能</span></a> で <a class="reference external" href="http://www-03.ibm.com/software/products/ja/websphere-mq">IBM WebSphere MQ(外部サイト、英語)</a> を使用するためのアダプタを提供する。</p>
 <p>WebSphere MQの仕様及び構築手順などは、IBM社のオフィシャルサイト及びマニュアルを参照すること。</p>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id6">モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -336,7 +348,7 @@
 <p>本アダプタは、以下の手順にてコンポーネント定義を行うことで有効になる。</p>
 <ol class="arabic simple">
 <li><code class="docutils literal"><span class="pre">nablarch.integration.messaging.wmq.provider.WmqMessagingProvider</span></code> をコンポーネント定義に追加する。</li>
-<li><code class="docutils literal"><span class="pre">1</span></code> で設定した、 <code class="docutils literal"><span class="pre">WmqMessagingProvider</span></code> を <a class="reference internal" href="../application_framework/handlers/mom_messaging/messaging_context_handler.html#messaging-context-handler"><span>メッセージングコンテキスト管理ハンドラ</span></a> に設定する。</li>
+<li><code class="docutils literal"><span class="pre">1</span></code> で設定した、 <code class="docutils literal"><span class="pre">WmqMessagingProvider</span></code> を <a class="reference internal" href="../application_framework/handlers/mom_messaging/messaging_context_handler.html#messaging-context-handler"><span class="std std-ref">メッセージングコンテキスト管理ハンドラ</span></a> に設定する。</li>
 </ol>
 <p>以下に設定例を示す。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- IBM WebSphere MQアダプタ用のプロバイダ実装 --&gt;</span>
@@ -362,13 +374,13 @@
 <p>この機能は、外部システムとメッセージの送受信を行う際に、取り込み漏れや2重取り込みを防止する目的で利用する。</p>
 <p>分散トランザクションを利用するための手順を以下に示す。</p>
 <ol class="arabic simple">
-<li>分散トランザクションに対応したデータソース( <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/javax/sql/XADataSource.html" title="javax.sql.XADataSource">javax.sql.XADataSource</a> を実装したクラス)を定義する。</li>
+<li>分散トランザクションに対応したデータソース( <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/sql/XADataSource.html" title="javax.sql.XADataSource">javax.sql.XADataSource</a> を実装したクラス)を定義する。</li>
 <li>分散トランザクションに対応したデータベース接続を生成するファクトリクラスを定義する。 <br />
 (<code class="docutils literal"><span class="pre">nablarch.integration.messaging.wmq.xa.WmqXADbConnectionFactoryForXADataSource</span></code> を定義する。)</li>
-<li><code class="docutils literal"><span class="pre">2</span></code> で定義したファクトリクラスを、 <a class="reference internal" href="../application_framework/handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> に設定する。</li>
+<li><code class="docutils literal"><span class="pre">2</span></code> で定義したファクトリクラスを、 <a class="reference internal" href="../application_framework/handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> に設定する。</li>
 <li>分散トランザクション用のトランザクションのオブジェクトを生成するファクトリクラスを定義する。 <br />
 (<code class="docutils literal"><span class="pre">nablarch.integration.messaging.wmq.xa.WmqXATransactionFactory</span></code> を定義する。)</li>
-<li><code class="docutils literal"><span class="pre">4</span></code> で定義したファクトリクラスを <a class="reference internal" href="../application_framework/handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> に設定する。</li>
+<li><code class="docutils literal"><span class="pre">4</span></code> で定義したファクトリクラスを <a class="reference internal" href="../application_framework/handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> に設定する。</li>
 </ol>
 <p>以下に設定例を示す。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
@@ -452,7 +464,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

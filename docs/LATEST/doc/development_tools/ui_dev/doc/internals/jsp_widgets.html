@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.18. UI部品ウィジェット &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>2.1.18. UI部品ウィジェット &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/jsp_widgets.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.19. マルチレイアウト用CSSフレームワーク" href="multicol_css_framework.html"/>
         <link rel="prev" title="2.1.17. 業務画面テンプレート" href="jsp_page_templates.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -312,10 +324,10 @@
 <h2>2.1.18.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
 <h3>2.1.18.1.1. ウィジェットの利用<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は、ボタンや検索結果テーブル、各種入力フィールドといった
+<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は、ボタンや検索結果テーブル、各種入力フィールドといった
 画面内に配置される <strong>UI部品</strong> について <strong>UI標準</strong> に準拠した形で
 実装された <strong>JSPタグファイル</strong> である。</p>
-<p>以下のソースコードは、業務画面JSPにおいて <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> を使用して入力フォームを記述した例である。</p>
+<p>以下のソースコードは、業務画面JSPにおいて <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> を使用して入力フォームを記述した例である。</p>
 <blockquote>
 <div><div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form</span> <span class="na">windowScopePrefixes=</span><span class="s">&quot;W11AC02,11AC_W11AC01&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;field:block</span> <span class="na">title=</span><span class="s">&quot;ユーザ基本情報&quot;</span><span class="nt">&gt;</span>
@@ -347,7 +359,7 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>この例をみるとわかるように、 <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は通常のHTMLのレベルより一段上の抽象度で
+<p>この例をみるとわかるように、 <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は通常のHTMLのレベルより一段上の抽象度で
 業務画面の内容を定義することができるため、HTML/JSPを直接利用するのに比べて
 開発者が記述するコード量を大幅に減少させることができる。</p>
 <p>また、JSPに見た目に関する記述が含まれないため、設計・開発中に画面デザインの変更が入った
@@ -357,7 +369,7 @@
 </div>
 <div class="section" id="id3">
 <h3>2.1.18.1.2. ウィジェットの分類<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は、その用途ごとに異なったカテゴリに分類され
+<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は、その用途ごとに異なったカテゴリに分類され
 個別の名前空間が与えられている。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -411,12 +423,12 @@ PJのポリシーでスタイルを調整するウィジェットが用意され
 </div>
 <div class="section" id="id4">
 <h2>2.1.18.2. 構造<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の本体は、ウィジェットごとに作成される <strong>JSPタグファイル</strong> である。
-これに、必要に応じて <a class="reference internal" href="js_framework.html"><em>JavaScript UI部品</em></a> や スタイルファイルなどが付随する。</p>
+<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の本体は、ウィジェットごとに作成される <strong>JSPタグファイル</strong> である。
+これに、必要に応じて <a class="reference internal" href="js_framework.html"><span class="doc">JavaScript UI部品</span></a> や スタイルファイルなどが付随する。</p>
 <div class="section" id="id5">
 <h3>2.1.18.2.1. タグファイル実装例<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下は <a class="reference internal" href="../reference_jsp_widgets/field_calendar.html"><em>カレンダー日付入力ウィジェット</em></a> におけるタグファイルのソースコードである。
-このファイルでは <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の
+<p>以下は <a class="reference internal" href="../reference_jsp_widgets/field_calendar.html"><span class="doc">カレンダー日付入力ウィジェット</span></a> におけるタグファイルのソースコードである。
+このファイルでは <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の
 <a class="reference external" href="../../../../_static/ui_dev/yuidoc/classes/nablarch.ui.DatePicker.html">日付入力機能(nablarch_DatePicker)</a>
 を <strong>マーカCSS</strong> を使って利用している。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span>&lt;%--
@@ -529,7 +541,7 @@ PJのポリシーでスタイルを調整するウィジェットが用意され
 </div>
 <div class="section" id="id6">
 <h3>2.1.18.2.2. 構成ファイル一覧<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>各 <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の実体となるタグファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/tags/widget/</strong> の配下に
+<p>各 <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の実体となるタグファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/tags/widget/</strong> の配下に
 カテゴリごとのサブフォルダごとに置かれている。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -784,7 +796,7 @@ JavaScript UI部品。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

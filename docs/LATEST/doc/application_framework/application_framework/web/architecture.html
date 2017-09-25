@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u10 ドキュメント</title>
+  <title>2.1. アーキテクチャ概要 &mdash; ∇Nablarch  5u11 ドキュメント</title>
   
 
   
@@ -33,7 +33,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/architecture.html" />
   
-    <link rel="top" title="∇Nablarch  5u10 ドキュメント" href="../../../index.html"/>
+        <link rel="index" title="索引"
+              href="../../../genindex.html"/>
+        <link rel="search" title="検索" href="../../../search.html"/>
+    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="2. ウェブアプリケーション編" href="index.html"/>
         <link rel="next" title="2.2. アプリケーションの責務配置" href="application_design.html"/>
         <link rel="prev" title="2. ウェブアプリケーション編" href="index.html"/>
@@ -58,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u10</div>
+    <div id="sidebar-version">Version: 5u11</div>
   </a>
 
   <div role="search">
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -125,22 +129,30 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/index.html">2. ワークフロー</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2.1. ワークフローライブラリ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/sample_application/doc/index.html">2.2. ワークフローアプリケーション実装ガイド</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/doc/index.html">2.3. ワークフロー定義データ生成ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">3. ETL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">3.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id4">3.2. ETLの各フェーズの仕様</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">3.3. 使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id7">3.4. 拡張例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">4. ETL Mavenプラグイン</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">4.1. モジュール一覧</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">4.2. 使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
 </ul>
 </li>
 </ul>
@@ -326,9 +338,9 @@
 以下にNablarchにおけるウェブアプリケーションの構成を示す。</p>
 <img alt="../../../_images/application_structure1.png" src="../../../_images/application_structure1.png" />
 <dl class="docutils">
-<dt><a class="reference internal" href="feature_details/nablarch_servlet_context_listener.html#nablarch-servlet-context-listener"><span>Nablarchサーブレットコンテキスト初期化リスナ</span></a> (NablarchServletContextListener)</dt>
+<dt><a class="reference internal" href="feature_details/nablarch_servlet_context_listener.html#nablarch-servlet-context-listener"><span class="std std-ref">Nablarchサーブレットコンテキスト初期化リスナ</span></a> (NablarchServletContextListener)</dt>
 <dd>システムリポジトリやログの初期化処理を行うサーブレットコンテキストリスナ。</dd>
-<dt><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span>Webフロントコントローラ</span></a> (WebFrontController)</dt>
+<dt><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span class="std std-ref">Webフロントコントローラ</span></a> (WebFrontController)</dt>
 <dd>受け取ったリクエストに対する処理をハンドラキューに委譲するサーブレットフィルタ。</dd>
 </dl>
 </div>
@@ -337,11 +349,11 @@
 <p>ウェブアプリケーションがリクエストを処理し、レスポンスを返却するまでの処理の流れを以下に示す。</p>
 <a class="reference internal image-reference" href="../../../_images/web-design.png"><img alt="../../../_images/web-design.png" src="../../../_images/web-design.png" style="width: 916.0px; height: 222.4px;" /></a>
 <ol class="arabic simple">
-<li><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span>Webフロントコントローラ</span></a> ( <cite>javax.servlet.Filter</cite> の実装クラス)がrequestを受信する。</li>
-<li><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span>Webフロントコントローラ</span></a> は、requestに対する処理をハンドラキュー(handler queue)に委譲する。</li>
+<li><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span class="std std-ref">Webフロントコントローラ</span></a> ( <cite>javax.servlet.Filter</cite> の実装クラス)がrequestを受信する。</li>
+<li><a class="reference internal" href="feature_details/web_front_controller.html#web-front-controller"><span class="std std-ref">Webフロントコントローラ</span></a> は、requestに対する処理をハンドラキュー(handler queue)に委譲する。</li>
 <li>ハンドラキューに設定されたディスパッチハンドラ(<cite>DispatchHandler</cite>) が、URIを元に処理すべきaction classを特定しハンドラキューの末尾に追加する。</li>
 <li>アクションクラス(action class)は、フォームクラス(form class)やエンティティクラス(entity class)を使用して業務ロジック(business logic) を実行する。
-各クラスの詳細は、 <a class="reference internal" href="application_design.html"><em>アプリケーションの責務配置</em></a> を参照。</li>
+各クラスの詳細は、 <a class="reference internal" href="application_design.html"><span class="doc">アプリケーションの責務配置</span></a> を参照。</li>
 <li>action classは、処理結果を示す <cite>HttpResponse</cite> を作成し返却する。</li>
 <li>ハンドラキュー内のHTTPレスポンスハンドラ(<cite>HttpResponseHandler</cite>)が、 <cite>HttpResponse</cite> をクライアントに返却するレスポンスに変換する。例えば、JSPのServlet Forwardなど。</li>
 <li>responseが返却される。</li>
@@ -355,40 +367,41 @@
 <dl class="docutils">
 <dt>リクエストやレスポンスの変換を行うハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../handlers/web/http_character_encoding_handler.html#http-character-encoding-handler"><span>HTTP文字エンコード制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/multipart_handler.html#multipart-handler"><span>マルチパートリクエストハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span>ノーマライズハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/secure_handler.html#secure-handler"><span>セキュアハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/http_character_encoding_handler.html#http-character-encoding-handler"><span class="std std-ref">HTTP文字エンコード制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/multipart_handler.html#multipart-handler"><span class="std std-ref">マルチパートリクエストハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span class="std std-ref">ノーマライズハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/secure_handler.html#secure-handler"><span class="std std-ref">セキュアハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>リクエストのフィルタリングを行うハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../handlers/common/permission_check_handler.html#permission-check-handler"><span>認可チェックハンドラ</span></a></li>
+<li><a class="reference internal" href="../libraries/service_availability.html#service-availability"><span class="std std-ref">サービス提供可否チェック</span></a></li>
+<li><a class="reference internal" href="../handlers/common/permission_check_handler.html#permission-check-handler"><span class="std std-ref">認可チェックハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>データベースに関連するハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>エラー処理に関するハンドラ</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../handlers/web/HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/common/global_error_handler.html#global-error-handler"><span>グローバルエラーハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/global_error_handler.html#global-error-handler"><span class="std std-ref">グローバルエラーハンドラ</span></a></li>
 </ul>
 </dd>
 <dt>その他</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span>HTTPリクエストディスパッチハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span>スレッドコンテキスト変数削除ハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/web/http_access_log_handler.html#http-access-log-handler"><span>HTTPアクセスログハンドラ</span></a></li>
-<li><a class="reference internal" href="../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span class="std std-ref">HTTPリクエストディスパッチハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span class="std std-ref">Nablarchカスタムタグ制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/thread_context_clear_handler.html#thread-context-clear-handler"><span class="std std-ref">スレッドコンテキスト変数削除ハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/web/http_access_log_handler.html#http-access-log-handler"><span class="std std-ref">HTTPアクセスログハンドラ</span></a></li>
+<li><a class="reference internal" href="../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a></li>
 </ul>
 </dd>
 </dl>
@@ -396,7 +409,7 @@
 <h3><a class="toc-backref" href="#id11">2.1.3.1. 最小ハンドラ構成</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Nablarchでウェブアプリケーションを構築する際の、必要最小限のハンドラキューを以下に示す。
 これをベースに、プロジェクト要件に従ってNablarchの標準ハンドラやプロジェクトで作成したカスタムハンドラの追加を行う。</p>
-<table border="1" class="white-space-normal docutils" id="id7">
+<table border="1" class="colwidths-given white-space-normal docutils" id="id7">
 <caption><span class="caption-text">最小ハンドラ構成</span><a class="headerlink" href="#id7" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="4%" />
@@ -415,82 +428,82 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
-<td><a class="reference internal" href="../handlers/web/http_character_encoding_handler.html#http-character-encoding-handler"><span>HTTP文字エンコード制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/web/http_character_encoding_handler.html#http-character-encoding-handler"><span class="std std-ref">HTTP文字エンコード制御ハンドラ</span></a></td>
 <td>リクエストとレスポンスに文字エンコーディングを設定する。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>2</td>
-<td><a class="reference internal" href="../handlers/common/global_error_handler.html#global-error-handler"><span>グローバルエラーハンドラ</span></a></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="../handlers/common/global_error_handler.html#global-error-handler"><span class="std std-ref">グローバルエラーハンドラ</span></a></td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>実行時例外、またはエラーの場合、ログ出力を行う。</td>
 </tr>
 <tr class="row-even"><td>3</td>
-<td><a class="reference internal" href="../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a></td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="../handlers/web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a></td>
+<td>&#160;</td>
 <td>サーブレットフォーワード、リダイレクト、レスポンス書き込みのいずれかを行う。</td>
 <td>実行時例外、またはエラーの場合、既定のエラーページを表示する。</td>
 </tr>
 <tr class="row-odd"><td>4</td>
-<td><a class="reference internal" href="../handlers/web/secure_handler.html#secure-handler"><span>セキュアハンドラ</span></a></td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="../handlers/web/secure_handler.html#secure-handler"><span class="std std-ref">セキュアハンドラ</span></a></td>
+<td>&#160;</td>
 <td>レスポンスオブジェクト(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a>)にセキュリティ関連のレスポンスヘッダを設定する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>5</td>
-<td><a class="reference internal" href="../handlers/web/multipart_handler.html#multipart-handler"><span>マルチパートリクエストハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/web/multipart_handler.html#multipart-handler"><span class="std std-ref">マルチパートリクエストハンドラ</span></a></td>
 <td>リクエストがマルチパート形式の場合、その内容を一時ファイルに保存する。</td>
 <td>保存した一時ファイルを削除する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>6</td>
-<td><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a></td>
 <td>セッションストアから内容を読み込む。</td>
 <td>セッションストアに内容を書き込む。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>7</td>
-<td><a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span>ノーマライズハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span class="std std-ref">ノーマライズハンドラ</span></a></td>
 <td>リクエストパラメータのノーマライズ処理を行う。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>8</td>
-<td><a class="reference internal" href="../handlers/web/forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a></td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="../handlers/web/forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a></td>
+<td>&#160;</td>
 <td>遷移先が内部フォーワードの場合、後続のハンドラを再実行する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>9</td>
-<td><a class="reference internal" href="../handlers/web/HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="../handlers/web/HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a></td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>例外の種類に応じたログ出力とレスポンスの生成を行う。</td>
 </tr>
 <tr class="row-odd"><td>10</td>
-<td><a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span class="std std-ref">Nablarchカスタムタグ制御ハンドラ</span></a></td>
 <td>Nablarchカスタムタグの動作に必要な事前処理を行う。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>11</td>
-<td><a class="reference internal" href="../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a></td>
 <td>DB接続を取得する。</td>
 <td>DB接続を解放する。</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>12</td>
-<td><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a></td>
+<td><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a></td>
 <td>トランザクションを開始する。</td>
 <td>トランザクションをコミットする。</td>
 <td>トランザクションをロールバックする。</td>
 </tr>
 <tr class="row-even"><td>13</td>
-<td><a class="reference internal" href="../../adaptors/router_adaptor.html#router-adaptor"><span>ルーティングアダプタ</span></a></td>
+<td><a class="reference internal" href="../../adaptors/router_adaptor.html#router-adaptor"><span class="std std-ref">ルーティングアダプタ</span></a></td>
 <td>リクエストパスをもとに呼び出すアクションを決定する。</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +541,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u10',
+            VERSION:'5u11',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
