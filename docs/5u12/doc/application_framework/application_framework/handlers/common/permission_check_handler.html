@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/common/permission_check_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.1. 共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.1.10. サービス提供可否チェックハンドラ" href="ServiceAvailabilityCheckHandler.html"/>
@@ -338,8 +335,8 @@
 <li><a class="reference internal" href="#id8" id="id14">特定のリクエストを認可チェックから除外する</a></li>
 </ul>
 </div>
-<p>本ハンドラでは、 <a class="reference internal" href="#permission-check-handler-request-checking"><span class="std std-ref">リクエストに対する認可チェック</span></a> を行う。</p>
-<p>認可チェックは、ライブラリの <a class="reference internal" href="../../libraries/permission_check.html#permission-check"><span class="std std-ref">認可チェック</span></a> を使用して行う。
+<p>本ハンドラでは、 <a class="reference internal" href="#permission-check-handler-request-checking"><span>リクエストに対する認可チェック</span></a> を行う。</p>
+<p>認可チェックは、ライブラリの <a class="reference internal" href="../../libraries/permission_check.html#permission-check"><span>認可チェック</span></a> を使用して行う。
 そのため、本ハンドラを使用するには、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/permission/PermissionFactory.html" title="nablarch.common.permission.PermissionFactory">PermissionFactory</a> を実装したクラスを本ハンドラに設定する必要がある。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
@@ -366,25 +363,25 @@
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id11">6.1.9.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに配置すること</dt>
+<dt><a class="reference internal" href="thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに配置すること</dt>
 <dd>本ハンドラではスレッドコンテキスト上に設定されたリクエストIDとユーザIDをもとに認可チェックを行うため、
-<a class="reference internal" href="thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
-<dt><a class="reference internal" href="../web/forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a> より後ろに配置すること</dt>
+<a class="reference internal" href="thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
+<dt><a class="reference internal" href="../web/forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> より後ろに配置すること</dt>
 <dd>内部フォーワードが行われた際に、フォーワード先のリクエストIDをもとに
-認可チェックを行いたい場合は、 <a class="reference internal" href="../web/forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
-<dt><a class="reference internal" href="../web/HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a> より後ろに配置すること</dt>
+認可チェックを行いたい場合は、 <a class="reference internal" href="../web/forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
+<dt><a class="reference internal" href="../web/HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a> より後ろに配置すること</dt>
 <dd>認可チェックエラーの場合に表示するエラーページを指定するため、
-<a class="reference internal" href="../web/HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
+<a class="reference internal" href="../web/HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a> より後ろに本ハンドラを配置する必要がある。</dd>
 </dl>
 </div>
 <div class="section" id="permission-check-handler-request-checking">
 <span id="id6"></span><h2><a class="toc-backref" href="#id12">6.1.9.4. リクエストに対する認可チェック</a><a class="headerlink" href="#permission-check-handler-request-checking" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ログイン中のユーザが、現在のリクエスト(リクエストID)に対して権限を持っているかをチェックする。
-チェックの詳細は、 <a class="reference internal" href="../../libraries/permission_check.html#permission-check"><span class="std std-ref">認可チェック</span></a> を参照。</p>
+チェックの詳細は、 <a class="reference internal" href="../../libraries/permission_check.html#permission-check"><span>認可チェック</span></a> を参照。</p>
 <dl class="docutils">
 <dt>権限がある場合</dt>
-<dd><a class="reference internal" href="../../libraries/permission_check.html#permission-check-server-side-check"><span class="std std-ref">業務ロジック</span></a> や
-<a class="reference internal" href="../../libraries/permission_check.html#permission-check-view-control"><span class="std std-ref">画面表示の制御</span></a> で参照できるように、
+<dd><a class="reference internal" href="../../libraries/permission_check.html#permission-check-server-side-check"><span>業務ロジック</span></a> や
+<a class="reference internal" href="../../libraries/permission_check.html#permission-check-view-control"><span>画面表示の制御</span></a> で参照できるように、
 認可チェックに使用した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/permission/Permission.html" title="nablarch.common.permission.Permission">Permission</a> をスレッドローカルに設定する。
 そして、後続ハンドラを呼び出す。</dd>
 <dt>権限がない場合</dt>
@@ -397,7 +394,7 @@
 <div class="section" id="id7">
 <h2><a class="toc-backref" href="#id13">6.1.9.5. 権限がない場合に表示するエラーページを指定する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>権限がない場合に表示するエラーページは、HTTPエラー制御ハンドラで指定する。
-指定方法は、 <a class="reference internal" href="../web/HttpErrorHandler.html#httperrorhandler-defaultpage"><span class="std std-ref">デフォルトページの設定</span></a> を参照。</p>
+指定方法は、 <a class="reference internal" href="../web/HttpErrorHandler.html#httperrorhandler-defaultpage"><span>デフォルトページの設定</span></a> を参照。</p>
 </div>
 <div class="section" id="id8">
 <h2><a class="toc-backref" href="#id14">6.1.9.6. 特定のリクエストを認可チェックから除外する</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -452,7 +449,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

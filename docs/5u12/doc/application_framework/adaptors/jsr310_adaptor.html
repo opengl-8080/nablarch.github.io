@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/jsr310_adaptor.html" />
   
-        <link rel="index" title="索引"
-              href="../../genindex.html"/>
-        <link rel="search" title="検索" href="../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
         <link rel="next" title="Example" href="../example/index.html"/>
@@ -114,7 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doma_adaptor.html">Domaアダプタ</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">JSR310(Date and Time API)アダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../example/index.html">Example</a><ul>
@@ -338,8 +335,8 @@
 このアダプタを使用することで、以下の機能でJSR310(Date and Time API)を利用できる。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a></li>
-<li><a class="reference internal" href="../application_framework/libraries/database/database.html#database"><span class="std std-ref">データベースアクセス(JDBCラッパー)</span></a></li>
-<li><a class="reference internal" href="../application_framework/libraries/database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a></li>
+<li><a class="reference internal" href="../application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a></li>
+<li><a class="reference internal" href="../application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a></li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -368,7 +365,7 @@
 <p>変換可能な型や変換ルールなどの詳細は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jsr310/beans/converter/package-summary.html" title="nablarch.integration.jsr310.beans.converter.package-summary">converter一覧</a> を参照。</p>
 <dl class="docutils">
 <dt>使用方法</dt>
-<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span class="std std-ref">システムリポジトリ</span></a> のコンポーネント設定ファイルに以下を追加することで、本機能が有効になる。</p>
+<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span>システムリポジトリ</span></a> のコンポーネント設定ファイルに以下を追加することで、本機能が有効になる。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;JSR310.xml&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
@@ -398,13 +395,13 @@
 データベースとの入出力時の変換ルールの詳細は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jsr310/db/converter/package-summary.html" title="nablarch.integration.jsr310.db.converter.package-summary">converter一覧</a> を参照。</p>
 <dl class="docutils">
 <dt>ユニバーサルDAO</dt>
-<dd><a class="reference internal" href="../application_framework/libraries/database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> では、登録時に指定するEntityクラスや検索結果を受け取るクラスのプロパティでLocalDateなどが利用できる。</dd>
+<dd><a class="reference internal" href="../application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> では、登録時に指定するEntityクラスや検索結果を受け取るクラスのプロパティでLocalDateなどが利用できる。</dd>
 <dt>データベースアクセス(JDBCラッパー)</dt>
-<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/database/database.html#database"><span class="std std-ref">データベースアクセス(JDBCラッパー)</span></a> 機能の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setObject-int-java.lang.Object-" title="nablarch.core.db.statement.SqlPStatement.setObject(int-java.lang.Object)">SqlPStatement#setObject</a> でLocalDateなどが利用できる。</p>
+<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> 機能の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setObject-int-java.lang.Object-" title="nablarch.core.db.statement.SqlPStatement.setObject(int-java.lang.Object)">SqlPStatement#setObject</a> でLocalDateなどが利用できる。</p>
 <p class="last">データベースからの取得結果( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> )は、型変換の対象外となる。</p>
 </dd>
 <dt>使用方法</dt>
-<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span class="std std-ref">システムリポジトリ</span></a> のコンポーネント設定ファイルに以下を追加し、変換ルールをDialectに設定することで本機能が利用できる状態となる。</p>
+<dd><p class="first"><a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span>システムリポジトリ</span></a> のコンポーネント設定ファイルに以下を追加し、変換ルールをDialectに設定することで本機能が利用できる状態となる。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;JSR310.xml&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="c">&lt;!--</span>
@@ -461,7 +458,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

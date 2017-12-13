@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/reference_jsp_widgets/event_send_request.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.39. disabled 項目切替えイベントアクション" href="event_toggle_disabled.html"/>
@@ -325,7 +322,7 @@
             
   <div class="section" id="xhr">
 <h1>2.1.38. XHRリクエスト送信イベントアクション<a class="headerlink" href="#xhr" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><a class="reference internal" href="#"><span class="doc">XHRリクエスト送信イベントアクション</span></a> は、 <a class="reference internal" href="event_listen.html"><span class="doc">ページ内イベント定義</span></a> 及び <a class="reference internal" href="event_listen_subwindow.html"><span class="doc">サブウィンドウ内イベント定義</span></a>
+<p><a class="reference internal" href=""><em>XHRリクエスト送信イベントアクション</em></a> は、 <a class="reference internal" href="event_listen.html"><em>ページ内イベント定義</em></a> 及び <a class="reference internal" href="event_listen_subwindow.html"><em>サブウィンドウ内イベント定義</em></a>
 が監視するイベントが発生した際に、指定したURLに対するXHR(Ajax)リクエストを送信する
 イベントアクションである。</p>
 <p>本アクションでは、Nablarch本体の機構(ウィンドウスコープ、Nablarch サブミット等) と連動し
@@ -373,7 +370,7 @@ JSONなどの形式には対応していない。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>XHRリクエスト完了後の処理は、上の例のように、
-jQueryのajax関連グローバルイベントを監視する <a class="reference internal" href="event_listen.html"><span class="doc">ページ内イベント定義</span></a>
+jQueryのajax関連グローバルイベントを監視する <a class="reference internal" href="event_listen.html"><em>ページ内イベント定義</em></a>
 を作成し、その中にイベントアクションを配置することで実装する。</p>
 <p>ajaxイベントの詳細については下記のリンク先を参照すること。</p>
 <blockquote class="last">
@@ -382,8 +379,8 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
 </div>
 <div class="section" id="id2">
 <h2>2.1.38.2. 仕様<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このアクションを実行するイベントは <a class="reference internal" href="event_listen.html"><span class="doc">ページ内イベント定義</span></a>
-(もしくは <a class="reference internal" href="event_listen_subwindow.html"><span class="doc">サブウィンドウ内イベント定義</span></a> ) を用いて定義する必要がある。</p>
+<p>このアクションを実行するイベントは <a class="reference internal" href="event_listen.html"><em>ページ内イベント定義</em></a>
+(もしくは <a class="reference internal" href="event_listen_subwindow.html"><em>サブウィンドウ内イベント定義</em></a> ) を用いて定義する必要がある。</p>
 <p>このアクションが実行されると、まず、イベントの発生元要素が <cite>condition</cite> 属性の
 セレクタにマッチするかをチェックし、マッチしなかった場合はなにもしない。</p>
 <p>マッチした場合、このタグを包含する <strong>form</strong> 要素に対してサブミット処理を実行する。
@@ -422,14 +419,14 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
 <td>文字列</td>
 <td>◎</td>
 <td>×</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>uri</td>
 <td>リクエスト送信先URI</td>
 <td>文字列</td>
 <td>◎</td>
 <td>×</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>target</td>
 <td>レスポンスの内容から取得する
@@ -437,7 +434,7 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
 <td>文字列</td>
 <td>◎</td>
 <td>×</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>condition</td>
 <td>本アクションを実行する事前条件。
@@ -446,7 +443,7 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
 <td>文字列</td>
 <td>○</td>
 <td>×</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>paramNameAlias</td>
 <td>リクエストを送信する際に
@@ -456,7 +453,7 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
 <td>○</td>
 <td>×</td>
 <td>置換ルールの書式は以下のとおり。 <br />
-置換文字列1/置換後文字列1|置換文字列2/置換後文字列2 …</td>
+置換文字列1/置換後文字列1|置換文字列2/置換後文字列2 ...</td>
 </tr>
 </tbody>
 </table>
@@ -524,7 +521,7 @@ jQueryのajax関連グローバルイベントを監視する <a class="referenc
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

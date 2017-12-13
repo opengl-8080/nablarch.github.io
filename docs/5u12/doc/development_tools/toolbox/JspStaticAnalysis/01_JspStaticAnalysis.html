@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.1. JSP静的解析ツール &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>4.1.1. JSP静的解析ツール &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
   
@@ -35,13 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/toolbox/JspStaticAnalysis/01_JspStaticAnalysis.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
-        <link rel="up" title="1. JSP静的解析ツール" href="index.html"/>
-        <link rel="next" title="1.2. JSP静的解析ツール 設定変更ガイド" href="02_JspStaticAnalysisInstall.html"/>
-        <link rel="prev" title="1. JSP静的解析ツール" href="index.html"/>
+        <link rel="up" title="4.1. JSP静的解析ツール" href="index.html"/>
+        <link rel="next" title="4.1.2. JSP静的解析ツール 設定変更ガイド" href="02_JspStaticAnalysisInstall.html"/>
+        <link rel="prev" title="4.1. JSP静的解析ツール" href="index.html"/>
  
 
   
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3. アプリケーション開発時に使える便利なツール</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">4. アプリケーション開発時に使える便利なツール</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -309,11 +306,11 @@
       
           <li><a href="../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../index.html">3. アプリケーション開発時に使える便利なツール</a> &raquo;</li>
+          <li><a href="../index.html">4. アプリケーション開発時に使える便利なツール</a> &raquo;</li>
       
-          <li><a href="index.html">1. JSP静的解析ツール</a> &raquo;</li>
+          <li><a href="index.html">4.1. JSP静的解析ツール</a> &raquo;</li>
       
-    <li>1.1. JSP静的解析ツール</li>
+    <li>4.1.1. JSP静的解析ツール</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -324,7 +321,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="jsp">
-<span id="jsp-static-analysis-tool"></span><h1>1.1. JSP静的解析ツール<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="jsp-static-analysis-tool"></span><h1>4.1.1. JSP静的解析ツール<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
@@ -349,7 +346,7 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id14">1.1.1. 概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">4.1.1.1. 概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>JSPで使用を許可する構文とタグを規定し、許可する構文とタグのみを使用していることをチェックする。
 これにより、次のことを保証できる。</p>
 <ul class="simple">
@@ -361,9 +358,9 @@
 <p>なお、本ツールはnablarch-testing-XXX.jarに含まれる。</p>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id15">1.1.2. 仕様</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">4.1.1.2. 仕様</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id16">1.1.2.1. 許可するタグの指定方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">4.1.1.2.1. 許可するタグの指定方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本ツールは、 <strong>JSPで使用を許可する構文とタグ</strong> を設定ファイルに定義することで、設定ファイルに定義されていない構文とタグが使用されている箇所を指摘する。
 チェック結果は、HTMLまたはXML形式で出力する。</p>
 <p>本ツールで指定可能な構文とタグを下記に示す。</p>
@@ -386,36 +383,36 @@
 <p>下記に例として、EL式を禁止した場合のチェック結果を示す。</p>
 <ul>
 <li><p class="first">使用を許可したタグの属性にEL式を指定した場合は、指摘しない。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">include</span> <span class="n">page</span><span class="o">=</span><span class="s2">&quot;${ Expression }&quot;</span> <span class="o">/&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;jsp:include page=&quot;${ Expression }&quot; /&gt;
 </pre></div>
 </div>
 </li>
 <li><p class="first">使用を許可したタグのボディにEL式を指定した場合は、指摘する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;jsp:text&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;jsp:text&gt;
    ${ Expression }
 &lt;/jsp:text&gt;
 </pre></div>
 </div>
 </li>
 <li><p class="first">HTMLタグの属性にEL式を指定した場合は、指摘する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">td</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;${ Expression }&quot;</span><span class="o">&gt;</span> <span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;td height=&quot;${ Expression }&quot;&gt; &lt;/td&gt;
 </pre></div>
 </div>
 </li>
 <li><p class="first">HTMLタグのボディにEL式を指定した場合は、指摘する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;td&gt; ${ Expression } &lt;/td&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;td&gt; ${ Expression } &lt;/td&gt;
 </pre></div>
 </div>
 </li>
 <li><p class="first">JavaScript中にEL式を指定した場合は、指摘する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>function samplefunc() {
+<div class="highlight-python"><div class="highlight"><pre><span></span>function samplefunc() {
     var id = ${user.id}
 }
 </pre></div>
 </div>
 </li>
 </ul>
-<p>設定ファイルの記述方法は <a class="reference internal" href="#customjspanalysis"><span class="std std-ref">JSP静的解析ツール設定ファイルの記述方法</span></a> を参照のこと。</p>
+<p>設定ファイルの記述方法は <a class="reference internal" href="#customjspanalysis"><span>JSP静的解析ツール設定ファイルの記述方法</span></a> を参照のこと。</p>
 <table class="docutils footnote" frame="void" id="html-comment" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -431,17 +428,17 @@
 </table>
 </div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id17">1.1.2.2. チェック対象ファイルの指定方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">4.1.1.2.2. チェック対象ファイルの指定方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>チェック対象のファイル（ディレクトリ）は、本ツールへの起動引数として指定する。
 ディレクトリを指定した場合は、対象のファイル(デフォルトでは拡張子がjspのファイルで、設定により拡張子は追加可能)を再帰的にチェックする。</p>
 <p>UI開発基盤の開発プロジェクトでは、チェック対象のファイル（本番環境にデプロイされるファイル）と、
 チェック対象外のファイル（テスト用のファイルなどで本番環境にはデプロイされないファイル）が、
 チェック対象ディレクトリに混在するケースがある。
 このような場合には、除外ファイル設定を使用することで、不要なファイルへのチェックを無効にできる。</p>
-<p>チェック対象のファイル（ディレクトリ）、チェック対象外ファイル（ディレクトリ）の設定方法は、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html#customjspanalysisprop"><span class="std std-ref">pom.xmlの書き換え</span></a> を参照</p>
+<p>チェック対象のファイル（ディレクトリ）、チェック対象外ファイル（ディレクトリ）の設定方法は、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html#customjspanalysisprop"><span>pom.xmlの書き換え</span></a> を参照</p>
 </div>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id18">1.1.2.3. 対象ファイル内の一部を強制的にチェック対象外にする方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">4.1.1.2.3. 対象ファイル内の一部を強制的にチェック対象外にする方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>アーキテクトが作成するJSPやタグファイルなどで、やむを得ない事情で許可されていないタグを使う必要性が出てくる場合がある。
 例えば、アプリケーション開発者が作成するJSPファイルから使用されたくないタグを、
 アーキテクトが作成するタグファイル内に隠蔽する場合等がこれに該当する。</p>
@@ -458,7 +455,7 @@
 </li>
 </ul>
 <p>以下に例を示す:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;%@tag import=&quot;java.util.regex.Pattern&quot; %&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;%@tag import=&quot;java.util.regex.Pattern&quot; %&gt;
 &lt;%@tag import=&quot;java.util.regex.Matcher&quot; %&gt;
 &lt;%@taglib prefix=&quot;n&quot; uri=&quot;http://tis.co.jp/nablarch&quot; %&gt;
 
@@ -472,24 +469,24 @@
 </div>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id19">1.1.3. 前提条件</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">4.1.1.3. 前提条件</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>アーキタイプからブランクプロジェクトの生成が完了していること。</li>
 </ul>
 </div>
 <div class="section" id="id9">
-<h2><a class="toc-backref" href="#id20">1.1.4. 使用方法</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">4.1.1.4. 使用方法</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id10">
-<h3><a class="toc-backref" href="#id21">1.1.4.1. 設定ファイルの存在確認</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">4.1.1.4.1. 設定ファイルの存在確認</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>toolsプロジェクトのstatic-analysis/jspanalysisディレクトリに、本ツールを実行するために必要な以下のファイルが存在することを確認する。</p>
 <ul class="simple">
 <li><a class="reference download internal" href="../../../_downloads/config.txt" download=""><code class="xref download docutils literal"><span class="pre">config.txt</span></code></a> … JSP静的解析ツール設定ファイル</li>
 <li><a class="reference download internal" href="../../../_downloads/transform-to-html.xsl" download=""><code class="xref download docutils literal"><span class="pre">transform-to-html.xsl</span></code></a> … JSP静的解析結果XMLをHTMLに変換する際の定義ファイル</li>
 </ul>
-<p>これらファイルについての詳細は <a class="reference internal" href="02_JspStaticAnalysisInstall.html"><span class="doc">JSP静的解析ツール 設定変更ガイド</span></a> を参照のこと。</p>
+<p>これらファイルについての詳細は <a class="reference internal" href="02_JspStaticAnalysisInstall.html"><em>JSP静的解析ツール 設定変更ガイド</em></a> を参照のこと。</p>
 </div>
 <div class="section" id="ant">
-<h3><a class="toc-backref" href="#id22">1.1.4.2. Antタスクの定義ファイル確認</a><a class="headerlink" href="#ant" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">4.1.1.4.2. Antタスクの定義ファイル確認</a><a class="headerlink" href="#ant" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>toolsプロジェクトのnablarch-tools.xmlに以下の定義が存在することを確認する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&quot;Nablarch Toolbox&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- 中略 --&gt;</span>
@@ -527,7 +524,7 @@
 </div>
 </div>
 <div class="section" id="jsppom-xml">
-<h3><a class="toc-backref" href="#id23">1.1.4.3. JSP静的解析ツールでチェックしたい対象の存在するプロジェクトのpom.xmlの確認</a><a class="headerlink" href="#jsppom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">4.1.1.4.3. JSP静的解析ツールでチェックしたい対象の存在するプロジェクトのpom.xmlの確認</a><a class="headerlink" href="#jsppom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>JSP静的解析ツールでチェックしたい対象の存在するプロジェクトのpom.xmlに、以下の記述が存在することを確認する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;properties&gt;</span>
   <span class="c">&lt;!-- 中略 --&gt;</span>
@@ -570,18 +567,18 @@
 <span class="nt">&lt;/properties&gt;</span>
 </pre></div>
 </div>
-<p class="last">各設定項目に関しては、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html"><span class="doc">JSP静的解析ツール 設定変更ガイド</span></a> を参照のこと。</p>
+<p class="last">各設定項目に関しては、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html"><em>JSP静的解析ツール 設定変更ガイド</em></a> を参照のこと。</p>
 </div>
 </div>
 <div class="section" id="customjspanalysis">
-<span id="id11"></span><h3><a class="toc-backref" href="#id24">1.1.4.4. JSP静的解析ツール設定ファイルの記述方法</a><a class="headerlink" href="#customjspanalysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id24">4.1.1.4.4. JSP静的解析ツール設定ファイルの記述方法</a><a class="headerlink" href="#customjspanalysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>プロジェクトの規約を反映するために設定ファイルを変更する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">開発時にアプリケーションプログラマの都合に合わせて設定を変えてはいけない。</p>
 </div>
 <p>設定ファイルには使用を許可する構文とタグの一覧を下表に従って記載する。
-「–」で始まる行はコメント行とする。</p>
+「&#8211;」で始まる行はコメント行とする。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -596,12 +593,12 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>XMLコメント</td>
-<td>&lt;%– comment –%&gt;</td>
-<td>&lt;%–</td>
+<td>&lt;%&#8211; comment &#8211;%&gt;</td>
+<td>&lt;%&#8211;</td>
 </tr>
 <tr class="row-odd"><td>HTMLコメント</td>
-<td>&lt;!– comment –&gt;</td>
-<td>&lt;!–</td>
+<td>&lt;!&#8211; comment &#8211;&gt;</td>
+<td>&lt;!&#8211;</td>
 </tr>
 <tr class="row-even"><td>EL式</td>
 <td>${10 mod 4}</td>
@@ -620,15 +617,15 @@
 <td>&lt;%</td>
 </tr>
 <tr class="row-even"><td>ディレクティブ</td>
-<td>&lt;%&#64; taglib prefix=」n」 uri=  <br />
-「<a class="reference external" href="http://tis.co.jp/nablarch">http://tis.co.jp/nablarch</a>」 %&gt;</td>
+<td>&lt;%&#64; taglib prefix=&#8221;n&#8221; uri=  <br />
+&#8220;<a class="reference external" href="http://tis.co.jp/nablarch">http://tis.co.jp/nablarch</a>&#8221; %&gt;</td>
 <td><p class="first">「&lt;%&#64;」から始まり、最初の空白までの <br />
 部分を記述する。</p>
 <p class="last">例：） &lt;%&#64; taglib</p>
 </td>
 </tr>
 <tr class="row-odd"><td>アクションタグ</td>
-<td>&lt;jsp:attribute name=」attrName」 /&gt;</td>
+<td>&lt;jsp:attribute name=&#8221;attrName&#8221; /&gt;</td>
 <td><p class="first">「&lt;jsp:」から始まり、最初の空白までの <br />
 部分を記述する。<br />
 「&lt;jsp:」のみを設定した場合、<br />
@@ -637,31 +634,31 @@
 </td>
 </tr>
 <tr class="row-even"><td>カスタムタグ</td>
-<td>&lt;n:error name=」attrName」 /&gt;</td>
+<td>&lt;n:error name=&#8221;attrName&#8221; /&gt;</td>
 <td>設定方法は、アクションタグと同じ。</td>
 </tr>
 </tbody>
 </table>
 <p>デフォルトの設定は下記のとおりである。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">n</span><span class="p">:</span>
-<span class="o">&lt;</span><span class="n">c</span><span class="p">:</span>
-<span class="o">&lt;%--</span>
-<span class="o">&lt;%@</span> <span class="n">include</span>
-<span class="o">&lt;%@</span> <span class="n">page</span>
-<span class="o">&lt;%@</span> <span class="n">tag</span>
-<span class="o">&lt;%@</span> <span class="n">taglib</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">include</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">directive</span><span class="o">.</span><span class="n">include</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">directive</span><span class="o">.</span><span class="n">page</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">directive</span><span class="o">.</span><span class="n">tag</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">param</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">params</span>
-<span class="o">&lt;</span><span class="n">jsp</span><span class="p">:</span><span class="n">attribute</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;n:
+&lt;c:
+&lt;%--
+&lt;%@ include
+&lt;%@ page
+&lt;%@ tag
+&lt;%@ taglib
+&lt;jsp:include
+&lt;jsp:directive.include
+&lt;jsp:directive.page
+&lt;jsp:directive.tag
+&lt;jsp:param
+&lt;jsp:params
+&lt;jsp:attribute
 </pre></div>
 </div>
 <p>デフォルトの設定で除外した構文とタグは下記のとおりである。</p>
 <p>これらは、Nablarchカスタムタグに同様の機能を有するか、セキュリティホールとなりうる可能性がある構文とタグである。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;!--
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;!--
 &lt;%!
 ${
 &lt;%
@@ -689,12 +686,12 @@ ${
 </div>
 </div>
 <div class="section" id="pom-xml">
-<h3><a class="toc-backref" href="#id25">1.1.4.5. pom.xmlの修正の修正</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">4.1.1.4.5. pom.xmlの修正の修正</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>pom.xmlに記述されているプロパティを、実行環境にあわせて修正すること。</p>
-<p>詳細は、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html#customjspanalysisprop"><span class="std std-ref">pom.xmlの書き換え</span></a> を参照</p>
+<p>詳細は、 <a class="reference internal" href="02_JspStaticAnalysisInstall.html#customjspanalysisprop"><span>pom.xmlの書き換え</span></a> を参照</p>
 </div>
 <div class="section" id="id12">
-<h3><a class="toc-backref" href="#id26">1.1.4.6. 実行方法</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">4.1.1.4.6. 実行方法</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カレントディレクトリを解析対象のディレクトリにし、verifyフェーズを実行する。</p>
 <p>以下に例を示す。</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>cd XXX-web
@@ -703,18 +700,18 @@ mvn verify -DskipTests=true
 </div>
 </div>
 <div class="section" id="outputjspanalysis">
-<span id="id13"></span><h3><a class="toc-backref" href="#id27">1.1.4.7. 出力結果確認方法</a><a class="headerlink" href="#outputjspanalysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id13"></span><h3><a class="toc-backref" href="#id27">4.1.1.4.7. 出力結果確認方法</a><a class="headerlink" href="#outputjspanalysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul>
 <li><p class="first">JSP解析(HTMLレポート出力)</p>
 <p>JSPのチェックを行い、チェック結果をHTMLに出力する。</p>
 <p>デフォルトの設定では、target/jspanalysis-result.htmlに出力される。</p>
 <p>出力先は、 pom.xml の jspanalysis.htmloutput プロパティの設定で変更できる。</p>
 <p>出力内容の例を以下に示す。</p>
-<a class="reference internal image-reference" href="../../../_images/how-to-trace-jsp.png"><img alt="../../../_images/how-to-trace-jsp.png" src="../../../_images/how-to-trace-jsp.png" style="width: 683.9px; height: 264.59999999999997px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/how-to-trace-jsp.png"><img alt="../../../_images/how-to-trace-jsp.png" src="../../../_images/how-to-trace-jsp.png" /></a>
 <p>上記の例では、指摘内容は2通りあり、各指摘への対処方法は次のとおりである。</p>
 <ul>
 <li><p class="first">許可されていないタグが使用されている場合。</p>
-<p>「」構文またはタグ名」 + 「指摘位置」 is forbidden.」というエラー内容が表示される。
+<p>「&#8221;構文またはタグ名&#8221; + &#8220;指摘位置&#8221; is forbidden.」というエラー内容が表示される。
 プロジェクトの規約にて使用を許可されている構文とタグを使用し対処する。</p>
 </li>
 </ul>
@@ -828,7 +825,7 @@ mvn verify -DskipTests=true
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

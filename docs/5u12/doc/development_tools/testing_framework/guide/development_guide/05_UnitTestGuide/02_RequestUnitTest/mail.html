@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/mail.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.2. 自動テストフレームワークの使用方法" href="../../06_TestFWGuide/index.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -328,15 +325,15 @@
 <h1>3.1.19. リクエスト単体テストの実施方法(メール送信)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
 <h2>3.1.19.1. メール送信処理の構造とテスト範囲<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本フレームワークを使用した<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span class="std std-ref">メール送信</span></a>では、
+<p>本フレームワークを使用した<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>メール送信</span></a>では、
 業務アプリケーションは本フレームワークが提供するメール送信要求APIを呼び出すだけである。</p>
 <p>よってリクエスト単体テストの範囲は、メール送信要求が正常に受け付けられデータベースに格納されることを確認するところまでとなる。</p>
 <p>メール送信処理の処理概要と業務アプリケーションのテスト範囲を、下図に示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/mail_overview.jpg"><img alt="../../../../../../_images/mail_overview.jpg" src="../../../../../../_images/mail_overview.jpg" style="width: 696.8000000000001px; height: 228.8px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/mail_overview.jpg"><img alt="../../../../../../_images/mail_overview.jpg" src="../../../../../../_images/mail_overview.jpg" /></a>
 </div>
 <div class="section" id="id3">
 <h2>3.1.19.2. テストの実施方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>上述の通り、メール送信に関してリクエスト単体テストで確認すべきことは、メール送信要求が <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span class="std std-ref">各テーブル（メール送信要求テーブル、メール送信先テーブル、メール添付ファイルテーブル）</span></a> に
+<p>上述の通り、メール送信に関してリクエスト単体テストで確認すべきことは、メール送信要求が <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>各テーブル（メール送信要求テーブル、メール送信先テーブル、メール添付ファイルテーブル）</span></a> に
 正しく格納されることである。</p>
 <p>そのため、他の単体テストの実施方法と同様に、期待する上記3テーブルの状態をExcelシートに記述すればよい。</p>
 </div>
@@ -379,7 +376,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

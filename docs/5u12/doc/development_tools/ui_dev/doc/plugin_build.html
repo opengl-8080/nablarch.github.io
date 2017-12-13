@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/plugin_build.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="index.html"/>
         <link rel="next" title="2.1.5. JavaScript UI部品一覧" href="reference_js_framework.html"/>
@@ -327,14 +324,14 @@
 <h1>2.1.4. プラグインビルドコマンド仕様<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
 <h2>2.1.4.1. 概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本章では <a class="reference internal" href="#project-structure"><span class="std std-ref">想定されるプロジェクト構成ごとの設定例</span></a> および <a class="reference internal" href="#config-command-detail"><span class="std std-ref">プラグインビルドで使用するコマンドや設定ファイルの詳細仕様</span></a> を示す。</p>
-<p>プラグインビルドコマンドが使用されるプロジェクトの標準的な構成については <a class="reference internal" href="structure/directory_layout.html"><span class="doc">標準プロジェクト構成</span></a> を、
-開発時のフローについては <a class="reference internal" href="development_environment/initial_setup.html"><span class="doc">UI開発基盤の導入</span></a> を参照。</p>
+<p>本章では <a class="reference internal" href="#project-structure"><span>想定されるプロジェクト構成ごとの設定例</span></a> および <a class="reference internal" href="#config-command-detail"><span>プラグインビルドで使用するコマンドや設定ファイルの詳細仕様</span></a> を示す。</p>
+<p>プラグインビルドコマンドが使用されるプロジェクトの標準的な構成については <a class="reference internal" href="structure/directory_layout.html"><em>標準プロジェクト構成</em></a> を、
+開発時のフローについては <a class="reference internal" href="development_environment/initial_setup.html"><em>UI開発基盤の導入</em></a> を参照。</p>
 </div>
 <div class="section" id="project-structure">
 <span id="id3"></span><h2>2.1.4.2. 想定されるプロジェクト構成ごとの設定例<a class="headerlink" href="#project-structure" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>想定されるプロジェクト構成について、プラグインビルドコマンドの設定ファイルや実行ファイルの具体的な設定例を示す。
-下記の設定例に示していない項目については、後述する <a class="reference internal" href="#config-file"><span class="std std-ref">設定ファイル</span></a> や <a class="reference internal" href="#build-command"><span class="std std-ref">ビルドコマンド</span></a> を参照し、必要に応じて修正すること。</p>
+下記の設定例に示していない項目については、後述する <a class="reference internal" href="#config-file"><span>設定ファイル</span></a> や <a class="reference internal" href="#build-command"><span>ビルドコマンド</span></a> を参照し、必要に応じて修正すること。</p>
 <div class="section" id="id4">
 <h3>2.1.4.2.1. デプロイ対象プロジェクトが１つの場合<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
@@ -347,7 +344,7 @@
 </div></blockquote>
 <p><strong>設定例</strong></p>
 <ul>
-<li><p class="first"><a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a> の設定</p>
+<li><p class="first"><a class="reference internal" href="#install"><span>インストールコマンド</span></a> の設定</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/nablarch_plugins_bundle/bin/install.bat</p>
@@ -367,17 +364,17 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>PROJECT_ROOT</td>
-<td>「../../web_project」</td>
+<td>&#8221;../../web_project&#8221;</td>
 <td>コマンドの起動フォルダはnablarch_plugins_bundle/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>UI_PLUGINS_DIRS</td>
-<td>「ui_plugins」</td>
-<td>&#160;</td>
+<td>&#8220;ui_plugins&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の設定</p>
+<li><p class="first"><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の設定</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins/pjconf.json</p>
@@ -397,24 +394,24 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>pathSettings/projectRootPath</td>
-<td>「../..」</td>
+<td>&#8221;../..&#8221;</td>
 <td>コマンドの起動フォルダはweb_project/ui_plugins/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/webProjectPath</td>
-<td>「web/src/main/webapp」</td>
-<td>&#160;</td>
+<td>&#8220;web/src/main/webapp&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/demoProjectPath</td>
-<td>「ui_demo」</td>
-<td>&#160;</td>
+<td>&#8220;ui_demo&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/testProjectPath</td>
-<td>「ui_test」</td>
-<td>&#160;</td>
+<td>&#8220;ui_test&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/pluginProjectPath</td>
-<td>「ui_plugins」</td>
-<td>&#160;</td>
+<td>&#8220;ui_plugins&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -436,7 +433,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </div></blockquote>
 <p><strong>設定例</strong></p>
 <ul>
-<li><p class="first"><a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a> の設定</p>
+<li><p class="first"><a class="reference internal" href="#install"><span>インストールコマンド</span></a> の設定</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/nablarch_plugins_bundle/bin/install.bat</p>
@@ -456,17 +453,17 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>PROJECT_ROOT</td>
-<td>「../../web_project」</td>
+<td>&#8221;../../web_project&#8221;</td>
 <td>コマンドの起動フォルダはnablarch_plugins_bundle/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>UI_PLUGINS_DIRS</td>
-<td>「ui_plugins」</td>
-<td>&#160;</td>
+<td>&#8220;ui_plugins&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の設定(外部公開サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の設定(外部公開サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins/pjconf_public.json (標準のpjconf.jsonファイルをコピーする)</p>
@@ -486,29 +483,29 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>pathSettings/projectRootPath</td>
-<td>「../..」</td>
+<td>&#8221;../..&#8221;</td>
 <td>コマンドの起動フォルダはweb_project/ui_plugins/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/webProjectPath</td>
-<td>「web_public/src/main/webapp」</td>
-<td>&#160;</td>
+<td>&#8220;web_public/src/main/webapp&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/demoProjectPath</td>
-<td>「ui_demo_public」</td>
+<td>&#8220;ui_demo_public&#8221;</td>
 <td>業務画面は個別で作成するため、管理サイトと分ける</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/testProjectPath</td>
-<td>「ui_test」</td>
+<td>&#8220;ui_test&#8221;</td>
 <td>プラグインは共通のため、UI開発基盤テスト用プロジェクトは管理サイト用と共用</td>
 </tr>
 <tr class="row-even"><td>pathSettings/pluginProjectPath</td>
-<td>「ui_plugins」</td>
+<td>&#8220;ui_plugins&#8221;</td>
 <td>プラグインは共通のため、プロジェクト固有UIプラグインは管理サイト用と共用</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#ui-build"><span class="std std-ref">UIビルドコマンド</span></a> の設定(外部公開サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#ui-build"><span>UIビルドコマンド</span></a> の設定(外部公開サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins/bin/ui_build_public.bat (標準のui_build.batコマンドをコピーする)</p>
@@ -528,13 +525,13 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>PROJECT_CONF</td>
-<td>「../pjconf_public.json」</td>
+<td>&#8221;../pjconf_public.json&#8221;</td>
 <td>コマンドの起動フォルダはnablarch_plugins_bundle/binとなるため、そこからの相対パス</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の設定(管理サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の設定(管理サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins/pjconf_manage.json (標準のpjconf.jsonファイルをコピーする)</p>
@@ -554,29 +551,29 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>pathSettings/projectRootPath</td>
-<td>「../..」</td>
+<td>&#8221;../..&#8221;</td>
 <td>コマンドの起動フォルダはweb_project/ui_plugins/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/webProjectPath</td>
-<td>「web_manage/src/main/webapp」</td>
-<td>&#160;</td>
+<td>&#8220;web_manage/src/main/webapp&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/demoProjectPath</td>
-<td>「ui_demo_manage」</td>
+<td>&#8220;ui_demo_manage&#8221;</td>
 <td>業務画面は個別で作成するため、外部公開サイトと分ける</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/testProjectPath</td>
-<td>「ui_test」</td>
+<td>&#8220;ui_test&#8221;</td>
 <td>プラグインは共通のため、UI開発基盤テスト用プロジェクトは外部公開サイト用と共用</td>
 </tr>
 <tr class="row-even"><td>pathSettings/pluginProjectPath</td>
-<td>「ui_plugins」</td>
+<td>&#8220;ui_plugins&#8221;</td>
 <td>プラグインは共通のため、プロジェクト固有UIプラグインは外部公開サイト用と共用</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#ui-build"><span class="std std-ref">UIビルドコマンド</span></a> の設定(管理サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#ui-build"><span>UIビルドコマンド</span></a> の設定(管理サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins/bin/ui_build_manage.bat (標準のui_build.batコマンドをコピーする)</p>
@@ -596,7 +593,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>PROJECT_CONF</td>
-<td>「../pjconf_manage.json」</td>
+<td>&#8221;../pjconf_manage.json&#8221;</td>
 <td>コマンドの起動フォルダはnablarch_plugins_bundle/binとなるため、そこからの相対パス</td>
 </tr>
 </tbody>
@@ -619,7 +616,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </div></blockquote>
 <p><strong>設定例</strong></p>
 <ul>
-<li><p class="first"><a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a> の設定</p>
+<li><p class="first"><a class="reference internal" href="#install"><span>インストールコマンド</span></a> の設定</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/nablarch_plugins_bundle/bin/install.bat</p>
@@ -639,17 +636,17 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>PROJECT_ROOT</td>
-<td>「../../web_project」</td>
+<td>&#8221;../../web_project&#8221;</td>
 <td>コマンドの起動フォルダはnablarch_plugins_bundle/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>UI_PLUGINS_DIRS</td>
-<td>「ui_plugins_public,ui_plugins_manage」</td>
-<td>&#160;</td>
+<td>&#8220;ui_plugins_public,ui_plugins_manage&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の設定(外部公開サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の設定(外部公開サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins_public/pjconf.json (標準のui_pluginsフォルダ全体をコピーする)</p>
@@ -669,29 +666,29 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>pathSettings/projectRootPath</td>
-<td>「../..」</td>
+<td>&#8221;../..&#8221;</td>
 <td>コマンドの起動フォルダはweb_project/ui_plugins_public/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/webProjectPath</td>
-<td>「web_public/src/main/webapp」</td>
-<td>&#160;</td>
+<td>&#8220;web_public/src/main/webapp&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/demoProjectPath</td>
-<td>「ui_demo_public」</td>
+<td>&#8220;ui_demo_public&#8221;</td>
 <td>業務画面は個別で作成するため、管理サイトと分ける</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/testProjectPath</td>
-<td>「ui_test_public」</td>
+<td>&#8220;ui_test_public&#8221;</td>
 <td>プラグインも個別のため、UI開発基盤テスト用プロジェクトも管理サイトと分ける</td>
 </tr>
 <tr class="row-even"><td>pathSettings/pluginProjectPath</td>
-<td>「ui_plugins_public」</td>
+<td>&#8220;ui_plugins_public&#8221;</td>
 <td>プラグインも個別のため、プロジェクト固有UIプラグインも管理サイトと分ける</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li><p class="first"><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の設定(管理サイト用)</p>
+<li><p class="first"><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の設定(管理サイト用)</p>
 <p>本構成では、以下のファイルとなる。</p>
 <blockquote>
 <div><p>/web_project/ui_plugins_manage/pjconf.json (標準のui_pluginsフォルダ全体をコピーする)</p>
@@ -711,23 +708,23 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>pathSettings/projectRootPath</td>
-<td>「../..」</td>
+<td>&#8221;../..&#8221;</td>
 <td>コマンドの起動フォルダはweb_project/ui_plugins_manage/binとなるため、そこからの相対パス</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/webProjectPath</td>
-<td>「web_manage/src/main/webapp」</td>
-<td>&#160;</td>
+<td>&#8220;web_manage/src/main/webapp&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>pathSettings/demoProjectPath</td>
-<td>「ui_demo_manage」</td>
+<td>&#8220;ui_demo_manage&#8221;</td>
 <td>業務画面は個別で作成するため、外部公開サイトと分ける</td>
 </tr>
 <tr class="row-odd"><td>pathSettings/testProjectPath</td>
-<td>「ui_test_manage」</td>
+<td>&#8220;ui_test_manage&#8221;</td>
 <td>プラグインも個別のため、UI開発基盤テスト用プロジェクトも外部公開サイトと分ける</td>
 </tr>
 <tr class="row-even"><td>pathSettings/pluginProjectPath</td>
-<td>「ui_plugins_manage」</td>
+<td>&#8220;ui_plugins_manage&#8221;</td>
 <td>プラグインも個別のため、プロジェクト固有UIプラグインも外部公開サイトと分ける</td>
 </tr>
 </tbody>
@@ -741,10 +738,10 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 <span id="id7"></span><h2>2.1.4.3. プラグインビルドで使用するコマンドや設定ファイルの詳細仕様<a class="headerlink" href="#config-command-detail" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以降はプラグインビルドで使用するコマンドや設定ファイルについての詳細として、以下の項目について記述する。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#config-file"><span class="std std-ref">設定ファイル</span></a></li>
-<li><a class="reference internal" href="#generate-file"><span class="std std-ref">ファイルの自動生成</span></a></li>
-<li><a class="reference internal" href="#build-file"><span class="std std-ref">プラグイン、外部ライブラリの展開</span></a></li>
-<li><a class="reference internal" href="#build-command"><span class="std std-ref">ビルドコマンド</span></a></li>
+<li><a class="reference internal" href="#config-file"><span>設定ファイル</span></a></li>
+<li><a class="reference internal" href="#generate-file"><span>ファイルの自動生成</span></a></li>
+<li><a class="reference internal" href="#build-file"><span>プラグイン、外部ライブラリの展開</span></a></li>
+<li><a class="reference internal" href="#build-command"><span>ビルドコマンド</span></a></li>
 </ul>
 </div>
 <div class="section" id="config-file">
@@ -763,11 +760,11 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a></td>
 <td>pjconf.json</td>
 <td>環境毎のファイル展開設定ファイル。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#lessimport-less"><span>lessインポート定義ファイル</span></a></td>
 <td>${cssMode}.less</td>
 <td>表示モードごとにインポートするファイルの定義。</td>
 </tr>
@@ -788,8 +785,8 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>ui_plugins ( <a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a> で任意のフォルダに変更可能)</td>
-<td>pjconf.json ( <a class="reference internal" href="#ui-build"><span class="std std-ref">UIビルドコマンド</span></a> で任意のフォルダに変更可能)</td>
+<tr class="row-even"><td>ui_plugins ( <a class="reference internal" href="#install"><span>インストールコマンド</span></a> で任意のフォルダに変更可能)</td>
+<td>pjconf.json ( <a class="reference internal" href="#ui-build"><span>UIビルドコマンド</span></a> で任意のフォルダに変更可能)</td>
 </tr>
 </tbody>
 </table>
@@ -865,19 +862,19 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 <td>任意</td>
 <td>UIローカルデモプロジェクトのパス。 <br />
 プロジェクトルートからの相対パスで指定する。 <br />
-省略した場合は」ui_demo」となる。</td>
+省略した場合は&#8221;ui_demo&#8221;となる。</td>
 </tr>
 <tr class="row-odd"><td>testProjectPath</td>
 <td>任意</td>
 <td>UI開発基盤テストプロジェクトのパス。 <br />
 プロジェクトルートからの相対パスで指定する。 <br />
-省略した場合は」ui_test」となる。</td>
+省略した場合は&#8221;ui_test&#8221;となる。</td>
 </tr>
 <tr class="row-even"><td>pluginProjectPath</td>
 <td>任意</td>
 <td>プラグインプロジェクトのパス。 <br />
 プロジェクトルートからの相対パスで指定する。 <br />
-省略した場合は」ui_plugins」となる。</td>
+省略した場合は&#8221;ui_plugins&#8221;となる。</td>
 </tr>
 </tbody>
 </table>
@@ -886,7 +883,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 <tr class="row-odd"><td>cssMode</td>
 <td>任意</td>
 <td>ビルド対象のCSSのモードを配列で指定する。 <br />
-省略した場合は[「wide」, 「compact」, 「narrow」]となる。</td>
+省略した場合は[&#8220;wide&#8221;, &#8220;compact&#8221;, &#8220;narrow&#8221;]となる。</td>
 </tr>
 <tr class="row-even"><td>plugins</td>
 <td>任意</td>
@@ -1029,7 +1026,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>ui_plugins/css/${デプロイ先種別} ( <a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a> で任意のフォルダに変更可能)</td>
+<tr class="row-even"><td>ui_plugins/css/${デプロイ先種別} ( <a class="reference internal" href="#install"><span>インストールコマンド</span></a> で任意のフォルダに変更可能)</td>
 <td>${表示モード}.less</td>
 </tr>
 </tbody>
@@ -1040,7 +1037,7 @@ UIローカルデモ用プロジェクト、デプロイ対象プロジェクト
 <div><div class="line-block">
 <div class="line">表示モードごとにインポートするファイルの定義。</div>
 <div class="line">デプロイ先種別ごと、表示モードごとにファイルを作成する。</div>
-<div class="line">（表示モードおよびlessファイルの内容については <a class="reference internal" href="internals/css_framework.html"><span class="doc">CSSフレームワーク</span></a> 参照）</div>
+<div class="line">（表示モードおよびlessファイルの内容については <a class="reference internal" href="internals/css_framework.html"><em>CSSフレームワーク</em></a> 参照）</div>
 </div>
 <p>デプロイ先種別として指定可能な値とデプロイ先を以下に示す。</p>
 <table border="1" class="docutils">
@@ -1064,8 +1061,8 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </tbody>
 </table>
 <div class="line-block">
-<div class="line">lessファイルは <a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> の」cssMode」で指定されたモードと対応するファイルをそれぞれ作成する必要がある。</div>
-<div class="line">例えば」cssMode」で[「wide」, 「compact」, 「narrow」]を指定した場合、以下のファイルを作成する。</div>
+<div class="line">lessファイルは <a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> の&#8221;cssMode&#8221;で指定されたモードと対応するファイルをそれぞれ作成する必要がある。</div>
+<div class="line">例えば&#8221;cssMode&#8221;で[&#8220;wide&#8221;, &#8220;compact&#8221;, &#8220;narrow&#8221;]を指定した場合、以下のファイルを作成する。</div>
 </div>
 <blockquote>
 <div><div class="highlight-bash"><div class="highlight"><pre><span></span>ui_plugins/
@@ -1099,7 +1096,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </dd>
 </dl>
 <div class="line-block">
-<div class="line">なお、lessファイルは <a class="reference internal" href="#ui-genless"><span class="std std-ref">lessインポート定義雛形生成コマンド</span></a> を使用して各プラグインからlessファイルを抽出した雛形を作成することができる。</div>
+<div class="line">なお、lessファイルは <a class="reference internal" href="#ui-genless"><span>lessインポート定義雛形生成コマンド</span></a> を使用して各プラグインからlessファイルを抽出した雛形を作成することができる。</div>
 <div class="line">複数のlessファイル内で同一のセレクタが記述されている場合、後に記述されたセレクタの内容で上書きされる。</div>
 <div class="line">そのためlessファイルをインポートする順序が大きな意味を持ち、作成された雛形を適宜修正する必要がある。</div>
 </div>
@@ -1129,7 +1126,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <tbody valign="top">
 <tr class="row-even"><td>css/built</td>
 <td>${cssMode}-minify.css</td>
-<td><a class="reference internal" href="#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a> で定義されたされたcssファイル。</td>
+<td><a class="reference internal" href="#lessimport-less"><span>lessインポート定義ファイル</span></a> で定義されたされたcssファイル。</td>
 </tr>
 </tbody>
 </table>
@@ -1141,11 +1138,11 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </div></blockquote>
 <p><strong>CSSのモードについて</strong></p>
 <blockquote>
-<div><p>ファイル展開設定ファイルの」cssMode」で指定されたCSS表示モードのみが生成対象となる。
-（表示モードおよびlessファイルの内容については <a class="reference internal" href="internals/css_framework.html"><span class="doc">CSSフレームワーク</span></a> 参照）</p>
+<div><p>ファイル展開設定ファイルの&#8221;cssMode&#8221;で指定されたCSS表示モードのみが生成対象となる。
+（表示モードおよびlessファイルの内容については <a class="reference internal" href="internals/css_framework.html"><em>CSSフレームワーク</em></a> 参照）</p>
 <div class="line-block">
-<div class="line">プラグインに含まれるlessファイルをインポートした <a class="reference internal" href="#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a> を参照し、各cssファイルを作成する。</div>
-<div class="line">例えば」cssMode」で[「wide」, 「compact」, 「narrow」]を指定した場合、以下のファイルが生成される。</div>
+<div class="line">プラグインに含まれるlessファイルをインポートした <a class="reference internal" href="#lessimport-less"><span>lessインポート定義ファイル</span></a> を参照し、各cssファイルを作成する。</div>
+<div class="line">例えば&#8221;cssMode&#8221;で[&#8220;wide&#8221;, &#8220;compact&#8221;, &#8220;narrow&#8221;]を指定した場合、以下のファイルが生成される。</div>
 </div>
 <blockquote>
 <div><div class="highlight-bash"><div class="highlight"><pre><span></span>css/
@@ -1210,7 +1207,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <p><strong>参照設定ファイル</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a></li>
+<li><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a></li>
 </ul>
 </div></blockquote>
 <p><strong>展開仕様</strong></p>
@@ -1239,7 +1236,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </tbody>
 </table>
 <p>ただし、各プラグインに含まれるlessファイルは展開されず、自動生成された*-minify.cssファイルのみ展開される。
-自動生成ファイルについては <a class="reference internal" href="#generate-file"><span class="std std-ref">ファイルの自動生成</span></a> を参照。</p>
+自動生成ファイルについては <a class="reference internal" href="#generate-file"><span>ファイルの自動生成</span></a> を参照。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>プラグイン間で同一の展開先となるファイルを検出した場合、重複ファイルとして下記フォーマットでコマンド終了時に該当ファイルの一覧が表示される。</p>
@@ -1257,7 +1254,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </div>
 </div></blockquote>
 <p class="last">各ファイルの最後に表示されたプラグインに含まれるファイルが適用されている。
-問題がある場合は <a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> を見直し反映順序を制御するか、プラグイン内のファイル構成を見直す必要がある。</p>
+問題がある場合は <a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> を見直し反映順序を制御するか、プラグイン内のファイル構成を見直す必要がある。</p>
 </div>
 </div></blockquote>
 </div>
@@ -1266,14 +1263,14 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <p><strong>参照設定ファイル</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a></li>
+<li><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a></li>
 </ul>
 </div></blockquote>
 <p><strong>展開仕様</strong></p>
 <blockquote>
-<div><a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> に定義されている」libraryDeployMappings」の内容に従い、
+<div><a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> に定義されている&#8221;libraryDeployMappings&#8221;の内容に従い、
 ライブラリ内の必要なファイルのみを配布する。
-「libraryDeployMappings」の内容については <a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> を参照。</div></blockquote>
+&#8220;libraryDeployMappings&#8221;の内容については <a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> を参照。</div></blockquote>
 </div>
 </div>
 <div class="section" id="build-command">
@@ -1292,24 +1289,24 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="#install"><span class="std std-ref">インストールコマンド</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#install"><span>インストールコマンド</span></a></td>
 <td>install.bat</td>
 <td>Nablarch提供プラグインおよび外部ライブラリをプロジェクトフォルダ配下に取り込む。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ui-build"><span class="std std-ref">UIビルドコマンド</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#ui-build"><span>UIビルドコマンド</span></a></td>
 <td>ui_build.bat</td>
 <td>Nablarch提供プラグイン、プロジェクト開発プラグインおよび外部ライブラリをプロジェクトフォルダ内の各フォルダに展開する。<br />
 同時に各環境固有の自動生成ファイルを生成する。</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ui-genless"><span class="std std-ref">lessインポート定義雛形生成コマンド</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#ui-genless"><span>lessインポート定義雛形生成コマンド</span></a></td>
 <td>ui_genless.bat</td>
 <td>各表示モード毎のlessインポート定義ファイルの雛形を作成する。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#localserver"><span class="std std-ref">ローカル動作確認用サーバ起動コマンド</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#localserver"><span>ローカル動作確認用サーバ起動コマンド</span></a></td>
 <td>ローカル画面確認.bat</td>
 <td>ローカル動作確認用のサーバを起動する。</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ui-demo"><span class="std std-ref">サーバ動作確認用サーバ起動コマンド</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#ui-demo"><span>サーバ動作確認用サーバ起動コマンド</span></a></td>
 <td>サーバ動作確認.bat</td>
 <td>サーバ動作確認用のサーバを起動する。</td>
 </tr>
@@ -1367,7 +1364,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <td>任意</td>
 <td>プラグインのインストール先をプロジェクトルートフォルダからの相対パスで指定する。<br />
 複数存在する場合はカンマ区切りで指定する。<br />
-省略した場合」ui_plugins」となる。</td>
+省略した場合&#8221;ui_plugins&#8221;となる。</td>
 </tr>
 </tbody>
 </table>
@@ -1384,7 +1381,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <li><div class="first line-block">
 <div class="line">配布先プロジェクトにキャッシュとして全てのプラグインを登録する。</div>
 <div class="line">また、ローカルのレジストリサーバを起動し、配布先プロジェクトのpackage.jsonに定義されている
-「dependencies」および」devDependencies」の内容に従い、必要なパッケージをインストールする。</div>
+&#8220;dependencies&#8221;および&#8221;devDependencies&#8221;の内容に従い、必要なパッケージをインストールする。</div>
 </div>
 </li>
 </ul>
@@ -1529,7 +1526,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
 <div class="line-block">
 <div class="line">プラグイングループはプラグイン名の最後のハイフンより前でグルーピングされたものである。</div>
 <div class="line">例えば、nablarch-widget-box-base, nablarch-widget-box-content, nablarch-widget-box-imgはnablarch-widget-boxとして同一のグループとみなされる。</div>
-<div class="line">また、nablarch-css-*以外の各プラグインは <a class="reference internal" href="#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a> のpluginsで指定された順序でソートされる。</div>
+<div class="line">また、nablarch-css-*以外の各プラグインは <a class="reference internal" href="#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a> のpluginsで指定された順序でソートされる。</div>
 </div>
 </div></blockquote>
 </div>
@@ -1636,7 +1633,7 @@ UIローカルデモ用フォルダ(ui_demo)</td>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.2. JSP静的解析ツール 設定変更ガイド &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>4.1.2. JSP静的解析ツール 設定変更ガイド &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
   
@@ -35,13 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/toolbox/JspStaticAnalysis/02_JspStaticAnalysisInstall.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
-        <link rel="up" title="1. JSP静的解析ツール" href="index.html"/>
-        <link rel="next" title="2. Nablarch SQL Executor" href="../SqlExecutor/SqlExecutor.html"/>
-        <link rel="prev" title="1.1. JSP静的解析ツール" href="01_JspStaticAnalysis.html"/>
+        <link rel="up" title="4.1. JSP静的解析ツール" href="index.html"/>
+        <link rel="next" title="4.2. Nablarch SQL Executor" href="../SqlExecutor/SqlExecutor.html"/>
+        <link rel="prev" title="4.1.1. JSP静的解析ツール" href="01_JspStaticAnalysis.html"/>
  
 
   
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3. アプリケーション開発時に使える便利なツール</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">4. アプリケーション開発時に使える便利なツール</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -309,11 +306,11 @@
       
           <li><a href="../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../index.html">3. アプリケーション開発時に使える便利なツール</a> &raquo;</li>
+          <li><a href="../index.html">4. アプリケーション開発時に使える便利なツール</a> &raquo;</li>
       
-          <li><a href="index.html">1. JSP静的解析ツール</a> &raquo;</li>
+          <li><a href="index.html">4.1. JSP静的解析ツール</a> &raquo;</li>
       
-    <li>1.2. JSP静的解析ツール 設定変更ガイド</li>
+    <li>4.1.2. JSP静的解析ツール 設定変更ガイド</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -324,7 +321,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="jsp">
-<h1>1.2. JSP静的解析ツール 設定変更ガイド<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>4.1.2. JSP静的解析ツール 設定変更ガイド<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
@@ -333,15 +330,15 @@
 <li><a class="reference internal" href="#pom-xml" id="id10">pom.xmlの書き換え</a></li>
 </ul>
 </div>
-<p><a class="reference internal" href="index.html"><span class="doc">JSP静的解析ツール</span></a>の設定変更方法について説明する。</p>
+<p><a class="reference internal" href="index.html"><em>JSP静的解析ツール</em></a>の設定変更方法について説明する。</p>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id8">1.2.1. 前提条件</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">4.1.2.1. 前提条件</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>アーキタイプからブランクプロジェクトの生成が完了していること。</li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id9">1.2.2. 設定ファイル構成</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">4.1.2.2. 設定ファイル構成</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>設定ファイルの構成は下表の通り。</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
@@ -361,11 +358,11 @@
 <td>Antタスクの定義ファイル <a class="footnote-reference" href="#id5" id="id4">[1]</a> 。通常編集することはない。</td>
 </tr>
 <tr class="row-even"><td>tools/static-analysis/jspanalysis/config.txt</td>
-<td>JSP静的解析ツール設定ファイル。記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#customjspanalysis"><span class="std std-ref">JSP静的解析ツール設定ファイルの記述方法</span></a> を参照。</td>
+<td>JSP静的解析ツール設定ファイル。記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#customjspanalysis"><span>JSP静的解析ツール設定ファイルの記述方法</span></a> を参照。</td>
 </tr>
 <tr class="row-odd"><td>tools/static-analysis/jspanalysis/transform-to-html.xsl</td>
 <td>JSP静的解析結果XMLをHTMLに変換する際の定義ファイル。<br />
-記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#outputjspanalysis"><span class="std std-ref">出力結果確認方法</span></a> の「JSP解析(XMLレポート出力)」を参照。</td>
+記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#outputjspanalysis"><span>出力結果確認方法</span></a> の「JSP解析(XMLレポート出力)」を参照。</td>
 </tr>
 <tr class="row-even"><td>nablarch-archetype-parentのpom.xml</td>
 <td>jspanalysis.excludePatterns以外の設定を行う。</td>
@@ -380,7 +377,7 @@
 </table>
 </div>
 <div class="section" id="pom-xml">
-<span id="customjspanalysisprop"></span><h2><a class="toc-backref" href="#id10">1.2.3. pom.xmlの書き換え</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="customjspanalysisprop"></span><h2><a class="toc-backref" href="#id10">4.1.2.3. pom.xmlの書き換え</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>JSP静的解析ツール用のプロパティを実行環境にあわせて修正する際は、jspanalysis.excludePatternsの修正であればツールを実行するプロジェクトのpom.xmlを修正する。それ以外の項目の修正であればnablarch-archetype-parentのpom.xmlを修正する。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -398,7 +395,7 @@
 <p>CI環境のように一括でチェックを実行する場合には、<br />
 ディレクトリパスを設定する。</p>
 <p>例:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">main</span><span class="o">/</span><span class="n">web</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>./main/web
 </pre></div>
 </div>
 <p class="last">ディレクトリを指定した場合は、再帰的にチェックが実行される。</p>
@@ -407,7 +404,7 @@
 <tr class="row-odd"><td>jspanalysis.xmloutput</td>
 <td><p class="first">チェック結果のXMLレポートファイルの出力パスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">jsp</span><span class="o">/</span><span class="n">report</span><span class="o">.</span><span class="n">xml</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./build/reports/jsp/report.xml
 </pre></div>
 </div>
 </td>
@@ -415,7 +412,7 @@
 <tr class="row-even"><td>jspanalysis.htmloutput</td>
 <td><p class="first">チェック結果のHTMLレポートファイルの出力パスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">jsp</span><span class="o">/</span><span class="n">report</span><span class="o">.</span><span class="n">html</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./build/reports/jsp/report.html
 </pre></div>
 </div>
 </td>
@@ -423,7 +420,7 @@
 <tr class="row-odd"><td>jspanalysis.checkconfig</td>
 <td><p class="first">JSP静的解析ツール設定ファイルのファイルパスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tool</span><span class="o">/</span><span class="n">jspanalysis</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">txt</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./tool/jspanalysis/config.txt
 </pre></div>
 </div>
 </td>
@@ -431,7 +428,7 @@
 <tr class="row-even"><td>jspanalysis.charset</td>
 <td><p class="first">チェック対象JSPファイルの文字コードを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>
 </div>
 </td>
@@ -440,7 +437,7 @@
 <td><p class="first">チェック対象JSPファイルで使用されている改行コードを <br />
 設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span>\<span class="n">n</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>\n
 </pre></div>
 </div>
 </td>
@@ -449,7 +446,7 @@
 <td><p class="first">チェック結果のXMLをHTMLファイルに変換する際のXSLT <br />
 ファイルパスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tool</span><span class="o">/</span><span class="n">jspanalysis</span><span class="o">/</span><span class="n">transform</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">html</span><span class="o">.</span><span class="n">xsl</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./tool/jspanalysis/transform-to-html.xsl
 </pre></div>
 </div>
 </td>
@@ -460,7 +457,7 @@
 この設定値の内容にかかわらず、拡張子が <code class="docutils literal"><span class="pre">jsp</span></code> のファイル <br />
 は必ずチェック対象となる。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">tag</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">tag</span>
 </pre></div>
 </div>
 </td>
@@ -470,7 +467,7 @@
 定する。</p>
 <p>複数のパターンを設定する場合にはカンマ(,)区切りで指定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">ui_local</span><span class="p">,</span><span class="n">ui_test</span><span class="p">,</span><span class="n">ui_test</span><span class="o">/.*/</span><span class="nb">set</span><span class="o">.</span><span class="n">tag</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>ui_local,ui_test,ui_test/.*/set.tag
 </pre></div>
 </div>
 </td>
@@ -527,7 +524,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

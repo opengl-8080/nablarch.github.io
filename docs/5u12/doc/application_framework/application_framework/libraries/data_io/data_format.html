@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_format.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.4. 様々なフォーマットのデータへのアクセス" href="../data_converter.html"/>
         <link rel="next" title="7.4.2.3.1.1. フォーマット定義ファイルの記述ルール" href="data_format/format_definition.html"/>
@@ -375,7 +372,7 @@
 <p class="first admonition-title">重要</p>
 <p>本機能には、以下のデメリットがある。</p>
 <ul>
-<li><p class="first">複雑な <a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">フォーマット定義ファイル</span></a> を作成する必要がある。</p>
+<li><p class="first">複雑な <a class="reference internal" href="#data-format-format-definition-file"><span>フォーマット定義ファイル</span></a> を作成する必要がある。</p>
 </li>
 <li><p class="first">入出力が <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> に限定されており、実装誤りを起こしやすい。</p>
 <ul class="simple">
@@ -398,22 +395,22 @@
 </li>
 <li><p class="first">出力対象のデータによってはJSONの仕様を満たせない場合がある。</p>
 <p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonNumber.html" title="nablarch.core.dataformat.convertor.datatype.JsonNumber">数値型</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonBoolean.html" title="nablarch.core.dataformat.convertor.datatype.JsonBoolean">真偽値型</a> を使用し、出力対象のデータ型がこれらの型に対応していない場合に不正なJSONが出力される。</p>
-<p>例：数値型を指定し、出力対象が「data」などの文字列の場合、{「number」:data}のような不正なJSONが出力される。</p>
+<p>例：数値型を指定し、出力対象が「data」などの文字列の場合、{&#8220;number&#8221;:data}のような不正なJSONが出力される。</p>
 </li>
 <li><p class="first">データ形式によって使用できる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">データタイプ</a> の実装クラスが異なるため拡張しづらい。また、この設定の誤りは実行時まで検知できない。</p>
 </li>
 </ul>
 <p>このため原則本機能はやむを得ない場合を除き非推奨とする。
-なお、 <a class="reference internal" href="../../messaging/index.html#messaging"><span class="std std-ref">メッセージング編</span></a> は、内部で本機能を利用しているため、代替機能を使用することはできない。</p>
+なお、 <a class="reference internal" href="../../messaging/index.html#messaging"><span>メッセージング編</span></a> は、内部で本機能を利用しているため、代替機能を使用することはできない。</p>
 <dl class="last docutils">
 <dt>本機能の代替機能</dt>
 <dd><table class="first last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">固定長:</th><td class="field-body"><a class="reference internal" href="data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> を使用すること。</td>
+<tr class="field-odd field"><th class="field-name">固定長:</th><td class="field-body"><a class="reference internal" href="data_bind.html#data-bind"><span>データバインド</span></a> を使用すること。</td>
 </tr>
-<tr class="field-even field"><th class="field-name">可変長:</th><td class="field-body"><a class="reference internal" href="data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> を使用すること。</td>
+<tr class="field-even field"><th class="field-name">可変長:</th><td class="field-body"><a class="reference internal" href="data_bind.html#data-bind"><span>データバインド</span></a> を使用すること。</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">XML:</th><td class="field-body"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/package-summary.html" title="javax.xml.bind.package-summary">JAXB</a> を推奨する。</td>
 </tr>
@@ -438,14 +435,14 @@
 <span id="id6"></span><h3><a class="toc-backref" href="#id21">7.4.2.1.3. パディングやトリミングなどの変換処理に対応</a><a class="headerlink" href="#data-format-value-convertor" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>固定長ファイルで多く利用されるスペースやゼロ(0)パディング及びトリミングに対応している。
 このため、アプリケーション側でパディング処理やトリミング処理を行わなくて良い。</p>
-<p>パディングやトリミングの詳細は、 <a class="reference internal" href="data_format/format_definition.html#data-format-field-convertor-list"><span class="std std-ref">フィールドコンバータ一覧</span></a> を参照。</p>
+<p>パディングやトリミングの詳細は、 <a class="reference internal" href="data_format/format_definition.html#data-format-field-convertor-list"><span>フィールドコンバータ一覧</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id7">
 <h2><a class="toc-backref" href="#id22">7.4.2.2. モジュール一覧</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパー</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
-<li><a class="reference internal" href="#data-format-file-download"><span class="std std-ref">ファイルダウンロード</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
+<li><a class="reference internal" href="#data-format-upload-helper"><span>アップロードヘルパー</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
+<li><a class="reference internal" href="#data-format-file-download"><span>ファイルダウンロード</span></a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> を追加する。</li>
 </ul>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 汎用データフォーマット --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
@@ -469,7 +466,7 @@
 <span id="id9"></span><h3><a class="toc-backref" href="#id24">7.4.2.3.1. 入出力データのフォーマットを定義する</a><a class="headerlink" href="#data-format-format-definition-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>入出力対象データのフォーマット定義は、フォーマット定義ファイルに行う。</p>
 <p>フォーマット定義ファイルは、以下のようなテキストファイル形式で作成する。
-詳細な仕様は、 <a class="reference internal" href="data_format/format_definition.html"><span class="doc">フォーマット定義ファイルの記述ルール</span></a> を参照。</p>
+詳細な仕様は、 <a class="reference internal" href="data_format/format_definition.html"><em>フォーマット定義ファイルの記述ルール</em></a> を参照。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;Variable&quot;</span> <span class="c1"># 可変長</span>
 text-encoding:    <span class="s2">&quot;MS932&quot;</span>    <span class="c1"># 文字列型フィールドの文字エンコーディング</span>
 record-separator: <span class="s2">&quot;\r\n&quot;</span>     <span class="c1"># 改行コード(crlf)</span>
@@ -509,7 +506,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>ファイルに書き込むデータは <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> として準備する。</li>
-<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> のキー値は、 <a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">入出力データのフォーマットを定義する</span></a> で定義したフィールド名を設定する。(大文字、小文字は区別しない)</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> のキー値は、 <a class="reference internal" href="#data-format-format-definition-file"><span>入出力データのフォーマットを定義する</span></a> で定義したフィールド名を設定する。(大文字、小文字は区別しない)</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>open</cite> メソッドを呼び出して、ファイルリソースを書き込み可能状態にする。</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>write</cite> メソッドを呼び出して、データをファイルに書き込む。</li>
 </ul>
@@ -530,16 +527,16 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用するためには、
-<a class="reference internal" href="#data-format-format-definition-file"><span class="std std-ref">フォーマット定義ファイル</span></a> の配置ディレクトリや出力先ディレクトリを
-<a class="reference internal" href="../file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する必要がある。</p>
+<a class="reference internal" href="#data-format-format-definition-file"><span>フォーマット定義ファイル</span></a> の配置ディレクトリや出力先ディレクトリを
+<a class="reference internal" href="../file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> に設定する必要がある。</p>
 <p class="last">必要となるディレクトリの設定値については、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を参照。</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> で開いたファイルリソースは、
-<a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a> にて自動的に開放される。
+<a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a> にて自動的に開放される。
 このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用する場合には、
-必ず <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span class="std std-ref">出力ファイル開放ハンドラ</span></a> をハンドラキュー上に設定すること。</p>
+必ず <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a> をハンドラキュー上に設定すること。</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -589,18 +586,18 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">フォーマット定義ファイルの格納パスは、 <a class="reference internal" href="../file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する必要がある。</p>
+<p class="last">フォーマット定義ファイルの格納パスは、 <a class="reference internal" href="../file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> に設定する必要がある。</p>
 </div>
 </div>
 <div class="section" id="data-format-load-upload-file">
 <span id="id12"></span><h3><a class="toc-backref" href="#id27">7.4.2.3.4. アップロードしたファイルを読み込む</a><a class="headerlink" href="#data-format-load-upload-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>アップロードしたファイルを読み込む方法について解説する。</p>
 <p>この機能では、以下の2種類の方法でアップロードしたファイルを読み込むことが出来る。
-<a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパーを使った読み込み</span></a> に記載のある通り、
-<a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使った読み込み</span></a> の使用を推奨する。</p>
+<a class="reference internal" href="#data-format-upload-helper"><span>アップロードヘルパーを使った読み込み</span></a> に記載のある通り、
+<a class="reference internal" href="#data-format-native-upload-file-load"><span>汎用データフォーマット(本機能)のみを使った読み込み</span></a> の使用を推奨する。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使った読み込み</span></a></li>
-<li><a class="reference internal" href="#data-format-upload-helper"><span class="std std-ref">アップロードヘルパーを使った読み込み</span></a></li>
+<li><a class="reference internal" href="#data-format-native-upload-file-load"><span>汎用データフォーマット(本機能)のみを使った読み込み</span></a></li>
+<li><a class="reference internal" href="#data-format-upload-helper"><span>アップロードヘルパーを使った読み込み</span></a></li>
 </ul>
 <dl class="docutils" id="data-format-native-upload-file-load">
 <dt>汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</dt>
@@ -660,10 +657,10 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <dt>アップロードヘルパーを使用したアップロードファイルの読み込み</dt>
 <dd><p class="first">アップロードヘルパー( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> )を使用すると、
 ファイルの読み込み、バリデーション、データベースへの保存を簡易的に実行出来る。</p>
-<p>しかし、この機能では以下の制限(デメリット)があるため、 <a class="reference internal" href="#data-format-native-upload-file-load"><span class="std std-ref">汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</span></a>
+<p>しかし、この機能では以下の制限(デメリット)があるため、 <a class="reference internal" href="#data-format-native-upload-file-load"><span>汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</span></a>
 を使用することを推奨する。</p>
 <ul class="simple">
-<li>入力値のチェックは <a class="reference internal" href="../validation/nablarch_validation.html#nablarch-validation"><span class="std std-ref">Nablarch Validation</span></a> に限定される。(推奨される <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> が使用できない。)</li>
+<li>入力値のチェックは <a class="reference internal" href="../validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a> に限定される。(推奨される <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> が使用できない。)</li>
 <li>拡張可能ではあるが、難易度が高く容易に要件を満たす実装ができない。</li>
 </ul>
 <p>以下にシングルレイアウトのアップロードファイルに対して、入力チェックを行いデータベースに登録する例を示す。</p>
@@ -713,7 +710,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <dl class="docutils">
 <dt>フォーマット定義ファイル</dt>
 <dd><p class="first">JSONの場合には、 <cite>file-type</cite> を <code class="docutils literal"><span class="pre">JSON</span></code> に読み替えること。
-階層構造を表すフォーマット定義ファイルの定義方法は、 <a class="reference internal" href="data_format/format_definition.html#data-format-nest-object"><span class="std std-ref">階層構造の定義</span></a> を参照。</p>
+階層構造を表すフォーマット定義ファイルの定義方法は、 <a class="reference internal" href="data_format/format_definition.html#data-format-nest-object"><span>階層構造の定義</span></a> を参照。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
 text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 
@@ -737,7 +734,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>階層構造の場合、「親要素名 + 「.」 + 子要素名」形式でMapに値を設定する。</li>
+<li>階層構造の場合、「親要素名 + &#8221;.&#8221; + 子要素名」形式でMapに値を設定する。</li>
 <li>階層構造が深い場合は、更に <code class="docutils literal"><span class="pre">.</span></code> で要素名が連結される。</li>
 <li>最上位の要素名は、キーに含める必要はない</li>
 <li>配列要素の場合添字(0から開始)を設定する。</li>
@@ -808,9 +805,9 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>名前空間は、名前空間を使用する要素に「」?&#64;xmlns:」 + 名前空間」として定義する。
+<li>名前空間は、名前空間を使用する要素に「&#8221;?&#64;xmlns:&#8221; + 名前空間」として定義する。
 タイプは、 <code class="docutils literal"><span class="pre">X</span></code> とし、フィールドコンバータ部にURIを指定する。</li>
-<li>名前空間は、「名前空間 + 「:」 + 要素名」形式で表す。</li>
+<li>名前空間は、「名前空間 + &#8221;:&#8221; + 要素名」形式で表す。</li>
 <li>入出力対象データのMapのキー値は、「名前空間＋要素名(先頭大文字)」となる。</li>
 </ul>
 </dd>
@@ -852,7 +849,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>コンテンツを表すフィールド名には <code class="docutils literal"><span class="pre">body</span></code> を指定する。
-コンテンツを表すフィールド名をデフォルトから変更したい場合は、 <a class="reference internal" href="#data-format-xml-content-name-change"><span class="std std-ref">XMLで属性を持つ要素のコンテンツ名を変更する</span></a> を参照。</li>
+コンテンツを表すフィールド名をデフォルトから変更したい場合は、 <a class="reference internal" href="#data-format-xml-content-name-change"><span>XMLで属性を持つ要素のコンテンツ名を変更する</span></a> を参照。</li>
 </ul>
 </dd>
 <dt>フォーマット定義ファイル</dt>
@@ -940,7 +937,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 </div>
 </dd>
 <dt>フォーマット定義ファイルにどの置き換えルールを使用するかを定義する</dt>
-<dd><p class="first">入出力時に文字の置き換えを行う場合は、 <a class="reference internal" href="data_format/format_definition.html#data-format-replacement-convertor"><span class="std std-ref">replacement</span></a> を使用する。</p>
+<dd><p class="first">入出力時に文字の置き換えを行う場合は、 <a class="reference internal" href="data_format/format_definition.html#data-format-replacement-convertor"><span>replacement</span></a> を使用する。</p>
 <p><cite>replacement</cite> の引数には、上記で設定した置き換えルールの <cite>typeName</cite> を設定する。</p>
 <div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Aシステムとの置き換えルールを適用</span>
 <span class="m">1</span> name N<span class="o">(</span><span class="m">100</span><span class="o">)</span> replacement<span class="o">(</span><span class="s2">&quot;a_system&quot;</span><span class="o">)</span>
@@ -957,7 +954,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <h2><a class="toc-backref" href="#id32">7.4.2.4. 拡張例</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="data-format-field-type-add">
 <span id="id16"></span><h3><a class="toc-backref" href="#id33">7.4.2.4.1. フィールドタイプを追加する</a><a class="headerlink" href="#data-format-field-type-add" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="data_format/format_definition.html#data-format-field-type-list"><span class="std std-ref">Nablarchが提供する標準データタイプ</span></a> では要件を満たせない場合がある。
+<p><a class="reference internal" href="data_format/format_definition.html#data-format-field-type-list"><span>Nablarchが提供する標準データタイプ</span></a> では要件を満たせない場合がある。
 例えば、文字列タイプのパディング文字がバイナリの場合などが該当する。</p>
 <p>このような場合は、プロジェクト固有のフィールドタイプを定義することで対応する。</p>
 <p>以下に手順を示す。</p>
@@ -1147,7 +1144,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

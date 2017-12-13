@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/transaction.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.9. 静的データのキャッシュ" href="static_data_cache.html"/>
@@ -352,11 +349,11 @@
 <p>データベースやメッセージキューといったトランザクション制御が必要となるリソースに対するトランザクション管理が出来る。</p>
 <p>データベースに対するトランザクション制御の詳細は以下を参照。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#transaction-database"><span class="std std-ref">データベースに対するトランザクション制御を行う</span></a></li>
-<li><a class="reference internal" href="#transaction-timeout"><span class="std std-ref">データベースに対するトランザクションタイムアウトを適用する</span></a></li>
+<li><a class="reference internal" href="#transaction-database"><span>データベースに対するトランザクション制御を行う</span></a></li>
+<li><a class="reference internal" href="#transaction-timeout"><span>データベースに対するトランザクションタイムアウトを適用する</span></a></li>
 </ul>
 <p>新たなリソースに対して、トランザクション制御を行う要件が出た場合には、本機能で定められたインタフェースを実装することで容易に実現できる。
-詳細は、 <a class="reference internal" href="#transaction-addresource"><span class="std std-ref">トランザクション対象のリソースを追加する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="#transaction-addresource"><span>トランザクション対象のリソースを追加する</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -379,8 +376,8 @@
 <span id="id7"></span><h3><a class="toc-backref" href="#id15">7.8.3.1. データベースに対するトランザクション制御を行う</a><a class="headerlink" href="#transaction-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント定義ファイルにJDBCを使用したトランザクション制御を追加することで、データベースに対するトランザクション制御が実現出来る。
 なお、データベースに対する接続設定が行われていることが前提となる。</p>
-<p>データベース接続方法の詳細は、 <a class="reference internal" href="database/database.html#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> を参照。</p>
-<p>なお、1SQL単位などの粒度の小さいトランザクションを使用する場合は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span class="std std-ref">現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照に設定及び実装を行うこと。</p>
+<p>データベース接続方法の詳細は、 <a class="reference internal" href="database/database.html#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照。</p>
+<p>なお、1SQL単位などの粒度の小さいトランザクションを使用する場合は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span>現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照に設定及び実装を行うこと。</p>
 <dl class="docutils">
 <dt>コンポーネント定義例</dt>
 <dd><p class="first">JDBC用のトランザクションクラスを生成するファクトリクラス( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/JdbcTransactionFactory.html" title="nablarch.core.db.transaction.JdbcTransactionFactory">JdbcTransactionFactory</a> )をコンポーネント設定ファイルに定義する。</p>
@@ -401,7 +398,7 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">上記に設定したクラスを直接使用することは基本的にない。
-トランザクション制御を必要とする場合には、 <a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使用すること。</p>
+トランザクション制御を必要とする場合には、 <a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使用すること。</p>
 </div>
 </div>
 <div class="section" id="transaction-timeout">
@@ -436,7 +433,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </dd>
 <dt>クエリータイムアウト例外発生時</dt>
 <dd><p class="first">クエリータイムアウトを示す例外が発生した場合で、トランザクションタイムアウト秒数を超過していた場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionTimeoutException.html" title="nablarch.core.transaction.TransactionTimeoutException">TransactionTimeoutException</a> を送出する。
-クエリータイムアウト例外か否かは、データベース機能の <a class="reference internal" href="database/database.html#database-dialect"><span class="std std-ref">ダイアレクト</span></a> を用いて判定する。</p>
+クエリータイムアウト例外か否かは、データベース機能の <a class="reference internal" href="database/database.html#database-dialect"><span>ダイアレクト</span></a> を用いて判定する。</p>
 <p>処理時間の長いSQL文(単純に重いSQLやロック開放待ちのSQL)が実行された場合、制御がデータベースから戻ってこない可能性がある。
 このため、トランザクションタイムアウトの残り秒数を <cite>java.sql.Statement#setQueryTimeout</cite> に設定し、
 トランザクションタイムアウト秒数超過時には強制的に実行をキャンセルしている。</p>
@@ -488,7 +485,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 <ol class="arabic simple">
 <li>トランザクション実装の追加</li>
 <li>トランザクションを生成するためのファクトリ実装の追加</li>
-<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</li>
+<li><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</li>
 </ol>
 <p>以下に詳細な手順を示す。</p>
 <dl class="docutils">
@@ -541,7 +538,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </pre></div>
 </div>
 </dd>
-<dt><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span class="std std-ref">トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</dt>
+<dt><a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使ってトランザクション制御を実現</dt>
 <dd><p class="first">Nablarchの標準ハンドラに含まれるトランザクション制御ハンドラを使うことでトランザクション制御が実現出来る。</p>
 <p>以下の例のように、追加したファクトリクラスを、トランザクション制御ハンドラに設定する。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span> <span class="c">&lt;!-- トランザクション制御ハンドラ --&gt;</span>
@@ -598,7 +595,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

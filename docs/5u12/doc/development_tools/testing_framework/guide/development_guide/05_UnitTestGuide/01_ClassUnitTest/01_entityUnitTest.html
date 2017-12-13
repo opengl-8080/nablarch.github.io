@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/01_ClassUnitTest/01_entityUnitTest.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1.1. クラス単体テストの実施方法" href="index.html"/>
         <link rel="next" title="3.1.1.2. Action/Componentのクラス単体テスト" href="02_componentUnitTest.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -343,8 +340,8 @@
 </ul>
 <div class="section" id="id2">
 <h3>3.1.1.1.1.1. テストデータの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>テストデータを記載したExcelファイルそのものの作成方法を説明する。テストデータを記載したExcelファイルは、テストソースコードと同じディレクトリに同じ名前で格納する(拡張子のみ異なる)。なお、後述する<a class="reference internal" href="#entityunittest-validationcase"><span class="std std-ref">精査のテストケース</span></a>、<a class="reference internal" href="#entityunittest-constructorcase"><span class="std std-ref">コンストラクタのテストケース</span></a>、<a class="reference internal" href="#entityunittest-settergettercase"><span class="std std-ref">setter、getterに対するテストケース</span></a>のそれぞれが、1シートずつ使用する前提である。</p>
-<p>テストデータの記述方法詳細については、<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><span class="doc">自動テストフレームワーク</span></a>、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><span class="doc">データベースを使用するクラスのテスト</span></a>を参照。</p>
+<p>テストデータを記載したExcelファイルそのものの作成方法を説明する。テストデータを記載したExcelファイルは、テストソースコードと同じディレクトリに同じ名前で格納する(拡張子のみ異なる)。なお、後述する<a class="reference internal" href="#entityunittest-validationcase"><span>精査のテストケース</span></a>、<a class="reference internal" href="#entityunittest-constructorcase"><span>コンストラクタのテストケース</span></a>、<a class="reference internal" href="#entityunittest-settergettercase"><span>setter、getterに対するテストケース</span></a>のそれぞれが、1シートずつ使用する前提である。</p>
+<p>テストデータの記述方法詳細については、<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><em>自動テストフレームワーク</em></a>、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>データベースを使用するクラスのテスト</em></a>を参照。</p>
 <p>なお、メッセージデータやコードマスタなどの、データベースに格納する静的マスタデータは、プロジェクトで管理されたデータがあらかじめ投入されている(これらのデータを個別のテストデータとして作成しない)前提である。</p>
 </div>
 <div class="section" id="id3">
@@ -428,7 +425,7 @@
 <div><table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td>同様に、半角英字、全角ひらがな、漢字…等が入力され精査が失敗するケースが必要である。</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td>同様に、半角英字、全角ひらがな、漢字...等が入力され精査が失敗するケースが必要である。</td></tr>
 </tbody>
 </table>
 </div></blockquote>
@@ -701,7 +698,7 @@
 <table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[3]</a></td><td><a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a>の記法を使用することで、効率的に入力値を作成できる。</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id12">[3]</a></td><td><a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a>の記法を使用することで、効率的に入力値を作成できる。</td></tr>
 </tbody>
 </table>
 <p>具体例を以下に示す。</p>
@@ -755,7 +752,7 @@
 <div class="section" id="id19">
 <h4>3.1.1.1.1.5.1. テストケース表の作成<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <ul class="simple">
-<li>IDは」testShots」固定とする。</li>
+<li>IDは&#8221;testShots&#8221;固定とする。</li>
 <li>以下のカラムを用意する。</li>
 </ul>
 <blockquote>
@@ -788,7 +785,7 @@
 </div></blockquote>
 <ul class="simple">
 <li>入力パラメータ表の作成<ul>
-<li>IDは」params」固定とする。</li>
+<li>IDは&#8221;params&#8221;固定とする。</li>
 <li>上記のテストケース表に対応する、入力パラメータ<a class="footnote-reference" href="#id21" id="id20">[5]</a> を1行ずつ記載する。</li>
 </ul>
 </li>
@@ -798,31 +795,31 @@
 <div><table class="docutils footnote" frame="void" id="id21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id20">[5]</a></td><td><a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a>の記法を使用することで、効率的に入力値を作成できる。</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id20">[5]</a></td><td><a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a>の記法を使用することで、効率的に入力値を作成できる。</td></tr>
 </tbody>
 </table>
 </div></blockquote>
 <p></p>
 <blockquote>
 <div><p>具体例を以下に示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_validationTestData.png"><img alt="../../../../../../_images/entityUnitTest_validationTestData.png" src="../../../../../../_images/entityUnitTest_validationTestData.png" style="width: 751.8px; height: 276.5px;" /></a>
-<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span class="std std-ref">プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_validationTestData.png"><img alt="../../../../../../_images/entityUnitTest_validationTestData.png" src="../../../../../../_images/entityUnitTest_validationTestData.png" /></a>
+<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span>プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
 </div></blockquote>
 </div>
 <div class="section" id="id22">
 <h4>3.1.1.1.1.5.2. テストケース、テストデータの作成<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="section" id="entityunittest-validationmethodspecifynormal">
 <span id="id23"></span><h5>3.1.1.1.1.5.2.1. 精査対象確認<a class="headerlink" href="#entityunittest-validationmethodspecifynormal" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>精査対象のプロパティを指定(<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/validation/nablarch_validation.html#nablarch-validation"><span class="std std-ref">Nablarch Validation</span></a>参照)した場合、その指定が正しいかどうか確認するケースを作成する。</p>
+<p>精査対象のプロパティを指定(<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a>参照)した場合、その指定が正しいかどうか確認するケースを作成する。</p>
 <p>全てのプロパティに対して、おのおの単項目精査でエラーとなるデータを用意する。精査対象プロパティの指定が正しければ、精査対象のプロパティだけが単項目精査になるはずである。よって、期待値として、全精査対象プロパティ名と、各プロパティ単項目精査エラー時のメッセージIDを記載する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">精査対象プロパティが誤って精査対象から漏れていた場合、期待したメッセージが出力されない為、メッセージIDのアサートが失敗する。また、精査対象でないプロパティが誤って精査対象となっていた場合は、入力値が不正により単項目精査が失敗し、予期しないメッセージが出力される。これにより、精査対象の誤りを検知することができる。</p>
 </div>
 <p>テストケース表には、全精査対象プロパティのプロパティ名と、そのプロパティ単項目精査エラーメッセージIDを記載する。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" src="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" style="width: 773.5px; height: 105.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" src="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" /></a>
 <p>入力パラメータ表には、全てのプロパティに対してそれぞれ単項目精査エラーとなる値を記載する。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropParams.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropParams.png" src="../../../../../../_images/entityUnitTest_ValidationPropParams.png" style="width: 781.32px; height: 70.72px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropParams.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropParams.png" src="../../../../../../_images/entityUnitTest_ValidationPropParams.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>Form単体テストのテストケースやテストデータを作成する際、<strong>プロパティに保持している別のFormのプロパティ</strong> を指定したいことがある。この場合、次のように指定できる。</p>
@@ -858,9 +855,9 @@
 </div>
 <div class="section" id="id24">
 <h5>3.1.1.1.1.5.2.2. 項目間精査など<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>項目間精査など、バリデーションメソッドの<a class="reference internal" href="#entityunittest-validationmethodspecifynormal"><span class="std std-ref">精査対象確認</span></a>で行った精査対象指定以外の動作確認を行うケースを作成する。</p>
-<p>下図では、」newPasswordとconfirmPasswordが等しいこと」というバリデーションメソッドに対する正常系のケースを作成している。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_RelationalValidation.png"><img alt="../../../../../../_images/entityUnitTest_RelationalValidation.png" src="../../../../../../_images/entityUnitTest_RelationalValidation.png" style="width: 791.0px; height: 96.0px;" /></a>
+<p>項目間精査など、バリデーションメソッドの<a class="reference internal" href="#entityunittest-validationmethodspecifynormal"><span>精査対象確認</span></a>で行った精査対象指定以外の動作確認を行うケースを作成する。</p>
+<p>下図では、&#8221;newPasswordとconfirmPasswordが等しいこと&#8221;というバリデーションメソッドに対する正常系のケースを作成している。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_RelationalValidation.png"><img alt="../../../../../../_images/entityUnitTest_RelationalValidation.png" src="../../../../../../_images/entityUnitTest_RelationalValidation.png" /></a>
 </div>
 </div>
 <div class="section" id="id25">
@@ -894,7 +891,7 @@
 <p>下図では、以下のように各プロパティに値を指定している。
 テストでは、コンストラクタにこれらの値の組み合わせを与えたとき、各プロパティに指定した値が設定されているか(getterを呼び出して、想定通りの値が取得できるか)確認している。</p>
 <p>実際のテストコードでは、コンストラクタへの値の設定及び値の確認は、自動テストフレームワークで提供されるメソッド内で行われる。
-詳細は、 <a class="reference internal" href="#test-constructor-java-label"><span class="std std-ref">テストコード</span></a> を参照すること。</p>
+詳細は、 <a class="reference internal" href="#test-constructor-java-label"><span>テストコード</span></a> を参照すること。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>Entityは自動生成されるため、アプリケーションで使用されないコンストラクタが生成される可能性がある。その場合リクエスト単体テストではテストできないため、Entity単体テストでコンストラクタに対するテストを必ず行うこと。</p>
@@ -902,8 +899,8 @@
 </div>
 <div class="section" id="excel">
 <h4>3.1.1.1.1.6.1. Excelへの定義<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_Constructor.png"><img alt="../../../../../../_images/entityUnitTest_Constructor.png" src="../../../../../../_images/entityUnitTest_Constructor.png" style="width: 663.2px; height: 285.6px;" /></a>
-<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span class="std std-ref">プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_Constructor.png"><img alt="../../../../../../_images/entityUnitTest_Constructor.png" src="../../../../../../_images/entityUnitTest_Constructor.png" /></a>
+<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span>プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
 <p>上記設定値のテスト内容(抜粋)</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -962,7 +959,7 @@
 <blockquote class="last">
 <div><ul>
 <li><p class="first">Excelへのデータ記述例</p>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ConstructorOther.png"><img alt="../../../../../../_images/entityUnitTest_ConstructorOther.png" src="../../../../../../_images/entityUnitTest_ConstructorOther.png" style="width: 616.8000000000001px; height: 211.20000000000002px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ConstructorOther.png"><img alt="../../../../../../_images/entityUnitTest_ConstructorOther.png" src="../../../../../../_images/entityUnitTest_ConstructorOther.png" /></a>
 </li>
 <li><p class="first">テストコード例</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/** コンストラクタのテスト */</span>
@@ -1016,8 +1013,8 @@
 </div>
 <div class="section" id="id27">
 <h4>3.1.1.1.1.7.1. Excelへの定義<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter.png" style="width: 746.1px; height: 389.7px;" /></a>
-<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span class="std std-ref">プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter.png" /></a>
+<p>※Entityの保有するプロパティ名のExcelへの記述手順は、 <a class="reference internal" href="#property-name-copy-label"><span>プロパティ名の一覧を簡易的に取得する手順</span></a> を参照。</p>
 <p>このデータを使用するテストメソッドを以下に示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 【説明】～前略～</span>
 
@@ -1040,19 +1037,19 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">testGetterAndSetterでテスト可能なプロパティの型(クラス)には制限がある。
-制限内容の詳細は、 <a class="reference internal" href="#entityunittest-constructorcase"><span class="std std-ref">コンストラクタに対するテストケース</span></a> を参照すること。</p>
+制限内容の詳細は、 <a class="reference internal" href="#entityunittest-constructorcase"><span>コンストラクタに対するテストケース</span></a> を参照すること。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>setterやgetterにロジックを記述した場合(例えば、setterは郵便番号上3桁と下4桁に別れているが、getterはまとめて7桁取得する場合など)は、
 そのロジックを確認するテストケースを作成すること。</p>
 <p>上記のテストをExcelに定義する場合には、下記画像のように定義する。:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>郵便番号に下記を設定した場合に、正しく7桁の郵便番号(0010001)が取得することを確認する例
+<div class="highlight-python"><div class="highlight"><pre><span></span>郵便番号に下記を設定した場合に、正しく7桁の郵便番号(0010001)が取得することを確認する例
   郵便番号上3桁:001
   郵便番号下4桁:0001
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" style="width: 787.2px; height: 394.40000000000003px;" /></a>
+<a class="last reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" /></a>
 </div>
 </div>
 </div>
@@ -1060,7 +1057,7 @@
 <span id="id28"></span><h3>3.1.1.1.1.8. プロパティ名の一覧を簡易的に取得する手順<a class="headerlink" href="#property-name-copy-label" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>①Eclipseでテスト対象のEntityクラスをオープンし、Outline(アウトライン)を表示する。</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_PropertyWrite1.png"><img alt="../../../../../../_images/entityUnitTest_PropertyWrite1.png" src="../../../../../../_images/entityUnitTest_PropertyWrite1.png" style="width: 752.25px; height: 192.1px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_PropertyWrite1.png"><img alt="../../../../../../_images/entityUnitTest_PropertyWrite1.png" src="../../../../../../_images/entityUnitTest_PropertyWrite1.png" /></a>
 </div></blockquote>
 <p>②コピーしたいプロパティを選択する。</p>
 <blockquote>
@@ -1075,7 +1072,7 @@
 <div><p>貼りつけた値には、下記画像のように「クラス名 + プロパティ名」の完全修飾名の形式になっている。
 このため、Excelの置き換え機能を使用して不要なクラス名を削除する。</p>
 <p>Entityクラスが、「nablarch.sample.management.user.SystemAccountEntity」の場合の置き換え例:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>検索する文字列：nablarch.sample.management.user.SystemAccountEntity.
+<div class="highlight-python"><div class="highlight"><pre><span></span>検索する文字列：nablarch.sample.management.user.SystemAccountEntity.
 置き換え後の文字列：(空のまま)
 </pre></div>
 </div>
@@ -1085,7 +1082,7 @@
 </div>
 <div class="section" id="id29">
 <h3>3.1.1.1.1.9. 自動テストフレームワーク設定値<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#entityunittest-validationcase"><span class="std std-ref">文字種と文字列長の単項目精査テストケース</span></a>を実施する際に必要な初期値設定について説明する。</p>
+<p><a class="reference internal" href="#entityunittest-validationcase"><span>文字種と文字列長の単項目精査テストケース</span></a>を実施する際に必要な初期値設定について説明する。</p>
 <div class="section" id="id30">
 <h4>3.1.1.1.1.9.1. 設定項目一覧<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><code class="docutils literal"><span class="pre">nablarch.test.core.entity.EntityTestConfiguration</span></code>クラスを使用し、以下の値をコンポーネント設定ファイルで設定する（全項目必須）。</p>
@@ -1207,7 +1204,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

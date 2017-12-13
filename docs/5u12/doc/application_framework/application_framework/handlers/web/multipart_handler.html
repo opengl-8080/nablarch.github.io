@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/multipart_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.10. セッション変数保存ハンドラ" href="SessionStoreHandler.html"/>
@@ -383,7 +380,7 @@
 </div>
 <div class="section" id="id7">
 <h2><a class="toc-backref" href="#id17">6.2.9.5. アップロードファイルの一時保存先を指定する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>アップロードファイルの一時保存先ディレクトリは、 <a class="reference internal" href="../../libraries/file_path_management.html#file-path-management"><span class="std std-ref">ファイルパス管理</span></a> に設定する。</p>
+<p>アップロードファイルの一時保存先ディレクトリは、 <a class="reference internal" href="../../libraries/file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> に設定する。</p>
 <p>ファイルパス管理に一時保存先ディレクトリの指定がない場合は、デフォルトの保存先としてシステムプロパティの <cite>java.io.tmpdir</cite> の値を使用する。</p>
 <p>以下に一時ファイルの保存先ディレクトリの設定例を示す。</p>
 <dl class="docutils">
@@ -408,7 +405,7 @@
 <p class="first admonition-title">ちなみに</p>
 <p>上記の例では、保存先ディレクトリを直接指定しているが、この値は環境ごとに異なることが想定される。
 このため、直接コンポーネント設定ファイルに設定するのではなく、環境設定ファイルに設定することを推奨する。</p>
-<p class="last">詳細は、<a class="reference internal" href="../../libraries/repository.html#repository-environment-configuration"><span class="std std-ref">依存値を設定する</span></a> を参照。</p>
+<p class="last">詳細は、<a class="reference internal" href="../../libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="multipart-handler-file-limit">
@@ -447,14 +444,14 @@
 </div>
 <div class="section" id="id10">
 <h2><a class="toc-backref" href="#id20">6.2.9.8. マルチパート解析エラー及びファイルサイズ上限超過時の遷移先画面を設定する</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>このハンドラでは、マルチパート解析エラー <a class="footnote-reference" href="#part-error" id="id11">[1]</a> や <a class="reference internal" href="#multipart-handler-file-limit"><span class="std std-ref">ファイルサイズの上限超過時</span></a> に、
+<p>このハンドラでは、マルチパート解析エラー <a class="footnote-reference" href="#part-error" id="id11">[1]</a> や <a class="reference internal" href="#multipart-handler-file-limit"><span>ファイルサイズの上限超過時</span></a> に、
 不正なリクエストとしてクライアントに <cite>400(BadRequest)</cite> を返却する。</p>
 <p>このため、 <cite>400(BadRequest)</cite> に対応したエラーページの設定を <cite>web.xml</cite> に行う必要がある。
 <cite>web.xml</cite> へのエラーページ設定を省略した場合は、ウェブアプリケーションサーバが持つデフォルトのページなどがクライアントに返却される。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">このハンドラは、<a class="reference internal" href="#multipart-handler-constraint"><span class="std std-ref">制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
-このため、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> の後続に設定される <a class="reference internal" href="HttpErrorHandler.html#http-error-handler"><span class="std std-ref">HTTPエラー制御ハンドラ</span></a> の <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span class="std std-ref">デフォルトページの設定</span></a> は使用することができない。</p>
+<p class="last">このハンドラは、<a class="reference internal" href="#multipart-handler-constraint"><span>制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
+このため、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の後続に設定される <a class="reference internal" href="HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a> の <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span>デフォルトページの設定</span></a> は使用することができない。</p>
 </div>
 <table class="docutils footnote" frame="void" id="part-error" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -496,11 +493,11 @@
 </pre></div>
 </div>
 <p>アップロードファイルを処理する詳細な実装方法は、以下のドキュメントを参照。
-なお、 <a class="reference internal" href="../../libraries/data_converter.html#data-converter"><span class="std std-ref">様々なフォーマットのデータへのアクセス</span></a> に記載がある通り、 <a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> が推奨となる。
-(<a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span class="std std-ref">データバインド</span></a> で扱うことのできない形式の場合は、 <a class="reference internal" href="../../libraries/data_io/data_format.html#data-format"><span class="std std-ref">汎用データフォーマット</span></a> を使用すること。)</p>
+なお、 <a class="reference internal" href="../../libraries/data_converter.html#data-converter"><span>様々なフォーマットのデータへのアクセス</span></a> に記載がある通り、 <a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> が推奨となる。
+(<a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> で扱うことのできない形式の場合は、 <a class="reference internal" href="../../libraries/data_io/data_format.html#data-format"><span>汎用データフォーマット</span></a> を使用すること。)</p>
 <ul class="simple">
-<li><a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind-upload-file"><span class="std std-ref">データバインドを使ってアップロードファイルを処理する</span></a></li>
-<li><a class="reference internal" href="../../libraries/data_io/data_format.html#data-format-load-upload-file"><span class="std std-ref">汎用データフォーマットを使ってアップロードファイルを処理する</span></a></li>
+<li><a class="reference internal" href="../../libraries/data_io/data_bind.html#data-bind-upload-file"><span>データバインドを使ってアップロードファイルを処理する</span></a></li>
+<li><a class="reference internal" href="../../libraries/data_io/data_format.html#data-format-load-upload-file"><span>汎用データフォーマットを使ってアップロードファイルを処理する</span></a></li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -555,7 +552,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

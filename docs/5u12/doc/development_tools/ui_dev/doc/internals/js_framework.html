@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/js_framework.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.17. 業務画面テンプレート" href="jsp_page_templates.html"/>
@@ -327,7 +324,7 @@
 <h1>2.1.16. JavaScript UI部品<a class="headerlink" href="#javascript-ui" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1.16.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は、カレンダー表示やページ内タブページのように、
+<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> は、カレンダー表示やページ内タブページのように、
 通常のHTMLの範疇では実現できないUI機能を実装するJavaScript部品群である。
 これらの部品群は、以下の指針に基づき、独自実装されている。</p>
 <ul class="simple">
@@ -336,7 +333,7 @@
 <li>可能な限りJavaScriptを直接記述しなくてもカスタマイズできるようにする。</li>
 <li>UI標準に準じた挙動、統一的なデザインが実現されること。</li>
 </ul>
-<p>利用可能な各部品の仕様については <a class="reference internal" href="../reference_js_framework.html"><span class="doc">JavaScript UI部品一覧</span></a> を参照すること。</p>
+<p>利用可能な各部品の仕様については <a class="reference internal" href="../reference_js_framework.html"><em>JavaScript UI部品一覧</em></a> を参照すること。</p>
 <div class="section" id="id2">
 <h3>2.1.16.1.1. 使用例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下のソースコードは、画面内の入力要素に対してカレンダー入力部品を使用している例である。</p>
@@ -353,11 +350,11 @@
 </pre></div>
 </div>
 <p><cite>&lt;button&gt;</cite> 要素に指定された <strong>class</strong> 属性の内容に注目してほしい。
-ここでは、 <cite>&lt;button&gt;</cite> 要素に適用する <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> を指定する <strong>マーカCSS</strong> と呼ばれる識別子(<strong>nablarch_DatePicker</strong>)
+ここでは、 <cite>&lt;button&gt;</cite> 要素に適用する <a class="reference internal" href=""><em>JavaScript UI部品</em></a> を指定する <strong>マーカCSS</strong> と呼ばれる識別子(<strong>nablarch_DatePicker</strong>)
 の後に当該の部品の挙動を定義する各種オプション(<strong>-format yyyy/MM/dd -locale ja -input effectiveDate</strong>)
 が続いている。
-このように <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> の利用するには上記のようなCSSの指定のみを行えばよく、JavaScriptを直接記述する必要はない。</p>
-<p><strong>注)</strong>  <a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は基本的には <a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> 内で使用することを想定しており、
+このように <a class="reference internal" href=""><em>JavaScript UI部品</em></a> の利用するには上記のようなCSSの指定のみを行えばよく、JavaScriptを直接記述する必要はない。</p>
+<p><strong>注)</strong>  <a class="reference internal" href=""><em>JavaScript UI部品</em></a> は基本的には <a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> 内で使用することを想定しており、
 一般の業務画面実装者がこれらのAPIを直接使用することは想定していない。</p>
 </div>
 <div class="section" id="id3">
@@ -396,7 +393,7 @@
 </div>
 <div class="section" id="id4">
 <h2>2.1.16.2. 初期処理<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> の初期処理は各業務画面のJSPから参照している <cite>/js/nablarch.js</cite> もしくは
+<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> の初期処理は各業務画面のJSPから参照している <cite>/js/nablarch.js</cite> もしくは
 それをミニファイした <cite>/js/nablarch-minify.js</cite> によって行われる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -407,9 +404,9 @@
 業務画面JSPのDOM構造が確定した時点(ドキュメントロード)の処理の2段階に分けて実行される。</p>
 <div class="section" id="id5">
 <h3>2.1.16.2.1. スクリプトロード時の挙動<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> は AMD(Asynchronous Module Definition) 形式に沿って実装されており、
+<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> は AMD(Asynchronous Module Definition) 形式に沿って実装されており、
 AMDモジュール管理ライブラリである <strong>require.js</strong> により、動的にロードもしくは事前にミニファイされる。</p>
-<p><a class="reference internal" href="#"><span class="doc">JavaScript UI部品</span></a> のロードは <cite>/js/nablarch.js</cite> 内の以下の処理によって開始される。</p>
+<p><a class="reference internal" href=""><em>JavaScript UI部品</em></a> のロードは <cite>/js/nablarch.js</cite> 内の以下の処理によって開始される。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// 初期ロード対象コンポーネント</span>
 <span class="nx">require</span><span class="p">([</span><span class="s2">&quot;nablarch/ui&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ui</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -656,21 +653,21 @@ UI部品を作成する方法について解説する。</p>
 <dt><strong>1. モジュール定義ファイル(.js)</strong></dt>
 <dd><p class="first">ウィジェットの処理を記述したJavaScriptファイルである。
 以下の場所に配置する。:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="p">(</span><span class="n">PJ名</span><span class="p">)</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">js</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/js/(PJ名)/ui/(ウィジェット名).js
 </pre></div>
 </div>
 </dd>
 <dt><strong>2. テンプレートファイル(.template)</strong></dt>
 <dd><p class="first">ウィジェット内のUIを定義するHTMLファイルである。
 モジュール定義ファイルと同じ場所に配置する。:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="p">(</span><span class="n">PJ名</span><span class="p">)</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">template</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/js/(PJ名)/ui/(ウィジェット名).template
 </pre></div>
 </div>
 </dd>
 <dt><strong>3. スタイル定義(.less)</strong></dt>
 <dd><p class="first">ウィジェットのスタイルを定義するCSS(LESS)ファイルである。
 以下の場所に配置する。:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">コンテキストルート</span><span class="p">)</span><span class="o">/</span><span class="n">css</span><span class="o">/</span><span class="n">ui</span><span class="o">/</span><span class="p">(</span><span class="n">ウィジェット名</span><span class="p">)</span><span class="o">.</span><span class="n">less</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>(コンテキストルート)/css/ui/(ウィジェット名).less
 </pre></div>
 </div>
 </dd>
@@ -881,7 +878,7 @@ UI部品を作成する方法について解説する。</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

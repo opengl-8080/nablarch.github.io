@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/02_DbAccessTest.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.3. リクエスト単体テスト（ウェブアプリケーション）" href="02_RequestUnitTest.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -331,7 +328,7 @@
 <p>データベースを使用するクラスをテストする場合、本フレームワークで用意されたクラスを使用することでデータベースに関する操作（テストデータ投入、データ確認）を行うことができる。</p>
 <div class="section" id="id3">
 <h3>3.2.2.1.1. 全体像<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<a class="reference internal image-reference" href="../../../../../_images/class_structure.png"><img alt="../../../../../_images/class_structure.png" src="../../../../../_images/class_structure.png" style="width: 728.0px; height: 296.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/class_structure.png"><img alt="../../../../../_images/class_structure.png" src="../../../../../_images/class_structure.png" /></a>
 <div class="section" id="id4">
 <h4>3.2.2.1.1.1. 主なクラス, リソース<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <table border="1" class="docutils">
@@ -361,7 +358,7 @@
 <td>－</td>
 </tr>
 <tr class="row-odd"><td>DbAccessTestSupport</td>
-<td>準備データ投入などデータベースを使用するテストに必要な機能を提供する。また、テスト実行前後にデータベーストランザクションの開始・終了処理を行う（ <a class="reference internal" href="03_Tips.html#using-transactions"><span class="std std-ref">デフォルト以外のトランザクションを使用したい</span></a> ）。</td>
+<td>準備データ投入などデータベースを使用するテストに必要な機能を提供する。また、テスト実行前後にデータベーストランザクションの開始・終了処理を行う（ <a class="reference internal" href="03_Tips.html#using-transactions"><span>デフォルト以外のトランザクションを使用したい</span></a> ）。</td>
 <td>－</td>
 </tr>
 </tbody>
@@ -384,7 +381,7 @@
 </div></blockquote>
 <div class="section" id="id7">
 <h4>3.2.2.2.1.1. シーケンス<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<a class="reference internal image-reference" href="../../../../../_images/select_sequence.png"><img alt="../../../../../_images/select_sequence.png" src="../../../../../_images/select_sequence.png" style="width: 510.0px; height: 421.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/select_sequence.png"><img alt="../../../../../_images/select_sequence.png" src="../../../../../_images/select_sequence.png" /></a>
 </div>
 <div class="section" id="id8">
 <h4>3.2.2.2.1.2. テストソースコード実装例<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -531,7 +528,7 @@
 </div>
 <div class="section" id="id13">
 <h4>3.2.2.2.2.1. シーケンス<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<a class="reference internal image-reference" href="../../../../../_images/update_sequence.png"><img alt="../../../../../_images/update_sequence.png" src="../../../../../_images/update_sequence.png" style="width: 531.0px; height: 453.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/update_sequence.png"><img alt="../../../../../_images/update_sequence.png" src="../../../../../_images/update_sequence.png" /></a>
 </div>
 <div class="section" id="id14">
 <h4>3.2.2.2.2.2. テストソースコード実装例<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -634,7 +631,7 @@
 <div class="section" id="id18">
 <h2>3.2.2.3. データベーステストデータの省略記述方法<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースの準備データおよび期待値を記述する際、テストに関係の無いカラムについては記述を省略できる。
-省略したカラムには、自動テストフレームワークにより<a class="reference internal" href="#default-values-when-column-omitted"><span class="std std-ref">デフォルト値</span></a>が設定される。
+省略したカラムには、自動テストフレームワークにより<a class="reference internal" href="#default-values-when-column-omitted"><span>デフォルト値</span></a>が設定される。
 この機能を利用することにより、テストデータの可読性が向上する。また、テーブル定義が変更された場合でも、関係無いカラムであればテストデータ修正作業は発生しなくなる為、保守性が向上する。</p>
 <p>この機能は特に更新系テストケースに有効である。多くのカラムのうち１カラムだけが更新される場合、不要なカラムを記述する必要がなくなる。</p>
 <div class="admonition important">
@@ -644,14 +641,14 @@
 </div>
 <div class="section" id="db">
 <h3>3.2.2.3.1. DBに準備データのカラムを省略する場合<a class="headerlink" href="#db" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>データベース準備データを記述する際にカラムを省略すると、省略されたカラムには<a class="reference internal" href="#default-values-when-column-omitted"><span class="std std-ref">デフォルト値</span></a>が設定されているものとして扱われる。</p>
+<p>データベース準備データを記述する際にカラムを省略すると、省略されたカラムには<a class="reference internal" href="#default-values-when-column-omitted"><span>デフォルト値</span></a>が設定されているものとして扱われる。</p>
 <p>ただし、<strong>主キーカラムを省略することはできない</strong>。</p>
 </div>
 <div class="section" id="id19">
 <h3>3.2.2.3.2. DB期待値のカラムを省略する場合<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>DB期待値から単純に無関係なカラムを省略すると、省略されたカラムは比較対象外となる。更新系テストの場合には、「無関係なカラムが更新されていないことを確認する」という観点も必要である。
 この場合、データタイプに<cite>EXPECTED_TABLE</cite>ではなく、<cite>EXPECTED_COMPLETE_TABLE</cite>を使用する。
-<cite>EXPECTED_TABLE</cite>を使用した場合、省略されたカラムは比較対象外となるが、<cite>EXPECTED_COMPLETE_TABLE</cite>を使用した場合は、省略されたカラムには<a class="reference internal" href="#default-values-when-column-omitted"><span class="std std-ref">デフォルト値</span></a>が格納されているものとして比較が行われる。</p>
+<cite>EXPECTED_TABLE</cite>を使用した場合、省略されたカラムは比較対象外となるが、<cite>EXPECTED_COMPLETE_TABLE</cite>を使用した場合は、省略されたカラムには<a class="reference internal" href="#default-values-when-column-omitted"><span>デフォルト値</span></a>が格納されているものとして比較が行われる。</p>
 </div>
 <div class="section" id="id20">
 <h3>3.2.2.3.3. 具体例<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -700,7 +697,7 @@
 <td>有効期限を過ぎたデータが処理対象となる</td>
 </tr>
 <tr class="row-odd"><td>削除フラグ</td>
-<td>有効期限を過ぎたレコードの値を’1’に変更する</td>
+<td>有効期限を過ぎたレコードの値を&#8216;1&#8217;に変更する</td>
 </tr>
 </tbody>
 </table>
@@ -989,7 +986,7 @@
 <li>Excelファイルには必ずしも全カラムを記述する必要はない。
 省略されたカラムには、デフォルト値が設定される。</li>
 <li>Excelファイルの１シート内に複数のテーブルを記述できる。
-setUpDb(String sheetName)実行時、指定されたシート内のデータタイプ」SETUP_TABLE」全てが登録対象となる。</li>
+setUpDb(String sheetName)実行時、指定されたシート内のデータタイプ&#8221;SETUP_TABLE&#8221;全てが登録対象となる。</li>
 </ul>
 </div></blockquote>
 </div>
@@ -1000,8 +997,8 @@ setUpDb(String sheetName)実行時、指定されたシート内のデータタ�
 <li>期待値の記述で省略されたカラムは、比較対象外となる。</li>
 <li>比較実行時、レコードの順番が異なっていても主キーを突合して正しく比較ができる。
 レコードの順序を意識して期待データを作成する必要はない。</li>
-<li>１シート内に複数のテーブルを記述できる。assertTableEquals(String sheetName)実行時、指定されたシート内のデータタイプ」EXPECTED_TABLE」であるデータが全て比較される。</li>
-<li>更新日付のようなjava.sql.Timestamp型のフォーマットは」yyyy-mm-dd hh:mm:ss.fffffffff」である(fffffffffはナノ秒)。ナノ秒が設定されていない場合でも、フォーマット上は0ナノ秒として表示される。例えば、2010年1月1日12時34分56秒ジャストの場合、2010-01-01 12:34:56.0となる。Excelシートに期待値を記載する場合は、末尾の小数点＋ゼロを付与しておく必要がある。</li>
+<li>１シート内に複数のテーブルを記述できる。assertTableEquals(String sheetName)実行時、指定されたシート内のデータタイプ&#8221;EXPECTED_TABLE&#8221;であるデータが全て比較される。</li>
+<li>更新日付のようなjava.sql.Timestamp型のフォーマットは&#8221;yyyy-mm-dd hh:mm:ss.fffffffff&#8221;である(fffffffffはナノ秒)。ナノ秒が設定されていない場合でも、フォーマット上は0ナノ秒として表示される。例えば、2010年1月1日12時34分56秒ジャストの場合、2010-01-01 12:34:56.0となる。Excelシートに期待値を記載する場合は、末尾の小数点＋ゼロを付与しておく必要がある。</li>
 </ul>
 </div></blockquote>
 </div>
@@ -1024,15 +1021,15 @@ setUpDb(String sheetName)実行時、指定されたシート内のデータタ�
 <blockquote>
 <div><ul class="simple">
 <li>自動設定項目を利用してデータベースに登録・更新する際は、ThreadContextにリクエストIDとユーザIDが設定されている必要がある。テスト対象クラス起動前にこれらの値をThreadContextに設定しておくこと。
-ThreadContextの設定方法については、次の項を参照。（  <a class="reference internal" href="03_Tips.html#using-threadcontext"><span class="std std-ref">ThreadContextにユーザID、リクエストIDなどを設定したい</span></a>  ）</li>
-<li>デフォルト以外のトランザクションを使用する場合は、本フレームワークにトランザクション制御を行わせる必要がある。トランザクション制御の設定方法については、次の項を参照。（  <a class="reference internal" href="03_Tips.html#using-transactions"><span class="std std-ref">デフォルト以外のトランザクションを使用したい</span></a>  ）</li>
+ThreadContextの設定方法については、次の項を参照。（  <a class="reference internal" href="03_Tips.html#using-threadcontext"><span>ThreadContextにユーザID、リクエストIDなどを設定したい</span></a>  ）</li>
+<li>デフォルト以外のトランザクションを使用する場合は、本フレームワークにトランザクション制御を行わせる必要がある。トランザクション制御の設定方法については、次の項を参照。（  <a class="reference internal" href="03_Tips.html#using-transactions"><span>デフォルト以外のトランザクションを使用したい</span></a>  ）</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="id34">
 <h3>3.2.2.4.5. 外部キーが設定されたテーブルにデータをセットアップしたい<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="04_MasterDataRestore.html#master-data-backup"><span class="std std-ref">マスタデータ復旧機能</span></a> と同じ機能を用いて、テーブルの親子関係を判断しデータの削除及び登録を行う。
-詳細は <a class="reference internal" href="04_MasterDataRestore.html#masterdatarestore-fk-key"><span class="std std-ref">外部キーが設定されたテーブルを使用する場合について</span></a> を参照。</p>
+<p><a class="reference internal" href="04_MasterDataRestore.html#master-data-backup"><span>マスタデータ復旧機能</span></a> と同じ機能を用いて、テーブルの親子関係を判断しデータの削除及び登録を行う。
+詳細は <a class="reference internal" href="04_MasterDataRestore.html#masterdatarestore-fk-key"><span>外部キーが設定されたテーブルを使用する場合について</span></a> を参照。</p>
 </div>
 <div class="section" id="excel">
 <h3>3.2.2.4.6. Excelファイルに記述できるカラムのデータ型に関する注意点<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -1080,7 +1077,7 @@ ThreadContextの設定方法については、次の項を参照。（  <a class
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

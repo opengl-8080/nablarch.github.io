@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/jsp_widgets.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.19. マルチレイアウト用CSSフレームワーク" href="multicol_css_framework.html"/>
@@ -329,10 +326,10 @@
 <h2>2.1.18.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
 <h3>2.1.18.1.1. ウィジェットの利用<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は、ボタンや検索結果テーブル、各種入力フィールドといった
+<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は、ボタンや検索結果テーブル、各種入力フィールドといった
 画面内に配置される <strong>UI部品</strong> について <strong>UI標準</strong> に準拠した形で
 実装された <strong>JSPタグファイル</strong> である。</p>
-<p>以下のソースコードは、業務画面JSPにおいて <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> を使用して入力フォームを記述した例である。</p>
+<p>以下のソースコードは、業務画面JSPにおいて <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> を使用して入力フォームを記述した例である。</p>
 <blockquote>
 <div><div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form</span> <span class="na">windowScopePrefixes=</span><span class="s">&quot;W11AC02,11AC_W11AC01&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;field:block</span> <span class="na">title=</span><span class="s">&quot;ユーザ基本情報&quot;</span><span class="nt">&gt;</span>
@@ -364,7 +361,7 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>この例をみるとわかるように、 <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は通常のHTMLのレベルより一段上の抽象度で
+<p>この例をみるとわかるように、 <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は通常のHTMLのレベルより一段上の抽象度で
 業務画面の内容を定義することができるため、HTML/JSPを直接利用するのに比べて
 開発者が記述するコード量を大幅に減少させることができる。</p>
 <p>また、JSPに見た目に関する記述が含まれないため、設計・開発中に画面デザインの変更が入った
@@ -374,7 +371,7 @@
 </div>
 <div class="section" id="id3">
 <h3>2.1.18.1.2. ウィジェットの分類<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> は、その用途ごとに異なったカテゴリに分類され
+<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> は、その用途ごとに異なったカテゴリに分類され
 個別の名前空間が与えられている。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -428,12 +425,12 @@ PJのポリシーでスタイルを調整するウィジェットが用意され
 </div>
 <div class="section" id="id4">
 <h2>2.1.18.2. 構造<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の本体は、ウィジェットごとに作成される <strong>JSPタグファイル</strong> である。
-これに、必要に応じて <a class="reference internal" href="js_framework.html"><span class="doc">JavaScript UI部品</span></a> や スタイルファイルなどが付随する。</p>
+<p><a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の本体は、ウィジェットごとに作成される <strong>JSPタグファイル</strong> である。
+これに、必要に応じて <a class="reference internal" href="js_framework.html"><em>JavaScript UI部品</em></a> や スタイルファイルなどが付随する。</p>
 <div class="section" id="id5">
 <h3>2.1.18.2.1. タグファイル実装例<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下は <a class="reference internal" href="../reference_jsp_widgets/field_calendar.html"><span class="doc">カレンダー日付入力ウィジェット</span></a> におけるタグファイルのソースコードである。
-このファイルでは <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の
+<p>以下は <a class="reference internal" href="../reference_jsp_widgets/field_calendar.html"><em>カレンダー日付入力ウィジェット</em></a> におけるタグファイルのソースコードである。
+このファイルでは <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の
 <a class="reference external" href="../../../../_static/ui_dev/yuidoc/classes/nablarch.ui.DatePicker.html">日付入力機能(nablarch_DatePicker)</a>
 を <strong>マーカCSS</strong> を使って利用している。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span>&lt;%--
@@ -546,7 +543,7 @@ PJのポリシーでスタイルを調整するウィジェットが用意され
 </div>
 <div class="section" id="id6">
 <h3>2.1.18.2.2. 構成ファイル一覧<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>各 <a class="reference internal" href="#"><span class="doc">UI部品ウィジェット</span></a> の実体となるタグファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/tags/widget/</strong> の配下に
+<p>各 <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の実体となるタグファイルは <strong>(サーブレットコンテキストルート)/WEB-INF/tags/widget/</strong> の配下に
 カテゴリごとのサブフォルダごとに置かれている。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -808,7 +805,7 @@ JavaScript UI部品。
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

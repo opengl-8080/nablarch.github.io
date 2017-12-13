@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.2. データベースを使用するクラスのテスト" href="02_DbAccessTest.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -345,7 +342,7 @@
 </div>
 <div class="section" id="testing-fw-components">
 <span id="id4"></span><h2>3.2.1.2. 自動テストフレームワークの構成<a class="headerlink" href="#testing-fw-components" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<a class="reference internal image-reference" href="../../../../../_images/abstract_structure.png"><img alt="../../../../../_images/abstract_structure.png" src="../../../../../_images/abstract_structure.png" style="width: 602.4px; height: 212.8px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/abstract_structure.png"><img alt="../../../../../_images/abstract_structure.png" src="../../../../../_images/abstract_structure.png" /></a>
 <table border="1" class="docutils">
 <colgroup>
 <col width="27%" />
@@ -410,7 +407,7 @@ Framework</td>
 <p class="first admonition-title">ちなみに</p>
 <p class="last">&#64;Beforeや&#64;Afterなどのアノテーションも使用できる。これらのアノテーションを用いて、
 テストメソッド前後にリソースの取得解放などの共通処理を行いたい場合は、
-次の項を参照（ <a class="reference internal" href="03_Tips.html#using-junit-annotation"><span class="std std-ref">テスト実行前後に共通処理を行いたい。</span></a> ）。</p>
+次の項を参照（ <a class="reference internal" href="03_Tips.html#using-junit-annotation"><span>テスト実行前後に共通処理を行いたい。</span></a> ）。</p>
 </div>
 </div>
 <div class="section" id="excel">
@@ -494,7 +491,7 @@ Excelファイルを使用することにより、このようなデータをス
 <h3>3.2.1.4.2. シート内の構造<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Excelシートの記述方法関する規約について説明を行う。
 以下にシートの記述例を記載する。</p>
-<a class="reference internal image-reference" href="../../../../../_images/sheet_example.JPG"><img alt="../../../../../_images/sheet_example.JPG" src="../../../../../_images/sheet_example.JPG" style="width: 527.4px; height: 488.7px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/sheet_example.JPG"><img alt="../../../../../_images/sheet_example.JPG" src="../../../../../_images/sheet_example.JPG" /></a>
 <p>シート内には、データベースに格納するデータやデータベース検索結果など、さまざまな種類のデータを記載できる。テストデータの種類を判別するために「データタイプ」というメタ情報をテストデータに付与する必要がある。「データタイプ」は、そのテストデータが何を表しているかを示す。</p>
 <p>現状、以下のデータタイプが用意されている。</p>
 <table border="1" class="docutils">
@@ -521,7 +518,7 @@ Excelファイルを使用することにより、このようなデータをス
 </tr>
 <tr class="row-even"><td>EXPECTED_COMPLETE_TABLE</td>
 <td>テスト実行後の期待するデータベースのデータ
-省略したカラムには<a class="reference internal" href="02_DbAccessTest.html#default-values-when-column-omitted"><span class="std std-ref">デフォルト値</span></a>が設定されているものとして扱われる。</td>
+省略したカラムには<a class="reference internal" href="02_DbAccessTest.html#default-values-when-column-omitted"><span>デフォルト値</span></a>が設定されているものとして扱われる。</td>
 <td>確認対象のテーブル名</td>
 </tr>
 <tr class="row-odd"><td>LIST_MAP</td>
@@ -581,7 +578,7 @@ Excelファイルを使用することにより、このようなデータをス
 <li>2行目以降の書式はデータタイプにより異なる。</li>
 </ul>
 <p>　データタイプとは、そのデータが何を表すかを特定するための情報である。
-例えばそのデータが、データベースに投入されるべきデータである場合は、データタイプ」SETUP_TABLE」を使用する。</p>
+例えばそのデータが、データベースに投入されるべきデータである場合は、データタイプ&#8221;SETUP_TABLE&#8221;を使用する。</p>
 <p>例えば、以下のようにデータタイプを記載した場合、そのデータがCOMPOSERテーブルに準備データとして登録されるべきものであることを示している。</p>
 <p>SETUP_TABLE=COMPOSER</p>
 <table border="1" class="docutils">
@@ -610,7 +607,7 @@ Excelファイルを使用することにより、このようなデータをス
 </div>
 <div class="section" id="id14">
 <h3>3.2.1.4.3. コメント<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>セル内に」//」から開始する文字列を記載した場合、そのセルから右のセルは全て読み込み対象外となる。テストデータ自体には含めたくないが、可読性を向上させるために付加情報を記載したい場合には、コメント機能が使用できる。</p>
+<p>セル内に&#8221;//&#8221;から開始する文字列を記載した場合、そのセルから右のセルは全て読み込み対象外となる。テストデータ自体には含めたくないが、可読性を向上させるために付加情報を記載したい場合には、コメント機能が使用できる。</p>
 <p>以下の例では、2行目でテーブルの論理名を、4行目末尾で期待する結果についてコメントしている。</p>
 <p>EXPECTED_TABLE=PLAYER</p>
 <table border="1" class="docutils">
@@ -626,7 +623,7 @@ Excelファイルを使用することにより、このようなデータをス
 <th class="head">FIRST_NAME</th>
 <th class="head">LAST_NAME</th>
 <th class="head">ADDRESS</th>
-<th class="head">&#160;</th>
+<th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -634,13 +631,13 @@ Excelファイルを使用することにより、このようなデータをス
 <td>名</td>
 <td>姓</td>
 <td>住所</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>0001</td>
 <td>Andres</td>
 <td>Segovia</td>
 <td>Spain</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>0002</td>
 <td>Julian</td>
@@ -743,32 +740,32 @@ Excelシートの見た目上は存在するデータを記述できる。</p>
 </tr>
 <tr class="row-odd"><td>Null</td>
 </tr>
-<tr class="row-even"><td>「null」</td>
+<tr class="row-even"><td>&#8220;null&#8221;</td>
 <td rowspan="2">文字列のnull</td>
 <td rowspan="8"><p class="first">文字列の前後がダブルクォート(半角、全角問わず)で囲われている場合は、前後のダブルクォートを取り除いた文字列を扱う。<a class="footnote-reference" href="#id25" id="id19">[4]</a></p>
-<p>例えば、「null」や「NULL」を文字列として扱う必要がある場合には、記述方法にあるように 「」null」」や「」NULL」」と記述を行う。</p>
+<p>例えば、「null」や「NULL」を文字列として扱う必要がある場合には、記述方法にあるように 「&#8221;null&#8221;」や「&#8221;NULL&#8221;」と記述を行う。</p>
 <p class="last">また、セルの値にスペースがあることを解りやすくする目的で、記述方法にあるよ
-うに「」1?」」や、「」?」」とすることもできる。</p>
+うに「&#8221;1?&#8221;」や、「&#8221;?&#8221;」とすることもできる。</p>
 </td>
 </tr>
-<tr class="row-odd"><td>「NULL」</td>
+<tr class="row-odd"><td>&#8220;NULL&#8221;</td>
 </tr>
-<tr class="row-even"><td>「1⊔」</td>
+<tr class="row-even"><td>&#8220;1⊔&#8221;</td>
 <td>1⊔</td>
 </tr>
-<tr class="row-odd"><td>「⊔」</td>
+<tr class="row-odd"><td>&#8220;⊔&#8221;</td>
 <td>⊔</td>
 </tr>
-<tr class="row-even"><td>「１△」</td>
+<tr class="row-even"><td>&#8220;１△&#8221;</td>
 <td>１△</td>
 </tr>
-<tr class="row-odd"><td>「△△」</td>
+<tr class="row-odd"><td>&#8220;△△&#8221;</td>
 <td>△△</td>
 </tr>
-<tr class="row-even"><td>「」「</td>
-<td>「</td>
+<tr class="row-even"><td>&#8220;&#8221;&#8220;</td>
+<td>&#8220;</td>
 </tr>
-<tr class="row-odd"><td>「」 <a class="footnote-reference" href="#id26" id="id20">[5]</a></td>
+<tr class="row-odd"><td>&#8220;&#8221; <a class="footnote-reference" href="#id26" id="id20">[5]</a></td>
 <td>空文字列</td>
 </tr>
 <tr class="row-even"><td>${systemTime}</td>
@@ -841,17 +838,17 @@ Excelシートの見た目上は存在するデータを記述できる。</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>「ab」c」</td>
-<td>ab」cとして扱われる。(前後のダブルクォートが除去される。)</td>
+<tr class="row-even"><td>&#8220;ab&#8221;c&#8221;</td>
+<td>ab&#8221;cとして扱われる。(前後のダブルクォートが除去される。)</td>
 </tr>
-<tr class="row-odd"><td>「abc」「</td>
-<td>abc」として扱われる。(前後のダブルクォートが除去される。)</td>
+<tr class="row-odd"><td>&#8220;abc&#8221;&#8220;</td>
+<td>abc&#8221;として扱われる。(前後のダブルクォートが除去される。)</td>
 </tr>
-<tr class="row-even"><td>ab」c</td>
-<td>ab」cとして扱われる。(前後がダブルクォートではないため、そのまま扱われる。)</td>
+<tr class="row-even"><td>ab&#8221;c</td>
+<td>ab&#8221;cとして扱われる。(前後がダブルクォートではないため、そのまま扱われる。)</td>
 </tr>
-<tr class="row-odd"><td>abc」</td>
-<td>abc」として扱われる。(前後がダブルクォートではないため、そのまま扱われる。)</td>
+<tr class="row-odd"><td>abc&#8221;</td>
+<td>abc&#8221;として扱われる。(前後がダブルクォートではないため、そのまま扱われる。)</td>
 </tr>
 </tbody>
 </table>
@@ -863,7 +860,7 @@ Excelシートの見た目上は存在するデータを記述できる。</p>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id20">[5]</a></td><td>この記法を使用することで、空行を表すことができる。
-『<a class="reference internal" href="03_Tips.html#how-to-express-empty-line"><span class="std std-ref">テストデータに空行を記述したい</span></a>』の項を参照。</td></tr>
+『<a class="reference internal" href="03_Tips.html#how-to-express-empty-line"><span>テストデータに空行を記述したい</span></a>』の項を参照。</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id27" rules="none">
@@ -940,13 +937,13 @@ LF(0x0A)となる。</td>
 <tr class="row-odd"><td>こんにちは\n
 さようなら</td>
 <td>こんにちは<em>LF</em>さようなら</td>
-<td>『\n’は本機能によりLF(0x0A)に
+<td>&#8216;\n&#8217;は本機能によりLF(0x0A)に
 変換される。</td>
 </tr>
 <tr class="row-even"><td>こんにちは\r <br />
 さようなら</td>
 <td>こんにちは<em>CRLF</em>さようなら</td>
-<td>『\r’は本機能によりCR(0x0D)に
+<td>&#8216;\r&#8217;は本機能によりCR(0x0D)に
 変換される。セル内の改行
 （Alt+Enter）はLF(0x0A)となる。</td>
 </tr>
@@ -977,7 +974,7 @@ LF(0x0A)となる。</td>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">マスタデータの投入には、<a class="reference internal" href="../08_TestTools/02_MasterDataSetup/01_MasterDataSetupTool.html#master-data-setup-tool"><span class="std std-ref">マスタデータ投入ツール</span></a>を使用する。また、<a class="reference internal" href="04_MasterDataRestore.html"><span class="doc">マスタデータ復旧機能</span></a>により、テスト内で発生したマスタデータの変更をテスト終了時に自動的に元の状態に戻すことができる。これにより、マスタデータに変更が必要なテストケースであっても、他のテストケースに影響無く実行できる。</p>
+<p class="last">マスタデータの投入には、<a class="reference internal" href="../08_TestTools/02_MasterDataSetup/01_MasterDataSetupTool.html#master-data-setup-tool"><span>マスタデータ投入ツール</span></a>を使用する。また、<a class="reference internal" href="04_MasterDataRestore.html"><em>マスタデータ復旧機能</em></a>により、テスト内で発生したマスタデータの変更をテスト終了時に自動的に元の状態に戻すことができる。これにより、マスタデータに変更が必要なテストケースであっても、他のテストケースに影響無く実行できる。</p>
 </div>
 </div>
 <div class="section" id="id32">
@@ -1059,7 +1056,7 @@ EXPECTED_COMPLETE_TABLE=TABLE4
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

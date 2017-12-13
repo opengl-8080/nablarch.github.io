@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.7. リクエスト単体テスト（HTTP同期応答メッセージ送信処理）" href="RequestUnitTest_http_send_sync.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -332,13 +329,13 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">リクエスト単体テストそのものの概要については、
-<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>
+<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>
 を参照。</p>
 </div>
 <div class="section" id="id3">
 <h3>3.2.6.1.1. 全体像<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バッチ処理の中で同期応答メッセージ送信処理を行う場合について、以下に全体像を示す。</p>
-<a class="reference internal image-reference" href="../../../../../_images/send_sync1.png"><img alt="../../../../../_images/send_sync1.png" src="../../../../../_images/send_sync1.png" style="width: 728.6999999999999px; height: 448.7px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/send_sync1.png"><img alt="../../../../../_images/send_sync1.png" src="../../../../../_images/send_sync1.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>同期応答メッセージ送信処理のリクエスト単体テストを行う場合、テストケースの親クラスは以下の２クラスのうちのいずれかを継承しておく必要がある。</p>
@@ -462,7 +459,7 @@
 <li>編集を行ったデータを読み込むためのレイアウト定義データを動的に生成する。</li>
 </ul>
 <p>本インタフェースを実装することで、例えばExcelに日本語で記述されたデータをURLエンコーディングする等の処理を追加することが可能である。</p>
-<p>実装クラスは 「TestDataConverter_&lt;データ種別&gt;」 というキー名でテスト用のコンポーネント設定ファイルに登録する必要がある。</p>
+<p>実装クラスは &#8220;TestDataConverter_&lt;データ種別&gt;&#8221; というキー名でテスト用のコンポーネント設定ファイルに登録する必要がある。</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -470,10 +467,10 @@
 <p>同期応答メッセージ送信処理固有のテストデータについて説明する。</p>
 <div class="section" id="id7">
 <h3>3.2.6.4.1. 同期応答メッセージ送信処理<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/send_sync.html#send-sync-request-write-test-data"><span class="std std-ref">テストデータの書き方</span></a>を参照。</p>
+<p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/send_sync.html#send-sync-request-write-test-data"><span>テストデータの書き方</span></a>を参照。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">パディングおよびバイナリデータの扱いは、<a class="reference internal" href="RequestUnitTest_batch.html#about-fixed-length-file"><span class="std std-ref">固定長ファイル</span></a>と同様である。</p>
+<p class="last">パディングおよびバイナリデータの扱いは、<a class="reference internal" href="RequestUnitTest_batch.html#about-fixed-length-file"><span>固定長ファイル</span></a>と同様である。</p>
 </div>
 </div>
 </div>
@@ -516,7 +513,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/http_send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.7. 二重サブミット防止機能のテスト実施方法" href="../02_RequestUnitTest/double_transmission.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -326,9 +323,9 @@
   <div class="section" id="http">
 <span id="dealunittest-http-send-sync"></span><h1>3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>HTTP同期応答メッセージ送信処理を伴うウェブアプリケーションで、取引単体テストを行う場合は、Nablarchが提供するモックアップクラスを使用する。</p>
-<p>取引単体テスト実施方法は、<a class="reference internal" href="send_sync.html#dealunittest-send-sync"><span class="std std-ref">同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>を参照すること。</p>
+<p>取引単体テスト実施方法は、<a class="reference internal" href="send_sync.html#dealunittest-send-sync"><span>同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>を参照すること。</p>
 <p>ただし、「送信キュー」「受信キュー」を「通信先」と読み替えること。</p>
-<p>本項では、<a class="reference internal" href="send_sync.html#dealunittest-send-sync"><span class="std std-ref">同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>と異なる箇所の解説を行う。</p>
+<p>本項では、<a class="reference internal" href="send_sync.html#dealunittest-send-sync"><span>同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>と異なる箇所の解説を行う。</p>
 <div class="section" id="id1">
 <h2>3.1.6.1. モックアップクラスを使用した取引単体テストの実施方法<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="excel">
@@ -339,11 +336,11 @@
 <div class="section" id="id2">
 <h4>3.1.6.1.1.1. 書き方の例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>以下に、Excelファイルの記載例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_test_data.png"><img alt="../../../../../../_images/http_send_sync_test_data.png" src="../../../../../../_images/http_send_sync_test_data.png" style="width: 562.0999999999999px; height: 236.6px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_test_data.png"><img alt="../../../../../../_images/http_send_sync_test_data.png" src="../../../../../../_images/http_send_sync_test_data.png" /></a>
 </div>
 <div class="section" id="id3">
 <h4>3.1.6.1.1.2. 電文のフォーマットおよびデータの記載方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>同期応答メッセージ送信処理の<a class="reference internal" href="send_sync.html#send-sync-test-data-format"><span class="std std-ref">電文のフォーマットおよびデータの記載方法</span></a>と同じ。</p>
+<p>同期応答メッセージ送信処理の<a class="reference internal" href="send_sync.html#send-sync-test-data-format"><span>電文のフォーマットおよびデータの記載方法</span></a>と同じ。</p>
 <p>ただし、HTTP通信は要求、応答電文ともにヘッダが存在しないため、本文のみ定義する。</p>
 </div>
 </div>
@@ -406,7 +403,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

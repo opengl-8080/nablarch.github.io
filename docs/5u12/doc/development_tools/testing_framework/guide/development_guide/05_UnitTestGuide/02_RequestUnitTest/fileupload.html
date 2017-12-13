@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/fileupload.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.4. 取引単体テストの実施方法" href="../03_DealUnitTest/index.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -326,7 +323,7 @@
   <div class="section" id="id1">
 <h1>3.1.3. リクエスト単体テストの実施方法(ファイルアップロード)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>ファイルアップロードのテストは、ウェブアプリケーションのテストの一種である。
-したがって、ファイルアップロードのテストを実施するには、ウェブアプリケーションの<a class="reference internal" href="index.html"><span class="doc">リクエスト単体テストの実施方法</span></a>が前提となる。</p>
+したがって、ファイルアップロードのテストを実施するには、ウェブアプリケーションの<a class="reference internal" href="index.html"><em>リクエスト単体テストの実施方法</em></a>が前提となる。</p>
 <p>ファイルアップロードのテストをする場合、HTTPリクエストパラメータにアップロードファイルを指定する必要がある。本項では、HTTPリクエストパラメータにアップロードファイルを指定する方法を解説する。</p>
 <div class="section" id="id2">
 <h2>3.1.3.1. アップロードファイルの記述方法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -377,8 +374,8 @@ HTTPリクエストパラメータにアップロードファイルを指定で�
 <hr class="docutils" />
 <div class="section" id="csv">
 <h2>3.1.3.3. 固定長ファイル、CSVファイルの場合<a class="headerlink" href="#csv" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="batch.html#how-to-setup-fixed-length-file"><span class="std std-ref">固定長ファイル</span></a>や
-<a class="reference internal" href="batch.html#how-to-setup-csv-file"><span class="std std-ref">CSVファイル</span></a>をアップロードする場合、そのファイル内容をテストデータシートに記載する。テスト実行時に、自動テストフレームワークがこのデータを元にファイルを作成する。</p>
+<p><a class="reference internal" href="batch.html#how-to-setup-fixed-length-file"><span>固定長ファイル</span></a>や
+<a class="reference internal" href="batch.html#how-to-setup-csv-file"><span>CSVファイル</span></a>をアップロードする場合、そのファイル内容をテストデータシートに記載する。テスト実行時に、自動テストフレームワークがこのデータを元にファイルを作成する。</p>
 <p>以下の例では、workディレクトリ配下にmember_list.csvファイルを作成し、
 そのファイルをアップロード対象として指定している。</p>
 <hr class="docutils" />
@@ -410,11 +407,11 @@ HTTPリクエストパラメータにアップロードファイルを指定で�
 <tbody valign="top">
 <tr class="row-odd"><td>text-encoding</td>
 <td>Windows-31J</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>record-separator</td>
 <td>CRLF</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -489,7 +486,7 @@ HTTPリクエストパラメータにアップロードファイルを指定で�
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

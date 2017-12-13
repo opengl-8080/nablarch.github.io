@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.1.1.2.1. 障害ログの出力" href="log/failure_log.html"/>
@@ -180,9 +177,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -376,8 +373,8 @@
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/Logger.html" title="nablarch.core.log.Logger">Logger</a> /
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/LoggerFactory.html" title="nablarch.core.log.LoggerFactory">LoggerFactory</a> を差し替えればよい。</p>
 <p>なお、オープンソースで使用実績の多いロギングフレームワークは、専用のLogger/LoggerFactoryを既に用意している。</p>
-<p>詳細は、<a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span class="std std-ref">logアダプタ</span></a> を参照。</p>
-<p>本機能と利用実績の多いlog4jとの機能比較は、 <a class="reference internal" href="#log-functional-comparison"><span class="std std-ref">log4jとの機能比較</span></a> を参照。</p>
+<p>詳細は、<a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span>logアダプタ</span></a> を参照。</p>
+<p>本機能と利用実績の多いlog4jとの機能比較は、 <a class="reference internal" href="#log-functional-comparison"><span>log4jとの機能比較</span></a> を参照。</p>
 <p>ログ出力機能がデフォルトで提供しているクラスを示す。</p>
 <dl class="docutils">
 <dt>Logger/LoggerFactory</dt>
@@ -406,11 +403,11 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/basic/SynchronousFileLogWriter.html" title="nablarch.core.log.basic.SynchronousFileLogWriter">SynchronousFileLogWriter</a>
-を使う場合は、 <a class="reference internal" href="#log-synchronous-file-log-writer-attention"><span class="std std-ref">SynchronousFileLogWriterを使用するにあたっての注意事項</span></a> を参照すること。</p>
+を使う場合は、 <a class="reference internal" href="#log-synchronous-file-log-writer-attention"><span>SynchronousFileLogWriterを使用するにあたっての注意事項</span></a> を参照すること。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">ログ出力機能で使用するログレベルについては、 <a class="reference internal" href="#log-log-level"><span class="std std-ref">ログレベルの定義</span></a> を参照。</p>
+<p class="last">ログ出力機能で使用するログレベルについては、 <a class="reference internal" href="#log-log-level"><span>ログレベルの定義</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -431,33 +428,33 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="log/failure_log.html#failure-log"><span class="std std-ref">障害通知ログ</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="log/failure_log.html#failure-log"><span>障害通知ログ</span></a></td>
 <td>障害発生時に1次切り分け担当者を特定するのに必要な情報を出力する。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="log/failure_log.html#failure-log"><span class="std std-ref">障害解析ログ</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="log/failure_log.html#failure-log"><span>障害解析ログ</span></a></td>
 <td>障害原因の特定に必要な情報を出力する。</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="log/sql_log.html#sql-log"><span class="std std-ref">SQLログ</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="log/sql_log.html#sql-log"><span>SQLログ</span></a></td>
 <td>深刻なパフォーマンス劣化の要因となりやすいSQL文の実行について、
 パフォーマンスチューニングに使用するために、SQL文の実行時間とSQL文を出力する。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="log/performance_log.html#performance-log"><span class="std std-ref">パフォーマンスログ</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="log/performance_log.html#performance-log"><span>パフォーマンスログ</span></a></td>
 <td>任意の処理について、パフォーマンスチューニングに使用するために実行時間とメモリ使用量を出力する。</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="log/http_access_log.html#http-access-log"><span class="std std-ref">HTTPアクセスログ</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="log/http_access_log.html#http-access-log"><span>HTTPアクセスログ</span></a></td>
 <td>ウェブアプリケーションで、アプリケーションの実行状況を把握するための情報を出力する。
 アプリケーションの性能測定に必要な情報、アプリケーションの負荷測定に必要な情報の出力も含む。
 さらに、アプリケーションの不正使用を検知するために、
 全てのリクエスト及びレスポンス情報を出力する証跡ログとしても使用する。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="log/messaging_log.html#messaging-log"><span class="std std-ref">メッセージングログ</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="log/messaging_log.html#messaging-log"><span>メッセージングログ</span></a></td>
 <td>メッセージング処理において、メッセージ送受信の状況を把握するための情報を出力する。</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">本フレームワークでは、 <a class="reference internal" href="log/failure_log.html#failure-log"><span class="std std-ref">障害通知ログ</span></a> と <a class="reference internal" href="log/failure_log.html#failure-log"><span class="std std-ref">障害解析ログ</span></a> を合わせて障害ログと呼ぶ。</p>
+<p class="last">本フレームワークでは、 <a class="reference internal" href="log/failure_log.html#failure-log"><span>障害通知ログ</span></a> と <a class="reference internal" href="log/failure_log.html#failure-log"><span>障害解析ログ</span></a> を合わせて障害ログと呼ぶ。</p>
 </div>
 </div>
 </div>
@@ -767,9 +764,9 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 では、出力されたログの状況を特定するために、以下の項目を出力できる。
 これらの出力項目について説明しておく。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#log-boot-process"><span class="std std-ref">起動プロセス</span></a></li>
-<li><a class="reference internal" href="#log-processing-system"><span class="std std-ref">処理方式</span></a></li>
-<li><a class="reference internal" href="#log-execution-id"><span class="std std-ref">実行時ID</span></a></li>
+<li><a class="reference internal" href="#log-boot-process"><span>起動プロセス</span></a></li>
+<li><a class="reference internal" href="#log-processing-system"><span>処理方式</span></a></li>
+<li><a class="reference internal" href="#log-execution-id"><span>実行時ID</span></a></li>
 </ul>
 <dl class="docutils" id="log-boot-process">
 <dt>起動プロセス</dt>
@@ -785,7 +782,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 <dt>処理方式</dt>
 <dd><p class="first">処理方式とは、ウェブ、バッチなどを意味する。
 アプリケーションの処理方式を識別したい場合に、プロジェクト毎に規定して使用する。</p>
-<p class="last">処理方式は、 <a class="reference internal" href="#log-basic-setting"><span class="std std-ref">ログ出力の設定を行う</span></a> で説明したプロパティファイルに
+<p class="last">処理方式は、 <a class="reference internal" href="#log-basic-setting"><span>ログ出力の設定を行う</span></a> で説明したプロパティファイルに
 <code class="docutils literal"><span class="pre">nablarch.processingSystem</span></code> というキーで指定する。
 プロパティの指定がない場合はブランクとなる。</p>
 </dd>
@@ -812,7 +809,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 <p class="first admonition-title">重要</p>
 <p class="last">リクエストID、実行時ID、ユーザIDを出力する場合は、
 これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
-ハンドラ構成に <a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
+ハンドラ構成に <a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
 </div>
 <dl class="docutils">
 <dt>改行コードとタブ文字を含めたい場合</dt>
@@ -837,7 +834,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 ログの出力処理自体は本機能を使用している。
 つまり、各種ログの出力機能では、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/Logger.html" title="nablarch.core.log.Logger">Logger</a>
 に指定するメッセージ作成を行う。</p>
-<p>このため、各種ログの出力機能を使うには、 <a class="reference internal" href="#log-basic-setting"><span class="std std-ref">ログ出力の設定を行う</span></a> に加えて、各種ログの設定が必要となる。
+<p>このため、各種ログの出力機能を使うには、 <a class="reference internal" href="#log-basic-setting"><span>ログ出力の設定を行う</span></a> に加えて、各種ログの設定が必要となる。
 各種ログの設定は、プロパティファイルに行う。</p>
 <dl class="docutils">
 <dt>プロパティファイルの場所</dt>
@@ -852,11 +849,11 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 <dt>プロパティファイルの記述ルール</dt>
 <dd><p class="first">各種ログごとに異なるので、以下を参照。</p>
 <ul class="last simple">
-<li><a class="reference internal" href="log/failure_log.html#failure-log-setting"><span class="std std-ref">障害ログの設定を行う</span></a></li>
-<li><a class="reference internal" href="log/sql_log.html#sql-log-setting"><span class="std std-ref">SQLログの設定を行う</span></a></li>
-<li><a class="reference internal" href="log/performance_log.html#performance-log-setting"><span class="std std-ref">パフォーマンスログの設定を行う</span></a></li>
-<li><a class="reference internal" href="log/http_access_log.html#http-access-log-setting"><span class="std std-ref">HTTPアクセスログの設定を行う</span></a></li>
-<li><a class="reference internal" href="log/messaging_log.html#messaging-log-setting"><span class="std std-ref">メッセージングログの設定を行う</span></a></li>
+<li><a class="reference internal" href="log/failure_log.html#failure-log-setting"><span>障害ログの設定を行う</span></a></li>
+<li><a class="reference internal" href="log/sql_log.html#sql-log-setting"><span>SQLログの設定を行う</span></a></li>
+<li><a class="reference internal" href="log/performance_log.html#performance-log-setting"><span>パフォーマンスログの設定を行う</span></a></li>
+<li><a class="reference internal" href="log/http_access_log.html#http-access-log-setting"><span>HTTPアクセスログの設定を行う</span></a></li>
+<li><a class="reference internal" href="log/messaging_log.html#messaging-log-setting"><span>メッセージングログの設定を行う</span></a></li>
 </ul>
 </dd>
 </dl>
@@ -956,7 +953,7 @@ LogFormatterの設定は、下記を想定する。</p>
 <p>本機能では、各ロガーの初期化時に初期化メッセージをログに出力している。
 監視対象のログなどで、初期化メッセージが不要な場合には本機能が提供するWriterを元に、
 初期化メッセージを出力しないWriterを作成し対応する必要がある。</p>
-<p>なお、WebアプリケーションサーバなどやOSS製品とロガーを統一する目的などで <a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span class="std std-ref">logアダプタ</span></a> を使用した場合は初期化メッセージは出力されないため、本対応は不要である。</p>
+<p>なお、WebアプリケーションサーバなどやOSS製品とロガーを統一する目的などで <a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span>logアダプタ</span></a> を使用した場合は初期化メッセージは出力されないため、本対応は不要である。</p>
 <p>対応例を以下に示す。</p>
 <ol class="arabic">
 <li><p class="first">ベースとなるWriterクラスのソースコードをプロジェクト側に取り込む(コピーする)。
@@ -1058,10 +1055,10 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="field-even field"><th class="field-name">ログレベル:</th><td class="field-body">FATAL</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">メッセージの設定例({0}にはロックファイルのパスが設定される):</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">ロックファイルの生成に失敗しました。おそらくロックファイルのパスが間違っています。ロックファイルパス=[{0}]。</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">ロックファイルの生成に失敗しました。おそらくロックファイルのパスが間違っています。ロックファイルパス=[{0}]。</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">デフォルトで出力するログ(障害コードなどは出力されない):</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">failed to create lock file. perhaps lock file path was invalid. lock file path=[{0}].</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">failed to create lock file. perhaps lock file path was invalid. lock file path=[{0}].</td>
 </tr>
 </tbody>
 </table>
@@ -1076,10 +1073,10 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="field-even field"><th class="field-name">ログレベル:</th><td class="field-body">FATAL</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">メッセージの設定例({0}にはロックファイルのパスが設定される):</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">ロックファイルの削除に失敗しました。ロックファイルパス=[{0}]。</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">ロックファイルの削除に失敗しました。ロックファイルパス=[{0}]。</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">デフォルトで出力するログ(障害コードなどは出力されない):</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">failed to delete lock file. lock file path=[{0}].</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">failed to delete lock file. lock file path=[{0}].</td>
 </tr>
 </tbody>
 </table>
@@ -1094,10 +1091,10 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="field-even field"><th class="field-name">ログレベル:</th><td class="field-body">FATAL</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">メッセージの設定例({0}にはロックファイルのパスが設定される):</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">ロックファイルの強制削除に失敗しました。ロックファイルが不正に開かれています。ロックファイルパス=[{0}]。</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">ロックファイルの強制削除に失敗しました。ロックファイルが不正に開かれています。ロックファイルパス=[{0}]。</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">デフォルトで出力するログ(障害コードなどは出力されない):</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">failed to delete lock file forcedly. lock file was opened illegally. lock file path=[{0}].</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">failed to delete lock file forcedly. lock file was opened illegally. lock file path=[{0}].</td>
 </tr>
 </tbody>
 </table>
@@ -1114,7 +1111,7 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="field-odd field"><th class="field-name">メッセージの設定例:</th><td class="field-body">ロック取得中に割り込みが発生しました。</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">デフォルトで出力するログ(障害コードなどは出力されない):</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">interrupted while waiting for lock retry.</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">interrupted while waiting for lock retry.</td>
 </tr>
 </tbody>
 </table>
@@ -1212,7 +1209,7 @@ LogFormatterの設定は、下記を想定する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">本フレームワークでも、ログ出力機能を使ってログを出力している。
-フレームワークが出力するログについては、 <a class="reference internal" href="#log-fw-log-policy"><span class="std std-ref">フレームワークのログ出力方針</span></a> を参照すること。</p>
+フレームワークが出力するログについては、 <a class="reference internal" href="#log-fw-log-policy"><span>フレームワークのログ出力方針</span></a> を参照すること。</p>
 </div>
 </div>
 <div class="section" id="log-fw-log-policy">
@@ -1281,37 +1278,37 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="row-even"><td>ログの出力有無をログレベルで制御できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-basic-setting"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-basic-setting"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-odd"><td>ログの出力有無をカテゴリ(パッケージ単位や名前など)で制御できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-basic-setting"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-basic-setting"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-even"><td>1つのログを複数の出力先に出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-basic-setting"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-basic-setting"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-odd"><td>ログを標準出力に出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-log-writers"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-log-writers"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-even"><td>ログをファイルに出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-log-writers"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-log-writers"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-odd"><td>ファイルサイズによるログファイルのローテーションができる</td>
 <td>△ <a class="footnote-reference" href="#logrolate" id="id19">[1]</a>
 <br />
-<a class="reference internal" href="#log-log-writers"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-log-writers"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-even"><td>日時によるログファイルのローテーションができる</td>
@@ -1345,37 +1342,37 @@ LogFormatterの設定は、下記を想定する。</p>
 <tr class="row-odd"><td>ログのフォーマットをパターン文字列で指定できる</td>
 <td>○
 <br />
-<a class="reference internal" href="#log-log-format"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="#log-log-format"><span>解説書へ</span></a></td>
 <td>○</td>
 </tr>
 <tr class="row-even"><td>障害ログを出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="log/failure_log.html#failure-log"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="log/failure_log.html#failure-log"><span>解説書へ</span></a></td>
 <td>－</td>
 </tr>
 <tr class="row-odd"><td>HTTPアクセスログを出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="log/http_access_log.html#http-access-log"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="log/http_access_log.html#http-access-log"><span>解説書へ</span></a></td>
 <td>－</td>
 </tr>
 <tr class="row-even"><td>SQLログを出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="log/sql_log.html#sql-log"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="log/sql_log.html#sql-log"><span>解説書へ</span></a></td>
 <td>－</td>
 </tr>
 <tr class="row-odd"><td>パフォーマンスログを出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="log/performance_log.html#performance-log"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="log/performance_log.html#performance-log"><span>解説書へ</span></a></td>
 <td>－</td>
 </tr>
 <tr class="row-even"><td>メッセージングログを出力できる</td>
 <td>○
 <br />
-<a class="reference internal" href="log/messaging_log.html#messaging-log"><span class="std std-ref">解説書へ</span></a></td>
+<a class="reference internal" href="log/messaging_log.html#messaging-log"><span>解説書へ</span></a></td>
 <td>－</td>
 </tr>
 </tbody>
@@ -1389,8 +1386,8 @@ LogFormatterの設定は、下記を想定する。</p>
 <table class="docutils footnote" frame="void" id="extends-or-log4j" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id20">1</a>, <a class="fn-backref" href="#id21">2</a>, <a class="fn-backref" href="#id22">3</a>, <a class="fn-backref" href="#id23">4</a>, <a class="fn-backref" href="#id24">5</a>, <a class="fn-backref" href="#id25">6</a>, <a class="fn-backref" href="#id26">7</a>)</em> <a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span class="std std-ref">logアダプタ</span></a> を使用する。
-または、プロジェクトで作成する。作成方法は、 <a class="reference internal" href="#log-add-log-writer"><span class="std std-ref">LogWriterを追加する</span></a> を参照。</td></tr>
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id20">1</a>, <a class="fn-backref" href="#id21">2</a>, <a class="fn-backref" href="#id22">3</a>, <a class="fn-backref" href="#id23">4</a>, <a class="fn-backref" href="#id24">5</a>, <a class="fn-backref" href="#id25">6</a>, <a class="fn-backref" href="#id26">7</a>)</em> <a class="reference internal" href="../../adaptors/log_adaptor.html#log-adaptor"><span>logアダプタ</span></a> を使用する。
+または、プロジェクトで作成する。作成方法は、 <a class="reference internal" href="#log-add-log-writer"><span>LogWriterを追加する</span></a> を参照。</td></tr>
 </tbody>
 </table>
 </div>
@@ -1433,7 +1430,7 @@ LogFormatterの設定は、下記を想定する。</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

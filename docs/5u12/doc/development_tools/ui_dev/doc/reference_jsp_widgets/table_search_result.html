@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/reference_jsp_widgets/table_search_result.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.78. 階層(ツリー)表示テーブルウィジェット" href="table_treelist.html"/>
@@ -325,9 +322,9 @@
             
   <div class="section" id="id1">
 <h1>2.1.77. 検索結果テーブルウィジェット<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><a class="reference internal" href="#"><span class="doc">検索結果テーブルウィジェット</span></a> はデータベースなどからの検索結果を
+<p><a class="reference internal" href=""><em>検索結果テーブルウィジェット</em></a> はデータベースなどからの検索結果を
 <strong>UI標準 UI部品 テーブル</strong> の内容に準拠した一覧テーブルを画面に出力するUI部品である。
-<a class="reference internal" href="#"><span class="doc">検索結果テーブルウィジェット</span></a> では <a class="reference internal" href="table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a> が実装する基本機能に加え、
+<a class="reference internal" href=""><em>検索結果テーブルウィジェット</em></a> では <a class="reference internal" href="table_plain.html"><em>一覧テーブルウィジェット</em></a> が実装する基本機能に加え、
 ページ間の移動やカラムの値に沿ったソートを行うリンクや、検索結果件数を自動的に表示することができる。</p>
 <div class="section" id="id2">
 <h2>2.1.77.1. コードサンプル<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -384,7 +381,7 @@
 <h2>2.1.77.2. 仕様<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
 <dt><strong>ローカル動作時の挙動</strong></dt>
-<dd>(<a class="reference internal" href="table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a> と同じ)</dd>
+<dd>(<a class="reference internal" href="table_plain.html"><em>一覧テーブルウィジェット</em></a> と同じ)</dd>
 </dl>
 <p><strong>属性値一覧</strong>  [<strong>◎</strong> 必須属性 <strong>○</strong> 任意属性 <strong>×</strong> 無効(指定しても効果なし)]</p>
 <table border="1" class="docutils">
@@ -411,14 +408,14 @@
 <td>文字列</td>
 <td>◎</td>
 <td>◎</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>showTitle</td>
 <td>見出し文字列を表示するか否か</td>
 <td>真偽値</td>
 <td>○</td>
 <td>○</td>
-<td>デフォルトは 『true』</td>
+<td>デフォルトは &#8216;true&#8217;</td>
 </tr>
 <tr class="row-even"><td>id</td>
 <td>テーブルを一意に識別するid</td>
@@ -442,7 +439,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
 <td>文字列</td>
 <td>◎</td>
 <td>×</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>resultSetName</td>
 <td>検索結果を格納する変数名</td>
@@ -463,21 +460,21 @@ id属性は、tableをラップするdivタグに設定される。</td>
 <td>文字列</td>
 <td>○</td>
 <td>○</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>usePaging</td>
 <td>ページングを使用するか否か</td>
 <td>真偽値</td>
 <td>○</td>
 <td>○</td>
-<td>デフォルト=」true」:使用する</td>
+<td>デフォルト=&#8221;true&#8221;:使用する</td>
 </tr>
 <tr class="row-odd"><td>sampleResults</td>
 <td>サンプルで表示する件数</td>
 <td>数値</td>
 <td>×</td>
 <td>◎</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>sortCondition</td>
 <td>テーブルの初期ソート条件</td>
@@ -494,7 +491,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
 <td>真偽値</td>
 <td>○</td>
 <td>○</td>
-<td>詳細は <a class="reference internal" href="table_row.html"><span class="doc">マルチレイアウトテーブル</span></a>
+<td>詳細は <a class="reference internal" href="table_row.html"><em>マルチレイアウトテーブル</em></a>
 を参照。</td>
 </tr>
 <tr class="row-even"><td>comment</td>
@@ -527,7 +524,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
 </div>
 <div class="section" id="id6">
 <h2>2.1.77.3. 内部構造・改修時の留意点<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>(<a class="reference internal" href="table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a> と同じ)</p>
+<p>(<a class="reference internal" href="table_plain.html"><em>一覧テーブルウィジェット</em></a> と同じ)</p>
 <p><strong>部品一覧</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -545,7 +542,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
 </tr>
 </tbody>
 </table>
-<p>以下 <a class="reference internal" href="table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a> と同じ</p>
+<p>以下 <a class="reference internal" href="table_plain.html"><em>一覧テーブルウィジェット</em></a> と同じ</p>
 </div>
 </div>
 
@@ -586,7 +583,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

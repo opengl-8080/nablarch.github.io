@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_send.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.17. 取引単体テストの実施方法（応答不要メッセージ送信処理）" href="../03_DealUnitTest/delayed_send.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -363,8 +360,8 @@
 <div class="section" id="id5">
 <h2>3.1.16.3. データシートの書き方<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference internal" href="#id3">テスト対象の成果物</a> のテストを行うために必要なデータシートの記述方法を説明する。</p>
-<p>データシートの記述方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。
-本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と記述方法が異なる箇所の解説を行う。</p>
+<p>データシートの記述方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。
+本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と記述方法が異なる箇所の解説を行う。</p>
 <div class="section" id="id6">
 <h3>3.1.16.3.1. 正常系ケースの準備<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
@@ -375,7 +372,7 @@
 <div class="line">応答不要メッセージ送信処理用のアクションクラスは、起動パラメータとしてメッセージのリクエストIDを要求する。</div>
 <div class="line">このため、「testShots」の定義に下記画像のように「KEY=messageRequestId」、「VALUE=メッセージのリクエストID」を追加する必要がある。</div>
 </div>
-<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" style="width: 678.5px; height: 118.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>データシートには、下記設定が不要となる。</p>
@@ -401,7 +398,7 @@
 <div class="line">異常系テストケースを実施するには、「testShots」の定義に下記画像のように「KEY=errorCase」、「VALUE=true」と設定すれば良い。</div>
 <div class="line">なお、異常系ケースでは電文が送信されないため送信電文の期待値を設定する必要はない。</div>
 </div>
-<a class="reference internal image-reference" href="../../../../../../_images/delayed_send_error.png"><img alt="../../../../../../_images/delayed_send_error.png" src="../../../../../../_images/delayed_send_error.png" style="width: 706.3px; height: 145.6px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/delayed_send_error.png"><img alt="../../../../../../_images/delayed_send_error.png" src="../../../../../../_images/delayed_send_error.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>異常系テストケースを実施する場合には、応答不要メッセージ送信処理用共通アクションをテスト用アクションに切り替える必要がある。
@@ -471,7 +468,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

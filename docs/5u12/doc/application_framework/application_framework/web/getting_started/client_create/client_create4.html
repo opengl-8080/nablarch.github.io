@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/getting_started/client_create/client_create4.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="2.3.1. 登録機能の作成(ハンズオン形式)" href="index.html"/>
         <link rel="next" title="2.3.2. 検索機能の作成" href="../project_search/index.html"/>
@@ -330,7 +327,7 @@
   <div class="section" id="client-create-4">
 <span id="id1"></span><h1>2.3.1.1.4. データベースへの登録<a class="headerlink" href="#client-create-4" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>本章では、顧客情報をデータベースへ登録する処理について解説を行う。</p>
-<p><a class="reference internal" href="client_create3.html#client-create-3"><span class="std std-ref">前へ</span></a></p>
+<p><a class="reference internal" href="client_create3.html#client-create-3"><span>前へ</span></a></p>
 <dl class="docutils">
 <dt>登録処理の実装</dt>
 <dd><p class="first"><cite>ClientAction</cite> に顧客情報の登録処理を行うメソッドを追加する。</p>
@@ -351,10 +348,10 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> から顧客エンティティを取り出して、 <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> を使用してデータベースに登録する。</li>
-<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span class="std std-ref">セッションストア</span></a> から顧客情報を削除する。</li>
+<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span>セッションストア</span></a> から顧客エンティティを取り出して、 <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用してデータベースに登録する。</li>
+<li><a class="reference internal" href="../../../libraries/session_store.html#session-store"><span>セッションストア</span></a> から顧客情報を削除する。</li>
 <li>レスポンスオブジェクトの遷移先として、登録完了画面の表示処理へのリダイレクトを指定する(完了画面でのブラウザの更新ボタン押下による顧客情報の多重登録を防ぐため)。
-リダイレクトに指定するステータスコードについては、 <a class="reference internal" href="../../feature_details.html#web-feature-details-status-code"><span class="std std-ref">ステータスコード</span></a> を参照。</li>
+リダイレクトに指定するステータスコードについては、 <a class="reference internal" href="../../feature_details.html#web-feature-details-status-code"><span>ステータスコード</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
@@ -375,14 +372,14 @@
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/OnDoubleSubmission.html" title="nablarch.common.web.token.OnDoubleSubmission">OnDoubleSubmission</a> を付与して、
-業務アクションメソッドが二重に実行された場合にエラーページへ遷移させる。詳細は <a class="reference internal" href="../../../libraries/tag.html#tag-double-submission"><span class="std std-ref">二重サブミットを防ぐ</span></a> を参照。</li>
+業務アクションメソッドが二重に実行された場合にエラーページへ遷移させる。詳細は <a class="reference internal" href="../../../libraries/tag.html#tag-double-submission"><span>二重サブミットを防ぐ</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">Exampleアプリケーションでは、二重サブミット時のデフォルトの遷移先画面を設定している。
-デフォルトの遷移先の指定方法は、 <a class="reference internal" href="../../../libraries/tag.html#tag-double-submission"><span class="std std-ref">二重サブミットを防ぐ</span></a> を参照。</p>
+デフォルトの遷移先の指定方法は、 <a class="reference internal" href="../../../libraries/tag.html#tag-double-submission"><span>二重サブミットを防ぐ</span></a> を参照。</p>
 </div>
 <dl class="last docutils">
 <dt>/src/main/webapp/WEB-INF/view/client/create.jsp</dt>
@@ -401,7 +398,7 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-button-tag"><span class="std std-ref">buttonタグ</span></a> の <cite>allowDoubleSubmission</cite> 属性にfalseを指定することで、二重サブミットを制御するJavaScriptが追加される。</li>
+<li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-button-tag"><span>buttonタグ</span></a> の <cite>allowDoubleSubmission</cite> 属性にfalseを指定することで、二重サブミットを制御するJavaScriptが追加される。</li>
 <li>ブラウザのJavaScriptが無効になっている場合等を考慮して、サーバサイドでも二重サブミットの制御を行う。</li>
 </ul>
 </dd>
@@ -499,7 +496,7 @@
 </dd>
 </dl>
 <p>登録機能の解説は以上。</p>
-<p><a class="reference internal" href="../index.html#getting-started"><span class="std std-ref">Getting Started TOPページへ</span></a></p>
+<p><a class="reference internal" href="../index.html#getting-started"><span>Getting Started TOPページへ</span></a></p>
 </div>
 
 
@@ -539,7 +536,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/mail.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.8. トランザクション管理" href="transaction.html"/>
@@ -354,8 +351,8 @@
 <p>メールを送信する機能を提供する。</p>
 <p>この機能では、ディレードオンライン処理と呼ばれる方式を採用しており、
 メール送信を即時に行うのではなく、一旦、メール送信要求をデータベースに格納しておき、
-<a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span class="std std-ref">常駐バッチ</span></a> を使い非同期にメール送信を行う。</p>
-<a class="reference internal image-reference" href="../../../_images/mail_system.png"><img alt="../../../_images/mail_system.png" src="../../../_images/mail_system.png" style="width: 435.59999999999997px; height: 300.59999999999997px;" /></a>
+<a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span>常駐バッチ</span></a> を使い非同期にメール送信を行う。</p>
+<a class="reference internal image-reference" href="../../../_images/mail_system.png"><img alt="../../../_images/mail_system.png" src="../../../_images/mail_system.png" /></a>
 <p>この方式を採用した理由は以下の通り。</p>
 <ul class="simple">
 <li>メール送信要求を出すアプリケーションで、メール送信を業務トランザクションに含めることができる。</li>
@@ -363,8 +360,8 @@
 </ul>
 <p>この機能では、上記方式を実現するため、2つの機能を提供する。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#mail-request"><span class="std std-ref">メール送信要求をデータベースに登録する機能</span></a></li>
-<li><a class="reference internal" href="#mail-send"><span class="std std-ref">メール送信要求に基づいてメールを送信するバッチ機能</span></a></li>
+<li><a class="reference internal" href="#mail-request"><span>メール送信要求をデータベースに登録する機能</span></a></li>
+<li><a class="reference internal" href="#mail-send"><span>メール送信要求に基づいてメールを送信するバッチ機能</span></a></li>
 </ul>
 <p>アプリケーションがメール送信要求を出す毎に1つのメール送信要求を作成し、
 メール送信要求1つにつきメールを1通送信する。</p>
@@ -379,7 +376,7 @@
 <h3><a class="toc-backref" href="#id24">7.7.1.1. テンプレートを使った定型メールを送信できる。</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>システムのメール送信では、登録完了通知メールのように、同じ文言で、一部の項目のみ異なるメールを送信することが多い。
 そこで、本機能では、テンプレートを用意しておき、プレースホルダを変換して、件名と本文を作成する機能を提供している。
-機能の詳細は、 <a class="reference internal" href="#mail-request"><span class="std std-ref">メール送信要求を登録する</span></a> を参照。</p>
+機能の詳細は、 <a class="reference internal" href="#mail-request"><span>メール送信要求を登録する</span></a> を参照。</p>
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id25">7.7.1.2. キャンペーン通知のような大量メールの一斉送信には対応していない</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -431,15 +428,15 @@
 </tr>
 <tr class="row-even"><td>メール送信パターンID（任意項目）</td>
 <td>文字列型</td>
-<td>メールの送信方法のパターンを識別するためのID。 <br /> パターンを使用した未送信データの抽出をする場合に定義する。（ <a class="reference internal" href="#mail-mail-send-pattern"><span class="std std-ref">未送信のデータを抽出する際の条件</span></a> を参照）</td>
+<td>メールの送信方法のパターンを識別するためのID。 <br /> パターンを使用した未送信データの抽出をする場合に定義する。（ <a class="reference internal" href="#mail-mail-send-pattern"><span>未送信のデータを抽出する際の条件</span></a> を参照）</td>
 </tr>
 <tr class="row-odd"><td>メール送信バッチのプロセスID（任意項目）</td>
 <td>文字列型</td>
-<td>マルチプロセス実行時に各プロセスがレコードを悲観ロックするために使用するカラム。 <br /> マルチプロセス実行する場合に定義する。（ <a class="reference internal" href="#mail-mail-multi-process"><span class="std std-ref">メール送信をマルチプロセス化する</span></a> を参照）</td>
+<td>マルチプロセス実行時に各プロセスがレコードを悲観ロックするために使用するカラム。 <br /> マルチプロセス実行する場合に定義する。（ <a class="reference internal" href="#mail-mail-multi-process"><span>メール送信をマルチプロセス化する</span></a> を参照）</td>
 </tr>
 <tr class="row-even"><td>件名</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>送信者メールアドレス</td>
 <td>文字列型</td>
@@ -463,15 +460,15 @@
 </tr>
 <tr class="row-even"><td>要求日時</td>
 <td>タイムスタンプ型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>送信日時</td>
 <td>タイムスタンプ型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>本文</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -485,7 +482,7 @@
 <tbody valign="top">
 <tr class="row-odd"><td>メール送信要求ID <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>連番 <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>数値型</td>
@@ -497,7 +494,7 @@
 </tr>
 <tr class="row-even"><td>メールアドレス</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -511,7 +508,7 @@
 <tbody valign="top">
 <tr class="row-odd"><td>メール送信要求ID <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>連番 <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>数値型</td>
@@ -519,15 +516,15 @@
 </tr>
 <tr class="row-odd"><td>添付ファイル名</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>Content-Type</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>添付ファイル</td>
 <td>バイト配列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -541,19 +538,19 @@
 <tbody valign="top">
 <tr class="row-odd"><td>メールテンプレートID <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>言語 <code class="docutils literal"><span class="pre">PK</span></code></td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>件名</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>本文</td>
 <td>文字列型</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>文字セット</td>
 <td>文字列型</td>
@@ -563,16 +560,16 @@
 </table>
 <p>メール送信を使うには、以下の設定を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#mail-common-settings"><span class="std std-ref">メール送信要求とメール送信バッチの共通設定</span></a></li>
-<li><a class="reference internal" href="#mail-mail-requester-settings"><span class="std std-ref">メール送信要求の設定</span></a></li>
-<li><a class="reference internal" href="#mail-mail-sender-settings"><span class="std std-ref">メール送信バッチの設定</span></a></li>
+<li><a class="reference internal" href="#mail-common-settings"><span>メール送信要求とメール送信バッチの共通設定</span></a></li>
+<li><a class="reference internal" href="#mail-mail-requester-settings"><span>メール送信要求の設定</span></a></li>
+<li><a class="reference internal" href="#mail-mail-sender-settings"><span>メール送信バッチの設定</span></a></li>
 </ul>
 <dl class="docutils" id="mail-common-settings">
 <dt>メール送信要求とメール送信バッチの共通設定</dt>
 <dd><p class="first">共通設定では、以下の設定を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#mail-common-settings-table-schema"><span class="std std-ref">テーブルスキーマ</span></a></li>
-<li><a class="reference internal" href="#mail-common-settings-mail-config"><span class="std std-ref">コード値とメッセージ</span></a></li>
+<li><a class="reference internal" href="#mail-common-settings-table-schema"><span>テーブルスキーマ</span></a></li>
+<li><a class="reference internal" href="#mail-common-settings-mail-config"><span>コード値とメッセージ</span></a></li>
 </ul>
 <dl class="docutils" id="mail-common-settings-table-schema">
 <dt>テーブルスキーマ</dt>
@@ -625,8 +622,8 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">MailRequestTableのmailSendPatternIdColumnNameプロパティ, sendProcessIdColumnNameプロパティは任意項目であり、機能を使用したい場合に設定する。
-mailSendPatternIdColumnNameプロパティについては <a class="reference internal" href="#mail-mail-send-pattern"><span class="std std-ref">未送信のデータを抽出する際の条件</span></a> を、
-sendProcessIdColumnNameプロパティについては <a class="reference internal" href="#mail-mail-multi-process"><span class="std std-ref">メール送信をマルチプロセス化する</span></a> を参照すること。</p>
+mailSendPatternIdColumnNameプロパティについては <a class="reference internal" href="#mail-mail-send-pattern"><span>未送信のデータを抽出する際の条件</span></a> を、
+sendProcessIdColumnNameプロパティについては <a class="reference internal" href="#mail-mail-multi-process"><span>メール送信をマルチプロセス化する</span></a> を参照すること。</p>
 </div>
 <dl class="last docutils" id="mail-common-settings-mail-config">
 <dt>コード値とメッセージ</dt>
@@ -678,8 +675,8 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 </ul>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> は、
 メール送信要求をデータベースに登録する際、
-<a class="reference internal" href="database/generator.html#generator"><span class="std std-ref">採番</span></a> を使ってメール送信要求IDを生成する。
-そのため、 <a class="reference internal" href="database/generator.html#generator"><span class="std std-ref">採番</span></a> の設定も別途必要となる。</p>
+<a class="reference internal" href="database/generator.html#generator"><span>採番</span></a> を使ってメール送信要求IDを生成する。
+そのため、 <a class="reference internal" href="database/generator.html#generator"><span>採番</span></a> の設定も別途必要となる。</p>
 <p>設定例を以下に示す。</p>
 <dl class="docutils">
 <dt>ポイント</dt>
@@ -802,13 +799,13 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 <div class="section" id="mail-send">
 <span id="id10"></span><h3><a class="toc-backref" href="#id30">7.7.3.3. メールを送信する(メール送信バッチを実行する)</a><a class="headerlink" href="#mail-send" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>メール送信バッチには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> を使用する。
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> は、 <a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span class="std std-ref">常駐バッチ</span></a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> は、 <a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span>常駐バッチ</span></a>
 を使用して動作させるバッチアクションとして作成している。</p>
 <p>メール送信処理では、障害発生時に同一のメールが複数送信されないように、以下のような処理の流れとなっている。
 これにより、メール送信成功時にはステータスが確実に送信済みとなっているため、二重送信を防止できる。</p>
 <dl class="docutils">
 <dt>メール送信の処理の流れ</dt>
-<dd><a class="first last reference internal image-reference" href="../../../_images/mail_sender_flow.png"><img alt="../../../_images/mail_sender_flow.png" src="../../../_images/mail_sender_flow.png" style="width: 386.25px; height: 396.0px;" /></a>
+<dd><a class="first last reference internal image-reference" href="../../../_images/mail_sender_flow.png"><img alt="../../../_images/mail_sender_flow.png" src="../../../_images/mail_sender_flow.png" /></a>
 </dd>
 </dl>
 <div class="admonition important">
@@ -822,10 +819,10 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 <p class="last">上記図の通りステータスの更新処理は別トランザクションで実行される。
 このため、これらの処理で使用するためのトランザクション設定が必要となる。
 このトランザクションのコンポーネント名は <code class="docutils literal"><span class="pre">statusUpdateTransaction</span></code> としてコンポーネント設定ファイルに登録する必要がある。
-詳細は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span class="std std-ref">現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="database/database.html#database-new-transaction"><span>現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照。</p>
 </div>
 <p>以下に実行例を示す。
-実行方法の詳細については、 <a class="reference internal" href="../handlers/standalone/main.html#main-run-application"><span class="std std-ref">アプリケーションを起動する</span></a> を参照。</p>
+実行方法の詳細については、 <a class="reference internal" href="../handlers/standalone/main.html#main-run-application"><span>アプリケーションを起動する</span></a> を参照。</p>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
@@ -896,7 +893,7 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 <tr class="row-even"><td>送信要求のメールアドレス変換時の <a class="reference external" href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/AddressException.html">JavaMailのAddressException</a></td>
 <td>変換に失敗したアドレスをログ出力(ログレベル: ERROR)する。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mail-mail-header-injection"><span class="std std-ref">メールヘッダインジェクション攻撃への対策</span></a> での <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/InvalidCharacterException.html" title="nablarch.common.mail.InvalidCharacterException">InvalidCharacterException</a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#mail-mail-header-injection"><span>メールヘッダインジェクション攻撃への対策</span></a> での <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/InvalidCharacterException.html" title="nablarch.common.mail.InvalidCharacterException">InvalidCharacterException</a></td>
 <td>ヘッダー文字列をログ出力(ログレベル: ERROR)する。</td>
 </tr>
 <tr class="row-even"><td>メール送信失敗時の <a class="reference external" href="https://javamail.java.net/nonav/docs/api/javax/mail/SendFailedException.html">JavaMailのSendFailureException</a></td>
@@ -915,7 +912,7 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 <p class="last">送信失敗の検知は、別プロセスでログファイルをチェックするなどして対応する必要がある。</p>
 </div>
 </div></blockquote>
-<p>ログ出力の処理を変更したい場合や、リトライの処理を変更したい場合は、 <a class="reference internal" href="#mail-mail-extension-sample"><span class="std std-ref">拡張例</span></a> を参照すること。</p>
+<p>ログ出力の処理を変更したい場合や、リトライの処理を変更したい場合は、 <a class="reference internal" href="#mail-mail-extension-sample"><span>拡張例</span></a> を参照すること。</p>
 </div>
 <div class="section" id="mail-mail-multi-process">
 <span id="id12"></span><h3><a class="toc-backref" href="#id32">7.7.3.5. メール送信をマルチプロセス化する</a><a class="headerlink" href="#mail-mail-multi-process" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -926,7 +923,7 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 <div><ol class="arabic simple">
 <li>メール送信要求テーブルにメール送信バッチのプロセスIDのカラムを定義する</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequestTable.html" title="nablarch.common.mail.MailRequestTable">MailRequestTable</a> のsendProcessIdColumnNameのプロパティの値にメール送信バッチのプロセスIDのカラム名を設定し、コンポーネント定義に追加する</li>
-<li>メール送信バッチのプロセスID更新用のトランザクションを <code class="docutils literal"><span class="pre">mailMultiProcessTransaction</span></code> の名前でコンポーネント定義に追加する(トランザクションの設定方法は <a class="reference internal" href="database/database.html#database-new-transaction"><span class="std std-ref">現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照)</li>
+<li>メール送信バッチのプロセスID更新用のトランザクションを <code class="docutils literal"><span class="pre">mailMultiProcessTransaction</span></code> の名前でコンポーネント定義に追加する(トランザクションの設定方法は <a class="reference internal" href="database/database.html#database-new-transaction"><span>現在のトランザクションとは異なるトランザクションでSQLを実行する</span></a> を参照)</li>
 </ol>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -976,14 +973,14 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
 </div>
 <div class="section" id="id16">
 <h3><a class="toc-backref" href="#id36">7.7.4.2. メール送信に失敗した際の処理を変更する</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>メール送信に失敗した際のエラー処理(詳細は <a class="reference internal" href="#mail-mail-error-process"><span class="std std-ref">メール送信時のエラー処理</span></a> を参照)を、例えば、ログレベルを変更したり、
+<p>メール送信に失敗した際のエラー処理(詳細は <a class="reference internal" href="#mail-mail-error-process"><span>メール送信時のエラー処理</span></a> を参照)を、例えば、ログレベルを変更したり、
 リトライ対象の例外を変更するなど、アプリケーションの要件によって変更したい場合がある。</p>
 <p>そのような場合は、上の例と同様、<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> を継承したクラスを作成して対応する。</p>
 </div>
 <div class="section" id="id17">
 <h3><a class="toc-backref" href="#id37">7.7.4.3. メール送信要求時に利用するトランザクションを指定する</a><a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>業務アプリケーションが失敗してもメール送信要求を確実に行いたい場合など、
-メール送信要求 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> とメール送信要求IDの <a class="reference internal" href="database/generator.html#generator"><span class="std std-ref">採番</span></a>
+メール送信要求 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> とメール送信要求IDの <a class="reference internal" href="database/generator.html#generator"><span>採番</span></a>
 で実行されるトランザクションを、業務アプリケーションのトランザクションとは独立して指定したい場合がある。</p>
 <p>その場合の設定例を以下に示す。</p>
 <blockquote>
@@ -1055,7 +1052,7 @@ sendProcessIdColumnNameプロパティについては <a class="reference intern
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/performance_log.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.1.1.2.4. HTTPアクセスログの出力" href="http_access_log.html"/>
@@ -180,9 +177,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -405,14 +402,14 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a> は、
-測定対象を <a class="reference internal" href="../log.html#log-execution-id"><span class="std std-ref">実行時ID</span></a> ＋ポイント名で一意に識別している。
+測定対象を <a class="reference internal" href="../log.html#log-execution-id"><span>実行時ID</span></a> ＋ポイント名で一意に識別している。
 このため、再帰呼び出しの中で <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/app/PerformanceLogUtil.html" title="nablarch.core.log.app.PerformanceLogUtil">PerformanceLogUtil</a>
 を使用すると計測を実施出来ないため注意すること。</p>
 </div>
 </div>
 <div class="section" id="performance-log-setting">
 <span id="id6"></span><h3><a class="toc-backref" href="#id11">7.1.1.2.3.2.2. パフォーマンスログの設定を行う</a><a class="headerlink" href="#performance-log-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>パフォーマンスログの設定は、 <a class="reference internal" href="../log.html#log-app-log-setting"><span class="std std-ref">各種ログの設定を行う</span></a> で説明したプロパティファイルに行う。</p>
+<p>パフォーマンスログの設定は、 <a class="reference internal" href="../log.html#log-app-log-setting"><span>各種ログの設定を行う</span></a> で説明したプロパティファイルに行う。</p>
 <dl class="docutils">
 <dt>記述ルール</dt>
 <dd><p class="first"></p>
@@ -437,21 +434,21 @@
 <tr class="field-even field"><th class="field-name">処理の終了日時:</th><td class="field-body">$endTime$</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">処理の実行時間(終了日時 - 開始日時):</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">$executionTime$</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$executionTime$</td>
 </tr>
 <tr class="field-even field"><th class="field-name">処理の開始時点のヒープサイズ:</th><td class="field-body">$maxMemory$</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">処理の開始時点の空きヒープサイズ:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">$startFreeMemory$</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$startFreeMemory$</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">処理の開始時点の使用ヒープサイズ:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">$startUsedMemory$</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">$startUsedMemory$</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">処理の終了時点の空きヒープサイズ:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">$endFreeMemory$</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$endFreeMemory$</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">処理の終了時点の使用ヒープサイズ:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">$endUsedMemory$</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">$endUsedMemory$</td>
 </tr>
 </tbody>
 </table>
@@ -528,7 +525,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

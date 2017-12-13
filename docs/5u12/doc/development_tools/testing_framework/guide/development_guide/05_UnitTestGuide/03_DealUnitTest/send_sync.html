@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法" href="http_send_sync.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -331,13 +328,13 @@
 <li>同期応答メッセージ送信処理を伴うウェブアプリケーションの通常の処理フロー</li>
 </ul>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_base.png"><img alt="../../../../../../_images/send_sync_online_base.png" src="../../../../../../_images/send_sync_online_base.png" style="width: 682.5px; height: 282.09999999999997px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_base.png"><img alt="../../../../../../_images/send_sync_online_base.png" src="../../../../../../_images/send_sync_online_base.png" /></a>
 </div></blockquote>
 <ul class="simple">
 <li>モックアップクラスを使用して、同期応答メッセージ送信処理を伴うウェブアプリケーションの取引単体テストを行う場合の処理フロー</li>
 </ul>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_mock.png"><img alt="../../../../../../_images/send_sync_online_mock.png" src="../../../../../../_images/send_sync_online_mock.png" style="width: 718.9px; height: 294.7px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_mock.png"><img alt="../../../../../../_images/send_sync_online_mock.png" src="../../../../../../_images/send_sync_online_mock.png" /></a>
 </div></blockquote>
 <p>モックアップクラスは以下の機能を提供する。</p>
 <ul>
@@ -361,7 +358,7 @@
 また、要求電文についてはフォーマットのみ定義する。</p>
 <p>ExcelファイルはリクエストID<a class="footnote-reference" href="#id6" id="id5">[1]</a>ごとに用意する。また、ファイルの名前はリクエストIDと一致させる。
 たとえば、リクエストIDが「RM21AA0101」ならば、ファイルの名前は「RM21AA0101.xlsx」となる。
-ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span class="std std-ref">Excelファイルの配置場所の設定</span></a>を参照。</p>
+ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span>Excelファイルの配置場所の設定</span></a>を参照。</p>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -385,7 +382,7 @@
 <div class="section" id="id7">
 <h4>3.1.5.1.1.1. 書き方の例<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>以下に、Excelファイルの記載例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data.png"><img alt="../../../../../../_images/send_sync_test_data.png" src="../../../../../../_images/send_sync_test_data.png" style="width: 653.8px; height: 385.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data.png"><img alt="../../../../../../_images/send_sync_test_data.png" src="../../../../../../_images/send_sync_test_data.png" /></a>
 </div>
 <div class="section" id="send-sync-test-data-format">
 <span id="id8"></span><h4>3.1.5.1.1.2. 電文のフォーマットおよびデータの記載方法<a class="headerlink" href="#send-sync-test-data-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -399,41 +396,41 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>識別子</td>
-<td colspan="3">&#160;</td>
+<td colspan="3">&nbsp;</td>
 </tr>
 <tr class="row-even"><td>ディレクティブ行</td>
 <td>ディレクティブの設定値</td>
-<td colspan="2">&#160;</td>
+<td colspan="2">&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>…  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
-<td>…</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-odd"><td>...  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
+<td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td rowspan="6">no</td>
 <td>フィールド名称(1)</td>
 <td>フィールド名称(2)</td>
-<td>…  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
+<td>...  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
 </tr>
 <tr class="row-odd"><td>データ型(1)</td>
 <td>データ型(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>フィールド長(1)</td>
 <td>フィールド長(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-odd"><td>データ(1-1)</td>
 <td>データ(2-1)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>データ(1-2)</td>
 <td>データ(2-2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
-<tr class="row-odd"><td>… <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
-<td>…</td>
-<td>…</td>
+<tr class="row-odd"><td>... <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
+<td>...</td>
+<td>...</td>
 </tr>
 </tbody>
 </table>
@@ -541,10 +538,10 @@ Excelファイルのタイムスタンプが更新された場合に、ファイ
 <p>通常、以下の応答電文を返却するたびにnoのインクリメントが行われ、アプリケーションサーバが起動している間は、noの値が初期化されることはない。</p>
 <p>以下のような応答電文データを定義した場合、１回目のメッセージ同期送信ではno.1の応答電文が返却され、
 noのインクリメントが行われる。そして２回目のメッセージ同期送信ではno.2の応答電文が返却される。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data_no.png"><img alt="../../../../../../_images/send_sync_test_data_no.png" src="../../../../../../_images/send_sync_test_data_no.png" style="width: 752.4px; height: 121.5px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data_no.png"><img alt="../../../../../../_images/send_sync_test_data_no.png" src="../../../../../../_images/send_sync_test_data_no.png" /></a>
 <p>しかし、Excelファイルの編集や上書きを行い、タイムスタンプを更新することで、アプリケーションサーバ起動中にExcelファイルの再読み込みを行うことができる。</p>
 <p>以下に、Excelファイルを編集し、テストをやり直す場合の例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_response_count_change.png"><img alt="../../../../../../_images/send_sync_response_count_change.png" src="../../../../../../_images/send_sync_response_count_change.png" style="width: 751.8px; height: 299.59999999999997px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_response_count_change.png"><img alt="../../../../../../_images/send_sync_response_count_change.png" src="../../../../../../_images/send_sync_response_count_change.png" /></a>
 </div>
 <div class="section" id="send-sync-response-count-change-png">
 <span id="id18"></span><h4>3.1.5.1.1.4. 障害系のテスト<a class="headerlink" href="#send-sync-response-count-change-png" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -757,7 +754,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

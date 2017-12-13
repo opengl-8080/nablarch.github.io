@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/http_send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.19. リクエスト単体テストの実施方法(メール送信)" href="mail.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -325,15 +322,15 @@
             
   <div class="section" id="http">
 <span id="message-httpsendsyncmessage-test"></span><h1>3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>リクエスト単体テスト実施方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。</p>
+<p>リクエスト単体テスト実施方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。</p>
 <p>ただし、「送信キュー」「受信キュー」を「通信先」と読み替えること。</p>
-<p>本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と異なる箇所の解説を行う。</p>
+<p>本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と異なる箇所の解説を行う。</p>
 <div class="section" id="http-send-sync-request-write-test-data">
 <span id="id1"></span><h2>3.1.18.1. テストデータの書き方<a class="headerlink" href="#http-send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
 <h3>3.1.18.1.1. 電文を1回送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下に、電文を1回送信する場合の返却する応答電文の記述例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_response.png"><img alt="../../../../../../_images/http_send_sync_response.png" src="../../../../../../_images/http_send_sync_response.png" style="width: 852.0px; height: 367.20000000000005px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_response.png"><img alt="../../../../../../_images/http_send_sync_response.png" src="../../../../../../_images/http_send_sync_response.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>RESPONSE_BODY_MESSAGES(及び後の例で使用するEXPECTED_REQUEST_BODY_MESSAGES)は、複数フィールドに分割して記述することが可能である。</p>
@@ -341,7 +338,7 @@
 <p class="last">分割する際、「フィールド名」は任意の文字列を指定する。上記の例では <code class="docutils literal"><span class="pre">XML1</span></code> 、 <code class="docutils literal"><span class="pre">XML2</span></code> 、 <code class="docutils literal"><span class="pre">XML3</span></code> としている。</p>
 </div>
 <p>以下に、電文を1回送信する場合の要求電文の期待値の記述例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_expected.png"><img alt="../../../../../../_images/http_send_sync_expected.png" src="../../../../../../_images/http_send_sync_expected.png" style="width: 853.6px; height: 463.20000000000005px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_expected.png"><img alt="../../../../../../_images/http_send_sync_expected.png" src="../../../../../../_images/http_send_sync_expected.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>JSON及びXMLデータ形式使用時は、1Excelシートに1テストケースのみ記述すること。</p>
@@ -352,14 +349,14 @@
 <h3>3.1.18.1.2. 電文を2回以上送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>複数回電文送信を行う場合のテストは、テスティングフレームワークの以下の仕様に注意をして記述すること。</p>
 <ul class="simple">
-<li>同一データタイプ(以下の例では <code class="docutils literal"><span class="pre">RESPONSE_HEADER_MESSAGES</span></code> と <code class="docutils literal"><span class="pre">RESPONSE_BODY_MESSAGES</span></code> )は、それぞれ、まとめて記述する。詳細は、 <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">一つのシートに複数テストケースのデータを記載したい</span></a>及び、 <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#auto-test-framework-multi-datatype"><span class="std std-ref">複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a>を参照。</li>
+<li>同一データタイプ(以下の例では <code class="docutils literal"><span class="pre">RESPONSE_HEADER_MESSAGES</span></code> と <code class="docutils literal"><span class="pre">RESPONSE_BODY_MESSAGES</span></code> )は、それぞれ、まとめて記述する。詳細は、 <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>一つのシートに複数テストケースのデータを記載したい</span></a>及び、 <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#auto-test-framework-multi-datatype"><span>複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a>を参照。</li>
 <li>同一リクエストIDの電文については、noの値を変えてまとめて記述する。</li>
 <li>同一リクエストIDの電文の場合は、電文の長さを合わせる(電文を1回送信する場合と同様の制約である。テストケース上、同一の長さにできない場合は、手動でテストを行うこと)</li>
 </ul>
 <p>以下に複数回電文送信を行う際の、返却する応答電文の記述例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_ok_pattern_response.png"><img alt="../../../../../../_images/http_send_sync_ok_pattern_response.png" src="../../../../../../_images/http_send_sync_ok_pattern_response.png" style="width: 687.2px; height: 515.2px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_ok_pattern_response.png"><img alt="../../../../../../_images/http_send_sync_ok_pattern_response.png" src="../../../../../../_images/http_send_sync_ok_pattern_response.png" /></a>
 <p>以下に複数回電文送信を行う際の、要求電文の期待値の記述例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/http_send_sync_ok_pattern_expected.png" src="../../../../../../_images/http_send_sync_ok_pattern_expected.png" style="width: 687.2px; height: 564.8000000000001px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/http_send_sync_ok_pattern_expected.png" src="../../../../../../_images/http_send_sync_ok_pattern_expected.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">送信対象のリクエストIDが複数存在する場合、送信順のテストは不可能である。上記の例の場合、 <code class="docutils literal"><span class="pre">ProjectSaveMessage</span></code> より先に、 <code class="docutils literal"><span class="pre">ProjectSaveMessage2</span></code> が送信された場合であってもテストは成功となる。</p>
@@ -367,16 +364,16 @@
 </div>
 <div class="section" id="id4">
 <h3>3.1.18.1.3. モックアップを使用するための記述<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>testShotsに <code class="docutils literal"><span class="pre">expectedMessageByClient</span></code> および <code class="docutils literal"><span class="pre">responseMessageByClient</span></code> にグループIDを設定する。モックアップ自体については、<a class="reference internal" href="../03_DealUnitTest/send_sync.html#dealunittest-send-sync"><span class="std std-ref">同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>を参照。</p>
-<p>グループIDの関連については<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>における <code class="docutils literal"><span class="pre">expectedMessage</span></code> および <code class="docutils literal"><span class="pre">responseMessage</span></code> の場合と同様であるため割愛する。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_shot.png"><img alt="../../../../../../_images/http_send_sync_shot.png" src="../../../../../../_images/http_send_sync_shot.png" style="width: 851.2px; height: 130.4px;" /></a>
+<p>testShotsに <code class="docutils literal"><span class="pre">expectedMessageByClient</span></code> および <code class="docutils literal"><span class="pre">responseMessageByClient</span></code> にグループIDを設定する。モックアップ自体については、<a class="reference internal" href="../03_DealUnitTest/send_sync.html#dealunittest-send-sync"><span>同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>を参照。</p>
+<p>グループIDの関連については<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>における <code class="docutils literal"><span class="pre">expectedMessage</span></code> および <code class="docutils literal"><span class="pre">responseMessage</span></code> の場合と同様であるため割愛する。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_shot.png"><img alt="../../../../../../_images/http_send_sync_shot.png" src="../../../../../../_images/http_send_sync_shot.png" /></a>
 <div class="line-block">
 <div class="line">同一アクション内でMOMによる同期応答メッセージ送信処理とHTTP同期応答メッセージ送信処理が同時に行われる場合、</div>
-<div class="line">「expectedMessage」、」responseMessage」にMOMによる同期応答メッセージ送信処理で使用するグループIDを、</div>
-<div class="line">「expectedMessageByClient」、」responseMessageByClient」にHTTP同期応答メッセージ送信処理で使用するグループIDを</div>
+<div class="line">&#8220;expectedMessage&#8221;、&#8221;responseMessage&#8221;にMOMによる同期応答メッセージ送信処理で使用するグループIDを、</div>
+<div class="line">&#8220;expectedMessageByClient&#8221;、&#8221;responseMessageByClient&#8221;にHTTP同期応答メッセージ送信処理で使用するグループIDを</div>
 <div class="line">それぞれ個別に指定する。</div>
 </div>
-<a class="reference internal image-reference" href="../../../../../../_images/http_mom_send_sync_shot.png"><img alt="../../../../../../_images/http_mom_send_sync_shot.png" src="../../../../../../_images/http_mom_send_sync_shot.png" style="width: 916.8000000000001px; height: 130.4px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/http_mom_send_sync_shot.png"><img alt="../../../../../../_images/http_mom_send_sync_shot.png" src="../../../../../../_images/http_mom_send_sync_shot.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">グループIDはMOMによる同期応答メッセージ送信処理とHTTP同期応答メッセージ送信処理でそれぞれ別の値を設定する必要がある。
@@ -386,7 +383,7 @@
 <div class="section" id="id5">
 <h3>3.1.18.1.4. 要求電文のアサート<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストデータのディレクティブ行に設定されたfile-typeの値により、要求電文のアサート方法が変化する。</p>
-<p>設定方法やアサート内容についての詳細は <a class="reference internal" href="real.html#real-request-test"><span class="std std-ref">リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a> のレスポンスメッセージの項を参照すること。</p>
+<p>設定方法やアサート内容についての詳細は <a class="reference internal" href="real.html#real-request-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a> のレスポンスメッセージの項を参照すること。</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -447,7 +444,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/01_ClassUnitTest/02_componentUnitTest.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1.1. クラス単体テストの実施方法" href="index.html"/>
         <link rel="next" title="3.1.2. リクエスト単体テストの実施方法" href="../02_RequestUnitTest/index.html"/>
@@ -179,10 +176,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">3. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -367,20 +364,20 @@
 </tr>
 </tbody>
 </table>
-<p>今回の例は、DB挿入処理、2重登録時のエラー処理ありなので、テストケースは」処理終了後のデータベースの状況を確認しなければならないもの」と」メッセージIDを確認しなければならないもの」に分類される。</p>
+<p>今回の例は、DB挿入処理、2重登録時のエラー処理ありなので、テストケースは&#8221;処理終了後のデータベースの状況を確認しなければならないもの&#8221;と&#8221;メッセージIDを確認しなければならないもの&#8221;に分類される。</p>
 </div>
 <div class="section" id="id3">
 <h3>3.1.1.2.1.2. テストデータとテストクラスの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#componentunittest-setup"><span class="std std-ref">事前準備データの作成処理</span></a>、<a class="reference internal" href="#componentunittest-db"><span class="std std-ref">処理終了後のデータベースの状況を確認しなければならないもの</span></a>、<a class="reference internal" href="#componentunittest-messageid"><span class="std std-ref">メッセージIDを確認しなければならないもの</span></a>のそれぞれについて、テストデータとテストクラスの作成方法を説明する。まず最初に、テストデータ(Excelファイル)そのもののと、テストクラスの作成方法(継承すべきクラスなど)を説明する。次に、各パターンごとのデータとテストメソッド作成方法を説明する。</p>
+<p><a class="reference internal" href="#componentunittest-setup"><span>事前準備データの作成処理</span></a>、<a class="reference internal" href="#componentunittest-db"><span>処理終了後のデータベースの状況を確認しなければならないもの</span></a>、<a class="reference internal" href="#componentunittest-messageid"><span>メッセージIDを確認しなければならないもの</span></a>のそれぞれについて、テストデータとテストクラスの作成方法を説明する。まず最初に、テストデータ(Excelファイル)そのもののと、テストクラスの作成方法(継承すべきクラスなど)を説明する。次に、各パターンごとのデータとテストメソッド作成方法を説明する。</p>
 <div class="section" id="id4">
 <h4>3.1.1.2.1.2.1. テストデータの作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>テストデータを記載したExcelファイルは、<a class="reference internal" href="01_entityUnitTest.html#entityunittest"><span class="std std-ref">Form/Entityのクラス単体テスト</span></a>と同様にテストソースコードと同じディレクトリに同じ名前で格納する(拡張子のみ異なる)。なお、全てのテストデータは同じExcelのシートに記載する前提である。</p>
-<p>テストデータの記述方法詳細については、<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><span class="doc">自動テストフレームワーク</span></a>、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><span class="doc">データベースを使用するクラスのテスト</span></a>を参照。</p>
+<p>テストデータを記載したExcelファイルは、<a class="reference internal" href="01_entityUnitTest.html#entityunittest"><span>Form/Entityのクラス単体テスト</span></a>と同様にテストソースコードと同じディレクトリに同じ名前で格納する(拡張子のみ異なる)。なお、全てのテストデータは同じExcelのシートに記載する前提である。</p>
+<p>テストデータの記述方法詳細については、<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><em>自動テストフレームワーク</em></a>、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>データベースを使用するクラスのテスト</em></a>を参照。</p>
 <p>なお、メッセージデータやコードマスタなどの、データベースに格納する静的マスタデータは、プロジェクトで管理されたデータがあらかじめ投入されている(これらのデータを個別のテストデータとして作成しない)前提である。</p>
 </div>
 <div class="section" id="id5">
 <h4>3.1.1.2.1.2.2. テストクラスの作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>Component単体テストのテストクラスは以下の条件を満たすように作成する。詳細は、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><span class="doc">データベースを使用するクラスのテスト</span></a>を参照。</p>
+<p>Component単体テストのテストクラスは以下の条件を満たすように作成する。詳細は、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>データベースを使用するクラスのテスト</em></a>を参照。</p>
 <ul class="simple">
 <li>テストクラスのパッケージは、テスト対象のAction/Componentと同じとする。</li>
 <li>&lt;Action/Componentクラス名&gt;Testというクラス名でテストクラスを作成する。</li>
@@ -437,7 +434,7 @@
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_Setup.png"><img alt="../../../../../../_images/componentUnitTest_Setup.png" src="../../../../../../_images/componentUnitTest_Setup.png" style="width: 800.0px; height: 386.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_Setup.png"><img alt="../../../../../../_images/componentUnitTest_Setup.png" src="../../../../../../_images/componentUnitTest_Setup.png" style="width: 800.0px;" /></a>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -483,7 +480,7 @@
 <li>grpSysAcctEntity:グループシステムアカウントエンティティのデータ</li>
 </ul>
 <p>sysAcctEntityのuseCaseIdはuseCaseIdプロパティに設定される値そのものではなく(SystemAccountEntityのuseCaseIdプロパティは配列)、図中矢印で示している別の表のデータを指している。テストコードでは、取得した値をキーとして更にデータを取得、配列を作成し、useCaseIdプロパティに設定している。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_inputData.png"><img alt="../../../../../../_images/componentUnitTest_inputData.png" src="../../../../../../_images/componentUnitTest_inputData.png" style="width: 800.0px; height: 664.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_inputData.png"><img alt="../../../../../../_images/componentUnitTest_inputData.png" src="../../../../../../_images/componentUnitTest_inputData.png" style="width: 800.0px;" /></a>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ～前略～</span>
 
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser1</span><span class="o">()</span> <span class="o">{</span>
@@ -548,7 +545,7 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">上記のソースコードでは、getListMapメソッドを用いてExcelシートからデータを読み込んでいる。getListMapメソッドの詳細については、<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html"><span class="doc">目的別API使用方法</span></a>の『<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a>』 を参照。</p>
+<p class="last">上記のソースコードでは、getListMapメソッドを用いてExcelシートからデータを読み込んでいる。getListMapメソッドの詳細については、<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html"><em>目的別API使用方法</em></a>の『<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#how-to-get-data-from-excel"><span>Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a>』 を参照。</p>
 </div>
 <p>クラス単体テストでは、テストクラスからデータベースアクセスを行うクラスを直接起動する為、フレームワークによるトランザクション制御は行われない。処理終了後のデータベースの状況を確認しなければならない場合は、テストクラスにてトランザクションをコミットする必要がある。</p>
 <p>スーパクラスの <code class="docutils literal"><span class="pre">commitTransactions()</span></code> メソッドを起動しコミットする。
@@ -556,9 +553,9 @@
 </div>
 <div class="section" id="id11">
 <h5>3.1.1.2.1.2.4.2. テストデータ(想定結果)の作成<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>想定結果をテストケースごとに用意する。アプリケーションで設定する項目だけでなく、自動設定項目(<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/database/database.html#database-common-bean"><span class="std std-ref">SQL実行時に共通的な値を自動的に設定したい</span></a>参照)も想定結果を用意する。検証には」assertTableEquals」メソッドを用いる。</p>
-<p>サンプルアプリケーションでは、グループID(<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span class="std std-ref">一つのシートに複数テストケースのデータを記載したい</span></a>参照)を定義したデータ(expected)を用意し、これをassertTableEqualsの引数に渡すことで、複数の想定結果に対応している。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataNormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataNormal.png" src="../../../../../../_images/componentUnitTest_expectedDataNormal.png" style="width: 800.0px; height: 791.0px;" /></a>
+<p>想定結果をテストケースごとに用意する。アプリケーションで設定する項目だけでなく、自動設定項目(<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/database/database.html#database-common-bean"><span>SQL実行時に共通的な値を自動的に設定したい</span></a>参照)も想定結果を用意する。検証には&#8221;assertTableEquals&#8221;メソッドを用いる。</p>
+<p>サンプルアプリケーションでは、グループID(<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>一つのシートに複数テストケースのデータを記載したい</span></a>参照)を定義したデータ(expected)を用意し、これをassertTableEqualsの引数に渡すことで、複数の想定結果に対応している。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataNormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataNormal.png" src="../../../../../../_images/componentUnitTest_expectedDataNormal.png" style="width: 800.0px;" /></a>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ～前略～</span>
 
 <span class="cm">/**</span>
@@ -598,13 +595,13 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>SYSTEM_ACCOUNT</td>
-<td><a class="reference internal" href="#componentunittest-setup"><span class="std std-ref">事前準備データの作成処理</span></a>で示したレコード+1レコード追加。計4レコード。</td>
+<td><a class="reference internal" href="#componentunittest-setup"><span>事前準備データの作成処理</span></a>で示したレコード+1レコード追加。計4レコード。</td>
 </tr>
 <tr class="row-odd"><td>USERS</td>
-<td>1レコード追加。(<a class="reference internal" href="#componentunittest-setup"><span class="std std-ref">事前準備データの作成処理</span></a>で0件に初期化し、テスト対象処理で1レコード追加)</td>
+<td>1レコード追加。(<a class="reference internal" href="#componentunittest-setup"><span>事前準備データの作成処理</span></a>で0件に初期化し、テスト対象処理で1レコード追加)</td>
 </tr>
 <tr class="row-even"><td>UGROUP_SYSTEM_ACCOUNT</td>
-<td>1レコード追加。(<a class="reference internal" href="#componentunittest-setup"><span class="std std-ref">事前準備データの作成処理</span></a>で0件に初期化し、テスト対象処理で1レコード追加)</td>
+<td>1レコード追加。(<a class="reference internal" href="#componentunittest-setup"><span>事前準備データの作成処理</span></a>で0件に初期化し、テスト対象処理で1レコード追加)</td>
 </tr>
 <tr class="row-odd"><td>SYSTEM_ACCOUNT_AUTHORITY</td>
 <td>変化なし(新規追加なし)。</td>
@@ -617,13 +614,13 @@
 <span id="id"></span><h4>3.1.1.2.1.2.5. メッセージIDを確認しなければならないもの<a class="headerlink" href="#componentunittest-messageid" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="section" id="id12">
 <h5>3.1.1.2.1.2.5.1. テストデータ(入力値と想定値)の作成<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p><a class="reference internal" href="#componentunittest-inputdata-normal"><span class="std std-ref">前項のテストデータ(入力値)の作成</span></a>と同様にテストデータ(入力値)を作成する。こちらでは、<a class="reference internal" href="#componentunittest-inputdata-normal"><span class="std std-ref">前項</span></a>で指定したIDの末尾に」Err」を付加することで、同じExcelシート内に正常系と異常系のデータを混載している。また、想定値はメッセージIDである。</p>
+<p><a class="reference internal" href="#componentunittest-inputdata-normal"><span>前項のテストデータ(入力値)の作成</span></a>と同様にテストデータ(入力値)を作成する。こちらでは、<a class="reference internal" href="#componentunittest-inputdata-normal"><span>前項</span></a>で指定したIDの末尾に&#8221;Err&#8221;を付加することで、同じExcelシート内に正常系と異常系のデータを混載している。また、想定値はメッセージIDである。</p>
 <p>ここで確認すべき内容は、ユニークキー制約違反による例外の発生である。テストコードでは、目的の例外をキャッチし、メッセージIDを比較することで検証を行う。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">キャッチする例外は発生を想定する例外とし、RuntimeExceptionなどの上位例外クラスは用いないこと。メッセージIDはあっているが、例外そのものを間違えているバグを検出できなくなってしまう。</p>
 </div>
-<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" src="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" style="width: 800.0px; height: 351.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" src="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" style="width: 800.0px;" /></a>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ～前略～</span>
 
 <span class="cm">/**</span>
@@ -693,7 +690,7 @@
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

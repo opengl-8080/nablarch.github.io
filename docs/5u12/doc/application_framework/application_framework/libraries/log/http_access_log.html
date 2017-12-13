@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/http_access_log.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.1.1.2.5. メッセージングログの出力" href="messaging_log.html"/>
@@ -342,12 +339,12 @@
 <p>HTTPアクセスログの出力に必要となるハンドラは以下のとおり。</p>
 <blockquote>
 <div><dl class="docutils">
-<dt><a class="reference internal" href="../../handlers/web/http_access_log_handler.html#http-access-log-handler"><span class="std std-ref">HTTPアクセスログハンドラ</span></a></dt>
+<dt><a class="reference internal" href="../../handlers/web/http_access_log_handler.html#http-access-log-handler"><span>HTTPアクセスログハンドラ</span></a></dt>
 <dd>リクエスト処理開始時と終了時のログ出力を行う。</dd>
-<dt><a class="reference internal" href="../../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span class="std std-ref">Nablarchカスタムタグ制御ハンドラ</span></a></dt>
+<dt><a class="reference internal" href="../../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a></dt>
 <dd>hiddenパラメータ復号後のログ出力を行う。
-hiddenパラメータについては、 <a class="reference internal" href="../tag.html#tag-hidden-encryption"><span class="std std-ref">hidden暗号化</span></a> を参照。</dd>
-<dt><a class="reference internal" href="../../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span class="std std-ref">HTTPリクエストディスパッチハンドラ</span></a></dt>
+hiddenパラメータについては、 <a class="reference internal" href="../tag.html#tag-hidden-encryption"><span>hidden暗号化</span></a> を参照。</dd>
+<dt><a class="reference internal" href="../../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span>HTTPリクエストディスパッチハンドラ</span></a></dt>
 <dd>ディスパッチ先クラス決定後のログ出力を行う。</dd>
 </dl>
 </div></blockquote>
@@ -406,7 +403,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <h2><a class="toc-backref" href="#id7">7.1.1.2.4.2. 使用方法</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="http-access-log-setting">
 <span id="id4"></span><h3><a class="toc-backref" href="#id8">7.1.1.2.4.2.1. HTTPアクセスログの設定を行う</a><a class="headerlink" href="#http-access-log-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>HTTPアクセスログの設定は、 <a class="reference internal" href="../log.html#log-app-log-setting"><span class="std std-ref">各種ログの設定を行う</span></a> で説明したプロパティファイルに行う。</p>
+<p>HTTPアクセスログの設定は、 <a class="reference internal" href="../log.html#log-app-log-setting"><span>各種ログの設定を行う</span></a> で説明したプロパティファイルに行う。</p>
 <dl class="docutils">
 <dt>記述ルール</dt>
 <dd><p class="first"></p>
@@ -443,7 +440,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <tr class="field-even field"><th class="field-name">クライアント端末ホスト:</th><td class="field-body">$clientHost$</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">HTTPヘッダのUser-Agent:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">$clientUserAgent$</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$clientUserAgent$</td>
 </tr>
 <tr class="field-even field"><th class="field-name">リクエストパラメータ:</th><td class="field-body">$parameters$</td>
 </tr>
@@ -464,7 +461,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">リクエストパラメータは、 <a class="reference internal" href="../tag.html#tag-hidden-encryption"><span class="std std-ref">hidden暗号化</span></a> の復号前の状態となる。</p>
+<p class="last">リクエストパラメータは、 <a class="reference internal" href="../tag.html#tag-hidden-encryption"><span>hidden暗号化</span></a> の復号前の状態となる。</p>
 </div>
 <div class="last admonition important">
 <p class="first admonition-title">重要</p>
@@ -472,7 +469,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 が出力する項目と重複するが、HTTPアクセスログのフォーマットの自由度を高めるために設けている。</p>
 <p class="last">リクエストID、ユーザIDを出力する場合は、
 これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
-ハンドラ構成に <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
+ハンドラ構成に <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
 </div>
 </dd>
 <dt>httpAccessLogFormatter.parametersFormat</dt>
@@ -521,7 +518,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <tr class="field-even field"><th class="field-name">ステータスコード(内部):</th><td class="field-body">$statusCode$</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">ステータスコード(クライアント):</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">$responseStatusCode$</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$responseStatusCode$</td>
 </tr>
 <tr class="field-even field"><th class="field-name">コンテンツパス:</th><td class="field-body">$contentPath$</td>
 </tr>
@@ -551,11 +548,11 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p>ステータスコード(内部)は、 <a class="reference internal" href="../../handlers/web/http_access_log_handler.html#http-access-log-handler"><span class="std std-ref">HTTPアクセスログハンドラ</span></a> の復路時点でのステータスコードのことを指す。
-ステータスコード(クライアント)は、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> で、クライアントに返却するステータスコードのことを指す。</p>
-<p>ステータスコード(クライアント)は、本ログ出力時点では確定していないが、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> と同じ機能を使い、
+<p>ステータスコード(内部)は、 <a class="reference internal" href="../../handlers/web/http_access_log_handler.html#http-access-log-handler"><span>HTTPアクセスログハンドラ</span></a> の復路時点でのステータスコードのことを指す。
+ステータスコード(クライアント)は、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> で、クライアントに返却するステータスコードのことを指す。</p>
+<p>ステータスコード(クライアント)は、本ログ出力時点では確定していないが、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> と同じ機能を使い、
 ステータスコード(クライアント)を導出しログ出力を行う。</p>
-<p class="last">ステータスコードの変換ルールは、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler-convert-status-code"><span class="std std-ref">HTTPステータスコードの変更</span></a> を参照。</p>
+<p class="last">ステータスコードの変換ルールは、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler-convert-status-code"><span>HTTPステータスコードの変更</span></a> を参照。</p>
 </div>
 <div class="last admonition important">
 <p class="first admonition-title">重要</p>
@@ -659,7 +656,7 @@ falseを指定するとリクエスト処理終了時の出力を行わない。
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

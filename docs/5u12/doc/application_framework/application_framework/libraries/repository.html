@@ -35,9 +35,6 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/repository.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
     <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.3. データベースアクセス" href="database_management.html"/>
@@ -364,25 +361,25 @@
 <h2><a class="toc-backref" href="#id19">7.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="di">
 <h3><a class="toc-backref" href="#id20">7.2.1.1. DIコンテナによるオブジェクトの構築ができる</a><a class="headerlink" href="#di" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span class="std std-ref">xml</span></a> に定義されたコンポーネントの定義を元にオブジェクトを構築できる。</p>
+<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span>xml</span></a> に定義されたコンポーネントの定義を元にオブジェクトを構築できる。</p>
 <p>DIコンテナ機能では、以下のことができる。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#repository-definition-bean"><span class="std std-ref">setterインジェクションができる。</span></a></li>
-<li><a class="reference internal" href="#repository-property-type"><span class="std std-ref">文字列や数値、真偽値を使用できる。</span></a></li>
-<li><a class="reference internal" href="#repository-map-list"><span class="std std-ref">ListやMapをインジェクションできる。</span></a></li>
-<li><a class="reference internal" href="#repository-autowired"><span class="std std-ref">型や名前が一致するsetterへの自動インジェクションができる。</span></a></li>
-<li><a class="reference internal" href="#repository-factory-injection"><span class="std std-ref">ファクトリインジェクションができる。</span></a></li>
-<li><a class="reference internal" href="#repository-environment-configuration"><span class="std std-ref">環境依存値を管理できる。</span></a></li>
+<li><a class="reference internal" href="#repository-definition-bean"><span>setterインジェクションができる。</span></a></li>
+<li><a class="reference internal" href="#repository-property-type"><span>文字列や数値、真偽値を使用できる。</span></a></li>
+<li><a class="reference internal" href="#repository-map-list"><span>ListやMapをインジェクションできる。</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>型や名前が一致するsetterへの自動インジェクションができる。</span></a></li>
+<li><a class="reference internal" href="#repository-factory-injection"><span>ファクトリインジェクションができる。</span></a></li>
+<li><a class="reference internal" href="#repository-environment-configuration"><span>環境依存値を管理できる。</span></a></li>
 </ul>
 <p>アプリケーションからはDIコンテナに直接アクセスするのではなく、システムリポジトリ経由でアクセスする。
-詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span class="std std-ref">DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span>DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
 </div>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id21">7.2.1.2. オブジェクトの初期化ができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オブジェクト構築後に任意の初期化処理を実行できる。</p>
 <p>オブジェクトの依存関係によっては、初期化順に制約が発生することが考えられるため、
 この機能ではオブジェクトの初期化順が指定できる。</p>
-<p>詳細は、 <a class="reference internal" href="#repository-initialize-object"><span class="std std-ref">オブジェクトの初期化処理を行う</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#repository-initialize-object"><span>オブジェクトの初期化処理を行う</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -413,16 +410,16 @@
 </div>
 <p>xmlへのコンポーネント定義方法の詳細は、以下を参照。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#repository-definition-bean"><span class="std std-ref">Java Beansオブジェクトを設定する</span></a></li>
-<li><a class="reference internal" href="#repository-override-bean"><span class="std std-ref">Java Beansオブジェクトの設定を上書きする</span></a></li>
-<li><a class="reference internal" href="#repository-property-type"><span class="std std-ref">文字列や数値、真偽値を設定値として使う</span></a></li>
-<li><a class="reference internal" href="#repository-map-list"><span class="std std-ref">ListやMapを設定値として使う</span></a></li>
-<li><a class="reference internal" href="#repository-autowired"><span class="std std-ref">コンポーネントを自動的にインジェクションする</span></a></li>
-<li><a class="reference internal" href="#repository-environment-configuration"><span class="std std-ref">依存値を設定する</span></a></li>
-<li><a class="reference internal" href="#repository-user-environment-configuration"><span class="std std-ref">コンポーネント設定ファイルから環境依存値を参照する</span></a></li>
-<li><a class="reference internal" href="#repository-factory-injection"><span class="std std-ref">ファクトリクラスで生成したオブジェクトをインジェクションする</span></a></li>
-<li><a class="reference internal" href="#repository-initialize-object"><span class="std std-ref">オブジェクトの初期化処理を行う</span></a></li>
-<li><a class="reference internal" href="#repository-split-xml"><span class="std std-ref">コンポーネント設定ファイル(xml)を分割する</span></a></li>
+<li><a class="reference internal" href="#repository-definition-bean"><span>Java Beansオブジェクトを設定する</span></a></li>
+<li><a class="reference internal" href="#repository-override-bean"><span>Java Beansオブジェクトの設定を上書きする</span></a></li>
+<li><a class="reference internal" href="#repository-property-type"><span>文字列や数値、真偽値を設定値として使う</span></a></li>
+<li><a class="reference internal" href="#repository-map-list"><span>ListやMapを設定値として使う</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>コンポーネントを自動的にインジェクションする</span></a></li>
+<li><a class="reference internal" href="#repository-environment-configuration"><span>依存値を設定する</span></a></li>
+<li><a class="reference internal" href="#repository-user-environment-configuration"><span>コンポーネント設定ファイルから環境依存値を参照する</span></a></li>
+<li><a class="reference internal" href="#repository-factory-injection"><span>ファクトリクラスで生成したオブジェクトをインジェクションする</span></a></li>
+<li><a class="reference internal" href="#repository-initialize-object"><span>オブジェクトの初期化処理を行う</span></a></li>
+<li><a class="reference internal" href="#repository-split-xml"><span>コンポーネント設定ファイル(xml)を分割する</span></a></li>
 </ul>
 </div>
 <div class="section" id="java-beans">
@@ -468,7 +465,7 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">ネストして定義したcomponentについても、リポジトリ上はグローバル領域に保持されるため、名前を指定してオブジェクトを取得できる。
-オブジェクトの取得方法は、 <a class="reference internal" href="#repository-get-object"><span class="std std-ref">システムリポジトリからオブジェクトを取得する</span></a> を参照。</p>
+オブジェクトの取得方法は、 <a class="reference internal" href="#repository-get-object"><span>システムリポジトリからオブジェクトを取得する</span></a> を参照。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -654,7 +651,7 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p>mapやlistのname属性が同じものを複数定義した場合は、先に定義されたものが有効となる。
-これは、 <a class="reference internal" href="#repository-override-bean"><span class="std std-ref">beanの上書き</span></a> と異なる挙動であるため注意すること。</p>
+これは、 <a class="reference internal" href="#repository-override-bean"><span>beanの上書き</span></a> と異なる挙動であるため注意すること。</p>
 <p class="last">もし、環境毎にmapやlistの情報を変更したい場合には、環境毎読み込むファイルを変えることで対応すること。</p>
 </div>
 </div>
@@ -746,7 +743,7 @@ propertyの定義が必要になるためメンテナンス性が悪い。</li>
 <span id="id11"></span><h3><a class="toc-backref" href="#id31">7.2.3.8. 依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テスト環境や本番環境で異なる値(データベースの接続情報やディレクトリのパスなど)は、環境設定ファイルで管理することができる。</p>
 <p>環境設定ファイルは、以下のようにシンプルなkey-value形式で記述する。
-詳細な記述ルールは、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span class="std std-ref">環境設定ファイルの記述ルール</span></a> を参照。</p>
+詳細な記述ルールは、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>環境設定ファイルの記述ルール</span></a> を参照。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>database.url <span class="o">=</span> jdbc:h2:mem:sample
 database.user <span class="o">=</span> sa
 database.password <span class="o">=</span> sa
@@ -944,7 +941,7 @@ database.password <span class="o">=</span> sa
 <span id="id17"></span><h3><a class="toc-backref" href="#id37">7.2.3.14. システムリポジトリからオブジェクトを取得する</a><a class="headerlink" href="#repository-get-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>システムリポジトリ上からオブジェクトを取得する場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a> クラスを使用する。</p>
 <p>なお、システムリポジトリには事前にDIコンテナの情報を設定しておく必要がある。
-詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span class="std std-ref">DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span>DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
 <p>以下のように、component要素(listやmap要素を含む)に設定したname属性の値を指定して、オブジェクトを取得できる。</p>
 <dl class="docutils">
 <dt>コンポーネント定義</dt>
@@ -1066,7 +1063,7 @@ efg
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
