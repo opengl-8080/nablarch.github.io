@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>バリデーション機能の拡張 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>バリデーション機能の拡張 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/02/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../genindex.html"/>
-        <link rel="search" title="検索" href="../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch実装例集" href="../index.html"/>
         <link rel="next" title="検索結果の一覧表示" href="../03/index.html"/>
         <link rel="prev" title="PBKDF2を用いたパスワード暗号化機能サンプル" href="../01/0101_PBKDF2PasswordEncryptor.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -193,7 +193,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../01/index.html#id12">使用方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">バリデーション機能の拡張</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">バリデーション機能の拡張</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">提供パッケージ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -361,7 +363,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>messageId(必須)</td>
 <td><p class="first">メールアドレスに精査エラーがあった場合のメッセージID</p>
-<p class="last">例 : 「{0}は有効なメールアドレスではありません。」</p>
+<p class="last">例 : &#8220;{0}は有効なメールアドレスではありません。&#8221;</p>
 </td>
 </tr>
 </tbody>
@@ -384,7 +386,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><strong>value</strong> – 精査対象のメールアドレス</td>
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>value</strong> &#8211; 精査対象のメールアドレス</td>
 </tr>
 <tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">有効なメールアドレスである場合はtrue</td>
 </tr>
@@ -397,7 +399,7 @@
 <div class="section" id="id5">
 <h3>メールアドレス精査仕様<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>メールアドレスの構成を下記に示す。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;ローカル部&quot;</span> <span class="o">@</span> <span class="s2">&quot;ドメイン部&quot;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&quot;ローカル部&quot; @ &quot;ドメイン部&quot;
 </pre></div>
 </div>
 <p>メールアドレスに使用できる文字はRFC 5321、RFC 5322により定められている。</p>
@@ -416,13 +418,13 @@
 <li>その他記号 　! # $ % &amp; * + - . / = ? &#64; ^ _ ` { | } ~</li>
 </ul>
 </li>
-<li>『&#64;』（アットマーク）が存在し、1つのみであること。</li>
+<li>&#8216;&#64;&#8217;（アットマーク）が存在し、1つのみであること。</li>
 <li>JavaMailでメールを送信する際に形式チェックでエラーとならないこと。</li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>メールアドレスとして無効なアスキー文字は下記のとおりである。また、スペースも無効とする。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot; ( ) , : ; &lt; &gt; [ \ ]</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&quot; ( ) , : ; &lt; &gt; [ \ ]
 </pre></div>
 </div>
 <p class="last">RFC 5322にて規定されているquoted-stringという記法を用いるとこれらの無効な文字も使用することができる。
@@ -431,18 +433,18 @@
 </li>
 <li><p class="first">ローカル部に関する精査仕様</p>
 <ul class="simple">
-<li>メールアドレスの先頭が』&#64;』（アットマーク）ではないこと。（ローカル部が存在すること。）</li>
+<li>メールアドレスの先頭が&#8217;&#64;&#8217;（アットマーク）ではないこと。（ローカル部が存在すること。）</li>
 <li>ローカル部が64文字以下であること。</li>
 </ul>
 </li>
 <li><p class="first">ドメイン部に関する精査仕様</p>
 <ul class="simple">
-<li>メールアドレスの末尾が』&#64;』（アットマーク）ではないこと。（ドメイン部が存在すること。）</li>
+<li>メールアドレスの末尾が&#8217;&#64;&#8217;（アットマーク）ではないこと。（ドメイン部が存在すること。）</li>
 <li>ドメイン部が255文字以下であること。</li>
-<li>ドメイン部の末尾が』.』（ドット）ではないこと。</li>
-<li>ドメイン部に』.』（ドット）が存在すること。</li>
-<li>ドメイン部の先頭が』.』（ドット）ではないこと。</li>
-<li>ドメイン部にて』.』（ドット）が連続していないこと。</li>
+<li>ドメイン部の末尾が&#8217;.&#8217;（ドット）ではないこと。</li>
+<li>ドメイン部に&#8217;.&#8217;（ドット）が存在すること。</li>
+<li>ドメイン部の先頭が&#8217;.&#8217;（ドット）ではないこと。</li>
+<li>ドメイン部にて&#8217;.&#8217;（ドット）が連続していないこと。</li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -498,7 +500,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>messageId(必須)</td>
 <td><p class="first">電話番号に精査エラーがあった場合のメッセージID</p>
-<p class="last">例 : 「{0}は有効な電話番号ではありません。」</p>
+<p class="last">例 : &#8220;{0}は有効な電話番号ではありません。&#8221;</p>
 </td>
 </tr>
 </tbody>
@@ -522,30 +524,30 @@
 <col width="67%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">「市外局番桁数」 - 「市内局番桁数」 - 「加入者番号桁数」</th>
+<tr class="row-odd"><th class="head">&#8220;市外局番桁数&#8221; - &#8220;市内局番桁数&#8221; - &#8220;加入者番号桁数&#8221;</th>
 <th class="head">例</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>「3桁」 - 「3桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;3桁&#8221; - &#8220;3桁&#8221; - &#8220;4桁&#8221;</td>
 <td>012-345-6789</td>
 </tr>
-<tr class="row-odd"><td>「3桁」 - 「4桁」 - 「4桁」</td>
+<tr class="row-odd"><td>&#8220;3桁&#8221; - &#8220;4桁&#8221; - &#8220;4桁&#8221;</td>
 <td>012-3456-7890</td>
 </tr>
-<tr class="row-even"><td>「4桁」 - 「2桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;4桁&#8221; - &#8220;2桁&#8221; - &#8220;4桁&#8221;</td>
 <td>0123-45-6789</td>
 </tr>
-<tr class="row-odd"><td>「5桁」 - 「1桁」 - 「4桁」</td>
+<tr class="row-odd"><td>&#8220;5桁&#8221; - &#8220;1桁&#8221; - &#8220;4桁&#8221;</td>
 <td>01234-5-6789</td>
 </tr>
-<tr class="row-even"><td>「2桁」 - 「4桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;2桁&#8221; - &#8220;4桁&#8221; - &#8220;4桁&#8221;</td>
 <td>01-2345-6789</td>
 </tr>
-<tr class="row-odd"><td>「11桁」</td>
+<tr class="row-odd"><td>&#8220;11桁&#8221;</td>
 <td>01234567890</td>
 </tr>
-<tr class="row-even"><td>「10桁」</td>
+<tr class="row-even"><td>&#8220;10桁&#8221;</td>
 <td>0123456789</td>
 </tr>
 </tbody>
@@ -572,10 +574,10 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><ul class="first simple">
-<li><strong>areaCode</strong> – 市外局番</li>
-<li><strong>cityCode</strong> – 市内局番</li>
-<li><strong>subscriberNumber</strong> – 加入者番号</li>
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>areaCode</strong> &#8211; 市外局番</li>
+<li><strong>cityCode</strong> &#8211; 市内局番</li>
+<li><strong>subscriberNumber</strong> &#8211; 加入者番号</li>
 </ul>
 </td>
 </tr>
@@ -605,24 +607,24 @@
 <col width="67%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">「市外局番桁数」 - 「市内局番桁数」 - 「加入者番号桁数」</th>
+<tr class="row-odd"><th class="head">&#8220;市外局番桁数&#8221; - &#8220;市内局番桁数&#8221; - &#8220;加入者番号桁数&#8221;</th>
 <th class="head">例</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>「3桁」 - 「3桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;3桁&#8221; - &#8220;3桁&#8221; - &#8220;4桁&#8221;</td>
 <td>012-345-6789</td>
 </tr>
-<tr class="row-odd"><td>「3桁」 - 「4桁」 - 「4桁」</td>
+<tr class="row-odd"><td>&#8220;3桁&#8221; - &#8220;4桁&#8221; - &#8220;4桁&#8221;</td>
 <td>012-3456-7890</td>
 </tr>
-<tr class="row-even"><td>「4桁」 - 「2桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;4桁&#8221; - &#8220;2桁&#8221; - &#8220;4桁&#8221;</td>
 <td>0123-45-6789</td>
 </tr>
-<tr class="row-odd"><td>「5桁」 - 「1桁」 - 「4桁」</td>
+<tr class="row-odd"><td>&#8220;5桁&#8221; - &#8220;1桁&#8221; - &#8220;4桁&#8221;</td>
 <td>01234-5-6789</td>
 </tr>
-<tr class="row-even"><td>「2桁」 - 「4桁」 - 「4桁」</td>
+<tr class="row-even"><td>&#8220;2桁&#8221; - &#8220;4桁&#8221; - &#8220;4桁&#8221;</td>
 <td>01-2345-6789</td>
 </tr>
 </tbody>
@@ -631,7 +633,7 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">全ての引数がnullまたは空文字列の場合、trueを返却する。
-市外局番、市内局番、加入者番号の３項目が全て未入力のケースを許容しない場合は、本精査処理の呼び出し元で必須精査を行うこと。（下記の <a class="reference internal" href="#telnum-fields-code"><span class="std std-ref">実装例</span></a> を参照。）</p>
+市外局番、市内局番、加入者番号の３項目が全て未入力のケースを許容しない場合は、本精査処理の呼び出し元で必須精査を行うこと。（下記の <a class="reference internal" href="#telnum-fields-code"><span>実装例</span></a> を参照。）</p>
 </div>
 </li>
 </ul>
@@ -691,11 +693,11 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><ul class="first last simple">
-<li><strong>context</strong> – 精査コンテキスト</li>
-<li><strong>codeId</strong> – コードID</li>
-<li><strong>pattern</strong> – パターン</li>
-<li><strong>propertyName</strong> – 精査対象のプロパティ</li>
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> &#8211; 精査コンテキスト</li>
+<li><strong>codeId</strong> &#8211; コードID</li>
+<li><strong>pattern</strong> &#8211; パターン</li>
+<li><strong>propertyName</strong> &#8211; 精査対象のプロパティ</li>
 </ul>
 </td>
 </tr>
@@ -710,12 +712,12 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">パラメータ:</th><td class="field-body"><ul class="first last simple">
-<li><strong>context</strong> – 精査コンテキスト</li>
-<li><strong>codeId</strong> – コードID</li>
-<li><strong>pattern</strong> – パターン</li>
-<li><strong>propertyName</strong> – 精査対象のプロパティ</li>
-<li><strong>messageId</strong> – メッセージID（デフォルトのメッセージIDを指定されたメッセージIDで上書きする）</li>
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> &#8211; 精査コンテキスト</li>
+<li><strong>codeId</strong> &#8211; コードID</li>
+<li><strong>pattern</strong> &#8211; パターン</li>
+<li><strong>propertyName</strong> &#8211; 精査対象のプロパティ</li>
+<li><strong>messageId</strong> &#8211; メッセージID（デフォルトのメッセージIDを指定されたメッセージIDで上書きする）</li>
 </ul>
 </td>
 </tr>
@@ -741,6 +743,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -748,7 +753,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -769,10 +774,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

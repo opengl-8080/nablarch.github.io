@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.6. リソースマッピングハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.2.6. リソースマッピングハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/resource_mapping.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.7. Nablarchカスタムタグ制御ハンドラ" href="nablarch_tag_handler.html"/>
         <link rel="prev" title="6.2.5. 内部フォーワードハンドラ" href="forwarding_handler.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -349,9 +351,9 @@
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>本ハンドラは主に、 <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry"><span class="std std-ref">リクエストハンドラエントリ</span></a> と組み合わせて 「特定の拡張子の場合に静的リソースの
+<p>本ハンドラは主に、 <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry"><span>リクエストハンドラエントリ</span></a> と組み合わせて 「特定の拡張子の場合に静的リソースの
 ダウンロードを行う」 機能の実現に使用する。</p>
-<p class="last">この用途での使用例は <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry-usage"><span class="std std-ref">リクエストハンドラエントリの使用例</span></a> を参照。</p>
+<p class="last">この用途での使用例は <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry-usage"><span>リクエストハンドラエントリの使用例</span></a> を参照。</p>
 </div>
 <p>処理の流れは以下のとおり。
 なお、図にある通り本ハンドラは後続のハンドラの呼び出しを行わない。</p>
@@ -374,13 +376,13 @@
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id9">6.2.6.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a> よりも後に配置すること</dt>
-<dd>本ハンドラは、 <a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a> の機能により提供される <code class="docutils literal"><span class="pre">forward://</span></code> スキームを使用できる。
-このため、本ハンドラは <a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span class="std std-ref">内部フォーワードハンドラ</span></a> より後に配置する必要がある。</dd>
-<dt><a class="reference internal" href="http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> よりも後に配置すること</dt>
-<dd>本ハンドラは、 <a class="reference internal" href="http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> の機能により提供される <code class="docutils literal"><span class="pre">servlet://</span></code> 、 <code class="docutils literal"><span class="pre">file://</span></code> 、 <code class="docutils literal"><span class="pre">classpath://</span></code> スキームを使用できる。
+<dt><a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> よりも後に配置すること</dt>
+<dd>本ハンドラは、 <a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> の機能により提供される <code class="docutils literal"><span class="pre">forward://</span></code> スキームを使用できる。
+このため、本ハンドラは <a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> より後に配置する必要がある。</dd>
+<dt><a class="reference internal" href="http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> よりも後に配置すること</dt>
+<dd>本ハンドラは、 <a class="reference internal" href="http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> の機能により提供される <code class="docutils literal"><span class="pre">servlet://</span></code> 、 <code class="docutils literal"><span class="pre">file://</span></code> 、 <code class="docutils literal"><span class="pre">classpath://</span></code> スキームを使用できる。
 また、エラーが発生した際は 404(Not Found)の応答を返す。
-これらの応答を処理するため、本ハンドラは <a class="reference internal" href="http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> より後に配置する必要がある。</dd>
+これらの応答を処理するため、本ハンドラは <a class="reference internal" href="http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> より後に配置する必要がある。</dd>
 </dl>
 </div>
 <div class="section" id="resource-mapping-usage">
@@ -421,11 +423,14 @@ HTTPステータス404(NotFound)の応答を返す。</td>
 <p>ただし、上記設定のハンドラを単純にハンドラキューに入れた場合、サーバに送られたすべてのURLの処理が
 静的リソースとして処理される。
 つまり、ハンドラキュー上の本ハンドラ以降のハンドラすべてが実行されなくなる。</p>
-<p>このため、  <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry-usage"><span class="std std-ref">本ハンドラの使用例</span></a> に記載のとおり、 <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry"><span class="std std-ref">リクエストハンドラエントリ</span></a> と組み合わせて使用する必要がある。</p>
+<p>このため、  <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry-usage"><span>本ハンドラの使用例</span></a> に記載のとおり、 <a class="reference internal" href="../common/request_handler_entry.html#request-handler-entry"><span>リクエストハンドラエントリ</span></a> と組み合わせて使用する必要がある。</p>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -434,7 +439,7 @@ HTTPステータス404(NotFound)の応答を返す。</td>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -455,10 +460,11 @@ HTTPステータス404(NotFound)の応答を返す。</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

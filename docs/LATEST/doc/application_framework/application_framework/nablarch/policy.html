@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/nablarch/policy.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="1. Nablarchアプリケーションフレームワークとは" href="index.html"/>
         <link rel="next" title="1.4. 稼動環境" href="platform.html"/>
         <link rel="prev" title="1.2. アーキテクチャ" href="architecture.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -347,7 +349,7 @@
 例えば、HTTPリクエストのパラメータやXMLなどの外部から受け付けたデータの未入力値は <code class="docutils literal"><span class="pre">null</span></code> に変換する。
 また、カスタムタグやフォーマットして出力するなどの外部へ <code class="docutils literal"><span class="pre">null</span></code> を出力するときは、出力するデータ形式に応じて未入力を意味する値に変換する。
 変換はNablarchのハンドラ・ライブラリが行うため、アプリケーションで未入力値を変換する必要はない。
-ただし、未入力値を <code class="docutils literal"><span class="pre">null</span></code> に変換するには <a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span class="std std-ref">ノーマライズハンドラ</span></a> をハンドラキューに追加する必要がある。</p>
+ただし、未入力値を <code class="docutils literal"><span class="pre">null</span></code> に変換するには <a class="reference internal" href="../handlers/web/normalize_handler.html#normalize-handler"><span>ノーマライズハンドラ</span></a> をハンドラキューに追加する必要がある。</p>
 <p>この方針に従い、アプリケーションでは未入力値を <code class="docutils literal"><span class="pre">null</span></code> として開発すること。</p>
 </div>
 <div class="section" id="apinull">
@@ -385,7 +387,7 @@
 <div class="section" id="oss">
 <h2><a class="toc-backref" href="#id12">1.3.6. OSSは利用しない</a><a class="headerlink" href="#oss" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Nablarchのプロダクションコードは、致命的な不具合や脆弱性が見つかった際に、迅速に対応かつリリースを行うことを目的としてOSSを利用していない。</p>
-<p>なお、OSSを利用することでメリットがあるものは、 <a class="reference internal" href="../../adaptors/index.html#adaptor"><span class="std std-ref">アダプタ</span></a> としてOSSを利用できるコンポーネントを提供しているため、プロジェクト要件などに応じて採用すると良い。</p>
+<p>なお、OSSを利用することでメリットがあるものは、 <a class="reference internal" href="../../adaptors/index.html#adaptor"><span>アダプタ</span></a> としてOSSを利用できるコンポーネントを提供しているため、プロジェクト要件などに応じて採用すると良い。</p>
 </div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id13">1.3.7. 複数の例外が発生した場合は起因例外をスローする</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -396,9 +398,9 @@
 <div class="section" id="id6">
 <h2><a class="toc-backref" href="#id14">1.3.8. スレッドセーフである</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Nablarchが提供する機能は、基本的にスレッドセーフである。
-なぜなら、Nablarchはハンドラキュー上のハンドラを各スレッドで実行し要求を処理するアーキテクチャを採用しているためである。アーキテクチャの詳細は、 <a class="reference internal" href="architecture.html#nablarch-architecture"><span class="std std-ref">アーキテクチャの章</span></a> を参照。
+なぜなら、Nablarchはハンドラキュー上のハンドラを各スレッドで実行し要求を処理するアーキテクチャを採用しているためである。アーキテクチャの詳細は、 <a class="reference internal" href="architecture.html#nablarch-architecture"><span>アーキテクチャの章</span></a> を参照。
 これにより、ウェブアプリケーションのように各スレッドがクライアントからの要求を処理するような基盤でも、安全に要求を処理し結果をクライアントに返すことが出来る。</p>
-<p>なお、 <a class="reference internal" href="../libraries/repository.html#repository"><span class="std std-ref">システムリポジトリ</span></a> 上のオブジェクトはシングルトンとなるため、スレッドセーフとする必要がある。</p>
+<p>なお、 <a class="reference internal" href="../libraries/repository.html#repository"><span>システムリポジトリ</span></a> 上のオブジェクトはシングルトンとなるため、スレッドセーフとする必要がある。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">スレッドアンセーフな機能(例えばデータベース接続等)は、Javadoc上にスレッドアンセーフであることを明記している。</p>
@@ -431,7 +433,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 この機能では、許容するscaleの範囲を <code class="docutils literal"><span class="pre">-9999</span></code> から <code class="docutils literal"><span class="pre">9999</span></code> の範囲とし、この範囲を超える指数表現の値を変換しようとした場合、例外を送出しヒープが圧迫されないようにしている。</p>
 <p>なお、許容するscaleの範囲は設定で変更可能となっている。
 設定はシステムリポジトリ機能の環境設定ファイルに指定する。
-設定方法は、 <a class="reference internal" href="../libraries/repository.html#repository-environment-configuration"><span class="std std-ref">依存値を設定する</span></a> を参照。</p>
+設定方法は、 <a class="reference internal" href="../libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
 <p>例えば、許容する範囲を <code class="docutils literal"><span class="pre">-10</span></code> から <code class="docutils literal"><span class="pre">10</span></code> としたい場合には、下のように設定を追加する。</p>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.max_scale</span><span class="o">=</span><span class="s">10</span>
 </pre></div>
@@ -441,6 +443,9 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -448,7 +453,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -469,10 +474,11 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.3.2.3.7.1. サロゲートキーの採番 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.3.2.3.8.1. サロゲートキーの採番 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/generator.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.3.2. ユニバーサルDAO" href="universal_dao.html"/>
         <link rel="next" title="7.3.3. ユニバーサルDAOとJSR317(JPA2.0)との機能比較" href="functional_comparison.html"/>
         <link rel="prev" title="7.3.2. ユニバーサルDAO" href="universal_dao.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -312,7 +314,7 @@
       
           <li><a href="universal_dao.html">7.3.2. ユニバーサルDAO</a> &raquo;</li>
       
-    <li>7.3.2.3.7.1. サロゲートキーの採番</li>
+    <li>7.3.2.3.8.1. サロゲートキーの採番</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -323,7 +325,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="generator">
-<span id="id1"></span><h1>7.3.2.3.7.1. サロゲートキーの採番<a class="headerlink" href="#generator" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>7.3.2.3.8.1. サロゲートキーの採番<a class="headerlink" href="#generator" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
@@ -344,12 +346,12 @@
 </ul>
 </div>
 <p>データベースのサロゲートキー(代理キー)の値を採番するための機能を提供する。</p>
-<p>この機能は、 <a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> でサロゲートキーを採番(単純な連番を採番)する際に使用する。</p>
-<p>なお、 <a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> 以外でも利用することはできるが、
+<p>この機能は、 <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> でサロゲートキーを採番(単純な連番を採番)する際に使用する。</p>
+<p>なお、 <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> 以外でも利用することはできるが、
 以下の理由によりアプリケーション側で対応することを推奨する。</p>
 <dl class="docutils">
 <dt>理由</dt>
-<dd><p class="first">サロゲートキーの採番処理は、 <a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> が行うためアプリケーション側で直接採番機能を使用する必要が無い。
+<dd><p class="first">サロゲートキーの採番処理は、 <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> が行うためアプリケーション側で直接採番機能を使用する必要が無い。
 それ以外の用途で値を採番する場合には、採番ルールが複雑であったり、採番した値を編集することが想定される。
 このような場合は、単純な連番を採番する本機能を使用することができないため、アプリケーション側で設計及び実装を行う必要がある。
 (本機能で実現することも可能だが、設計及び実装(設定)が必要となるため、本機能を使うメリットは無い)</p>
@@ -362,16 +364,16 @@
 </dd>
 </dl>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">7.3.2.3.7.1.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">7.3.2.3.8.1.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id11">7.3.2.3.7.1.1.1. シーケンスを使った値の採番が出来る</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">7.3.2.3.8.1.1.1. シーケンスを使った値の採番が出来る</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベース上に作成されたシーケンスオブジェクトを使って、一意の値を採番出来る。</p>
 <p>なお、シーケンスを使って次の値を取得するためのSQL文は、
 データベースアクセス機能のダイアレクトを使用して構築する。</p>
-<p>ダイアレクト機能については、 <a class="reference internal" href="database.html#database-dialect"><span class="std std-ref">ダイアレクト</span></a> を参照。</p>
+<p>ダイアレクト機能については、 <a class="reference internal" href="database.html#database-dialect"><span>ダイアレクト</span></a> を参照。</p>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id12">7.3.2.3.7.1.1.2. テーブルを使った値の採番が出来る</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">7.3.2.3.8.1.1.2. テーブルを使った値の採番が出来る</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テーブルのレコード単位に現在値を管理し、一意の値を採番出来る。</p>
 <p>テーブルのレイアウトは以下のものを想定する。</p>
 <table border="1" class="docutils">
@@ -403,7 +405,7 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id13">7.3.2.3.7.1.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">7.3.2.3.8.1.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-common-idgenerator<span class="nt">&lt;/artifactId&gt;</span>
@@ -416,10 +418,10 @@
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id14">7.3.2.3.7.1.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">7.3.2.3.8.1.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="dao">
-<span id="generator-dao-setting"></span><h3><a class="toc-backref" href="#id15">7.3.2.3.7.1.3.1. ユニバーサルDAO用に採番の設定を行う</a><a class="headerlink" href="#dao" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> で本機能を使用するためには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/BasicDaoContextFactory.html" title="nablarch.common.dao.BasicDaoContextFactory">BasicDaoContextFactory</a> に対する設定が必要となる。</p>
+<span id="generator-dao-setting"></span><h3><a class="toc-backref" href="#id15">7.3.2.3.8.1.3.1. ユニバーサルDAO用に採番の設定を行う</a><a class="headerlink" href="#dao" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> で本機能を使用するためには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/BasicDaoContextFactory.html" title="nablarch.common.dao.BasicDaoContextFactory">BasicDaoContextFactory</a> に対する設定が必要となる。</p>
 <p>この例では、シーケンス採番とテーブル採番の両方を設定しているが、使用しない採番の設定はしなくてよい。
 テーブル採番は推奨しないため、サロゲートキーの採番でシーケンス採番を使用する場合に <cite>sequenceIdGenerator</cite> を設定すれば良い。</p>
 <p>もし、シーケンス採番を使用せずにデータベース側の採番機能(自動採番カラム)を使う場合には、採番の設定自体が不要となる。</p>
@@ -445,17 +447,20 @@
 </div>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id16">7.3.2.3.7.1.4. 拡張例</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">7.3.2.3.8.1.4. 拡張例</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id17">7.3.2.3.7.1.4.1. テーブル採番やシーケンス採番を置き換える</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">7.3.2.3.8.1.4.1. テーブル採番やシーケンス採番を置き換える</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テーブルやシーケンスを使った採番の実装を新しいものに置き換える場合には、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/idgenerator/IdGenerator.html" title="nablarch.common.idgenerator.IdGenerator">IdGenerator</a> を実装したクラスを作成することで対応できる。</p>
-<p>作成したクラスは、 <a class="reference internal" href="#dao">ユニバーサルDAO用に採番の設定を行う</a> に従いコンポーネント定義ファイルに設定することで利用可能となる。</p>
+<p>作成したクラスは、 <a class="reference internal" href="#dao">ユニバーサルDAO用に採番の設定を行う</a> に従いコンポーネント設定ファイルに定義することで利用可能となる。</p>
 </div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -464,7 +469,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -485,10 +490,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.3.3. HTMLチェックツール &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.3.3. HTMLチェックツール &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/08_TestTools/03_HtmlCheckTool/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.3. プログラミング工程で使用するツール" href="../index.html"/>
         <link rel="next" title="4. アプリケーション開発時に使える便利なツール" href="../../../../../toolbox/index.html"/>
         <link rel="prev" title="3.3.2.2. マスタデータ投入ツール インストールガイド" href="../02_MasterDataSetup/02_ConfigMasterDataSetupTool.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -338,7 +340,7 @@
 <li>設定ファイル<a class="footnote-reference" href="#id8" id="id5">[3]</a> に記載されたタグ・属性を使用していないかチェックを行う。</li>
 <li>大文字・小文字の区別は行わない。 例：) &lt;tr&gt;, &lt;TR&gt;, &lt;Tr&gt;, &lt;tR&gt;</li>
 <li>boolean属性は使用可能である。 例：) &lt;textarea disabled&gt;</li>
-<li>属性指定におけるクォーテーション省略を許可しない。 例：) ○ &lt;table align=」center」&gt; × &lt;table align=center&gt;</li>
+<li>属性指定におけるクォーテーション省略を許可しない。 例：) ○ &lt;table align=&#8221;center&#8221;&gt; × &lt;table align=center&gt;</li>
 </ul>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -356,7 +358,7 @@
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>デフォルトの設定では、 <a class="reference external" href="http://www.w3.org/TR/html401/">W3C公式サイト</a> にて非推奨とされているタグ・属性(以下では、「非推奨タグ・属性」と略記する)が設定されている。
-設定ファイルをカスタマイズすることにより、使用を禁止するタグ・属性を変更することができる。（カスタマイズ方法は <a class="reference internal" href="#custom"><span class="std std-ref">使用禁止タグ・属性のカスタマイズ方法</span></a> を参照のこと。）</td></tr>
+設定ファイルをカスタマイズすることにより、使用を禁止するタグ・属性を変更することができる。（カスタマイズ方法は <a class="reference internal" href="#custom"><span>使用禁止タグ・属性のカスタマイズ方法</span></a> を参照のこと。）</td></tr>
 </tbody>
 </table>
 <div class="admonition tip">
@@ -424,7 +426,7 @@ count--;             //  デクリメント演算子で「-」が連続する。
 <blockquote>
 <div><p>設定ファイルは一行にカンマ区切りでタグ名と属性名を記述する。
 一つのタグに複数の属性を設定する場合は、複数行にて記述する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">body</span><span class="p">,</span><span class="n">bgcolor</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">body</span><span class="p">,</span><span class="n">bgcolor</span>
 <span class="n">body</span><span class="p">,</span><span class="n">link</span>
 <span class="n">body</span><span class="p">,</span><span class="n">text</span>
 <span class="n">table</span><span class="p">,</span><span class="n">align</span>
@@ -439,7 +441,7 @@ count--;             //  デクリメント演算子で「-」が連続する。
 </pre></div>
 </div>
 <p>また、属性欄を省略すれば、タグ自体の使用を指摘する。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">body</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">body</span><span class="p">,</span>
 </pre></div>
 </div>
 <p>属性欄を省略する際でも、カンマを省略することはできない。</p>
@@ -526,13 +528,16 @@ count--;             //  デクリメント演算子で「-」が連続する。
 <h3>3.3.3.3.5. テスト実行時指摘確認方法<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>リクエスト単体テスト実行時、自動生成されたHTMLファイルに指摘が存在した場合、該当するテストケースは失敗する。</p>
 <p>下記のようにJUnitコンソールに指摘箇所と指摘内容が出力される。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/how-to-trace-html.png"><img alt="../../../../../../_images/how-to-trace-html.png" src="../../../../../../_images/how-to-trace-html.png" style="width: 786.8px; height: 602.7px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/how-to-trace-html.png"><img alt="../../../../../../_images/how-to-trace-html.png" src="../../../../../../_images/how-to-trace-html.png" /></a>
 <p>該当するHTMLの出力元となるJSPを修正し、テストを再実行する。</p>
 </div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -541,7 +546,7 @@ count--;             //  デクリメント演算子で「-」が連続する。
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -562,10 +567,11 @@ count--;             //  デクリメント演算子で「-」が連続する。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.14. CSSフレームワーク &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>2.1.14. CSSフレームワーク &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/css_framework.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.15. 業務画面JSPローカル表示機能" href="inbrowser_jsp_rendering.html"/>
         <link rel="prev" title="2.1.13. UI開発基盤設定ファイル" href="configuration_files.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -340,8 +342,8 @@ UI標準の <strong>「2.1 端末の画面サイズと表示モード」</strong
 <div class="section" id="id3">
 <h2>2.1.14.3. ファイル構成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>CSSファイルは全て、LESSファイル形式で記述する。</p>
-<p>LESS形式からCSSへのコンパイル及びファイルの結合は、<a class="reference internal" href="../development_environment/initial_setup.html#executing-ui-build"><span class="std std-ref">UI部品のビルドと配置</span></a>で行う。
-詳細は、<a class="reference internal" href="../plugin_build.html#ui-genless"><span class="std std-ref">lessインポート定義雛形生成コマンド</span></a> を参照</p>
+<p>LESS形式からCSSへのコンパイル及びファイルの結合は、<a class="reference internal" href="../development_environment/initial_setup.html#executing-ui-build"><span>UI部品のビルドと配置</span></a>で行う。
+詳細は、<a class="reference internal" href="../plugin_build.html#ui-genless"><span>lessインポート定義雛形生成コマンド</span></a> を参照</p>
 <p>結合されたCSSファイルは<strong>/css/built/</strong>配下に配置され、各画面から外部参照される。
 この&lt;link&gt;タグは<strong>/WEB-INF/tags/device/media.tag</strong>(/WEB-INF/include/html_head.jspから利用されているタグファイル)に以下のように定義されている。</p>
 <blockquote>
@@ -528,7 +530,7 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
 <p>次の図は、業務画面の基本構造をグリッド単位で表したものである。</p>
 <blockquote>
 <div><div class="figure align-center">
-<a class="reference internal image-reference" href="../../../../_images/app_grid.png"><img alt="../../../../_images/app_grid.png" src="../../../../_images/app_grid.png" style="width: 478.4px; height: 460.8px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/app_grid.png"><img alt="../../../../_images/app_grid.png" src="../../../../_images/app_grid.png" /></a>
 </div>
 </div></blockquote>
 <p>このように、画面内のオブジェクトの配置はグリッド単位で定められる。
@@ -583,7 +585,7 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
 <p>次の図は、メインコンテンツ内の入力フォームの配置を表したものである。</p>
 <blockquote>
 <div><div class="figure align-center">
-<a class="reference internal image-reference" href="../../../../_images/field_grid.png"><img alt="../../../../_images/field_grid.png" src="../../../../_images/field_grid.png" style="width: 602.4px; height: 110.4px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/field_grid.png"><img alt="../../../../_images/field_grid.png" src="../../../../_images/field_grid.png" /></a>
 </div>
 </div></blockquote>
 <p>これを実装するには、以下のように記述すればよい。</p>
@@ -613,7 +615,7 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">上記ソースコードはあくまでグリッドレイアウトを説明するためのものである。
-通常は <a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> を利用して実装するので、
+通常は <a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> を利用して実装するので、
 上記のようなソースコードを実際に記述することはない。</p>
 </div>
 </div>
@@ -639,6 +641,9 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -646,7 +651,7 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -667,10 +672,11 @@ UI部品ウィジェットによっては、各表示モード用の    <br />
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

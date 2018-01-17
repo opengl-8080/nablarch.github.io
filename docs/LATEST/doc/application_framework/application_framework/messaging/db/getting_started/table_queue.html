@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.2.3.1. テーブルキューを監視し未処理データを取り込むアプリケーションの作成 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>5.2.3.1. テーブルキューを監視し未処理データを取り込むアプリケーションの作成 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/getting_started/table_queue.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="5.2.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="5.2.4. 機能詳細" href="../feature_details.html"/>
         <link rel="prev" title="5.2.3. Getting Started" href="../getting_started.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -433,8 +435,8 @@
 </div>
 <div class="section" id="id3">
 <h2>5.2.3.1.2. テーブルを監視するためのリーダを生成する<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、テーブルを監視するリーダを生成するメソッドを作成する。</p>
-<p><a class="reference internal" href="../architecture.html#db-messaging-architecture-reader"><span class="std std-ref">データベースキューで使用するリーダ</span></a> に記載がある通り、
+<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、テーブルを監視するリーダを生成するメソッドを作成する。</p>
+<p><a class="reference internal" href="../architecture.html#db-messaging-architecture-reader"><span>データベースキューで使用するリーダ</span></a> に記載がある通り、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> をリーダとして生成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
@@ -505,7 +507,7 @@
 <li>未処理データを検索するための <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a></li>
 <li>未処理データの悲観ロックを行う
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordListener.html" title="nablarch.fw.reader.DatabaseRecordListener">DatabaseRecordListener</a> の実装クラス。
-詳細は、<a class="reference internal" href="../feature_details/multiple_process.html#db-messaging-multiple-process"><span class="std std-ref">マルチプロセス化</span></a> を参照。</li>
+詳細は、<a class="reference internal" href="../feature_details/multiple_process.html#db-messaging-multiple-process"><span>マルチプロセス化</span></a> を参照。</li>
 </ul>
 </li>
 <li>SQLファイルでは、以下のSQLを定義する。<ul>
@@ -514,14 +516,14 @@
 <code class="docutils literal"><span class="pre">STATUS</span></code> カラムの値が <code class="docutils literal"><span class="pre">0</span></code> 、かつ <code class="docutils literal"><span class="pre">PROCESS_ID</span></code> カラムの値が自身のプロセスIDであるレコードを取得するSQL</li>
 </ul>
 </li>
-<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</li>
+<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="id4">
 <h2>5.2.3.1.3. 未処理データを元に業務処理を実行する<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、業務処理を実装するメソッドを作成する。</p>
+<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、業務処理を実装するメソッドを作成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
@@ -558,7 +560,7 @@
 </div>
 <div class="section" id="id5">
 <h2>5.2.3.1.4. 処理済みデータのステータスを更新する<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#db-queue-example-create-action"><span class="std std-ref">アクションクラスを作成する</span></a> で作成したアクションクラスに、ステータスを更新するメソッドを作成する。</p>
+<p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、ステータスを更新するメソッドを作成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><dl class="first last docutils">
@@ -617,7 +619,7 @@
 <li>正常に処理できなかったレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionFailure</a> に実装する。
 (処理中に例外やエラーが送出されたレコードの場合、このメソッドがNablarchによりコールバックされる)</li>
 <li>SQLでは、指定のレコードのステータスを更新する。</li>
-<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</li>
+<li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
@@ -626,6 +628,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -633,7 +638,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -654,10 +659,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

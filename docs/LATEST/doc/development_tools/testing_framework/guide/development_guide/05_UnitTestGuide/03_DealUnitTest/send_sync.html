@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法" href="http_send_sync.html"/>
         <link rel="prev" title="3.1.4. 取引単体テストの実施方法" href="index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -326,20 +328,20 @@
 <li>同期応答メッセージ送信処理を伴うウェブアプリケーションの通常の処理フロー</li>
 </ul>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_base.png"><img alt="../../../../../../_images/send_sync_online_base.png" src="../../../../../../_images/send_sync_online_base.png" style="width: 682.5px; height: 282.1px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_base.png"><img alt="../../../../../../_images/send_sync_online_base.png" src="../../../../../../_images/send_sync_online_base.png" /></a>
 </div></blockquote>
 <ul class="simple">
 <li>モックアップクラスを使用して、同期応答メッセージ送信処理を伴うウェブアプリケーションの取引単体テストを行う場合の処理フロー</li>
 </ul>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_mock.png"><img alt="../../../../../../_images/send_sync_online_mock.png" src="../../../../../../_images/send_sync_online_mock.png" style="width: 718.9px; height: 294.7px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_online_mock.png"><img alt="../../../../../../_images/send_sync_online_mock.png" src="../../../../../../_images/send_sync_online_mock.png" /></a>
 </div></blockquote>
 <p>モックアップクラスは以下の機能を提供する。</p>
 <ul>
-<li><p class="first">任意の応答電文<a class="footnote-reference" href="#f1" id="id2">[5]</a>を返却する機能</p>
+<li><p class="first">任意の応答電文<a class="footnote-reference" href="#f1" id="id2">[6]</a>を返却する機能</p>
 <p>画面から同期応答メッセージ送信処理が行われる場合に、送信キューおよび受信キューに接続することなく、取引単体テストを実施するために必要な応答電文を返却することができる。</p>
 </li>
-<li><p class="first">要求電文<a class="footnote-reference" href="#f1" id="id3">[5]</a>をログに出力する機能</p>
+<li><p class="first">要求電文<a class="footnote-reference" href="#f1" id="id3">[6]</a>をログに出力する機能</p>
 <p>画面から同期送信された要求電文をログに出力することができる。
 出力されたログを確認することで正常にメッセージ送信が行われたかどうかを確認することができる。
 また、出力されたログをエビデンスとして使用することができる。</p>
@@ -356,7 +358,7 @@
 また、要求電文についてはフォーマットのみ定義する。</p>
 <p>ExcelファイルはリクエストID<a class="footnote-reference" href="#id6" id="id5">[1]</a>ごとに用意する。また、ファイルの名前はリクエストIDと一致させる。
 たとえば、リクエストIDが「RM21AA0101」ならば、ファイルの名前は「RM21AA0101.xlsx」となる。
-ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span class="std std-ref">Excelファイルの配置場所の設定</span></a>を参照。</p>
+ファイルの配置ディレクトリは、設定ファイルに定義する。詳細は<a class="reference internal" href="#send-sync-test-data-path"><span>Excelファイルの配置場所の設定</span></a>を参照。</p>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -380,7 +382,7 @@
 <div class="section" id="id7">
 <h4>3.1.5.1.1.1. 書き方の例<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>以下に、Excelファイルの記載例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data.png"><img alt="../../../../../../_images/send_sync_test_data.png" src="../../../../../../_images/send_sync_test_data.png" style="width: 653.8px; height: 385.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data.png"><img alt="../../../../../../_images/send_sync_test_data.png" src="../../../../../../_images/send_sync_test_data.png" /></a>
 </div>
 <div class="section" id="send-sync-test-data-format">
 <span id="id8"></span><h4>3.1.5.1.1.2. 電文のフォーマットおよびデータの記載方法<a class="headerlink" href="#send-sync-test-data-format" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -394,41 +396,41 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>識別子</td>
-<td colspan="3">&#160;</td>
+<td colspan="3">&nbsp;</td>
 </tr>
 <tr class="row-even"><td>ディレクティブ行</td>
 <td>ディレクティブの設定値</td>
-<td colspan="2">&#160;</td>
+<td colspan="2">&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>…  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
-<td>…</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-odd"><td>...  <a class="footnote-reference" href="#id12" id="id9">[2]</a></td>
+<td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td rowspan="6">no</td>
 <td>フィールド名称(1)</td>
 <td>フィールド名称(2)</td>
-<td>…  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
+<td>...  <a class="footnote-reference" href="#id13" id="id10">[3]</a></td>
 </tr>
 <tr class="row-odd"><td>データ型(1)</td>
 <td>データ型(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>フィールド長(1)</td>
 <td>フィールド長(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-odd"><td>データ(1-1)</td>
 <td>データ(2-1)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>データ(1-2)</td>
 <td>データ(2-2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
-<tr class="row-odd"><td>… <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
-<td>…</td>
-<td>…</td>
+<tr class="row-odd"><td>... <a class="footnote-reference" href="#id14" id="id11">[4]</a></td>
+<td>...</td>
+<td>...</td>
 </tr>
 </tbody>
 </table>
@@ -453,8 +455,8 @@
 <p></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col width="9%" />
+<col width="91%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">名称</th>
@@ -473,7 +475,7 @@
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>ディレクティブ行</td>
+<tr class="row-odd"><td>ディレクティブ行 <a class="footnote-reference" href="#id16" id="id15">[5]</a></td>
 <td>ディレクティブを記載する。ディレクティブ名のセルの右のセルに設定値を記載する（複数行指定可）。</td>
 </tr>
 <tr class="row-even"><td>no</td>
@@ -483,7 +485,10 @@
 <td>フィールド名称を記載する。フィールドの数だけ記載する。</td>
 </tr>
 <tr class="row-even"><td>データ型</td>
-<td>そのフィールドのデータ型を記載する。フィールドの数だけ記載する。</td>
+<td><p class="first">そのフィールドのデータ型を記載する。フィールドの数だけ記載する。</p>
+<p>データ型は「半角英字」のように日本語名称で記述する。</p>
+<p class="last">フォーマット定義ファイル上のデータ型と日本語名称のデータ型のマッピングは、 <a class="reference external" href="https://github.com/nablarch/nablarch-testing/blob/master/src/main/java/nablarch/test/core/file/BasicDataTypeMapping.java">BasicDataTypeMapping</a> のメンバ変数DEFAULT_TABLEを参照。</p>
+</td>
 </tr>
 <tr class="row-odd"><td>フィールド長</td>
 <td><p class="first">そのフィールドのフィールド長を記載する。「-」を記載した場合は、「データ」の欄の記載内容を元にサイズを自動計算する。</p>
@@ -495,25 +500,51 @@
 </tr>
 </tbody>
 </table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id15">[5]</a></td><td><p class="first">ディレクティブを記述する際、フォーマット定義ファイルの以下に対応する内容は記述不要である。</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">理由</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file-type</td>
+<td>テスティングフレームワークが固定長のみしか対応していないため。</td>
+</tr>
+<tr class="row-odd"><td>record-length</td>
+<td>フィールド長に記載したサイズでパディングするため。</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">フィールド名称、データ型、フィールド長の記述は、外部インタフェース設計書からコピー＆ペーストすることで効率良く作成できる。（ペーストする際、「<strong>行列を入れ替える</strong>」オプションにチェックすること）</p>
 </div>
 </div>
-<div class="section" id="id15">
-<h4>3.1.5.1.1.3. Excelファイルの再読み込み<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id17">
+<h4>3.1.5.1.1.3. Excelファイルの再読み込み<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>モックアップクラスは、Excelファイルを手動で編集してテストをやり直すケースや、同じデータで繰り返しテストを行うケースを想定し、
 Excelファイルのタイムスタンプが更新された場合に、ファイルを再読み込みする機能を提供している。</p>
 <p>通常、以下の応答電文を返却するたびにnoのインクリメントが行われ、アプリケーションサーバが起動している間は、noの値が初期化されることはない。</p>
 <p>以下のような応答電文データを定義した場合、１回目のメッセージ同期送信ではno.1の応答電文が返却され、
 noのインクリメントが行われる。そして２回目のメッセージ同期送信ではno.2の応答電文が返却される。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data_no.png"><img alt="../../../../../../_images/send_sync_test_data_no.png" src="../../../../../../_images/send_sync_test_data_no.png" style="width: 752.4px; height: 121.5px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_test_data_no.png"><img alt="../../../../../../_images/send_sync_test_data_no.png" src="../../../../../../_images/send_sync_test_data_no.png" /></a>
 <p>しかし、Excelファイルの編集や上書きを行い、タイムスタンプを更新することで、アプリケーションサーバ起動中にExcelファイルの再読み込みを行うことができる。</p>
 <p>以下に、Excelファイルを編集し、テストをやり直す場合の例を示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync_response_count_change.png"><img alt="../../../../../../_images/send_sync_response_count_change.png" src="../../../../../../_images/send_sync_response_count_change.png" style="width: 751.8px; height: 299.6px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_response_count_change.png"><img alt="../../../../../../_images/send_sync_response_count_change.png" src="../../../../../../_images/send_sync_response_count_change.png" /></a>
 </div>
 <div class="section" id="send-sync-response-count-change-png">
-<span id="id16"></span><h4>3.1.5.1.1.4. 障害系のテスト<a class="headerlink" href="#send-sync-response-count-change-png" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<span id="id18"></span><h4>3.1.5.1.1.4. 障害系のテスト<a class="headerlink" href="#send-sync-response-count-change-png" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>応答電文の本文の表の最初のフィールドに「errorMode:」から始まる特定の値を設定することで、障害系のテストを行うことができる。</p>
 <p>以下に、設定値と、障害系のテストの対応を示す。</p>
 <blockquote>
@@ -548,7 +579,7 @@ noのインクリメントが行われる。そして２回目のメッセージ
 </div>
 </div>
 <div class="section" id="send-sync-test-data-path">
-<span id="id17"></span><h3>3.1.5.1.2. Excelファイルの配置場所の設定<a class="headerlink" href="#send-sync-test-data-path" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id19"></span><h3>3.1.5.1.2. Excelファイルの配置場所の設定<a class="headerlink" href="#send-sync-test-data-path" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Excelファイルの配置場所のパスは、下記設定例のようにfilepath.configに設定している。</p>
 <p>Excelファイルは、このパスで指定されたディレクトリに配置する。もし配置場所を変更する場合はこのパスを修正すること。</p>
 <blockquote>
@@ -567,8 +598,8 @@ file.path.send.sync.test.data<span class="o">=</span>file:///C:/nablarch/workspa
 ファイルシステムのパスを指定することで、サーバ起動中に直接Excelファイルの内容を編集し、テストすることが可能となる。</p>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>3.1.5.1.3. 要求電文のログ出力<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id20">
+<h3>3.1.5.1.3. 要求電文のログ出力<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>要求電文のログはMap形式とCSV形式で出力される。</p>
 <p>Map形式のログはデバッグ用に、CSV形式のログはエビデンスとして取得する場合に使用することを想定している。</p>
 <p>サンプルでは、Map形式のログは標準出力とアプリケーションログファイルに、CSV形式のログは専用のログファイルに出力する仕様となっているが、ログの設定を修正することで出力先の切り替えが可能である。</p>
@@ -618,11 +649,11 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="id19">
-<h3>3.1.5.1.4. フレームワークで使用するクラスの設定<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id21">
+<h3>3.1.5.1.4. フレームワークで使用するクラスの設定<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>通常、これらの設定はアーキテクトが行うものでありアプリケーションプログラマが設定する必要はない。</p>
-<div class="section" id="id20">
-<h4>3.1.5.1.4.1. モックアップクラスの設定<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id22">
+<h4>3.1.5.1.4.1. モックアップクラスの設定<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>コンポーネント設定ファイルに、取引単体テストで使用するモックアップクラスを設定する。</p>
 <blockquote>
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- モックのメッセージングプロバイダ --&gt;</span>
@@ -633,8 +664,8 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="id21">
-<h4>3.1.5.1.4.2. Excelファイルの配置場所を記載するプロパティファイルのパスの設定<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id23">
+<h4>3.1.5.1.4.2. Excelファイルの配置場所を記載するプロパティファイルのパスの設定<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>コンポーネント設定ファイルで、Excelファイルの配置場所のパスが記載されるプロパティファイルのパスや、プロパティのキーを設定する。</p>
 <blockquote>
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Excelファイルの配置場所のパスを記載するプロパティファイルのパスを指定する --&gt;</span>
@@ -661,8 +692,8 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="id22">
-<h4>3.1.5.1.4.3. 取引単体テストで使用するライブラリの設定<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id24">
+<h4>3.1.5.1.4.3. 取引単体テストで使用するライブラリの設定<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>取引単体テストでは、以下のjarファイルをアプリケーションサーバのクラスパスに通す必要がある。</p>
 <blockquote>
 <div><ul class="simple">
@@ -678,7 +709,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[5]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> キューへ送信するメッセージのことを「要求電文」、キューから受信するメッセージのことを「応答電文」と称す。</td></tr>
+<tr><td class="label">[6]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> キューへ送信するメッセージのことを「要求電文」、キューから受信するメッセージのことを「応答電文」と称す。</td></tr>
 </tbody>
 </table>
 </div>
@@ -688,6 +719,9 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -695,7 +729,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -716,10 +750,11 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

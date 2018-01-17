@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.9. マスタデータ復旧機能 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.2.9. マスタデータ復旧機能 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/04_MasterDataRestore.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.3. プログラミング工程で使用するツール" href="../08_TestTools/index.html"/>
         <link rel="prev" title="3.2.8. 目的別API使用方法" href="03_Tips.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -408,7 +410,7 @@
 このため、本機能ではデフォルトの動作としてJDBCの機能を用いて親子関係を取得・構築し、
 削除処理は子テーブルから、挿入処理は親テーブルから順に行うよう制御している。</p>
 <p>しかし、テーブル数が膨大なプロジェクトの場合、JDBCの機能を元に親子関係を構築する処理が原因で、slow test問題が発生する場合がある。
-この問題を回避するために、JDBC機能を使用するのではなく、記述順 (<a class="reference internal" href="#masterdatarestore-configuration"><span class="std std-ref">設定例</span></a> を参照)を元にテーブルの削除及び挿入処理を行う機能を提供している。</p>
+この問題を回避するために、JDBC機能を使用するのではなく、記述順 (<a class="reference internal" href="#masterdatarestore-configuration"><span>設定例</span></a> を参照)を元にテーブルの削除及び挿入処理を行う機能を提供している。</p>
 <p>記述順を元にマスタデータを復旧させたい場合には、環境設定ファイルに以下を追加する。</p>
 <div class="highlight-jproperties"><div class="highlight"><pre><span></span><span class="na">nablarch.suppress-table-sort</span><span class="o">=</span><span class="s">true</span>
 </pre></div>
@@ -518,6 +520,9 @@ loggers.sql.writerNames=nop
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -525,7 +530,7 @@ loggers.sql.writerNames=nop
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -546,10 +551,11 @@ loggers.sql.writerNames=nop
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

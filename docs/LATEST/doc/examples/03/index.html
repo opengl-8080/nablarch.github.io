@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>検索結果の一覧表示 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>検索結果の一覧表示 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/03/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../genindex.html"/>
-        <link rel="search" title="検索" href="../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch実装例集" href="../index.html"/>
         <link rel="next" title="フォーマッタ機能の拡張" href="../04/index.html"/>
         <link rel="prev" title="バリデーション機能の拡張" href="../02/index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -200,7 +200,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../02/index.html#id12">コード値精査</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">検索結果の一覧表示</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">検索結果の一覧表示</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">提供パッケージ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">概要</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">構成</a></li>
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -335,7 +337,7 @@
 <li>検索結果の並び替え機能</li>
 </ul>
 <p>一覧画面の出力例を示す。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_Example.jpg"><img alt="../../_images/ListSearchResult_Example.jpg" src="../../_images/ListSearchResult_Example.jpg" style="width: 425.4px; height: 234.6px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_Example.jpg"><img alt="../../_images/ListSearchResult_Example.jpg" src="../../_images/ListSearchResult_Example.jpg" /></a>
 <div class="line-block" id="listsearchresult-structure">
 <div class="line"><br /></div>
 </div>
@@ -347,7 +349,7 @@
 <h3>クラス図<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>フレームワークが提供するクラスやタグファイルの位置付けを明示するために、ユーザ検索を行う業務アプリケーションのクラスとJSPを構成に含めている。</p>
 <p>ページングを実現したい場合、フレームワークが提供するクラスとサンプル提供のタグファイルがページングに必要な処理を行うため、アプリケーションプログラマはページングを作り込みせずに実現できる。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_Structure.jpg"><img alt="../../_images/ListSearchResult_Structure.jpg" src="../../_images/ListSearchResult_Structure.jpg" style="width: 639.0px; height: 210.6px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_Structure.jpg"><img alt="../../_images/ListSearchResult_Structure.jpg" src="../../_images/ListSearchResult_Structure.jpg" /></a>
 <div class="section" id="id7">
 <h4>フレームワークが提供するクラスとタグファイルの責務<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>a) フレームワーク</p>
@@ -429,7 +431,7 @@
 <li>検索結果件数が上限を超えていない場合は、検索を実行し検索結果を返す。検索結果件数は引数で指定されたListSearchInfoに設定する。</li>
 </ul>
 <p>SQL_IDで指定するSQL文は、業務に必要な検索条件を基に検索を行うSQL文(つまりSELECT文)を指定する。検索を行うSQL文を基にした検索結果の件数取得や検索結果の開始位置と取得件数を指定した検索の実行は、フレームワークで行う。</p>
-<p>TooManyResultExceptionは、検索結果の最大件数(上限)と(実際の)検索結果の取得件数を保持する。検索結果件数の上限設定については、 <a class="reference internal" href="#listsearchresult-setting"><span class="std std-ref">検索結果の一覧表示機能のデフォルト値設定</span></a> を参照。</p>
+<p>TooManyResultExceptionは、検索結果の最大件数(上限)と(実際の)検索結果の取得件数を保持する。検索結果件数の上限設定については、 <a class="reference internal" href="#listsearchresult-setting"><span>検索結果の一覧表示機能のデフォルト値設定</span></a> を参照。</p>
 <p>searchメソッドを使用した検索処理の実装例を示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 入力精査済みの検索条件の取得</span>
 <span class="n">W11AC01SearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="o">...;</span>
@@ -548,11 +550,11 @@
 </div>
 <div class="section" id="listsearchresult">
 <span id="listsearchresult-listsearchresulttag"></span><h2>listSearchResultタグ<a class="headerlink" href="#listsearchresult" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#listsearchresult-tag"><span class="std std-ref">listSearchResultタグ</span></a> は、検索結果のリスト表示を行うタグである。listSearchResultタグで出力する画面要素を下記に示す。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" style="width: 344.4px; height: 237.0px;" /></a>
+<p><a class="reference internal" href="#listsearchresult-tag"><span>listSearchResultタグ</span></a> は、検索結果のリスト表示を行うタグである。listSearchResultタグで出力する画面要素を下記に示す。</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
 <div class="section" id="id9">
 <h3>listSearchResultタグの主要な属性<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>listSearchResultタグの主要な属性を下記に示す。全ての属性の詳細については、 <a class="reference internal" href="#listsearchresult-tag"><span class="std std-ref">listSearchResultタグ</span></a> を参照。</p>
+<p>listSearchResultタグの主要な属性を下記に示す。全ての属性の詳細については、 <a class="reference internal" href="#listsearchresult-tag"><span>listSearchResultタグ</span></a> を参照。</p>
 <p>resultSetName属性で指定された検索結果がリクエストスコープに存在しない場合、listSearchResultタグは何も出力しない。検索画面の初期表示が何も出力されないケースに該当する。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -594,10 +596,10 @@
 <td>検索結果をリクエストスコープから取得する際に使用する名前。<br /></td>
 </tr>
 <tr class="row-odd"><td>headerRowFragment(必須)</td>
-<td>ヘッダ行のJSPフラグメント。ヘッダ行については、 <a class="reference internal" href="#listsearchresult-tableelement"><span class="std std-ref">検索結果</span></a> を参照。<br /></td>
+<td>ヘッダ行のJSPフラグメント。ヘッダ行については、 <a class="reference internal" href="#listsearchresult-tableelement"><span>検索結果</span></a> を参照。<br /></td>
 </tr>
 <tr class="row-even"><td>bodyRowFragment(必須)</td>
-<td>ボディ行のJSPフラグメント。ボディ行については、 <a class="reference internal" href="#listsearchresult-tableelement"><span class="std std-ref">検索結果</span></a> を参照。</td>
+<td>ボディ行のJSPフラグメント。ボディ行については、 <a class="reference internal" href="#listsearchresult-tableelement"><span>検索結果</span></a> を参照。</td>
 </tr>
 </tbody>
 </table>
@@ -634,7 +636,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingFull.jpg"><img alt="../../_images/ListSearchResult_PagingFull.jpg" src="../../_images/ListSearchResult_PagingFull.jpg" style="width: 315.6px; height: 82.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingFull.jpg"><img alt="../../_images/ListSearchResult_PagingFull.jpg" src="../../_images/ListSearchResult_PagingFull.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -664,7 +666,7 @@
 </tbody>
 </table>
 <p>ページングの画面要素で指定可能な属性のうち、代表的なものを下記に示す。
-全ての属性の詳細については、 <a class="reference internal" href="#listsearchresult-tag"><span class="std std-ref">listSearchResultタグ</span></a> を参照。</p>
+全ての属性の詳細については、 <a class="reference internal" href="#listsearchresult-tag"><span>listSearchResultタグ</span></a> を参照。</p>
 <ul class="simple">
 <li>各画面要素の使用有無</li>
 <li>各画面要素のラベル(最初、前へ、次へ、最後など)</li>
@@ -685,7 +687,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_FormDivide.jpg"><img alt="../../_images/ListSearchResult_FormDivide.jpg" src="../../_images/ListSearchResult_FormDivide.jpg" style="width: 532.2px; height: 271.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_FormDivide.jpg"><img alt="../../_images/ListSearchResult_FormDivide.jpg" src="../../_images/ListSearchResult_FormDivide.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -697,7 +699,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingBefore.jpg"><img alt="../../_images/ListSearchResult_PagingBefore.jpg" src="../../_images/ListSearchResult_PagingBefore.jpg" style="width: 394.8px; height: 177.6px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingBefore.jpg"><img alt="../../_images/ListSearchResult_PagingBefore.jpg" src="../../_images/ListSearchResult_PagingBefore.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -705,7 +707,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter.jpg"><img alt="../../_images/ListSearchResult_PagingAfter.jpg" src="../../_images/ListSearchResult_PagingAfter.jpg" style="width: 394.8px; height: 64.2px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter.jpg"><img alt="../../_images/ListSearchResult_PagingAfter.jpg" src="../../_images/ListSearchResult_PagingAfter.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -739,7 +741,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter2.jpg"><img alt="../../_images/ListSearchResult_PagingAfter2.jpg" src="../../_images/ListSearchResult_PagingAfter2.jpg" style="width: 395.4px; height: 154.2px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter2.jpg"><img alt="../../_images/ListSearchResult_PagingAfter2.jpg" src="../../_images/ListSearchResult_PagingAfter2.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -747,7 +749,7 @@
 <div class="section" id="listsearchresult-tableelement">
 <span id="id12"></span><h3>検索結果<a class="headerlink" href="#listsearchresult-tableelement" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>検索結果の画面要素を下記に示す。検索結果は、列見出しを表示するヘッダ行と、行データを表示するボディ行から構成される。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableFull.jpg"><img alt="../../_images/ListSearchResult_TableFull.jpg" src="../../_images/ListSearchResult_TableFull.jpg" style="width: 334.8px; height: 198.6px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableFull.jpg"><img alt="../../_images/ListSearchResult_TableFull.jpg" src="../../_images/ListSearchResult_TableFull.jpg" /></a>
 <p>検索結果は、検索結果がリクエストスコープに存在する場合は常に表示される。検索結果が0件の場合は、ヘッダ行のみ表示される。</p>
 <p>ヘッダ行とボディ行は、それぞれheaderRowFragment属性、bodyRowFragment属性にJSPフラグメントで指定する。ボディ行のJSPフラグメントは、検索結果のループ内(JSTLのc:forEachタグ)で呼び出され評価される。このため、ボディ行のJSPフラグメントで行データ(c:forEachタグのvar属性)とステータス(c:forEachタグのstatus属性)にアクセスするために、下記の属性を設けている。</p>
 <table border="1" class="docutils">
@@ -763,11 +765,11 @@
 <tbody valign="top">
 <tr class="row-even"><td>varRowName</td>
 <td>ボディ行のフラグメントで行データ(c:forEachタグのvar属性)を参照する際に使用する変数名。<br />
-デフォルトは」row」。<br /></td>
+デフォルトは&#8221;row&#8221;。<br /></td>
 </tr>
 <tr class="row-odd"><td>varStatusName</td>
 <td><p class="first">ボディ行のフラグメントでステータス(c:forEachタグのstatus属性)を参照する際に使用する変数名。<br />
-デフォルトは」status」。</p>
+デフォルトは&#8221;status&#8221;。</p>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>n:writeタグを使用してステータスにアクセスすると、n:writeタグとEL式でアクセス方法が異なるためにエラーが発生し値を取得できない。n:setタグを使用してステータスにアクセスすることで、このエラーを回避できる。下記に使用例を示す。</p>
@@ -780,11 +782,11 @@
 </tr>
 <tr class="row-even"><td>varCountName</td>
 <td>ステータス(c:forEachタグのstatus属性)のcountプロパティを参照する際に使用する変数名。<br />
-デフォルトは」count」。<br /></td>
+デフォルトは&#8221;count&#8221;。<br /></td>
 </tr>
 <tr class="row-odd"><td>varRowCountName</td>
 <td>検索結果のカウント(検索結果の取得開始位置＋ステータスのカウント)を参照する際に使用する変数名。<br />
-デフォルトは」rowCount」。</td>
+デフォルトは&#8221;rowCount&#8221;。</td>
 </tr>
 </tbody>
 </table>
@@ -803,15 +805,15 @@
 <tr class="row-even"><td>varOddEvenName</td>
 <td>ボディ行のclass属性を参照する際に使用する変数名。<br />
 この変数名は、1行おきにclass属性の値を変更したい場合に使用する。<br />
-デフォルトは」oddEvenCss」。<br /></td>
+デフォルトは&#8221;oddEvenCss&#8221;。<br /></td>
 </tr>
 <tr class="row-odd"><td>oddValue</td>
 <td>ボディ行の奇数行に使用するclass属性。<br />
-デフォルトは」nablarch_odd」。<br /></td>
+デフォルトは&#8221;nablarch_odd&#8221;。<br /></td>
 </tr>
 <tr class="row-even"><td>evenValue</td>
 <td>ボディ行の偶数行に使用するclass属性。<br />
-デフォルトは」nablarch_even」。</td>
+デフォルトは&#8221;nablarch_even&#8221;。</td>
 </tr>
 </tbody>
 </table>
@@ -852,20 +854,20 @@
 </pre></div>
 </div>
 <p>上記指定後の検索結果を下記に示す。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableStatus.jpg"><img alt="../../_images/ListSearchResult_TableStatus.jpg" src="../../_images/ListSearchResult_TableStatus.jpg" style="width: 398.4px; height: 174.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableStatus.jpg"><img alt="../../_images/ListSearchResult_TableStatus.jpg" src="../../_images/ListSearchResult_TableStatus.jpg" /></a>
 </div>
 </div>
 <div class="section" id="listsearchresult-sort">
 <span id="id13"></span><h2>検索結果の並び替え<a class="headerlink" href="#listsearchresult-sort" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>検索結果の一覧表示では、列見出しを選択することで選択された列データによる並び替えを行いたい場合がある。検索結果の並び替えは、並び替え用の列見出しを出力する <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span class="std std-ref">listSearchSortSubmitタグ</span></a> と、データベースアクセス機能が提供する可変ORDER BY構文(ORDER BY句を動的に変更する構文)を使用した検索処理により実現する。可変ORDER BY構文の詳細については、フレームワークの解説書を参照。</p>
+<p>検索結果の一覧表示では、列見出しを選択することで選択された列データによる並び替えを行いたい場合がある。検索結果の並び替えは、並び替え用の列見出しを出力する <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmitタグ</span></a> と、データベースアクセス機能が提供する可変ORDER BY構文(ORDER BY句を動的に変更する構文)を使用した検索処理により実現する。可変ORDER BY構文の詳細については、フレームワークの解説書を参照。</p>
 <p>ユーザ検索に並び替えを適用した場合の画面イメージを下記に示す。ユーザ検索では、漢字氏名とカナ氏名による並び替えを提供している。</p>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_SortSubmitTag.jpg"><img alt="../../_images/ListSearchResult_SortSubmitTag.jpg" src="../../_images/ListSearchResult_SortSubmitTag.jpg" style="width: 321.6px; height: 168.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_SortSubmitTag.jpg"><img alt="../../_images/ListSearchResult_SortSubmitTag.jpg" src="../../_images/ListSearchResult_SortSubmitTag.jpg" /></a>
 <p>ここでは、ユーザ検索に並び替えを適用する場合の実装例を使用して解説を行う。</p>
 <div class="section" id="id14">
 <h3>検索処理の実装方法<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>検索結果の並び替えを行うには、可変ORDER BY構文を使用してSQL文を定義する。可変ORDER BY構文を使用したSQL文の例を下記に示す。</p>
 <p>下記のSQL文では、漢字氏名とカナ氏名を並び替えるための可変ORDER BY句を使用している。
-どのORDER BYを使用するかは、$sort (sortId)の記述により、検索条件オブジェクトのsortIdフィールドから取得した値が使用される。例えば、検索条件オブジェクトのsortIdフィールドが kanaName_asc の場合、ORDER BY句は」ORDER BY USR.KANA_NAME, SA.LOGIN_ID」に変換される。</p>
+どのORDER BYを使用するかは、$sort (sortId)の記述により、検索条件オブジェクトのsortIdフィールドから取得した値が使用される。例えば、検索条件オブジェクトのsortIdフィールドが kanaName_asc の場合、ORDER BY句は&#8221;ORDER BY USR.KANA_NAME, SA.LOGIN_ID&#8221;に変換される。</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span>-- 可変ORDER BY構文を使用したSQL文
 SELECT
   -- 省略
@@ -918,7 +920,7 @@ $sort (sortId) {
 <div class="section" id="listsearchsortsubmit">
 <h3>listSearchSortSubmitタグ<a class="headerlink" href="#listsearchsortsubmit" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>listSearchSortSubmitタグは、並び替え用のサブミット要素を出力する。</p>
-<p>listSearchSortSubmitタグの必須属性及び代表的な属性を下記に示す。listSearchSortSubmitタグで指定できる全ての属性については、 <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span class="std std-ref">listSearchSortSubmitタグ</span></a> を参照。</p>
+<p>listSearchSortSubmitタグの必須属性及び代表的な属性を下記に示す。listSearchSortSubmitタグで指定できる全ての属性については、 <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmitタグ</span></a> を参照。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
@@ -933,17 +935,17 @@ $sort (sortId) {
 <tr class="row-even"><td>sortCss</td>
 <td>並び替えを行うサブミットのclass属性。<br />
 常にサブミットのclass属性に出力される。<br />
-デフォルトは」nablarch_sort」。</td>
+デフォルトは&#8221;nablarch_sort&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>ascCss</td>
 <td>昇順に並び替えた場合に指定するサブミットのclass属性。<br />
 sortCss属性に付加するかたちで出力される。<br />
-デフォルトは」nablarch_asc」。(出力例: class=」nablarch_sort nablarch_asc」)</td>
+デフォルトは&#8221;nablarch_asc&#8221;。(出力例: class=&#8221;nablarch_sort nablarch_asc&#8221;)</td>
 </tr>
 <tr class="row-even"><td>descCss</td>
 <td>降順に並び替えた場合に指定するサブミットのclass属性。<br />
 sortCss属性に付加するかたちで出力される。<br />
-デフォルトは」nablarch_desc」。(出力例: class=」nablarch_sort nablarch_desc」)</td>
+デフォルトは&#8221;nablarch_desc&#8221;。(出力例: class=&#8221;nablarch_sort nablarch_desc&#8221;)</td>
 </tr>
 <tr class="row-odd"><td>ascSortId(必須)</td>
 <td>昇順に並び替える場合のソートID。</td>
@@ -956,7 +958,7 @@ sortCss属性に付加するかたちで出力される。<br />
 下記のいずれかを指定する。<br />
 asc(昇順) <br />
 desc(降順) <br />
-デフォルトは」asc」。</td>
+デフォルトは&#8221;asc&#8221;。</td>
 </tr>
 <tr class="row-even"><td>label(必須)</td>
 <td>並び替えを行うサブミットに使用するラベル。</td>
@@ -1185,7 +1187,7 @@ name属性は、画面内で一意にすること。</td>
 <div class="section" id="listsearchresult-setting">
 <span id="id17"></span><h2>検索結果の一覧表示機能のデフォルト値設定<a class="headerlink" href="#listsearchresult-setting" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>検索結果の一覧表示機能のデフォルト値設定は、画面表示に関する設定と、一覧検索用の検索処理に関する設定に大別される。</p>
-<p>画面表示に関する設定は、タグファイル内で直接デフォルト値を指定している。画面表示に関する設定の詳細は、 <a class="reference internal" href="#listsearchresult-tagreference"><span class="std std-ref">タグリファレンス</span></a> を参照。</p>
+<p>画面表示に関する設定は、タグファイル内で直接デフォルト値を指定している。画面表示に関する設定の詳細は、 <a class="reference internal" href="#listsearchresult-tagreference"><span>タグリファレンス</span></a> を参照。</p>
 <p>ここでは、一覧検索用の検索処理に関する設定について解説する。</p>
 <p>検索処理の設定では、下記の設定を行える。</p>
 <ul class="simple">
@@ -1220,7 +1222,7 @@ property名と設定内容を下記に示す。</p>
 </ul>
 <p>尚、一部機能のみ個別に設定値を変更したい場合は、下記の通り個別機能の実装で対応する。</p>
 <ul class="simple">
-<li>画面表示に関する設定は、JSP上で <a class="reference internal" href="#listsearchresult-tag"><span class="std std-ref">listSearchResultタグ</span></a> の属性を指定する。</li>
+<li>画面表示に関する設定は、JSP上で <a class="reference internal" href="#listsearchresult-tag"><span>listSearchResultタグ</span></a> の属性を指定する。</li>
 <li>ページング用の検索処理に関する設定は、該当の一覧表示画面を表示するActionのメソッドにて、ListSearchInfoを継承したクラスに値を設定する。</li>
 </ul>
 <p>下記に検索結果の最大件数(上限)を50、表示件数を10に変更する場合の実装例を下記に示す。</p>
@@ -1283,21 +1285,21 @@ property名と設定内容を下記に示す。</p>
 <div><dl class="docutils">
 <dt>修正前</dt>
 <dd><p class="first">プレフィックスの定義:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;nbs&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;http://tis.co.jp/nablarch-biz-sample&quot;</span> <span class="o">%&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;nbs&quot; uri=&quot;http://tis.co.jp/nablarch-biz-sample&quot; %&gt;
 </pre></div>
 </div>
 <p>プレフィックス:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">nbs</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">nbs</span>
 </pre></div>
 </div>
 </dd>
 <dt>修正後</dt>
 <dd><p class="first">プレフィックスの定義:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;listSearchResult&quot;</span> <span class="n">tagdir</span><span class="o">=</span><span class="s2">&quot;/WEB-INF/tags/listSearchResult&quot;</span> <span class="o">%&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;listSearchResult&quot; tagdir=&quot;/WEB-INF/tags/listSearchResult&quot; %&gt;
 </pre></div>
 </div>
 <p>プレフィックス:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">listSearchResult</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">listSearchResult</span>
 </pre></div>
 </div>
 </dd>
@@ -1318,10 +1320,10 @@ property名と設定内容を下記に示す。</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="#listsearchresult-tag"><span class="std std-ref">listSearchResultタグ</span></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#listsearchresult-tag"><span>listSearchResultタグ</span></a></td>
 <td>検索結果の一覧表示を行う。</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span class="std std-ref">listSearchSortSubmitタグ</span></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmitタグ</span></a></td>
 <td>検索結果の一覧表示で並び替え対応の列見出しを出力する。</td>
 </tr>
 </tbody>
@@ -1332,7 +1334,7 @@ property名と設定内容を下記に示す。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" style="width: 344.4px; height: 237.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1356,7 +1358,7 @@ property名と設定内容を下記に示す。</p>
 </tr>
 <tr class="row-even"><td>listSearchResultWrapperCss</td>
 <td>ページング付きテーブル全体(検索結果件数、ページング、検索結果)をラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_listSearchResultWrapper」。</td>
+デフォルトは&#8221;nablarch_listSearchResultWrapper&#8221;。</td>
 </tr>
 <tr class="row-odd"><td colspan="2">検索結果件数</td>
 </tr>
@@ -1366,11 +1368,11 @@ property名と設定内容を下記に示す。</p>
 </tr>
 <tr class="row-odd"><td>resultCountCss</td>
 <td>検索結果件数をラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_resultCount」。</td>
+デフォルトは&#8221;nablarch_resultCount&#8221;。</td>
 </tr>
 <tr class="row-even"><td>resultCountFragment</td>
 <td>検索結果件数を出力するJSPフラグメント。<br />
-デフォルトは」検索結果 &lt;PagingInfoのresultCountプロパティ&gt;件」。</td>
+デフォルトは&#8221;検索結果 &lt;PagingInfoのresultCountプロパティ&gt;件&#8221;。</td>
 </tr>
 <tr class="row-odd"><td colspan="2">ページング</td>
 </tr>
@@ -1393,14 +1395,14 @@ none(表示なし) <br />
 </tr>
 <tr class="row-odd"><td>pagingCss</td>
 <td>ページングのサブミット要素(前へ、次へなど)全体をラップするdivタグのclass属性。 <br />
-デフォルトは」nablarch_paging」。</td>
+デフォルトは&#8221;nablarch_paging&#8221;。</td>
 </tr>
 </tbody>
 </table>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" style="width: 344.4px; height: 237.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1423,11 +1425,11 @@ none(表示なし) <br />
 </tr>
 <tr class="row-even"><td>currentPageNumberCss</td>
 <td>現在のページ番号をラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_currentPageNumber」。</td>
+デフォルトは&#8221;nablarch_currentPageNumber&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>currentPageNumberFragment</td>
 <td>現在のページ番号を出力するJSPフラグメント。<br />
-デフォルトは」[&lt;PagingInfoのcurrentPageNumberプロパティ&gt;/&lt;PagingInfoのpageCountプロパティ&gt;ページ]」。</td>
+デフォルトは&#8221;[&lt;PagingInfoのcurrentPageNumberプロパティ&gt;/&lt;PagingInfoのpageCountプロパティ&gt;ページ]&#8221;。</td>
 </tr>
 <tr class="row-even"><td colspan="2">最初</td>
 </tr>
@@ -1452,17 +1454,17 @@ button <br />
 </tr>
 <tr class="row-even"><td>firstSubmitCss</td>
 <td>最初のページに遷移するサブミットをラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_firstSubmit」。</td>
+デフォルトは&#8221;nablarch_firstSubmit&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>firstSubmitLabel</td>
 <td>最初のページに遷移するサブミットに使用するラベル。<br />
-デフォルトは」最初」。</td>
+デフォルトは&#8221;最初&#8221;。</td>
 </tr>
 <tr class="row-even"><td>firstSubmitName</td>
 <td>最初のページに遷移するサブミットに使用するタグのname属性。<br />
-デフォルトは」firstSubmit」。<br />
-ページングの表示位置を表すサフィックス(上側は」_top」、下側は」_bottom」)を付けて出力する。<br />
-例えば、デフォルトかつ表示位置が上側の場合は」firstSubmit_top」となる。</td>
+デフォルトは&#8221;firstSubmit&#8221;。<br />
+ページングの表示位置を表すサフィックス(上側は&#8221;_top&#8221;、下側は&#8221;_bottom&#8221;)を付けて出力する。<br />
+例えば、デフォルトかつ表示位置が上側の場合は&#8221;firstSubmit_top&#8221;となる。</td>
 </tr>
 <tr class="row-odd"><td colspan="2">前へ</td>
 </tr>
@@ -1487,17 +1489,17 @@ button <br />
 </tr>
 <tr class="row-odd"><td>prevSubmitCss</td>
 <td>前のページに遷移するサブミットをラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_prevSubmit」。</td>
+デフォルトは&#8221;nablarch_prevSubmit&#8221;。</td>
 </tr>
 <tr class="row-even"><td>prevSubmitLabel</td>
 <td>前のページに遷移するサブミットに使用するラベル。<br />
-デフォルトは」前へ」。</td>
+デフォルトは&#8221;前へ&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>prevSubmitName</td>
 <td>前のページに遷移するサブミットに使用するタグのname属性。<br />
-デフォルトは」prevSubmit」。<br />
-ページングの表示位置を表すサフィックス(上側は」_top」、下側は」_bottom」)を付けて出力する。<br />
-例えば、デフォルトかつ表示位置が上側の場合は」prevSubmit_top」となる。</td>
+デフォルトは&#8221;prevSubmit&#8221;。<br />
+ページングの表示位置を表すサフィックス(上側は&#8221;_top&#8221;、下側は&#8221;_bottom&#8221;)を付けて出力する。<br />
+例えば、デフォルトかつ表示位置が上側の場合は&#8221;prevSubmit_top&#8221;となる。</td>
 </tr>
 <tr class="row-even"><td colspan="2">ページ番号(ページ番号をラベルとして使用するためラベル指定がない)</td>
 </tr>
@@ -1522,13 +1524,13 @@ button <br />
 </tr>
 <tr class="row-even"><td>pageNumberSubmitCss</td>
 <td>ページ番号のページに遷移するサブミットをラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_pageNumberSubmit」。</td>
+デフォルトは&#8221;nablarch_pageNumberSubmit&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>pageNumberSubmitName</td>
 <td>ページ番号のページに遷移するサブミットに使用するタグのname属性。<br />
-デフォルトは」pageNumberSubmit」。<br />
-ページ番号とページングの表示位置を表すサフィックス(上側は」_top」、下側は」_bottom」)を付けて出力する。<br />
-例えば、デフォルトかつ表示位置が上側でページ番号が3の場合は」pageNumberSubmit3_top」となる。</td>
+デフォルトは&#8221;pageNumberSubmit&#8221;。<br />
+ページ番号とページングの表示位置を表すサフィックス(上側は&#8221;_top&#8221;、下側は&#8221;_bottom&#8221;)を付けて出力する。<br />
+例えば、デフォルトかつ表示位置が上側でページ番号が3の場合は&#8221;pageNumberSubmit3_top&#8221;となる。</td>
 </tr>
 <tr class="row-even"><td colspan="2">次へ</td>
 </tr>
@@ -1553,17 +1555,17 @@ button <br />
 </tr>
 <tr class="row-even"><td>nextSubmitCss</td>
 <td>次のページに遷移するサブミットをラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_nextSubmit」。</td>
+デフォルトは&#8221;nablarch_nextSubmit&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>nextSubmitLabel</td>
 <td>次のページに遷移するサブミットに使用するラベル。<br />
-デフォルトは」次へ」。</td>
+デフォルトは&#8221;次へ&#8221;。</td>
 </tr>
 <tr class="row-even"><td>nextSubmitName</td>
 <td>次のページに遷移するサブミットに使用するタグのname属性。<br />
-デフォルトは」nextSubmit」。<br />
-ページングの表示位置を表すサフィックス(上側は」_top」、下側は」_bottom」)を付けて出力する。<br />
-例えば、デフォルトかつ表示位置が上側の場合は」nextSubmit_top」となる。</td>
+デフォルトは&#8221;nextSubmit&#8221;。<br />
+ページングの表示位置を表すサフィックス(上側は&#8221;_top&#8221;、下側は&#8221;_bottom&#8221;)を付けて出力する。<br />
+例えば、デフォルトかつ表示位置が上側の場合は&#8221;nextSubmit_top&#8221;となる。</td>
 </tr>
 <tr class="row-odd"><td colspan="2">最後</td>
 </tr>
@@ -1588,24 +1590,24 @@ button <br />
 </tr>
 <tr class="row-odd"><td>lastSubmitCss</td>
 <td>最後のページに遷移するサブミットをラップするdivタグのclass属性。<br />
-デフォルトは」nablarch_lastSubmit」。</td>
+デフォルトは&#8221;nablarch_lastSubmit&#8221;。</td>
 </tr>
 <tr class="row-even"><td>lastSubmitLabel</td>
 <td>最後のページに遷移するサブミットに使用するラベル。<br />
-デフォルトは」最後」。</td>
+デフォルトは&#8221;最後&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>lastSubmitName</td>
 <td>最後のページに遷移するサブミットに使用するタグのname属性。<br />
-デフォルトは」lastSubmit」。 <br />
-ページングの表示位置を表すサフィックス(上側は」_top」、下側は」_bottom」)を付けて出力する。<br />
-例えば、デフォルトかつ表示位置が上側の場合は」lastSubmit_top」となる。</td>
+デフォルトは&#8221;lastSubmit&#8221;。 <br />
+ページングの表示位置を表すサフィックス(上側は&#8221;_top&#8221;、下側は&#8221;_bottom&#8221;)を付けて出力する。<br />
+例えば、デフォルトかつ表示位置が上側の場合は&#8221;lastSubmit_top&#8221;となる。</td>
 </tr>
 </tbody>
 </table>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" style="width: 344.4px; height: 237.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1627,7 +1629,7 @@ button <br />
 </tr>
 <tr class="row-even"><td>resultSetCss</td>
 <td>検索結果テーブルのclass属性。<br />
-デフォルトは」nablarch_resultSet」。</td>
+デフォルトは&#8221;nablarch_resultSet&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>headerRowFragment(必須)</td>
 <td>ヘッダ行のJSPフラグメント。</td>
@@ -1637,11 +1639,11 @@ button <br />
 </tr>
 <tr class="row-odd"><td>varRowName</td>
 <td>ボディ行のフラグメントで行データ(c:forEachタグのvar属性)を参照する際に使用する変数名。<br />
-デフォルトは」row」。</td>
+デフォルトは&#8221;row&#8221;。</td>
 </tr>
 <tr class="row-even"><td>varStatusName</td>
 <td><p class="first">ボディ行のフラグメントでステータス(c:forEachタグのstatus属性)を参照する際に使用する変数名。<br />
-デフォルトは」status」。</p>
+デフォルトは&#8221;status&#8221;。</p>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>n:writeタグを使用してステータスにアクセスすると、n:writeタグとEL式でアクセス方法が異なるためにエラーが発生し値を取得できない。n:setタグを使用してステータスにアクセスすることで、このエラーを回避できる。下記に使用例を示す。</p>
@@ -1654,24 +1656,24 @@ button <br />
 </tr>
 <tr class="row-odd"><td>varCountName</td>
 <td>ステータス(c:forEachタグのstatus属性)のcountプロパティを参照する際に使用する変数名。<br />
-デフォルトは」count」。</td>
+デフォルトは&#8221;count&#8221;。</td>
 </tr>
 <tr class="row-even"><td>varRowCountName</td>
 <td>検索結果のカウント(検索結果の取得開始位置＋ステータスのカウント)を参照する際に使用する変数名。<br />
-デフォルトは」rowCount」。</td>
+デフォルトは&#8221;rowCount&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>varOddEvenName</td>
 <td>ボディ行のclass属性を参照する際に使用する変数名。<br />
 この変数名は、1行おきにclass属性の値を変更したい場合に使用する。<br />
-デフォルトは」oddEvenCss」。</td>
+デフォルトは&#8221;oddEvenCss&#8221;。</td>
 </tr>
 <tr class="row-even"><td>oddValue</td>
 <td>ボディ行の奇数行に使用するclass属性。<br />
-デフォルトは」nablarch_odd」。</td>
+デフォルトは&#8221;nablarch_odd&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>evenValue</td>
 <td>ボディ行の偶数行に使用するclass属性。<br />
-デフォルトは」nablarch_even」。</td>
+デフォルトは&#8221;nablarch_even&#8221;。</td>
 </tr>
 </tbody>
 </table>
@@ -1707,17 +1709,17 @@ button <br />
 <tr class="row-even"><td>sortCss</td>
 <td>並び替えを行うサブミットのclass属性。<br />
 常にサブミットのclass属性に出力される。<br />
-デフォルトは」nablarch_sort」。</td>
+デフォルトは&#8221;nablarch_sort&#8221;。</td>
 </tr>
 <tr class="row-odd"><td>ascCss</td>
 <td>昇順に並び替えた場合に指定するサブミットのclass属性。<br />
 sortCss属性に付加するかたちで出力される。<br />
-デフォルトは」nablarch_asc」。(出力例: class=」nablarch_sort nablarch_asc」)</td>
+デフォルトは&#8221;nablarch_asc&#8221;。(出力例: class=&#8221;nablarch_sort nablarch_asc&#8221;)</td>
 </tr>
 <tr class="row-even"><td>descCss</td>
 <td>降順に並び替えた場合に指定するサブミットのclass属性。<br />
 sortCss属性に付加するかたちで出力される。<br />
-デフォルトは」nablarch_desc」。(出力例: class=」nablarch_sort nablarch_desc」)</td>
+デフォルトは&#8221;nablarch_desc&#8221;。(出力例: class=&#8221;nablarch_sort nablarch_desc&#8221;)</td>
 </tr>
 <tr class="row-odd"><td>ascSortId(必須)</td>
 <td>昇順に並び替える場合のソートID。</td>
@@ -1730,7 +1732,7 @@ sortCss属性に付加するかたちで出力される。<br />
 下記のいずれかを指定する。<br />
 asc(昇順) <br />
 desc(降順) <br />
-デフォルトは」asc」。</td>
+デフォルトは&#8221;asc&#8221;。</td>
 </tr>
 <tr class="row-even"><td>label(必須)</td>
 <td>並び替えを行うサブミットに使用するラベル。</td>
@@ -1750,6 +1752,9 @@ name属性は、画面内で一意にすること。</td>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -1757,7 +1762,7 @@ name属性は、画面内で一意にすること。</td>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -1778,10 +1783,11 @@ name属性は、画面内で一意にすること。</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

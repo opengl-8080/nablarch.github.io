@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.5. リクエスト単体テスト（メッセージ受信処理） &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.2.5. リクエスト単体テスト（メッセージ受信処理） &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_real.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.6. リクエスト単体テスト（同期応答メッセージ送信処理）" href="RequestUnitTest_send_sync.html"/>
         <link rel="prev" title="3.2.4. リクエスト単体テスト（バッチ処理）" href="RequestUnitTest_batch.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -326,7 +328,7 @@
 要求電文1件を受信したときの動作を擬似的に再現し、テストを行う。</p>
 <div class="section" id="id3">
 <h3>3.2.5.1.1. 全体像<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<a class="reference internal image-reference" href="../../../../../_images/real_request_test_class.png"><img alt="../../../../../_images/real_request_test_class.png" src="../../../../../_images/real_request_test_class.png" style="width: 707.7px; height: 392.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/real_request_test_class.png"><img alt="../../../../../_images/real_request_test_class.png" src="../../../../../_images/real_request_test_class.png" /></a>
 </div>
 </div>
 <div class="section" id="id4">
@@ -452,10 +454,10 @@
 </table>
 </div></blockquote>
 <p>本クラスを使用することで、リクエスト単体テストのテストソース、テストデータを定型化でき、テストソース記述量を大きく削減できる。</p>
-<p>具体的な使用方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/real.html"><span class="doc">リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a>を参照。</p>
+<p>具体的な使用方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/real.html"><em>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</em></a>を参照。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">本クラスは、入力データをキューにPUTする用途で、main側のコンポーネント定義ファイルを読み込む。
+<p class="last">本クラスは、入力データをキューにPUTする用途で、main側のコンポーネント設定ファイルを読み込む。
 その際、<code class="docutils literal"><span class="pre">nablarch.fw.messaging.FwHeaderDefinition</span></code>実装クラスは、
 <code class="docutils literal"><span class="pre">fwHeaderDefinition</span></code>という名前で登録されていなければならない。
 これ以外の名称を使用する場合は、本クラスのgetFwHeaderDefinitionName()をオーバライドすることにより
@@ -482,7 +484,7 @@
 </table>
 </div></blockquote>
 <p>本クラスを使用することで、リクエスト単体テストのテストソース、テストデータを定型化でき、テストソース記述量を大きく削減できる。</p>
-<p>具体的な使用方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/delayed_receive.html"><span class="doc">リクエスト単体テストの実施方法（応答不要メッセージ受信処理）</span></a>を参照。</p>
+<p>具体的な使用方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/delayed_receive.html"><em>リクエスト単体テストの実施方法（応答不要メッセージ受信処理）</em></a>を参照。</p>
 </div>
 <div class="section" id="mainforrequesttesting">
 <h3>3.2.5.3.5. MainForRequestTesting<a class="headerlink" href="#mainforrequesttesting" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -511,7 +513,7 @@
 <li>編集を行ったデータを読み込むためのレイアウト定義データを動的に生成する。</li>
 </ul>
 <p>本インタフェースを実装することで、例えばExcelに日本語で記述されたデータをURLエンコーディングする等の処理を追加することが可能である。</p>
-<p>実装クラスは 「TestDataConverter_&lt;データ種別&gt;」 というキー名でテスト用のコンポーネント定義ファイルに登録する必要がある。</p>
+<p>実装クラスは &#8220;TestDataConverter_&lt;データ種別&gt;&#8221; というキー名でテスト用のコンポーネント設定ファイルに登録する必要がある。</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -519,17 +521,20 @@
 <p>メッセージング処理固有のテストデータについて説明する。</p>
 <div class="section" id="id7">
 <h3>3.2.5.4.1. メッセージ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/real.html"><span class="doc">リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a>
+<p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/real.html"><em>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</em></a>
 を参照。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">パディングおよびバイナリデータの扱いは、<a class="reference internal" href="RequestUnitTest_batch.html#about-fixed-length-file"><span class="std std-ref">固定長ファイル</span></a>と同様である。</p>
+<p class="last">パディングおよびバイナリデータの扱いは、<a class="reference internal" href="RequestUnitTest_batch.html#about-fixed-length-file"><span>固定長ファイル</span></a>と同様である。</p>
 </div>
 </div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -538,7 +543,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -559,10 +564,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

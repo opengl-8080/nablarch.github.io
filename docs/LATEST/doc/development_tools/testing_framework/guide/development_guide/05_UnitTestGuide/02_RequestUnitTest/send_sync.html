@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/send_sync.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.16. リクエスト単体テストの実施方法（応答不要メッセージ送信処理）" href="delayed_send.html"/>
         <link rel="prev" title="3.1.14. リクエスト単体テストの実施方法（HTTP同期応答メッセージ受信処理）" href="http_real.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -379,7 +381,7 @@ Excelファイルを使用することで、外部インターフェース設計
 <div class="section" id="send-sync-request-write-test-data">
 <span id="id6"></span><h3>3.1.15.2.1. テストデータの書き方<a class="headerlink" href="#send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストデータを記載したExcelファイルは、クラス単体テストと同様にテストソースコードと同じディレクトリに同じ名前で格納する（拡張子のみ異なる）。</p>
-<p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span class="std std-ref">Excelによるテストデータ記述</span></a>」を参照。</p>
+<p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Excelによるテストデータ記述</span></a>」を参照。</p>
 <div class="section" id="id7">
 <h4>3.1.15.2.1.1. 要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>同期応答メッセージ送信処理を行う場合、リクエストIDごとに、要求電文および応答電文のヘッダ部とボディ部のフォーマットおよび、データを定義する。</p>
@@ -393,13 +395,13 @@ Excelファイルを使用することで、外部インターフェース設計
 <dl class="docutils">
 <dt>テストケースの書き方についての詳細は、以下を参照すること。</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="index.html#request-test-testcases"><span class="std std-ref">ウェブアプリケーションのテストケース一覧</span></a></li>
-<li><a class="reference internal" href="batch.html#batch-test-testcases"><span class="std std-ref">バッチ処理のテストケース一覧</span></a></li>
+<li><a class="reference internal" href="index.html#request-test-testcases"><span>ウェブアプリケーションのテストケース一覧</span></a></li>
+<li><a class="reference internal" href="batch.html#batch-test-testcases"><span>バッチ処理のテストケース一覧</span></a></li>
 </ul>
 </dd>
 </dl>
 <p>以下に、実際にExcelで書かれたテストデータを示す。（グループIDの関連も示す）</p>
-<a class="reference internal image-reference" href="../../../../../../_images/send_sync.png"><img alt="../../../../../../_images/send_sync.png" src="../../../../../../_images/send_sync.png" style="width: 725.6px; height: 770.4px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync.png"><img alt="../../../../../../_images/send_sync.png" src="../../../../../../_images/send_sync.png" /></a>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">Nablarchが標準で提供する同期応答メッセージ送信機能では、要求電文と応答電文のヘッダ部は共通のフォーマットを使用するので、
@@ -417,41 +419,41 @@ Excelファイルを使用することで、外部インターフェース設計
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>識別子</td>
-<td colspan="3">&#160;</td>
+<td colspan="3">&nbsp;</td>
 </tr>
 <tr class="row-even"><td>ディレクティブ行</td>
 <td>ディレクティブの設定値</td>
-<td colspan="2">&#160;</td>
+<td colspan="2">&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>…  <a class="footnote-reference" href="#id11" id="id8">[2]</a></td>
-<td>…</td>
-<td>&#160;</td>
-<td>&#160;</td>
+<tr class="row-odd"><td>...  <a class="footnote-reference" href="#id11" id="id8">[2]</a></td>
+<td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td rowspan="6">no</td>
 <td>フィールド名称(1)</td>
 <td>フィールド名称(2)</td>
-<td>…  <a class="footnote-reference" href="#id12" id="id9">[3]</a></td>
+<td>...  <a class="footnote-reference" href="#id12" id="id9">[3]</a></td>
 </tr>
 <tr class="row-odd"><td>データ型(1)</td>
 <td>データ型(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>フィールド長(1)</td>
 <td>フィールド長(2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-odd"><td>データ(1-1)</td>
 <td>データ(2-1)</td>
-<td>…</td>
+<td>...</td>
 </tr>
 <tr class="row-even"><td>データ(1-2)</td>
 <td>データ(2-2)</td>
-<td>…</td>
+<td>...</td>
 </tr>
-<tr class="row-odd"><td>… <a class="footnote-reference" href="#id13" id="id10">[4]</a></td>
-<td>…</td>
-<td>…</td>
+<tr class="row-odd"><td>... <a class="footnote-reference" href="#id13" id="id10">[4]</a></td>
+<td>...</td>
+<td>...</td>
 </tr>
 </tbody>
 </table>
@@ -476,8 +478,8 @@ Excelファイルを使用することで、外部インターフェース設計
 <p></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col width="9%" />
+<col width="91%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">名称</th>
@@ -496,7 +498,7 @@ Excelファイルを使用することで、外部インターフェース設計
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td>ディレクティブ行</td>
+<tr class="row-odd"><td>ディレクティブ行 <a class="footnote-reference" href="#id15" id="id14">[5]</a></td>
 <td>ディレクティブを記載する。ディレクティブ名のセルの右のセルに設定値を記載する（複数行指定可）。</td>
 </tr>
 <tr class="row-even"><td>no</td>
@@ -506,7 +508,10 @@ Excelファイルを使用することで、外部インターフェース設計
 <td>フィールド名称を記載する。フィールドの数だけ記載する。</td>
 </tr>
 <tr class="row-even"><td>データ型</td>
-<td>そのフィールドのデータ型を記載する。フィールドの数だけ記載する。</td>
+<td><p class="first">そのフィールドのデータ型を記載する。フィールドの数だけ記載する。</p>
+<p>データ型は「半角英字」のように日本語名称で記述する。</p>
+<p class="last">フォーマット定義ファイル上のデータ型と日本語名称のデータ型のマッピングは、 <a class="reference external" href="https://github.com/nablarch/nablarch-testing/blob/master/src/main/java/nablarch/test/core/file/BasicDataTypeMapping.java">BasicDataTypeMapping</a> のメンバ変数DEFAULT_TABLEを参照。</p>
+</td>
 </tr>
 <tr class="row-odd"><td>フィールド長</td>
 <td>そのフィールドのフィールド長を記載する。フィールドの数だけ記載する。</td>
@@ -515,6 +520,32 @@ Excelファイルを使用することで、外部インターフェース設計
 <td>そのフィールドに格納されるデータを記載する。複数レコード存在する場合は次の行に続けてデータを記載する。
 そのフィールドに格納されるデータを記載する。1テストケースにおいて同一リクエストIDで複数回同期送信する場合は、次の行に続けてデータを記載する。</td>
 </tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[5]</a></td><td><p class="first">ディレクティブを記述する際、フォーマット定義ファイルの以下に対応する内容は記述不要である。</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">理由</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file-type</td>
+<td>テスティングフレームワークが固定長のみしか対応していないため。</td>
+</tr>
+<tr class="row-odd"><td>record-length</td>
+<td>フィールド長に記載したサイズでパディングするため。</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
 </tbody>
 </table>
 <div class="admonition important">
@@ -537,7 +568,7 @@ Excelファイルを使用することで、外部インターフェース設計
 <li>レコード区分は<code class="docutils literal"><span class="pre">1</span></code>、<code class="docutils literal"><span class="pre">ユーザIDは0000000001</span></code>、<code class="docutils literal"><span class="pre">ログインIDはnabura</span></code></li>
 </ul>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_example.png"><img alt="../../../../../../_images/send_sync_example.png" src="../../../../../../_images/send_sync_example.png" style="width: 702.4px; height: 144.8px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_example.png"><img alt="../../../../../../_images/send_sync_example.png" src="../../../../../../_images/send_sync_example.png" /></a>
 </div></blockquote>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -563,10 +594,22 @@ Excelファイルを使用することで、外部インターフェース設計
 </ul>
 </div></blockquote>
 </div>
+<hr class="docutils" />
+<p>複数回電文送信を行う場合のテストは、テスティングフレームワークの以下の仕様に注意をして記述すること。</p>
+<ul class="simple">
+<li>同一データタイプ(以下の例では <code class="docutils literal"><span class="pre">RESPONSE_HEADER_MESSAGES</span></code> と <code class="docutils literal"><span class="pre">RESPONSE_BODY_MESSAGES</span></code> )は、それぞれ、まとめて記述する。詳細は、 <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>一つのシートに複数テストケースのデータを記載したい</span></a>及び、 <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#auto-test-framework-multi-datatype"><span>複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a>を参照。</li>
+<li>同一リクエストIDの電文については、noの値を変えてまとめて記述する。</li>
+</ul>
+<p>以下に、複数回メッセージを送信する場合の要求電文の本文の期待値の記載例を示す。</p>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/send_sync_ok_pattern_expected.png" src="../../../../../../_images/send_sync_ok_pattern_expected.png" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">送信対象のリクエストIDが複数存在する場合、送信順のテストは不可能である。上記の例の場合、 <code class="docutils literal"><span class="pre">ProjectInsertMessage</span></code> より先に、 <code class="docutils literal"><span class="pre">ProjectInsert2Messag</span></code> が送信された場合であってもテストは成功となる。</p>
+</div>
 </div>
 <div class="section" id="send-sync-failure-test">
-<span id="id14"></span><h4>3.1.15.2.1.2. 障害系のテスト<a class="headerlink" href="#send-sync-failure-test" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>応答電文の表に「errorMode:」から始まる特定の値を設定することで、障害系のテストを行うことができる<a class="footnote-reference" href="#id16" id="id15">[5]</a>。</p>
+<span id="id16"></span><h4>3.1.15.2.1.2. 障害系のテスト<a class="headerlink" href="#send-sync-failure-test" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>応答電文の表に「errorMode:」から始まる特定の値を設定することで、障害系のテストを行うことができる<a class="footnote-reference" href="#id18" id="id17">[6]</a>。</p>
 <p>以下に、設定値と、障害系のテストの対応を示す。</p>
 <blockquote>
 <div><table border="1" class="docutils">
@@ -597,19 +640,19 @@ Excelファイルを使用することで、外部インターフェース設計
 <p>この値は、応答電文の表の<strong>ヘッダおよび本文両方の、「no」を除く最初のフィールド</strong>に記載すること。</p>
 <p>Excelで設定する場合のイメージを以下に示す。</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_error.png"><img alt="../../../../../../_images/send_sync_error.png" src="../../../../../../_images/send_sync_error.png" style="width: 637.8px; height: 196.8px;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_error.png"><img alt="../../../../../../_images/send_sync_error.png" src="../../../../../../_images/send_sync_error.png" /></a>
 </div></blockquote>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
+<table class="docutils footnote" frame="void" id="id18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[5]</a></td><td>業務アクション内で、明示的に <strong>MessagingException</strong> の制御を行っていないのであれば、
+<tr><td class="label"><a class="fn-backref" href="#id17">[6]</a></td><td>業務アクション内で、明示的に <strong>MessagingException</strong> の制御を行っていないのであれば、
 個別のリクエスト単体テストにおいて障害系のテストを行う必要は無い。</td></tr>
 </tbody>
 </table>
 </div>
 </div>
-<div class="section" id="id17">
-<h3>3.1.15.2.2. テスト結果検証<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id19">
+<h3>3.1.15.2.2. テスト結果検証<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>要求電文の期待値を定義した場合、自動テストフレームワーク側で以下の検証が行われる。</p>
 <ul class="simple">
 <li>要求電文の内容の検証</li>
@@ -621,6 +664,9 @@ Excelファイルを使用することで、外部インターフェース設計
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -628,7 +674,7 @@ Excelファイルを使用することで、外部インターフェース設計
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -649,10 +695,11 @@ Excelファイルを使用することで、外部インターフェース設計
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

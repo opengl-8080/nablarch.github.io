@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.10.2. Nablarch Validation &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.10.2. Nablarch Validation &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/validation/nablarch_validation.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.10. 入力値のチェック" href="../validation.html"/>
         <link rel="next" title="7.10.3. Bean ValidationとNablarch Validationの機能比較" href="functional_comparison.html"/>
         <link rel="prev" title="7.10.1. Bean Validation" href="bean_validation.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -361,7 +363,7 @@
 <p>この章では、Nablarchで独自に実装したバリデーション機能の解説を行う。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference internal" href="../validation.html#validation"><span class="std std-ref">入力値のチェック</span></a> で説明したように、 <a class="reference internal" href="bean_validation.html"><span class="doc">Bean Validation</span></a> を使用することを推奨する。</p>
+<p class="last"><a class="reference internal" href="../validation.html#validation"><span>入力値のチェック</span></a> で説明したように、 <a class="reference internal" href="bean_validation.html"><em>Bean Validation</em></a> を使用することを推奨する。</p>
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id27">7.10.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -370,7 +372,7 @@
 <p>Nablarchのバリデーションでは、バリデーションと入力値の型変換、正規化を行うことが出来る。</p>
 <p>型変換が行えるため、入力値をBeanクラスの数値型(IntegerやLong)などに直接マッピングすることが出来る。
 また、編集された値の編集解除(正規化)なども型変換時に行うことが出来る。</p>
-<p>詳細は、 <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span class="std std-ref">使用するバリデータとコンバータを設定する</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> を参照。</p>
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id29">7.10.2.1.2. ドメインバリデーションができる</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -381,7 +383,7 @@
 <div class="section" id="nablarch-validation-validator-convertor">
 <span id="id6"></span><h3><a class="toc-backref" href="#id30">7.10.2.1.3. よく使われるバリデータ及びコンバータが提供されている</a><a class="headerlink" href="#nablarch-validation-validator-convertor" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Nablarchでは、よく使われるバリデータやコンバータを標準で提供している。
-このため、プロジェクト側では <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span class="std std-ref">使用するバリデータとコンバータを設定する</span></a> だけで、バリデーションが実行できる。</p>
+このため、プロジェクト側では <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> だけで、バリデーションが実行できる。</p>
 <p>Nablarchで提供しているバリデータ及びコンバータについては以下のリンク先を参照。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/package-summary.html" title="nablarch.core.validation.validator.package-summary">nablarch.core.validation.validator</a></li>
@@ -416,8 +418,8 @@
 <h2><a class="toc-backref" href="#id32">7.10.2.3. 使用方法</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="nablarch-validation-definition-validator-convertor">
 <span id="id9"></span><h3><a class="toc-backref" href="#id33">7.10.2.3.1. 使用するバリデータとコンバータを設定する</a><a class="headerlink" href="#nablarch-validation-definition-validator-convertor" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>バリデーションを有効にするには、コンポーネント定義ファイルに使用するバリデータとコンバータの登録が必要となる。</p>
-<p>Nablarchが提供しているバリデータ及びコンバータについては、 <a class="reference internal" href="#nablarch-validation-validator-convertor"><span class="std std-ref">よく使われるバリデータ及びコンバータが提供されている</span></a> を参照。</p>
+<p>バリデーションを有効にするには、コンポーネント設定ファイルに使用するバリデータとコンバータの登録が必要となる。</p>
+<p>Nablarchが提供しているバリデータ及びコンバータについては、 <a class="reference internal" href="#nablarch-validation-validator-convertor"><span>よく使われるバリデータ及びコンバータが提供されている</span></a> を参照。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">バリデータやコンバータの設定がない場合、バリデーション機能は利用できないので必ず設定を行うこと。</p>
@@ -458,11 +460,11 @@
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">個別にアノテーションを設定した場合、実装時のミスが増えたりメンテナンスコストが大きくなるため、
-後述する <a class="reference internal" href="#nablarch-validation-domain-validation"><span class="std std-ref">ドメインバリデーション</span></a> を使うことを推奨する。</p>
+後述する <a class="reference internal" href="#nablarch-validation-domain-validation"><span>ドメインバリデーション</span></a> を使うことを推奨する。</p>
 </div>
 <dl class="docutils">
 <dt>実装例</dt>
-<dd><p class="first"><a class="reference internal" href="#nablarch-validation-validator-convertor"><span class="std std-ref">Nablarchで提供しているバリデータとコンバータ</span></a> を参照しアノテーションを設定する。</p>
+<dd><p class="first"><a class="reference internal" href="#nablarch-validation-validator-convertor"><span>Nablarchで提供しているバリデータとコンバータ</span></a> を参照しアノテーションを設定する。</p>
 <p>この例では、 <cite>userName</cite> は入力が必須で、全角文字の最大10文字が許容される。
 <cite>birthday</cite> は、半角数字の8桁が許容される。
 <cite>age</cite> は、整数で3桁まで許容される。</p>
@@ -740,7 +742,7 @@
 ここではアノテーションを設定するのではなく直接バリデーションを実行する方法を説明する。</p>
 <p>原則、 <a class="reference internal" href="#id12">バリデーションを実行する</a> の方法でバリデーションを行うが、個別にバリデーションを実行する必要がある場合には、
 この方法でバリデーションを行うこと。
-例えば、 <a class="reference internal" href="../code.html#code-use-pattern"><span class="std std-ref">コード管理のパターン</span></a> を使っていて、
+例えば、 <a class="reference internal" href="../code.html#code-use-pattern"><span>コード管理のパターン</span></a> を使っていて、
 特定の画面だけパターンを変えてバリデーションしたい場合に、個別にバリデーションを実行する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
@@ -771,17 +773,17 @@
 <div class="last admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">明示的なバリデーションを行うには、対象の項目に対し予めバリデーションを実施しておく必要がある。
-詳細は <a class="reference internal" href="#nablarch-validation-execute"><span class="std std-ref">バリデーションを実行する</span></a> を参照</p>
+詳細は <a class="reference internal" href="#nablarch-validation-execute"><span>バリデーションを実行する</span></a> を参照</p>
 </div>
 </dd>
 </dl>
 </div>
 <div class="section" id="nablarch-validation-system-char-validator">
 <span id="id14"></span><h3><a class="toc-backref" href="#id39">7.10.2.3.7. 文字種バリデーションを行う</a><a class="headerlink" href="#nablarch-validation-system-char-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>文字種バリデーションの定義方法は、 <a class="reference internal" href="bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> と同じである。
-詳細な設定方法は、 <a class="reference internal" href="bean_validation.html#bean-validation-system-char-validator"><span class="std std-ref">Bean Validationの文字種バリデーションを行う</span></a> を参照。</p>
+<p>文字種バリデーションの定義方法は、 <a class="reference internal" href="bean_validation.html#bean-validation"><span>Bean Validation</span></a> と同じである。
+詳細な設定方法は、 <a class="reference internal" href="bean_validation.html#bean-validation-system-char-validator"><span>Bean Validationの文字種バリデーションを行う</span></a> を参照。</p>
 <p>なお、使用するアノテーションは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/unicode/SystemChar.html" title="nablarch.core.validation.validator.unicode.SystemChar">&#64;SystemChar</a> で、
-<a class="reference internal" href="bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> とは完全修飾名が異なる(アノテーション名は同一)ので注意すること。</p>
+<a class="reference internal" href="bean_validation.html#bean-validation"><span>Bean Validation</span></a> とは完全修飾名が異なる(アノテーション名は同一)ので注意すること。</p>
 </div>
 <div class="section" id="nablarch-validation-correlation-validation">
 <span id="id15"></span><h3><a class="toc-backref" href="#id40">7.10.2.3.8. 相関バリデーションを行う</a><a class="headerlink" href="#nablarch-validation-correlation-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -894,7 +896,7 @@
 </div>
 <div class="section" id="id18">
 <h3><a class="toc-backref" href="#id43">7.10.2.3.11. 特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a><a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="bean_validation.html#bean-validation-create-message-for-property"><span class="std std-ref">Bean Validationの特定の項目に紐づくバリデーションエラーのメッセージを作りたい</span></a> を参照。</p>
+<p><a class="reference internal" href="bean_validation.html#bean-validation-create-message-for-property"><span>Bean Validationの特定の項目に紐づくバリデーションエラーのメッセージを作りたい</span></a> を参照。</p>
 </div>
 <div class="section" id="nablarch-validation-property-name">
 <span id="id19"></span><h3><a class="toc-backref" href="#id44">7.10.2.3.12. バリデーションエラー時のメッセージに項目名を埋め込みたい</a><a class="headerlink" href="#nablarch-validation-property-name" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -933,7 +935,7 @@
 <h3><a class="toc-backref" href="#id45">7.10.2.3.13. 数値型への型変換を行う</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バリデーション後にBeanクラスの数値型に入力値を変換したい場合、その項目には必ず <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/convertor/Digits.html" title="nablarch.core.validation.convertor.Digits">&#64;Digits</a> アノテーションが必要となる。
 ※ドメインバリデーションの場合、ドメインEnumに対して設定が必要となる。</p>
-<p>なお、数値型へ変換するためのコンバータが <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span class="std std-ref">使用するバリデータとコンバータを設定する</span></a> の手順に従い設定されていることが前提となる。</p>
+<p>なお、数値型へ変換するためのコンバータが <a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> の手順に従い設定されていることが前提となる。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><p class="first">この例では、setterに指定しているが、ドメインバリデーションを使用したドメインEnumへの指定を推奨する。</p>
@@ -953,12 +955,12 @@
 <div class="section" id="nablarch-validation-database">
 <span id="id21"></span><h3><a class="toc-backref" href="#id46">7.10.2.3.14. データベースとの相関バリデーションを行う</a><a class="headerlink" href="#nablarch-validation-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベースとの相関バリデーションは、業務アクションで行う。</p>
-<p>業務アクションで行う理由は、<a class="reference internal" href="bean_validation.html#bean-validation-database-validation"><span class="std std-ref">Bean Validationのデータベースとの相関バリデーション</span></a> を参照。</p>
+<p>業務アクションで行う理由は、<a class="reference internal" href="bean_validation.html#bean-validation-database-validation"><span>Bean Validationのデータベースとの相関バリデーション</span></a> を参照。</p>
 </div>
 <div class="section" id="id22">
 <h3><a class="toc-backref" href="#id47">7.10.2.3.15. ウェブアプリケーションのユーザ入力値のチェックを行う</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ウェブアプリケーションのユーザ入力値のチェックは <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span class="std std-ref">InjectForm インターセプター</span></a> を使用して行う。
-詳細は、 <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span class="std std-ref">InjectForm インターセプター</span></a> を参照</p>
+<p>ウェブアプリケーションのユーザ入力値のチェックは <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を使用して行う。
+詳細は、 <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を参照</p>
 </div>
 </div>
 <div class="section" id="id23">
@@ -1004,7 +1006,7 @@
 </div>
 </dd>
 <dt>設定ファイルにバリデータの登録</dt>
-<dd><a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span class="std std-ref">使用するバリデータとコンバータを設定する</span></a> を参照。</dd>
+<dd><a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> を参照。</dd>
 </dl>
 </div>
 <div class="section" id="id25">
@@ -1056,7 +1058,7 @@
 </div>
 </dd>
 <dt>設定ファイルにコンバータの登録</dt>
-<dd><a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span class="std std-ref">使用するバリデータとコンバータを設定する</span></a> を参照。</dd>
+<dd><a class="reference internal" href="#nablarch-validation-definition-validator-convertor"><span>使用するバリデータとコンバータを設定する</span></a> を参照。</dd>
 </dl>
 </div>
 <div class="section" id="id26">
@@ -1072,6 +1074,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -1079,7 +1084,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -1100,10 +1105,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

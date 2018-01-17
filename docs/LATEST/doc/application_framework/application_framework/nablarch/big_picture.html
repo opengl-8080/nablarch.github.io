@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.1. 全体像 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>1.1. 全体像 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/nablarch/big_picture.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="1. Nablarchアプリケーションフレームワークとは" href="index.html"/>
         <link rel="next" title="1.2. アーキテクチャ" href="architecture.html"/>
         <link rel="prev" title="1. Nablarchアプリケーションフレームワークとは" href="index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -321,31 +323,31 @@
   <div class="section" id="nablarch-big-picture">
 <span id="id1"></span><h1>1.1. 全体像<a class="headerlink" href="#nablarch-big-picture" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Nablarchアプリケーションフレームワークの全体像を以下に示す。</p>
-<a class="reference internal image-reference" href="../../../_images/framework.png"><img alt="../../../_images/framework.png" src="../../../_images/framework.png" style="width: 728.0px; height: 329.6px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/framework.png"><img alt="../../../_images/framework.png" src="../../../_images/framework.png" /></a>
 <p>Nablarchアプリケーションフレームワークは、ウェブやバッチといった処理方式に合わせた実行制御基盤と、
 データベースアクセスやバリデーションといった個別の機能を提供するライブラリから構成される。</p>
 <p>Nablarchアプリケーションフレームワークは、以下の特長がある。</p>
 <dl class="docutils">
 <dt>様々な処理方式に対応できる</dt>
 <dd><p class="first">Nablarchアプリケーションフレームワークでは、
-実行制御基盤および <a class="reference internal" href="../libraries/index.html#library"><span class="std std-ref">ライブラリ</span></a> を組み合わせることにより、
+実行制御基盤および <a class="reference internal" href="../libraries/index.html#library"><span>ライブラリ</span></a> を組み合わせることにより、
 様々な処理方式に対応できる。</p>
 <dl class="last docutils">
 <dt>実行制御基盤</dt>
 <dd><ul class="first last simple">
-<li><a class="reference internal" href="../web/index.html#web-application"><span class="std std-ref">ウェブアプリケーション編</span></a></li>
-<li><a class="reference internal" href="../web_service/index.html#web-service"><span class="std std-ref">ウェブサービス編</span></a></li>
-<li><a class="reference internal" href="../batch/index.html#batch-application"><span class="std std-ref">バッチアプリケーション編</span></a></li>
-<li><a class="reference internal" href="../messaging/index.html#messaging"><span class="std std-ref">メッセージング編</span></a></li>
+<li><a class="reference internal" href="../web/index.html#web-application"><span>ウェブアプリケーション編</span></a></li>
+<li><a class="reference internal" href="../web_service/index.html#web-service"><span>ウェブサービス編</span></a></li>
+<li><a class="reference internal" href="../batch/index.html#batch-application"><span>バッチアプリケーション編</span></a></li>
+<li><a class="reference internal" href="../messaging/index.html#messaging"><span>メッセージング編</span></a></li>
 </ul>
 </dd>
 </dl>
 </dd>
 <dt>すべての実行制御基盤で共通のアーキテクチャを採用している</dt>
-<dd><p class="first"><a class="reference internal" href="architecture.html#nablarch-architecture"><span class="std std-ref">共通アーキテクチャ</span></a> では、
+<dd><p class="first"><a class="reference internal" href="architecture.html#nablarch-architecture"><span>共通アーキテクチャ</span></a> では、
 パイプライン型の処理モデルに従ってすべてのデータ処理を行う。
 特に複数の処理方式を組み合わせて構築するシステムは、
-<a class="reference internal" href="architecture.html#nablarch-architecture"><span class="std std-ref">共通アーキテクチャ</span></a> によって、以下のメリットを享受できる。</p>
+<a class="reference internal" href="architecture.html#nablarch-architecture"><span>共通アーキテクチャ</span></a> によって、以下のメリットを享受できる。</p>
 <dl class="last docutils">
 <dt>柔軟な機能追加・変更</dt>
 <dd>パイプライン型の処理モデルでは、パイプラインの構成要素であるハンドラの差し替えを容易に行うことができる。
@@ -365,6 +367,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -372,7 +377,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -393,10 +398,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

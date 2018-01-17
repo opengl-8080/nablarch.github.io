@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.6.5. プロセス停止制御ハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.6.5. プロセス停止制御ハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/process_stop_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.6. プロセス多重起動防止ハンドラ" href="duplicate_process_check_handler.html"/>
         <link rel="prev" title="6.6.4. ステータスコード→プロセス終了コード変換ハンドラ" href="status_code_convert_handler.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -334,13 +336,13 @@
 <p>本ハンドラは、以下のようなループ制御を行なうハンドラの後続に配置することで、
 ループを中断してプロセス停止要求を示す例外を送出する機能を提供する。</p>
 <ul class="simple">
-<li><a class="reference internal" href="../batch/process_resident_handler.html#process-resident-handler"><span class="std std-ref">プロセス常駐化ハンドラ</span></a></li>
-<li><a class="reference internal" href="../batch/loop_handler.html#loop-handler"><span class="std std-ref">トランザクションループ制御ハンドラ</span></a></li>
-<li><a class="reference internal" href="request_thread_loop_handler.html#request-thread-loop-handler"><span class="std std-ref">リクエストスレッド内ループ制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="../batch/process_resident_handler.html#process-resident-handler"><span>プロセス常駐化ハンドラ</span></a></li>
+<li><a class="reference internal" href="../batch/loop_handler.html#loop-handler"><span>トランザクションループ制御ハンドラ</span></a></li>
+<li><a class="reference internal" href="request_thread_loop_handler.html#request-thread-loop-handler"><span>リクエストスレッド内ループ制御ハンドラ</span></a></li>
 </ul>
 <p>本ハンドラでは以下の処理を行う。</p>
 <ul class="simple">
-<li>プロセス停止可否のチェック(プロセス停止フラグが」1」であればプロセス停止対象と判定)</li>
+<li>プロセス停止可否のチェック(プロセス停止フラグが&#8221;1&#8221;であればプロセス停止対象と判定)</li>
 <li>プロセス停止処理</li>
 </ul>
 <div class="admonition tip">
@@ -377,9 +379,9 @@
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id9">6.6.5.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="../common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに設定すること</dt>
+<dt><a class="reference internal" href="../common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに設定すること</dt>
 <dd>本ハンドラは、スレッドコンテキスト上のリクエストIDをもとに停止処理を行うため、
-<a class="reference internal" href="../common/thread_context_handler.html#thread-context-handler"><span class="std std-ref">スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに本ハンドラを設定する必要がある。</dd>
+<a class="reference internal" href="../common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> より後ろに本ハンドラを設定する必要がある。</dd>
 </dl>
 </div>
 <div class="section" id="id6">
@@ -417,6 +419,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -424,7 +429,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -445,10 +450,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

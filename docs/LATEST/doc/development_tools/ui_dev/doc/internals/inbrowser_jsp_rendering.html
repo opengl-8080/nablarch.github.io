@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.15. 業務画面JSPローカル表示機能 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>2.1.15. 業務画面JSPローカル表示機能 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/inbrowser_jsp_rendering.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.16. JavaScript UI部品" href="js_framework.html"/>
         <link rel="prev" title="2.1.14. CSSフレームワーク" href="css_framework.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -322,7 +324,7 @@
 <h1>2.1.15. 業務画面JSPローカル表示機能<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1.15.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#"><span class="doc">業務画面JSPローカル表示機能</span></a> とは、ローカルディスク上の
+<p><a class="reference internal" href=""><em>業務画面JSPローカル表示機能</em></a> とは、ローカルディスク上の
 業務画面JSPファイルを通常のブラウザで直接開けるようにする仕組みである。</p>
 <p>これにより、開発用アプリケーションサーバーが用意されていない
 設計工程の最初期においても画面のイメージや動作デモを簡単に実施することができる。
@@ -331,7 +333,7 @@
 <p><strong>ブラウザで直接開いた結果(左: 画面プレビュー表示 / 右:画面項目定義書表示</strong></p>
 <blockquote>
 <div><div class="figure align-center">
-<a class="reference internal image-reference" href="../../../../_images/rendering_image.png"><img alt="../../../../_images/rendering_image.png" src="../../../../_images/rendering_image.png" style="width: 967.8px; height: 387.6px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/rendering_image.png"><img alt="../../../../_images/rendering_image.png" src="../../../../_images/rendering_image.png" /></a>
 </div>
 </div></blockquote>
 <p><strong>ソースコード</strong></p>
@@ -431,7 +433,7 @@
 <p>以下は、これらの3つの資源の関係を表した図である。</p>
 <blockquote>
 <div><div class="figure align-center">
-<a class="reference internal image-reference" href="../../../../_images/rendering_function.png"><img alt="../../../../_images/rendering_function.png" src="../../../../_images/rendering_function.png" style="width: 651.2px; height: 566.4px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/rendering_function.png"><img alt="../../../../_images/rendering_function.png" src="../../../../_images/rendering_function.png" /></a>
 </div>
 </div></blockquote>
 <div class="section" id="id2">
@@ -446,7 +448,7 @@
 <h3>2.1.15.1.2. 業務画面JSPを記述する際の制約事項<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本機能を利用するには、業務画面JSPの記述に関して以下の制約事項が存在する。</p>
 <p>なお、これらの制約はブラウザで直接開くJSPに対するものなので、
-<a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> や <a class="reference internal" href="jsp_page_templates.html"><span class="doc">業務画面テンプレート</span></a> には影響しない。</p>
+<a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> や <a class="reference internal" href="jsp_page_templates.html"><em>業務画面テンプレート</em></a> には影響しない。</p>
 <ol class="arabic simple">
 <li>明示的な閉じタグが必ず必要</li>
 </ol>
@@ -467,8 +469,8 @@
 </ol>
 <blockquote>
 <div>IE8では、タグ上に <strong>disabled</strong> 属性が設定されていた場合、その属性値の内容に関わらず
-常に <cite>disabled=」disabled」</cite> が設定されているものとみなされる。
-このため <cite>disabled=」false」</cite> のように記述した場合に意図した通りの表示とならない。
+常に <cite>disabled=&#8221;disabled&#8221;</cite> が設定されているものとみなされる。
+このため <cite>disabled=&#8221;false&#8221;</cite> のように記述した場合に意図した通りの表示とならない。
 このような場合は単に <strong>disabled</strong> 属性を削除すること。</div></blockquote>
 <ol class="arabic simple" id="localrendering-limitation-eventconfirmtag" start="3">
 <li>イベントに関連した動作が不安定(ブラウザによって挙動も異なる)</li>
@@ -492,7 +494,7 @@
 <p>前者は業務画面JSPファイル内のJSPをパースし、タグライブラリごとに後者のスタブJSを呼び出す機能である。
 後者の機能はタグライブラリごとに、ローカル表示時の挙動を実装するものである。</p>
 <p>標準では以下のタグライブラリについてスタブJSを実装しており、
-<a class="reference internal" href="jsp_page_templates.html"><span class="doc">業務画面テンプレート</span></a> や <a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> を使用して業務画面JSPを作成しているのであれば
+<a class="reference internal" href="jsp_page_templates.html"><em>業務画面テンプレート</em></a> や <a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> を使用して業務画面JSPを作成しているのであれば
 問題なくローカル表示が可能である。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -519,7 +521,7 @@
 </tr>
 </tbody>
 </table>
-<p>ただし、新規の <a class="reference internal" href="jsp_widgets.html"><span class="doc">UI部品ウィジェット</span></a> を追加したり、外部のタグライブラリを使用したりする場合は、
+<p>ただし、新規の <a class="reference internal" href="jsp_widgets.html"><em>UI部品ウィジェット</em></a> を追加したり、外部のタグライブラリを使用したりする場合は、
 必要に応じてプロジェクト側で タグライブラリスタブJS を追加する必要がある。</p>
 </div>
 <div class="section" id="id5">
@@ -544,7 +546,7 @@
 <th class="head">ローカル</th>
 <th class="head">サーバ</th>
 <th class="head">_                                _</th>
-<th class="head">&#160;</th>
+<th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -599,7 +601,7 @@ SpecSheetTemplate.htm</td>
 JSPウィジェットを追加した場合は
 ここの定義を追加する必要がある。
 記述書式などの詳細については
-<a class="reference internal" href="configuration_files.html"><span class="doc">UI開発基盤設定ファイル</span></a> を参照すること。</td>
+<a class="reference internal" href="configuration_files.html"><em>UI開発基盤設定ファイル</em></a> を参照すること。</td>
 </tr>
 <tr class="row-odd"><td>JSPローカルレンダラ</td>
 <td>△</td>
@@ -667,6 +669,9 @@ JSPウィジェットを追加した場合は
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -674,7 +679,7 @@ JSPウィジェットを追加した場合は
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -695,10 +700,11 @@ JSPウィジェットを追加した場合は
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.1.5. スレッドコンテキスト変数管理ハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.1.5. スレッドコンテキスト変数管理ハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/common/thread_context_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.1. 共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.1.6. スレッドコンテキスト変数削除ハンドラ" href="thread_context_clear_handler.html"/>
         <link rel="prev" title="6.1.4. リクエストハンドラエントリ" href="request_handler_entry.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -339,7 +341,7 @@
 同一の処理スレッド内で共有する値をスレッドローカル領域上に保持するための仕組みである。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">本ハンドラで設定したスレッドローカル上の値は、 <a class="reference internal" href="thread_context_clear_handler.html#thread-context-clear-handler"><span class="std std-ref">スレッドコンテキスト変数削除ハンドラ</span></a> を使用して、復路処理で削除を行うこと。
+<p class="last">本ハンドラで設定したスレッドローカル上の値は、 <a class="reference internal" href="thread_context_clear_handler.html#thread-context-clear-handler"><span>スレッドコンテキスト変数削除ハンドラ</span></a> を使用して、復路処理で削除を行うこと。
 往路処理にて本ハンドラより手前のハンドラでスレッドコンテキストにアクセスした場合、
 値を取得することはできないため本ハンドラより手前ではスレッドコンテキストにアクセスしないよう注意すること。</p>
 </div>
@@ -350,7 +352,7 @@
 </div>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#thread-context-handler-initialization"><span class="std std-ref">リクエスト毎にスレッドコンテキストの初期化を行う</span></a></li>
+<li><a class="reference internal" href="#thread-context-handler-initialization"><span>リクエスト毎にスレッドコンテキストの初期化を行う</span></a></li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
 <img alt="../../../../_images/ThreadContextHandler_flow.png" src="../../../../_images/ThreadContextHandler_flow.png" />
@@ -418,7 +420,7 @@
 </ul>
 </dd>
 </dl>
-<p>これらのクラスは、コンポーネント定義に追加して使用する。</p>
+<p>これらのクラスは、コンポーネント設定ファイルに定義を追加して使用する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.handler.threadcontext.ThreadContextHandler&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;attributes&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;list&gt;</span>
@@ -602,6 +604,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -609,7 +614,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -630,10 +635,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

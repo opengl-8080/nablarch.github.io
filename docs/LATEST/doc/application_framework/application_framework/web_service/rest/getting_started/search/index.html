@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.3.2. 検索機能の作成 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.1.3.2. 検索機能の作成 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web_service/rest/getting_started/search/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1.3. Getting Started" href="../index.html"/>
         <link rel="next" title="3.1.3.3. 更新機能の作成" href="../update/index.html"/>
         <link rel="prev" title="3.1.3.1. 登録機能の作成" href="../create/index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -368,7 +370,7 @@
 <h2>3.1.3.2.1. プロジェクト情報を検索する<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
 <dt>URLとのマッピングを定義</dt>
-<dd><p class="first"><a class="reference internal" href="../../../../../adaptors/router_adaptor.html#router-adaptor"><span class="std std-ref">ルーティングアダプタ</span></a> を使用して、業務アクションとURLのマッピングを行う。</p>
+<dd><p class="first"><a class="reference internal" href="../../../../../adaptors/router_adaptor.html#router-adaptor"><span>ルーティングアダプタ</span></a> を使用して、業務アクションとURLのマッピングを行う。</p>
 <blockquote class="last">
 <div><dl class="docutils">
 <dt>routes.xml</dt>
@@ -407,7 +409,7 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li>プロパティは全てString型で宣言する。詳細は <a class="reference internal" href="../../../../libraries/validation/bean_validation.html#bean-validation-form-property"><span class="std std-ref">バリデーションルールの設定方法</span></a> を参照。</li>
+<li>プロパティは全てString型で宣言する。詳細は <a class="reference internal" href="../../../../libraries/validation/bean_validation.html#bean-validation-form-property"><span>バリデーションルールの設定方法</span></a> を参照。</li>
 </ul>
 </dd>
 </dl>
@@ -430,7 +432,7 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li>Beanのプロパティは、<a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-search-with-condition"><span class="std std-ref">対応する条件カラムの定義(型)と互換性のある型とする</span></a> こと。</li>
+<li>Beanのプロパティは、<a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-search-with-condition"><span>対応する条件カラムの定義(型)と互換性のある型とする</span></a> こと。</li>
 </ul>
 </dd>
 </dl>
@@ -453,9 +455,9 @@ WHERE
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li>SQLインジェクションを防ぐため、SQLは外部ファイルに記述する。詳細は <a class="reference internal" href="../../../../libraries/database/database.html#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</li>
-<li>Beanのプロパティ名を使って、SQLに値をバインドする。詳細は <a class="reference internal" href="../../../../libraries/database/database.html#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を参照。</li>
-<li>検索条件として指定された項目のみを条件に含める場合には、 <a class="reference internal" href="../../../../libraries/database/database.html#database-use-variable-condition"><span class="std std-ref">$if 構文を使用してSQL文を構築</span></a> する。</li>
+<li>SQLインジェクションを防ぐため、SQLは外部ファイルに記述する。詳細は <a class="reference internal" href="../../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>
+<li>Beanのプロパティ名を使って、SQLに値をバインドする。詳細は <a class="reference internal" href="../../../../libraries/database/database.html#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を参照。</li>
+<li>検索条件として指定された項目のみを条件に含める場合には、 <a class="reference internal" href="../../../../libraries/database/database.html#database-use-variable-condition"><span>$if 構文を使用してSQL文を構築</span></a> する。</li>
 </ul>
 </dd>
 </dl>
@@ -490,8 +492,8 @@ WHERE
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/ValidatorUtil.html#validate-java.lang.Object-" title="nablarch.core.validation.ee.ValidatorUtil.validate(java.lang.Object)">ValidatorUtil#validate</a>
 を使用してフォームのバリデーションを行う。</li>
 <li>フォームの値を <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を利用して検索条件Beanにコピーする。</li>
-<li><a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> を使用して取得したプロジェクト情報のリストを戻り値として返却する。</li>
-<li>戻り値のオブジェクトは <a class="reference internal" href="../../../../handlers/rest/body_convert_handler.html#body-convert-handler"><span class="std std-ref">リクエストボディ変換ハンドラ</span></a> によってJSON形式に変換されるため、
+<li><a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用して取得したプロジェクト情報のリストを戻り値として返却する。</li>
+<li>戻り値のオブジェクトは <a class="reference internal" href="../../../../handlers/rest/body_convert_handler.html#body-convert-handler"><span>リクエストボディ変換ハンドラ</span></a> によってJSON形式に変換されるため、
 業務アクションメソッド内で変換処理を実装する必要はない。</li>
 </ul>
 </dd>
@@ -503,6 +505,9 @@ WHERE
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -510,7 +515,7 @@ WHERE
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -531,10 +536,11 @@ WHERE
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.6.2. データリードハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.6.2. データリードハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/data_read_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
         <link rel="next" title="6.6.3. リトライハンドラ" href="retry_handler.html"/>
         <link rel="prev" title="6.6.1. 共通起動ランチャ" href="main.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -331,14 +333,14 @@
 <li><a class="reference internal" href="#data-read-handler-max-count" id="id10">最大処理件数の設定</a></li>
 </ul>
 </div>
-<p><a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span class="std std-ref">データリーダ</span></a> を使用して、入力データの順次読み込みを行なうハンドラ。</p>
-<p>このハンドラは、実行コンテキスト上の <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span class="std std-ref">データリーダ</span></a> を使用し、業務処理に対する入力データを1件ずつ読み込み、
+<p><a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> を使用して、入力データの順次読み込みを行なうハンドラ。</p>
+<p>このハンドラは、実行コンテキスト上の <a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> を使用し、業務処理に対する入力データを1件ずつ読み込み、
 それを引数として後続ハンドラに処理を委譲する。
-<a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span class="std std-ref">データリーダ</span></a> の終端に達した場合は、後続のハンドラを実行せずに、データの終端に達したことを示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却する。</p>
+<a class="reference internal" href="../../batch/nablarch_batch/architecture.html#nablarch-batch-data-reader"><span>データリーダ</span></a> の終端に達した場合は、後続のハンドラを実行せずに、データの終端に達したことを示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.NoMoreRecord.html" title="nablarch.fw.DataReader.NoMoreRecord">NoMoreRecord</a> を返却する。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li>データリーダを使用して入力データの読み込み</li>
-<li><a class="reference internal" href="../../libraries/log.html#log-execution-id"><span class="std std-ref">実行時ID</span></a> の採番</li>
+<li><a class="reference internal" href="../../libraries/log.html#log-execution-id"><span>実行時ID</span></a> の採番</li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
 <img alt="../../../../_images/flow17.png" src="../../../../_images/flow17.png" />
@@ -379,6 +381,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -386,7 +391,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -407,10 +412,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

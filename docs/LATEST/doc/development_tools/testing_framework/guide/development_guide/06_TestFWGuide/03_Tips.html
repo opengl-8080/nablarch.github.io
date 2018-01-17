@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.8. 目的別API使用方法 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.2.8. 目的別API使用方法 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
         <link rel="next" title="3.2.9. マスタデータ復旧機能" href="04_MasterDataRestore.html"/>
         <link rel="prev" title="3.2.7. リクエスト単体テスト（HTTP同期応答メッセージ送信処理）" href="RequestUnitTest_http_send_sync.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -322,22 +324,22 @@
 <h1>3.2.8. 目的別API使用方法<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>目的別のAPIの使用方法について説明する。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a></li>
-<li><a class="reference internal" href="#how-to-run-the-same-test"><span class="std std-ref">同じテストメソッドをテストデータを変えて実行したい</span></a></li>
-<li><a class="reference internal" href="#tips-groupid"><span class="std std-ref">一つのシートに複数テストケースのデータを記載したい</span></a></li>
-<li><a class="reference internal" href="#how-to-fix-date"><span class="std std-ref">システム日時を任意の値に固定したい</span></a></li>
-<li><a class="reference internal" href="#how-to-numbering-sequence"><span class="std std-ref">シーケンスオブジェクトを使った採番のテストをしたい</span></a></li>
-<li><a class="reference internal" href="#using-threadcontext"><span class="std std-ref">ThreadContextにユーザID、リクエストIDなどを設定したい</span></a></li>
-<li><a class="reference internal" href="#using-testdataparser"><span class="std std-ref">任意のディレクトリのExcelファイルを読み込みたい</span></a></li>
-<li><a class="reference internal" href="#using-junit-annotation"><span class="std std-ref">テスト実行前後に共通処理を行いたい。</span></a></li>
-<li><a class="reference internal" href="#using-transactions"><span class="std std-ref">デフォルト以外のトランザクションを使用したい</span></a></li>
-<li><a class="reference internal" href="#using-ohter-class"><span class="std std-ref">本フレームワークのクラスを継承せずに使用したい</span></a></li>
-<li><a class="reference internal" href="#how-to-assert-property-from-excel"><span class="std std-ref">クラスのプロパティを検証したい</span></a></li>
-<li><a class="reference internal" href="#tips-test-data"><span class="std std-ref">テストデータに空白、空文字、改行やnullを記述したい</span></a></li>
-<li><a class="reference internal" href="#how-to-express-empty-line"><span class="std std-ref">テストデータに空行を記述したい</span></a></li>
-<li><a class="reference internal" href="#how-to-change-master-data"><span class="std std-ref">マスタデータを変更してテストを行いたい</span></a></li>
-<li><a class="reference internal" href="#how-to-change-test-data-dir"><span class="std std-ref">テストデータ読み込みディレクトリを変更したい</span></a></li>
-<li><a class="reference internal" href="#how-to-convert-test-data"><span class="std std-ref">メッセージング処理でテストデータに対し定型的な変換処理を追加したい</span></a></li>
+<li><a class="reference internal" href="#how-to-get-data-from-excel"><span>Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a></li>
+<li><a class="reference internal" href="#how-to-run-the-same-test"><span>同じテストメソッドをテストデータを変えて実行したい</span></a></li>
+<li><a class="reference internal" href="#tips-groupid"><span>一つのシートに複数テストケースのデータを記載したい</span></a></li>
+<li><a class="reference internal" href="#how-to-fix-date"><span>システム日時を任意の値に固定したい</span></a></li>
+<li><a class="reference internal" href="#how-to-numbering-sequence"><span>シーケンスオブジェクトを使った採番のテストをしたい</span></a></li>
+<li><a class="reference internal" href="#using-threadcontext"><span>ThreadContextにユーザID、リクエストIDなどを設定したい</span></a></li>
+<li><a class="reference internal" href="#using-testdataparser"><span>任意のディレクトリのExcelファイルを読み込みたい</span></a></li>
+<li><a class="reference internal" href="#using-junit-annotation"><span>テスト実行前後に共通処理を行いたい。</span></a></li>
+<li><a class="reference internal" href="#using-transactions"><span>デフォルト以外のトランザクションを使用したい</span></a></li>
+<li><a class="reference internal" href="#using-ohter-class"><span>本フレームワークのクラスを継承せずに使用したい</span></a></li>
+<li><a class="reference internal" href="#how-to-assert-property-from-excel"><span>クラスのプロパティを検証したい</span></a></li>
+<li><a class="reference internal" href="#tips-test-data"><span>テストデータに空白、空文字、改行やnullを記述したい</span></a></li>
+<li><a class="reference internal" href="#how-to-express-empty-line"><span>テストデータに空行を記述したい</span></a></li>
+<li><a class="reference internal" href="#how-to-change-master-data"><span>マスタデータを変更してテストを行いたい</span></a></li>
+<li><a class="reference internal" href="#how-to-change-test-data-dir"><span>テストデータ読み込みディレクトリを変更したい</span></a></li>
+<li><a class="reference internal" href="#how-to-convert-test-data"><span>メッセージング処理でテストデータに対し定型的な変換処理を追加したい</span></a></li>
 </ul>
 <div class="section" id="excel">
 <span id="how-to-get-data-from-excel"></span><h2>3.2.8.1. Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -617,19 +619,19 @@
 <tr class="row-odd"><th class="head">ID</th>
 <th class="head">EMP_NAME</th>
 <th class="head">DEPT_CODE</th>
-<th class="head">&#160;</th>
+<th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>// CHAR(5)</td>
 <td>VARCHAR(64)</td>
 <td>CHAR(4)</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>00001</td>
 <td>山田太郎</td>
 <td>0001</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>00002</td>
 <td>田中一郎</td>
@@ -679,14 +681,14 @@
 <tr class="row-odd"><th class="head">ID</th>
 <th class="head">EMP_NAME</th>
 <th class="head">DEPT_CODE</th>
-<th class="head">&#160;</th>
+<th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>// CHAR(5)</td>
 <td>VARCHAR(64)</td>
 <td>CHAR(4)</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>00001</td>
 <td>佐藤太郎</td>
@@ -696,14 +698,14 @@
 <tr class="row-even"><td>00002</td>
 <td>田中一郎</td>
 <td>0002</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id9">
 <h3>3.2.8.3.3. 注意事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>複数のグループIDのデータを記述する際は、 <a class="reference internal" href="01_Abstract.html#auto-test-framework-multi-datatype"><span class="std std-ref">複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a> のようにグループIDごとにまとめて記述すること。
+<p>複数のグループIDのデータを記述する際は、 <a class="reference internal" href="01_Abstract.html#auto-test-framework-multi-datatype"><span>複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a> のようにグループIDごとにまとめて記述すること。
 グループIDごとにまとめて記述しないとデータの読み込みが途中で終了しテストが正しく実行されない。</p>
 </div>
 </div>
@@ -714,7 +716,7 @@
 <p>Nablarch Application Frameworkでは、SystemTimeProviderインタフェースの実装クラスがシステム日時を提供する。この実装クラスを、固定値を返却するテスト用クラスに差し替えることにより、任意のシステム日時を返却させることができる。</p>
 <div class="section" id="id11">
 <h3>3.2.8.4.1. 設定ファイル例<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>コンポーネント定義ファイルにて、SystemTimeProviderインタフェースの実装クラスを指定する箇所に
+<p>コンポーネント設定ファイルにて、SystemTimeProviderインタフェースの実装クラスを指定する箇所に
 FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を設定する。
 例えば、システム日時を2010年9月14日12時34分56秒とする場合は以下のように設定する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span>
@@ -944,7 +946,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <p>テストソースコードと同じディレクトリに存在するExcelファイルであれば、
 シート名を指定するだけで読み込み可能であるが、別のディレクトリに存在するファイルを
 読み込みたい場合は、TestDataParser実装クラスを直接使用することで取得できる。</p>
-<p>「/foo/bar/」に存在する」Buz.xlsx」というファイルからデータを読み込む場合の例を以下に示す。</p>
+<p>&#8220;/foo/bar/&#8221;に存在する&#8221;Buz.xlsx&#8221;というファイルからデータを読み込む場合の例を以下に示す。</p>
 <div class="section" id="id18">
 <h3>3.2.8.7.1. テストソースコード実装例<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
@@ -1055,7 +1057,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <div class="section" id="how-to-assert-property-from-excel">
 <span id="id24"></span><h2>3.2.8.11. クラスのプロパティを検証したい<a class="headerlink" href="#how-to-assert-property-from-excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テスト対象クラスのプロパティの検証を、容易に実装できる。</p>
-<p>テストデータの記述方法は、 <a class="reference internal" href="#how-to-get-data-from-excel"><span class="std std-ref">Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a> で記載した方法と同様に記載する。</p>
+<p>テストデータの記述方法は、 <a class="reference internal" href="#how-to-get-data-from-excel"><span>Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a> で記載した方法と同様に記載する。</p>
 <p>データの意味は、2行目が プロパティ名、3行目以降が検証時に使用するプロパティの値となる。</p>
 <p>以下のメソッドにより、プロパティの持つ値がExcelファイルに記載したデータとなっていることを検証できる。
 第1引数にはエラー時に表示するメッセージ、第2引数にはシート名、第3引数にはID、第4引数に検証対象のクラス、クラスの配列、クラスのリストのいずれかを指定する。</p>
@@ -1119,13 +1121,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <div class="section" id="null">
 <span id="tips-test-data"></span><h2>3.2.8.12. テストデータに空白、空文字、改行やnullを記述したい<a class="headerlink" href="#null" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <blockquote>
-<div><a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a> を参照。</div></blockquote>
+<div><a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a> を参照。</div></blockquote>
 <p></p>
 </div>
 <div class="section" id="how-to-express-empty-line">
 <span id="id27"></span><h2>3.2.8.13. テストデータに空行を記述したい<a class="headerlink" href="#how-to-express-empty-line" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>可変長ファイルを扱う場合等で、テストデータに空行を含めたい場合がある。
-全くの空行は無視されるため、<a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span class="std std-ref">セルへの特殊な記述方法</span></a> の
+全くの空行は無視されるため、<a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a> の
 ダブルクォーテーションを使用して<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>のように空文字列を記述することで、
 空行を表すことができる。</p>
 <p>以下の例では、2レコード目が空行となる。</p>
@@ -1146,8 +1148,8 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <tr class="row-even"><td>山田</td>
 <td>東京都</td>
 </tr>
-<tr class="row-odd"><td>「」</td>
-<td>&#160;</td>
+<tr class="row-odd"><td>&#8220;&#8221;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>田中</td>
 <td>大阪府</td>
@@ -1164,13 +1166,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <div class="section" id="how-to-change-master-data">
 <span id="id28"></span><h2>3.2.8.14. マスタデータを変更してテストを行いたい<a class="headerlink" href="#how-to-change-master-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <blockquote>
-<div><a class="reference internal" href="04_MasterDataRestore.html"><span class="doc">マスタデータ復旧機能</span></a> を参照</div></blockquote>
+<div><a class="reference internal" href="04_MasterDataRestore.html"><em>マスタデータ復旧機能</em></a> を参照</div></blockquote>
 </div>
 <div class="section" id="how-to-change-test-data-dir">
 <span id="id29"></span><h2>3.2.8.15. テストデータ読み込みディレクトリを変更したい<a class="headerlink" href="#how-to-change-test-data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>デフォルトの設定では、テストデータは<code class="docutils literal"><span class="pre">test/java</span></code>配下から読み込まれる。</p>
 <p>プロジェクトのディレクトリ構成に応じて、テストデータディレクトリを変更する必要がある場合、
-コンポーネント定義ファイルに以下の設定を追加する<a class="footnote-reference" href="#id32" id="id30">[1]</a>。</p>
+コンポーネント設定ファイルに以下の設定を追加する<a class="footnote-reference" href="#id32" id="id30">[1]</a>。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="36%" />
@@ -1273,6 +1275,9 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -1280,7 +1285,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -1301,10 +1306,11 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

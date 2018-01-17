@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.12. 排他制御 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.12. 排他制御 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/exclusive_control.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.13. コード管理" href="code.html"/>
         <link rel="prev" title="7.11. メッセージ管理" href="message.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -345,11 +347,11 @@
 <div class="admonition important" id="exclusive-control-deprecated">
 <p class="first admonition-title">重要</p>
 <p>この機能は、以下の理由により <strong>非推奨</strong> である。
-排他制御には、 <a class="reference internal" href="database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> を使用すること。</p>
+排他制御には、 <a class="reference internal" href="database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用すること。</p>
 <ul class="last simple">
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="database/universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> の排他制御は、本機能より簡単に使用できる。</dt>
-<dd><a class="reference internal" href="database/universal_dao.html#universal-dao-jpa-optimistic-lock"><span class="std std-ref">楽観的ロックを行う</span></a> 、 <a class="reference internal" href="database/universal_dao.html#universal-dao-jpa-pessimistic-lock"><span class="std std-ref">悲観的ロックを行う</span></a> を参照。</dd>
+<dt><a class="reference internal" href="database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> の排他制御は、本機能より簡単に使用できる。</dt>
+<dd><a class="reference internal" href="database/universal_dao.html#universal-dao-jpa-optimistic-lock"><span>楽観的ロックを行う</span></a> 、 <a class="reference internal" href="database/universal_dao.html#universal-dao-jpa-pessimistic-lock"><span>悲観的ロックを行う</span></a> を参照。</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -370,9 +372,9 @@
 本フレームワークでは、バージョン番号カラムが定義されたテーブルを <strong>排他制御用テーブル</strong> と呼ぶ。</p>
 <p>この機能では以下のことが実現できる。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#exclusive-control-optimistic-lock"><span class="std std-ref">楽観的ロックを行う</span></a></li>
-<li><a class="reference internal" href="#exclusive-control-optimistic-lock-bulk"><span class="std std-ref">一括更新で楽観的ロックを行う</span></a></li>
-<li><a class="reference internal" href="#exclusive-control-pessimistic-lock"><span class="std std-ref">悲観的ロックを行う</span></a></li>
+<li><a class="reference internal" href="#exclusive-control-optimistic-lock"><span>楽観的ロックを行う</span></a></li>
+<li><a class="reference internal" href="#exclusive-control-optimistic-lock-bulk"><span>一括更新で楽観的ロックを行う</span></a></li>
+<li><a class="reference internal" href="#exclusive-control-pessimistic-lock"><span>悲観的ロックを行う</span></a></li>
 </ul>
 <p>この機能が提供する楽観的ロック/悲観的ロックは、同じ排他制御用テーブルを使用して実現するため、
 楽観的ロックと悲観的ロックを並行で使用しても、同一データが同時に更新されるのを防ぐことができる。
@@ -666,7 +668,7 @@
 <p class="first admonition-title">ちなみに</p>
 <p class="last">複合主キーに対応したカスタムタグと
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/compositekey/CompositeKey.html" title="nablarch.common.web.compositekey.CompositeKey">CompositeKey</a> を使うと、
-複合主キーをもっと簡単に扱える。詳細は、 <a class="reference internal" href="tag.html#tag-composite-key"><span class="std std-ref">複合キーのラジオボタンやチェックボックスを作る</span></a> を参照。</p>
+複合主キーをもっと簡単に扱える。詳細は、 <a class="reference internal" href="tag.html#tag-composite-key"><span>複合キーのラジオボタンやチェックボックスを作る</span></a> を参照。</p>
 </div>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// (排他制御:チェック)</span>
 <span class="c1">// Formには、区切り文字を考慮し、リクエストパラメータから主キーを取り出す処理を実装している。</span>
@@ -727,6 +729,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -734,7 +739,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -755,10 +760,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

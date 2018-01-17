@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.19. マルチレイアウト用CSSフレームワーク &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>2.1.19. マルチレイアウト用CSSフレームワーク &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/multicol_css_framework.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.20. 設計書ビュー表示機能" href="showing_specsheet_view.html"/>
         <link rel="prev" title="2.1.18. UI部品ウィジェット" href="jsp_widgets.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -322,13 +324,13 @@
 <span id="multicol-mode"></span><h1>2.1.19. マルチレイアウト用CSSフレームワーク<a class="headerlink" href="#css" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1.19.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>マルチレイアウト用CSSフレームワークは、<a class="reference internal" href="css_framework.html"><span class="doc">CSSフレームワーク</span></a>のワイドモードをベースとしたスタイルシート群で以下のことが実現可能である。</p>
+<p>マルチレイアウト用CSSフレームワークは、<a class="reference internal" href="css_framework.html"><em>CSSフレームワーク</em></a>のワイドモードをベースとしたスタイルシート群で以下のことが実現可能である。</p>
 <ul class="simple">
 <li>UI部品ウィジェットを複数個並べて配置することができる(画面ごと自由にレイアウトできる)</li>
 <li>UI部品ウィジェットの出力幅を指定できる</li>
 </ul>
 <p><strong>マルチレイアウトモードを使用した場合の画面表示例</strong></p>
-<a class="reference internal image-reference" href="../../../../_images/multicol_1.png"><img alt="../../../../_images/multicol_1.png" src="../../../../_images/multicol_1.png" style="width: 681.8px; height: 448.7px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/multicol_1.png"><img alt="../../../../_images/multicol_1.png" src="../../../../_images/multicol_1.png" /></a>
 </div>
 <div class="section" id="id2">
 <h2>2.1.19.2. 制約事項<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -348,7 +350,7 @@
 <p><strong>画面幅を狭くした場合の表示例</strong></p>
 <p>画面幅が狭くなった場合でも、ワイドモードベースの表示のままとなる。
 非表示の部分は、画面下部の横スクロールバーを使用して表示させることになる。</p>
-<a class="reference internal image-reference" href="../../../../_images/multicol_2.png"><img alt="../../../../_images/multicol_2.png" src="../../../../_images/multicol_2.png" style="width: 601.5px; height: 499.5px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/multicol_2.png"><img alt="../../../../_images/multicol_2.png" src="../../../../_images/multicol_2.png" /></a>
 </div>
 <div class="section" id="ui">
 <h3>2.1.19.2.2. 一部UI部品ウィジェットは出力幅の指定機能を提供しない<a class="headerlink" href="#ui" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -356,14 +358,14 @@
 <p>これらのウィジェットは、ページ内の情報を区切るためのタイトル行を出力する。
 タイトル行はページ内での行を表すため、常に業務コンテンツ領域と同じ幅で出力される。</p>
 <ul class="simple">
-<li><a class="reference internal" href="../reference_jsp_widgets/field_block.html"><span class="doc">入力フォームブロック</span></a> (<em>/WEB-INF/tags/widget/field/block.tag</em>)</li>
+<li><a class="reference internal" href="../reference_jsp_widgets/field_block.html"><em>入力フォームブロック</em></a> (<em>/WEB-INF/tags/widget/field/block.tag</em>)</li>
 <li>テーブル関連のウィジェット (<em>/WEB-INF/tags/widget/table/*.tag</em>)<ul>
-<li><a class="reference internal" href="../reference_jsp_widgets/table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a></li>
-<li><a class="reference internal" href="../reference_jsp_widgets/table_search_result.html"><span class="doc">検索結果テーブルウィジェット</span></a></li>
-<li><a class="reference internal" href="../reference_jsp_widgets/table_treelist.html"><span class="doc">階層(ツリー)表示テーブルウィジェット</span></a></li>
+<li><a class="reference internal" href="../reference_jsp_widgets/table_plain.html"><em>一覧テーブルウィジェット</em></a></li>
+<li><a class="reference internal" href="../reference_jsp_widgets/table_search_result.html"><em>検索結果テーブルウィジェット</em></a></li>
+<li><a class="reference internal" href="../reference_jsp_widgets/table_treelist.html"><em>階層(ツリー)表示テーブルウィジェット</em></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="../reference_jsp_widgets/tab_group.html"><span class="doc">タブウィジェット</span></a> (<em>/WEB-INF/tags/widget/tab/*.tag</em>)</li>
+<li><a class="reference internal" href="../reference_jsp_widgets/tab_group.html"><em>タブウィジェット</em></a> (<em>/WEB-INF/tags/widget/tab/*.tag</em>)</li>
 </ul>
 </div>
 </div>
@@ -408,7 +410,7 @@
 </pre></div>
 </div>
 <p>A.multicol用の変数定義プラグインを選択する:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>マルチレイアウト表示モードプラグイン(nablarch-css-conf-multicol)を選択する。
+<div class="highlight-python"><div class="highlight"><pre><span></span>マルチレイアウト表示モードプラグイン(nablarch-css-conf-multicol)を選択する。
 
 本プラグインを選択することで、マルチレイアウト用のグリッド数定義や画面幅定義が行われる。
 
@@ -416,7 +418,7 @@
 </pre></div>
 </div>
 <p>B.multicol用のhtml headプラグインを選択する:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>HTML headタグを出力するプラグインで、マルチレイアウト用のプラグイン(nablarch-template-multicol-head)を選択する。
+<div class="highlight-python"><div class="highlight"><pre><span></span>HTML headタグを出力するプラグインで、マルチレイアウト用のプラグイン(nablarch-template-multicol-head)を選択する。
 
 本プラグインを選択することで、マルチレイアウト用のCSSフレームワークが使用可能となる。また、表示モードの切替機能が無効化される。
 
@@ -424,7 +426,7 @@
 </pre></div>
 </div>
 <p>C.multicol用の行及び列を定義するプラグインを選択する:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>マルチレイアウト用の行、列を定義するためのプラグイン(nablarch-widget-multicol-row、nablarch-widget-multicol-cell)を選択する。
+<div class="highlight-python"><div class="highlight"><pre><span></span>マルチレイアウト用の行、列を定義するためのプラグイン(nablarch-widget-multicol-row、nablarch-widget-multicol-cell)を選択する。
 
 本プラグインを選択することで、業務コンテンツ部に行及び列を定義できるようになり、UI部品ウィジェットの配置を自由に行うことが可能となる。
 </pre></div>
@@ -433,7 +435,7 @@
 <p><strong>2. ビルド用コマンド用設定ファイルの修正</strong></p>
 <blockquote>
 <div><p>プロジェクトの<em>ui_plugins/pjconf.json</em>を修正し、プロジェクトのWEBディレクトリ配下にUI部品（ウィジェット、JavaScript、スタイルシートなど）が展開されるようにする。</p>
-<p>詳細は、<a class="reference internal" href="../plugin_build.html#pjconf-json"><span class="std std-ref">ビルドコマンド用設定ファイル</span></a>を参照</p>
+<p>詳細は、<a class="reference internal" href="../plugin_build.html#pjconf-json"><span>ビルドコマンド用設定ファイル</span></a>を参照</p>
 <p>以下に修正例を示す。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;pathSettings&quot;</span> <span class="o">:</span>
@@ -470,11 +472,11 @@
 </pre></div>
 </div>
 <p>A.CSSモードで「multicol」を選択する:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>本フレームワークは、「multicol」モードとして提供されるため、CSSモードに「multicol」と設定する。
+<div class="highlight-python"><div class="highlight"><pre><span></span>本フレームワークは、「multicol」モードとして提供されるため、CSSモードに「multicol」と設定する。
 </pre></div>
 </div>
 <p>B.マルチレイアウト用のHTML headタグが使用されるようにする:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>マルチレイアウト用のHTML headタグを出力するプラグインが使用されるようにする。
+<div class="highlight-python"><div class="highlight"><pre><span></span>マルチレイアウト用のHTML headタグを出力するプラグインが使用されるようにする。
 
 ※nablarch-template-multicol-headは、1つ上の行で定義されている「nablarch-template-.*」に含まれるが、
 通常モードの「nablarch-template-head」が使用されないように、明示的に「nablarch-template-multicol-head」を定義して上書きしている。
@@ -488,8 +490,8 @@
 <p>multicol.lessは、自動生成した雛形を修正する。
 自動生成方法及び修正方法の詳細は、以下を参照すること。</p>
 <ul class="simple">
-<li><a class="reference internal" href="../plugin_build.html#ui-genless"><span class="std std-ref">lessインポート定義雛形生成コマンド</span></a></li>
-<li><a class="reference internal" href="../plugin_build.html#lessimport-less"><span class="std std-ref">lessインポート定義ファイル</span></a></li>
+<li><a class="reference internal" href="../plugin_build.html#ui-genless"><span>lessインポート定義雛形生成コマンド</span></a></li>
+<li><a class="reference internal" href="../plugin_build.html#lessimport-less"><span>lessインポート定義ファイル</span></a></li>
 </ul>
 <p><a class="reference download internal" href="../../../../_downloads/multicol.less" download=""><code class="xref download docutils literal"><span class="pre">サンプルのmulticol.lessのダウンロード</span></code></a></p>
 </div></blockquote>
@@ -505,7 +507,7 @@
 <p>プロジェクトの要件で、画面の表示領域の幅等を変更したい場合には、本手順を参考にして変更を行うこと。</p>
 <p>マルチカラム用のグリッド数や画面幅の定義は、プラグイン(<em>nablarch-css-conf-multicol</em>、<em>nablarch-template-app_aside</em>)としてデフォルトの設定が提供される。
 このプラグインをプロジェクト側にコピーし、プロジェクト用プラグインとして修正することで画面幅などを変更することができる。</p>
-<p>プラグインの作成方法は、<a class="reference internal" href="../development_environment/modifying_code_and_testing.html#add-plugin"><span class="std std-ref">3. プラグインの追加</span></a>を参照。</p>
+<p>プラグインの作成方法は、<a class="reference internal" href="../development_environment/modifying_code_and_testing.html#add-plugin"><span>3. プラグインの追加</span></a>を参照。</p>
 <p>以下に修正ポイントを示す。</p>
 <p><strong>nablarch-css-conf-multicol</strong></p>
 <ul>
@@ -606,7 +608,7 @@
 </li>
 </ul>
 <p><strong>画面表示例</strong></p>
-<a class="reference internal image-reference" href="../../../../_images/multicol_sample_1.png"><img alt="../../../../_images/multicol_sample_1.png" src="../../../../_images/multicol_sample_1.png" style="width: 680.25px; height: 129.75px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/multicol_sample_1.png"><img alt="../../../../_images/multicol_sample_1.png" src="../../../../_images/multicol_sample_1.png" /></a>
 <p><strong>JSP実装例</strong></p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;n:form windowScopePrefixes=&quot;user&quot;&gt;
   &lt;%-- タイトル部、入力部の幅定義 --%&gt;
@@ -703,7 +705,7 @@
 </li>
 </ul>
 <p><strong>画面表示例</strong></p>
-<a class="reference internal image-reference" href="../../../../_images/multicol_sample_2.png"><img alt="../../../../_images/multicol_sample_2.png" src="../../../../_images/multicol_sample_2.png" style="width: 865.9px; height: 199.5px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/multicol_sample_2.png"><img alt="../../../../_images/multicol_sample_2.png" src="../../../../_images/multicol_sample_2.png" /></a>
 <p><strong>JSP実装例</strong></p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;%-- 行定義 --%&gt;
 &lt;layout:row&gt;
@@ -771,6 +773,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -778,7 +783,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -799,10 +804,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

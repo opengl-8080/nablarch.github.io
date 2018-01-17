@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.13. コード管理 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.13. コード管理 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/code.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.14. 日付管理" href="date.html"/>
         <link rel="prev" title="7.12. 排他制御" href="exclusive_control.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -370,20 +372,20 @@
 <p>この機能では、静的なコード情報(値と名称とのマッピング)を管理するものであり、「商品コード」や「企業コード」といった値に紐づく情報が動的に変化するものは管理対象外とする。
 このような情報は、アプリケーションでマスタ用のテーブルを作成し、対処すること。</p>
 <p class="last">この機能を使用すると、コードの名称を持つテーブルとコード値を持つテーブルにRDBMSの参照整合性制約を設定できない。
-このような制約のチェックには <a class="reference internal" href="#code-validation"><span class="std std-ref">入力値が有効なコード値かチェックする</span></a> を使用すること。</p>
+このような制約のチェックには <a class="reference internal" href="#code-validation"><span>入力値が有効なコード値かチェックする</span></a> を使用すること。</p>
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id14">7.13.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id15">7.13.1.1. 国際化に対応できる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>この機能は、言語ごとに名称を管理することが出来る。</p>
-<p>詳細は、 <a class="reference internal" href="#code-use-multilingualization"><span class="std std-ref">名称の多言語化対応を行う</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#code-use-multilingualization"><span>名称の多言語化対応を行う</span></a> を参照。</p>
 </div>
 <div class="section" id="code-table">
 <span id="id5"></span><h3><a class="toc-backref" href="#id16">7.13.1.2. コード情報はテーブルで管理する</a><a class="headerlink" href="#code-table" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>この機能は、値及び名称の情報をデータベース上で管理する。
 このため、事前にデータベースにテーブルを作成し、静的なコード情報をテーブル上に登録しておくこと。</p>
-<p>詳細は、 <a class="reference internal" href="#code-setup-table"><span class="std std-ref">コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#code-setup-table"><span>コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -429,7 +431,7 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">PATTERN:</th><td class="field-body"><p class="first">値を使用するか否かのフラグ( <code class="docutils literal"><span class="pre">0</span></code> または <code class="docutils literal"><span class="pre">1</span></code> を設定する)</p>
 <p>有効な値を切り替えたい場合に使用する。不要な場合は省略可能。</p>
-<p>詳細は <a class="reference internal" href="#code-use-pattern"><span class="std std-ref">機能毎に使用するコード情報を切り替える</span></a> を参照。</p>
+<p>詳細は <a class="reference internal" href="#code-use-pattern"><span>機能毎に使用するコード情報を切り替える</span></a> を参照。</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">LANG:</th><td class="field-body"><p class="first">言語</p>
@@ -439,7 +441,7 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">SORT_ORDER:</th><td class="field-body"><p class="first">ソート順</p>
 <p>IDに紐づく一覧情報を取得すると、このカラムに設定された値の昇順で結果が返される。</p>
-<p>詳細は <a class="reference internal" href="#code-use-sort-order"><span class="std std-ref">画面などで表示する名称のソート順を定義する</span></a> を参照。</p>
+<p>詳細は <a class="reference internal" href="#code-use-sort-order"><span>画面などで表示する名称のソート順を定義する</span></a> を参照。</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">NAME:</th><td class="field-body"><p class="first">名称</p>
@@ -453,7 +455,7 @@
 <tr class="field-even field"><th class="field-name">OPTIONAL_NAME:</th><td class="field-body"><p class="first">オプション名称</p>
 <p>名称と略称だけでは、表示する文言の値を管理しきれない場合に使用する。
 カラム名やカラム数は必要数定義することが出来る。</p>
-<p class="last">詳細は、 <a class="reference internal" href="#code-option-name"><span class="std std-ref">名称、略称以外の名称を定義する</span></a> を参照。</p>
+<p class="last">詳細は、 <a class="reference internal" href="#code-option-name"><span>名称、略称以外の名称を定義する</span></a> を参照。</p>
 </td>
 </tr>
 </tbody>
@@ -465,7 +467,7 @@
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/BasicCodeManager.html" title="nablarch.common.code.BasicCodeManager">BasicCodeManager</a> のコンポーネント名は、 <strong>codeManager</strong> とすること。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html" title="nablarch.core.cache.BasicStaticDataCache">BasicStaticDataCache</a> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html#setLoadOnStartup-boolean-" title="nablarch.core.cache.BasicStaticDataCache.setLoadOnStartup(boolean)">loadOnStartup</a> に対する設定値は、 <a class="reference internal" href="static_data_cache.html#static-data-cache-cache-timing"><span class="std std-ref">データのキャッシュタイミングを制御する</span></a> を参照すること。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html" title="nablarch.core.cache.BasicStaticDataCache">BasicStaticDataCache</a> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html#setLoadOnStartup-boolean-" title="nablarch.core.cache.BasicStaticDataCache.setLoadOnStartup(boolean)">loadOnStartup</a> に対する設定値は、 <a class="reference internal" href="static_data_cache.html#static-data-cache-cache-timing"><span>データのキャッシュタイミングを制御する</span></a> を参照すること。</li>
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html" title="nablarch.core.cache.BasicStaticDataCache">BasicStaticDataCache</a> は、初期化が必要なので初期化対象のリストに設定すること。</li>
 </ul>
 </dd>
@@ -521,7 +523,7 @@
 <dt>コードパターンテーブルにパターンカラムを定義する</dt>
 <dd><p class="first">コードパターンテーブルに表示パターンを持つパターン列を定義する。</p>
 <p>パターン列は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/schema/CodePatternSchema.html#setPatternColumnNames-java.lang.String:A-" title="nablarch.common.code.schema.CodePatternSchema.setPatternColumnNames(java.lang.String:A)">CodePatternSchema.patternColumnNames</a> に設定することで利用可能となる。
-設定ファイルへの設定方法は、 <a class="reference internal" href="#code-setup-table"><span class="std std-ref">コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
+設定ファイルへの設定方法は、 <a class="reference internal" href="#code-setup-table"><span>コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
 <p>この例では、 <code class="docutils literal"><span class="pre">PATTERN1</span></code> と <code class="docutils literal"><span class="pre">PATTERN2</span></code> の2つのパターンを定義し、
 <code class="docutils literal"><span class="pre">PATTERN2</span></code> ではOTHERを非表示としている。</p>
 <dl class="last docutils">
@@ -608,7 +610,7 @@
 <dt>パターンを指定してコード情報を取得する</dt>
 <dd><p class="first">コード情報は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> を使用して取得する。</p>
 <p>パターンを使用する場合、どのパターンを使用するかは文字列で指定する。
-この値は、 <a class="reference internal" href="#code-setup-table"><span class="std std-ref">コード管理機能を使用する為の初期設定を行う</span></a> で設定ファイルに設定したカラム名と厳密に一致させる必要がある。</p>
+この値は、 <a class="reference internal" href="#code-setup-table"><span>コード管理機能を使用する為の初期設定を行う</span></a> で設定ファイルに設定したカラム名と厳密に一致させる必要がある。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// PATTER1のリストを取得する。</span>
 <span class="c1">// [MALE, FEMALE, OTHER]が取得できる。</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pattern1</span> <span class="o">=</span> <span class="n">CodeUtil</span><span class="o">.</span><span class="na">getValues</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;PATTERN1&quot;</span><span class="o">);</span>
@@ -623,7 +625,7 @@
 <dd><p class="first">コード情報を取得するカスタムタグライブラリを使用する際に、パターンを指定することでそのパターンの情報のみが表示される。</p>
 <p>カスタムタグライブラリの詳細な使用方法は、以下を参照。</p>
 <ul class="simple">
-<li><a class="reference internal" href="tag.html#tag-code-input-output"><span class="std std-ref">コード値を表示する</span></a></li>
+<li><a class="reference internal" href="tag.html#tag-code-input-output"><span>コード値を表示する</span></a></li>
 </ul>
 <p>PATTERN2を指定する場合は、以下のように <cite>pattern</cite> 属性に指定する。</p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:codeSelect</span> <span class="na">name=</span><span class="s">&quot;form.gender&quot;</span> <span class="na">codeId=</span><span class="s">&quot;GENDER&quot;</span> <span class="na">pattern=</span><span class="s">&quot;PATTERN2&quot;</span> <span class="na">cssClass=</span><span class="s">&quot;form-control&quot;</span> <span class="nt">/&gt;</span>
@@ -721,7 +723,7 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">JSP用に提供されているカスタムタグライブラリでは、言語指定による値の取得はできないので注意すること。
-カスタムタグライブラリが使用する言語情報の詳細は、 <a class="reference internal" href="tag.html#tag-code-input-output"><span class="std std-ref">コード値を表示する</span></a> を参照。</p>
+カスタムタグライブラリが使用する言語情報の詳細は、 <a class="reference internal" href="tag.html#tag-code-input-output"><span>コード値を表示する</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="code-use-sort-order">
@@ -793,7 +795,7 @@
 <dt>コード名称テーブルにオプション名称カラムを定義する</dt>
 <dd><p class="first">コード名称テーブルに、オプションの名称を持つカラムを定義する。</p>
 <p>パターン列は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/schema/CodePatternSchema.html#setPatternColumnNames-java.lang.String:A-" title="nablarch.common.code.schema.CodePatternSchema.setPatternColumnNames(java.lang.String:A)">CodePatternSchema.patternColumnNames</a> に設定することで利用可能となる。
-設定ファイルへの設定方法は、 <a class="reference internal" href="#code-setup-table"><span class="std std-ref">コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
+設定ファイルへの設定方法は、 <a class="reference internal" href="#code-setup-table"><span>コード管理機能を使用する為の初期設定を行う</span></a> を参照。</p>
 <p>この例では、オプション名称のカラムとして、 <code class="docutils literal"><span class="pre">FORM_NAME</span></code> と <code class="docutils literal"><span class="pre">KANA_NAME</span></code> の2つを定義している。</p>
 <table border="1" class="last docutils">
 <colgroup>
@@ -851,7 +853,7 @@
 <dt>オプションの名称を取得する</dt>
 <dd><p class="first">オプション名称は、  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> を使用して取得する。</p>
 <p>オプション名称を取得する場合、どのオプション名称を取得するかを文字列で指定する。
-この値は、 <a class="reference internal" href="#code-setup-table"><span class="std std-ref">コード管理機能を使用する為の初期設定を行う</span></a> で設定ファイルに設定したカラム名と厳密に一致させる必要がある。</p>
+この値は、 <a class="reference internal" href="#code-setup-table"><span>コード管理機能を使用する為の初期設定を行う</span></a> で設定ファイルに設定したカラム名と厳密に一致させる必要がある。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">CodeUtil</span><span class="o">.</span><span class="na">getOptionalName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="s">&quot;KANA_NAME&quot;</span><span class="o">)</span> <span class="c1">// -&gt; おとこ</span>
 <span class="n">CodeUtil</span><span class="o">.</span><span class="na">getOptionalName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;FEMALE&quot;</span><span class="o">,</span> <span class="s">&quot;FORM_NAME&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">JAPANESE</span><span class="o">)</span> <span class="c1">// -&gt; Female</span>
 </pre></div>
@@ -879,15 +881,15 @@
 この機能を使用すると、アノテーションの設定のみで入力値のチェックを行える。</p>
 <p>以下に例を示す。</p>
 <dl class="docutils">
-<dt><a class="reference internal" href="validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a></dt>
-<dd><p class="first"><a class="reference internal" href="validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/ee/CodeValue.html" title="nablarch.common.code.validator.ee.CodeValue">nablarch.common.code.validator.ee.CodeValue</a> アノテーションを使用する。</p>
+<dt><a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a></dt>
+<dd><p class="first"><a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/ee/CodeValue.html" title="nablarch.common.code.validator.ee.CodeValue">nablarch.common.code.validator.ee.CodeValue</a> アノテーションを使用する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;GENDER&quot;</span><span class="o">)</span>
 <span class="kd">private</span> <span class="n">String</span> <span class="n">gender</span><span class="o">;</span>
 </pre></div>
 </div>
 </dd>
-<dt><a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span class="std std-ref">Nablarch Validation</span></a></dt>
-<dd><p class="first"><a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span class="std std-ref">Nablarch Validation</span></a> を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/CodeValue.html" title="nablarch.common.code.validator.CodeValue">nablarch.common.code.validator.CodeValue</a> アノテーションを使用する。</p>
+<dt><a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a></dt>
+<dd><p class="first"><a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a> を使用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/CodeValue.html" title="nablarch.common.code.validator.CodeValue">nablarch.common.code.validator.CodeValue</a> アノテーションを使用する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;GENDER&quot;</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGender</span><span class="o">(</span><span class="n">String</span> <span class="n">gender</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">this</span><span class="o">.</span><span class="na">gender</span> <span class="o">=</span> <span class="n">gender</span><span class="o">;</span>
@@ -896,7 +898,7 @@
 </div>
 </dd>
 </dl>
-<p>入力画面などで、 <a class="reference internal" href="#code-use-pattern"><span class="std std-ref">パターン</span></a> を使用して、選択できる値を制限した場合、
+<p>入力画面などで、 <a class="reference internal" href="#code-use-pattern"><span>パターン</span></a> を使用して、選択できる値を制限した場合、
 バリデーション時にもそのパターン内で有効な値かをチェックする必要がある。</p>
 <p>バリデーション用のアノテーションの <cite>pattern</cite> 属性にパターン名を指定することで、
 そのパターンで有効な値かをチェックする事ができる。</p>
@@ -907,7 +909,7 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p><a class="reference internal" href="validation/bean_validation.html#bean-validation-domain-validation"><span class="std std-ref">ドメインバリデーション</span></a> を使用した場合、1つのドメインに対して1つのパターンしか指定できない。
+<p><a class="reference internal" href="validation/bean_validation.html#bean-validation-domain-validation"><span>ドメインバリデーション</span></a> を使用した場合、1つのドメインに対して1つのパターンしか指定できない。
 このため、複数のパターンに対応するためには、パターンに対応したドメインを定義する必要がある。</p>
 <p>ただし、全てのパターンに対応したドメインを定義する必要はなく、バリデーションで必要なドメインのみ定義すればよい。</p>
 <p>以下に例を示す。</p>
@@ -931,6 +933,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -938,7 +943,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -959,10 +964,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

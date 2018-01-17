@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.76. マルチレイアウトテーブル &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>2.1.76. マルチレイアウトテーブル &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/reference_jsp_widgets/table_row.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.77. 検索結果テーブルウィジェット" href="table_search_result.html"/>
         <link rel="prev" title="2.1.75. 一覧テーブルウィジェット" href="table_plain.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -320,13 +322,13 @@
             
   <div class="section" id="id1">
 <h1>2.1.76. マルチレイアウトテーブル<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><a class="reference internal" href="#"><span class="doc">マルチレイアウトテーブル</span></a> は、行ごとに異なるカラム構成をもつテーブルである。
+<p><a class="reference internal" href=""><em>マルチレイアウトテーブル</em></a> は、行ごとに異なるカラム構成をもつテーブルである。
 例えば、明細テーブルにおいて、特定のコード値のブレイク毎に小計を出力する場合や
 1つのレコードに対して、複数行を出力するような場合に使用する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference internal" href="#"><span class="doc">マルチレイアウトテーブル</span></a> は <a class="reference internal" href="table_plain.html"><span class="doc">一覧テーブルウィジェット</span></a> および <a class="reference internal" href="table_search_result.html"><span class="doc">検索結果テーブルウィジェット</span></a> で使用することができる。
-<a class="reference internal" href="table_treelist.html"><span class="doc">階層(ツリー)表示テーブルウィジェット</span></a> には対応していない。</p>
+<p class="last"><a class="reference internal" href=""><em>マルチレイアウトテーブル</em></a> は <a class="reference internal" href="table_plain.html"><em>一覧テーブルウィジェット</em></a> および <a class="reference internal" href="table_search_result.html"><em>検索結果テーブルウィジェット</em></a> で使用することができる。
+<a class="reference internal" href="table_treelist.html"><em>階層(ツリー)表示テーブルウィジェット</em></a> には対応していない。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -335,7 +337,7 @@
 </div>
 <div class="section" id="id2">
 <h2>2.1.76.1. コードサンプル<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#"><span class="doc">マルチレイアウトテーブル</span></a> を使用するには、まず <a class="reference internal" href="table_plain.html"><span class="doc">&lt;table:plain&gt;</span></a> もしくは <a class="reference internal" href="table_search_result.html"><span class="doc">&lt;table:search_result&gt;</span></a> の
+<p><a class="reference internal" href=""><em>マルチレイアウトテーブル</em></a> を使用するには、まず <a class="reference internal" href="table_plain.html"><em>&lt;table:plain&gt;</em></a> もしくは <a class="reference internal" href="table_search_result.html"><em>&lt;table:search_result&gt;</em></a> の
 <cite>multipleRowLayout</cite> 属性を <cite>true</cite> に設定する。
 その上で、これらのタグの直接の子要素として <cite>&lt;table:row&gt;</cite> を配置する。</p>
 <p>各 <cite>&lt;table:row&gt;</cite> タグの中では、通常のテーブルタグの場合と同様に <cite>&lt;column:xxx&gt;</cite> タグを使用して
@@ -483,7 +485,7 @@ CSSでの背景色の指定方法は、table:rowのcssClass属性に任意のク
 <td>文字列</td>
 <td>○</td>
 <td>○</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -520,6 +522,9 @@ CSSでの背景色の指定方法は、table:rowのcssClass属性に任意のク
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -527,7 +532,7 @@ CSSでの背景色の指定方法は、table:rowのcssClass属性に任意のク
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -548,10 +553,11 @@ CSSでの背景色の指定方法は、table:rowのcssClass属性に任意のク
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

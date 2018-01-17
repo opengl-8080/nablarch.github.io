@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.4.2. JAX-RS BeanValidationハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.4.2. JAX-RS BeanValidationハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/rest/jaxrs_bean_validation_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.4. RESTfulウェブサービス専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.4.3. JAX-RSレスポンスハンドラ" href="jaxrs_response_handler.html"/>
         <link rel="prev" title="6.4.1. リクエストボディ変換ハンドラ" href="body_convert_handler.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -331,15 +333,15 @@
 <li><a class="reference internal" href="#form-bean" id="id8">リソース(アクション)で受け取るForm(Bean)に対してバリデーションを実行する</a></li>
 </ul>
 </div>
-<p>本ハンドラは、リソース(アクション)クラスが受け取るForm(Bean)に対して、<a class="reference internal" href="../../libraries/validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を実行する。
+<p>本ハンドラは、リソース(アクション)クラスが受け取るForm(Bean)に対して、<a class="reference internal" href="../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を実行する。
 バリデーションでバリデーションエラーが発生した場合には、後続のハンドラに処理は委譲せずに、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を送出して処理を終了する。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
-<li>リソース(アクション)クラスのメソッドが受け取るFormに対する <a class="reference internal" href="../../libraries/validation/bean_validation.html#bean-validation"><span class="std std-ref">Bean Validation</span></a> を行う。</li>
+<li>リソース(アクション)クラスのメソッドが受け取るFormに対する <a class="reference internal" href="../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を行う。</li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
-<a class="reference internal image-reference" href="../../../../_images/flow15.png"><img alt="../../../../_images/flow15.png" src="../../../../_images/flow15.png" style="width: 381.75px; height: 321.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/flow15.png"><img alt="../../../../_images/flow15.png" src="../../../../_images/flow15.png" /></a>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id5">6.4.2.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
@@ -364,8 +366,8 @@
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id7">6.4.2.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="body_convert_handler.html#body-convert-handler"><span class="std std-ref">リクエストボディ変換ハンドラ</span></a> よりも後ろに設定すること</dt>
-<dd>このハンドラは、 <a class="reference internal" href="body_convert_handler.html#body-convert-handler"><span class="std std-ref">リクエストボディ変換ハンドラ</span></a> がリクエストボディから変換したForm(Bean)に対してバリデーションを行うため。</dd>
+<dt><a class="reference internal" href="body_convert_handler.html#body-convert-handler"><span>リクエストボディ変換ハンドラ</span></a> よりも後ろに設定すること</dt>
+<dd>このハンドラは、 <a class="reference internal" href="body_convert_handler.html#body-convert-handler"><span>リクエストボディ変換ハンドラ</span></a> がリクエストボディから変換したForm(Bean)に対してバリデーションを行うため。</dd>
 </dl>
 </div>
 <div class="section" id="form-bean">
@@ -389,6 +391,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -396,7 +401,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -417,10 +422,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

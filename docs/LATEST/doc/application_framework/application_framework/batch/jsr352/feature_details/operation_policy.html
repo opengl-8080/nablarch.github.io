@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.4.10.1. 運用方針 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>4.1.4.10.1. 運用方針 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/feature_details/operation_policy.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="4.1.4. 機能詳細" href="../feature_details.html"/>
         <link rel="next" title="4.1.4.10.2. 進捗状況のログ出力" href="progress_log.html"/>
         <link rel="prev" title="4.1.4.7.1. JSR352に準拠したバッチアプリケーションの悲観的ロック" href="pessimistic_lock.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -333,10 +335,10 @@
 </div>
 <p>JSR352に準拠したバッチアプリケーションでは、以下の方針に従った障害監視、ログ出力方針を推奨している。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#jsr352-failure-monitoring"><span class="std std-ref">障害監視</span></a> はバッチの終了ステータスで行う。</li>
+<li><a class="reference internal" href="#jsr352-failure-monitoring"><span>障害監視</span></a> はバッチの終了ステータスで行う。</li>
 <li>取り込みファイルが存在しない等の予期できる障害発生時のリカバリ用に、運用担当者向けログを出力する。</li>
 <li>アプリケーションの不具合等の予期できない障害発生時の調査用に、全てのログを出力する。
-例外発生時のログ出力に関しては、 <a class="reference internal" href="../architecture.html#jsr352-batch-error-flow"><span class="std std-ref">例外(エラー含む)発生時の処理の流れ</span></a> を参照。</li>
+例外発生時のログ出力に関しては、 <a class="reference internal" href="../architecture.html#jsr352-batch-error-flow"><span>例外(エラー含む)発生時の処理の流れ</span></a> を参照。</li>
 <li>バッチ処理の遅延時に終了時刻を予測するため、進捗ログを出力する。</li>
 </ul>
 <p>これらの方針に従うことで以下のメリットが得られ、開発者の運用負荷の軽減が期待できる。</p>
@@ -347,7 +349,7 @@
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">バッチの設計者は、予期できる障害とその対処方法を洗い出し、 <a class="reference internal" href="operator_notice_log.html"><span class="doc">運用担当者向けログ</span></a> に出力するようにバッチの設計を行うこと。</p>
+<p class="last">バッチの設計者は、予期できる障害とその対処方法を洗い出し、 <a class="reference internal" href="operator_notice_log.html"><em>運用担当者向けログ</em></a> に出力するようにバッチの設計を行うこと。</p>
 </div>
 <dl class="docutils">
 <dt>障害検知時のログ参照イメージ</dt>
@@ -385,11 +387,11 @@
 <dd>発生した障害とそれに対する対処方法を記載したメッセージを出力する。
 運用担当者は、このログに出力された情報を元に障害対応を行う。
 詳細な情報(スタックトレース)は運用担当者には不要なため、出力しない。
-詳細は、 <a class="reference internal" href="operator_notice_log.html"><span class="doc">運用担当者向けのログ出力</span></a> を参照。</dd>
+詳細は、 <a class="reference internal" href="operator_notice_log.html"><em>運用担当者向けのログ出力</em></a> を参照。</dd>
 <dt>進捗ログ</dt>
 <dd>バッチ処理の進捗状況を出力する。
 バッチ処理が遅延している場合などは、このログを元に現在の処理の終了予測を行い、続行や停止の判断を行う。
-詳細は、 <a class="reference internal" href="progress_log.html"><span class="doc">進捗状況のログ出力</span></a> を参照。</dd>
+詳細は、 <a class="reference internal" href="progress_log.html"><em>進捗状況のログ出力</em></a> を参照。</dd>
 <dt>全てのログ</dt>
 <dd><code class="docutils literal"><span class="pre">進捗ログ</span></code> を除く全てのログを出力する。
 <code class="docutils literal"><span class="pre">運用担当者向けログ</span></code> に対応した詳細情報(スタックトレース)も、このログに出力する。</dd>
@@ -399,6 +401,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -406,7 +411,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -427,10 +432,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

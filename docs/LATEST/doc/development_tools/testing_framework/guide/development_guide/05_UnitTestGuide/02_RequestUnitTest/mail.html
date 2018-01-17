@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.19. リクエスト単体テストの実施方法(メール送信) &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3.1.19. リクエスト単体テストの実施方法(メール送信) &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/mail.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.2. 自動テストフレームワークの使用方法" href="../../06_TestFWGuide/index.html"/>
         <link rel="prev" title="3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)" href="http_send_sync.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -323,21 +325,24 @@
 <h1>3.1.19. リクエスト単体テストの実施方法(メール送信)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
 <h2>3.1.19.1. メール送信処理の構造とテスト範囲<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本フレームワークを使用した<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span class="std std-ref">メール送信</span></a>では、
+<p>本フレームワークを使用した<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>メール送信</span></a>では、
 業務アプリケーションは本フレームワークが提供するメール送信要求APIを呼び出すだけである。</p>
 <p>よってリクエスト単体テストの範囲は、メール送信要求が正常に受け付けられデータベースに格納されることを確認するところまでとなる。</p>
 <p>メール送信処理の処理概要と業務アプリケーションのテスト範囲を、下図に示す。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/mail_overview.jpg"><img alt="../../../../../../_images/mail_overview.jpg" src="../../../../../../_images/mail_overview.jpg" style="width: 696.8px; height: 228.8px;" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/mail_overview.jpg"><img alt="../../../../../../_images/mail_overview.jpg" src="../../../../../../_images/mail_overview.jpg" /></a>
 </div>
 <div class="section" id="id3">
 <h2>3.1.19.2. テストの実施方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>上述の通り、メール送信に関してリクエスト単体テストで確認すべきことは、メール送信要求が <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span class="std std-ref">各テーブル（メール送信要求テーブル、メール送信先テーブル、メール添付ファイルテーブル）</span></a> に
+<p>上述の通り、メール送信に関してリクエスト単体テストで確認すべきことは、メール送信要求が <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>各テーブル（メール送信要求テーブル、メール送信先テーブル、メール添付ファイルテーブル）</span></a> に
 正しく格納されることである。</p>
 <p>そのため、他の単体テストの実施方法と同様に、期待する上記3テーブルの状態をExcelシートに記述すればよい。</p>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -346,7 +351,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -367,10 +372,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

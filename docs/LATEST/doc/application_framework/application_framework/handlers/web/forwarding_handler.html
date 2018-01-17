@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.5. 内部フォーワードハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.2.5. 内部フォーワードハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/forwarding_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.6. リソースマッピングハンドラ" href="resource_mapping.html"/>
         <link rel="prev" title="6.2.4. HTTPエラー制御ハンドラ" href="HttpErrorHandler.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -324,7 +326,7 @@
 <span id="id1"></span><h1>6.2.5. 内部フォーワードハンドラ<a class="headerlink" href="#forwarding-handler" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>このハンドラは、後続ハンドラからのレスポンス中のコンテンツが、内部フォーワードを示している場合に、指定されたリクエストパスで後続ハンドラを再実行する。</p>
 <p>内部フォーワードは、遷移先の画面が単純な画面表示ではなく、チェックボックスやドロップダウンリストなどの選択肢をサーバサイドで取得する場合に使用する。
-例えば、入力チェックでエラーとなった際に単純に入力画面を再表示するだけでなく、入力項目の選択肢をサーバサイドで取得する場合が該当する。詳細は、 <a class="reference internal" href="../web_interceptor/on_error.html#on-error-forward"><span class="std std-ref">エラー時の遷移先画面に表示するデータを取得する</span></a> を参照。</p>
+例えば、入力チェックでエラーとなった際に単純に入力画面を再表示するだけでなく、入力項目の選択肢をサーバサイドで取得する場合が該当する。詳細は、 <a class="reference internal" href="../web_interceptor/on_error.html#on-error-forward"><span>エラー時の遷移先画面に表示するデータを取得する</span></a> を参照。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li>内部フォーワード時の後続ハンドラの再実行</li>
@@ -349,9 +351,9 @@
 <div class="section" id="id4">
 <h2>6.2.5.3. 制約<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> より後ろに配置すること</dt>
-<dd><a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span class="std std-ref">セッション変数保存ハンドラ</span></a> より後ろに配置すべき理由は、
-<a class="reference internal" href="SessionStoreHandler.html#session-store-handler-error-forward-path"><span class="std std-ref">改竄エラー時の遷移先を設定する</span></a> を参照</dd>
+<dt><a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より後ろに配置すること</dt>
+<dd><a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より後ろに配置すべき理由は、
+<a class="reference internal" href="SessionStoreHandler.html#session-store-handler-error-forward-path"><span>改竄エラー時の遷移先を設定する</span></a> を参照</dd>
 </dl>
 </div>
 <div class="section" id="id5">
@@ -402,6 +404,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -409,7 +414,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -430,10 +435,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.3.1. データベースアクセス(JDBCラッパー) &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.3.1. データベースアクセス(JDBCラッパー) &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/database.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.3. データベースアクセス" href="../database_management.html"/>
         <link rel="next" title="7.3.2. ユニバーサルDAO" href="universal_dao.html"/>
         <link rel="prev" title="7.3. データベースアクセス" href="../database_management.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -343,26 +345,27 @@
 <li><a class="reference internal" href="#id10" id="id42">ストアードプロシージャを実行する</a></li>
 <li><a class="reference internal" href="#database-paging" id="id43">検索範囲を指定してSQLを実行する</a></li>
 <li><a class="reference internal" href="#database-input-bean" id="id44">Beanオブジェクトを入力としてSQLを実行する</a></li>
-<li><a class="reference internal" href="#database-common-bean" id="id45">SQL実行時に共通的な値を自動的に設定したい</a></li>
-<li><a class="reference internal" href="#database-like-condition" id="id46">like検索を行う</a></li>
-<li><a class="reference internal" href="#database-def-escape-char" id="id47">like検索時のエスケープ文字及びエスケープ対象文字を定義する</a></li>
-<li><a class="reference internal" href="#database-use-variable-condition" id="id48">可変条件を持つSQLを実行する</a></li>
-<li><a class="reference internal" href="#insql" id="id49">in句の条件数が可変となるSQLを実行する</a></li>
-<li><a class="reference internal" href="#order-bysql" id="id50">order byのソート項目を実行時に動的に切り替えてSQLを実行する</a></li>
-<li><a class="reference internal" href="#database-binary-column" id="id51">バイナリ型のカラムにアクセスする</a></li>
-<li><a class="reference internal" href="#database-attribute-converter" id="id52">データベースアクセス時に型変換を行う</a></li>
-<li><a class="reference internal" href="#id20" id="id53">データベースアクセス時に発生する例外の種類</a></li>
-<li><a class="reference internal" href="#database-duplicated-error" id="id54">一意制約違反をハンドリングして処理を行う</a></li>
-<li><a class="reference internal" href="#id22" id="id55">処理が長いトランザクションはエラーとして処理を中断させる</a></li>
-<li><a class="reference internal" href="#database-new-transaction" id="id56">現在のトランザクションとは異なるトランザクションでSQLを実行する</a></li>
-<li><a class="reference internal" href="#database-use-cache" id="id57">検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</a></li>
-<li><a class="reference internal" href="#java-sql-connection" id="id58"><cite>java.sql.Connection</cite> を使って処理を行う</a></li>
+<li><a class="reference internal" href="#id13" id="id45">型を変換する</a></li>
+<li><a class="reference internal" href="#database-common-bean" id="id46">SQL実行時に共通的な値を自動的に設定したい</a></li>
+<li><a class="reference internal" href="#database-like-condition" id="id47">like検索を行う</a></li>
+<li><a class="reference internal" href="#database-def-escape-char" id="id48">like検索時のエスケープ文字及びエスケープ対象文字を定義する</a></li>
+<li><a class="reference internal" href="#database-use-variable-condition" id="id49">可変条件を持つSQLを実行する</a></li>
+<li><a class="reference internal" href="#insql" id="id50">in句の条件数が可変となるSQLを実行する</a></li>
+<li><a class="reference internal" href="#order-bysql" id="id51">order byのソート項目を実行時に動的に切り替えてSQLを実行する</a></li>
+<li><a class="reference internal" href="#database-binary-column" id="id52">バイナリ型のカラムにアクセスする</a></li>
+<li><a class="reference internal" href="#clob" id="id53">桁数の大きい文字列型のカラム(例えばCLOB)にアクセスする</a></li>
+<li><a class="reference internal" href="#id20" id="id54">データベースアクセス時に発生する例外の種類</a></li>
+<li><a class="reference internal" href="#database-duplicated-error" id="id55">一意制約違反をハンドリングして処理を行う</a></li>
+<li><a class="reference internal" href="#id22" id="id56">処理が長いトランザクションはエラーとして処理を中断させる</a></li>
+<li><a class="reference internal" href="#database-new-transaction" id="id57">現在のトランザクションとは異なるトランザクションでSQLを実行する</a></li>
+<li><a class="reference internal" href="#database-use-cache" id="id58">検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</a></li>
+<li><a class="reference internal" href="#java-sql-connection" id="id59"><cite>java.sql.Connection</cite> を使って処理を行う</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id25" id="id59">拡張例</a><ul>
-<li><a class="reference internal" href="#database-add-connection-factory" id="id60">データベースへの接続法を追加する</a></li>
-<li><a class="reference internal" href="#database-add-dialect" id="id61">ダイアレクトを追加する</a></li>
-<li><a class="reference internal" href="#database-change-exception" id="id62">データベースアクセス時の例外クラスを切り替える</a></li>
+<li><a class="reference internal" href="#id25" id="id60">拡張例</a><ul>
+<li><a class="reference internal" href="#database-add-connection-factory" id="id61">データベースへの接続法を追加する</a></li>
+<li><a class="reference internal" href="#database-add-dialect" id="id62">ダイアレクトを追加する</a></li>
+<li><a class="reference internal" href="#database-change-exception" id="id63">データベースアクセス時の例外クラスを切り替える</a></li>
 </ul>
 </li>
 </ul>
@@ -370,8 +373,8 @@
 <p>JDBCを使用してデータベースに対してSQL文を実行する機能を提供する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p><a class="reference internal" href="../database_management.html#database-management"><span class="std std-ref">データベースアクセス</span></a> で説明したように、SQLの実行に関しては <a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> を使用することを推奨する。</p>
-<p class="last">なお、<a class="reference internal" href="universal_dao.html#universal-dao"><span class="std std-ref">ユニバーサルDAO</span></a> 内部では、この機能のAPIを使用してデータベースアクセスを行っているため、
+<p><a class="reference internal" href="../database_management.html#database-management"><span>データベースアクセス</span></a> で説明したように、SQLの実行に関しては <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用することを推奨する。</p>
+<p class="last">なお、<a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> 内部では、この機能のAPIを使用してデータベースアクセスを行っているため、
 この機能を使用するための設定は必ず必要になる。</p>
 </div>
 <div class="admonition important">
@@ -396,12 +399,8 @@
 <li>検索クエリーを範囲指定（ページング用）SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertPaginationSql-java.lang.String-nablarch.core.db.statement.SelectOption-" title="nablarch.core.db.dialect.Dialect.convertPaginationSql(java.lang.String-nablarch.core.db.statement.SelectOption)">convertPaginationSql</a> )</li>
 <li>検索クエリーを件数取得SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertCountSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.convertCountSql(java.lang.String)">convertCountSql</a> )</li>
 <li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">Connection</a> がデータベースに接続されているかチェックを行うSQLを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#getPingSql--" title="nablarch.core.db.dialect.Dialect.getPingSql()">getPingSql</a> )</li>
-<li>Javaオブジェクトをデータベースに出力する値に変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertToDatabase-java.lang.Object-int-" title="nablarch.core.db.dialect.Dialect.convertToDatabase(java.lang.Object-int)">convertToDatabase</a>)。
-詳細は、 <a class="reference internal" href="#database-attribute-converter"><span class="std std-ref">データベースアクセス時に型変換を行う</span></a> を参照。</li>
-<li>データベースから取得した値をJavaオブジェクトに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertFromDatabase-java.lang.Object-java.lang.Class-" title="nablarch.core.db.dialect.Dialect.convertFromDatabase(java.lang.Object-java.lang.Class)">convertFromDatabase</a>)。
-詳細は、 <a class="reference internal" href="#database-attribute-converter"><span class="std std-ref">データベースアクセス時に型変換を行う</span></a> を参照。</li>
 </ul>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> の設定方法は、 <a class="reference internal" href="#database-use-dialect"><span class="std std-ref">データベース製品に対応したダイアレクトを使用する</span></a> を参照。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> の設定方法は、 <a class="reference internal" href="#database-use-dialect"><span>データベース製品に対応したダイアレクトを使用する</span></a> を参照。</p>
 </div>
 <div class="section" id="sqlsql">
 <span id="database-sql-file"></span><h3><a class="toc-backref" href="#id31">7.3.1.1.2. SQLはロジックではなくSQLファイルに記述する</a><a class="headerlink" href="#sqlsql" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -414,19 +413,19 @@
 ただし、安易に使用するとSQLインジェクションの脆弱性が埋め込まれる可能性があるため注意すること。
 また、SQLインジェクションの脆弱性がないことなど、テストやレビューで担保出来ることが前提となる。</p>
 </div>
-<p>詳細は、 <a class="reference internal" href="#database-use-sql-file"><span class="std std-ref">SQLをファイルで管理する</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</p>
 </div>
 <div class="section" id="beansql">
 <span id="database-bean"></span><h3><a class="toc-backref" href="#id32">7.3.1.1.3. Beanのプロパティ値をSQLのバインド変数に埋め込むことができる</a><a class="headerlink" href="#beansql" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Beanのプロパティに設定した値を <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/PreparedStatement.html" title="java.sql.PreparedStatement">java.sql.PreparedStatement</a> のINパラメータに自動的にバインドする機能を提供する。</p>
 <p>この機能を使用することで、  <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/PreparedStatement.html" title="java.sql.PreparedStatement">java.sql.PreparedStatement</a> の値設定用メソッドを複数回呼び出す必要がなくなり、
 INパラメータが増減した際のインデクス修正などが不要となる。</p>
-<p>詳細は <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を参照。</p>
+<p>詳細は <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を参照。</p>
 </div>
 <div class="section" id="like">
 <h3><a class="toc-backref" href="#id33">7.3.1.1.4. like検索を容易に実装できる</a><a class="headerlink" href="#like" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>like検索に対するescape句の挿入とワイルドカード文字のエスケープ処理を自動で行う機能を提供する。</p>
-<p>詳細は <a class="reference internal" href="#database-like-condition"><span class="std std-ref">like検索を行う</span></a> を参照。</p>
+<p>詳細は <a class="reference internal" href="#database-like-condition"><span>like検索を行う</span></a> を参照。</p>
 </div>
 <div class="section" id="database-variable-condition">
 <span id="id4"></span><h3><a class="toc-backref" href="#id34">7.3.1.1.5. 実行時のBeanオブジェクトの状態を元にSQL文を動的に構築できる</a><a class="headerlink" href="#database-variable-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -434,16 +433,16 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <p>例えば、条件やin句の動的な構築などが行える。</p>
 <p>詳細は以下を参照。</p>
 <ul class="simple">
-<li><a class="reference internal" href="#database-use-variable-condition"><span class="std std-ref">可変条件を持つSQLを実行する</span></a></li>
-<li><a class="reference internal" href="#database-in-condition"><span class="std std-ref">in句の条件数が可変となるSQLを実行する</span></a></li>
-<li><a class="reference internal" href="#database-make-order-by"><span class="std std-ref">order byのソート項目を実行時に動的に切り替えてSQLを実行する</span></a></li>
+<li><a class="reference internal" href="#database-use-variable-condition"><span>可変条件を持つSQLを実行する</span></a></li>
+<li><a class="reference internal" href="#database-in-condition"><span>in句の条件数が可変となるSQLを実行する</span></a></li>
+<li><a class="reference internal" href="#database-make-order-by"><span>order byのソート項目を実行時に動的に切り替えてSQLを実行する</span></a></li>
 </ul>
 </div>
 <div class="section" id="sql">
 <h3><a class="toc-backref" href="#id35">7.3.1.1.6. SQLのクエリ結果をキャッシュできる</a><a class="headerlink" href="#sql" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>実行したSQLと外部から取得した条件(バインド変数に設定した値)が等価である場合に、
 データベースにアクセスせずにキャッシュから検索結果を返却する機能を提供する。</p>
-<p>詳細は、 <a class="reference internal" href="#database-use-cache"><span class="std std-ref">検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="#database-use-cache"><span>検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -465,7 +464,7 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <li>アプリケーションサーバなどに登録されたデータソースを使ったデータベース接続の生成</li>
 </ul>
 <p>上記以外の接続方法を使用したい場合(例えばOSSのコネクションプーリングライブラリを使う場合など)は、
-<a class="reference internal" href="#database-add-connection-factory"><span class="std std-ref">データベースへの接続法を追加する</span></a> を参照し、データベース接続を行う実装を追加すること。</p>
+<a class="reference internal" href="#database-add-connection-factory"><span>データベースへの接続法を追加する</span></a> を参照し、データベース接続を行う実装を追加すること。</p>
 <dl class="docutils">
 <dt>接続設定例</dt>
 <dd><dl class="first docutils">
@@ -492,9 +491,9 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>上記に設定したクラスを直接使用することは基本的にない。
-データベースアクセスを必要とする場合には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> を使用すること。</p>
+データベースアクセスを必要とする場合には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> を使用すること。</p>
 <p class="last">なお、データベースを利用する場合はトランザクション管理も必要となる。
-トランザクション管理については、 <a class="reference internal" href="../transaction.html#transaction"><span class="std std-ref">トランザクション管理</span></a> を参照。</p>
+トランザクション管理については、 <a class="reference internal" href="../transaction.html#transaction"><span>トランザクション管理</span></a> を参照。</p>
 </div>
 </div>
 <div class="section" id="database-use-dialect">
@@ -505,7 +504,7 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <p>設定を行わなかった場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> が利用される。
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> は原則全ての機能が無効化されるので、必ずデータベース製品に対応したダイアレクトを設定すること。</p>
 <p class="last">なお、使用するデータベース製品に対応するダイアレクトが存在しない場合や、
-新しいバージョンの新機能を使いたい場合には、 <a class="reference internal" href="#database-add-dialect"><span class="std std-ref">ダイアレクトを追加する</span></a> を参照し新しいダイアレクトを作成すること。</p>
+新しいバージョンの新機能を使いたい場合には、 <a class="reference internal" href="#database-add-dialect"><span>ダイアレクトを追加する</span></a> を参照し新しいダイアレクトを作成すること。</p>
 </div>
 <dl class="docutils">
 <dt>コンポーネント設定例</dt>
@@ -530,9 +529,9 @@ INパラメータが増減した際のインデクス修正などが不要とな
 </div>
 <div class="section" id="database-use-sql-file">
 <span id="id9"></span><h3><a class="toc-backref" href="#id40">7.3.1.3.3. SQLをファイルで管理する</a><a class="headerlink" href="#database-use-sql-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>この機能では、 <a class="reference internal" href="#database-sql-file"><span class="std std-ref">SQLはロジックではなくSQLファイルに記述する</span></a> で説明したように、SQLはSQLファイルで管理する。
+<p>この機能では、 <a class="reference internal" href="#database-sql-file"><span>SQLはロジックではなくSQLファイルに記述する</span></a> で説明したように、SQLはSQLファイルで管理する。
 SQLファイルを扱うためには、コンポーネント設定ファイルへの設定が必要となる。
-詳細は、 <a class="reference internal" href="#database-load-sql"><span class="std std-ref">SQLファイルからSQLをロードするための設定</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="#database-load-sql"><span>SQLファイルからSQLをロードするための設定</span></a> を参照。</p>
 <p>SQLファイルは以下のルールで作成する。</p>
 <ul class="simple">
 <li>クラスパス配下に作成する。</li>
@@ -589,7 +588,7 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 </tr>
 </tbody>
 </table>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <dl class="last docutils">
 <dt>設定例</dt>
@@ -611,7 +610,7 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 <div class="section" id="sqlidsql">
 <span id="database-execute-sqlid"></span><h3><a class="toc-backref" href="#id41">7.3.1.3.4. SQLIDを指定してSQLを実行する</a><a class="headerlink" href="#sqlidsql" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>SQLIDを元にSQLを実行するには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得したデータベース接続を使用する。
-なお、  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span class="std std-ref">データベース接続管理ハンドラ</span></a> でデータベース接続を登録する必要がある。</p>
+なお、  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> でデータベース接続を登録する必要がある。</p>
 <p>SQLIDと実際に実行されるSQLとのマッピングルールは以下のとおり。</p>
 <ul class="simple">
 <li>SQLIDの <code class="docutils literal"><span class="pre">#</span></code> までがSQLファイル名となる。</li>
@@ -648,7 +647,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 <p>ストアードプロシージャを実行する場合も、基本的にはSQLを実行する場合と同じように実装する。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>ストアードプロシージャの実行では、 <a class="reference internal" href="#database-bean"><span class="std std-ref">Beanのプロパティ値をSQLのバインド変数に埋め込むことができる</span></a> はサポートしない。
+<p>ストアードプロシージャの実行では、 <a class="reference internal" href="#database-bean"><span>Beanのプロパティ値をSQLのバインド変数に埋め込むことができる</span></a> はサポートしない。
 これは、ストアードプロシージャを使用した場合、ロジックがJavaとストアードプロシージャに分散してしまい、
 保守性を著しく低下させるため原則使用すべきではないとしているためである。</p>
 <p class="last">ただし、既存の資産などでどうしてもストアードプロシージャを使用しなければならないケースが想定されるため、
@@ -707,12 +706,12 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">検索範囲が指定された場合、検索用のSQLを取得範囲指定のSQLに書き換えてから実行を行う。
-なお、取得範囲指定のSQLは <a class="reference internal" href="#database-dialect"><span class="std std-ref">ダイアレクト</span></a> により行われる。</p>
+なお、取得範囲指定のSQLは <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> により行われる。</p>
 </div>
 </div>
 <div class="section" id="database-input-bean">
 <span id="id12"></span><h3><a class="toc-backref" href="#id44">7.3.1.3.7. Beanオブジェクトを入力としてSQLを実行する</a><a class="headerlink" href="#database-input-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="#database-bean"><span class="std std-ref">Beanのプロパティ値をSQLのバインド変数に埋め込むことができる</span></a> で説明したように、Beanオブジェクトを入力としてSQLを実行することができる。</p>
+<p><a class="reference internal" href="#database-bean"><span>Beanのプロパティ値をSQLのバインド変数に埋め込むことができる</span></a> で説明したように、Beanオブジェクトを入力としてSQLを実行することができる。</p>
 <p>Beanオブジェクトを入力としてSQLを実行する場合は、SQLのINパラメータには名前付きバインド変数を用いる。
 名前付きパラメータには、 <code class="docutils literal"><span class="pre">:</span></code> に続けて入力として受け取るBeanのプロパティ名を記述する。</p>
 <div class="admonition important">
@@ -738,7 +737,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 <dd><p class="first">Beanオブジェクトに必要な値を設定し、Beanオブジェクトを入力としてSQLを実行する機能を呼び出す。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
-<li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span class="std std-ref">SQLIDを指定してSQLを実行する</span></a> を参照</li>
+<li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span>SQLIDを指定してSQLを実行する</span></a> を参照</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// beanを生成しプロパティに値を設定</span>
 <span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
@@ -766,7 +765,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 Mapを指定した場合は、Mapのキー値と一致するINパラメータに対して、Mapの値が設定される。</p>
 <p>なお、Beanを指定した場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用して、Mapに変換後に処理を行う。
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で対応していない型がBeanのプロパティに存在した場合、そのプロパティについてはこの機能で使用することが出来ない。</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でMapにコピーできる型を増やしたい場合には、 <a class="reference internal" href="../utility.html#utility-conversion"><span class="std std-ref">BeanUtilの型変換ルール</span></a> を参照し対応すること。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でMapにコピーできる型を増やしたい場合には、 <a class="reference internal" href="../bean_util.html#utility-conversion"><span>BeanUtilの型変換ルール</span></a> を参照し対応すること。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
@@ -780,12 +779,23 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 データベース機能のみフィールドアクセスに変更した場合、プログラマはフィールドアクセスとプロパティアクセスの両方を意識する必要があり、生産性の低下や不具合の原因ともなる。</p>
 </div>
 </div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id45">7.3.1.3.8. 型を変換する</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データベースアクセス(JDBCラッパー)は、データベースとの入出力に使用する変数の型変換をJDBCドライバに委譲する。
+よって、入出力に使用する変数の型は、データベースの型及び使用するJDBCドライバの仕様に応じた定義を行う必要がある。</p>
+<p>任意の型変換が必要な場合は、データベースとの入出力に使用する変数に対して、アプリケーション側で型変換を行うこととなる。</p>
+<ul class="simple">
+<li>入力にBeanを使用する場合はBeanのプロパティに値を設定する際、出力にBeanを使用する場合はプロパティから値を取り出した後に型変換を行う。</li>
+<li>入力にMapを使用する場合はMapに値を設定する際、出力にMapを使用する場合は値を取り出した後に型変換を行う。</li>
+<li>インデックスを指定してバインド変数を設定する際に、バインド変数に設定するオブジェクトを適切な型に変換する。 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> から値を取得する際は、取得後に型変換を行う。</li>
+</ul>
+</div>
 <div class="section" id="database-common-bean">
-<span id="id13"></span><h3><a class="toc-backref" href="#id45">7.3.1.3.8. SQL実行時に共通的な値を自動的に設定したい</a><a class="headerlink" href="#database-common-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id14"></span><h3><a class="toc-backref" href="#id46">7.3.1.3.9. SQL実行時に共通的な値を自動的に設定したい</a><a class="headerlink" href="#database-common-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データ登録時や更新時に毎回設定する値をSQLの実行直前に自動的に設定する機能を提供する。
 例えば、登録日時や更新日時といった項目に対して、この機能が使用できる。</p>
 <p>この機能は、プロパティに設定されたアノテーションを元に、値の自動設定を行うため、
-<a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を使用した場合のみ有効となる。</p>
+<a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を使用した場合のみ有効となる。</p>
 <p>以下に使用例を示す。</p>
 <dl class="docutils">
 <dt>コンポーネント設定ファイル</dt>
@@ -793,7 +803,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <p>以下の例のように、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setUpdatePreHookObjectHandlerList-java.util.List-" title="nablarch.core.db.statement.BasicStatementFactory.setUpdatePreHookObjectHandlerList(java.util.List)">BasicStatementFactory#updatePreHookObjectHandlerList</a> に対して、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/AutoPropertyHandler.html" title="nablarch.core.db.statement.AutoPropertyHandler">AutoPropertyHandler</a> 実装クラスをlistで設定する。
 なお、標準で提供される実装クラスは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> パッケージ配下に配置されている。</p>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span>
     <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
@@ -830,7 +840,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </div>
 </dd>
 <dt>SQL</dt>
-<dd><p class="first">SQLは、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> と同じように作成する。</p>
+<dd><p class="first">SQLは、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> と同じように作成する。</p>
 <div class="last highlight-sql"><div class="highlight"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="k">user</span> <span class="p">(</span>
   <span class="n">id</span><span class="p">,</span>
   <span class="n">createdAt</span><span class="p">,</span>
@@ -844,7 +854,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </div>
 </dd>
 <dt>実装例</dt>
-<dd><p class="first">基本的には、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> と同じように実装する。
+<dd><p class="first">基本的には、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> と同じように実装する。
 値が自動設定される項目については、ロジックでBeanに対して値を設定する必要が無い。
 なお、値を明示的に設定したとしても、SQL実行直前に値の自動設定機能により上書きされる。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// beanを生成しプロパティに値を設定</span>
@@ -868,8 +878,8 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </dl>
 </div>
 <div class="section" id="database-like-condition">
-<span id="id14"></span><h3><a class="toc-backref" href="#id46">7.3.1.3.9. like検索を行う</a><a class="headerlink" href="#database-like-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>like検索は、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、SQLにはlike検索用の条件を以下のルールで記述する。</p>
+<span id="id15"></span><h3><a class="toc-backref" href="#id47">7.3.1.3.10. like検索を行う</a><a class="headerlink" href="#database-like-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>like検索は、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、SQLにはlike検索用の条件を以下のルールで記述する。</p>
 <dl class="docutils">
 <dt>前方一致の場合</dt>
 <dd><p class="first">名前付きパラメータの末尾に <code class="docutils literal"><span class="pre">%</span></code> を記述する。</p>
@@ -884,7 +894,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <p class="last">例: <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">:%userName%</span></code></p>
 </dd>
 </dl>
-<p>like検索時のエスケープ文字及びエスケープ対象文字の定義は、 <a class="reference internal" href="#database-def-escape-char"><span class="std std-ref">like検索時のエスケープ文字及びエスケープ対象文字を定義する</span></a> を参照。</p>
+<p>like検索時のエスケープ文字及びエスケープ対象文字の定義は、 <a class="reference internal" href="#database-def-escape-char"><span>like検索時のエスケープ文字及びエスケープ対象文字を定義する</span></a> を参照。</p>
 <p>以下に実装例を示す。</p>
 <dl class="docutils">
 <dt>SQL</dt>
@@ -896,11 +906,11 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </div>
 </dd>
 <dt>実装例</dt>
-<dd><p class="first"><a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> と同じようにSQLを実行するだけで、like条件用に値の書き換えやエスケープ処理が行われる。
+<dd><p class="first"><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> と同じようにSQLを実行するだけで、like条件用に値の書き換えやエスケープ処理が行われる。
 この例の場合、実際の条件は <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">'な%'</span> <span class="pre">escape</span> <span class="pre">'\'</span></code> となる。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
-<li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span class="std std-ref">SQLIDを指定してSQLを実行する</span></a> を参照</li>
+<li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span>SQLIDを指定してSQLを実行する</span></a> を参照</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// beanを生成しプロパティに値を設定</span>
 <span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
@@ -922,7 +932,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </dl>
 </div>
 <div class="section" id="database-def-escape-char">
-<span id="id15"></span><h3><a class="toc-backref" href="#id47">7.3.1.3.10. like検索時のエスケープ文字及びエスケープ対象文字を定義する</a><a class="headerlink" href="#database-def-escape-char" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id16"></span><h3><a class="toc-backref" href="#id48">7.3.1.3.11. like検索時のエスケープ文字及びエスケープ対象文字を定義する</a><a class="headerlink" href="#database-def-escape-char" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>エスケープ文字及びエスケープ対象文字の定義は、コンポーネント設定ファイルに行う。
 なお、エスケープ文字は自動的対象にエスケープとなるため、明示的にエスケープ対象文字に設定する必要はない。</p>
 <p>設定を省略した場合は、以下の値を使用する。</p>
@@ -939,7 +949,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <dl class="docutils">
 <dt>コンポーネント設定例</dt>
 <dd><p class="first">この例ではエスケープ文字に <code class="docutils literal"><span class="pre">\</span></code> を設定し、エスケープ文字には <code class="docutils literal"><span class="pre">%</span></code> 、 <code class="docutils literal"><span class="pre">％</span></code> 、 <code class="docutils literal"><span class="pre">_</span></code> 、 <code class="docutils literal"><span class="pre">＿</span></code> の4文字を設定している。</p>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- エスケープ文字の定義 --&gt;</span>
@@ -954,8 +964,8 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </dl>
 </div>
 <div class="section" id="database-use-variable-condition">
-<span id="id16"></span><h3><a class="toc-backref" href="#id48">7.3.1.3.11. 可変条件を持つSQLを実行する</a><a class="headerlink" href="#database-use-variable-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>可変条件を持つSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
+<span id="id17"></span><h3><a class="toc-backref" href="#id49">7.3.1.3.12. 可変条件を持つSQLを実行する</a><a class="headerlink" href="#database-use-variable-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>可変条件を持つSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
 <dl class="docutils">
 <dt>可変条件の記述ルール</dt>
 <dd><p class="first">可変条件は、 <code class="docutils literal"><span class="pre">$if(プロパティ名)</span> <span class="pre">{SQL文の条件}</span></code> で記述する。
@@ -1019,13 +1029,13 @@ where
 </dl>
 </div>
 <div class="section" id="insql">
-<span id="database-in-condition"></span><h3><a class="toc-backref" href="#id49">7.3.1.3.12. in句の条件数が可変となるSQLを実行する</a><a class="headerlink" href="#insql" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>in句の条件数が可変となるSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
+<span id="database-in-condition"></span><h3><a class="toc-backref" href="#id50">7.3.1.3.13. in句の条件数が可変となるSQLを実行する</a><a class="headerlink" href="#insql" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>in句の条件数が可変となるSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
 <dl class="docutils">
 <dt>in句の記述ルール</dt>
 <dd><p class="first">条件の名前付きパラメータの末尾に <code class="docutils literal"><span class="pre">[]</span></code> を付加する。
 また名前付きパラメータに対応するBeanオブジェクトのプロパティの型は、
-配列か <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> (サブタイプ含む) <a class="footnote-reference" href="#collection" id="id17">[1]</a> とする必要がある。</p>
+配列か <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> (サブタイプ含む) <a class="footnote-reference" href="#collection" id="id18">[1]</a> とする必要がある。</p>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p>in句の条件となるプロパティ値がnullやサイズ0となる場合には、該当条件は必ず可変条件として定義すること。
@@ -1077,18 +1087,18 @@ where
 <table class="docutils footnote" frame="void" id="collection" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[1]</a></td><td><p class="first"><a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> に記載がある通り、プロパティの値は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用してMapに変換してから使用する。
+<tr><td class="label"><a class="fn-backref" href="#id18">[1]</a></td><td><p class="first"><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> に記載がある通り、プロパティの値は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用してMapに変換してから使用する。
 このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でサポートされていない型でプロパティが宣言されていた場合、
 in句に条件を設定できないため注意すること。</p>
 <p class="last">なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で変換対象の型を追加する方法は、
-<a class="reference internal" href="../utility.html#utility-conversion-add-rule"><span class="std std-ref">型変換ルールを追加する</span></a> を参照。</p>
+<a class="reference internal" href="../bean_util.html#utility-conversion-add-rule"><span>型変換ルールを追加する</span></a> を参照。</p>
 </td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="order-bysql">
-<span id="database-make-order-by"></span><h3><a class="toc-backref" href="#id50">7.3.1.3.13. order byのソート項目を実行時に動的に切り替えてSQLを実行する</a><a class="headerlink" href="#order-bysql" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>order byのソート項目が可変となるSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
+<span id="database-make-order-by"></span><h3><a class="toc-backref" href="#id51">7.3.1.3.14. order byのソート項目を実行時に動的に切り替えてSQLを実行する</a><a class="headerlink" href="#order-bysql" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>order byのソート項目が可変となるSQLの実行は、 <a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> を使用し、以下の記法を用いて条件を記述する。</p>
 <dl class="docutils">
 <dt>order by句の記述ルール</dt>
 <dd><p class="first">ソート項目を可変にする場合は、order by句の代わりに <code class="docutils literal"><span class="pre">$sort</span></code> を使用し、以下のように記述する。</p>
@@ -1155,7 +1165,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dl>
 </div>
 <div class="section" id="database-binary-column">
-<span id="id18"></span><h3><a class="toc-backref" href="#id51">7.3.1.3.14. バイナリ型のカラムにアクセスする</a><a class="headerlink" href="#database-binary-column" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id19"></span><h3><a class="toc-backref" href="#id52">7.3.1.3.15. バイナリ型のカラムにアクセスする</a><a class="headerlink" href="#database-binary-column" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>blob(データベース製品によりバイナリ型の型は異なる)などのバイナリ型のカラムへのアクセス方法について説明する。</p>
 <dl class="docutils">
 <dt>バイナリ型の値を取得する</dt>
@@ -1208,66 +1218,61 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dd>
 </dl>
 </div>
-<div class="section" id="database-attribute-converter">
-<span id="id19"></span><h3><a class="toc-backref" href="#id52">7.3.1.3.15. データベースアクセス時に型変換を行う</a><a class="headerlink" href="#database-attribute-converter" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>データベースへの値の出力時(更新時や検索条件)とデータベースから取得した値の型変換機能を提供する。</p>
+<div class="section" id="clob">
+<span id="database-clob-column"></span><h3><a class="toc-backref" href="#id53">7.3.1.3.16. 桁数の大きい文字列型のカラム(例えばCLOB)にアクセスする</a><a class="headerlink" href="#clob" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>CLOBのような大きいサイズの文字列型カラムへのアクセス方法について解説する。</p>
 <dl class="docutils">
-<dt>型変換機能が使用される機能</dt>
-<dd><dl class="first last docutils">
-<dt>データベースへの出力時</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setObject-int-java.lang.Object-" title="nablarch.core.db.statement.SqlPStatement.setObject(int-java.lang.Object)">setObject(int, java.lang.Object)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlPStatement.html#setObject-int-java.lang.Object-int-" title="nablarch.core.db.statement.BasicSqlPStatement.setObject(int-java.lang.Object-int)">setObject(int, java.lang.Object, int)</a></li>
-<li><a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanを入力としてSQLを実行する場合</span></a></li>
-</ul>
-</dd>
-<dt>データベースから取得時</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> の各取得メソッド</li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt>型変換ルール</dt>
-<dd><p class="first">本機能が提供する型変換ルールは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/converter/package-summary.html" title="nablarch.core.db.dialect.converter.package-summary">converter</a> 配下の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/converter/AttributeConverter.html" title="nablarch.core.db.dialect.converter.AttributeConverter">AttributeConverter</a> 実装クラスを参照。</p>
-<p>基本的には、以下のルールにて変換処理が行われる。</p>
-<dl class="last docutils">
-<dt>データベースへの出力時</dt>
-<dd><p class="first">出力対象のJavaの型をそのまま出力時の型として使用する。ただし、JDBCドライバが対応していない型の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/converter/AttributeConverter.html" title="nablarch.core.db.dialect.converter.AttributeConverter">AttributeConverter</a> の実装クラスにてJDBCドライバが対応している型に変換する。</p>
-<p class="last">変換対象の型をアプリケーションから指定したい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlPStatement.html#setObject-int-java.lang.Object-int-" title="nablarch.core.db.statement.BasicSqlPStatement.setObject(int-java.lang.Object-int)">setObject(int, java.lang.Object, int)</a> を使用する。
-3番目の引数のintに、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Types.html" title="java.sql.Types">データベースの型</a> を指定する。</p>
-</dd>
-<dt>データベースから取得時</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> のgetメソッドの戻り値の型に変換する。</li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt>型変換ルールの追加や変更をする</dt>
-<dd><p class="first">JDBCドライバが対応していないJavaの型を扱いたい場合は、型変換ルールを追加することで対応する。</p>
-<p>以下に手順を示す。</p>
-<ol class="arabic simple">
-<li>型変換ルールを生成する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/AttributeConverterFactory.html" title="nablarch.core.db.dialect.AttributeConverterFactory">AttributeConverterFactory</a> の実装クラスを作成する。</li>
-<li>作成した、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/AttributeConverterFactory.html" title="nablarch.core.db.dialect.AttributeConverterFactory">AttributeConverterFactory</a> の実装クラスを <code class="docutils literal"><span class="pre">Dialect</span></code> に設定する。</li>
-</ol>
-<blockquote class="last">
-<div><p>以下に例を示す。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- プロジェクトで使用するデータベースに対応したDialectを定義する --&gt;</span>
-<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;dialect&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.dialect.OracleDialect&quot;</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- attributeConverterFactoryプロパティに作成した、AttributeConverterFactoryの実装クラスを設定する --&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;attributeConverterFactory&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleAttributeConverterFactory&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
+<dt>CLOB型の値を取得する</dt>
+<dd><p class="first">CLOB型の値を取得する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">検索結果オブジェクト</a> から文字列型として値を取得する。</p>
+<p>以下に例を示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+<span class="n">SqlRow</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// StringとしてCLOBの値を取得する。</span>
+<span class="n">String</span> <span class="n">mailBody</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;mailBody&quot;</span><span class="o">);</span>
 </pre></div>
 </div>
-</div></blockquote>
+<div class="last admonition important">
+<p class="first admonition-title">重要</p>
+<p>上記実装例の場合、カラムの内容が全てJavaのヒープ上に展開される。
+このため、非常に大きいサイズのデータを読み込んだ場合、ヒープ領域を圧迫し、システムダウンなどの障害の原因となる。</p>
+<p>このため、大量データを読み込む場合には、以下のように <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Clob.html" title="java.sql.Clob">Clob</a> オブジェクトを使用して、
+ヒープを大量に消費しないようにすること。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="c1">// Clogとしてデータを取得する</span>
+<span class="n">Clob</span> <span class="n">mailBody</span> <span class="o">=</span> <span class="o">(</span><span class="n">Clob</span><span class="o">)</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;mailBody&quot;</span><span class="o">);</span>
+
+<span class="k">try</span> <span class="o">(</span><span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">mailBody</span><span class="o">.</span><span class="na">getCharacterStream</span><span class="o">())</span> <span class="o">{</span>
+  <span class="c1">// Readerからデータを順次読み込み処理を行う。</span>
+  <span class="c1">// 読み込んだデータをヒープ上に全て保持した場合は、ヒープを圧迫するので注意すること。</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt>CLOB型に値を登録(更新)する</dt>
+<dd><p class="first">サイズが小さい値を登録更新する場合は、String型の値を <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setString-int-java.lang.String-" title="nablarch.core.db.statement.SqlPStatement.setString(int-java.lang.String)">SqlPStatement#setString</a> を使用して設定する。</p>
+<p>以下に例を示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">statement</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;値&quot;</span><span class="o">);</span>
+<span class="n">statement</span><span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>サイズが大きい値を登録、更新する場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setCharacterStream-int-java.io.Reader-int-" title="nablarch.core.db.statement.SqlPStatement.setCharacterStream(int-java.io.Reader-int)">SqlPStatement#setCharacterStream</a>
+を使用して、テキストファイルなどを表す <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html" title="java.io.Reader">Reader</a> 経由でデータベースに値を送信する。</p>
+<p>以下に例を示す。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedReader</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">))</span> <span class="o">{</span>
+  <span class="c1">// setCharacterStreamを使用してReaderの値を登録する。</span>
+  <span class="n">statement</span><span class="o">.</span><span class="na">setCharacterStream</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">reader</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Files</span><span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </div>
 <div class="section" id="id20">
-<h3><a class="toc-backref" href="#id53">7.3.1.3.16. データベースアクセス時に発生する例外の種類</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">7.3.1.3.17. データベースアクセス時に発生する例外の種類</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベースアクセス時の例外は、大きく分けて以下の4種類が送出される。</p>
 <p>これらの例外は全て非チェック例外のため、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> のように <code class="docutils literal"><span class="pre">try-catch</span></code> で補足する必要はない。</p>
 <dl class="docutils">
@@ -1275,27 +1280,27 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <dd>データベースアクセス時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> が送出される。</dd>
 <dt>データベース接続エラー時の例外</dt>
 <dd><p class="first">データベースアクセスエラー時の例外がデータベース接続エラーを示す場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/exception/DbConnectionException.html" title="nablarch.core.db.connection.exception.DbConnectionException">DbConnectionException</a> が送出される。
-この例外は、 <a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span class="std std-ref">リトライハンドラ</span></a> により処理される。(<a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span class="std std-ref">リトライハンドラ</span></a> 未適用の場合には、実行時例外として扱われる。)</p>
-<p class="last">なお、データベース接続エラーの判定には、 <a class="reference internal" href="#database-dialect"><span class="std std-ref">ダイアレクト</span></a> が使用される。</p>
+この例外は、 <a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> により処理される。(<a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> 未適用の場合には、実行時例外として扱われる。)</p>
+<p class="last">なお、データベース接続エラーの判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 </dd>
 <dt>SQL実行時の例外</dt>
 <dd>SQLの実行に失敗した時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> が送出される。</dd>
 <dt>SQL実行時の例外が一意制約違反の場合の例外</dt>
 <dd><p class="first">SQL実行時の例外が一意制約違反を示す例外の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> が送出される。</p>
-<p>一意制約違反をハンドリングしたい場合には、 <a class="reference internal" href="#database-duplicated-error"><span class="std std-ref">一意制約違反をハンドリングして処理を行う</span></a> を参照。</p>
-<p class="last">なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span class="std std-ref">ダイアレクト</span></a> が使用される。</p>
+<p>一意制約違反をハンドリングしたい場合には、 <a class="reference internal" href="#database-duplicated-error"><span>一意制約違反をハンドリングして処理を行う</span></a> を参照。</p>
+<p class="last">なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 </dd>
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">データベースアクセスエラー発生時の例外を変更したい場合（より細かく分けたい場合）などは、
-<a class="reference internal" href="#database-change-exception"><span class="std std-ref">データベースアクセス時の例外クラスを切り替える</span></a> を参照すること。</p>
+<a class="reference internal" href="#database-change-exception"><span>データベースアクセス時の例外クラスを切り替える</span></a> を参照すること。</p>
 </div>
 </div>
 <div class="section" id="database-duplicated-error">
-<span id="id21"></span><h3><a class="toc-backref" href="#id54">7.3.1.3.17. 一意制約違反をハンドリングして処理を行う</a><a class="headerlink" href="#database-duplicated-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id21"></span><h3><a class="toc-backref" href="#id55">7.3.1.3.18. 一意制約違反をハンドリングして処理を行う</a><a class="headerlink" href="#database-duplicated-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>一意制約違反時に何か処理を行う必要がある場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> を <code class="docutils literal"><span class="pre">try-catch</span></code> で補足し処理をする。</p>
-<p>なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span class="std std-ref">ダイアレクト</span></a> が使用される。</p>
+<p>なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p>データベース製品によってはSQL実行時に例外が発生した場合に、ロールバックを行うまで一切のSQLを受け付けないものがあるので注意すること。
@@ -1305,12 +1310,12 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </div>
 </div>
 <div class="section" id="id22">
-<h3><a class="toc-backref" href="#id55">7.3.1.3.18. 処理が長いトランザクションはエラーとして処理を中断させる</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">7.3.1.3.19. 処理が長いトランザクションはエラーとして処理を中断させる</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>トランザクション管理にて実現する。
-詳細は、 <a class="reference internal" href="../transaction.html#transaction-timeout"><span class="std std-ref">データベースに対するトランザクションタイムアウトを適用する</span></a> を参照。</p>
+詳細は、 <a class="reference internal" href="../transaction.html#transaction-timeout"><span>データベースに対するトランザクションタイムアウトを適用する</span></a> を参照。</p>
 </div>
 <div class="section" id="database-new-transaction">
-<span id="id23"></span><h3><a class="toc-backref" href="#id56">7.3.1.3.19. 現在のトランザクションとは異なるトランザクションでSQLを実行する</a><a class="headerlink" href="#database-new-transaction" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id23"></span><h3><a class="toc-backref" href="#id57">7.3.1.3.20. 現在のトランザクションとは異なるトランザクションでSQLを実行する</a><a class="headerlink" href="#database-new-transaction" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベース接続管理ハンドラ及びトランザクション制御ハンドラで開始したトランザクションではなく、
 個別のトランザクションを使用してデータベースアクセスを行いたい場合がある。</p>
 <p>例えば、業務処理が失敗した場合でも必ずデータベースへの変更を確定したい場合には、
@@ -1324,13 +1329,13 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <p>以下に使用例を示す。</p>
 <dl class="docutils">
 <dt>コンポーネント設定ファイル</dt>
-<dd><p class="first">コンポーネント設定ファイルに  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を設定する。</p>
+<dd><p class="first">コンポーネント設定ファイルに  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を定義する。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setConnectionFactory-nablarch.core.db.connection.ConnectionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setConnectionFactory(nablarch.core.db.connection.ConnectionFactory)">connectionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスを設定する。
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> を参照。</li>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照。</li>
 <li><dl class="first docutils">
 <dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setTransactionFactory-nablarch.core.transaction.TransactionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスを設定する。</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="../transaction.html#transaction-database"><span class="std std-ref">データベースに対するトランザクション制御を行う</span></a> を参照。</dd>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="../transaction.html#transaction-database"><span>データベースに対するトランザクション制御を行う</span></a> を参照。</dd>
 </dl>
 </li>
 </ul>
@@ -1342,7 +1347,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="nt">/&gt;</span>
 
   <span class="c">&lt;!-- トランザクションを識別するための名前を設定する --&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">ref=</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
@@ -1372,7 +1377,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dl>
 </div>
 <div class="section" id="database-use-cache">
-<span id="id24"></span><h3><a class="toc-backref" href="#id57">7.3.1.3.20. 検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</a><a class="headerlink" href="#database-use-cache" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id24"></span><h3><a class="toc-backref" href="#id58">7.3.1.3.21. 検索結果をキャッシュする（同じSQLで同じ条件の場合にキャッシュしたデータを扱いたい)</a><a class="headerlink" href="#database-use-cache" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>更新時間が決まっているデータや、頻繁にアクセスされるが必ず最新のデータを返す必要がない場合には、
 データベースの負荷を軽減させるために検索結果をキャッシュすることが出来る。</p>
 <p>この機能は、以下のような機能で有効に利用できる。</p>
@@ -1474,7 +1479,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setResultSetCache-nablarch.core.db.cache.ResultSetCache-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setResultSetCache(nablarch.core.db.cache.ResultSetCache)">resultSetCache</a> プロパティに対しては、上で設定したクエリー結果のキャッシュコンポーネントと
 SQLID毎のキャッシュ設定のコンポーネントを設定すること。</p>
 <p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> コンポーネントは、
-<a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
+<a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- キャッシュ可能なステートメントを生成するCacheableStatementFactoryを設定する --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;cacheableStatementFactory&quot;</span>
            <span class="na">class=</span><span class="s">&quot;nablarch.core.db.cache.CacheableStatementFactory&quot;</span><span class="nt">&gt;</span>
@@ -1492,8 +1497,8 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <dd><p class="first">SQLを使ったデータベースアクセスは、キャッシュ有無によって変わることはない。
 以下と同じように実装すれば良い。</p>
 <ul class="last simple">
-<li><a class="reference internal" href="#database-execute-sqlid"><span class="std std-ref">SQLIDを指定してSQLを実行する</span></a></li>
-<li><a class="reference internal" href="#database-input-bean"><span class="std std-ref">Beanオブジェクトを入力としてSQLを実行する</span></a></li>
+<li><a class="reference internal" href="#database-execute-sqlid"><span>SQLIDを指定してSQLを実行する</span></a></li>
+<li><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a></li>
 </ul>
 </dd>
 </dl>
@@ -1501,7 +1506,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 </dl>
 </div>
 <div class="section" id="java-sql-connection">
-<h3><a class="toc-backref" href="#id58">7.3.1.3.21. <cite>java.sql.Connection</cite> を使って処理を行う</a><a class="headerlink" href="#java-sql-connection" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">7.3.1.3.22. <cite>java.sql.Connection</cite> を使って処理を行う</a><a class="headerlink" href="#java-sql-connection" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>JDBCのネイティブなデータベース接続( <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> )を扱いたい場合がある。
 例えば、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html" title="java.sql.DatabaseMetaData">java.sql.DatabaseMetaData</a> を使用したい場合がこれに該当する。</p>
 <p>この場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得した
@@ -1521,27 +1526,27 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 </div>
 </div>
 <div class="section" id="id25">
-<h2><a class="toc-backref" href="#id59">7.3.1.4. 拡張例</a><a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id60">7.3.1.4. 拡張例</a><a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="database-add-connection-factory">
-<span id="id26"></span><h3><a class="toc-backref" href="#id60">7.3.1.4.1. データベースへの接続法を追加する</a><a class="headerlink" href="#database-add-connection-factory" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id26"></span><h3><a class="toc-backref" href="#id61">7.3.1.4.1. データベースへの接続法を追加する</a><a class="headerlink" href="#database-add-connection-factory" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベースの接続方法を追加する手順を説明する。
 例えば、OSSのコネクションプールライブラリを使用する場合などは、この手順に従い作業すると良い。</p>
 <ol class="arabic simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html" title="nablarch.core.db.connection.ConnectionFactorySupport">ConnectionFactorySupport</a> を継承し、データベース接続を生成するクラスを作成する。</li>
-<li>作成したクラスをコンポーネント設定ファイルに設定する。( <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> を参照)</li>
+<li>作成したクラスをコンポーネント設定ファイルに設定する。( <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照)</li>
 </ol>
 </div>
 <div class="section" id="database-add-dialect">
-<span id="id27"></span><h3><a class="toc-backref" href="#id61">7.3.1.4.2. ダイアレクトを追加する</a><a class="headerlink" href="#database-add-dialect" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id27"></span><h3><a class="toc-backref" href="#id62">7.3.1.4.2. ダイアレクトを追加する</a><a class="headerlink" href="#database-add-dialect" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ダイアレクトを追加する手順を説明する。</p>
 <p>例えば、使用するデータベース製品に対応したダイアレクトがない場合や、特定機能の使用可否を切り替えたい場合にはダイアレクトを追加する必要がある。</p>
 <ol class="arabic simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> を継承し、 データベース製品に対応したダイアレクトを作成する。</li>
-<li>作成したダイアレクトをコンポーネント設定ファイルに設定する ( <a class="reference internal" href="#database-use-dialect"><span class="std std-ref">データベース製品に対応したダイアレクトを使用する</span></a> を参照)</li>
+<li>作成したダイアレクトをコンポーネント設定ファイルに設定する ( <a class="reference internal" href="#database-use-dialect"><span>データベース製品に対応したダイアレクトを使用する</span></a> を参照)</li>
 </ol>
 </div>
 <div class="section" id="database-change-exception">
-<span id="id28"></span><h3><a class="toc-backref" href="#id62">7.3.1.4.3. データベースアクセス時の例外クラスを切り替える</a><a class="headerlink" href="#database-change-exception" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id28"></span><h3><a class="toc-backref" href="#id63">7.3.1.4.3. データベースアクセス時の例外クラスを切り替える</a><a class="headerlink" href="#database-change-exception" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベースアクセス時の例外クラスを切り替える手順を説明する。</p>
 <p>例えば、デッドロックエラーの例外クラスを変更したい場合には、この手順に従い作業すると良い。</p>
 <ol class="arabic simple">
@@ -1557,13 +1562,13 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスを作成する</dt>
 <dd>SQL実行時に発生させる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> を変更したい場合は、 このインタフェースの実装クラスを作成する。</dd>
 <dt>コンポーネント設定ファイルに定義する</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスは、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDbAccessExceptionFactory&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> に対して設定する。
-なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> は、 <a class="reference internal" href="#database-connect"><span class="std std-ref">データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
+なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlStatementExceptionFactory&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleStatementExceptionFactory&quot;</span> <span class="nt">/&gt;</span>
@@ -1579,6 +1584,9 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -1586,7 +1594,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -1607,10 +1615,11 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.19. 汎用ユーティリティ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>7.20. 汎用ユーティリティ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,13 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/utility.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="8. ブランクプロジェクト" href="../blank_project/index.html"/>
-        <link rel="prev" title="7.18.1. タグリファレンス" href="tag/tag_reference.html"/>
+        <link rel="prev" title="7.19. Bean Util" href="bean_util.html"/>
  
 
   
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -308,7 +310,7 @@
       
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
-    <li>7.19. 汎用ユーティリティ</li>
+    <li>7.20. 汎用ユーティリティ</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -319,16 +321,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="utility">
-<span id="id1"></span><h1>7.19. 汎用ユーティリティ<a class="headerlink" href="#utility" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="contents local topic" id="id2">
-<p class="topic-title first">目次</p>
-<ul class="simple">
-<li><a class="reference internal" href="#beanutil" id="id4">BeanUtilの型変換ルール</a><ul>
-<li><a class="reference internal" href="#utility-conversion-add-rule" id="id5">型変換ルールを追加する</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<span id="id1"></span><h1>7.20. 汎用ユーティリティ<a class="headerlink" href="#utility" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>本フレームワークで提供している、汎用的に利用できるユーティリティクラスを以下に示す。</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
@@ -361,7 +354,7 @@
 </tr>
 <tr class="row-even"><td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a></td>
 <td>nablarch-core-beans</td>
-<td>Java Beansクラスに関する機能を提供する。プロパティを扱う際の型変換ルールについては <a class="reference internal" href="#utility-conversion"><span class="std std-ref">BeanUtilの型変換ルール</span></a> を参照。</td>
+<td>Java Beansクラスに関する機能を提供する。詳細は、 <a class="reference internal" href="bean_util.html#bean-util"><span>Bean Util</span></a> を参照。</td>
 </tr>
 <tr class="row-odd"><td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/util/Base64Util.html" title="nablarch.core.util.Base64Util">Base64Util</a></td>
 <td>nablarch-fw</td>
@@ -373,93 +366,12 @@
 </tr>
 </tbody>
 </table>
-<div class="section" id="beanutil">
-<span id="utility-conversion"></span><h2><a class="toc-backref" href="#id4">7.19.1. BeanUtilの型変換ルール</a><a class="headerlink" href="#beanutil" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> では、Java BeansオブジェクトやMapオブジェクトから
-別のJava Beansオブジェクトにデータ移行する際にプロパティの型変換を行っている。</p>
-<p>なお、MapオブジェクトからJava Beansオブジェクトにデータ移行する場合、
-Mapオブジェクトのキーに <code class="docutils literal"><span class="pre">.</span></code> が含まれていればそのプロパティをネストオブジェクトとして扱う。</p>
-<p>型変換ルールについては、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/converter/package-summary.html" title="nablarch.core.beans.converter.package-summary">nablarch.core.beans.converter</a> パッケージ配下に配置されている
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/Converter.html" title="nablarch.core.beans.Converter">Converter</a> 実装クラスをそれぞれ参照すること。</p>
-<div class="admonition important">
-<p class="first admonition-title">重要</p>
-<p class="last">デフォルトで提供する型変換ルールでは、精度の小さい型への変換を行った場合(例えばLongからIntegerへの変換)で、変換先の精度を超えるような値を指定しても正常に処理を終了する。
-このため、BeanUtilを使用してコピーを行う際には、コピーする値がシステムで許容されているかどうかを <a class="reference internal" href="validation.html#validation"><span class="std std-ref">入力値のチェック</span></a> によって事前に検証しておく必要がある。
-検証を行わなかった場合、不正な値がシステムに取り込まれ障害の原因となる可能性がある。</p>
-</div>
-<div class="section" id="utility-conversion-add-rule">
-<span id="id3"></span><h3><a class="toc-backref" href="#id5">7.19.1.1. 型変換ルールを追加する</a><a class="headerlink" href="#utility-conversion-add-rule" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>型変換ルールを追加するには、以下の手順が必要となる。</p>
-<ol class="arabic simple">
-<li>必要に応じて以下のインタフェースを実装し型変換処理を実現する。</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/Converter.html" title="nablarch.core.beans.Converter">Converter</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/ExtensionConverter.html" title="nablarch.core.beans.ExtensionConverter">ExtensionConverter</a></li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/ConversionManager.html" title="nablarch.core.beans.ConversionManager">ConversionManager</a> の実装クラスを作成する。
-今回は標準の型変換ルールに追加でルールを設定するため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/ConversionManager.html" title="nablarch.core.beans.ConversionManager">ConversionManager</a> をプロパティとして持つ、
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/ConversionManager.html" title="nablarch.core.beans.ConversionManager">ConversionManager</a> の実装クラスを作成する。</li>
-</ol>
-<blockquote>
-<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleConversionManager</span> <span class="kd">implements</span> <span class="n">ConversionManager</span> <span class="o">{</span>
-
-  <span class="kd">private</span> <span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">;</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getConverters</span><span class="o">()</span> <span class="o">{</span>
-      <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">converters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;();</span>
-
-      <span class="c1">// 標準のコンバータ</span>
-      <span class="n">converters</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getConverters</span><span class="o">());</span>
-
-      <span class="c1">// 今回作成したコンバータ</span>
-      <span class="n">converters</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">BigInteger</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="k">new</span> <span class="n">CustomConverter</span><span class="o">());</span>
-
-      <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableMap</span><span class="o">(</span><span class="n">converters</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getExtensionConvertor</span><span class="o">()</span> <span class="o">{</span>
-      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">extensionConverters</span> <span class="o">=</span>
-          <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getExtensionConvertor</span><span class="o">());</span>
-      <span class="n">extensionConverters</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">CustomExtensionConverter</span><span class="o">());</span>
-      <span class="k">return</span> <span class="n">extensionConverters</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDelegateManager</span><span class="o">(</span><span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">delegateManager</span> <span class="o">=</span> <span class="n">delegateManager</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-</div>
-</div></blockquote>
-<ol class="arabic" start="3">
-<li><p class="first">コンポーネント設定ファイルに、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/ConversionManager.html" title="nablarch.core.beans.ConversionManager">ConversionManager</a> の実装クラスを設定する。</p>
-<dl class="docutils">
-<dt>ポイント</dt>
-<dd><ul class="first last simple">
-<li>コンポーネント名は <strong>conversionManager</strong> とすること。</li>
-</ul>
-</dd>
-</dl>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;conversionManager&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleConversionManager&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;delegateManager&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.beans.BasicConversionManager&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-</div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -468,7 +380,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -489,10 +401,11 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

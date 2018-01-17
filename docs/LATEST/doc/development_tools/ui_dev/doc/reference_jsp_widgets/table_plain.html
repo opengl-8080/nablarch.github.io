@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.75. 一覧テーブルウィジェット &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>2.1.75. 一覧テーブルウィジェット &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/reference_jsp_widgets/table_plain.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.76. マルチレイアウトテーブル" href="table_row.html"/>
         <link rel="prev" title="2.1.74. タブウィジェット" href="tab_group.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -320,11 +322,11 @@
             
   <div class="section" id="id1">
 <h1>2.1.75. 一覧テーブルウィジェット<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><a class="reference internal" href="#"><span class="doc">一覧テーブルウィジェット</span></a> は <strong>UI標準 UI部品 テーブル</strong> の内容に準拠した
+<p><a class="reference internal" href=""><em>一覧テーブルウィジェット</em></a> は <strong>UI標準 UI部品 テーブル</strong> の内容に準拠した
 簡素な一覧テーブルを画面に表示するUI部品である。
 テーブル内の各カラムの内容は、カラムの種別ごとに用意された個別のウィジェットを配置することによって定義する。</p>
 <p>本機能は単純な一覧テーブルを表示するためのものである。
-以下に挙げる機能を必要とする場合は <a class="reference internal" href="table_search_result.html"><span class="doc">検索結果テーブルウィジェット</span></a> を利用すること。</p>
+以下に挙げる機能を必要とする場合は <a class="reference internal" href="table_search_result.html"><em>検索結果テーブルウィジェット</em></a> を利用すること。</p>
 <ul class="simple">
 <li>検索結果件数の自動表示</li>
 <li>ページング処理</li>
@@ -332,11 +334,11 @@
 </ul>
 <p>なお、各カラムウィジェットの詳細については、以下を参照すること。</p>
 <ul class="simple">
-<li><a class="reference internal" href="column_label.html"><span class="doc">ラベル表示用カラムウィジェット</span></a></li>
-<li><a class="reference internal" href="column_code.html"><span class="doc">コード値ラベル表示用カラムウィジェット</span></a></li>
-<li><a class="reference internal" href="column_link.html"><span class="doc">リンク表示用カラムウィジェット</span></a></li>
-<li><a class="reference internal" href="column_checkbox.html"><span class="doc">テーブル複数行選択用チェックボックスカラムウィジェット</span></a></li>
-<li><a class="reference internal" href="column_radio.html"><span class="doc">テーブル行選択用ラジオボタンカラムウィジェット</span></a></li>
+<li><a class="reference internal" href="column_label.html"><em>ラベル表示用カラムウィジェット</em></a></li>
+<li><a class="reference internal" href="column_code.html"><em>コード値ラベル表示用カラムウィジェット</em></a></li>
+<li><a class="reference internal" href="column_link.html"><em>リンク表示用カラムウィジェット</em></a></li>
+<li><a class="reference internal" href="column_checkbox.html"><em>テーブル複数行選択用チェックボックスカラムウィジェット</em></a></li>
+<li><a class="reference internal" href="column_radio.html"><em>テーブル行選択用ラジオボタンカラムウィジェット</em></a></li>
 </ul>
 <div class="section" id="id2">
 <h2>2.1.75.1. コードサンプル<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -393,7 +395,7 @@
 <dt><strong>ローカル動作時の挙動</strong></dt>
 <dd><p class="first">ローカル動作では <strong>sampleResults</strong> に指定した件数分だけデータ行を表示する。
 カラムの内容は各カラムウィジェットの <strong>sample</strong> 属性に指定した
-<strong>「|」</strong> 区切りの文字列を順に表示する。(レコード件数の方が多い場合はループする。)</p>
+<strong>&#8220;|&#8221;</strong> 区切りの文字列を順に表示する。(レコード件数の方が多い場合はループする。)</p>
 <p class="last">なお、現状では <strong>sampleResults</strong> の値が1ページの表示総件数を越えた場合でも
 ページ遷移リンクの表示は常に1となる。</p>
 </dd>
@@ -423,14 +425,14 @@
 <td>文字列</td>
 <td>◎</td>
 <td>◎</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>showTitle</td>
 <td>見出し文字列を表示するか否か</td>
 <td>真偽値</td>
 <td>○</td>
 <td>○</td>
-<td>デフォルトは 『true』</td>
+<td>デフォルトは &#8216;true&#8217;</td>
 </tr>
 <tr class="row-even"><td>id</td>
 <td>テーブルを一意に識別するid</td>
@@ -460,14 +462,14 @@ id属性は、tableをラップするdivタグに設定される。</td>
 <td>文字列</td>
 <td>○</td>
 <td>○</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>sampleResults</td>
 <td>サンプルで表示する件数</td>
 <td>数値</td>
 <td>×</td>
 <td>◎</td>
-<td>&#160;</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>multipleRowLayout</td>
 <td>複数行レイアウト機能を有効に
@@ -475,7 +477,7 @@ id属性は、tableをラップするdivタグに設定される。</td>
 <td>真偽値</td>
 <td>○</td>
 <td>○</td>
-<td>詳細は <a class="reference internal" href="table_row.html"><span class="doc">マルチレイアウトテーブル</span></a>
+<td>詳細は <a class="reference internal" href="table_row.html"><em>マルチレイアウトテーブル</em></a>
 を参照。</td>
 </tr>
 <tr class="row-even"><td>comment</td>
@@ -547,6 +549,9 @@ Nablarch側の設定の変更によって、ページングリストの出力パ
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -554,7 +559,7 @@ Nablarch側の設定の変更によって、ページングリストの出力パ
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -575,10 +580,11 @@ Nablarch側の設定の変更によって、ページングリストの出力パ
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

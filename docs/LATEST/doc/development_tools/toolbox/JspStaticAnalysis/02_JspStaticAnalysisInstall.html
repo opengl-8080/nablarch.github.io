@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.2. JSP静的解析ツール 設定変更ガイド &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>4.1.2. JSP静的解析ツール 設定変更ガイド &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/toolbox/JspStaticAnalysis/02_JspStaticAnalysisInstall.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="4.1. JSP静的解析ツール" href="index.html"/>
         <link rel="next" title="4.2. Nablarch SQL Executor" href="../SqlExecutor/SqlExecutor.html"/>
         <link rel="prev" title="4.1.1. JSP静的解析ツール" href="01_JspStaticAnalysis.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -328,7 +330,7 @@
 <li><a class="reference internal" href="#pom-xml" id="id10">pom.xmlの書き換え</a></li>
 </ul>
 </div>
-<p><a class="reference internal" href="index.html"><span class="doc">JSP静的解析ツール</span></a>の設定変更方法について説明する。</p>
+<p><a class="reference internal" href="index.html"><em>JSP静的解析ツール</em></a>の設定変更方法について説明する。</p>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id8">4.1.2.1. 前提条件</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
@@ -356,11 +358,11 @@
 <td>Antタスクの定義ファイル <a class="footnote-reference" href="#id5" id="id4">[1]</a> 。通常編集することはない。</td>
 </tr>
 <tr class="row-even"><td>tools/static-analysis/jspanalysis/config.txt</td>
-<td>JSP静的解析ツール設定ファイル。記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#customjspanalysis"><span class="std std-ref">JSP静的解析ツール設定ファイルの記述方法</span></a> を参照。</td>
+<td>JSP静的解析ツール設定ファイル。記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#customjspanalysis"><span>JSP静的解析ツール設定ファイルの記述方法</span></a> を参照。</td>
 </tr>
 <tr class="row-odd"><td>tools/static-analysis/jspanalysis/transform-to-html.xsl</td>
 <td>JSP静的解析結果XMLをHTMLに変換する際の定義ファイル。<br />
-記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#outputjspanalysis"><span class="std std-ref">出力結果確認方法</span></a> の「JSP解析(XMLレポート出力)」を参照。</td>
+記述方法は、 <a class="reference internal" href="01_JspStaticAnalysis.html#outputjspanalysis"><span>出力結果確認方法</span></a> の「JSP解析(XMLレポート出力)」を参照。</td>
 </tr>
 <tr class="row-even"><td>nablarch-archetype-parentのpom.xml</td>
 <td>jspanalysis.excludePatterns以外の設定を行う。</td>
@@ -393,7 +395,7 @@
 <p>CI環境のように一括でチェックを実行する場合には、<br />
 ディレクトリパスを設定する。</p>
 <p>例:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">main</span><span class="o">/</span><span class="n">web</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>./main/web
 </pre></div>
 </div>
 <p class="last">ディレクトリを指定した場合は、再帰的にチェックが実行される。</p>
@@ -402,7 +404,7 @@
 <tr class="row-odd"><td>jspanalysis.xmloutput</td>
 <td><p class="first">チェック結果のXMLレポートファイルの出力パスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">jsp</span><span class="o">/</span><span class="n">report</span><span class="o">.</span><span class="n">xml</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./build/reports/jsp/report.xml
 </pre></div>
 </div>
 </td>
@@ -410,7 +412,7 @@
 <tr class="row-even"><td>jspanalysis.htmloutput</td>
 <td><p class="first">チェック結果のHTMLレポートファイルの出力パスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">jsp</span><span class="o">/</span><span class="n">report</span><span class="o">.</span><span class="n">html</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./build/reports/jsp/report.html
 </pre></div>
 </div>
 </td>
@@ -418,7 +420,7 @@
 <tr class="row-odd"><td>jspanalysis.checkconfig</td>
 <td><p class="first">JSP静的解析ツール設定ファイルのファイルパスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tool</span><span class="o">/</span><span class="n">jspanalysis</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">txt</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./tool/jspanalysis/config.txt
 </pre></div>
 </div>
 </td>
@@ -426,7 +428,7 @@
 <tr class="row-even"><td>jspanalysis.charset</td>
 <td><p class="first">チェック対象JSPファイルの文字コードを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>
 </div>
 </td>
@@ -435,7 +437,7 @@
 <td><p class="first">チェック対象JSPファイルで使用されている改行コードを <br />
 設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span>\<span class="n">n</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>\n
 </pre></div>
 </div>
 </td>
@@ -444,7 +446,7 @@
 <td><p class="first">チェック結果のXMLをHTMLファイルに変換する際のXSLT <br />
 ファイルパスを設定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tool</span><span class="o">/</span><span class="n">jspanalysis</span><span class="o">/</span><span class="n">transform</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">html</span><span class="o">.</span><span class="n">xsl</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>./tool/jspanalysis/transform-to-html.xsl
 </pre></div>
 </div>
 </td>
@@ -455,7 +457,7 @@
 この設定値の内容にかかわらず、拡張子が <code class="docutils literal"><span class="pre">jsp</span></code> のファイル <br />
 は必ずチェック対象となる。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">tag</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">tag</span>
 </pre></div>
 </div>
 </td>
@@ -465,7 +467,7 @@
 定する。</p>
 <p>複数のパターンを設定する場合にはカンマ(,)区切りで指定する。</p>
 <p>例:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">ui_local</span><span class="p">,</span><span class="n">ui_test</span><span class="p">,</span><span class="n">ui_test</span><span class="o">/.*/</span><span class="nb">set</span><span class="o">.</span><span class="n">tag</span>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>ui_local,ui_test,ui_test/.*/set.tag
 </pre></div>
 </div>
 </td>
@@ -487,6 +489,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -494,7 +499,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -515,10 +520,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

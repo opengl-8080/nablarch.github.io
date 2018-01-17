@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.2.4.7.1. Nablarchバッチアプリケーションのエラー処理 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>4.2.4.7.1. Nablarchバッチアプリケーションのエラー処理 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/nablarch_batch/feature_details/nablarch_batch_error_process.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="4.2.4. 機能詳細" href="../feature_details.html"/>
         <link rel="next" title="4.2.4.7.2. バッチアプリケーションで実行中の状態を保持する" href="nablarch_batch_retention_state.html"/>
         <link rel="prev" title="4.2.4.6.1. Nablarchバッチアプリケーションの悲観的ロック" href="nablarch_batch_pessimistic_lock.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -340,23 +342,23 @@
 処理成功や失敗時にステータスを変更するといった、
 アプリケーションでの設計と実装が必要となる。
 処理成功や失敗時のステータス変更の実装方法については、
-<a class="reference internal" href="../../../handlers/batch/loop_handler.html#loop-handler-callback"><span class="std std-ref">トランザクション終了時に任意の処理を実行したい</span></a> を参照。</p>
+<a class="reference internal" href="../../../handlers/batch/loop_handler.html#loop-handler-callback"><span>トランザクション終了時に任意の処理を実行したい</span></a> を参照。</p>
 <p>ファイル入力については、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/ResumeDataReader.html" title="nablarch.fw.reader.ResumeDataReader">ResumeDataReader (レジューム機能付き読み込み)</a>
 を使用することで、障害発生ポイントからの再実行ができる。</p>
 </div>
 <div class="section" id="nablarch-batch-error-process-continue">
 <span id="id3"></span><h2><a class="toc-backref" href="#id6">4.2.4.7.1.2. バッチ処理でエラー発生時に処理を継続する</a><a class="headerlink" href="#nablarch-batch-error-process-continue" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>エラー発生時の処理継続は、 <a class="reference internal" href="../architecture.html#nablarch-batch-resident-batch"><span class="std std-ref">常駐バッチ</span></a> のみ対応している。
-<a class="reference internal" href="../architecture.html#nablarch-batch-each-time-batch"><span class="std std-ref">都度起動バッチ</span></a> は対応していない。</p>
-<p><a class="reference internal" href="../architecture.html#nablarch-batch-resident-batch"><span class="std std-ref">常駐バッチ</span></a> では、
+<p>エラー発生時の処理継続は、 <a class="reference internal" href="../architecture.html#nablarch-batch-resident-batch"><span>常駐バッチ</span></a> のみ対応している。
+<a class="reference internal" href="../architecture.html#nablarch-batch-each-time-batch"><span>都度起動バッチ</span></a> は対応していない。</p>
+<p><a class="reference internal" href="../architecture.html#nablarch-batch-resident-batch"><span>常駐バッチ</span></a> では、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/results/TransactionAbnormalEnd.html" title="nablarch.fw.results.TransactionAbnormalEnd">TransactionAbnormalEnd</a>
-を送出すると、 <a class="reference internal" href="../../../handlers/standalone/retry_handler.html#retry-handler"><span class="std std-ref">リトライハンドラ</span></a> により処理が継続される。
-ただし、 <a class="reference internal" href="#nablarch-batch-error-process-rerun"><span class="std std-ref">バッチ処理をリランできるようにする</span></a> に記載した内容で、
+を送出すると、 <a class="reference internal" href="../../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> により処理が継続される。
+ただし、 <a class="reference internal" href="#nablarch-batch-error-process-rerun"><span>バッチ処理をリランできるようにする</span></a> に記載した内容で、
 バッチ処理がリランできるようになっている必要がある。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference internal" href="../architecture.html#nablarch-batch-each-time-batch"><span class="std std-ref">都度起動バッチ</span></a> で
+<p class="last"><a class="reference internal" href="../architecture.html#nablarch-batch-each-time-batch"><span>都度起動バッチ</span></a> で
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/results/TransactionAbnormalEnd.html" title="nablarch.fw.results.TransactionAbnormalEnd">TransactionAbnormalEnd</a>
 が送出されると、バッチ処理が異常終了となる。</p>
 </div>
@@ -375,6 +377,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -382,7 +387,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -403,10 +408,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../_static/jquery.js"></script>

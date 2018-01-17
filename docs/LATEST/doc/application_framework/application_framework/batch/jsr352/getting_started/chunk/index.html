@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.3.2. データを導出するバッチの作成(Chunkステップ) &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>4.1.3.2. データを導出するバッチの作成(Chunkステップ) &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/getting_started/chunk/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="4.1.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="4.1.4. 機能詳細" href="../../feature_details.html"/>
         <link rel="prev" title="4.1.3.1. 対象テーブルのデータを削除するバッチの作成(Batchletステップ)" href="../batchlet/index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -324,7 +326,7 @@
             
   <div class="section" id="chunk">
 <span id="getting-started-chunk"></span><h1>4.1.3.2. データを導出するバッチの作成(Chunkステップ)<a class="headerlink" href="#chunk" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Exampleアプリケーションを元に、既存データから計算を行い新たにデータを導出する <a class="reference internal" href="../../architecture.html#jsr352-batch-type-chunk"><span class="std std-ref">Chunkステップ</span></a> 方式のバッチの解説を行う。</p>
+<p>Exampleアプリケーションを元に、既存データから計算を行い新たにデータを導出する <a class="reference internal" href="../../architecture.html#jsr352-batch-type-chunk"><span>Chunkステップ</span></a> 方式のバッチの解説を行う。</p>
 <dl class="docutils">
 <dt>作成する機能の概要</dt>
 <dd><img alt="../../../../../../_images/overview.png" class="first last" src="../../../../../../_images/overview.png" />
@@ -363,21 +365,21 @@
 <h2>4.1.3.2.1. データを導出する<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>既存データから計算を行い、新たにデータを導出するバッチの実装方法を以下の順に説明する。</p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="#getting-started-chunk-read"><span class="std std-ref">入力データソースからデータを読み込む</span></a></li>
-<li><a class="reference internal" href="#getting-started-chunk-business-logic"><span class="std std-ref">業務ロジックを実行する</span></a></li>
-<li><a class="reference internal" href="#getting-started-chunk-persistence"><span class="std std-ref">永続化処理を行う</span></a></li>
-<li><a class="reference internal" href="#getting-started-chunk-job"><span class="std std-ref">JOB設定ファイルを作成する</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-read"><span>入力データソースからデータを読み込む</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-business-logic"><span>業務ロジックを実行する</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-persistence"><span>永続化処理を行う</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-job"><span>JOB設定ファイルを作成する</span></a></li>
 </ol>
-<p>処理フローについては、 <a class="reference internal" href="../../architecture.html#jsr352-batch-flow-chunk"><span class="std std-ref">Chunkステップのバッチの処理フロー</span></a> を参照。
-責務配置については <a class="reference internal" href="../../application_design.html#jsr352-chunk-design"><span class="std std-ref">Chunkステップの責務配置</span></a> を参照。</p>
+<p>処理フローについては、 <a class="reference internal" href="../../architecture.html#jsr352-batch-flow-chunk"><span>Chunkステップのバッチの処理フロー</span></a> を参照。
+責務配置については <a class="reference internal" href="../../application_design.html#jsr352-chunk-design"><span>Chunkステップの責務配置</span></a> を参照。</p>
 <p>バッチ処理は、 <a href="https://jcp.org/en/jsr/detail?id=352" target="_blank">JSR352(外部サイト、英語)</a> で規定されたインターフェースの実装に加えて、トランザクション制御などの共通的な処理を提供するリスナーによって構成する。
-リスナーの詳細は <a class="reference internal" href="../../architecture.html#jsr352-listener"><span class="std std-ref">バッチアプリケーションで使用するリスナー</span></a> 及び <a class="reference internal" href="../../architecture.html#jsr352-listener"><span class="std std-ref">リスナーの指定方法</span></a> を参照。</p>
+リスナーの詳細は <a class="reference internal" href="../../architecture.html#jsr352-listener"><span>バッチアプリケーションで使用するリスナー</span></a> 及び <a class="reference internal" href="../../architecture.html#jsr352-listener"><span>リスナーの指定方法</span></a> を参照。</p>
 <div class="section" id="getting-started-chunk-read">
 <span id="id2"></span><h3>4.1.3.2.1.1. 入力データソースからデータを読み込む<a class="headerlink" href="#getting-started-chunk-read" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>計算に必要なデータを取得する処理を実装する。</p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="#getting-started-chunk-form"><span class="std std-ref">フォームの作成</span></a></li>
-<li><a class="reference internal" href="#getting-started-chunk-reader"><span class="std std-ref">ItemReaderの作成</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-form"><span>フォームの作成</span></a></li>
+<li><a class="reference internal" href="#getting-started-chunk-reader"><span>ItemReaderの作成</span></a></li>
 </ol>
 <dl class="docutils" id="getting-started-chunk-form">
 <dt>フォームの作成</dt>
@@ -499,11 +501,11 @@
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li><a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/inject/Named.html" title="javax.inject.Named">Named</a> と <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/enterprise/context/Dependent.html" title="javax.enterprise.context.Dependent">Dependent</a> をクラスに付与する。
-詳細は、 <a class="reference internal" href="../batchlet/index.html#getting-started-batchlet-cdi"><span class="std std-ref">BatchletのNamedとDependentの説明</span></a> を参照。</li>
+詳細は、 <a class="reference internal" href="../batchlet/index.html#getting-started-batchlet-cdi"><span>BatchletのNamedとDependentの説明</span></a> を参照。</li>
 <li><cite>open</cite> メソッドで処理対象のデータを読み込む。</li>
-<li>SQLファイルの配置場所や作成方法などは、 <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-sql-file"><span class="std std-ref">任意のSQL(SQLファイル)で検索する</span></a> を参照。</li>
+<li>SQLファイルの配置場所や作成方法などは、 <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-sql-file"><span>任意のSQL(SQLファイル)で検索する</span></a> を参照。</li>
 <li>大量のデータを読み込む場合は、メモリの逼迫を防ぐために <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#defer--" title="nablarch.common.dao.UniversalDao.defer()">UniversalDao#defer</a> を使用して
-検索結果を <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-lazy-load"><span class="std std-ref">遅延ロード</span></a> する。</li>
+検索結果を <a class="reference internal" href="../../../../libraries/database/universal_dao.html#universal-dao-lazy-load"><span>遅延ロード</span></a> する。</li>
 <li><cite>readItem</cite> メソッドで読み込んだデータから一行分のデータを返却する。
 このメソッドで返却したオブジェクトが、後続する <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/api/chunk/ItemProcessor.html" title="javax.batch.api.chunk.ItemProcessor">ItemWriter</a> の <cite>processItem</cite> メソッドの引数として与えられる。</li>
 </ul>
@@ -579,7 +581,7 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li><cite>processItem</cite> メソッドで一定数( <a class="reference internal" href="#getting-started-chunk-job"><span class="std std-ref">JOB設定ファイルを作成する</span></a> にて設定方法を解説)のエンティティを返却した時点で、
+<li><cite>processItem</cite> メソッドで一定数( <a class="reference internal" href="#getting-started-chunk-job"><span>JOB設定ファイルを作成する</span></a> にて設定方法を解説)のエンティティを返却した時点で、
 後続する <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/api/chunk/ItemWriter.html" title="javax.batch.api.chunk.ItemWriter">ItemWriter</a> の <cite>writeItems</cite> メソッドが実行される。</li>
 </ul>
 </dd>
@@ -685,6 +687,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
 
@@ -692,7 +697,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -713,10 +718,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>

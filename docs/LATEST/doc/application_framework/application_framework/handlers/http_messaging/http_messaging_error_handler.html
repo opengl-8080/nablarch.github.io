@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.5.1. HTTPメッセージングエラー制御ハンドラ &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>6.5.1. HTTPメッセージングエラー制御ハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/http_messaging/http_messaging_error_handler.html" />
   
-        <link rel="index" title="索引"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.5. HTTPメッセージング専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.5.2. HTTPメッセージングリクエスト変換ハンドラ" href="http_messaging_request_parsing_handler.html"/>
         <link rel="prev" title="6.5. HTTPメッセージング専用ハンドラ" href="index.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -340,12 +342,12 @@
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li>例外(エラー)に応じたログ出力とレスポンスの生成を行う。
-詳細は、 <a class="reference internal" href="#http-messaging-error-handler-error-response-and-log"><span class="std std-ref">例外の種類に応じたログ出力処理とレスポンスの生成</span></a> を参照。</li>
+詳細は、 <a class="reference internal" href="#http-messaging-error-handler-error-response-and-log"><span>例外の種類に応じたログ出力処理とレスポンスの生成</span></a> を参照。</li>
 <li>デフォルトのレスポンスボディの設定を行う。
-詳細は、 <a class="reference internal" href="#http-messaging-error-handler-default-page"><span class="std std-ref">レスポンスボディが空の場合のデフォルトレスポンスの設定</span></a> を参照。</li>
+詳細は、 <a class="reference internal" href="#http-messaging-error-handler-default-page"><span>レスポンスボディが空の場合のデフォルトレスポンスの設定</span></a> を参照。</li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
-<a class="reference internal image-reference" href="../../../../_images/flow9.png"><img alt="../../../../_images/flow9.png" src="../../../../_images/flow9.png" style="width: 381.75px; height: 429.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/flow9.png"><img alt="../../../../_images/flow9.png" src="../../../../_images/flow9.png" /></a>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id7">6.5.1.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
@@ -364,9 +366,9 @@
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id9">6.5.1.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
-<dt><a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> より後ろに配置すること</dt>
-<dd>本ハンドラで生成した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a> を <a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> が処理する。
-このため、本ハンドラを <a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span class="std std-ref">HTTPレスポンスハンドラ</span></a> より後ろに設定する必要がある。</dd>
+<dt><a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> より後ろに配置すること</dt>
+<dd>本ハンドラで生成した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a> を <a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> が処理する。
+このため、本ハンドラを <a class="reference internal" href="../web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> より後ろに設定する必要がある。</dd>
 </dl>
 </div>
 <div class="section" id="http-messaging-error-handler-error-response-and-log">
@@ -410,7 +412,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">レスポンス:</th><td class="field-body"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Error.html#getStatusCode--" title="nablarch.fw.Result.Error.getStatusCode()">Error#getStatusCode()</a></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">説明:</th><td class="field-body"><a class="reference internal" href="#http-messaging-error-handler-write-failure-log-pattern"><span class="std std-ref">nablarch.fw.Result.Errorのログ出力について</span></a> を参照</td>
+<tr class="field-odd field"><th class="field-name">説明:</th><td class="field-body"><a class="reference internal" href="#http-messaging-error-handler-write-failure-log-pattern"><span>nablarch.fw.Result.Errorのログ出力について</span></a> を参照</td>
 </tr>
 </tbody>
 </table>
@@ -454,11 +456,14 @@
 </div>
 <div class="section" id="http-messaging-error-handler-default-page">
 <span id="id6"></span><h2><a class="toc-backref" href="#id12">6.5.1.5. レスポンスボディが空の場合のデフォルトレスポンスの設定</a><a class="headerlink" href="#http-messaging-error-handler-default-page" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>詳細は、 <a class="reference internal" href="../web/HttpErrorHandler.html#httperrorhandler-defaultpage"><span class="std std-ref">HTTPエラー制御ハンドラのデフォルトページの設定</span></a> を参照。</p>
+<p>詳細は、 <a class="reference internal" href="../web/HttpErrorHandler.html#httperrorhandler-defaultpage"><span>HTTPエラー制御ハンドラのデフォルトページの設定</span></a> を参照。</p>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -467,7 +472,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -488,10 +493,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

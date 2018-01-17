@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. ウェブサービス編 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>3. ウェブサービス編 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web_service/index.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="アプリケーションフレームワーク" href="../index.html"/>
         <link rel="next" title="3.1. RESTfulウェブサービス編" href="rest/index.html"/>
         <link rel="prev" title="2.4.16.1. エラー時の遷移先の指定方法" href="../web/feature_details/forward_error_page.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -95,7 +95,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">アプリケーションフレームワーク</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. ウェブアプリケーション編</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3. ウェブサービス編</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">3. ウェブサービス編</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. バッチアプリケーション編</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. メッセージング編</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -319,7 +321,7 @@
   <div class="section" id="web-service">
 <span id="id1"></span><h1>3. ウェブサービス編<a class="headerlink" href="#web-service" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>本章ではNablarchアプリケーションフレームワークを利用してウェブサービスを開発するために必要となる情報を提供する。</p>
-<p>Nablarchでは、以下2種類のRESTFulウェブサービス用のフレームワークを提供している。</p>
+<p>Nablarchでは、以下2種類のRESTfulウェブサービス用のフレームワークを提供している。</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="rest/index.html">3.1. RESTfulウェブサービス編</a></li>
@@ -327,25 +329,40 @@
 </ul>
 </div>
 <p id="web-service-recommended-jaxrs">これらのどちらのフレームワークを使用してもウェブサービスを構築することができるが、
-以下の理由により <a class="reference internal" href="rest/index.html#restful-web-service"><span class="std std-ref">RESTfulウェブサービス編</span></a> を使用してウェブサービスを作成することを推奨する。</p>
+以下の理由により <a class="reference internal" href="rest/index.html#restful-web-service"><span>RESTfulウェブサービス編</span></a> を使用してウェブサービスを作成することを推奨する。</p>
 <dl class="docutils">
 <dt>理由</dt>
-<dd><p class="first"><a class="reference internal" href="rest/index.html#restful-web-service"><span class="std std-ref">RESTfulウェブサービス編</span></a> では、 <a class="reference external" href="https://jcp.org/en/jsr/detail?id=339">JSR 339(外部サイト、英語)</a> で規定されている
-一部のアノテーションを使用して容易にウェブサービスを構築することが出来る。</p>
-<p>一方、 <a class="reference internal" href="http_messaging/index.html#http-messaging"><span class="std std-ref">HTTPメッセージング編</span></a> はボディ部やHTTPヘッダーに制約があり、柔軟な設計ができない。
-特に、既に構築済みの外部システムと連携するようなウェブサービスを構築する際には、この制約により設計及び実装の難易度が高くなる。</p>
-<p class="last">また、 <a class="reference internal" href="../libraries/data_io/data_format.html#data-format"><span class="std std-ref">汎用データフォーマット</span></a> 機能に依存しており、フォーマット定義ファイルを作成する必要があるなど、開発コストが高くなるデメリットがある。</p>
+<dd><p class="first"><a class="reference internal" href="rest/index.html#restful-web-service"><span>RESTfulウェブサービス編</span></a> では、 <a class="reference external" href="https://jcp.org/en/jsr/detail?id=339">JSR 339(外部サイト、英語)</a> で規定されている一部のアノテーションを使用して容易にウェブサービスを構築することが出来る。</p>
+<p>一方、 <a class="reference internal" href="http_messaging/index.html#http-messaging"><span>HTTPメッセージング編</span></a> はボディ部やHTTPヘッダー、例外制御に以下の制約があり柔軟な設計及び実装ができない。</p>
+<ul class="last">
+<li><p class="first">Nablarchの制御用領域がHTTPヘッダやボディ部に必要となる。</p>
+<p>既に構築済みの外部システムと連携するようなウェブサービスを構築する場合に設計及び実装の難易度が高くなる。</p>
+</li>
+<li><p class="first">レスポンスヘッダに設定する項目を容易にカスタマイズ出来ない。</p>
+<p><a class="reference internal" href="../handlers/http_messaging/http_messaging_response_building_handler.html#http-messaging-response-building-handler-header"><span>レスポンスヘッダーに設定される値</span></a> に記載がある通り、レスポンスヘッダの変更したい場合はハンドラ自体を差し替える必要がある。</p>
+</li>
+<li><p class="first"><a class="reference internal" href="../libraries/data_io/data_format.html#data-format"><span>汎用データフォーマット</span></a> 機能に依存している。</p>
+<p>フォーマット定義ファイルを作成する必要あり開発コストが高くなる。またカスタマイズが容易でない。
+また、入出力データをMapオブジェクトで扱う必要があり、実装ミスを起こしやすい。</p>
+</li>
+<li><p class="first">リクエストボディのパース時の例外が全て単一の例外クラスにマッピングされるため細かく例外ハンドリングすることができない。</p>
+<p>パース中の例外は全て <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/MessagingException.html" title="nablarch.fw.messaging.MessagingException">MessagingException</a> として送出されるため、根本原因を元に細かな処理制御を行うことが出来ない。</p>
+</li>
+</ul>
 </dd>
 </dl>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference internal" href="rest/index.html#restful-web-service"><span class="std std-ref">RESTfulウェブサービス編</span></a> と <a class="reference internal" href="http_messaging/index.html#http-messaging"><span class="std std-ref">HTTPメッセージング編</span></a> で提供している機能の違いは、<a class="reference internal" href="functional_comparison.html#restful-web-service-functional-comparison"><span class="std std-ref">JAX-RSサポート/JSR339/HTTPメッセージングの機能比較</span></a> を参照。</p>
+<p class="last"><a class="reference internal" href="rest/index.html#restful-web-service"><span>RESTfulウェブサービス編</span></a> と <a class="reference internal" href="http_messaging/index.html#http-messaging"><span>HTTPメッセージング編</span></a> で提供している機能の違いは、<a class="reference internal" href="functional_comparison.html#restful-web-service-functional-comparison"><span>JAX-RSサポート/JSR339/HTTPメッセージングの機能比較</span></a> を参照。</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -354,7 +371,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -375,10 +392,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

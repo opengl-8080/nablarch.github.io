@@ -9,9 +9,11 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u11 ドキュメント</title>
+  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
+  
+  
   
   
 
@@ -33,10 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
   
-        <link rel="index" title="索引"
-              href="../../../genindex.html"/>
-        <link rel="search" title="検索" href="../../../search.html"/>
-    <link rel="top" title="∇Nablarch  5u11 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
         <link rel="next" title="8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法" href="addin_gsp.html"/>
         <link rel="prev" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
@@ -49,6 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u11</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -284,8 +284,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">∇Nablarch </a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
       </nav>
 
 
@@ -333,7 +335,7 @@
 <li><a class="reference internal" href="#customizedbnotexistpjrepo" id="id20">ファイル修正</a><ul>
 <li><a class="reference internal" href="#config" id="id21">configファイルの修正</a></li>
 <li><a class="reference internal" href="#pom-xml" id="id22">pom.xmlファイルの修正</a></li>
-<li><a class="reference internal" href="#jndi-src-main-resources" id="id23">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</a></li>
+<li><a class="reference internal" href="#jndi-src-main-resources" id="id23">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント設定ファイル (src/main/resources/)</a></li>
 <li><a class="reference internal" href="#data-source-xml-src-main-resources" id="id24">(本番環境でローカルにコネクションプールを作成するプロジェクトの場合)data-source.xml  (src/main/resources/)</a></li>
 <li><a class="reference internal" href="#unit-test-xml-src-test-resources" id="id25">unit-test.xml  (src/test/resources)</a></li>
 </ul>
@@ -772,13 +774,13 @@ nablarch.db.schema=SAMPLE
 <span class="nt">&lt;/dependencies&gt;</span>
 </pre></div>
 </div>
-<p>dependency要素内の各要素については、<a class="reference internal" href="#customizedbprofiles"><span class="std std-ref">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)profiles要素内</span></a> と同じ記述を行う。</p>
+<p>dependency要素内の各要素については、<a class="reference internal" href="#customizedbprofiles"><span>(本番環境でJNDIからコネクションを取得するプロジェクトの場合)profiles要素内</span></a> と同じ記述を行う。</p>
 </div>
 </div>
 <div class="section" id="jndi-src-main-resources">
-<span id="customizedbwebcomponentconfiguration"></span><h3><a class="toc-backref" href="#id23">8.5.1.3.3. (本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</a><a class="headerlink" href="#jndi-src-main-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>本番環境でJNDIからコネクションを取得するプロジェクトの場合、src/main/resourcesに配置しているコンポーネント定義ファイルにプロジェクトが使用するデータベースのDialectクラスが記述されている。
-各プロジェクトのコンポーネント定義ファイル名は以下となる。</p>
+<span id="customizedbwebcomponentconfiguration"></span><h3><a class="toc-backref" href="#id23">8.5.1.3.3. (本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント設定ファイル (src/main/resources/)</a><a class="headerlink" href="#jndi-src-main-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本番環境でJNDIからコネクションを取得するプロジェクトの場合、src/main/resourcesに配置しているコンポーネント設定ファイルにプロジェクトが使用するデータベースのDialectクラスが定義されている。
+各プロジェクトのコンポーネント設定ファイル名は以下となる。</p>
 <table border="1" class="colwidths-given docutils">
 <colgroup>
 <col width="50%" />
@@ -786,7 +788,7 @@ nablarch.db.schema=SAMPLE
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">プロジェクト種別</th>
-<th class="head">コンポーネント定義ファイル名</th>
+<th class="head">コンポーネント設定ファイル名</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -835,7 +837,7 @@ nablarch.db.schema=SAMPLE
 <h3><a class="toc-backref" href="#id24">8.5.1.3.4. (本番環境でローカルにコネクションプールを作成するプロジェクトの場合)data-source.xml  (src/main/resources/)</a><a class="headerlink" href="#data-source-xml-src-main-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本番環境でローカルにコネクションプールを作成するプロジェクトの場合、data-source.xmlにプロジェクトが使用するデータベースのDialectクラスが記述されている。</p>
 <p>このDialectクラスを、使用するデータベースに対応したDialectクラスに修正する。</p>
-<p>使用するDialectクラスは、<a class="reference internal" href="#customizedbwebcomponentconfiguration"><span class="std std-ref">(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント定義ファイル (src/main/resources/)</span></a> と同一である。</p>
+<p>使用するDialectクラスは、<a class="reference internal" href="#customizedbwebcomponentconfiguration"><span>(本番環境でJNDIからコネクションを取得するプロジェクトの場合)コンポーネント設定ファイル (src/main/resources/)</span></a> と同一である。</p>
 </div>
 <div class="section" id="unit-test-xml-src-test-resources">
 <h3><a class="toc-backref" href="#id25">8.5.1.3.5. unit-test.xml  (src/test/resources)</a><a class="headerlink" href="#unit-test-xml-src-test-resources" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -884,7 +886,7 @@ nablarch.db.schema=SAMPLE
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id14">[1]</a></td><td><p class="first">gsp-dba-maven-pluginを使用するためには、別途設定が必要である。</p>
-<p class="last">設定については <a class="reference internal" href="addin_gsp.html"><span class="doc">gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</span></a> を参照。</p>
+<p class="last">設定については <a class="reference internal" href="addin_gsp.html"><em>gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</em></a> を参照。</p>
 </td></tr>
 </tbody>
 </table>
@@ -915,15 +917,18 @@ SET SCHEMA sample;
 <h2><a class="toc-backref" href="#id29">8.5.1.5. 動作確認</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下の手順を参照し、動作確認を行う。</p>
 <ul class="simple">
-<li><a class="reference internal" href="setup_blankProject/setup_Web.html#firststepwebstartuptest"><span class="std std-ref">ウェブの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_WebService.html#firststepwebservicestartuptest"><span class="std std-ref">RESTfulウェブサービスの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_Jbatch.html#firststepbatcheestartuptest"><span class="std std-ref">JSR352に準拠したバッチの疎通確認</span></a></li>
-<li><a class="reference internal" href="setup_blankProject/setup_NablarchBatch.html#firststepbatchstartuptest"><span class="std std-ref">Nablarchバッチの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_Web.html#firststepwebstartuptest"><span>ウェブの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_WebService.html#firststepwebservicestartuptest"><span>RESTfulウェブサービスの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_Jbatch.html#firststepbatcheestartuptest"><span>JSR352に準拠したバッチの疎通確認</span></a></li>
+<li><a class="reference internal" href="setup_blankProject/setup_NablarchBatch.html#firststepbatchstartuptest"><span>Nablarchバッチの疎通確認</span></a></li>
 </ul>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -932,7 +937,7 @@ SET SCHEMA sample;
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2017, TIS Inc.
+            &copy; Copyright 2010-2018, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -953,10 +958,11 @@ SET SCHEMA sample;
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u11',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
