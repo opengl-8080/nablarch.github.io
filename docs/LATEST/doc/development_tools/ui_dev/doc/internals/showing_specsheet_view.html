@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.20. 設計書ビュー表示機能 &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>2.1.20. 設計書ビュー表示機能 &mdash; ∇Nablarch  5u13 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/showing_specsheet_view.html" />
   
-    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.21. 設計指針" href="../introduction/grand_design.html"/>
         <link rel="prev" title="2.1.19. マルチレイアウト用CSSフレームワーク" href="multicol_css_framework.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u12</div>
+    <div id="sidebar-version">Version: 5u13</div>
   </a>
 
   <div role="search">
@@ -112,6 +112,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../application_framework/example/index.html">Example</a><ul>
@@ -368,34 +372,23 @@
 フォーマットを変更する場合はこのファイルを修正し、htm形式で保存する。</td>
 </tr>
 <tr class="row-odd"><td>/js/devtool/resource/コード値定義.js</td>
-<td>コード設計書の内容を保持するデータファイル。
-Nablarch Toolboxに含まれる、画面項目定義データ自動
-生成ツールを使用して当該設計書から自動生成する。</td>
+<td>コード設計書の内容を保持するデータファイル。</td>
 </tr>
 <tr class="row-even"><td>/js/devtool/resource/DB項目定義.js</td>
-<td>テーブル設計書の内容を保持するデータファイル。
-Nablarch Toolboxに含まれる、画面項目定義データ自動
-生成ツールを使用して当該設計書から自動生成する。</td>
+<td>テーブル設計書の内容を保持するデータファイル。</td>
 </tr>
 <tr class="row-odd"><td>/js/devtool/resource/外部インターフェース設計.js</td>
-<td>外部インターフェース設計書の内容を保持するデータファイル。
-Nablarch Toolboxに含まれる、画面項目定義データ自動
-生成ツールを使用して当該設計書から自動生成する。</td>
+<td>外部インターフェース設計書の内容を保持するデータファイル。</td>
 </tr>
 <tr class="row-even"><td>/js/devtool/resource/ドメイン定義.js</td>
-<td>ドメイン定義書の同名のシートの内容を保持する
-データファイル。
-Nablarch Toolboxに含まれる、画面項目定義データ自動
-生成ツールを使用して当該設計書から自動生成する。</td>
+<td>ドメイン定義書の同名のシートの内容を保持するデータファイル。</td>
 </tr>
 <tr class="row-odd"><td>/js/devtool/resource/メッセージ定義.js</td>
-<td>メッセージ設計書の内容を保持するデータファイル。
-Nablarch Toolboxに含まれる、画面項目定義データ自動
-生成ツールを使用して当該設計書から自動生成する。</td>
+<td>メッセージ設計書の内容を保持するデータファイル。</td>
 </tr>
 <tr class="row-even"><td>/js/devtool/resource/タグ定義.js</td>
-<td><p class="first">各タグのメタ情報を記述するファイル。
-本機能では、各タグが入力項目か否かを判定する場合
+<td><p class="first">各タグのメタ情報を記述するファイル。</p>
+<p>本機能では、各タグが入力項目か否かを判定する場合
 などに参照する。</p>
 <p>プロジェクトでプラグインを追加した場合などには、
 本ファイルにメタ情報を記述する必要がある。</p>
@@ -450,7 +443,7 @@ Nablarch Toolboxに含まれる、画面項目定義データ自動
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u12',
+            VERSION:'5u13',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

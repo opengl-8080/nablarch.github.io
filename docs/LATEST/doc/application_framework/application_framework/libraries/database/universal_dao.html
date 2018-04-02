@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.3.2. ユニバーサルDAO &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>7.3.2. ユニバーサルDAO &mdash; ∇Nablarch  5u13 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/universal_dao.html" />
   
-    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.3. データベースアクセス" href="../database_management.html"/>
         <link rel="next" title="7.3.2.3.8.1. サロゲートキーの採番" href="generator.html"/>
         <link rel="prev" title="7.3.1. データベースアクセス(JDBCラッパー)" href="database.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u12</div>
+    <div id="sidebar-version">Version: 5u13</div>
   </a>
 
   <div role="search">
@@ -112,6 +112,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -365,10 +369,17 @@
 ユニバーサルDAOを使用するには <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> の設定が必要となる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">ユニバーサルDAOは、簡易的なO/Rマッパーと位置付けていて、
+<p>ユニバーサルDAOは、簡易的なO/Rマッパーと位置付けていて、
 すべてのデータベースアクセスをユニバーサルDAOで実現しようとは考えていない。
-ユニバーサルDAOで実現できない場合は、素直に <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使うこと。
-例えば、ユニバーサルDAOでは、主キー以外の条件を指定した更新/削除や <a class="reference internal" href="database.html#database-common-bean"><span>共通項目への値の自動設定</span></a> を実現できない。</p>
+ユニバーサルDAOで実現できない場合は、素直に <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使うこと。</p>
+<p class="last">例えば、ユニバーサルDAOでは、主キー以外の条件を指定した更新/削除は行えないので、
+<a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用する必要がある。</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>ユニバーサルDAOは、共通項目(全てのテーブルに定義する登録ユーザや更新ユーザ等)に対する値の自動設定機能は提供しない。
+共通項目に対する値の自動設定を行いたい場合は、 <a class="reference internal" href="../../../adaptors/doma_adaptor.html#doma-adaptor"><span>Domaアダプタ</span></a> を適用し、Domaのエンティティリスナー機能を使用すれば良い。</p>
+<p class="last">どうしてもユニバーサルDAOを使用したい場合は、ユニバーサルDAOの機能を使用する前にアプリケーションで明示的に共通項目を設定すること。</p>
 </div>
 <div class="section" id="universal-dao-spec">
 <span id="id2"></span><h2><a class="toc-backref" href="#id20">7.3.2.1. 機能概要</a><a class="headerlink" href="#universal-dao-spec" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -383,6 +394,11 @@ SQL文は、JPAアノテーションを元に実行時に構築する。</p>
 <li>主キーを指定した検索</li>
 </ul>
 <p>Entityに使用できるJPAアノテーションについては、 <a class="reference internal" href="#universal-dao-jpa-annotations"><span>Entityに使用できるJPAアノテーション</span></a> を参照。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">ユニバーサルDAOの上記CRUD機能では、<code class="docutils literal"><span class="pre">&#64;Table</span></code>アノテーションを使ってスキーマを指定することができる（ <a class="reference internal" href="#universal-dao-jpa-annotations"><span>Entityに使用できるJPAアノテーション</span></a> を参照）。
+ただし、 <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> の <a class="reference internal" href="database.html#database-replace-schema"><span>SQL文中のスキーマを環境毎に切り替える</span></a> 機能は、ユニバーサルDAOの上記CRUD機能では使用できない。環境毎にスキーマを切り替える用途には、ユニバーサルDAOではなく <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用すること。</p>
+</div>
 </div>
 <div class="section" id="bean">
 <span id="universal-dao-bean-mapping"></span><h3><a class="toc-backref" href="#id22">7.3.2.1.2. 検索結果をBeanにマッピングできる</a><a class="headerlink" href="#bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -810,8 +826,13 @@ JDBCドライバのマニュアルを参照すること。</p>
 <span id="universal-dao-jpa-annotations"></span><h2><a class="toc-backref" href="#id42">7.3.2.5. Entityに使用できるJPAアノテーション</a><a class="headerlink" href="#entityjpa" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Entityに使用できるJPAアノテーションは以下のとおり。</p>
 <ul class="simple">
+<li>クラスに設定するアノテーション<ul>
 <li><a class="reference internal" href="#universal-dao-jpa-entity"><span>&#64;Entity</span></a></li>
 <li><a class="reference internal" href="#universal-dao-jpa-table"><span>&#64;Table</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-access"><span>&#64;Access</span></a></li>
+</ul>
+</li>
+<li>getterまたはフィールドに設定するアノテーション<ul>
 <li><a class="reference internal" href="#universal-dao-jpa-column"><span>&#64;Column</span></a></li>
 <li><a class="reference internal" href="#universal-dao-jpa-id"><span>&#64;Id</span></a></li>
 <li><a class="reference internal" href="#universal-dao-jpa-version"><span>&#64;Version</span></a></li>
@@ -820,12 +841,24 @@ JDBCドライバのマニュアルを参照すること。</p>
 <li><a class="reference internal" href="#universal-dao-jpa-sequence-generator"><span>&#64;SequenceGenerator</span></a></li>
 <li><a class="reference internal" href="#universal-dao-jpa-table-generator"><span>&#64;TableGenerator</span></a></li>
 </ul>
+</li>
+</ul>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">ここに記載のないアノテーション及び属性を使用しても機能しない。</p>
 </div>
+<p>フィールドに設定する場合には&#64;Accessで明示的に指定すること。&#64;Accessで明示的に指定した場合のみ、フィールドのアノテーションを参照する。</p>
+<p>フィールドにアノテーションを設定する場合でも、UniversalDaoでは値の取得と設定はプロパティを通して行われるため、getterとsetterは必ず作成すること。</p>
+<p>フィールドとプロパティは名前で紐づいているため、名前が異なるとフィールドのアノテーションをプロパティで参照できなくなる。
+そのためフィールド名と、プロパティ名(get〇〇,set〇〇の〇〇の部分)を必ず同じものにすること。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">例えば、Lombokのようなボイラープレートコードを生成するライブラリを使用する場合、
+アノテーションをフィールドに設定することでgetterを自分で作成する必要がなくなり、
+ライブラリの利点をより活かすことができる。</p>
+</div>
 <dl class="docutils" id="universal-dao-jpa-entity">
-<dt><em>javax.persistence.Entity</em> （アノテーション設定箇所：class）</dt>
+<dt><em>javax.persistence.Entity</em></dt>
 <dd><p class="first">データベースのテーブルに対応したEntityクラスに設定するアノテーション。</p>
 <p>本アノテーションを設定した場合、クラス名からテーブル名が導出される。
 クラス名(パスカルケース)をスネークケース(全て大文字)へ変換した値がテーブル名となる。</p>
@@ -841,15 +874,21 @@ BookAuthorクラス  -&gt; BOOK_AUTHOR
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-table">
-<dt><em>javax.persistence.Table</em> （アノテーション設定箇所：class）</dt>
+<dt><em>javax.persistence.Table</em></dt>
 <dd><p class="first">テーブル名を指定するために使用するアノテーション。</p>
 <p class="last">name属性に値が指定されている場合、その値がテーブル名として使用される。
 schema属性に値が指定されている場合、指定されたスキーマ名を修飾子として指定してテーブルにアクセスを行う。
 例えば、schema属性にworkと指定した場合で、テーブル名がusers_workの場合、work.users_workにアクセスを行う。</p>
 </dd>
 </dl>
+<dl class="docutils" id="universal-dao-jpa-access">
+<dt><em>javax.persistence.Access</em></dt>
+<dd><p class="first">アノテーションを設定する場所を指定するために使用するアノテーション。</p>
+<p class="last">明示的にフィールドに指定した場合のみ、フィールドのアノテーションを参照する。</p>
+</dd>
+</dl>
 <dl class="docutils" id="universal-dao-jpa-column">
-<dt><em>javax.persistence.Column</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.Column</em></dt>
 <dd><p class="first">カラム名を指定するために使用するアノテーション。</p>
 <p>name属性に値が指定されている場合、その値がカラム名として使用される。</p>
 <div class="last admonition tip">
@@ -861,13 +900,13 @@ schema属性に値が指定されている場合、指定されたスキーマ�
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-id">
-<dt><em>javax.persistence.Id</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.Id</em></dt>
 <dd><p class="first">主キーに設定するアノテーション。</p>
-<p class="last">複合主キーの場合には、複数のgetterに本アノテーションを設定する。</p>
+<p class="last">複合主キーの場合には、複数のgettterもしくはフィールドに本アノテーションを設定する。</p>
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-version">
-<dt><em>javax.persistence.Version</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.Version</em></dt>
 <dd><p class="first">排他制御で使用するバージョンカラムに設定するアノテーション。</p>
 <p>本アノテーションは数値型のプロパティのみに指定できる。
 文字列型のプロパティだと正しく動作しない。</p>
@@ -880,14 +919,14 @@ schema属性に値が指定されている場合、指定されたスキーマ�
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-temporal">
-<dt><em>javax.persistence.Temporal</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.Temporal</em></dt>
 <dd><p class="first"><em>java.util.Date</em> 及び <em>java.util.Calendar</em> 型の値を
 データベースにマッピングする方法を指定するアノテーション。</p>
 <p class="last">value属性に指定されたデータベース型に、Javaオブジェクトの値を変換してデータベースに登録する。</p>
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-generated-value">
-<dt><em>javax.persistence.GeneratedValue</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.GeneratedValue</em></dt>
 <dd><p class="first">自動採番された値を登録することを示すアノテーション。</p>
 <p>strategy属性に採番方法を設定する。
 AUTOを設定した場合、以下のルールにて採番方法が選択される。</p>
@@ -911,7 +950,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-sequence-generator">
-<dt><em>javax.persistence.SequenceGenerator</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.SequenceGenerator</em></dt>
 <dd><p class="first">シーケンス採番を使用する場合に設定するアノテーション。</p>
 <p>name属性には、<a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a>
 のgenerator属性と同じ値を設定する。</p>
@@ -924,7 +963,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
 </dd>
 </dl>
 <dl class="docutils" id="universal-dao-jpa-table-generator">
-<dt><em>javax.persistence.TableGenerator</em> （アノテーション設定箇所：getter）</dt>
+<dt><em>javax.persistence.TableGenerator</em></dt>
 <dd><p class="first">テーブル採番を使用する場合に設定するアノテーション。</p>
 <p>name属性には、 <a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a>
 のgenerator属性と同じ値を設定する。</p>
@@ -1010,7 +1049,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u12',
+            VERSION:'5u13',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

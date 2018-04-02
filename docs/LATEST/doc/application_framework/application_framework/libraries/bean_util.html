@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.19. Bean Util &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>7.19. Bean Util &mdash; ∇Nablarch  5u13 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/bean_util.html" />
   
-    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.20. 汎用ユーティリティ" href="utility.html"/>
         <link rel="prev" title="7.18.1. タグリファレンス" href="tag/tag_reference.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u12</div>
+    <div id="sidebar-version">Version: 5u13</div>
   </a>
 
   <div role="search">
@@ -112,6 +112,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -325,10 +329,16 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id6">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id4" id="id7">使用方法</a></li>
-<li><a class="reference internal" href="#beanutil" id="id8">BeanUtilの型変換ルール</a></li>
-<li><a class="reference internal" href="#utility-conversion-add-rule" id="id9">型変換ルールを追加する</a></li>
+<li><a class="reference internal" href="#id3" id="id10">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id4" id="id11">使用方法</a></li>
+<li><a class="reference internal" href="#beanutil" id="id12">BeanUtilの型変換ルール</a></li>
+<li><a class="reference internal" href="#utility-conversion-add-rule" id="id13">型変換ルールを追加する</a></li>
+<li><a class="reference internal" href="#id6" id="id14">型変換時に許容するフォーマットを指定する</a><ul>
+<li><a class="reference internal" href="#bean-util-format-default-setting" id="id15">デフォルト(システム共通)の許容するフォーマットを設定する</a></li>
+<li><a class="reference internal" href="#bean-util-format-property-setting" id="id16">コピー対象のプロパティに対して許容するフォーマットを設定する</a></li>
+<li><a class="reference internal" href="#bean-util-format-logical" id="id17">BeanUtil呼び出し時に許容するフォーマットを設定する</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>Java Beansに関する以下機能を提供する。</p>
@@ -338,7 +348,7 @@
 <li>Java Beansとjava.util.Mapとの間での値の移送</li>
 </ul>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id6">7.19.1. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">7.19.1. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-core-beans<span class="nt">&lt;/artifactId&gt;</span>
@@ -347,7 +357,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id7">7.19.2. 使用方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">7.19.2. 使用方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> が提供するAPIを使用して、任意のJava Beansに対する操作が実現できる。</p>
 <p>BeanUtilの使用例を以下に示す。</p>
 <dl class="docutils">
@@ -424,7 +434,7 @@
 </dl>
 </div>
 <div class="section" id="beanutil">
-<span id="utility-conversion"></span><h2><a class="toc-backref" href="#id8">7.19.3. BeanUtilの型変換ルール</a><a class="headerlink" href="#beanutil" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="utility-conversion"></span><h2><a class="toc-backref" href="#id12">7.19.3. BeanUtilの型変換ルール</a><a class="headerlink" href="#beanutil" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> では、Java BeansオブジェクトやMapオブジェクトから
 別のJava Beansオブジェクトにデータ移行する際にプロパティの型変換を行っている。</p>
 <p>なお、MapオブジェクトからJava Beansオブジェクトにデータ移行する場合、
@@ -439,13 +449,13 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>型変換ルールはアプリケーション共通の設定となる。このため、1つのアプリケーションの中で異なる設定を利用することは出来ない。</p>
-<p class="last">例えば、特定の処理のみ異なる変換ルールを適用することは出来ない。
-もし、特定の処理に固有の変換ルールを適用したい場合には、アプリケーション側で型変換と移送処理を行うこと。</p>
+<p class="last">型変換ルールはアプリケーション共通の設定となる。
+特定の処理のみ異なる型変換ルールを適用したい場合は、 <a class="reference internal" href="#bean-util-format-logical"><span>BeanUtil呼び出し時に許容するフォーマットを設定する</span></a> を参照し、
+特定のプロパティや型に対して <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/Converter.html" title="nablarch.core.beans.Converter">Converter</a> 実装を適用し対応すること。</p>
 </div>
 </div>
 <div class="section" id="utility-conversion-add-rule">
-<span id="id5"></span><h2><a class="toc-backref" href="#id9">7.19.4. 型変換ルールを追加する</a><a class="headerlink" href="#utility-conversion-add-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id13">7.19.4. 型変換ルールを追加する</a><a class="headerlink" href="#utility-conversion-add-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>型変換ルールを追加するには、以下の手順が必要となる。</p>
 <ol class="arabic simple">
 <li>必要に応じて以下のインタフェースを実装し型変換処理を実現する。</li>
@@ -464,32 +474,32 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleConversionManager</span> <span class="kd">implements</span> <span class="n">ConversionManager</span> <span class="o">{</span>
 
-  <span class="kd">private</span> <span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">;</span>
 
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getConverters</span><span class="o">()</span> <span class="o">{</span>
-      <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">converters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;();</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getConverters</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">converters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;,</span> <span class="n">Converter</span><span class="o">&lt;?&gt;&gt;();</span>
 
-      <span class="c1">// 標準のコンバータ</span>
-      <span class="n">converters</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getConverters</span><span class="o">());</span>
+        <span class="c1">// 標準のコンバータ</span>
+        <span class="n">converters</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getConverters</span><span class="o">());</span>
 
-      <span class="c1">// 今回作成したコンバータ</span>
-      <span class="n">converters</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">BigInteger</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="k">new</span> <span class="n">CustomConverter</span><span class="o">());</span>
+        <span class="c1">// 今回作成したコンバータ</span>
+        <span class="n">converters</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">BigInteger</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="k">new</span> <span class="n">CustomConverter</span><span class="o">());</span>
 
-      <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableMap</span><span class="o">(</span><span class="n">converters</span><span class="o">);</span>
-  <span class="o">}</span>
+        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableMap</span><span class="o">(</span><span class="n">converters</span><span class="o">);</span>
+    <span class="o">}</span>
 
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getExtensionConvertor</span><span class="o">()</span> <span class="o">{</span>
-      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">extensionConverters</span> <span class="o">=</span>
-          <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getExtensionConvertor</span><span class="o">());</span>
-      <span class="n">extensionConverters</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">CustomExtensionConverter</span><span class="o">());</span>
-      <span class="k">return</span> <span class="n">extensionConverters</span><span class="o">;</span>
-  <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getExtensionConvertor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">extensionConverters</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ExtensionConverter</span><span class="o">&lt;?&gt;&gt;(</span><span class="n">delegateManager</span><span class="o">.</span><span class="na">getExtensionConvertor</span><span class="o">());</span>
+        <span class="n">extensionConverters</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">CustomExtensionConverter</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">extensionConverters</span><span class="o">;</span>
+    <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDelegateManager</span><span class="o">(</span><span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">delegateManager</span> <span class="o">=</span> <span class="n">delegateManager</span><span class="o">;</span>
-  <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDelegateManager</span><span class="o">(</span><span class="n">ConversionManager</span> <span class="n">delegateManager</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">delegateManager</span> <span class="o">=</span> <span class="n">delegateManager</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -512,6 +522,123 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </div>
 </li>
 </ol>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id14">7.19.5. 型変換時に許容するフォーマットを指定する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>型変換時には、許容するフォーマットを指定することで日付や数値のフォーマットを解除できる。
+例えば、カンマ編集されたString型の値(1,000,000)を数値型(1000000)に変換できる。</p>
+<p>許容するフォーマットは、以下の3種類の指定方法がある。優先順位は上に記載したものが高くなる。</p>
+<ul class="simple">
+<li><a class="reference internal" href="#bean-util-format-logical"><span>BeanUtil呼び出し時に設定</span></a></li>
+<li><a class="reference internal" href="#bean-util-format-property-setting"><span>プロパティ単位にアノテーションで設定</span></a></li>
+<li><a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定(システム共通設定)</span></a></li>
+</ul>
+<div class="section" id="bean-util-format-default-setting">
+<span id="id7"></span><h3><a class="toc-backref" href="#id15">7.19.5.1. デフォルト(システム共通)の許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-default-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>フォーマットのデフォルト設定は、コンポーネント設定ファイルに設定する。</p>
+<p>例えば、画面上で入力される数値についてはカンマ編集されているものも許容する場合には、デフォルト設定を行うことで個別指定が不要となる。</p>
+<p>以下に設定方法を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コンポーネント名を <strong>conversionManager</strong> で <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BasicConversionManager.html" title="nablarch.core.beans.BasicConversionManager">BasicConversionManager</a> を定義する。</li>
+<li><code class="docutils literal"><span class="pre">datePatterns</span></code> プロパティに許容する日付及び日時形式のフォーマットを設定する。</li>
+<li><code class="docutils literal"><span class="pre">numberPatterns</span></code> プロパティに許容する数値形式のフォーマット定義を設定する。</li>
+<li>複数のフォーマットを許容する場合は複数設定する。</li>
+</ul>
+</dd>
+<dt>設定例</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;conversionManager&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.beans.BasicConversionManager&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- 日付及び日時の許容するフォーマットを指定する --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;datePatterns&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;value&gt;</span>yyyy/MM/dd<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>yyyy-MM-dd<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="c">&lt;!-- 数値の許容するフォーマットを指定する --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;numberPatterns&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;value&gt;</span>#,###<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p><code class="docutils literal"><span class="pre">yyyy/MM/dd</span></code> と <code class="docutils literal"><span class="pre">yyyy/MM/dd</span> <span class="pre">HH:mm:ss</span></code> の用に日付と日時のフォーマットを指定した場合、
+日時形式の値も <cite>yyyy/MM/dd</cite> パース出来てしまうため時間情報が欠落してしまうケースがある。</p>
+<p class="last">このため、デフォルト指定では日付のフォーマットのみを指定し、日時形式の項目については <a class="reference internal" href="#bean-util-format-property-setting"><span>プロパティ単位にアノテーションで設定</span></a>
+を使用してデフォルト設定をオーバライドするなどの対応が必要となる。</p>
+</div>
+</div>
+<div class="section" id="bean-util-format-property-setting">
+<span id="id8"></span><h3><a class="toc-backref" href="#id16">7.19.5.2. コピー対象のプロパティに対して許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-property-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>特定機能だけ <a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定</span></a> を適用せずに異なるフォーマットを指定したい場合がある。
+この場合は、コピー対象のBean(コピー元またはコピー先)の該当プロパティに対応したフィールドに対してアノテーションを指定し許容するフォーマットを上書きする。</p>
+<p>アノテーションは、コピー元とコピー先のどちらに指定しても動作するが、基本的に許容するフォーマットはString型のプロパティに対応するフィールドに指定するのが好ましい。
+なぜなら、フォーマットした値を持つのはString型のプロパティであり、そのプロパティに対して許容するフォーマットが指定されていることが自然であるためである。
+もし、コピー元とコピー先の両方に指定されている場合は、コピー元の設定を使用する。</p>
+<p>例えば、デフォルト設定では日付のフォーマットを指定している場合で、特定機能のみ日時フォーマットを許容する場合に使用するとよい。</p>
+<p>以下に実装例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コピー元(コピー先)のプロパティに対応したフィールドに対して <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/CopyOption.html" title="nablarch.core.beans.CopyOption">CopyOption</a> アノテーションを設定する。</li>
+<li>CopyOptionの <code class="docutils literal"><span class="pre">datePattern</span></code> に許容する日付及び日時のフォーマットを指定する。</li>
+<li>CopyOptionの <code class="docutils literal"><span class="pre">numberPattern</span></code> に許容する数値のフォーマットを指定する。</li>
+</ul>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bean</span> <span class="o">{</span>
+    <span class="c1">// 許容する日時フォーマットを指定する</span>
+    <span class="nd">@CopyOption</span><span class="o">(</span><span class="n">datePattern</span> <span class="o">=</span> <span class="s">&quot;yyyy/MM/dd HH:mm:ss&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">timestamp</span><span class="o">;</span>
+
+    <span class="c1">// 許容する数値フォーマットを指定する</span>
+    <span class="nd">@CopyOption</span><span class="o">(</span><span class="n">numberPattern</span> <span class="o">=</span> <span class="s">&quot;#,###&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">number</span><span class="o">;</span>
+
+    <span class="c1">// setter及びgetterは省略</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="bean-util-format-logical">
+<span id="id9"></span><h3><a class="toc-backref" href="#id17">7.19.5.3. BeanUtil呼び出し時に許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-logical" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>特定機能だけ <a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定</span></a> を適用せずに異なるフォーマットを指定したいが、
+OSSなどを用いてBeanを自動生成している場合に <a class="reference internal" href="#bean-util-format-property-setting"><span>プロパティ単位にアノテーションで設定</span></a> が使用できない場合がある。
+また、特定プロパティのみ異なる型変換ルールを適用したい場合がある。</p>
+<p>このような場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> 呼び出し時に、許容するフォーマットや型変換ルールを設定し対応する。</p>
+<p>以下に実装例を示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/CopyOptions.html" title="nablarch.core.beans.CopyOptions">CopyOptions</a> を使用してプロパティに対する設定を行う。
+<code class="docutils literal"><span class="pre">CopyOptions</span></code> の構築方法は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/CopyOptions.Builder.html" title="nablarch.core.beans.CopyOptions.Builder">CopyOptions.Builder</a> を参照。</li>
+<li>生成した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/CopyOptions.html" title="nablarch.core.beans.CopyOptions">CopyOptions</a> を使用して <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を呼び出す。</li>
+</ul>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">CopyOptions</span> <span class="n">copyOptions</span> <span class="o">=</span> <span class="n">CopyOptions</span><span class="o">.</span><span class="na">options</span><span class="o">()</span>
+        <span class="c1">// timestampプロパティに対して許容するフォーマットを指定</span>
+        <span class="o">.</span><span class="na">datePatternByName</span><span class="o">(</span><span class="s">&quot;timestamp&quot;</span><span class="o">,</span> <span class="s">&quot;yyyy年MM月dd日 HH時mm分ss秒&quot;</span><span class="o">)</span>
+        <span class="c1">// customプロパティに対してCustomDateConverterを適用</span>
+        <span class="o">.</span><span class="na">converterByName</span><span class="o">(</span><span class="s">&quot;custom&quot;</span><span class="o">,</span> <span class="n">Date</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="k">new</span> <span class="n">CustomDateConverter</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+ <span class="c1">// CopyOptionsを指定してBeanUtilを呼び出す。</span>
+ <span class="kd">final</span> <span class="n">DestBean</span> <span class="n">copy</span> <span class="o">=</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">DestBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">bean</span><span class="o">,</span> <span class="n">copyOptions</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 
@@ -548,7 +675,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u12',
+            VERSION:'5u13',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

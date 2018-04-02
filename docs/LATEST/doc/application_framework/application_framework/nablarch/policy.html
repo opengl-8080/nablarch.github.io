@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u12 ドキュメント</title>
+  <title>1.3. 基本方針 &mdash; ∇Nablarch  5u13 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/nablarch/policy.html" />
   
-    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="1. Nablarchアプリケーションフレームワークとは" href="index.html"/>
         <link rel="next" title="1.4. 稼動環境" href="platform.html"/>
         <link rel="prev" title="1.2. アーキテクチャ" href="architecture.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u12</div>
+    <div id="sidebar-version">Version: 5u13</div>
   </a>
 
   <div role="search">
@@ -112,6 +112,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -337,6 +341,7 @@
 <li><a class="reference internal" href="#java6" id="id15">Java6に準拠している</a></li>
 <li><a class="reference internal" href="#api" id="id16">アプリケーションで使用してもよいAPIについて</a></li>
 <li><a class="reference internal" href="#bigdecimal" id="id17">文字列からBigDecimal変換時に発生する可能性のあるヒープ不足について</a></li>
+<li><a class="reference internal" href="#deprecated-api" id="id18">非推奨(Deprecated)APIについて</a></li>
 </ul>
 </div>
 <div class="section" id="nablarch-architecture-no-input">
@@ -439,6 +444,35 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="deprecated-api">
+<h2><a class="toc-backref" href="#id18">1.3.12. 非推奨(Deprecated)APIについて</a><a class="headerlink" href="#deprecated-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Nablarchでは以下に該当するAPIは <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html" title="java.lang.Deprecated">&#64;Deprecated</a> アノテーションを付与し非推奨とする。</p>
+<ul>
+<li><p class="first">他パッケージに移動したクラス</p>
+<p>Nablarchチームの都合でクラスを他パッケージに移動した際には、移動前クラスを非推奨とする。
+Javadocには、移動先のクラスを使用するように記載を行っている。</p>
+<p>なお、移動前のクラスは移動後のクラスに全ての処理を委譲しているため、移動前のクラスを利用している場合でも動作は保証される。
+ただし、メソッド追加などは行われないため、移動先クラスを使用することが好ましい。</p>
+</li>
+<li><p class="first">不具合やセキュリティ面で問題のあるクラスやメソッド</p>
+<p>不具合やセキュリティ面での問題があるクラスは非推奨とする。
+Javadocには、理由及び代わりに使用すべきAPIや実装方法の記載を行っている。</p>
+<p>Javadocを参照し不具合やセキュリティ面での問題を解消したAPIを使用するよう対応が必要となる。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">不具合や脆弱性については基本的に問題を解消するよう修正を行う。
+しかし、クラス構造的な制約や後方互換の維持を目的として問題のあるAPIを非推奨として残す場合がある。
+非推奨APIとして残した場合は、新たな不具合などが見つかっても対応は行わない。
+このため、問題が解消された新しいAPIを使用するようアプリケーション側は必ず対応を行う必要がある。</p>
+</div>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">本ドキュメントで代替機能の使用を推奨しているものについては、非推奨API( <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html" title="java.lang.Deprecated">&#64;Deprecated</a> の付与)とはしていない。
+なぜなら、これらのAPI(機能)は、使用すること自体は問題なく、不具合などがあった場合もバージョンアップ時に対応を行うためである。</p>
+</div>
+</div>
 </div>
 
 
@@ -474,7 +508,7 @@ Java7以降で提供されているAPIも問題なく使用できる。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u12',
+            VERSION:'5u13',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
