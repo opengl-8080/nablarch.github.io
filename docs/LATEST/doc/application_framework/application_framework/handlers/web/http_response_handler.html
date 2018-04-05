@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.2. HTTPレスポンスハンドラ &mdash; ∇Nablarch  5u13 ドキュメント</title>
+  <title>6.2.2. HTTPレスポンスハンドラ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/http_response_handler.html" />
   
-    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.3. セキュアハンドラ" href="secure_handler.html"/>
         <link rel="prev" title="6.2.1. HTTP文字エンコード制御ハンドラ" href="http_character_encoding_handler.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u13</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -112,10 +112,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -331,24 +327,21 @@
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id13">ハンドラクラス名</a></li>
-<li><a class="reference internal" href="#id3" id="id14">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id4" id="id15">制約</a></li>
-<li><a class="reference internal" href="#id5" id="id16">応答の変換方法</a></li>
-<li><a class="reference internal" href="#http-response-handler-convert-status-code" id="id17">カスタムレスポンスライター</a></li>
-<li><a class="reference internal" href="#id10" id="id18">HTTPステータスコードの変更</a></li>
-<li><a class="reference internal" href="#http-response-handler-change-content-path" id="id19">言語毎のコンテンツパスの切り替え</a></li>
-<li><a class="reference internal" href="#id12" id="id20">本ハンドラ内で発生した致命的エラーの対応</a></li>
+<li><a class="reference internal" href="#id2" id="id11">ハンドラクラス名</a></li>
+<li><a class="reference internal" href="#id3" id="id12">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id4" id="id13">制約</a></li>
+<li><a class="reference internal" href="#id5" id="id14">応答の変換方法</a></li>
+<li><a class="reference internal" href="#http-response-handler-convert-status-code" id="id15">HTTPステータスコードの変更</a></li>
+<li><a class="reference internal" href="#http-response-handler-change-content-path" id="id16">言語毎のコンテンツパスの切り替え</a></li>
+<li><a class="reference internal" href="#id10" id="id17">本ハンドラ内で発生した致命的エラーの対応</a></li>
 </ul>
 </div>
 <p>本ハンドラは、後続ハンドラが返す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a> に従い、サーブレットAPIを
 呼び出しクライアントへのレスポンスを行う。
-応答の方法には、下記4通りが存在する。</p>
+応答の方法には、下記3通りが存在する。</p>
 <dl class="docutils">
 <dt>サーブレットフォワード</dt>
 <dd>サーブレットにフォワードを行い、レスポンスを描画する。主にJSPを使ったレスポンス時に使用する。</dd>
-<dt>カスタムレスポンスライター</dt>
-<dd><a class="reference internal" href="#id8">カスタムレスポンスライター</a>（後述）を使用して、任意のレスポンス出力処理を行う。主にテンプレートエンジン等の外部ライブラリを使ったレスポンス時に使用する。</dd>
 <dt>リダイレクト</dt>
 <dd>クライアントにリダイレクトを行う応答を返す。</dd>
 <dt>直接レスポンス</dt>
@@ -358,13 +351,13 @@
 <p>処理の流れは以下のとおり。</p>
 <img alt="../../../../_images/flow30.png" src="../../../../_images/flow30.png" />
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id13">6.2.2.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">6.2.2.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/HttpResponseHandler.html" title="nablarch.fw.web.handler.HttpResponseHandler">nablarch.fw.web.handler.HttpResponseHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id14">6.2.2.2. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">6.2.2.2. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
@@ -373,12 +366,12 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id15">6.2.2.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">6.2.2.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>なし。</p>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id16">6.2.2.4. 応答の変換方法</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ハンドラでは、後続のハンドラから返されるスキーム <a class="footnote-reference" href="#scheme" id="id6">[1]</a> と、ステータスコード  <a class="footnote-reference" href="#statuscode" id="id7">[2]</a> によりクライアントに返すレスポンスの方法を変更する。</p>
+<h2><a class="toc-backref" href="#id14">6.2.2.4. 応答の変換方法</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本ハンドラでは、後続のハンドラから返されるスキーマ <a class="footnote-reference" href="#scheme" id="id6">[1]</a> と、ステータスコード  <a class="footnote-reference" href="#statuscode" id="id7">[2]</a> によりクライアントに返すレスポンスの方法を変更する。</p>
 <p>変換条件と応答方法は下記表の通り。</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
@@ -391,19 +384,19 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>スキームが
+<tr class="row-even"><td>スキーマが
 <code class="docutils literal"><span class="pre">servlet</span></code> の場合</td>
-<td>カスタムレスポンスライターが処理対象と判定した場合はカスタムレスポンスライターに処理を移譲する。それ以外の場合はコンテンツパス別サーブレットへ処理をフォワードする。</td>
+<td>別サーブレットへ処理をフォワードする</td>
 </tr>
-<tr class="row-odd"><td>スキームが
+<tr class="row-odd"><td>スキーマが
 <code class="docutils literal"><span class="pre">redirect</span></code> の場合</td>
 <td>指定したURLへのリダイレクトを行う</td>
 </tr>
-<tr class="row-even"><td>スキームが
+<tr class="row-even"><td>スキーマが
 <code class="docutils literal"><span class="pre">http</span></code> または <code class="docutils literal"><span class="pre">https</span></code> の場合</td>
 <td>指定したURLへのリダイレクトを行う</td>
 </tr>
-<tr class="row-odd"><td>スキームが上記以外で、
+<tr class="row-odd"><td>スキーマが上記以外で、
 ステータスコードが400以上の場合</td>
 <td>ステータスコードに合うエラー画面の表示をおこなう。</td>
 </tr>
@@ -415,7 +408,7 @@
 <table class="docutils footnote" frame="void" id="scheme" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td>ここで言う「スキーム」とは、後続ハンドラが返した
+<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td>ここで言う「スキーマ」とは、後続ハンドラが返した
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html#getContentPath--" title="nablarch.fw.web.HttpResponse.getContentPath()">HttpResponse#getContentPath()</a>
 で取得した  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html" title="nablarch.fw.web.ResourceLocator">ResourceLocator</a> の
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html#getScheme--" title="nablarch.fw.web.ResourceLocator.getScheme()">getScheme() メソッド</a> の戻り値のことを指す。</td></tr>
@@ -431,20 +424,7 @@
 </table>
 </div>
 <div class="section" id="http-response-handler-convert-status-code">
-<span id="id8"></span><h2><a class="toc-backref" href="#id17">6.2.2.5. カスタムレスポンスライター</a><a class="headerlink" href="#http-response-handler-convert-status-code" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ハンドラのプロパティ <code class="docutils literal"><span class="pre">customResponseWriter</span></code> に
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/responsewriter/CustomResponseWriter.html" title="nablarch.fw.web.handler.responsewriter.CustomResponseWriter">CustomResponseWriter</a>
-の実装クラスを設定することで、任意のレスポンス出力処理<a class="footnote-reference" href="#resp" id="id9">[3]</a> を実行できる。</p>
-<table class="docutils footnote" frame="void" id="resp" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[3]</a></td><td>具体例として、JSPではなくテンプレートエンジンを使用してレスポンスを出力するというケースが挙げられる。
-Nablarchが提供している実装としては、<a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html#web-thymeleaf-adaptor"><span>ウェブアプリケーション Thymeleafアダプタ</span></a> がある。</td></tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id10">
-<h2><a class="toc-backref" href="#id18">6.2.2.6. HTTPステータスコードの変更</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id8"></span><h2><a class="toc-backref" href="#id15">6.2.2.5. HTTPステータスコードの変更</a><a class="headerlink" href="#http-response-handler-convert-status-code" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラでは、ステータスコードを一部変更してクライアントへのレスポンスに設定する。</p>
 <p>HTTPステータスコードを決定する変換条件と、応答のエラーコードは下記表のとおり。</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
@@ -471,7 +451,7 @@ Nablarchが提供している実装としては、<a class="reference internal" 
 </table>
 </div>
 <div class="section" id="http-response-handler-change-content-path">
-<span id="id11"></span><h2><a class="toc-backref" href="#id19">6.2.2.7. 言語毎のコンテンツパスの切り替え</a><a class="headerlink" href="#http-response-handler-change-content-path" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id16">6.2.2.6. 言語毎のコンテンツパスの切り替え</a><a class="headerlink" href="#http-response-handler-change-content-path" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラは、HTTPリクエストに含まれる言語設定をもとにして、フォワード先を動的に切り替える機能を持つ。
 この機能を利用することで、利用者が選んだ言語に合わせてフォワードするJSPを切り替える機能が実現できる。</p>
 <p>この機能を使用する際は、本ハンドラの <code class="docutils literal"><span class="pre">contentPathRule</span></code> プロパティに下記いずれかのクラスを設定する。</p>
@@ -540,14 +520,9 @@ Nablarchが提供している実装としては、<a class="reference internal" 
 </div>
 <p>上記以外の方法でコンテンツの切り替えを行いたい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/i18n/ResourcePathRule.html" title="nablarch.fw.web.i18n.ResourcePathRule">ResourcePathRule</a>
 クラスを継承したクラスを作成し、作成したクラスを上記同様に <code class="docutils literal"><span class="pre">resourcePathRule</span></code> プロパティに設定すること。</p>
-<div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference internal" href="#id8">カスタムレスポンスライター</a> でレスポンス出力を行う場合、本機能は使用できない。
-これは、テンプレートエンジン等が持っている多言語対応機能と混在させないためである。</p>
 </div>
-</div>
-<div class="section" id="id12">
-<h2><a class="toc-backref" href="#id20">6.2.2.8. 本ハンドラ内で発生した致命的エラーの対応</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id17">6.2.2.7. 本ハンドラ内で発生した致命的エラーの対応</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラ内の処理で、下記事象が発生した場合、正常な応答が返せないと判断して、クライアントに対しては
 ステータスコード500で固定的なレスポンスを返す。</p>
 <ul class="simple">
@@ -612,7 +587,7 @@ Nablarchが提供している実装としては、<a class="reference internal" 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u13',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

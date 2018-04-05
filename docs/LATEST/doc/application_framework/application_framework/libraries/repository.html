@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u13 ドキュメント</title>
+  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/repository.html" />
   
-    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.3. データベースアクセス" href="database_management.html"/>
         <link rel="prev" title="7.1.1.2.5. メッセージングログの出力" href="log/messaging_log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u13</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -112,10 +112,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -431,7 +427,7 @@
 <p>Java Beansオブジェクトは、component要素を用いて定義する。</p>
 <ul class="simple">
 <li>class属性にDIコンテナで管理するクラスのFQCNを設定する。</li>
-<li>name属性を使って任意の名前を設定できる。</li>
+<li>name属性を使って任意の名前を設定することができる。</li>
 <li>property子要素を使って、setterインジェクションができる。</li>
 <li>propertyの子要素にcomponentを定義できる。</li>
 <li>propertyのref属性を使って、他で定義したcomponentをsetterインジェクションできる。</li>
@@ -476,11 +472,6 @@
 <p class="last">生成されるインスタンスのライフサイクルはアプリケーションスコープとなる。このため、アプリケーションが終了するまでインスタンスは破棄されない。
 ※アプリケーションスコープ上のインスタンスの状態は変更しないよう注意すること。</p>
 </div>
-<div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p class="last">staticなプロパティ(staticなsetterメソッド)に対するインジェクションは行われない。
-インジェクション対象となるプロパティがstaticであった場合には、DIコンテナの構築時に例外が送出される。</p>
-</div>
 </div>
 <div class="section" id="repository-override-bean">
 <span id="id7"></span><h3><a class="toc-backref" href="#id26">7.2.3.3. Java Beansオブジェクトの設定を上書きする</a><a class="headerlink" href="#repository-override-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -518,7 +509,7 @@
 </div>
 <div class="section" id="repository-property-type">
 <span id="id8"></span><h3><a class="toc-backref" href="#id27">7.2.3.4. 文字列や数値、真偽値を設定値として使う</a><a class="headerlink" href="#repository-property-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>プロパティの型が以下の型の場合、リテラル表記で値を簡易的に設定できる。</p>
+<p>プロパティの型が以下の型の場合、リテラル表記で値を簡易的に設定することができる。</p>
 <ul class="simple">
 <li>java.lang.String</li>
 <li>java.lang.String[]</li>
@@ -600,7 +591,7 @@
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>Listに対しては、任意のJava Beansオブジェクトを設定できる。
+<p>Listに対しては、任意のJava Beansオブジェクトを設定することができる。
 この例では、handlersプロパティに対して <cite>SampleHandler1</cite> 、 <cite>SampleHandler2</cite> 、 <cite>SampleHandler3</cite> を持つListが設定される。
 なお、下の例にもあるがcomponent-ref要素を使用することで、名前参照することができる。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleHandler3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleHandler3&quot;</span> <span class="nt">/&gt;</span>
@@ -750,7 +741,7 @@ propertyの定義が必要になるためメンテナンス性が悪い。</li>
 </div>
 <div class="section" id="repository-environment-configuration">
 <span id="id11"></span><h3><a class="toc-backref" href="#id31">7.2.3.8. 依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>テスト環境や本番環境で異なる値(データベースの接続情報やディレクトリのパスなど)は、環境設定ファイルで管理できる。</p>
+<p>テスト環境や本番環境で異なる値(データベースの接続情報やディレクトリのパスなど)は、環境設定ファイルで管理することができる。</p>
 <p>環境設定ファイルは、以下のようにシンプルなkey-value形式で記述する。
 詳細な記述ルールは、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>環境設定ファイルの記述ルール</span></a> を参照。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>database.url <span class="o">=</span> jdbc:h2:mem:sample
@@ -775,7 +766,7 @@ database.password <span class="o">=</span> sa
 </div>
 <div class="section" id="repository-user-environment-configuration">
 <span id="id12"></span><h3><a class="toc-backref" href="#id32">7.2.3.9. コンポーネント設定ファイルから環境依存値を参照する</a><a class="headerlink" href="#repository-user-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>コンポーネント設定ファイル(xml)から環境設定ファイルを読み込み、Java Beansオブジェクトの設定値として使用できる。</p>
+<p>コンポーネント設定ファイル(xml)から環境設定ファイルを読み込み、Java Beansオブジェクトの設定値として利用できる。</p>
 <p>DIコンテナで管理するオブジェクトに対して環境依存値を設定(インジェクション)する場合は、
 コンポーネント設定ファイルに環境依存値のキー値を <code class="docutils literal"><span class="pre">${</span></code> と <code class="docutils literal"><span class="pre">}</span></code> で囲んで記述する。</p>
 <p>なお、この記法を環境設定ファイルで使用することはできない。(環境設定ファイル内では、他の環境依存値は参照できない。)</p>
@@ -791,19 +782,15 @@ database.password <span class="o">=</span> sa
 <dt>コンポーネント設定ファイル</dt>
 <dd><p class="first">環境設定ファイルを読み込む場合には、config-file要素を使用する。
 この例のようにファイル名指定で読み込んだり、特定ディレクトリ配下のファイルを一括で読み込むことができる。</p>
-<p>上記の環境設定ファイルの名前が「database.properties」の場合、 <cite>JdbcDataSource</cite> の <cite>url</cite> には、「jdbc:h2:mem:sample」が設定される。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- database.propertiesファイルの読み込み --&gt;</span>
-<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;database.properties&quot;</span> <span class="nt">/&gt;</span>
+<p>上記の環境設定ファイルの名前が「database.config」の場合、 <cite>JdbcDataSource</cite> の <cite>url</cite> には、「jdbc:h2:mem:sample」が設定される。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- database.configファイルの読み込み --&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;database.config&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;org.h2.jdbcx.JdbcDataSource&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;url&quot;</span> <span class="na">value=</span><span class="s">&quot;${database.url}&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>環境設定ファイルにはconfigファイルとpropertiesファイルの二種類があり、configファイルはnablarchの独自仕様によりパースされ、
-propertiesファイルはjava.util.Propertiesによりパースされる。configファイルはnablarchの独自仕様であることから
-環境設定ファイルにはpropertiesファイルを推奨する。</p>
-<p class="last">環境設定ファイルの仕様は、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>環境設定ファイルの記述ルール</span></a> を参照。</p>
 </dd>
 </dl>
 </div>
@@ -932,7 +919,7 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 </div>
 <div class="section" id="repository-use-system-repository">
 <span id="id16"></span><h3><a class="toc-backref" href="#id36">7.2.3.13. DIコンテナの情報をシステムリポジトリに設定する</a><a class="headerlink" href="#repository-use-system-repository" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>DIコンテナの情報をシステムリポジトリにロードすることで、アプリケーション内の全ての箇所からDIコンテナ上のオブジェクトにアクセスできる。</p>
+<p>DIコンテナの情報をシステムリポジトリにロードすることで、アプリケーション内の全ての箇所からDIコンテナ上のオブジェクトにアクセスすることができる。</p>
 <p>コンポーネント設定ファイルをロードし、システムリポジトリに設定する例を以下に示す。</p>
 <p>この例では、 <code class="docutils literal"><span class="pre">web-boot.xml</span></code> を元に構築されたDIコンテナの情報がシステムリポジトリに設定される。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">XmlComponentDefinitionLoader</span> <span class="n">loader</span>
@@ -982,13 +969,9 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 </div>
 <div class="section" id="repository-environment-configuration-file-rule">
 <span id="id18"></span><h2><a class="toc-backref" href="#id38">7.2.4. 環境設定ファイルの記述ルール</a><a class="headerlink" href="#repository-environment-configuration-file-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>環境設定ファイルにはconfigファイルとpropertiesファイルの二種類があり、ここでは各環境設定ファイルの記述ルールについて説明する。</p>
+<p>環境設定ファイルの記述ルールについて説明する。</p>
+<p>記述ルールは、プロパティファイルと似ているが細かな点に違いがあるため注意すること。</p>
 <dl class="docutils">
-<dt>propertisファイルの仕様</dt>
-<dd>JavaのPropertiesの仕様に基づいて解析される。</dd>
-<dt>configファイルの仕様</dt>
-<dd><p class="first">以下、configファイルの仕様について説明する。</p>
-<dl class="last docutils">
 <dt>設定値の記述形式</dt>
 <dd><p class="first">設定値は、 キーと値を <code class="docutils literal"><span class="pre">=</span></code> で区切って記述する。</p>
 <div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key1</span><span class="o">=</span>value1
@@ -1040,15 +1023,6 @@ efg
 </div>
 </dd>
 </dl>
-</dd>
-</dl>
-<div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p>半角スペースについて、configファイルでは半角スペースのみの値には対応していないが、propertiesファイルでは数値参照文字を設定することで扱うことができる。</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key</span> <span class="o">=</span> <span class="se">\u</span><span class="m">0020</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
@@ -1085,7 +1059,7 @@ efg
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u13',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

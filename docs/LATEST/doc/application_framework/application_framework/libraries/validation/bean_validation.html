@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u13 ドキュメント</title>
+  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u12 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/validation/bean_validation.html" />
   
-    <link rel="top" title="∇Nablarch  5u13 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u12 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.10. 入力値のチェック" href="../validation.html"/>
         <link rel="next" title="7.10.2. Nablarch Validation" href="nablarch_validation.html"/>
         <link rel="prev" title="7.10. 入力値のチェック" href="../validation.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u13</div>
+    <div id="sidebar-version">Version: 5u12</div>
   </a>
 
   <div role="search">
@@ -112,10 +112,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Domaアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -331,30 +327,29 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id25">機能概要</a><ul>
-<li><a class="reference internal" href="#id4" id="id26">ドメインバリデーションができる</a></li>
-<li><a class="reference internal" href="#bean-validation-validator" id="id27">よく使われるバリデータが提供されている</a></li>
+<li><a class="reference internal" href="#id3" id="id22">機能概要</a><ul>
+<li><a class="reference internal" href="#id4" id="id23">ドメインバリデーションができる</a></li>
+<li><a class="reference internal" href="#bean-validation-validator" id="id24">よく使われるバリデータが提供されている</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6" id="id28">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id7" id="id29">使用方法</a><ul>
-<li><a class="reference internal" href="#bean-validation-configuration" id="id30">Bean Validationを使うための設定を行う</a></li>
-<li><a class="reference internal" href="#id9" id="id31">バリデーションエラー時のエラーメッセージを定義する</a></li>
-<li><a class="reference internal" href="#id10" id="id32">バリデーションルールの設定方法</a></li>
-<li><a class="reference internal" href="#bean-validation-domain-validation" id="id33">ドメインバリデーションを使う</a></li>
-<li><a class="reference internal" href="#bean-validation-system-char-validator" id="id34">文字種バリデーションを行う</a></li>
-<li><a class="reference internal" href="#bean-validation-correlation-validation" id="id35">相関バリデーションを行う</a></li>
-<li><a class="reference internal" href="#bean-validation-database-validation" id="id36">データベースとの相関バリデーションを行う</a></li>
-<li><a class="reference internal" href="#bean-validation-create-message-for-property" id="id37">特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a></li>
-<li><a class="reference internal" href="#bean" id="id38">一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a></li>
-<li><a class="reference internal" href="#id16" id="id39">ネストしたBeanをバリデーションする際の注意点</a></li>
-<li><a class="reference internal" href="#bean-validation-web-application" id="id40">ウェブアプリケーションのユーザ入力値のチェックを行う</a></li>
-<li><a class="reference internal" href="#bean-validation-onerror" id="id41">バリデーションエラー時にもリクエストパラメータをリクエストスコープから取得したい</a></li>
-<li><a class="reference internal" href="#bean-validation-property-name" id="id42">バリデーションエラー時のメッセージに項目名を含めたい</a></li>
+<li><a class="reference internal" href="#id6" id="id25">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id7" id="id26">使用方法</a><ul>
+<li><a class="reference internal" href="#bean-validation-configuration" id="id27">Bean Validationを使うための設定を行う</a></li>
+<li><a class="reference internal" href="#id9" id="id28">バリデーションエラー時のエラーメッセージを定義する</a></li>
+<li><a class="reference internal" href="#id10" id="id29">バリデーションルールの設定方法</a></li>
+<li><a class="reference internal" href="#bean-validation-domain-validation" id="id30">ドメインバリデーションを使う</a></li>
+<li><a class="reference internal" href="#bean-validation-system-char-validator" id="id31">文字種バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-correlation-validation" id="id32">相関バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-database-validation" id="id33">データベースとの相関バリデーションを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-create-message-for-property" id="id34">特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a></li>
+<li><a class="reference internal" href="#bean" id="id35">一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a></li>
+<li><a class="reference internal" href="#id16" id="id36">ネストしたBeanをバリデーションする際の注意点</a></li>
+<li><a class="reference internal" href="#bean-validation-web-application" id="id37">ウェブアプリケーションのユーザ入力値のチェックを行う</a></li>
+<li><a class="reference internal" href="#bean-validation-property-name" id="id38">バリデーションエラー時のメッセージに項目名を含めたい</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id22" id="id43">拡張例</a><ul>
-<li><a class="reference internal" href="#id23" id="id44">プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a></li>
+<li><a class="reference internal" href="#id19" id="id39">拡張例</a><ul>
+<li><a class="reference internal" href="#id20" id="id40">プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a></li>
 </ul>
 </li>
 </ul>
@@ -368,15 +363,15 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 (参照実装である <a class="reference external" href="http://hibernate.org/validator/">Hibernate Validator(外部サイト、英語)</a> を利用することを推奨する。)</p>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id25">7.10.1.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id22">7.10.1.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id26">7.10.1.1.1. ドメインバリデーションができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">7.10.1.1.1. ドメインバリデーションができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ドメインごとにバリデーションルールを定義できる機能を提供する。</p>
 <p>ドメインバリデーションを使うと、Beanのプロパティにはドメイン名の指定だけを行えばよく、バリデーションルールの変更が容易になる。</p>
 <p>詳細は、 <a class="reference internal" href="#id11">ドメインバリデーションを使う</a> を参照。</p>
 </div>
 <div class="section" id="bean-validation-validator">
-<span id="id5"></span><h3><a class="toc-backref" href="#id27">7.10.1.1.2. よく使われるバリデータが提供されている</a><a class="headerlink" href="#bean-validation-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id5"></span><h3><a class="toc-backref" href="#id24">7.10.1.1.2. よく使われるバリデータが提供されている</a><a class="headerlink" href="#bean-validation-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Nablarchでは、よく使われるバリデータが提供されているため、基本的なバリデーションは何かを作りこむことなく利用できる。</p>
 <p>Nablarchで提供しているバリデータは以下のパッケージ内のアノテーション(注釈型)を参照。</p>
 <ul class="simple">
@@ -386,7 +381,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id28">7.10.1.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id25">7.10.1.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-core-validation-ee<span class="nt">&lt;/artifactId&gt;</span>
@@ -416,9 +411,9 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id29">7.10.1.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id26">7.10.1.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="bean-validation-configuration">
-<span id="id8"></span><h3><a class="toc-backref" href="#id30">7.10.1.3.1. Bean Validationを使うための設定を行う</a><a class="headerlink" href="#bean-validation-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id27">7.10.1.3.1. Bean Validationを使うための設定を行う</a><a class="headerlink" href="#bean-validation-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Bean Validationを使うために必要となる設定を以下に示す。</p>
 <dl class="docutils">
 <dt>MessageInterpolatorの設定</dt>
@@ -442,7 +437,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 </div>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id31">7.10.1.3.2. バリデーションエラー時のエラーメッセージを定義する</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id28">7.10.1.3.2. バリデーションエラー時のエラーメッセージを定義する</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#bean-validation-configuration"><span>Bean Validationを使うための設定を行う</span></a> で説明したように、デフォルトでは <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を使用してバリデーションエラー時のメッセージを構築する。
 このため、メッセージの定義場所などの詳細は、 <a class="reference internal" href="../message.html#message"><span>メッセージ管理</span></a> を参照すること。</p>
 <p>デフォルトの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> を使用した場合のメッセージ定義ルールは以下のとおり。</p>
@@ -493,7 +488,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="id10">
-<h3><a class="toc-backref" href="#id32">7.10.1.3.3. バリデーションルールの設定方法</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">7.10.1.3.3. バリデーションルールの設定方法</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バリデーションルールは、アノテーションをFieldかProperty(getter)に設定することで指定できる。
 なお、setterにはアノテーションを指定できないので注意すること。(指定しても意味が無い(無視する))</p>
 <div class="admonition tip" id="bean-validation-form-property">
@@ -537,7 +532,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 </div>
 <div class="section" id="bean-validation-domain-validation">
-<span id="id11"></span><h3><a class="toc-backref" href="#id33">7.10.1.3.4. ドメインバリデーションを使う</a><a class="headerlink" href="#bean-validation-domain-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id30">7.10.1.3.4. ドメインバリデーションを使う</a><a class="headerlink" href="#bean-validation-domain-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ドメインバリデーションを使うための設定や実装例を示す。</p>
 <dl class="docutils">
 <dt>ドメインごとのバリデーションルールを定義したBeanの作成</dt>
@@ -611,7 +606,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 </div>
 <div class="section" id="bean-validation-system-char-validator">
-<span id="id12"></span><h3><a class="toc-backref" href="#id34">7.10.1.3.5. 文字種バリデーションを行う</a><a class="headerlink" href="#bean-validation-system-char-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id12"></span><h3><a class="toc-backref" href="#id31">7.10.1.3.5. 文字種バリデーションを行う</a><a class="headerlink" href="#bean-validation-system-char-validator" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>システム許容文字のバリデーション機能を使用することで、文字種によるバリデーションを行うことが出来る。</p>
 <p>文字種によるバリデーションを行うには、文字種毎に許容する文字のセットを定義する。
 例えば、半角数字という文字種には、半角の <code class="docutils literal"><span class="pre">0</span></code> から <code class="docutils literal"><span class="pre">9</span></code> を許容するといった定義が必要となる。</p>
@@ -692,29 +687,9 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </pre></div>
 </div>
 </div>
-<dl class="docutils">
-<dt>サロゲートペアを許容する</dt>
-<dd><p class="first">このバリデーションでは、デフォルトではサロゲートペアを許容しない。
-（例え <cite>LiteralCharsetDef</cite> で明示的にサロゲートペアの文字を定義していても許容しない）</p>
-<p>サロゲートペアを許容する場合は次のようにコンポーネント設定ファイルに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/SystemCharConfig.html" title="nablarch.core.validation.ee.SystemCharConfig">SystemCharConfig</a> を設定する必要がある。</p>
-<dl class="docutils">
-<dt>ポイント</dt>
-<dd><ul class="first last simple">
-<li>コンポーネント名は <code class="docutils literal"><span class="pre">ee.SystemCharConfig</span></code> とすること</li>
-</ul>
-</dd>
-</dl>
-<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;ee.SystemCharConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.ee.SystemCharConfig&quot;</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- サロゲートペアを許容する --&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowSurrogatePair&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
-</pre></div>
-</div>
-</dd>
-</dl>
 </div>
 <div class="section" id="bean-validation-correlation-validation">
-<span id="id13"></span><h3><a class="toc-backref" href="#id35">7.10.1.3.6. 相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-correlation-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id13"></span><h3><a class="toc-backref" href="#id32">7.10.1.3.6. 相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-correlation-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>複数の項目を使用した相関バリデーションを行うには、Bean Validationの <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/constraints/AssertTrue.html" title="javax.validation.constraints.AssertTrue">&#64;AssertTrue</a> アノテーションを使用する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
@@ -755,7 +730,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="bean-validation-database-validation">
-<span id="id14"></span><h3><a class="toc-backref" href="#id36">7.10.1.3.7. データベースとの相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-database-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id14"></span><h3><a class="toc-backref" href="#id33">7.10.1.3.7. データベースとの相関バリデーションを行う</a><a class="headerlink" href="#bean-validation-database-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベースとの相関バリデーションは、以下理由により業務アクション側で実装すること。</p>
 <dl class="docutils">
 <dt>理由</dt>
@@ -769,7 +744,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 </div>
 <div class="section" id="bean-validation-create-message-for-property">
-<span id="id15"></span><h3><a class="toc-backref" href="#id37">7.10.1.3.8. 特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a><a class="headerlink" href="#bean-validation-create-message-for-property" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id15"></span><h3><a class="toc-backref" href="#id34">7.10.1.3.8. 特定の項目に紐づくバリデーションエラーのメッセージを作りたい</a><a class="headerlink" href="#bean-validation-create-message-for-property" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#bean-validation-database-validation"><span>データベースとの相関バリデーション</span></a> のようにアクションハンドラで行うバリデーションでエラーが発生した場合に、
 画面上で対象項目をエラーとしてハイライト表示したい場合がある。</p>
 <p>この場合には、下記の実装例のように <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ValidationUtil.html#createMessageForProperty-java.lang.String-java.lang.String-java.lang.Object...-" title="nablarch.core.validation.ValidationUtil.createMessageForProperty(java.lang.String-java.lang.String-java.lang.Object...)">ValidationUtil#createMessageForProperty</a>
@@ -780,7 +755,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="bean">
-<h3><a class="toc-backref" href="#id38">7.10.1.3.9. 一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a><a class="headerlink" href="#bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">7.10.1.3.9. 一括登録のようなBeanの複数入力を行う機能でバリデーションを行う</a><a class="headerlink" href="#bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>一括登録のように同一の情報を複数入力するケースがある。
 このような場合には、バリデーション対象のBeanに対してネストしたBeanを定義することで対応する。</p>
 <div class="admonition tip">
@@ -815,7 +790,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 <div class="section" id="id16">
-<h3><a class="toc-backref" href="#id39">7.10.1.3.10. ネストしたBeanをバリデーションする際の注意点</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id36">7.10.1.3.10. ネストしたBeanをバリデーションする際の注意点</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ブラウザの開発者ツールでhtmlを改竄されたり、Webサービスで不正なJsonやXMLを受信した際にネストしたBeanの情報が送信されない場合がある。
 この場合、ネストしたBeanが未初期化状態(null)となり、バリデーション対象とならない問題がある。
 このため、確実にネストしたBeanの状態がバリデーションされるよう実装を行う必要がある。</p>
@@ -854,7 +829,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dl>
 </div>
 <div class="section" id="bean-validation-web-application">
-<span id="id17"></span><h3><a class="toc-backref" href="#id40">7.10.1.3.11. ウェブアプリケーションのユーザ入力値のチェックを行う</a><a class="headerlink" href="#bean-validation-web-application" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id17"></span><h3><a class="toc-backref" href="#id37">7.10.1.3.11. ウェブアプリケーションのユーザ入力値のチェックを行う</a><a class="headerlink" href="#bean-validation-web-application" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ウェブアプリケーションのユーザ入力値のチェックは <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を使用して行う。
 詳細は、 <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> を参照。</p>
 <p><a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a> でBean Validationを使用するためには、コンポーネント設定ファイルに定義する必要がある。
@@ -873,47 +848,8 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 プロジェクトでソート順を変更したい場合は、BeanValidationStrategyを継承し対応すること。</p>
 </div>
 </div>
-<div class="section" id="bean-validation-onerror">
-<span id="id18"></span><h3><a class="toc-backref" href="#id41">7.10.1.3.12. バリデーションエラー時にもリクエストパラメータをリクエストスコープから取得したい</a><a class="headerlink" href="#bean-validation-onerror" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a>を使用すると、バリデーション成功後にリクエストスコープにバリデーション済みのフォームを格納される。
-これを利用することでリクエストパラメータが参照できるが、バリデーションエラー時にも同様にリクエストスコープからパラメータを取得したい場合がある。</p>
-<p>例えば、JSTLタグ(EL式)を使用する場合、Nablarchカスタムタグとは異なりリクエストパラメータを暗黙的に参照する<a class="footnote-reference" href="#id20" id="id19">[2]</a> ことはできないので、
-次のような処理を追加する必要がある。</p>
-<ul class="simple">
-<li>一度Nablarchタグ <code class="docutils literal"><span class="pre">&lt;n:set&gt;</span></code> を使用してリクエストパラメータの値を変数に格納する</li>
-<li>暗黙オブジェクト <code class="docutils literal"><span class="pre">param</span></code> を使用してリクエストパラメータにアクセスする</li>
-</ul>
-<p>前者の <code class="docutils literal"><span class="pre">&lt;n:set&gt;</span></code> を使用する例を以下に示す。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">リクエストパラメータの値をJSTL</span><span class="o">(</span><span class="n">EL式</span><span class="o">)</span><span class="n">でも参照できるよう変数に代入する</span> <span class="o">--</span><span class="k">%&gt;</span>
-<span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;quantity&quot;</span> <span class="na">name=</span><span class="s">&quot;form.quantity&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${quantity &gt;= 100}&quot;</span><span class="nt">&gt;</span>
-  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">数量が100以上の場合</span><span class="o">...</span> <span class="o">--</span><span class="k">%&gt;</span>
-</pre></div>
-</div>
-<p>このような場合、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a>のプロパティ <code class="docutils literal"><span class="pre">copyBeanToRequestScopeOnError</span></code> を <code class="docutils literal"><span class="pre">true</span></code> に設定することで、バリデーションエラー時にも、リクエストパラメータをコピーしたBeanをリクエストスコープに格納できる。
-以下に設定例を示す。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;validationStrategy&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.validator.BeanValidationStrategy&quot;</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- バリデーションエラー時にリクエストスコープに値をコピーする --&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;copyBeanToRequestScopeOnError&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
-</pre></div>
-</div>
-<p>リクエストスコープには、 <code class="docutils literal"><span class="pre">&#64;InjectForm</span></code> の <code class="docutils literal"><span class="pre">name</span></code> で指定されたキー名でBeanが格納される（<a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm インターセプター</span></a>の通常動作と同じ）。</p>
-<p>この機能を有効にすることで、前述のJSPは以下のように記述できる。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">リクエストスコープ経由でリクエストパラメータの値をJSTL</span><span class="o">(</span><span class="n">EL式</span><span class="o">)</span><span class="n">でも参照できる</span> <span class="o">--</span><span class="k">%&gt;</span>
-<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${form.quantity &gt;= 100}&quot;</span><span class="nt">&gt;</span>
-  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">数量が100以上の場合</span><span class="o">...</span> <span class="o">--</span><span class="k">%&gt;</span>
-</pre></div>
-</div>
-<table class="docutils footnote" frame="void" id="id20" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[2]</a></td><td>Nablarchカスタムタグの動作については、 <a class="reference internal" href="../tag.html#tag-access-rule"><span>入力/出力データへのアクセスルール</span></a> を参照。</td></tr>
-</tbody>
-</table>
-</div>
 <div class="section" id="bean-validation-property-name">
-<span id="id21"></span><h3><a class="toc-backref" href="#id42">7.10.1.3.13. バリデーションエラー時のメッセージに項目名を含めたい</a><a class="headerlink" href="#bean-validation-property-name" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id18"></span><h3><a class="toc-backref" href="#id38">7.10.1.3.12. バリデーションエラー時のメッセージに項目名を含めたい</a><a class="headerlink" href="#bean-validation-property-name" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Bean Validation(JSR349)の仕様では、項目名をメッセージに含めることができないが、
 要件などによってはメッセージに項目名を含めたい場合がある。
 このため、NablarchではBean Validationを使用した場合でもメッセージにエラーが発生した項目の項目名を含める機能を提供している。</p>
@@ -973,10 +909,10 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </div>
 </div>
 </div>
-<div class="section" id="id22">
-<h2><a class="toc-backref" href="#id43">7.10.1.4. 拡張例</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id23">
-<h3><a class="toc-backref" href="#id44">7.10.1.4.1. プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a><a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id19">
+<h2><a class="toc-backref" href="#id39">7.10.1.4. 拡張例</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id40">7.10.1.4.1. プロジェクト固有のアノテーションとバリデーションロジックを追加したい</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#bean-validation-validator"><span>よく使われるバリデータが提供されている</span></a> に記載のバリデータで要件を満たすことができない場合は、
 プロジェクト側でアノテーション及びバリデーションのロジックを追加すること。</p>
 <p>実装方法などの詳細については、以下のリンク先及びNablarchの実装を参照。</p>
@@ -1021,7 +957,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u13',
+            VERSION:'5u12',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
