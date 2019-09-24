@@ -1,0 +1,1008 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. ワークフローライブラリ &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/extension_components/workflow/doc/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+        <link rel="up" title="Nablarch拡張コンポーネント" href="../../index.html"/>
+        <link rel="next" title="3. ワークフロー定義データ生成ツール" href="../tool/index.html"/>
+        <link rel="prev" title="1. 帳票ライブラリ" href="../../report/index.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u15</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch拡張コンポーネント</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tool/index.html#id4">3.2. 使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch拡張コンポーネント</a> &raquo;</li>
+      
+    <li>2. ワークフローライブラリ</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow">
+<span id="id1"></span><h1>2. ワークフローライブラリ<a class="headerlink" href="#workflow" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">目次</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id25">機能概要</a><ul>
+<li><a class="reference internal" href="#id4" id="id26">ワークフローが実現できる</a></li>
+<li><a class="reference internal" href="#id5" id="id27">ステートマシンが実現できる</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id28">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id7" id="id29">使用方法</a><ul>
+<li><a class="reference internal" href="#id8" id="id30">ワークフロー(ステートマシン)の定義及び進行に必要なテーブルの作成と設定を行う</a></li>
+<li><a class="reference internal" href="#id9" id="id31">ワークフローやステートマシンの定義を行う</a></li>
+<li><a class="reference internal" href="#workflow-start" id="id32">ワークフロー(ステートマシン)を開始する</a></li>
+<li><a class="reference internal" href="#workflow-assign" id="id33">ワークフローのタスクに担当者やグループを割り当てる</a></li>
+<li><a class="reference internal" href="#id12" id="id34">ワークフローのタスクに担当者やグループを複数割り当てる</a></li>
+<li><a class="reference internal" href="#workflow-complete-task" id="id35">ワークフローの状態を遷移(タスクを完了)させる</a></li>
+<li><a class="reference internal" href="#workflow-flow-condition" id="id36">アプリケーションでの処理結果に応じて遷移先のタスクを変更する</a></li>
+<li><a class="reference internal" href="#workflow-return" id="id37">ワークフローの状態を元の状態に戻す（差し戻し）</a></li>
+<li><a class="reference internal" href="#workflow-reapplication" id="id38">ワークフローの申請を再度行う（再申請）</a></li>
+<li><a class="reference internal" href="#workflow-cancel" id="id39">ワークフロー申請の取り消しを行う</a></li>
+<li><a class="reference internal" href="#workflow-reject" id="id40">ワークフロー申請の却下を行う</a></li>
+<li><a class="reference internal" href="#workflow-pullback" id="id41">ワークフロー申請の引き戻しを行う</a></li>
+<li><a class="reference internal" href="#workflow-statemachine-trigger" id="id42">ステートマシンの状態を遷移させる</a></li>
+<li><a class="reference internal" href="#workflow-subprocess" id="id43">ステートマシンでサブプロセスを定義する</a></li>
+<li><a class="reference internal" href="#workflow-status" id="id44">ワークフロー（ステートマシン）の現在の状態を取得する</a></li>
+<li><a class="reference internal" href="#workflow-version" id="id45">ワークフロー（ステートマシン）の定義を変更する</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xor" id="id46">XORゲートウェイの進行先ノードの判定方法</a></li>
+<li><a class="reference internal" href="#workflow-multi-completion" id="id47">マルチインスタンスの完了条件の判定方法</a></li>
+</ul>
+</div>
+<p>申請フローや承認フローの進行状況およびワークフロー内の各タスクに対する担当ユーザの割り当てや、割り当て状態の管理をするために必要なワークフロー機能を提供する。
+また、単純に状態のみを遷移させるステートマシン機能も提供する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">ワークフローライブラリを使用したアプリケーションの実例は、 <a class="reference external" href="https://github.com/nablarch/nablarch-example-workflow">Exampleアプリケーション</a> を参照。</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id25">2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id26">2.1.1. ワークフローが実現できる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="#workflow-complete-task"><span>状態を遷移できる。</span></a></li>
+<li><a class="reference internal" href="#workflow-flow-condition"><span>条件に応じて遷移先のタスクを切り替えることができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-return"><span>差し戻しができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-reapplication"><span>再申請ができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-cancel"><span>取り消しができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-reject"><span>却下ができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-pullback"><span>引き戻しができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-version"><span>ワークフロー定義をバージョン毎に定義できる。</span></a></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id27">2.1.2. ステートマシンが実現できる</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="#workflow-statemachine-trigger"><span>状態を遷移できる。</span></a></li>
+<li><a class="reference internal" href="#workflow-flow-condition"><span>条件に応じて遷移先のタスクを切り替えることができる。</span></a></li>
+<li><a class="reference internal" href="#workflow-subprocess"><span>サブプロセスを定義できる。</span></a></li>
+<li><a class="reference internal" href="#workflow-version"><span>ステートマシン定義をバージョン毎に定義できる。</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id28">2.2. モジュール一覧</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.nablarch.workflow<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>nablarch-workflow<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id29">2.3. 使用方法</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id30">2.3.1. ワークフロー(ステートマシン)の定義及び進行に必要なテーブルの作成と設定を行う</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>この機能では、ワークフロー(ステートマシン)の定義情報をテーブルに格納し管理する。
+また、状態遷移やタスクに割り当てたユーザやグループの管理もテーブルを用いて行う。
+このため、これらのテーブルを事前に作成し、コンポーネント設定ファイルにテーブル名やカラム名の設定を行う必要がある。</p>
+<p>以下にテーブルの構造及び設定例を示す。</p>
+<dl class="docutils" id="workflow-table-definition">
+<dt>テーブルの構造</dt>
+<dd><p class="first">ワークフロー(ステートマシン)に必要なテーブルは以下の通り。
+カラム定義などの詳細は、 <a class="reference download internal" href="../../../_downloads/workflow_model.edm" download=""><code class="xref download docutils literal"><span class="pre">workflow_model.edm</span></code></a> を参照。
+(本edmは、Oracle用に作成しているため、使用するデータベースや要件に応じてカラムの型やサイズを変更すること)</p>
+<dl class="last docutils">
+<dt>ワークフロー(ステートマシン)の定義を管理するテーブル</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">ワークフロー定義テーブル:</th><td class="field-body">ワークフローやステートマシンの定義情報を管理するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name">レーンテーブル:</th><td class="field-body">レーンを管理するテーブル</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">フローノードテーブル:</th><td class="field-body">フローノードを管理するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name">タスクテーブル:</th><td class="field-body">タスクを管理するテーブル</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">イベントテーブル:</th><td class="field-body">イベント(開始 or 停止イベント)を管理するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name">ゲートウェイテーブル:</th><td class="field-body">XORゲートウェイを管理するテーブル</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">境界イベントテーブル:</th><td class="field-body">境界イベントの定義を管理するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name">境界イベントトリガーテーブル:</th><td class="field-body">境界イベントトリガーの定義を管理するテーブル</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">シーケンスフローテーブル:</th><td class="field-body">シーケンスフローの定義を管理するテーブル</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>ワークフロー(ステートマシン)の進行状況や割当ユーザ(グループ)を管理するテーブル</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">ワークフローインスタンステーブル:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">進行中のワークフロー(ステートマシン)を管理するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">インスタンスフローノードテーブル:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">進行中のワークフロー(ステートマシン)に含まれるタスクの情報を管理するテーブル</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">タスク担当ユーザテーブル:</th><td class="field-body">タスクに割り当てられた担当ユーザを管理するテーブル。
+(タスクに対するユーザ割当が存在しないステートマシンでは利用しない)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">タスク担当グループテーブル:</th><td class="field-body">タスクに割り当てられた担当グループを管理するテーブル
+(タスクに対するグループ割当が存在しないステートマシンでは利用しない)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">アクティブフローノードテーブル:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">アクティブフローノードの情報を保持するテーブル</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">アクティブユーザタスクテーブル:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">ユーザが実行可能なタスクを管理するテーブル
+(タスクに対するユーザ割当が存在しないステートマシンでは利用しない)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">アクティブグループタスクテーブル:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">グループが実行可能なタスクを管理するテーブル
+(タスクに対するグループ割当が存在しないステートマシンでは利用しない)</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd>
+<dt>コンポーネント設定ファイル</dt>
+<dd><p class="first"><a class="reference internal" href="#workflow-table-definition"><span>テーブルの構造</span></a> で定義したテーブルのテーブル名やカラム名をコンポーネント定義する必要がある。
+<a class="reference internal" href="#workflow-table-definition"><span>テーブルの構造</span></a> からダウンロードできるedmファイルに対応したコンポーネント設定ファイルを
+以下からダウンロードし必要に応じてテーブル名などを変更し利用するとよい。</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../../../_downloads/workflow-schema.xml" download=""><code class="xref download docutils literal"><span class="pre">コンポーネント設定ファイル</span></code></a></li>
+</ul>
+<p>ワークフロー(ステートマシン)の定義をデータベースからロードするための設定や、状態を進行させるための設定も必要となる。
+以下の設定例を参考にしカスタマイズなどを行うこと。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">ワークフロー(ステートマシン)全体の設定</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;workflowConfig&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.integration.workflow.WorkflowConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowDefinitionHolder&quot;</span> <span class="na">ref=</span><span class="s">&quot;workflowDefinitionHolder&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowInstanceDao&quot;</span> <span class="na">ref=</span><span class="s">&quot;workflowInstanceDao&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowInstanceFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.workflow.BasicWorkflowInstanceFactory&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ワークフロー(ステートマシン)の定義を保持する機能に関する設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;workflowDefinitionHolder&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.integration.workflow.definition.WorkflowDefinitionHolder&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowDefinitionLoader&quot;</span> <span class="na">ref=</span><span class="s">&quot;workflowLoader&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ワークフロー(ステートマシン)の定義をロードする機能に関する設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;workflowLoader&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.integration.workflow.definition.loader.DatabaseWorkflowDefinitionLoader&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionManager&quot;</span> <span class="na">ref=</span><span class="s">&quot;defaultDbTransactionManager&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowDefinitionSchema&quot;</span> <span class="na">ref=</span><span class="s">&quot;workflowDefinitionSchema&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ワークフロー(ステートマシン)の進行機能に関する設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;workflowInstanceDao&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.integration.workflow.dao.WorkflowInstanceDao&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;instanceIdGenerator&quot;</span> <span class="na">ref=</span><span class="s">&quot;idGenerator&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;workflowInstanceSchema&quot;</span> <span class="na">ref=</span><span class="s">&quot;workflowInstanceSchema&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- シーケンス名 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;instanceIdGenerateId&quot;</span> <span class="na">value=</span><span class="s">&quot;WF_INSTANCE_ID&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- シーケンスを使ってインスタンスIDを設定するための設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;idGenerator&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.SequenceIdGenerator&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="c">&lt;!-- 初期化が必要なコンポーネントを定義する(ワークフローのコンポーネントのみ記載) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;workflowInstanceDao&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;workflowDefinitionHolder&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id31">2.3.2. ワークフローやステートマシンの定義を行う</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ワークフローやステートマシンの定義は、 <a class="reference internal" href="#workflow-table-definition"><span>テーブル定義</span></a> で説明したように、テーブルを用いて管理を行う。
+しかし、テーブルに直接ワークフローやステートマシンの定義を投入すること誤りなどが発生しやすく現実的ではない。</p>
+<p>このため、ワークフローやステートマシンの定義は、BPMNモデリングツールを用いて行い、その内容をテーブルに投入する手順を推奨する。
+なお、 <a class="reference internal" href="../tool/index.html#workflow-tool"><span>ワークフロー定義データ生成ツール</span></a> を使うことでBPMNモデルからテーブルへ投入するデータを作成することができる。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>BPMNのモデリングは、以下の製品などで行える。</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://camunda.org/">https://camunda.org/</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="workflow-start">
+<span id="id10"></span><h3><a class="toc-backref" href="#id32">2.3.3. ワークフロー(ステートマシン)を開始する</a><a class="headerlink" href="#workflow-start" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowManager.html#startInstance-java.lang.String-" title="nablarch.integration.workflow.WorkflowManager.startInstance(java.lang.String)">WorkflowManager#startInstance</a> を使用してワークフロー(ステートマシン)を開始する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">本APIから戻される、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> からインスタンスIDを取得しアプリケーション側のテーブルなどで保持すること。
+インスタンスIDは、ワークフロー(ステートマシン)の状態を遷移させるために必要となるため、必ずアプリケーション側で保持する必要がある。</p>
+</div>
+<dl class="docutils">
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// startInstanceを呼び出しワークフロー(ステートマシン)を開始する。</span>
+<span class="c1">// 引数には開始したいワークフローのIDを指定する</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">startInstance</span><span class="o">(</span><span class="s">&quot;new-card&quot;</span><span class="o">);</span>
+
+<span class="c1">// インスタンスIDを取得しアプリケーションのテーブルに登録する。</span>
+<span class="n">String</span> <span class="n">instanceId</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="na">getInstanceId</span><span class="o">()</span>
+</pre></div>
+</div>
+</dd>
+<dt>開始後の状態</dt>
+<dd><p class="first">ワークフロー(ステートマシン)を開始すると最初のタスクがアクティブ状態となる。
+例えば、下記の定義の場合には、赤枠のタスクがアクティブ状態となる。</p>
+<a class="last reference internal image-reference" href="../../../_images/start.png"><img alt="../../../_images/start.png" src="../../../_images/start.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-assign">
+<span id="id11"></span><h3><a class="toc-backref" href="#id33">2.3.4. ワークフローのタスクに担当者やグループを割り当てる</a><a class="headerlink" href="#workflow-assign" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignUser-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignUser(java.lang.String-java.lang.String)">WorkflowInstance#assignUser</a> を使用してタスクに対して担当者を割り当てることができる。
+また、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignGroup-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignGroup(java.lang.String-java.lang.String)">WorkflowInstance#assignGroup</a> を使用してタスクにグループを割り当てることができる。
+既にタスクに担当者（グループ）が割り当て済みの場合は、割り当て済みの情報を削除し再割当てを行う。</p>
+<p>担当者（グループ）の割り当ては任意のタイミングで行える。
+タスク完了時に次のタスクに対して担当者（グループ）を割り当てることもできる。</p>
+<dl class="docutils">
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ワークフローを開始する</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">startInstance</span><span class="o">(</span><span class="s">&quot;new-card&quot;</span><span class="o">);</span>
+
+<span class="c1">// 担当者を割り当てる</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">assignUser</span><span class="o">(</span><span class="s">&quot;task&quot;</span><span class="o">,</span> <span class="s">&quot;admin-user&quot;</span><span class="o">);</span>
+
+<span class="c1">// グループを割り当てる</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">assignGroup</span><span class="o">(</span><span class="s">&quot;task&quot;</span><span class="o">,</span> <span class="s">&quot;group&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id34">2.3.5. ワークフローのタスクに担当者やグループを複数割り当てる</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>1つのタスクに対して、承認や確認などを行うユーザ（グループ）を複数割り当てることができる。
+割り当てられたユーザ（グループ）は、順次処理をさせるか並行して処理をさせるかを選ぶことができる。
+また、完了条件を適切に使用することでOR承認やAND承認といったことも実現できる。</p>
+<p><a class="reference internal" href="#workflow-assign"><span>ワークフローのタスクに担当者やグループを割り当てる</span></a> と同じように、ユーザやグループの割り当ては、タスクが開始される前であれば、任意のタイミングで行える。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">ユーザタスクをマルチインスタンス(①)として設定する。
+Completion Condition(②)には、完了条件を設定する。この例では、複数ユーザのうち1人が処理をしたらタスクが完了するOR承認となる。
+完了条件の定義方法などの詳細は <a class="reference internal" href="#workflow-multi-completion"><span>マルチインスタンスの完了条件の判定方法</span></a> を参照。</p>
+<a class="reference internal image-reference" href="../../../_images/multi.png"><img alt="../../../_images/multi.png" src="../../../_images/multi.png" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>上記の定義では、平行処理となる。順次処理の場合には、タスクを以下のように定義する。</p>
+<a class="last reference internal image-reference" href="../../../_images/multi-sequential.png"><img alt="../../../_images/multi-sequential.png" src="../../../_images/multi-sequential.png" /></a>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ワークフローを開始する</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">startInstance</span><span class="o">(</span><span class="s">&quot;new-card&quot;</span><span class="o">);</span>
+
+<span class="c1">// 担当者を割り当てる。</span>
+<span class="c1">// 順次処理の場合、Listに格納されている順に処理を行う必要がある。</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">assignUsers</span><span class="o">(</span><span class="s">&quot;task1&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;user1&quot;</span><span class="o">,</span> <span class="s">&quot;user2&quot;</span><span class="o">));</span>
+
+<span class="c1">// グループを割り当てる。</span>
+<span class="c1">// 順次処理の場合、Listに格納されている順に処理を行う必要がある。</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">assignGroups</span><span class="o">(</span><span class="s">&quot;task1&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;group1&quot;</span><span class="o">,</span> <span class="s">&quot;group2&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-complete-task">
+<span id="id13"></span><h3><a class="toc-backref" href="#id35">2.3.6. ワークフローの状態を遷移(タスクを完了)させる</a><a class="headerlink" href="#workflow-complete-task" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeUserTask--" title="nablarch.integration.workflow.WorkflowInstance.completeUserTask()">WorkflowInstance#completeUserTask</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeGroupTask-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.completeGroupTask(java.lang.String)">WorkflowInstance#completeGroupTask</a>
+を使用してタスクを完了し、次のタスクに状態を遷移させることができる。
+対象の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
+<a class="reference internal" href="#workflow-start"><span>ワークフロー開始時</span></a> にアプリケーション側で保持したインスタンスIDを使用して事前に取得する必要がある。</p>
+<p>タスク完了後のワークフローの状態の取得方法は、 <a class="reference internal" href="#workflow-status"><span>ワークフロー（ステートマシン）の現在の状態を取得する</span></a> を参照。</p>
+<dl class="docutils">
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// アプリケーションのテーブルで保持しているワークフローのインスタンスIDを取得する。</span>
+<span class="kd">final</span> <span class="n">String</span> <span class="n">instanceId</span> <span class="o">=</span> <span class="n">findInstanceId</span><span class="o">();</span>
+
+<span class="c1">// WorkflowManagerからWorkflowInstanceを取得する。</span>
+<span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+
+<span class="c1">// completeUserTaskを呼び出し、現在のタスクを完了する</span>
+<span class="c1">// 現在ログイン中のユーザ(ThreadContext.getUserId())を使用してタスクを完了する</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">completeUserTask</span><span class="o">();</span>
+
+<span class="c1">// タスクを完了するユーザを明示的に指定できる</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">completeUserTask</span><span class="o">(</span><span class="s">&quot;user1&quot;</span><span class="o">);</span>
+
+<span class="c1">// グループの場合、必ずタスクを完了するグループを指定する必要がある</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">completeGroupTask</span><span class="o">(</span><span class="s">&quot;group&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>タスク完了後の状態の遷移</dt>
+<dd><p class="first">下記の定義の場合、再申請タスクを完了することで確認タスクがアクティブ状態となる。</p>
+<a class="last reference internal image-reference" href="../../../_images/complete-task.png"><img alt="../../../_images/complete-task.png" src="../../../_images/complete-task.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-flow-condition">
+<span id="id14"></span><h3><a class="toc-backref" href="#id36">2.3.7. アプリケーションでの処理結果に応じて遷移先のタスクを変更する</a><a class="headerlink" href="#workflow-flow-condition" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>アプリケーションでの処理結果（タスクの結果）を元に遷移先のタスクを切り替えたい場合がある。
+このような場合は、XORゲートウェイを使用して進行条件及び遷移先のフローノードを定義する。</p>
+<p>タスク完了後の状態(アクティブになったタスクやワークフローが終了したかどうか)を判定したい場合は、 <a class="reference internal" href="#workflow-status"><span>ワークフロー（ステートマシン）の現在の状態を取得する</span></a> を参照。</p>
+<dl class="docutils">
+<dt>XORゲートウェイの定義</dt>
+<dd><p class="first">下記定義の用に、XORゲートウェイ(①)を用いて複数の遷移先を定義する。
+XORゲートウェイから伸びるシーケンスフローには、このシーケンスフローで遷移するための条件(②)を定義する。
+進行条件の定義方法などは、 <a class="reference internal" href="#workflow-xor-flow"><span>XORゲートウェイの進行先ノードの判定方法</span></a> を参照。</p>
+<a class="last reference internal image-reference" href="../../../_images/flow-condition.png"><img alt="../../../_images/flow-condition.png" src="../../../_images/flow-condition.png" /></a>
+</dd>
+<dt>実装例</dt>
+<dd><p class="first">上記ワークフロー定義に対して、下記の実装を行った場合は <code class="docutils literal"><span class="pre">condition</span></code> に対して <code class="docutils literal"><span class="pre">0</span></code> を設定しているため、
+<code class="docutils literal"><span class="pre">確認OK</span></code> へと遷移し承認タスクがアクティブとなる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 進行先を判定するために使用するパラメータを定義する。</span>
+<span class="c1">// パラメータは、Mapとして定義しする。</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">parameter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">parameter</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;condition&quot;</span><span class="o">,</span> <span class="s">&quot;0&quot;</span><span class="o">);</span>
+
+<span class="c1">// WorkflowInstanceを取得し、パラメータを設定してタスクを完了する。</span>
+<span class="n">WorkflowInstance</span> <span class="n">workflow</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+<span class="n">workflow</span><span class="o">.</span><span class="na">completeGroupTask</span><span class="o">(</span><span class="n">parameter</span><span class="o">,</span> <span class="n">groupId</span><span class="o">);</span>
+
+<span class="c1">// 遷移先のタスクを判断したい場合には、isActiveメソッドを呼び出し</span>
+<span class="c1">// アクティブとなったタスクが何かを判断する。isActiveにはタスクのIDを指定する。</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">workflow</span><span class="o">.</span><span class="na">isActive</span><span class="o">(</span><span class="s">&quot;task1&quot;</span><span class="o">))</span> <span class="o">{</span>
+  <span class="c1">// タスク1がアクティブとなった場合の処理</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  <span class="c1">// タスク1以外がアクティブとなった場合の処理</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-return">
+<span id="id15"></span><h3><a class="toc-backref" href="#id37">2.3.8. ワークフローの状態を元の状態に戻す（差し戻し）</a><a class="headerlink" href="#workflow-return" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>確認結果がNGだった場合などに、申請者に差し戻し処理を行いたい場合がある。
+このような場合は、 <a class="reference internal" href="#workflow-flow-condition"><span>遷移先の条件分岐</span></a> を用いて差し戻しを実現する。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">下記の定義のように、遷移先を分岐させ条件に応じて再申請用のタスクに遷移させることで実現する。</p>
+<a class="last reference internal image-reference" href="../../../_images/return.png"><img alt="../../../_images/return.png" src="../../../_images/return.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-reapplication">
+<span id="id16"></span><h3><a class="toc-backref" href="#id38">2.3.9. ワークフローの申請を再度行う（再申請）</a><a class="headerlink" href="#workflow-reapplication" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference internal" href="#workflow-return"><span>差し戻し</span></a> や <a class="reference internal" href="#workflow-pullback"><span>引き戻し</span></a>後に再度申請を行うようなフローを定義したい場合がある。
+このような場合は、再申請用のタスクを定義することで対応できる。</p>
+<p>なお、再申請のタスクについては、 <a class="reference internal" href="#workflow-complete-task"><span>通常のタスクの完了</span></a> により次のタスクに遷移させれば良い。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">下記の定義のように再申請ようのタスクを作成することで実現する。</p>
+<a class="last reference internal image-reference" href="../../../_images/return.png"><img alt="../../../_images/return.png" src="../../../_images/return.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-cancel">
+<span id="id17"></span><h3><a class="toc-backref" href="#id39">2.3.10. ワークフロー申請の取り消しを行う</a><a class="headerlink" href="#workflow-cancel" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>申請者が進行中の申請自体を取り消ししたい場合がある。
+このような場合は、取り消し可能なタスクに対して境界イベントを関連付けることで対応する。</p>
+<p>境界イベントの実行は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a> を使用して行う。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">取り消し可能なタスクに対して境界イベント(①)を定義する。
+取り消しにより、申請フローを終了させるため境界イベントの遷移先は停止イベント(②)を指定する。
+境界イベントの <code class="docutils literal"><span class="pre">Message</span> <span class="pre">Name</span></code> (③)に指定した値が、境界イベントを実行する <code class="docutils literal"><span class="pre">triggerEvent</span></code> に指定する値となる。</p>
+<a class="last reference internal image-reference" href="../../../_images/cancel.png"><img alt="../../../_images/cancel.png" src="../../../_images/cancel.png" /></a>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 対象のWorkflowInstanceを取得する。</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+
+<span class="c1">// triggerEventを呼び出し状態を遷移させる。</span>
+<span class="n">instance</span><span class="o">.</span><span class="na">triggerEvent</span><span class="o">(</span><span class="s">&quot;cancel&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-reject">
+<span id="id18"></span><h3><a class="toc-backref" href="#id40">2.3.11. ワークフロー申請の却下を行う</a><a class="headerlink" href="#workflow-reject" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>確認者や承認者などが申請を却下したい場合がある。
+このような場合は、 <a class="reference internal" href="#workflow-return"><span>差し戻し</span></a> と同じようにXORゲートウェイを定義し、却下の場合の遷移先を停止イベントとする。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">下記の定義のように、遷移先を分岐させ条件に応じて停止イベントに遷移させることで実現する。</p>
+<img alt="../../../_images/reject.png" class="last" src="../../../_images/reject.png" />
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-pullback">
+<span id="id19"></span><h3><a class="toc-backref" href="#id41">2.3.12. ワークフロー申請の引き戻しを行う</a><a class="headerlink" href="#workflow-pullback" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>既に進行中の承認処理の途中で、申請者が申請内容の修正などを行うために自身のタスクにフローを強制的に戻す場合などに利用する。</p>
+<p><a class="reference internal" href="#workflow-cancel"><span>取り消し</span></a> と同じように、引き戻し可能なタスクに対して境界イベントを設定する。
+境界イベントの遷移先には、申請者が処理可能なタスク（例えば再申請タスク）などを指定する。</p>
+<dl class="docutils">
+<dt>ワークフロー定義</dt>
+<dd><p class="first">下記の定義のように、境界イベントを設定し遷移先を申請者のタスクとする。
+詳細な定義方法や実装例は、 <a class="reference internal" href="#workflow-cancel"><span>取り消し</span></a> を参照。</p>
+<a class="last reference internal image-reference" href="../../../_images/pullback.png"><img alt="../../../_images/pullback.png" src="../../../_images/pullback.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-statemachine-trigger">
+<span id="id20"></span><h3><a class="toc-backref" href="#id42">2.3.13. ステートマシンの状態を遷移させる</a><a class="headerlink" href="#workflow-statemachine-trigger" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ステートマシンの状態を遷移させる場合は、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a>
+を使用して状態を遷移させることができる。
+対象の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
+ワークフロー開始時 にアプリケーション側で保持したインスタンスIDを使用して事前に取得する必要がある。</p>
+<p>なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-java.util.Map-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String-java.util.Map)">WorkflowInstance#triggerEvent</a>
+にパラメータを指定することで、 <a class="reference internal" href="#workflow-flow-condition"><span>アプリケーションでの処理結果に応じて遷移先のタスクを変更する</span></a> を実現できる。</p>
+<p>タスク完了後のワークフローの状態の取得方法は、 <a class="reference internal" href="#workflow-status"><span>ワークフロー（ステートマシン）の現在の状態を取得する</span></a> を参照。</p>
+<dl class="docutils">
+<dt>ステートマシン定義</dt>
+<dd><p class="first">ステートマシンの場合は、タスクから遷移するシーケンスフローは全て境界イベント(①)として定義する。
+境界イベントの<code class="docutils literal"><span class="pre">Message</span> <span class="pre">Name</span></code>(②)に定義した値が、<code class="docutils literal"><span class="pre">triggerEvent</span></code> に指定する値となる。</p>
+<a class="last reference internal image-reference" href="../../../_images/statemachine-trigger.png"><img alt="../../../_images/statemachine-trigger.png" src="../../../_images/statemachine-trigger.png" /></a>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 対象のWorkflowInstanceを取得する。</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">workflowInstance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+
+<span class="c1">// triggerEventを呼び出し状態を遷移させる</span>
+<span class="n">workflowInstance</span><span class="o">.</span><span class="na">triggerEvent</span><span class="o">(</span><span class="s">&quot;return&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-subprocess">
+<span id="id21"></span><h3><a class="toc-backref" href="#id43">2.3.14. ステートマシンでサブプロセスを定義する</a><a class="headerlink" href="#workflow-subprocess" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ステートマシンでは、サブプロセスを使用することで、状態遷移の流れの見通しを良くすることができる。
+サブプロセスは、BPMNのモデリングツールでの定義でのみ使用し、本ライブラリがステートマシンの進行時にサブプロセスを意識することはない。
+このため、アプリケーションの実装時もサブプロセスを意識する必要はなく、 状態遷移は <a class="reference internal" href="#workflow-statemachine-trigger"><span>ステートマシンの状態を遷移させる</span></a> を使用して行えば良い。</p>
+<dl class="docutils">
+<dt>サブプロセスの定義例</dt>
+<dd><p class="first">サブプロセスは下記のように定義する。親子間のサブプロセスの状態遷移は以下の通り。</p>
+<ul class="simple">
+<li>タスク１からサブプロセスに遷移すると、サブタスク１がアクティブ状態となる。(①の流れ)</li>
+<li>サブプロセス内で停止イベントに遷移すると、タスク２がアクティブ状態となる。（②の流れ）</li>
+</ul>
+<a class="last reference internal image-reference" href="../../../_images/subprocess.png"><img alt="../../../_images/subprocess.png" src="../../../_images/subprocess.png" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-status">
+<span id="id22"></span><h3><a class="toc-backref" href="#id44">2.3.15. ワークフロー（ステートマシン）の現在の状態を取得する</a><a class="headerlink" href="#workflow-status" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ワークフロー（ステートマシン）の状態遷移後の状態を取得できる。
+これにより、 <a class="reference internal" href="#workflow-flow-condition"><span>分岐</span></a> を使用した場合に、どのタスクがアクティブとなったかやワークフロー（ステートマシン）が完了したかを判断できるようになる。</p>
+<p>ワークフロー（ステートマシン）の状態は、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isActive-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.isActive(java.lang.String)">WorkflowInstance#isActive</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isCompleted--" title="nablarch.integration.workflow.WorkflowInstance.isCompleted()">WorkflowInstance#isCompleted</a>
+を使用して問い合わせることができる。</p>
+<dl class="docutils">
+<dt>定義</dt>
+<dd><a class="first last reference internal image-reference" href="../../../_images/status.png"><img alt="../../../_images/status.png" src="../../../_images/status.png" /></a>
+</dd>
+<dt>実装例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 対象のWorkflowInstanceを取得する。</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+
+<span class="c1">// 上記の定義の場合で、再申請がアクティブの場合trueとなる。</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">instance</span><span class="o">.</span><span class="na">isActive</span><span class="o">(</span><span class="s">&quot;task1&quot;</span><span class="o">))</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="c1">// 上記の定義の場合で、承認がアクティブの場合trueとなる。</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">instance</span><span class="o">.</span><span class="na">isActive</span><span class="o">(</span><span class="s">&quot;task2&quot;</span><span class="o">))</span> <span class="o">{</span>
+
+<span class="o">}</span>
+
+<span class="c1">// 上記の定義の場合で却下となり停止イベントに遷移した場合trueとなる</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">instance</span><span class="o">.</span><span class="na">isCompleted</span><span class="o">())</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-version">
+<span id="id23"></span><h3><a class="toc-backref" href="#id45">2.3.16. ワークフロー（ステートマシン）の定義を変更する</a><a class="headerlink" href="#workflow-version" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ワークフロー（ステートマシン）の定義を変更する際に、既に進行中のものについては旧バージョンの定義に従い進行できる機能を提供する。
+この機能を使用することで、進行中のフローに影響をあたえることなく、ある日時点から新しいバージョンのフローを進行できるようになる。</p>
+<p>バージョンは、ワークフロー（ステートマシン）開始時点で有効なものが自動的に適用される。
+ワークフロー定義テーブルの適用日が <a class="reference internal" href="../../../application_framework/application_framework/libraries/date.html#date-system-time-settings"><span>システム日付</span></a> 以前で最もバージョンの大きいものが自動的に適用される。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>ワークフロー（ステートマシン）の定義の変更によっては、アプリケーションのロジックに影響をあたえるものがある。
+そのような場合は、アプリケーション側で進行中のフローのバージョンを取得しロジックを切り替える必要がある。</p>
+<dl class="last docutils">
+<dt>バージョンの取得例</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 対象のWorkflowInstanceを取得する。</span>
+<span class="kd">final</span> <span class="n">WorkflowInstance</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">WorkflowManager</span><span class="o">.</span><span class="na">findInstance</span><span class="o">(</span><span class="n">instanceId</span><span class="o">);</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">instance</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1L</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// バージョン1の処理を行う</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  <span class="c1">// バージョン2以降の処理を行う</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="xor">
+<span id="workflow-xor-flow"></span><h2><a class="toc-backref" href="#id46">2.4. XORゲートウェイの進行先ノードの判定方法</a><a class="headerlink" href="#xor" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>XORゲートウェイの進行先ノードは、シーケンスフローテーブルのフロー進行条件により判定する。
+フロー進行条件には、条件を判定するクラスの完全修飾名を格納する。</p>
+<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html" title="nablarch.integration.workflow.condition.FlowProceedCondition">FlowProceedCondition</a> を実装し作成する。
+本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
+<dl class="docutils">
+<dt>FlowProceedCondition実装クラスの例</dt>
+<dd><ul class="first simple">
+<li>実装クラスはコンストラクタでパラメータを受け取る事ができる。（パラメータはString限定)
+パラメータを受け取るクラスを使用する場合、テーブルのフロー進行条件には <code class="docutils literal"><span class="pre">sample.SampleFlowProceedCondition(&quot;key&quot;,</span> <span class="pre">&quot;value&quot;)</span></code>
+のように引数に設定する値を含めて格納する必要がある。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html#isMatch-java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow-" title="nablarch.integration.workflow.condition.FlowProceedCondition.isMatch(java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow)">isMatch</a>
+で指定のシーケンスフローに対して遷移可能かどうかの結果を返す。</li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleFlowProceedCondition</span> <span class="kd">implements</span> <span class="n">FlowProceedCondition</span> <span class="o">{</span>
+
+  <span class="c1">// コンストラクタ</span>
+  <span class="c1">// パラメータを受け取る場合は、文字列型(String)で定義する。</span>
+  <span class="kd">public</span> <span class="nf">StringEqualFlowProceedCondition</span><span class="o">(</span><span class="n">String</span> <span class="n">paramKey</span><span class="o">,</span> <span class="n">String</span> <span class="n">expectedValue</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+
+  <span class="c1">// isMatchで指定されたSequenceFlowに遷移可能かどうかを判定する。</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isMatch</span><span class="o">(</span><span class="n">String</span> <span class="n">instanceId</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">param</span><span class="o">,</span> <span class="n">SequenceFlow</span> <span class="n">sequenceFlow</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="workflow-multi-completion">
+<span id="id24"></span><h2><a class="toc-backref" href="#id47">2.5. マルチインスタンスの完了条件の判定方法</a><a class="headerlink" href="#workflow-multi-completion" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>マルチインスタンの完了は、タスクテーブルの完了条件により判定する。
+完了条件には、条件を判定するクラスの完全修飾名を格納する。</p>
+<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html" title="nablarch.integration.workflow.condition.CompletionCondition">CompletionCondition</a> を実装し作成する。
+本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
+<dl class="docutils">
+<dt>CompletionConditionの実装例</dt>
+<dd><ul class="first simple">
+<li>実装クラスはコンストラクタでパラメータを受け取る事ができる。（パラメータはString限定)
+パラメータを受け取るクラスを使用する場合、テーブルのフロー進行条件には <code class="docutils literal"><span class="pre">sample.SampleCompletionCondition(&quot;1&quot;)</span></code>
+のように引数に設定する値を含めて格納する必要がある。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedUserTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedUserTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedUserTask</a>
+でユーザタスクの完了判定を行う。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedGroupTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedGroupTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedGroupTask</a>
+でグループタスクの完了判定を行う。</li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrCompletionCondition</span> <span class="kd">implements</span> <span class="n">CompletionCondition</span> <span class="o">{</span>
+
+  <span class="c1">// コンストラクタ</span>
+  <span class="c1">// パラメータを受け取る場合は、文字列型(String)で定義する。</span>
+  <span class="kd">public</span> <span class="nf">OrCompletionCondition</span><span class="o">(</span><span class="n">String</span> <span class="n">threshold</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+
+  <span class="c1">// ユーザタスクの完了判定を行う。</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCompletedUserTask</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">param</span><span class="o">,</span> <span class="n">String</span> <span class="n">instanceId</span><span class="o">,</span> <span class="n">Task</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+
+  <span class="c1">// グループタスクの完了判定を行う。</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCompletedGroupTask</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">param</span><span class="o">,</span> <span class="n">String</span> <span class="n">instanceId</span><span class="o">,</span> <span class="n">Task</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2019, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u15',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
