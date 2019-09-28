@@ -365,7 +365,8 @@
 <h2><a class="toc-backref" href="#id19">7.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="di">
 <h3><a class="toc-backref" href="#id20">7.2.1.1. DIコンテナによるオブジェクトの構築ができる</a><a class="headerlink" href="#di" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span>xml</span></a> に定義されたコンポーネントの定義を元にオブジェクトを構築できる。</p>
+<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span>xml</span></a> に定義されたコンポーネントの定義を元にオブジェクトを構築できる。
+構築されるオブジェクトは <strong>シングルトン</strong> となる。</p>
 <p>DIコンテナ機能では、以下のことができる。</p>
 <ul class="simple">
 <li><a class="reference internal" href="#repository-definition-bean"><span>setterインジェクションができる。</span></a></li>
@@ -459,13 +460,13 @@
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p>生成されるインスタンスのライフサイクルはアプリケーションスコープとなる。このため、以下の点に注意すること。</p>
+<p>生成されるインスタンスはシングルトンとなる。このため、以下の点に注意すること。</p>
 <ul class="simple">
-<li>インスタンスはシングルトンである。取得の度に生成されるのではない（プロトタイプでない）。</li>
+<li>インスタンスはシングルトンとなるため、取得の度に生成されるのではない（プロトタイプでない）。</li>
 <li>アプリケーションが終了するまでインスタンスは破棄されない。</li>
 </ul>
-<p>このスコープ理解を誤ると、深刻な不具合を埋め込むこととなるので特に注意が必要である。
-例えば、スコープをプロトタイプと勘違いした場合、あるリクエストでユーザAの入力値をコンポーネントに設定し、
+<p>この理解を誤ると、深刻な不具合を埋め込むこととなるので特に注意が必要である。
+例えば、生成されるインスタンスをプロトタイプと勘違いした場合、あるリクエストでユーザAの入力値をコンポーネントに設定し、
 別のユーザBのリクエストでその値を使用してしまう、というような重大な不具合を起こす可能性がある。</p>
 <p class="last">意図的にアプリケーション全体でコンポーネントの状態を変更、共有する場合は、そのコンポーネントはスレッドセーフでなければならない。</p>
 </div>
@@ -726,7 +727,7 @@ propertyの定義が必要になるためメンテナンス性が悪い。</li>
 <dd>この例では、 <cite>SampleClient</cite> に <cite>sampleComponent</cite> propertyを定義していないが、<cite>SampleComponent</cite>を実装したクラスの設定が1つだけなので、</dd>
 </dl>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/var/jenkins_home/workspace/nablarch-document/application_framework/application_framework/libraries/repository.rst</tt>, line 431)</p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/var/jenkins_home/workspace/nablarch-document/application_framework/application_framework/libraries/repository.rst</tt>, line 432)</p>
 Definition list ends without a blank line; unexpected unindent.</div>
 <p><cite>sampleComponent</cite> propertyには自動的に <cite>BasicSampleComponent</cite> が設定される。</p>
 <blockquote>
