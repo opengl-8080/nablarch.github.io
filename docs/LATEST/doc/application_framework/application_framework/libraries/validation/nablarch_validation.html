@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.10.2. Nablarch Validation &mdash; ∇Nablarch  5u14 ドキュメント</title>
+  <title>7.10.2. Nablarch Validation &mdash; ∇Nablarch  5u15 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/validation/nablarch_validation.html" />
   
-    <link rel="top" title="∇Nablarch  5u14 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.10. 入力値のチェック" href="../validation.html"/>
         <link rel="next" title="7.10.3. Bean ValidationとNablarch Validationの機能比較" href="functional_comparison.html"/>
         <link rel="prev" title="7.10.1. Bean Validation" href="bean_validation.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u14</div>
+    <div id="sidebar-version">Version: 5u15</div>
   </a>
 
   <div role="search">
@@ -639,6 +639,17 @@
 </dd>
 </dl>
 </dd>
+<dt>ドメインバリデーションに複数のバリデーションルールを設定した場合の挙動</dt>
+<dd><p class="first">ドメインバリデーションにて１つの入力項目に複数のエラーが存在する場合、精査を１つ目のエラーで打ち切る。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span> <span class="kd">public</span> <span class="kd">enum</span> <span class="n">SampleDomain</span> <span class="kd">implements</span> <span class="n">DomainDefinition</span> <span class="o">{</span>
+   <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+   <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;全角文字&quot;</span><span class="o">)</span>
+   <span class="n">NAME</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p class="last">上記 <cite>NAME</cite> は <cite>Length</cite> バリデーションエラーになった場合、 <cite>SystemChar</cite> バリデーションは行わない。</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="bean">
@@ -1125,7 +1136,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u14',
+            VERSION:'5u15',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
