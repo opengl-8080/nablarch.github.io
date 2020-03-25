@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.1.2.5. メッセージングログの出力 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.1.1.2.5. メッセージングログの出力 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/messaging_log.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.2. システムリポジトリ" href="../repository.html"/>
         <link rel="prev" title="7.1.1.2.4. HTTPアクセスログの出力" href="http_access_log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -371,7 +371,7 @@
 <span class="na">writer.appLog.encoding</span><span class="o">=</span><span class="s">UTF-8</span>
 <span class="na">writer.appLog.maxFileSize</span><span class="o">=</span><span class="s">10000</span>
 <span class="na">writer.appLog.formatter.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.BasicLogFormatter</span>
-<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">&lt;アプリケーションログ用のフォーマット&gt;</span>
+<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">$date$ -$logLevel$- $runtimeLoggerName$ [$executionId$] boot_proc = [$bootProcess$] proc_sys = [$processingSystem$] req_id = [$requestId$] usr_id = [$userId$] $message$$information$$stackTrace$</span>
 
 <span class="na">availableLoggersNamesOrder</span><span class="o">=</span><span class="s">MESSAGING,ROO</span>
 
@@ -384,6 +384,45 @@
 <span class="na">loggers.MESSAGING.nameRegex</span><span class="o">=</span><span class="s">MESSAGING</span>
 <span class="na">loggers.MESSAGING.level</span><span class="o">=</span><span class="s">INFO</span>
 <span class="na">loggers.MESSAGING.writerNames</span><span class="o">=</span><span class="s">appLog</span>
+</pre></div>
+</div>
+</dd>
+<dt>app-log.propertiesの設定例</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># MessagingLogFormatter</span>
+<span class="c">#messagingLogFormatter.className=</span>
+<span class="c">#messagingLogFormatter.maskingChar=</span>
+<span class="c">#messagingLogFormatter.maskingPatterns=</span>
+<span class="c"># MOMメッセージング用フォーマット</span>
+<span class="na">messagingLogFormatter.sentMessageFormat</span><span class="o">=</span><span class="s">@@@@ SENT MESSAGE @@@@\</span>
+<span class="s">                                          \n\tthread_name    = [$threadName$]\</span>
+<span class="s">                                          \n\tmessage_id     = [$messageId$]\</span>
+<span class="s">                                          \n\tdestination    = [$destination$]\</span>
+<span class="s">                                          \n\tcorrelation_id = [$correlationId$]\</span>
+<span class="s">                                          \n\treply_to       = [$replyTo$]\</span>
+<span class="s">                                          \n\ttime_to_live   = [$timeToLive$]\</span>
+<span class="s">                                          \n\tmessage_body   = [$messageBody$]</span>
+<span class="na">messagingLogFormatter.receivedMessageFormat</span><span class="o">=</span><span class="s">@@@@ RECEIVED MESSAGE @@@@\</span>
+<span class="s">                                              \n\tthread_name    = [$threadName$]\</span>
+<span class="s">                                              \n\tmessage_id     = [$messageId$]\</span>
+<span class="s">                                              \n\tdestination    = [$destination$]\</span>
+<span class="s">                                              \n\tcorrelation_id = [$correlationId$]\</span>
+<span class="s">                                              \n\treply_to       = [$replyTo$]\</span>
+<span class="s">                                              \n\tmessage_body   = [$messageBody$]</span>
+<span class="c"># HTTPメッセージング用フォーマット</span>
+<span class="na">messagingLogFormatter.httpSentMessageFormat</span><span class="o">=</span><span class="s">@@@@ HTTP SENT MESSAGE @@@@\</span>
+<span class="s">                                              \n\tthread_name    = [$threadName$]\</span>
+<span class="s">                                              \n\tmessage_id     = [$messageId$]\</span>
+<span class="s">                                              \n\tdestination    = [$destination$]\</span>
+<span class="s">                                              \n\tcorrelation_id = [$correlationId$]\</span>
+<span class="s">                                              \n\tmessage_header = [$messageHeader$]\</span>
+<span class="s">                                              \n\tmessage_body   = [$messageBody$]</span>
+<span class="na">messagingLogFormatter.httpReceivedMessageFormat</span><span class="o">=</span><span class="s">@@@@ HTTP RECEIVED MESSAGE @@@@\</span>
+<span class="s">                                                  \n\tthread_name    = [$threadName$]\</span>
+<span class="s">                                                  \n\tmessage_id     = [$messageId$]\</span>
+<span class="s">                                                  \n\tdestination    = [$destination$]\</span>
+<span class="s">                                                  \n\tcorrelation_id = [$correlationId$]\</span>
+<span class="s">                                                  \n\tmessage_header = [$messageHeader$]\</span>
+<span class="s">                                                  \n\tmessage_body   = [$messageBody$]</span>
 </pre></div>
 </div>
 </dd>
@@ -627,7 +666,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -648,7 +687,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

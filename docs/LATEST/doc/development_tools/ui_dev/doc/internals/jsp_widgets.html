@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.18. UI部品ウィジェット &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>2.1.18. UI部品ウィジェット &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/jsp_widgets.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.19. マルチレイアウト用CSSフレームワーク" href="multicol_css_framework.html"/>
         <link rel="prev" title="2.1.17. 業務画面テンプレート" href="jsp_page_templates.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -437,111 +437,111 @@ PJのポリシーでスタイルを調整するウィジェットが用意され
 このファイルでは <a class="reference internal" href=""><em>UI部品ウィジェット</em></a> の
 <a class="reference external" href="../../../../_static/ui_dev/yuidoc/classes/nablarch.ui.DatePicker.html">日付入力機能(nablarch_DatePicker)</a>
 を <strong>マーカCSS</strong> を使って利用している。</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span>&lt;%--
-  カレンダー日付入力UI部品
-  @author Iwauo Tajima
---%&gt;
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span>
+  <span class="n">カレンダー日付入力UI部品</span>
+  <span class="nd">@author</span> <span class="n">Iwauo</span> <span class="n">Tajima</span>
+<span class="o">--</span><span class="k">%&gt;</span>
 
-&lt;%@ tag pageEncoding=&quot;UTF-8&quot; description=&quot;日付入力項目を出力するウィジェット&quot; %&gt;
-&lt;%@ taglib prefix=&quot;n&quot;      uri=&quot;http://tis.co.jp/nablarch&quot; %&gt;
-&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
-&lt;%@ taglib prefix=&quot;field&quot;  tagdir=&quot;/WEB-INF/tags/widget/field&quot; %&gt;
+<span class="k">&lt;%@</span> <span class="n">tag</span> <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;日付入力項目を出力するウィジェット&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;n&quot;</span>      <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://tis.co.jp/nablarch&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;c&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;field&quot;</span>  <span class="n">tagdir</span><span class="o">=</span><span class="s">&quot;/WEB-INF/tags/widget/field&quot;</span> <span class="k">%&gt;</span>
 
-&lt;%---------------------- 属性定義 ----------------------%&gt;
-&lt;%@ attribute name=&quot;title&quot;     description=&quot;項目名&quot; required=&quot;true&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;domain&quot;    description=&quot;項目のドメイン型&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;required&quot;  description=&quot;必須項目かどうか&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;readonly&quot;  description=&quot;編集可能かどうか&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;disabled&quot;  description=&quot;サーバに対する入力値の送信を抑制するかどうか&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;name&quot;      description=&quot;HTMLのname属性値&quot; required=&quot;true&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;id&quot;        description=&quot;HTMLのid属性値 (省略時はname属性と同じ値を使用する)&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;cssClass&quot;  description=&quot;HTMLのclass属性値&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;maxlength&quot; description=&quot;入力文字数の上限(デフォルト:10文字)&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;example&quot;   description=&quot;具体的な入力例を表すテキスト(placeholderなどの形式で表示する)&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;nameAlias&quot; description=&quot;一つのエラーメッセージに対して複数の入力項目をハイライト表示する場合に指定する（項目間精査など）。詳細については、Application Framework解説書の「エラー表示」を参照。&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;hint&quot;      description=&quot;入力内容や留意点などの補助テキスト&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;sample&quot;    description=&quot;テスト用のダミー入力値(本番動作では使用されない)&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%-----------------------追加属性---------------------------%&gt;
-&lt;%@ attribute name=&quot;format&quot;    description=&quot;日付フォーマット(デフォルト:yyyy/MM/dd)&quot; rtexprvalue=&quot;true&quot; %&gt;
-&lt;%@ attribute name=&quot;locale&quot;    description=&quot;言語設定(デフォルト:ja)&quot; rtexprvalue=&quot;true&quot; %&gt;
+<span class="k">&lt;%-</span><span class="o">---------------------</span> <span class="n">属性定義</span> <span class="o">----------------------</span><span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span>     <span class="n">description</span><span class="o">=</span><span class="s">&quot;項目名&quot;</span> <span class="n">required</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;domain&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;項目のドメイン型&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;required&quot;</span>  <span class="n">description</span><span class="o">=</span><span class="s">&quot;必須項目かどうか&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;readonly&quot;</span>  <span class="n">description</span><span class="o">=</span><span class="s">&quot;編集可能かどうか&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;disabled&quot;</span>  <span class="n">description</span><span class="o">=</span><span class="s">&quot;サーバに対する入力値の送信を抑制するかどうか&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span>      <span class="n">description</span><span class="o">=</span><span class="s">&quot;HTMLのname属性値&quot;</span> <span class="n">required</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;id&quot;</span>        <span class="n">description</span><span class="o">=</span><span class="s">&quot;HTMLのid属性値 (省略時はname属性と同じ値を使用する)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;cssClass&quot;</span>  <span class="n">description</span><span class="o">=</span><span class="s">&quot;HTMLのclass属性値&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;maxlength&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;入力文字数の上限(デフォルト:10文字)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;example&quot;</span>   <span class="n">description</span><span class="o">=</span><span class="s">&quot;具体的な入力例を表すテキスト(placeholderなどの形式で表示する)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;nameAlias&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;一つのエラーメッセージに対して複数の入力項目をハイライト表示する場合に指定する（項目間精査など）。詳細については、Application Framework解説書の「エラー表示」を参照。&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;hint&quot;</span>      <span class="n">description</span><span class="o">=</span><span class="s">&quot;入力内容や留意点などの補助テキスト&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;sample&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;テスト用のダミー入力値(本番動作では使用されない)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%-</span><span class="o">----------------------</span><span class="n">追加属性</span><span class="o">---------------------------</span><span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;format&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;日付フォーマット(デフォルト:yyyy/MM/dd)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;locale&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;言語設定(デフォルト:ja)&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
 
-&lt;%---------------------- 設計書用属性定義 ----------------------%&gt;
-&lt;%@ attribute name=&quot;dataFrom&quot; description=&quot;表示するデータの取得元（画面項目定義に記載する、「表示情報取得元」.「表示項目名」の形式で設定する）&quot; %&gt;
-&lt;%@ attribute name=&quot;comment&quot;    description=&quot;このカレンダーについての備考（画面項目定義の項目定義一覧で、備考欄に表示される）&quot; %&gt;
-&lt;%@ attribute name=&quot;initialValueDesc&quot;    description=&quot;初期表示内容に関する説明。&quot; %&gt;
+<span class="k">&lt;%-</span><span class="o">---------------------</span> <span class="n">設計書用属性定義</span> <span class="o">----------------------</span><span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;dataFrom&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;表示するデータの取得元（画面項目定義に記載する、「表示情報取得元」.「表示項目名」の形式で設定する）&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;comment&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;このカレンダーについての備考（画面項目定義の項目定義一覧で、備考欄に表示される）&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;initialValueDesc&quot;</span>    <span class="n">description</span><span class="o">=</span><span class="s">&quot;初期表示内容に関する説明。&quot;</span> <span class="k">%&gt;</span>
 
-&lt;%---------------------- マルチレイアウト用属性 ----------------------%&gt;
-&lt;%@ attribute name=&quot;titleSize&quot; description=&quot;タイトル部の幅（グリッド数）※マルチレイアウトモードの場合に使用する。&quot; rtexprvalue=&quot;true&quot; type=&quot;java.lang.Integer&quot; %&gt;
-&lt;%@ attribute name=&quot;inputSize&quot; description=&quot;入力部の幅（グリッド数）※マルチレイアウトモードの場合に使用する。&quot; rtexprvalue=&quot;true&quot; %&gt;
+<span class="k">&lt;%-</span><span class="o">---------------------</span> <span class="n">マルチレイアウト用属性</span> <span class="o">----------------------</span><span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;titleSize&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;タイトル部の幅（グリッド数）※マルチレイアウトモードの場合に使用する。&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;java.lang.Integer&quot;</span> <span class="k">%&gt;</span>
+<span class="k">&lt;%@</span> <span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;inputSize&quot;</span> <span class="n">description</span><span class="o">=</span><span class="s">&quot;入力部の幅（グリッド数）※マルチレイアウトモードの場合に使用する。&quot;</span> <span class="n">rtexprvalue</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="k">%&gt;</span>
 
-&lt;%-- デフォルトの日付フォーマットの最大入力文字数 --%&gt;
-&lt;c:if test=&quot;${empty format}&quot;&gt;
-  &lt;n:set var=&quot;maxlengthValue&quot; value=&quot;10&quot; scope=&quot;page&quot;/&gt;
-&lt;/c:if&gt;
-&lt;c:if test=&quot;${not empty format}&quot;&gt;
-  &lt;n:set var=&quot;maxlengthValue&quot; name=&quot;maxlength&quot; scope=&quot;page&quot;/&gt;
-&lt;/c:if&gt;
+<span class="k">&lt;%-</span><span class="o">-</span> <span class="n">デフォルトの日付フォーマットの最大入力文字数</span> <span class="o">--</span><span class="k">%&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${empty format}&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;maxlengthValue&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span> <span class="na">scope=</span><span class="s">&quot;page&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/c:if&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${not empty format}&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;maxlengthValue&quot;</span> <span class="na">name=</span><span class="s">&quot;maxlength&quot;</span> <span class="na">scope=</span><span class="s">&quot;page&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/c:if&gt;</span>
 
-&lt;%-- デフォルトの日付フォーマット --%&gt;
-&lt;c:if test=&quot;${empty format}&quot;&gt;&lt;n:set var=&quot;format&quot; value=&quot;yyyy/MM/dd&quot; scope=&quot;page&quot; /&gt;&lt;/c:if&gt;
+<span class="k">&lt;%-</span><span class="o">-</span> <span class="n">デフォルトの日付フォーマット</span> <span class="o">--</span><span class="k">%&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${empty format}&quot;</span><span class="nt">&gt;&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;format&quot;</span> <span class="na">value=</span><span class="s">&quot;yyyy/MM/dd&quot;</span> <span class="na">scope=</span><span class="s">&quot;page&quot;</span> <span class="nt">/&gt;&lt;/c:if&gt;</span>
 
-&lt;%-- デフォルトのロケール --%&gt;
-&lt;c:if test=&quot;${empty locale}&quot;&gt;&lt;n:set var=&quot;locale&quot; value=&quot;ja&quot; scope=&quot;page&quot; /&gt;&lt;/c:if&gt;
+<span class="k">&lt;%-</span><span class="o">-</span> <span class="n">デフォルトのロケール</span> <span class="o">--</span><span class="k">%&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${empty locale}&quot;</span><span class="nt">&gt;&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;locale&quot;</span> <span class="na">value=</span><span class="s">&quot;ja&quot;</span> <span class="na">scope=</span><span class="s">&quot;page&quot;</span> <span class="nt">/&gt;&lt;/c:if&gt;</span>
 
-&lt;field:inputbase
-  title      = &quot;${title}&quot;
-  name       = &quot;${name}&quot;
-  required   = &quot;${required}&quot;
-  hint       = &quot;${hint}&quot;
-  fieldClass = &quot;${disabled ? &#39;disabled&#39; : &#39;&#39;}&quot;
-  titleSize  = &quot;${titleSize}&quot;
-  inputSize  = &quot;${inputSize}&quot;&gt;
-  &lt;jsp:attribute name=&quot;fieldContent&quot;&gt;
-    &lt;c:if test=&quot;${empty maxlengthValue}&quot;&gt;
-      &lt;n:text
-        name        = &quot;${name}&quot;
-        id          = &quot;${(empty id) ? name : id}&quot;
-        disabled    = &quot;${disabled}&quot;
-        cssClass    = &quot;${cssClass} ${(readonly) ? &#39;nablarch_readonly&#39; : &#39;&#39;}&quot;
-        placeholder = &quot;${example}&quot;
-        valueFormat = &quot;yyyymmdd{${format}}&quot;
-        nameAlias   = &quot;${nameAlias}&quot;
-      /&gt;
-    &lt;/c:if&gt;
-    &lt;c:if test=&quot;${not empty maxlengthValue}&quot;&gt;
-      &lt;n:text
-        name        = &quot;${name}&quot;
-        id          = &quot;${(empty id) ? name : id}&quot;
-        disabled    = &quot;${disabled}&quot;
-        cssClass    = &quot;${cssClass} ${(readonly) ? &#39;nablarch_readonly&#39; : &#39;&#39;}&quot;
-        placeholder = &quot;${example}&quot;
-        valueFormat = &quot;yyyymmdd{${format}}&quot;
-        nameAlias   = &quot;${nameAlias}&quot;
-        maxlength   = &quot;${maxlengthValue}&quot;
-      /&gt;
-    &lt;/c:if&gt;
-    &lt;n:forInputPage&gt;
-      &lt;n:set
-        var   = &quot;classText&quot;
-        value = &quot;${(readonly || disabled) ? &#39;disabled&#39; : &#39;&#39;}
-                 nablarch_DatePicker
-                   -format ${format}
-                   -locale ${locale}
-                   -input  ${(empty id) ? name : id}&quot;
-      /&gt;
-      &lt;c:if test=&quot;${disabled || readonly }&quot;&gt;
-        &lt;button class=&quot;&lt;n:write name=&#39;classText&#39; withHtmlFormat=&#39;false&#39; /&gt;&quot;  disabled=&quot;disabled&quot; type=&quot;button&quot;&gt;
-          &lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;
-        &lt;/button&gt;
-      &lt;/c:if&gt;
-      &lt;c:if test=&quot;${!disabled &amp;&amp; !readonly}&quot;&gt;
-        &lt;button class=&quot;&lt;n:write name=&#39;classText&#39; withHtmlFormat=&#39;false&#39; /&gt;&quot; type=&quot;button&quot;&gt;
-          &lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;
-        &lt;/button&gt;
-      &lt;/c:if&gt;
-    &lt;/n:forInputPage&gt;
-  &lt;/jsp:attribute&gt;
-&lt;/field:inputbase&gt;
+<span class="nt">&lt;field:inputbase</span>
+  <span class="na">title      =</span> <span class="s">&quot;${title}&quot;</span>
+  <span class="na">name       =</span> <span class="s">&quot;${name}&quot;</span>
+  <span class="na">required   =</span> <span class="s">&quot;${required}&quot;</span>
+  <span class="na">hint       =</span> <span class="s">&quot;${hint}&quot;</span>
+  <span class="na">fieldClass =</span> <span class="s">&quot;${disabled ? &#39;disabled&#39; : &#39;&#39;}&quot;</span>
+  <span class="na">titleSize  =</span> <span class="s">&quot;${titleSize}&quot;</span>
+  <span class="na">inputSize  =</span> <span class="s">&quot;${inputSize}&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;fieldContent&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${empty maxlengthValue}&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;n:text</span>
+        <span class="na">name        =</span> <span class="s">&quot;${name}&quot;</span>
+        <span class="na">id          =</span> <span class="s">&quot;${(empty id) ? name : id}&quot;</span>
+        <span class="na">disabled    =</span> <span class="s">&quot;${disabled}&quot;</span>
+        <span class="na">cssClass    =</span> <span class="s">&quot;${cssClass} ${(readonly) ? &#39;nablarch_readonly&#39; : &#39;&#39;}&quot;</span>
+        <span class="na">placeholder =</span> <span class="s">&quot;${example}&quot;</span>
+        <span class="na">valueFormat =</span> <span class="s">&quot;yyyymmdd{${format}}&quot;</span>
+        <span class="na">nameAlias   =</span> <span class="s">&quot;${nameAlias}&quot;</span>
+      <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/c:if&gt;</span>
+    <span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${not empty maxlengthValue}&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;n:text</span>
+        <span class="na">name        =</span> <span class="s">&quot;${name}&quot;</span>
+        <span class="na">id          =</span> <span class="s">&quot;${(empty id) ? name : id}&quot;</span>
+        <span class="na">disabled    =</span> <span class="s">&quot;${disabled}&quot;</span>
+        <span class="na">cssClass    =</span> <span class="s">&quot;${cssClass} ${(readonly) ? &#39;nablarch_readonly&#39; : &#39;&#39;}&quot;</span>
+        <span class="na">placeholder =</span> <span class="s">&quot;${example}&quot;</span>
+        <span class="na">valueFormat =</span> <span class="s">&quot;yyyymmdd{${format}}&quot;</span>
+        <span class="na">nameAlias   =</span> <span class="s">&quot;${nameAlias}&quot;</span>
+        <span class="na">maxlength   =</span> <span class="s">&quot;${maxlengthValue}&quot;</span>
+      <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/c:if&gt;</span>
+    <span class="nt">&lt;n:forInputPage&gt;</span>
+      <span class="nt">&lt;n:set</span>
+        <span class="na">var   =</span> <span class="s">&quot;classText&quot;</span>
+        <span class="na">value =</span> <span class="s">&quot;${(readonly || disabled) ? &#39;disabled&#39; : &#39;&#39;}</span>
+<span class="s">                 nablarch_DatePicker</span>
+<span class="s">                   -format ${format}</span>
+<span class="s">                   -locale ${locale}</span>
+<span class="s">                   -input  ${(empty id) ? name : id}&quot;</span>
+      <span class="nt">/&gt;</span>
+      <span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${disabled || readonly }&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;&lt;n:write name=&#39;classText&#39; withHtmlFormat=&#39;false&#39; /&gt;&quot;</span>  <span class="na">disabled=</span><span class="s">&quot;disabled&quot;</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;fa fa-calendar&quot;</span><span class="nt">&gt;&lt;/i&gt;</span>
+        <span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/c:if&gt;</span>
+      <span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${!disabled &amp;&amp; !readonly}&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;&lt;n:write name=&#39;classText&#39; withHtmlFormat=&#39;false&#39; /&gt;&quot;</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;fa fa-calendar&quot;</span><span class="nt">&gt;&lt;/i&gt;</span>
+        <span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/c:if&gt;</span>
+    <span class="nt">&lt;/n:forInputPage&gt;</span>
+  <span class="nt">&lt;/jsp:attribute&gt;</span>
+<span class="nt">&lt;/field:inputbase&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -784,7 +784,7 @@ JavaScript UI部品。
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -805,7 +805,7 @@ JavaScript UI部品。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.19. Bean Util &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.21. Bean Util &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/bean_util.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
-        <link rel="next" title="7.20. 汎用ユーティリティ" href="utility.html"/>
-        <link rel="prev" title="7.18.1. タグリファレンス" href="tag/tag_reference.html"/>
+        <link rel="next" title="7.22. 汎用ユーティリティ" href="utility.html"/>
+        <link rel="prev" title="7.20. データベースを使用した2重サブミット防止" href="db_double_submit.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -314,7 +314,7 @@
       
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
-    <li>7.19. Bean Util</li>
+    <li>7.21. Bean Util</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -325,7 +325,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="bean-util">
-<span id="id1"></span><h1>7.19. Bean Util<a class="headerlink" href="#bean-util" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>7.21. Bean Util<a class="headerlink" href="#bean-util" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
@@ -348,7 +348,7 @@
 <li>Java Beansとjava.util.Mapとの間での値の移送</li>
 </ul>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">7.19.1. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">7.21.1. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-core-beans<span class="nt">&lt;/artifactId&gt;</span>
@@ -357,7 +357,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id11">7.19.2. 使用方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">7.21.2. 使用方法</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> が提供するAPIを使用して、任意のJava Beansに対する操作が実現できる。</p>
 <p>BeanUtilの使用例を以下に示す。</p>
 <dl class="docutils">
@@ -434,7 +434,7 @@
 </dl>
 </div>
 <div class="section" id="beanutil">
-<span id="utility-conversion"></span><h2><a class="toc-backref" href="#id12">7.19.3. BeanUtilの型変換ルール</a><a class="headerlink" href="#beanutil" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="utility-conversion"></span><h2><a class="toc-backref" href="#id12">7.21.3. BeanUtilの型変換ルール</a><a class="headerlink" href="#beanutil" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> では、Java BeansオブジェクトやMapオブジェクトから
 別のJava Beansオブジェクトにデータ移行する際にプロパティの型変換を行っている。</p>
 <p>なお、MapオブジェクトからJava Beansオブジェクトにデータ移行する場合、
@@ -455,7 +455,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </div>
 </div>
 <div class="section" id="utility-conversion-add-rule">
-<span id="id5"></span><h2><a class="toc-backref" href="#id13">7.19.4. 型変換ルールを追加する</a><a class="headerlink" href="#utility-conversion-add-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id13">7.21.4. 型変換ルールを追加する</a><a class="headerlink" href="#utility-conversion-add-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>型変換ルールを追加するには、以下の手順が必要となる。</p>
 <ol class="arabic simple">
 <li>必要に応じて以下のインタフェースを実装し型変換処理を実現する。</li>
@@ -524,7 +524,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </ol>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id14">7.19.5. 型変換時に許容するフォーマットを指定する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">7.21.5. 型変換時に許容するフォーマットを指定する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>型変換時には、許容するフォーマットを指定することで日付や数値のフォーマットを解除できる。
 例えば、カンマ編集されたString型の値(1,000,000)を数値型(1000000)に変換できる。</p>
 <p>許容するフォーマットは、以下の3種類の指定方法がある。優先順位は上に記載したものが高くなる。</p>
@@ -534,7 +534,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 <li><a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定(システム共通設定)</span></a></li>
 </ul>
 <div class="section" id="bean-util-format-default-setting">
-<span id="id7"></span><h3><a class="toc-backref" href="#id15">7.19.5.1. デフォルト(システム共通)の許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-default-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id15">7.21.5.1. デフォルト(システム共通)の許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-default-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>フォーマットのデフォルト設定は、コンポーネント設定ファイルに設定する。</p>
 <p>例えば、画面上で入力される数値についてはカンマ編集されているものも許容する場合には、デフォルト設定を行うことで個別指定が不要となる。</p>
 <p>以下に設定方法を示す。</p>
@@ -576,7 +576,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </div>
 </div>
 <div class="section" id="bean-util-format-property-setting">
-<span id="id8"></span><h3><a class="toc-backref" href="#id16">7.19.5.2. コピー対象のプロパティに対して許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-property-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id16">7.21.5.2. コピー対象のプロパティに対して許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-property-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>特定機能だけ <a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定</span></a> を適用せずに異なるフォーマットを指定したい場合がある。
 この場合は、コピー対象のBean(コピー元またはコピー先)の該当プロパティに対応したフィールドに対してアノテーションを指定し許容するフォーマットを上書きする。</p>
 <p>アノテーションは、コピー元とコピー先のどちらに指定しても動作するが、基本的に許容するフォーマットはString型のプロパティに対応するフィールドに指定するのが好ましい。
@@ -610,7 +610,7 @@ Mapオブジェクトのキーに <code class="docutils literal"><span class="pr
 </dl>
 </div>
 <div class="section" id="bean-util-format-logical">
-<span id="id9"></span><h3><a class="toc-backref" href="#id17">7.19.5.3. BeanUtil呼び出し時に許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-logical" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id17">7.21.5.3. BeanUtil呼び出し時に許容するフォーマットを設定する</a><a class="headerlink" href="#bean-util-format-logical" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>特定機能だけ <a class="reference internal" href="#bean-util-format-default-setting"><span>デフォルト設定</span></a> を適用せずに異なるフォーマットを指定したいが、
 OSSなどを用いてBeanを自動生成している場合に <a class="reference internal" href="#bean-util-format-property-setting"><span>プロパティ単位にアノテーションで設定</span></a> が使用できない場合がある。
 また、特定プロパティのみ異なる型変換ルールを適用したい場合がある。</p>
@@ -654,7 +654,7 @@ OSSなどを用いてBeanを自動生成している場合に <a class="referenc
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -675,7 +675,7 @@ OSSなどを用いてBeanを自動生成している場合に <a class="referenc
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CAPTCHA機能の組み込み手順 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>CAPTCHA機能の組み込み手順 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/06/06_Captcha_guide.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../index.html"/>
         <link rel="up" title="CAPTCHA機能サンプル" href="index.html"/>
         <link rel="next" title="UserAgent情報取得機能サンプル" href="../07/index.html"/>
         <link rel="prev" title="CAPTCHA機能サンプル" href="index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -441,21 +441,24 @@ Formに定義するバリデーション用のメソッドとの関連付けが�
 </div></blockquote>
 <p>バリデーション用のメソッドを追加します。</p>
 <blockquote>
-<div><div class="highlight-java"><div class="highlight"><pre><span></span>@ValidateFor(&quot;yyyy&quot;)
-public static void validateForXxx(ValidationContext&lt;LoginForm&gt; context) {
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ValidateFor</span><span class="o">(</span><span class="s">&quot;yyyy&quot;</span><span class="o">)</span>
 
-    // 単項目精査
-    ValidationUtil.validate(context, new String[] { …中略…, &quot;captchaKey&quot;, &quot;captchaValue&quot; });
-    if (!context.isValid()) {
-        return;
-    }
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">validateForXxx</span><span class="o">(</span><span class="n">ValidationContext</span><span class="o">&lt;</span><span class="n">LoginForm</span><span class="o">&gt;</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
 
-    // Captcha文字列判定
-    XxxForm form = context.createObject();
-    if (!CaptchaUtil.authenticate(form.getCaptchaKey(), form.getCaptchaValue())) {
-        context.addResultMessage(&quot;captchaValue&quot;, &quot;MSG90001&quot;);
-    }
-}
+    <span class="c1">// 単項目精査</span>
+
+    <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="cm">/* …中略… */</span><span class="o">,</span> <span class="s">&quot;captchaKey&quot;</span><span class="o">,</span> <span class="s">&quot;captchaValue&quot;</span> <span class="o">});</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">context</span><span class="o">.</span><span class="na">isValid</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Captcha文字列判定</span>
+
+    <span class="n">XxxForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">createObject</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">CaptchaUtil</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">getCaptchaKey</span><span class="o">(),</span> <span class="n">form</span><span class="o">.</span><span class="na">getCaptchaValue</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">addResultMessage</span><span class="o">(</span><span class="s">&quot;captchaValue&quot;</span><span class="o">,</span> <span class="s">&quot;MSG90001&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -464,19 +467,24 @@ public static void validateForXxx(ValidationContext&lt;LoginForm&gt; context) {
 <h2>jspの編集<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Captcha認証機能を組み込む画面に対応するJSPに下記のコードを追加します。</p>
 <blockquote>
-<div><div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;n:form …省略…&gt;
+<div><div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">n</span><span class="o">:</span><span class="n">formの属性値は省略</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-// 中略
+<span class="nt">&lt;n:form&gt;</span>
 
-// Captcha認証用画像を取得するためのタグを追加
-&lt;n:img src=&quot;/action/path/to/hoge?captchaKey=${form.captchaKey}&quot; alt=&quot;&quot;/&gt;
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">中略</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-// Captcha認証時に必要な情報を送信するためのタグを追加
-&lt;n:plainHidden name=&quot;form.captchaKey&quot;&gt;&lt;/n:plainHidden&gt;
-&lt;n:text name=&quot;form.captchaValue&quot; /&gt;
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Captcha認証用画像を取得するためのタグを追加</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-// 中略
-&lt;/n:form&gt;
+  <span class="nt">&lt;n:img</span> <span class="na">src=</span><span class="s">&quot;/action/path/to/hoge?captchaKey=${form.captchaKey}&quot;</span> <span class="na">alt=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Captcha認証時に必要な情報を送信するためのタグを追加</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+  <span class="nt">&lt;n:plainHidden</span> <span class="na">name=</span><span class="s">&quot;form.captchaKey&quot;</span><span class="nt">&gt;&lt;/n:plainHidden&gt;</span>
+  <span class="nt">&lt;n:text</span> <span class="na">name=</span><span class="s">&quot;form.captchaValue&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">中略</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+<span class="nt">&lt;/n:form&gt;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -495,7 +503,7 @@ public static void validateForXxx(ValidationContext&lt;LoginForm&gt; context) {
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -516,7 +524,7 @@ public static void validateForXxx(ValidationContext&lt;LoginForm&gt; context) {
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1.19. マルチレイアウト用CSSフレームワーク &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>2.1.19. マルチレイアウト用CSSフレームワーク &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/ui_dev/doc/internals/multicol_css_framework.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.1. Nablarch UI開発基盤 解説書" href="../index.html"/>
         <link rel="next" title="2.1.20. 設計書ビュー表示機能" href="showing_specsheet_view.html"/>
         <link rel="prev" title="2.1.18. UI部品ウィジェット" href="jsp_widgets.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -521,7 +521,7 @@
 <p>&#64;fieldGridSpanと&#64;tableGridSpanも業務コンテンツ部の幅に合わせて変更する</p>
 </li>
 </ul>
-<div class="highlight-css"><div class="highlight"><pre><span></span>@columns      : 64;         // 1ページ内のグリッド数
+<div class="highlight-none"><div class="highlight"><pre><span></span>@columns      : 64;         // 1ページ内のグリッド数
 @trackWidth   : 13px;       // 1グリッドのグリッド幅
 @gutterWidth  : 2px;        // 1グリッドあたりのマージン幅
 @totalWidth   : @columns * (@trackWidth + @gutterWidth);  // 1ページの横幅
@@ -549,7 +549,8 @@
 <li>サイドバーの幅を変更する場合には、<em>#aside</em>部の.grid-colに指定している値を変更する</li>
 <li>メニューを使用しない画面でサイドバー部のマージン調整を行う場合には、<em>#aside.noMenu</em>部の.grid-colに指定している値を変更する</li>
 </ul>
-<div class="highlight-css"><div class="highlight"><pre><span></span>#aside {
+<div class="highlight-none"><div class="highlight"><pre><span></span>#aside {
+
   .grid-col(16);
   min-height: 350px;
   padding-top: 15px;
@@ -614,86 +615,101 @@
 <p><strong>画面表示例</strong></p>
 <a class="reference internal image-reference" href="../../../../_images/multicol_sample_1.png"><img alt="../../../../_images/multicol_sample_1.png" src="../../../../_images/multicol_sample_1.png" /></a>
 <p><strong>JSP実装例</strong></p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;n:form windowScopePrefixes=&quot;user&quot;&gt;
-  &lt;%-- タイトル部、入力部の幅定義 --%&gt;
-  &lt;n:set var=&quot;titleSize&quot; value=&quot;10&quot; /&gt;
-  &lt;n:set var=&quot;inputSize&quot; value=&quot;10&quot; /&gt;
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form</span> <span class="na">windowScopePrefixes=</span><span class="s">&quot;user&quot;</span><span class="nt">&gt;</span>
 
-  &lt;tab:group name=&quot;userTab&quot;&gt;
-    &lt;tab:content title=&quot;ユーザ情報&quot; value=&quot;userInfo&quot; selected=&quot;true&quot;&gt;
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">タイトル部</span> <span class="n">入力部の幅定義</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-      &lt;%-- 行を配置する(1行目) --%&gt;
-      &lt;layout:row&gt;
+  <span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;titleSize&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;inputSize&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span> <span class="nt">/&gt;</span>
 
-        &lt;%-- 入力部品は、タイトル部と入力部の幅を指定して配置する --%&gt;
-        &lt;field:text
-            title=&quot;郵便番号&quot;
-            required=&quot;true&quot;
-            name=&quot;user.postNo&quot;
-            titleSize=&quot;${titleSize}&quot;
-            inputSize=&quot;${inputSize}&quot;&gt;
-        &lt;/field:text&gt;
+  <span class="nt">&lt;tab:group</span> <span class="na">name=</span><span class="s">&quot;userTab&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;tab:content</span> <span class="na">title=</span><span class="s">&quot;ユーザ情報&quot;</span> <span class="na">value=</span><span class="s">&quot;userInfo&quot;</span> <span class="na">selected=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
 
-        &lt;%--
-        入力部品とボタンの間のマージン
+      <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">行を配置する</span><span class="o">(</span><span class="mi">1</span><span class="n">行目</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-        マージンは、要素のない列(layout:cell)を使用することで、
-        好きな位置に挿入することができる。
-        --%&gt;
-        &lt;layout:cell gridSize=&quot;10&quot;&gt;&lt;/layout:cell&gt;
+      <span class="nt">&lt;layout:row&gt;</span>
 
-        &lt;%-- ボタンは幅指定をして配置する --%&gt;
-        &lt;n:forInputPage&gt;
-          &lt;button:submit label=&quot;住所検索&quot; uri=&quot;dummy&quot; size=&quot;10&quot;&gt;&lt;/button:submit&gt;
-        &lt;/n:forInputPage&gt;
-      &lt;/layout:row&gt;
+        <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">入力部品は</span> <span class="n">タイトル部と入力部の幅を指定して配置する</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-      &lt;%-- 行を配置する(2行目) --%&gt;
-      &lt;layout:row&gt;
-        &lt;field:pulldown
-            title=&quot;都道府県&quot;
-            name=&quot;user.address1&quot;
-            required=&quot;true&quot;
-            listName=&quot;都道府県リスト&quot;
-            elementLabelProperty=&quot;name&quot;
-            elementValueProperty=&quot;cd&quot;
-            titleSize=&quot;${titleSize}&quot;
-            inputSize=&quot;${inputSize}&quot;&gt;
-        &lt;/field:pulldown&gt;
-        &lt;field:text
-            title=&quot;市区郡町村名&quot;
-            name=&quot;user.address2&quot;
-            required=&quot;true&quot;
-            titleSize=&quot;${titleSize}&quot;
-            inputSize=&quot;${inputSize}&quot;&gt;
-        &lt;/field:text&gt;
-      &lt;/layout:row&gt;
+        <span class="nt">&lt;field:text</span>
+            <span class="na">title=</span><span class="s">&quot;郵便番号&quot;</span>
+            <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+            <span class="na">name=</span><span class="s">&quot;user.postNo&quot;</span>
+            <span class="na">titleSize=</span><span class="s">&quot;${titleSize}&quot;</span>
+            <span class="na">inputSize=</span><span class="s">&quot;${inputSize}&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/field:text&gt;</span>
 
-    &lt;/tab:content&gt;
-    &lt;tab:content title=&quot;勤務先情報&quot; value=&quot;officeInfo&quot;&gt;
-    &lt;/tab:content&gt;
-  &lt;/tab:group&gt;
+        <span class="k">&lt;%-</span><span class="o">-</span>
+          <span class="n">入力部品とボタンの間のマージン</span>
 
-  &lt;%-- 行を配置する(3行目) --%&gt;
-  &lt;layout:row&gt;
-    &lt;n:forInputPage&gt;
-      &lt;%-- ボタンの表示位置調整のためのマージン --%&gt;
-      &lt;layout:cell gridSize=&quot;17&quot;&gt;&lt;/layout:cell&gt;
-      &lt;button:check
-          size=&quot;10&quot;
-          uri=&quot;./確認画面_ページ.jsp&quot;&gt;
-      &lt;/button:check&gt;
-    &lt;/n:forInputPage&gt;
-    &lt;n:forConfirmationPage&gt;
-      &lt;%-- ボタンの表示位置調整のためのマージン --%&gt;
-      &lt;layout:cell gridSize=&quot;10&quot;&gt;&lt;/layout:cell&gt;
-      &lt;button:back uri=&quot;./登録画面.jsp&quot; size=&quot;10&quot;&gt;&lt;/button:back&gt;
-      &lt;%-- ボタンの表示位置調整のためのマージン --%&gt;
-      &lt;layout:cell gridSize=&quot;5&quot;&gt;&lt;/layout:cell&gt;
-      &lt;button:confirm uri=&quot;dummy&quot; size=&quot;10&quot;&gt;&lt;/button:confirm&gt;
-    &lt;/n:forConfirmationPage&gt;
-  &lt;/layout:row&gt;
-&lt;/n:form&gt;
+          <span class="nf">マージンは要素のない列</span><span class="o">(</span><span class="n">layout</span><span class="o">:</span><span class="n">cell</span><span class="o">)</span><span class="n">を使用することで</span>
+          <span class="n">好きな位置に挿入することができる</span>
+        <span class="o">--</span><span class="k">%&gt;</span>
+
+        <span class="nt">&lt;layout:cell</span> <span class="na">gridSize=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;&lt;/layout:cell&gt;</span>
+
+        <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ボタンは幅指定をして配置する</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+        <span class="nt">&lt;n:forInputPage&gt;</span>
+          <span class="nt">&lt;button:submit</span> <span class="na">label=</span><span class="s">&quot;住所検索&quot;</span> <span class="na">uri=</span><span class="s">&quot;dummy&quot;</span> <span class="na">size=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;&lt;/button:submit&gt;</span>
+        <span class="nt">&lt;/n:forInputPage&gt;</span>
+      <span class="nt">&lt;/layout:row&gt;</span>
+
+      <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">行を配置する</span><span class="o">(</span><span class="mi">2</span><span class="n">行目</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;layout:row&gt;</span>
+        <span class="nt">&lt;field:pulldown</span>
+            <span class="na">title=</span><span class="s">&quot;都道府県&quot;</span>
+            <span class="na">name=</span><span class="s">&quot;user.address1&quot;</span>
+            <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+            <span class="na">listName=</span><span class="s">&quot;都道府県リスト&quot;</span>
+            <span class="na">elementLabelProperty=</span><span class="s">&quot;name&quot;</span>
+            <span class="na">elementValueProperty=</span><span class="s">&quot;cd&quot;</span>
+            <span class="na">titleSize=</span><span class="s">&quot;${titleSize}&quot;</span>
+            <span class="na">inputSize=</span><span class="s">&quot;${inputSize}&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/field:pulldown&gt;</span>
+        <span class="nt">&lt;field:text</span>
+            <span class="na">title=</span><span class="s">&quot;市区郡町村名&quot;</span>
+            <span class="na">name=</span><span class="s">&quot;user.address2&quot;</span>
+            <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+            <span class="na">titleSize=</span><span class="s">&quot;${titleSize}&quot;</span>
+            <span class="na">inputSize=</span><span class="s">&quot;${inputSize}&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/field:text&gt;</span>
+      <span class="nt">&lt;/layout:row&gt;</span>
+
+    <span class="nt">&lt;/tab:content&gt;</span>
+    <span class="nt">&lt;tab:content</span> <span class="na">title=</span><span class="s">&quot;勤務先情報&quot;</span> <span class="na">value=</span><span class="s">&quot;officeInfo&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/tab:content&gt;</span>
+  <span class="nt">&lt;/tab:group&gt;</span>
+
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">行を配置する</span><span class="o">(</span><span class="mi">3</span><span class="n">行目</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+  <span class="nt">&lt;layout:row&gt;</span>
+    <span class="nt">&lt;n:forInputPage&gt;</span>
+
+      <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ボタンの表示位置調整のためのマージン</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;layout:cell</span> <span class="na">gridSize=</span><span class="s">&quot;17&quot;</span><span class="nt">&gt;&lt;/layout:cell&gt;</span>
+      <span class="nt">&lt;button:check</span>
+          <span class="na">size=</span><span class="s">&quot;10&quot;</span>
+          <span class="na">uri=</span><span class="s">&quot;./確認画面_ページ.jsp&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/button:check&gt;</span>
+    <span class="nt">&lt;/n:forInputPage&gt;</span>
+    <span class="nt">&lt;n:forConfirmationPage&gt;</span>
+
+      <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ボタンの表示位置調整のためのマージン</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;layout:cell</span> <span class="na">gridSize=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;&lt;/layout:cell&gt;</span>
+      <span class="nt">&lt;button:back</span> <span class="na">uri=</span><span class="s">&quot;./登録画面.jsp&quot;</span> <span class="na">size=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;&lt;/button:back&gt;</span>
+
+      <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ボタンの表示位置調整のためのマージン</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;layout:cell</span> <span class="na">gridSize=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;&lt;/layout:cell&gt;</span>
+      <span class="nt">&lt;button:confirm</span> <span class="na">uri=</span><span class="s">&quot;dummy&quot;</span> <span class="na">size=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;&lt;/button:confirm&gt;</span>
+    <span class="nt">&lt;/n:forConfirmationPage&gt;</span>
+  <span class="nt">&lt;/layout:row&gt;</span>
+
+<span class="nt">&lt;/n:form&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -711,64 +727,74 @@
 <p><strong>画面表示例</strong></p>
 <a class="reference internal image-reference" href="../../../../_images/multicol_sample_2.png"><img alt="../../../../_images/multicol_sample_2.png" src="../../../../_images/multicol_sample_2.png" /></a>
 <p><strong>JSP実装例</strong></p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;%-- 行定義 --%&gt;
-&lt;layout:row&gt;
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">行定義</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-  &lt;%--
-  ネストした行を配置するための列を定義する
-  列には明示的に幅(gridSize)を指定する。
-  --%&gt;
-  &lt;layout:cell gridSize=&quot;20&quot;&gt;
+<span class="nt">&lt;layout:row&gt;</span>
 
-    &lt;%-- ネストした行の定義(1行目) --%&gt;
-    &lt;layout:row&gt;
-      &lt;%--
-      入力欄の配置
+  <span class="k">&lt;%-</span><span class="o">-</span>
+    <span class="n">ネストした行を配置するための列を定義する</span>
+    <span class="nf">列には明示的に幅</span><span class="o">(</span><span class="n">gridSize</span><span class="o">)</span><span class="n">を指定する</span>
+  <span class="o">--</span><span class="k">%&gt;</span>
 
-      入力欄の幅の合計は、列(layout:cell)に定義した幅(gridSize)を超えてはならない
-      --%&gt;
-      &lt;field:text
-          title=&quot;漢字氏名&quot;
-          name=&quot;user.kanjiName&quot;
-          required=&quot;true&quot;
-          titleSize=&quot;10&quot;
-          inputSize=&quot;10&quot;&gt;
-      &lt;/field:text&gt;
-    &lt;/layout:row&gt;
+  <span class="nt">&lt;layout:cell</span> <span class="na">gridSize=</span><span class="s">&quot;20&quot;</span><span class="nt">&gt;</span>
 
-    &lt;%-- ネストした行の定義(2行目) --%&gt;
-    &lt;layout:row&gt;
-      &lt;%--
-      入力欄の配置
+    <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ネストした行の定義</span><span class="o">(</span><span class="mi">1</span><span class="n">行目</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
 
-      入力欄の幅の合計は、列(layout:cell)に定義した幅(gridSize)を超えてはならない
-      --%&gt;
-      &lt;field:text
-          title=&quot;カナ氏名&quot;
-          name=&quot;user.kanaName&quot;
-          required=&quot;true&quot;
-          titleSize=&quot;10&quot;
-          inputSize=&quot;10&quot;&gt;
-      &lt;/field:text&gt;
-    &lt;/layout:row&gt;
+    <span class="nt">&lt;layout:row&gt;</span>
 
-  &lt;/layout:cell&gt;
+      <span class="k">&lt;%-</span><span class="o">-</span>
+        <span class="n">入力欄の配置</span>
 
-  &lt;%--
-  2列目の性別選択欄は、外側の列内に配置することで、1列目(layout:cell)の隣に表示される
-  --%&gt;
-  &lt;field:radio
-      title=&quot;性別&quot;
-      name=&quot;user.sex&quot;
-      required=&quot;true&quot;
-      listName=&quot;sexList&quot;
-      listFormat=&quot;br&quot;
-      elementLabelProperty=&quot;name&quot;
-      elementValueProperty=&quot;cd&quot;
-      titleSize=&quot;${titleSize}&quot;
-      inputSize=&quot;${inputSize}&quot;&gt;
-  &lt;/field:radio&gt;
-&lt;/layout:row&gt;
+        <span class="nf">入力欄の幅の合計は列</span><span class="o">(</span><span class="n">layout</span><span class="o">:</span><span class="n">cell</span><span class="o">)</span><span class="n">に定義した幅</span><span class="o">(</span><span class="n">gridSize</span><span class="o">)</span><span class="n">を超えてはならない</span>
+      <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;field:text</span>
+          <span class="na">title=</span><span class="s">&quot;漢字氏名&quot;</span>
+          <span class="na">name=</span><span class="s">&quot;user.kanjiName&quot;</span>
+          <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+          <span class="na">titleSize=</span><span class="s">&quot;10&quot;</span>
+          <span class="na">inputSize=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/field:text&gt;</span>
+    <span class="nt">&lt;/layout:row&gt;</span>
+
+    <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ネストした行の定義</span><span class="o">(</span><span class="mi">2</span><span class="n">行目</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+    <span class="nt">&lt;layout:row&gt;</span>
+
+      <span class="k">&lt;%-</span><span class="o">-</span>
+        <span class="n">入力欄の配置</span>
+
+        <span class="nf">入力欄の幅の合計は列</span><span class="o">(</span><span class="n">layout</span><span class="o">:</span><span class="n">cell</span><span class="o">)</span><span class="n">に定義した幅</span><span class="o">(</span><span class="n">gridSize</span><span class="o">)</span><span class="n">を超えてはならない</span>
+      <span class="o">--</span><span class="k">%&gt;</span>
+
+      <span class="nt">&lt;field:text</span>
+          <span class="na">title=</span><span class="s">&quot;カナ氏名&quot;</span>
+          <span class="na">name=</span><span class="s">&quot;user.kanaName&quot;</span>
+          <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+          <span class="na">titleSize=</span><span class="s">&quot;10&quot;</span>
+          <span class="na">inputSize=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/field:text&gt;</span>
+    <span class="nt">&lt;/layout:row&gt;</span>
+
+  <span class="nt">&lt;/layout:cell&gt;</span>
+
+  <span class="k">&lt;%-</span><span class="o">-</span>
+    <span class="mi">2</span><span class="n">列目の性別選択欄は外側の列内に配置することで1列目</span><span class="o">(</span><span class="n">layout</span><span class="o">:</span><span class="n">cell</span><span class="o">)</span><span class="n">の隣に表示される</span>
+  <span class="o">--</span><span class="k">%&gt;</span>
+
+  <span class="nt">&lt;field:radio</span>
+      <span class="na">title=</span><span class="s">&quot;性別&quot;</span>
+      <span class="na">name=</span><span class="s">&quot;user.sex&quot;</span>
+      <span class="na">required=</span><span class="s">&quot;true&quot;</span>
+      <span class="na">listName=</span><span class="s">&quot;sexList&quot;</span>
+      <span class="na">listFormat=</span><span class="s">&quot;br&quot;</span>
+      <span class="na">elementLabelProperty=</span><span class="s">&quot;name&quot;</span>
+      <span class="na">elementValueProperty=</span><span class="s">&quot;cd&quot;</span>
+      <span class="na">titleSize=</span><span class="s">&quot;${titleSize}&quot;</span>
+      <span class="na">inputSize=</span><span class="s">&quot;${inputSize}&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/field:radio&gt;</span>
+
+<span class="nt">&lt;/layout:row&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -787,7 +813,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -808,7 +834,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>3.1.5. 同期応答メッセージ送信処理を伴う取引単体テストの実施方法 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/send_sync.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.6. HTTP同期応答メッセージ送信処理を伴う取引単体テストの実施方法" href="http_send_sync.html"/>
         <link rel="prev" title="3.1.4. 取引単体テストの実施方法" href="index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -691,13 +691,62 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
        <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;format&quot;</span> <span class="na">value=</span><span class="s">&quot;fmt&quot;</span> <span class="nt">/&gt;</span>
      <span class="nt">&lt;/map&gt;</span>
    <span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </div>
 <div class="section" id="id24">
-<h4>3.1.5.1.4.3. 取引単体テストで使用するライブラリの設定<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.5.1.4.3. テストデータ解析クラスの設定<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>コンポーネント設定ファイルに、取引単体テストで使用するテストデータ解析クラスを設定する。</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="c">&lt;!-- TestDataParser --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;messagingTestDataParser&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.reader.BasicTestDataParser&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;testDataReader&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;xlsReaderForPoi&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.reader.PoiXlsReader&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interpreters&quot;</span> <span class="na">ref=</span><span class="s">&quot;messagingTestInterpreters&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+ <span class="c">&lt;!-- テストデータ記法の解釈を行うクラス群  --&gt;</span>
+<span class="nt">&lt;list</span> <span class="na">name=</span><span class="s">&quot;messagingTestInterpreters&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.util.interpreter.NullInterpreter&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.util.interpreter.QuotationTrimmer&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.util.interpreter.CompositeInterpreter&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;interpreters&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;list&gt;</span>
+        <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.util.interpreter.BasicJapaneseCharacterInterpreter&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;/list&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="pom-xml">
+<h4>3.1.5.1.4.4. 必要な単体テストライブラリをpom.xmlへの追加<a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>以下のdependencyをpom.xmlへ追加する</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;exclusions&gt;</span>
+    <span class="nt">&lt;exclusion&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.mortbay.jetty<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>*<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/exclusion&gt;</span>
+    <span class="nt">&lt;exclusion&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.google.code.findbugs<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>*<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/exclusion&gt;</span>
+  <span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id25">
+<h4>3.1.5.1.4.5. 取引単体テストで使用するライブラリの設定<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>取引単体テストでは、以下のjarファイルをアプリケーションサーバのクラスパスに通す必要がある。</p>
 <blockquote>
 <div><ul class="simple">
@@ -733,7 +782,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -754,7 +803,7 @@ loggers.MESSAGING_MAP.writerNames<span class="o">=</span>stdout,appFile
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

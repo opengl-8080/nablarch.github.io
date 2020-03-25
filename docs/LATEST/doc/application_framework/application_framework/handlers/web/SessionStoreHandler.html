@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.2.10. セッション変数保存ハンドラ &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>6.2.10. セッション変数保存ハンドラ &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/SessionStoreHandler.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
         <link rel="next" title="6.2.11. HTTPリクエストディスパッチハンドラ" href="http_request_java_package_mapping.html"/>
         <link rel="prev" title="6.2.9. マルチパートリクエストハンドラ" href="multipart_handler.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -331,14 +331,18 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id10">ハンドラクラス名</a></li>
-<li><a class="reference internal" href="#id4" id="id11">モジュール一覧</a></li>
-<li><a class="reference internal" href="#session-store-handler-constraint" id="id12">制約</a></li>
-<li><a class="reference internal" href="#id6" id="id13">セッションストアを使用するための設定を行う</a></li>
-<li><a class="reference internal" href="#id7" id="id14">セッション変数を直列化してセッションストアに保存する</a></li>
-<li><a class="reference internal" href="#id8" id="id15">セッションストアの改竄をチェックする</a></li>
-<li><a class="reference internal" href="#session-store-handler-error-forward-path" id="id16">改竄エラー時の遷移先を設定する</a></li>
-<li><a class="reference internal" href="#id" id="id17">セッションIDを保持するクッキーの名前や属性を変更する</a></li>
+<li><a class="reference internal" href="#id3" id="id12">ハンドラクラス名</a></li>
+<li><a class="reference internal" href="#id4" id="id13">モジュール一覧</a></li>
+<li><a class="reference internal" href="#session-store-handler-constraint" id="id14">制約</a></li>
+<li><a class="reference internal" href="#id6" id="id15">セッションストアを使用するための設定を行う</a></li>
+<li><a class="reference internal" href="#id7" id="id16">セッション変数を直列化してセッションストアに保存する</a></li>
+<li><a class="reference internal" href="#id8" id="id17">セッションストアの改竄をチェックする</a></li>
+<li><a class="reference internal" href="#session-store-handler-error-forward-path" id="id18">改竄エラー時の遷移先を設定する</a></li>
+<li><a class="reference internal" href="#id" id="id19">セッションIDを保持するクッキーの名前や属性を変更する</a></li>
+<li><a class="reference internal" href="#db-managed-expiration" id="id20">有効期間をデータベースに保存する</a><ul>
+<li><a class="reference internal" href="#id11" id="id21">使用方法</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>後続のハンドラやライブラリで追加・更新・削除されたセッション変数を、セッションストアに保存するハンドラ。</p>
@@ -355,19 +359,19 @@
 ストアの詳細は、 <a class="reference internal" href="../../libraries/session_store.html#session-store-future-of-store"><span>セッションストアの特長と選択基準</span></a> を参照。</p>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id10">6.2.10.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">6.2.10.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionStoreHandler.html" title="nablarch.common.web.session.SessionStoreHandler">nablarch.common.web.session.SessionStoreHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id11">6.2.10.2. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">6.2.10.2. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
-<span class="c">&lt;!-- DBストアを使用する場合のみ --&gt;</span>
+<span class="c">&lt;!-- DBストア・有効期間のDB保存を使用する場合のみ --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web-dbstore<span class="nt">&lt;/artifactId&gt;</span>
@@ -376,7 +380,7 @@
 </div>
 </div>
 <div class="section" id="session-store-handler-constraint">
-<span id="id5"></span><h2><a class="toc-backref" href="#id12">6.2.10.3. 制約</a><a class="headerlink" href="#session-store-handler-constraint" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id14">6.2.10.3. 制約</a><a class="headerlink" href="#session-store-handler-constraint" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
 <dt><a class="reference internal" href="http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> より後ろに配置すること</dt>
 <dd>サーブレットフォワード時、フォワード先でセッションストアの値にアクセスできるようにするため、
@@ -392,7 +396,7 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 </dl>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id13">6.2.10.4. セッションストアを使用するための設定を行う</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">6.2.10.4. セッションストアを使用するための設定を行う</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>セッションストアを使用するには、以下の設定を行った <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionManager.html" title="nablarch.common.web.session.SessionManager">SessionManager</a>
 を本ハンドラの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionStoreHandler.html#setSessionManager-nablarch.common.web.session.SessionManager-" title="nablarch.common.web.session.SessionStoreHandler.setSessionManager(nablarch.common.web.session.SessionManager)">sessionManager</a> プロパティに設定する必要がある。</p>
 <ul class="simple">
@@ -413,12 +417,12 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionManager.html" title="nablarch.common.web.session.SessionManager">SessionManager</a> に設定するプロパティの詳細は <a class="reference internal" href="../../libraries/session_store.html#session-store-use-config"><span>セッションストアを使用するための設定を行う</span></a> を参照。</p>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id14">6.2.10.5. セッション変数を直列化してセッションストアに保存する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">6.2.10.5. セッション変数を直列化してセッションストアに保存する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ハンドラでセッション変数をセッションストアに保存する際、直列化の仕組みを選択することができる。</p>
 <p>選択可能な直列化の仕組みの詳細は <a class="reference internal" href="../../libraries/session_store.html#session-store-serialize"><span>セッション変数の直列化の仕組みを選択できる</span></a> を参照。</p>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id15">6.2.10.6. セッションストアの改竄をチェックする</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">6.2.10.6. セッションストアの改竄をチェックする</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>セッションストアからセッション変数を読み込む際、セッションストアが改竄されていないかをチェックする。</p>
 <dl class="docutils">
 <dt>HIDDENストアの改竄を検知した場合</dt>
@@ -428,7 +432,7 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 </dl>
 </div>
 <div class="section" id="session-store-handler-error-forward-path">
-<span id="id9"></span><h2><a class="toc-backref" href="#id16">6.2.10.7. 改竄エラー時の遷移先を設定する</a><a class="headerlink" href="#session-store-handler-error-forward-path" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id18">6.2.10.7. 改竄エラー時の遷移先を設定する</a><a class="headerlink" href="#session-store-handler-error-forward-path" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>セッションストアの改竄を検知した場合に表示するエラーページは <cite>web.xml</cite> に記載する必要がある。
 なぜなら、本ハンドラは <a class="reference internal" href="#session-store-handler-constraint"><span>制約</span></a> に記載の通り、 <a class="reference internal" href="forwarding_handler.html#forwarding-handler"><span>内部フォーワードハンドラ</span></a> よりも前に設定する必要がある。
 この場合、以下の理由により本ハンドラで発生した例外に対して、 <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span>デフォルトページの設定</span></a> を適用することができないため、
@@ -444,7 +448,7 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 </dl>
 </div>
 <div class="section" id="id">
-<h2><a class="toc-backref" href="#id17">6.2.10.8. セッションIDを保持するクッキーの名前や属性を変更する</a><a class="headerlink" href="#id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">6.2.10.8. セッションIDを保持するクッキーの名前や属性を変更する</a><a class="headerlink" href="#id" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>セッションIDを保持するクッキーの名前や属性を任意の値に変更することができる。</p>
 <p>デフォルトの設定は以下のとおり。</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -526,6 +530,70 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 設定ファイル等から任意の値を指定することはできない。</p>
 </div>
 </div>
+<div class="section" id="db-managed-expiration">
+<span id="id10"></span><h2><a class="toc-backref" href="#id20">6.2.10.9. 有効期間をデータベースに保存する</a><a class="headerlink" href="#db-managed-expiration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>セッションの有効期間保存先を変更することができる。</p>
+<p>デフォルトでは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/HttpSessionManagedExpiration.html" title="nablarch.common.web.session.HttpSessionManagedExpiration">HttpSessionManagedExpiration</a>
+が使用されるためセッションの有効期間はHTTPセッションに保存される。</p>
+<p>本ハンドラの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionStoreHandler.html#setExpiration-nablarch.common.web.session.Expiration-" title="nablarch.common.web.session.SessionStoreHandler.setExpiration(nablarch.common.web.session.Expiration)">expiration</a>
+プロパティを <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/DbManagedExpiration.html" title="nablarch.common.web.session.DbManagedExpiration">DbManagedExpiration</a> に差し替えることでデータベースに保存することができる。</p>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id21">6.2.10.9.1. 使用方法</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データベース上に有効期間を保存するためのテーブルは、<a class="reference internal" href="../../libraries/session_store.html#session-store-use-config"><span>DBストア</span></a> に記載のDBストア使用時のテーブルを使用するものとする。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">有効期間をデータベースに保存する場合は、SESSION_OBJECT カラムを必須属性にしてはならない。
+ログアウト時などに、セッションオブジェクトがNullのレコードが登録され得るため、必ずNull許容で定義すること。
+5u15以前のアーキタイプから作成したプロジェクトでは、デフォルトで必須属性として定義されている。
+必要に応じてALTER文の発行または、テーブルの再作成を実施する必要がある。</p>
+</div>
+<p>テーブル名およびカラム名を変更する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/DbManagedExpiration.html#setUserSessionSchema-nablarch.common.web.session.store.UserSessionSchema-" title="nablarch.common.web.session.DbManagedExpiration.setUserSessionSchema(nablarch.common.web.session.store.UserSessionSchema)">DbManagedExpiration.userSessionSchema</a> に
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/store/UserSessionSchema.html" title="nablarch.common.web.session.store.UserSessionSchema">UserSessionSchema</a> のコンポーネントを定義する。
+DBストアのテーブル・カラムも同じものに変更すること。</p>
+<p>また有効期間は <a class="reference internal" href="../../libraries/repository.html#repository-initialize-object"><span>初期化</span></a> が必要になる。</p>
+<p>設定例を以下に示す。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sessionStoreHandler&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.SessionStoreHandler&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- その他のプロパティは省略 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;expiration&quot;</span> <span class="na">ref=</span><span class="s">&quot;expiration&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;expiration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.DbManagedExpiration&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- データベースへのトランザクション制御を行うクラス --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbManager&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.transaction.SimpleDbTransactionManager&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;expirationTransaction&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="c">&lt;!-- 上記のテーブル定義からテーブル名、カラム名を変更する場合のみ以下設定が必要 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userSessionSchema&quot;</span> <span class="na">ref=</span><span class="s">&quot;userSessionSchema&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- テーブル定義を変更する場合はあわせてDBストアの定義も変更する --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;dbStore&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.store.DbStore&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- その他のプロパティは省略 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userSessionSchema&quot;</span> <span class="na">ref=</span><span class="s">&quot;userSessionSchema&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- 上記のテーブル定義からテーブル名、カラム名を変更する場合のみ以下設定が必要 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;userSessionSchema&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.session.store.UserSessionSchema&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;tableName&quot;</span> <span class="na">value=</span><span class="s">&quot;USER_SESSION_DB&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sessionIdName&quot;</span> <span class="na">value=</span><span class="s">&quot;SESSION_ID_COL&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sessionObjectName&quot;</span> <span class="na">value=</span><span class="s">&quot;SESSION_OBJECT_COL&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;expirationDatetimeName&quot;</span> <span class="na">value=</span><span class="s">&quot;EXPIRATION_DATETIME_COL&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- 有効期間はinitializeが必要。 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;expiration&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -540,7 +608,7 @@ HIDDENストアはリクエストパラメータからセッション変数を�
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -561,7 +629,7 @@ HIDDENストアはリクエストパラメータからセッション変数を�
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

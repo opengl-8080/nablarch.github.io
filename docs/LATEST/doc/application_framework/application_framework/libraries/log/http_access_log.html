@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.1.2.4. HTTPアクセスログの出力 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.1.1.2.4. HTTPアクセスログの出力 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/http_access_log.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.1.1.2.5. メッセージングログの出力" href="messaging_log.html"/>
         <link rel="prev" title="7.1.1.2.3. パフォーマンスログの出力" href="performance_log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -385,7 +385,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <span class="na">writer.appLog.encoding</span><span class="o">=</span><span class="s">UTF-8</span>
 <span class="na">writer.appLog.maxFileSize</span><span class="o">=</span><span class="s">10000</span>
 <span class="na">writer.appLog.formatter.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.BasicLogFormatter</span>
-<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">&lt;アプリケーションログ用のフォーマット&gt;</span>
+<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">$date$ -$logLevel$- $runtimeLoggerName$ [$executionId$] boot_proc = [$bootProcess$] proc_sys = [$processingSystem$] req_id = [$requestId$] usr_id = [$userId$] $message$$information$$stackTrace$</span>
 
 <span class="na">availableLoggersNamesOrder</span><span class="o">=</span><span class="s">ACC,ROO</span>
 
@@ -398,6 +398,35 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <span class="na">loggers.ACC.nameRegex</span><span class="o">=</span><span class="s">HTTP_ACCESS</span>
 <span class="na">loggers.ACC.level</span><span class="o">=</span><span class="s">INFO</span>
 <span class="na">loggers.ACC.writerNames</span><span class="o">=</span><span class="s">appLog</span>
+</pre></div>
+</div>
+</dd>
+<dt>app-log.propertiesの設定例</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># HttpAccessLogFormatter</span>
+<span class="c">#httpAccessLogFormatter.className=</span>
+<span class="c">#httpAccessLogFormatter.datePattern=</span>
+<span class="c">#httpAccessLogFormatter.maskingChar=</span>
+<span class="c">#httpAccessLogFormatter.maskingPatterns=</span>
+<span class="c">#httpAccessLogFormatter.parametersSeparator=</span>
+<span class="c">#httpAccessLogFormatter.sessionScopeSeparator=</span>
+<span class="c">#httpAccessLogFormatter.beginOutputEnabled=</span>
+<span class="c">#httpAccessLogFormatter.parametersOutputEnabled=</span>
+<span class="c">#httpAccessLogFormatter.dispatchingClassOutputEnabled=</span>
+<span class="c">#httpAccessLogFormatter.endOutputEnabled=</span>
+<span class="na">httpAccessLogFormatter.beginFormat</span><span class="o">=</span><span class="s">@@@@ BEGIN @@@@ rid = [$requestId$] uid = [$userId$] sid = [$sessionId$]\</span>
+<span class="s">                                      \n\turl          = [$url$$query$]\</span>
+<span class="s">                                      \n\tmethod      = [$method$]\</span>
+<span class="s">                                      \n\tport        = [$port$]\</span>
+<span class="s">                                      \n\tclient_ip   = [$clientIpAddress$]\</span>
+<span class="s">                                      \n\tclient_host = [$clientHost$]</span>
+<span class="na">httpAccessLogFormatter.parametersFormat</span><span class="o">=</span><span class="s">@@@@ PARAMETERS @@@@\n\tparameters  = [$parameters$]</span>
+<span class="na">httpAccessLogFormatter.dispatchingClassFormat</span><span class="o">=</span><span class="s">@@@@ DISPATCHING CLASS @@@@ class = [$dispatchingClass$]</span>
+<span class="na">httpAccessLogFormatter.endFormat</span><span class="o">=</span><span class="s">@@@@ END @@@@ rid = [$requestId$] uid = [$userId$] sid = [$sessionId$] url = [$url$$query$] method = [$method$] status_code = [$statusCode$] content_path = [$contentPath$]\</span>
+<span class="s">                                    \n\tstart_time     = [$startTime$]\</span>
+<span class="s">                                    \n\tend_time       = [$endTime$]\</span>
+<span class="s">                                    \n\texecution_time = [$executionTime$]\</span>
+<span class="s">                                    \n\tmax_memory     = [$maxMemory$]\</span>
+<span class="s">                                    \n\tfree_memory    = [$freeMemory$]</span>
 </pre></div>
 </div>
 </dd>
@@ -429,24 +458,26 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 </tr>
 <tr class="field-odd field"><th class="field-name">URL:</th><td class="field-body">$url$</td>
 </tr>
-<tr class="field-even field"><th class="field-name">ポート番号:</th><td class="field-body">$port$</td>
+<tr class="field-even field"><th class="field-name">クエリ文字列:</th><td class="field-body">$query$</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">HTTPメソッド:</th><td class="field-body">$method$</td>
+<tr class="field-odd field"><th class="field-name">ポート番号:</th><td class="field-body">$port$</td>
 </tr>
-<tr class="field-even field"><th class="field-name">セッションID:</th><td class="field-body">$sessionId$</td>
+<tr class="field-even field"><th class="field-name">HTTPメソッド:</th><td class="field-body">$method$</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">リクエストパラメータ:</th><td class="field-body">$parameters$</td>
-</tr>
-<tr class="field-even field"><th class="field-name">セッションスコープ情報:</th><td class="field-body">$sessionScope$</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">クライアント端末IPアドレス:</th><td class="field-body">$clientIpAddress$</td>
-</tr>
-<tr class="field-even field"><th class="field-name">クライアント端末ホスト:</th><td class="field-body">$clientHost$</td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">HTTPヘッダのUser-Agent:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">$clientUserAgent$</td>
+<tr class="field-odd field"><th class="field-name">セッションID:</th><td class="field-body">$sessionId$</td>
 </tr>
 <tr class="field-even field"><th class="field-name">リクエストパラメータ:</th><td class="field-body">$parameters$</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">セッションスコープ情報:</th><td class="field-body">$sessionScope$</td>
+</tr>
+<tr class="field-even field"><th class="field-name">クライアント端末IPアドレス:</th><td class="field-body">$clientIpAddress$</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">クライアント端末ホスト:</th><td class="field-body">$clientHost$</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">HTTPヘッダのUser-Agent:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">$clientUserAgent$</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">リクエストパラメータ:</th><td class="field-body">$parameters$</td>
 </tr>
 </tbody>
 </table>
@@ -458,7 +489,6 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
     <span class="se">\n\t</span>port        <span class="o">=</span> <span class="o">[</span><span class="nv">$port</span>$<span class="o">]</span>
     <span class="se">\n\t</span>client_ip   <span class="o">=</span> <span class="o">[</span><span class="nv">$clientIpAddress</span>$<span class="o">]</span>
     <span class="se">\n\t</span>client_host <span class="o">=</span> <span class="o">[</span><span class="nv">$clientHost</span>$<span class="o">]</span>
-    <span class="se">\n\t</span>parameters  <span class="o">=</span> <span class="o">[</span><span class="nv">$parameters</span>$<span class="o">]</span>
 </pre></div>
 </div>
 </dd>
@@ -473,7 +503,9 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 が出力する項目と重複するが、HTTPアクセスログのフォーマットの自由度を高めるために設けている。</p>
 <p class="last">リクエストID、ユーザIDを出力する場合は、
 これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
-ハンドラ構成に <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
+ハンドラ構成に <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。
+特にユーザIDについては、 <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler-user-id-attribute-setting"><span>ユーザIDを設定する</span></a> を参照して
+アプリケーションでセッションに値を設定する必要がある。</p>
 </div>
 </dd>
 <dt>httpAccessLogFormatter.parametersFormat</dt>
@@ -636,7 +668,7 @@ falseを指定するとリクエスト処理終了時の出力を行わない。
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -657,7 +689,7 @@ falseを指定するとリクエスト処理終了時の出力を行わない。
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

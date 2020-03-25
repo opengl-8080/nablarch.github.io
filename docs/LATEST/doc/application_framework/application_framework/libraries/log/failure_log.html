@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1.1.2.1. 障害ログの出力 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.1.1.2.1. 障害ログの出力 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/failure_log.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
         <link rel="next" title="7.1.1.2.2. SQLログの出力" href="sql_log.html"/>
         <link rel="prev" title="7.1. ログ出力" href="../log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -383,14 +383,14 @@
 <span class="na">writer.monitorLog.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.FileLogWriter</span>
 <span class="na">writer.monitorLog.filePath</span><span class="o">=</span><span class="s">/var/log/app/monitor.log</span>
 <span class="na">writer.monitorLog.formatter.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.BasicLogFormatter</span>
-<span class="na">writer.monitorLog.formatter.format</span><span class="o">=</span><span class="s">&lt;障害通知ログ用のフォーマット&gt;</span>
+<span class="na">writer.monitorLog.formatter.format</span><span class="o">=</span><span class="s">$date$ -$logLevel$- $runtimeLoggerName$ [$executionId$] boot_proc = [$bootProcess$] proc_sys = [$processingSystem$] req_id = [$requestId$] usr_id = [$userId$] $message$</span>
 
 <span class="c"># アプリケーションログの出力先</span>
 <span class="na">writer.appLog.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.FileLogWriter</span>
 <span class="na">writer.appLog.filePath</span><span class="o">=</span><span class="s">/var/log/app/app.log</span>
 <span class="na">writer.appLog.maxFileSize</span><span class="o">=</span><span class="s">10000</span>
 <span class="na">writer.appLog.formatter.className</span><span class="o">=</span><span class="s">nablarch.core.log.basic.BasicLogFormatter</span>
-<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">&lt;アプリケーションログ用のフォーマット&gt;</span>
+<span class="na">writer.appLog.formatter.format</span><span class="o">=</span><span class="s">$date$ -$logLevel$- $runtimeLoggerName$ [$executionId$] boot_proc = [$bootProcess$] proc_sys = [$processingSystem$] req_id = [$requestId$] usr_id = [$userId$] $message$$information$$stackTrace$</span>
 
 <span class="na">availableLoggersNamesOrder</span><span class="o">=</span><span class="s">MON,ROO</span>
 
@@ -403,6 +403,19 @@
 <span class="na">loggers.MON.nameRegex</span><span class="o">=</span><span class="s">MONITOR</span>
 <span class="na">loggers.MON.level</span><span class="o">=</span><span class="s">ERROR</span>
 <span class="na">loggers.MON.writerNames</span><span class="o">=</span><span class="s">monitorLog</span>
+</pre></div>
+</div>
+</dd>
+<dt>app-log.propertiesの設定例</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># FailureLogFormatter</span>
+<span class="c">#failureLogFormatter.className=</span>
+<span class="na">failureLogFormatter.defaultFailureCode</span><span class="o">=</span><span class="s">MSG99999</span>
+<span class="na">failureLogFormatter.defaultMessage</span><span class="o">=</span><span class="s">an unexpected exception occurred.</span>
+<span class="na">failureLogFormatter.language</span><span class="o">=</span><span class="s">ja</span>
+<span class="na">failureLogFormatter.notificationFormat</span><span class="o">=</span><span class="s">fail_code = [$failureCode$] $message$</span>
+<span class="na">failureLogFormatter.analysisFormat</span><span class="o">=</span><span class="s">fail_code = [$failureCode$] $message$\nInput Data :\n$data$</span>
+<span class="c">#failureLogFormatter.contactFilePath=</span>
+<span class="c">#failureLogFormatter.fwFailureCodeFilePath=</span>
 </pre></div>
 </div>
 </dd>
@@ -915,7 +928,7 @@ Stack Trace Information :
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -936,7 +949,7 @@ Stack Trace Information :
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

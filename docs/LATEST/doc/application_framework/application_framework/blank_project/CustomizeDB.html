@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>8.5.1. 使用するRDBMSの変更手順 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
         <link rel="next" title="8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法" href="addin_gsp.html"/>
         <link rel="prev" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -405,7 +405,7 @@
 </tbody>
 </table>
 <p>以下に、入手したJDBCドライバをローカルのMavenリポジトリに登録するコマンドの例を示す。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.oracle -DartifactId<span class="o">=</span>ojdbc6 -Dversion<span class="o">=</span><span class="m">11</span>.2.0.2.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>ojdbc6.jar
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.oracle -DartifactId<span class="o">=</span>ojdbc6 -Dversion<span class="o">=</span><span class="m">11</span>.2.0.4.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>ojdbc6.jar
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -445,28 +445,7 @@ and Downloads - Japan</td>
 </div>
 <div class="section" id="sqlserver">
 <h4>8.5.1.2.1.5. SQLServer<a class="headerlink" href="#sqlserver" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>SQLServerのJDBCドライバはMavenのセントラルリポジトリに公開されていないため、ローカルのMavenリポジトリに登録する必要がある。</p>
-<p>JDBCドライバをWebから取得する場合は、以下のサイトから入手する。</p>
-<table border="1" class="colwidths-given white-space-normal docutils">
-<colgroup>
-<col width="67%" />
-<col width="33%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">配布サイトの名前</th>
-<th class="head">URL</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Download Microsoft JDBC Driver 4.2 for SQL Server、Microsoft JDBC Driver 4.1 for SQL Server、および Microsoft JDBC Driver 4.0 for SQL Server from Official Microsoft Download Center</td>
-<td><a class="reference external" href="https://www.microsoft.com/ja-JP/download/details.aspx?id=11774">https://www.microsoft.com/ja-JP/download/details.aspx?id=11774</a> (外部サイト)</td>
-</tr>
-</tbody>
-</table>
-<p>以下に、入手したJDBCドライバをローカルのMavenリポジトリに登録するコマンドの例を示す。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mvn install:install-file -DgroupId<span class="o">=</span>com.microsoft -DartifactId<span class="o">=</span>sqljdbc4 -Dversion<span class="o">=</span><span class="m">4</span>.0 -Dpackaging<span class="o">=</span>jar -Dfile<span class="o">=</span>sqljdbc4.jar
-</pre></div>
-</div>
+<p>SQLServerの場合、JDBCドライバはMavenのセントラルリポジトリに公開されているため登録は不要である。</p>
 </div>
 </div>
 </div>
@@ -691,7 +670,7 @@ nablarch.db.schema=SAMPLE
       <span class="nt">&lt;dependency&gt;</span>
         <span class="nt">&lt;groupId&gt;</span>com.oracle<span class="nt">&lt;/groupId&gt;</span>
         <span class="nt">&lt;artifactId&gt;</span>ojdbc6<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>11.2.0.2.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;version&gt;</span>11.2.0.4.0<span class="nt">&lt;/version&gt;</span>
         <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
       <span class="nt">&lt;/dependency&gt;</span>
       <span class="c">&lt;!-- 中略 --&gt;</span>
@@ -749,9 +728,9 @@ nablarch.db.schema=SAMPLE
     <span class="nt">&lt;dependencies&gt;</span>
       <span class="c">&lt;!-- 中略 --&gt;</span>
       <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>com.microsoft<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>sqljdbc4<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>4.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.microsoft.sqlserver<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>mssql-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>7.4.1.jre8<span class="nt">&lt;/version&gt;</span>
         <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
       <span class="nt">&lt;/dependency&gt;</span>
       <span class="c">&lt;!-- 中略 --&gt;</span>
@@ -941,7 +920,7 @@ SET SCHEMA sample;
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -962,7 +941,7 @@ SET SCHEMA sample;
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

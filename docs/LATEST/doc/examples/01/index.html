@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>データベースを用いたパスワード認証機能サンプル &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>データベースを用いたパスワード認証機能サンプル &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/01/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch実装例集" href="../index.html"/>
         <link rel="next" title="PBKDF2を用いたパスワード暗号化機能サンプル" href="0101_PBKDF2PasswordEncryptor.html"/>
         <link rel="prev" title="Nablarch実装例集" href="../index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -709,27 +709,27 @@ Authenticator#authenticate(String, String) を呼び出す。</td>
 <h4>AuthenticationUtilの使用例<a class="headerlink" href="#authenticationutil" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>本サンプルを使用した場合の認証処理の実装例を示す。</p>
 <p>導入プロジェクトでは、本実装例を参考にし要件を満たす認証処理を実装すること。</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span>// 事前に認証を行うためのユーザID及びパスワードを取得する。
-String userId = ・・・;
-Strign password = ・・・;
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// 事前に認証を行うためのユーザID及びパスワードを取得する。</span>
+<span class="c1">// String userId = ・・・;</span>
+<span class="c1">// Strign password = ・・・;</span>
 
-try {
+<span class="k">try</span> <span class="o">{</span>
 
-    AuthenticationUtil.authenticate(userId, password);
+    <span class="n">AuthenticationUtil</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
 
-} catch (AuthenticationFailedException e) {
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">AuthenticationFailedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 
-    // 認証に失敗した場合の処理
+    <span class="c1">// 認証に失敗した場合の処理</span>
 
-} catch (UserIdLockedException e) {
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UserIdLockedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 
-    // ユーザIDがロックされていた場合の処理
+    <span class="c1">// ユーザIDがロックされていた場合の処理</span>
 
-} catch (PasswordExpiredException e) {
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PasswordExpiredException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 
-    // パスワードの有効期限が切れていた場合の処理
+    <span class="c1">// パスワードの有効期限が切れていた場合の処理</span>
 
-}
+<span class="o">}</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -764,7 +764,7 @@ try {
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -785,7 +785,7 @@ try {
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.1. ログ出力 &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.1. ログ出力 &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.1.1.2.1. 障害ログの出力" href="log/failure_log.html"/>
         <link rel="prev" title="7. Nablarchが提供するライブラリ" href="index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -417,7 +417,11 @@
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id33">7.1.1.2. 各種ログの出力機能を予め提供している</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本フレームワークでは、アプリケーションに共通で必要とされる各種ログの出力機能を予め提供している。
-アプリケーションの要件に応じて、ログのフォーマットを設定で変更して使用できる。</p>
+アプリケーションの要件に応じて、ログのフォーマットを設定で変更して使用できる。
+なお、<a class="reference internal" href="#log-app-log-setting"><span>各種ログの設定を行う</span></a> にも記載の通り、各種ログの出力機能はフォーマット処理のみを行っており、
+ログの出力処理自体は本機能を使用している。
+Nablarchの提供するアーキタイプから生成したブランクプロジェクトでは各種ログのフォーマットが設定してある。
+各設定値は <a class="reference download internal" href="../../../_downloads/デフォルト設定一覧.xlsx" download=""><code class="xref download docutils literal"><span class="pre">デフォルト設定一覧</span></code></a> を参照。</p>
 <div class="toctree-wrapper compound">
 </div>
 <table border="1" class="colwidths-given white-space-normal docutils" id="id27">
@@ -801,7 +805,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 を初期化するタイミングで発行し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> に設定される。</p>
 <dl class="last docutils">
 <dt>実行時IDのID体系</dt>
-<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span># 起動プロセスは指定された場合のみ付加する。
+<dd><div class="first last highlight-none"><div class="highlight"><pre><span></span># 起動プロセスは指定された場合のみ付加する。
 起動プロセス＋システム日時(yyyyMMddHHmmssSSS)＋連番(4桁)
 </pre></div>
 </div>
@@ -813,12 +817,14 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 <p class="first admonition-title">重要</p>
 <p class="last">リクエストID、実行時ID、ユーザIDを出力する場合は、
 これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
-ハンドラ構成に <a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。</p>
+ハンドラ構成に <a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。
+特にユーザIDについては、 <a class="reference internal" href="../handlers/common/thread_context_handler.html#thread-context-handler-user-id-attribute-setting"><span>ユーザIDを設定する</span></a> を参照して
+アプリケーションでセッションに値を設定する必要がある。</p>
 </div>
 <dl class="docutils">
 <dt>改行コードとタブ文字を含めたい場合</dt>
 <dd><p class="first">フォーマットに改行コードとタブ文字を含めたい場合は、以下に示すように、Javaと同様の記述を使用する。</p>
-<div class="highlight-properties"><div class="highlight"><pre><span></span>改行コード \n
+<div class="highlight-none"><div class="highlight"><pre><span></span>改行コード \n
 タブ文字   \t
 </pre></div>
 </div>
@@ -1409,7 +1415,7 @@ LogFormatterの設定は、下記を想定する。</p>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -1430,7 +1436,7 @@ LogFormatterの設定は、下記を想定する。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

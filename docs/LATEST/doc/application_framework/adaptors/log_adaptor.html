@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>logアダプタ &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>logアダプタ &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/log_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
         <link rel="next" title="ルーティングアダプタ" href="router_adaptor.html"/>
         <link rel="prev" title="アダプタ" href="index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -326,33 +326,23 @@
 <span id="log-adaptor"></span><h1>logアダプタ<a class="headerlink" href="#log" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Nablarchの提供する <a class="reference internal" href="../application_framework/libraries/log.html#log"><span>ログ出力機能</span></a> のログ出力処理を以下のログフレームワークに委譲するアダプタ。</p>
 <ul class="simple">
-<li><a class="reference external" href="http://logging.apache.org/log4j/1.2/">log4j(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://www.slf4j.org/">slf4j(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://github.com/jboss-logging">JBoss Logging(外部サイト、英語)</a></li>
 </ul>
 <p>顧客からの要求や使用する製品などにあわせてロガーを統一したい場合に、アダプタを使用する。
 アダプタを使用した場合、 Nablarchの <a class="reference internal" href="../application_framework/libraries/log.html#log"><span>ログ出力機能</span></a> を使用したログ出力処理は全て選択したロギングフレームワークに委譲される。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">Nablarch5u15まで提供されていたlog4jアダプタは、EOLを迎えた <a class="reference external" href="http://logging.apache.org/log4j/1.2/">log4j1.2(外部サイト、英語)</a> を使用しており
+<a class="reference external" href="https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-013606.html">脆弱性</a> への修正が公開されないため廃止します。
+slf4jまたはJBoss Loggingを使用してください。</p>
+</div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">ロギングフレームワークの設定方法などは、製品のマニュアルなどを参照すること。</p>
 </div>
-<div class="section" id="id1">
-<h2>モジュール一覧<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
-<h3>log4j<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- log4jアダプタ --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.nablarch.integration<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>nablarch-log4j-adaptor<span class="nt">&lt;/artifactId&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</pre></div>
-</div>
-<div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p class="last">log4jのバージョン1.2.16を使用してテストを行っている。
-バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
-</div>
-</div>
+<h2>モジュール一覧<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id3">
 <h3>slf4j<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- slf4jアダプタ --&gt;</span>
@@ -389,21 +379,14 @@
 <p><a class="reference internal" href="../application_framework/libraries/log.html#log"><span>ログ出力機能</span></a> の設定ファイル(<strong>log.properties</strong>)に以下の設定を行う。
 この設定によりログ出力処理が、ロギングフレームワークに委譲される。</p>
 <div class="section" id="id6">
-<h3>log4j<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># log4jを使用するためのファクトリの設定</span>
-<span class="na">loggerFactory.className</span><span class="o">=</span><span class="s">nablarch.integration.log.log4j.Log4JLoggerFactory</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id7">
-<h3>slf4j<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>slf4j<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># slf4jを使用するためのファクトリの設定</span>
 <span class="na">loggerFactory.className</span><span class="o">=</span><span class="s">nablarch.integration.log.slf4j.Slf4JLoggerFactory</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<h3>JBoss Logging<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3>JBoss Logging<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># JBoss Loggingを使用するためのファクトリの設定</span>
 <span class="na">loggerFactory.className</span><span class="o">=</span><span class="s">nablarch.integration.log.jbosslogging.JbossLoggingLoggerFactory</span>
 </pre></div>
@@ -424,7 +407,7 @@
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -445,7 +428,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

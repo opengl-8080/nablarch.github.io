@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.3. 業務画面JSP検証ツール &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>4.3. 業務画面JSP検証ツール &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/toolbox/JspVerifier/JspVerifier.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="4. アプリケーション開発時に使える便利なツール" href="../index.html"/>
         <link rel="next" title="Nablarch実装例集" href="../../../examples/index.html"/>
         <link rel="prev" title="4.2. Nablarch SQL Executor" href="../SqlExecutor/SqlExecutor.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -467,10 +467,12 @@
 <div class="section" id="id7">
 <h3>4.3.2.5. 環境依存設定値の修正<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>verification_config.json の下記の設定値を、実際にタグファイルが配置されているディレクトリに修正する。</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>&quot;TagAttributeVerifier&quot;: {
-  &quot;directory&quot;: &quot;C:\\nablarch\\workspace\\tutorial\\main\\web\\WEB-INF\\tags\\widget&quot;,
-  &quot;encoding&quot;: &quot;utf-8&quot;
-}
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;TagAttributeVerifier&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;directory&quot;</span> <span class="p">:</span> <span class="s2">&quot;C:\\nablarch\\workspace\\tutorial\\main\\web\\WEB-INF\\tags\\widget&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;encoding&quot;</span> <span class="p">:</span> <span class="s2">&quot;utf-8&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -505,27 +507,27 @@ Detected violations are dumped to violations-1390366626297.log.</p>
 <p class="first admonition-title">重要</p>
 <p class="last">下記の設定ファイル例では説明のために、JavaScript形式でコメントを記載しているが、実際のJSONファイルにはコメントを記載できない。</p>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>{
-  // verifiers内に、実施する検証内容を記載していく。
-  &quot;verifiers&quot;: {
-    // 使用可能タグ検証
-    &quot;TagUsageVerifier&quot;: {
-    }
-    // 正規表現検証
-    &quot;RegexpBasedVerifier&quot;: {
-    }
-    // DOMツリー検証
-    &quot;SelectorBasedVerifier&quot;: {
-    }
-    // 親タグ検証
-    &quot;WrappingTagVerifier&quot;: {
-    }
-    // タグ属性検証
-    &quot;TagAttributeVerifier&quot;: {
-    }
-    // ここに定義されていない検証は実施されない
-  }
-}
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="c1">// verifiers内に、実施する検証内容を記載していく。</span>
+  <span class="s2">&quot;verifiers&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// 使用可能タグ検証</span>
+    <span class="s2">&quot;TagUsageVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// 正規表現検証</span>
+    <span class="s2">&quot;RegexpBasedVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// DOMツリー検証</span>
+    <span class="s2">&quot;SelectorBasedVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// 親タグ検証</span>
+    <span class="s2">&quot;WrappingTagVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// タグ属性検証</span>
+    <span class="s2">&quot;TagAttributeVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// ここに定義されていない検証は実施されない</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="section" id="id11">
@@ -604,7 +606,7 @@ Detected violations are dumped to violations-1390366626297.log.</p>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -625,7 +627,7 @@ Detected violations are dumped to violations-1390366626297.log.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

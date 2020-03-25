@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.18. JSPカスタムタグ &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>7.19. JSPカスタムタグ &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/tag.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
-        <link rel="next" title="7.18.1. タグリファレンス" href="tag/tag_reference.html"/>
-        <link rel="prev" title="7.17.4.2.2. 更新機能での実装例" href="session_store/update_example.html"/>
+        <link rel="next" title="7.19.1. タグリファレンス" href="tag/tag_reference.html"/>
+        <link rel="prev" title="7.18. Webアプリケーションをステートレスにする" href="stateless_web_app.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -314,7 +314,7 @@
       
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
-    <li>7.18. JSPカスタムタグ</li>
+    <li>7.19. JSPカスタムタグ</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -325,62 +325,65 @@
            <div itemprop="articleBody">
             
   <div class="section" id="jsp">
-<span id="tag"></span><h1>7.18. JSPカスタムタグ<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="tag"></span><h1>7.19. JSPカスタムタグ<a class="headerlink" href="#jsp" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id40">機能概要</a><ul>
-<li><a class="reference internal" href="#html" id="id41">HTMLエスケープ漏れを防げる</a></li>
-<li><a class="reference internal" href="#id3" id="id42">入力画面と確認画面のJSPを共通化して実装を減らす</a></li>
+<li><a class="reference internal" href="#id2" id="id41">機能概要</a><ul>
+<li><a class="reference internal" href="#html" id="id42">HTMLエスケープ漏れを防げる</a></li>
+<li><a class="reference internal" href="#id3" id="id43">入力画面と確認画面のJSPを共通化して実装を減らす</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4" id="id43">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id5" id="id44">使用方法</a><ul>
-<li><a class="reference internal" href="#tag-setting" id="id45">カスタムタグの設定を行う</a></li>
-<li><a class="reference internal" href="#taglib" id="id46">カスタムタグを使用する(taglibディレクティブの指定方法)</a></li>
-<li><a class="reference internal" href="#tag-input-form" id="id47">入力フォームを作る</a></li>
-<li><a class="reference internal" href="#tag-selection" id="id48">選択項目(プルダウン/ラジオボタン/チェックボックス)を表示する</a></li>
-<li><a class="reference internal" href="#tag-checkbox-off-value" id="id49">チェックボックスでチェックなしに対する値を指定する</a></li>
-<li><a class="reference internal" href="#tag-window-scope" id="id50">入力データを画面間で持ち回る(ウィンドウスコープ)</a></li>
-<li><a class="reference internal" href="#hidden" id="id51">クライアントに保持するデータを暗号化する(hidden暗号化)</a></li>
-<li><a class="reference internal" href="#tag-composite-key" id="id52">複合キーのラジオボタンやチェックボックスを作る</a></li>
-<li><a class="reference internal" href="#tag-submit" id="id53">複数のボタン/リンクからフォームをサブミットする</a></li>
-<li><a class="reference internal" href="#tag-onclick-override" id="id54">サブミット前に処理を追加する</a></li>
-<li><a class="reference internal" href="#tag-onchange-submit" id="id55">プルダウン変更などの画面操作でサブミットする</a></li>
-<li><a class="reference internal" href="#tag-submit-change-parameter" id="id56">ボタン/リンク毎にパラメータを追加する</a></li>
-<li><a class="reference internal" href="#tag-submit-display-control" id="id57">認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</a></li>
-<li><a class="reference internal" href="#tag-submit-popup" id="id58">別ウィンドウ/タブを開くボタン/リンクを作る(ポップアップ)</a></li>
-<li><a class="reference internal" href="#tag-submit-download" id="id59">ファイルダウンロードを行うボタン/リンクを作る</a></li>
-<li><a class="reference internal" href="#tag-double-submission" id="id60">二重サブミットを防ぐ</a></li>
-<li><a class="reference internal" href="#tag-make-common" id="id61">入力画面と確認画面を共通化する</a></li>
-<li><a class="reference internal" href="#tag-set-variable" id="id62">変数に値を設定する</a></li>
-<li><a class="reference internal" href="#get" id="id63">GETリクエストを使用する</a></li>
-<li><a class="reference internal" href="#tag-write-value" id="id64">値を出力する</a></li>
-<li><a class="reference internal" href="#tag-html-unescape" id="id65">HTMLエスケープせずに値を出力する</a></li>
-<li><a class="reference internal" href="#tag-format-value" id="id66">フォーマットして値を出力する</a></li>
-<li><a class="reference internal" href="#tag-write-error" id="id67">エラー表示を行う</a></li>
-<li><a class="reference internal" href="#tag-code-input-output" id="id68">コード値を表示する</a></li>
-<li><a class="reference internal" href="#tag-write-message" id="id69">メッセージを出力する</a></li>
-<li><a class="reference internal" href="#tag-change-resource-path-of-lang" id="id70">言語毎にリソースパスを切り替える</a></li>
-<li><a class="reference internal" href="#id29" id="id71">ブラウザのキャッシュを防止する</a></li>
-<li><a class="reference internal" href="#id30" id="id72">静的コンテンツの変更時にクライアント側のキャッシュを参照しないようにする</a></li>
+<li><a class="reference internal" href="#id4" id="id44">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id5" id="id45">使用方法</a><ul>
+<li><a class="reference internal" href="#tag-setting" id="id46">カスタムタグの設定を行う</a></li>
+<li><a class="reference internal" href="#taglib" id="id47">カスタムタグを使用する(taglibディレクティブの指定方法)</a></li>
+<li><a class="reference internal" href="#tag-input-form" id="id48">入力フォームを作る</a></li>
+<li><a class="reference internal" href="#tag-selection" id="id49">選択項目(プルダウン/ラジオボタン/チェックボックス)を表示する</a></li>
+<li><a class="reference internal" href="#tag-checkbox-off-value" id="id50">チェックボックスでチェックなしに対する値を指定する</a></li>
+<li><a class="reference internal" href="#tag-window-scope" id="id51">入力データを画面間で持ち回る(ウィンドウスコープ)</a></li>
+<li><a class="reference internal" href="#hidden" id="id52">クライアントに保持するデータを暗号化する(hidden暗号化)</a></li>
+<li><a class="reference internal" href="#tag-composite-key" id="id53">複合キーのラジオボタンやチェックボックスを作る</a></li>
+<li><a class="reference internal" href="#tag-submit" id="id54">複数のボタン/リンクからフォームをサブミットする</a></li>
+<li><a class="reference internal" href="#tag-onclick-override" id="id55">サブミット前に処理を追加する</a></li>
+<li><a class="reference internal" href="#tag-onchange-submit" id="id56">プルダウン変更などの画面操作でサブミットする</a></li>
+<li><a class="reference internal" href="#tag-submit-change-parameter" id="id57">ボタン/リンク毎にパラメータを追加する</a></li>
+<li><a class="reference internal" href="#tag-submit-display-control" id="id58">認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</a></li>
+<li><a class="reference internal" href="#tag-submit-popup" id="id59">別ウィンドウ/タブを開くボタン/リンクを作る(ポップアップ)</a></li>
+<li><a class="reference internal" href="#tag-submit-download" id="id60">ファイルダウンロードを行うボタン/リンクを作る</a></li>
+<li><a class="reference internal" href="#tag-double-submission" id="id61">二重サブミットを防ぐ</a><ul>
+<li><a class="reference internal" href="#id20" id="id62">サーバ側のトークンをデータベースに保存する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id31" id="id73">拡張例</a><ul>
-<li><a class="reference internal" href="#id32" id="id74">フォーマッタを追加する</a></li>
-<li><a class="reference internal" href="#tag-submit-display-control-change" id="id75">ボタン/リンクの表示制御に使う判定処理を変更する</a></li>
-<li><a class="reference internal" href="#tag-double-submission-client-side-change" id="id76">クライアント側の二重サブミット防止で、二重サブミット発生時の振る舞いを追加する</a></li>
-<li><a class="reference internal" href="#tag-double-submission-server-side-change" id="id77">サーバ側の二重サブミット防止で、トークンの発行処理を変更する</a></li>
+<li><a class="reference internal" href="#tag-make-common" id="id63">入力画面と確認画面を共通化する</a></li>
+<li><a class="reference internal" href="#tag-set-variable" id="id64">変数に値を設定する</a></li>
+<li><a class="reference internal" href="#get" id="id65">GETリクエストを使用する</a></li>
+<li><a class="reference internal" href="#tag-write-value" id="id66">値を出力する</a></li>
+<li><a class="reference internal" href="#tag-html-unescape" id="id67">HTMLエスケープせずに値を出力する</a></li>
+<li><a class="reference internal" href="#tag-format-value" id="id68">フォーマットして値を出力する</a></li>
+<li><a class="reference internal" href="#tag-write-error" id="id69">エラー表示を行う</a></li>
+<li><a class="reference internal" href="#tag-code-input-output" id="id70">コード値を表示する</a></li>
+<li><a class="reference internal" href="#tag-write-message" id="id71">メッセージを出力する</a></li>
+<li><a class="reference internal" href="#tag-change-resource-path-of-lang" id="id72">言語毎にリソースパスを切り替える</a></li>
+<li><a class="reference internal" href="#id30" id="id73">ブラウザのキャッシュを防止する</a></li>
+<li><a class="reference internal" href="#id31" id="id74">静的コンテンツの変更時にクライアント側のキャッシュを参照しないようにする</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id36" id="id78">カスタムタグのルール</a><ul>
-<li><a class="reference internal" href="#tag-naming-rule" id="id79">命名ルール</a></li>
-<li><a class="reference internal" href="#tag-access-rule" id="id80">入力/出力データへのアクセスルール</a></li>
-<li><a class="reference internal" href="#uri" id="id81">URIの指定方法</a></li>
-<li><a class="reference internal" href="#tag-html-escape" id="id82">HTMLエスケープと改行、半角スペース変換</a></li>
+<li><a class="reference internal" href="#id32" id="id75">拡張例</a><ul>
+<li><a class="reference internal" href="#id33" id="id76">フォーマッタを追加する</a></li>
+<li><a class="reference internal" href="#tag-submit-display-control-change" id="id77">ボタン/リンクの表示制御に使う判定処理を変更する</a></li>
+<li><a class="reference internal" href="#tag-double-submission-client-side-change" id="id78">クライアント側の二重サブミット防止で、二重サブミット発生時の振る舞いを追加する</a></li>
+<li><a class="reference internal" href="#tag-double-submission-server-side-change" id="id79">サーバ側の二重サブミット防止で、トークンの発行処理を変更する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tag-reference" id="id83"><a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a></a></li>
+<li><a class="reference internal" href="#id37" id="id80">カスタムタグのルール</a><ul>
+<li><a class="reference internal" href="#tag-naming-rule" id="id81">命名ルール</a></li>
+<li><a class="reference internal" href="#tag-access-rule" id="id82">入力/出力データへのアクセスルール</a></li>
+<li><a class="reference internal" href="#uri" id="id83">URIの指定方法</a></li>
+<li><a class="reference internal" href="#tag-html-escape" id="id84">HTMLエスケープと改行、半角スペース変換</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tag-reference" id="id85"><a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a></a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -422,9 +425,9 @@
 カスタムタグが出力するJavaScriptについては <a class="reference internal" href="#tag-onclick-override"><span>サブミット前に処理を追加する</span></a> を参照。</p>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id40">7.18.2. 機能概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id41">7.19.2. 機能概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="html">
-<h3><a class="toc-backref" href="#id41">7.18.2.1. HTMLエスケープ漏れを防げる</a><a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id42">7.19.2.1. HTMLエスケープ漏れを防げる</a><a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>HTMLの中では「&lt;」「&gt;」「&#8221;」といった文字は、特別な意味を持つため、
 それらを含む値をそのままJSPで出力してしまうと、悪意のあるユーザが容易にスクリプトを埋め込むことができ、
 クロスサイトスクリプティング(XSS)と呼ばれる脆弱性につながってしまう。
@@ -446,7 +449,7 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </ul>
 </div>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id42">7.18.2.2. 入力画面と確認画面のJSPを共通化して実装を減らす</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id43">7.19.2.2. 入力画面と確認画面のJSPを共通化して実装を減らす</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>多くのシステムでは、入力画面と確認画面でレイアウトが変わらず、
 似たようなJSPを作成している。</p>
 <p>カスタムタグでは、入力画面と確認画面のJSPを共通化する機能を提供しているので、
@@ -459,7 +462,7 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id43">7.18.3. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id44">7.19.3. モジュール一覧</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web-tag<span class="nt">&lt;/artifactId&gt;</span>
@@ -480,14 +483,14 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id44">7.18.4. 使用方法</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id45">7.19.4. 使用方法</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">カスタムタグの説明では、すべての属性について説明していないので、
 各カスタムタグで指定できる属性については、 <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a> を参照。</p>
 </div>
 <div class="section" id="tag-setting">
-<span id="id6"></span><h3><a class="toc-backref" href="#id45">7.18.4.1. カスタムタグの設定を行う</a><a class="headerlink" href="#tag-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id6"></span><h3><a class="toc-backref" href="#id46">7.19.4.1. カスタムタグの設定を行う</a><a class="headerlink" href="#tag-setting" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグの設定は、 <a class="reference internal" href="../handlers/web/nablarch_tag_handler.html#nablarch-tag-handler"><span>Nablarchカスタムタグ制御ハンドラ</span></a> と
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/tag/CustomTagConfig.html" title="nablarch.common.web.tag.CustomTagConfig">CustomTagConfig</a>
 により行う。</p>
@@ -514,7 +517,7 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </dl>
 </div>
 <div class="section" id="taglib">
-<span id="tag-specify-taglib"></span><h3><a class="toc-backref" href="#id46">7.18.4.2. カスタムタグを使用する(taglibディレクティブの指定方法)</a><a class="headerlink" href="#taglib" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="tag-specify-taglib"></span><h3><a class="toc-backref" href="#id47">7.19.4.2. カスタムタグを使用する(taglibディレクティブの指定方法)</a><a class="headerlink" href="#taglib" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグとJSTLを使用する想定なので、それぞれのtaglibディレクティブを指定する。</p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;c&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> <span class="k">%&gt;</span>
 <span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;n&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;http://tis.co.jp/nablarch&quot;</span> <span class="k">%&gt;</span>
@@ -522,7 +525,7 @@ JavaScriptを記述する部分に動的な値(入力データなど)を埋め�
 </div>
 </div>
 <div class="section" id="tag-input-form">
-<span id="id7"></span><h3><a class="toc-backref" href="#id47">7.18.4.3. 入力フォームを作る</a><a class="headerlink" href="#tag-input-form" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id48">7.19.4.3. 入力フォームを作る</a><a class="headerlink" href="#tag-input-form" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>入力フォームは、次のカスタムタグを使用して作成する。
 以下に列挙したカスタムタグの詳細は、 <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a> を参照。</p>
 <ul class="simple">
@@ -607,7 +610,7 @@ JavaScriptの変数名の構文に則った値を指定する必要がある。<
 </div>
 </div>
 <div class="section" id="tag-selection">
-<span id="id8"></span><h3><a class="toc-backref" href="#id48">7.18.4.4. 選択項目(プルダウン/ラジオボタン/チェックボックス)を表示する</a><a class="headerlink" href="#tag-selection" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id49">7.19.4.4. 選択項目(プルダウン/ラジオボタン/チェックボックス)を表示する</a><a class="headerlink" href="#tag-selection" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>選択項目には、次のカスタムタグを使用する。</p>
 <ul class="simple">
 <li><a class="reference internal" href="tag/tag_reference.html#tag-select-tag"><span>selectタグ</span></a> (プルダウン)</li>
@@ -773,7 +776,7 @@ JavaScriptの変数名の構文に則った値を指定する必要がある。<
 </div>
 </div>
 <div class="section" id="tag-checkbox-off-value">
-<span id="id9"></span><h3><a class="toc-backref" href="#id49">7.18.4.5. チェックボックスでチェックなしに対する値を指定する</a><a class="headerlink" href="#tag-checkbox-off-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id50">7.19.4.5. チェックボックスでチェックなしに対する値を指定する</a><a class="headerlink" href="#tag-checkbox-off-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>HTMLのcheckboxタグは、チェックなしの場合にリクエストパラメータが送信されない。
 単一の入力項目としてcheckboxタグを使用する場合は、データベース上でフラグとして表現されたデータ項目に対応することが多く、
 通常はチェックなしの場合にも何らかの値を設定する。
@@ -803,7 +806,7 @@ checkboxタグ出力時にチェックなしに対応する値をhiddenタグに
 </div>
 </div>
 <div class="section" id="tag-window-scope">
-<span id="id10"></span><h3><a class="toc-backref" href="#id50">7.18.4.6. 入力データを画面間で持ち回る(ウィンドウスコープ)</a><a class="headerlink" href="#tag-window-scope" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id10"></span><h3><a class="toc-backref" href="#id51">7.19.4.6. 入力データを画面間で持ち回る(ウィンドウスコープ)</a><a class="headerlink" href="#tag-window-scope" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p>入力データ保持は、ここで説明するウィンドウスコープを使う方法と、
@@ -912,7 +915,7 @@ hiddenのデータ量が増えると、通信速度の低下、メモリ圧迫�
 </div>
 </div>
 <div class="section" id="hidden">
-<span id="tag-hidden-encryption"></span><h3><a class="toc-backref" href="#id51">7.18.4.7. クライアントに保持するデータを暗号化する(hidden暗号化)</a><a class="headerlink" href="#hidden" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="tag-hidden-encryption"></span><h3><a class="toc-backref" href="#id52">7.19.4.7. クライアントに保持するデータを暗号化する(hidden暗号化)</a><a class="headerlink" href="#hidden" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-window-scope"><span>ウィンドウスコープ</span></a> や <a class="reference internal" href="tag/tag_reference.html#tag-hidden-tag"><span>hiddenタグ</span></a> の値は、
 クライアント側で改竄されたり、HTMLソースから容易に値を参照できる。
 そのため、hiddenタグの改竄や参照を防ぐことを目的に、カスタムタグではhidden暗号化機能を提供する。</p>
@@ -1005,7 +1008,7 @@ hidden暗号化の処理イメージを以下に示す。
 </dl>
 </div>
 <div class="section" id="tag-composite-key">
-<span id="id11"></span><h3><a class="toc-backref" href="#id52">7.18.4.8. 複合キーのラジオボタンやチェックボックスを作る</a><a class="headerlink" href="#tag-composite-key" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id53">7.19.4.8. 複合キーのラジオボタンやチェックボックスを作る</a><a class="headerlink" href="#tag-composite-key" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>一覧画面でデータを選択する場合などは、ラジオボタンやチェックボックスを使用する。
 データを識別する値が単一であれば、 <a class="reference internal" href="tag/tag_reference.html#tag-radio-tag"><span>radioButtonタグ</span></a> や <a class="reference internal" href="tag/tag_reference.html#tag-checkbox-tag"><span>checkboxタグ</span></a> を使用すればよいが、
 複合キーの場合は単純に実装できない。</p>
@@ -1097,7 +1100,7 @@ hidden暗号化の処理イメージを以下に示す。
 </dl>
 </div>
 <div class="section" id="tag-submit">
-<span id="id12"></span><h3><a class="toc-backref" href="#id53">7.18.4.9. 複数のボタン/リンクからフォームをサブミットする</a><a class="headerlink" href="#tag-submit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id12"></span><h3><a class="toc-backref" href="#id54">7.19.4.9. 複数のボタン/リンクからフォームをサブミットする</a><a class="headerlink" href="#tag-submit" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>フォームのサブミットは、ボタンとリンクに対応しており、次のカスタムタグを使用して行う。
 1つのフォームに複数のボタンとリンクを配置することができる。</p>
 <dl class="docutils">
@@ -1144,7 +1147,7 @@ uri属性の指定方法については、 <a class="reference internal" href="#
 </dl>
 </div>
 <div class="section" id="tag-onclick-override">
-<span id="id13"></span><h3><a class="toc-backref" href="#id54">7.18.4.10. サブミット前に処理を追加する</a><a class="headerlink" href="#tag-onclick-override" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id13"></span><h3><a class="toc-backref" href="#id55">7.19.4.10. サブミット前に処理を追加する</a><a class="headerlink" href="#tag-onclick-override" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>フォームのサブミットは、JavaScriptを使用してボタン/リンク毎のURIを組み立てることで実現している。
 カスタムタグは、グローバル領域にこのJavaScript関数を出力し、
 ボタン/リンクのonclick属性にその関数呼び出しを設定した状態でHTML出力を行う。</p>
@@ -1218,7 +1221,7 @@ uri属性の指定方法については、 <a class="reference internal" href="#
 </dl>
 </div>
 <div class="section" id="tag-onchange-submit">
-<span id="id14"></span><h3><a class="toc-backref" href="#id55">7.18.4.11. プルダウン変更などの画面操作でサブミットする</a><a class="headerlink" href="#tag-onchange-submit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id14"></span><h3><a class="toc-backref" href="#id56">7.19.4.11. プルダウン変更などの画面操作でサブミットする</a><a class="headerlink" href="#tag-onchange-submit" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグは、サブミット制御にJavaScriptを使用しており、
 サブミット制御を行うJavaScript関数が、ボタンやリンクのイベントハンドラ(onclick属性)に指定されることを前提に動作する。
 JavaScriptの詳細については、 <a class="reference internal" href="#tag-onclick-override"><span>サブミット前に処理を追加する</span></a> を参照。</p>
@@ -1245,7 +1248,7 @@ JavaScriptの詳細については、 <a class="reference internal" href="#tag-o
 </dl>
 </div>
 <div class="section" id="tag-submit-change-parameter">
-<span id="id15"></span><h3><a class="toc-backref" href="#id56">7.18.4.12. ボタン/リンク毎にパラメータを追加する</a><a class="headerlink" href="#tag-submit-change-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id15"></span><h3><a class="toc-backref" href="#id57">7.19.4.12. ボタン/リンク毎にパラメータを追加する</a><a class="headerlink" href="#tag-submit-change-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>更新機能などにおいて、一覧画面から詳細画面に遷移するケースでは、
 同じURLだけどパラメータが異なるリンクを表示したい場合がある。</p>
 <p>カスタムタグでは、フォームのボタンやリンク毎にパラメータを追加するためのカスタムタグを提供する。</p>
@@ -1283,7 +1286,7 @@ JavaScriptの詳細については、 <a class="reference internal" href="#tag-o
 </div>
 </div>
 <div class="section" id="tag-submit-display-control">
-<span id="id16"></span><h3><a class="toc-backref" href="#id57">7.18.4.13. 認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</a><a class="headerlink" href="#tag-submit-display-control" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id16"></span><h3><a class="toc-backref" href="#id58">7.19.4.13. 認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</a><a class="headerlink" href="#tag-submit-display-control" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="permission_check.html#permission-check"><span>認可チェック</span></a> と <a class="reference internal" href="service_availability.html#service-availability"><span>サービス提供可否チェック</span></a> の結果に応じて、
 <a class="reference internal" href="tag/tag_reference.html#tag-reference-submit"><span>フォームのサブミットを行うボタン/リンク</span></a> の表示を切り替える機能を提供する。
 これにより、ユーザーが実際にボタン/リンクを選択する前に該当機能が使用可能かどうかが分かるため、ユーザビリティの向上につながる。</p>
@@ -1328,7 +1331,7 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 </div>
 </div>
 <div class="section" id="tag-submit-popup">
-<span id="id17"></span><h3><a class="toc-backref" href="#id58">7.18.4.14. 別ウィンドウ/タブを開くボタン/リンクを作る(ポップアップ)</a><a class="headerlink" href="#tag-submit-popup" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id17"></span><h3><a class="toc-backref" href="#id59">7.19.4.14. 別ウィンドウ/タブを開くボタン/リンクを作る(ポップアップ)</a><a class="headerlink" href="#tag-submit-popup" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ユーザの操作性を向上させるために、複数ウィンドウを立ち上げたい場合がある。
 例えば、郵便番号の入力欄から住所検索など、検索画面を別ウィンドウで立ち上げ入力補助を行う場合がある。</p>
 <p>カスタムタグでは、複数ウィンドウの立ち上げをサポートするカスタムタグ(以降はポップアップタグと称す)を提供する。</p>
@@ -1453,7 +1456,7 @@ JSPインクルードを行うには、 <a class="reference internal" href="#tag
 </dl>
 </div>
 <div class="section" id="tag-submit-download">
-<span id="id18"></span><h3><a class="toc-backref" href="#id59">7.18.4.15. ファイルダウンロードを行うボタン/リンクを作る</a><a class="headerlink" href="#tag-submit-download" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id18"></span><h3><a class="toc-backref" href="#id60">7.19.4.15. ファイルダウンロードを行うボタン/リンクを作る</a><a class="headerlink" href="#tag-submit-download" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ファイルダウンロードを行うボタン/リンクを作るために、
 ダウンロード専用のサブミットを行うカスタムタグ(以降はダウンロードタグと称す)と
 アクションの実装を容易にする <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a>
@@ -1705,7 +1708,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>         <span class="c1"
 </dl>
 </div>
 <div class="section" id="tag-double-submission">
-<span id="id19"></span><h3><a class="toc-backref" href="#id60">7.18.4.16. 二重サブミットを防ぐ</a><a class="headerlink" href="#tag-double-submission" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id19"></span><h3><a class="toc-backref" href="#id61">7.19.4.16. 二重サブミットを防ぐ</a><a class="headerlink" href="#tag-double-submission" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>二重サブミットの防止は、データベースにコミットを伴う処理を要求する画面で使用する。
 二重サブミットの防止方法は、クライアント側とサーバ側の2つがあり、2つの防止方法を併用する。</p>
 <p>クライアント側では、ユーザが誤ってボタンをダブルクリックした場合や、
@@ -1869,9 +1872,19 @@ field-separator:  <span class="s2">&quot;,&quot;</span>         <span class="c1"
 </div>
 </dd>
 </dl>
+<div class="section" id="id20">
+<h4><a class="toc-backref" href="#id62">7.19.4.16.1. サーバ側のトークンをデータベースに保存する</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>デフォルト実装では、サーバ側のトークンはHTTPセッションに保存される。
+このため、アプリケーションサーバをスケールアウトする際には、スティッキーセッションやセッションレプリケーション等を
+使用する必要がある。</p>
+<p>サーバ側のトークンをデータベースに保管する実装を使用することで、特にアプリケーションサーバの設定をしなくても、
+複数のアプリケーションサーバ間でトークンを共有できる。</p>
+<p>詳細は <a class="reference internal" href="db_double_submit.html#db-double-submit"><span>データベースを使用した2重サブミット防止</span></a> を参照。</p>
+<img alt="../../../_images/db-double-submit.png" src="../../../_images/db-double-submit.png" />
+</div>
 </div>
 <div class="section" id="tag-make-common">
-<span id="id20"></span><h3><a class="toc-backref" href="#id61">7.18.4.17. 入力画面と確認画面を共通化する</a><a class="headerlink" href="#tag-make-common" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id21"></span><h3><a class="toc-backref" href="#id63">7.19.4.17. 入力画面と確認画面を共通化する</a><a class="headerlink" href="#tag-make-common" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="tag/tag_reference.html#tag-reference-input"><span>入力項目のカスタムタグ</span></a> は、
 入力画面と全く同じJSP記述のまま、確認画面用の出力を行うことができる。</p>
 <p>入力画面と確認画面の共通化は、以下のカスタムタグを使用する。</p>
@@ -1953,7 +1966,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>         <span class="c1"
 </dl>
 </div>
 <div class="section" id="tag-set-variable">
-<span id="id21"></span><h3><a class="toc-backref" href="#id62">7.18.4.18. 変数に値を設定する</a><a class="headerlink" href="#tag-set-variable" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id22"></span><h3><a class="toc-backref" href="#id64">7.19.4.18. 変数に値を設定する</a><a class="headerlink" href="#tag-set-variable" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>画面タイトルなど、ページ内の複数箇所に同じ内容で出力する値は、
 JSP上の変数に格納したものを参照することで、メンテナンス性を高められる。</p>
 <p>カスタムタグでは変数に値を設定する <a class="reference internal" href="tag/tag_reference.html#tag-set-tag"><span>setタグ</span></a> を提供する。</p>
@@ -1996,7 +2009,7 @@ scope属性には、リクエストスコープ(request)又はページスコー
 </dl>
 </div>
 <div class="section" id="get">
-<span id="tag-using-get"></span><h3><a class="toc-backref" href="#id63">7.18.4.19. GETリクエストを使用する</a><a class="headerlink" href="#get" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="tag-using-get"></span><h3><a class="toc-backref" href="#id65">7.19.4.19. GETリクエストを使用する</a><a class="headerlink" href="#get" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>検索エンジン等のクローラ対策、および利用者がブックマーク可能なURLとするために、GETリクエストの使用が必要となる場合がある。</p>
 <p>カスタムタグは、 <a class="reference internal" href="#tag-hidden-encryption"><span>hidden暗号化</span></a> や
 <a class="reference internal" href="#tag-submit-change-parameter"><span>パラメータ追加</span></a> といった機能を実現するため、
@@ -2274,7 +2287,7 @@ hiddenパラメータが出力されないことで、使用制限のあるカ�
 </dl>
 </div>
 <div class="section" id="tag-write-value">
-<span id="id22"></span><h3><a class="toc-backref" href="#id64">7.18.4.20. 値を出力する</a><a class="headerlink" href="#tag-write-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id23"></span><h3><a class="toc-backref" href="#id66">7.19.4.20. 値を出力する</a><a class="headerlink" href="#tag-write-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>値の出力には、 <a class="reference internal" href="tag/tag_reference.html#tag-write-tag"><span>writeタグ</span></a> を使用する。</p>
 <p>アクション側でリクエストスコープに設定したオブジェクトに、name属性を指定することでアクセスする。
 name属性の指定方法は、 <a class="reference internal" href="#tag-access-rule"><span>入力/出力データへのアクセスルール</span></a> を参照。</p>
@@ -2300,7 +2313,7 @@ name属性の指定方法は、 <a class="reference internal" href="#tag-access-
 </dl>
 </div>
 <div class="section" id="tag-html-unescape">
-<span id="id23"></span><h3><a class="toc-backref" href="#id65">7.18.4.21. HTMLエスケープせずに値を出力する</a><a class="headerlink" href="#tag-html-unescape" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id24"></span><h3><a class="toc-backref" href="#id67">7.19.4.21. HTMLエスケープせずに値を出力する</a><a class="headerlink" href="#tag-html-unescape" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>アクションなどで設定された値をページ上に出力する場合、 <a class="reference internal" href="tag/tag_reference.html#tag-write-tag"><span>writeタグ</span></a> を使用するが、
 HTMLエスケープを行わず、変数内のHTMLタグを直接出力したい場合は、以下のカスタムタグを使用する。</p>
 <ul class="simple">
@@ -2360,7 +2373,7 @@ OSSのJavaScriptライブラリを使用してクライアントサイドでMark
 </dl>
 </div>
 <div class="section" id="tag-format-value">
-<span id="id24"></span><h3><a class="toc-backref" href="#id66">7.18.4.22. フォーマットして値を出力する</a><a class="headerlink" href="#tag-format-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id25"></span><h3><a class="toc-backref" href="#id68">7.19.4.22. フォーマットして値を出力する</a><a class="headerlink" href="#tag-format-value" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグでは、日付や金額などの値を人が見やすい形式にフォーマットして出力する機能を提供する。</p>
 <p><a class="reference internal" href="format.html#format"><span>フォーマッタ</span></a> を使用してフォーマットする方法と、valueFormat属性を使用してフォーマットする2種類の方法が存在する。
 以下の理由から、 <a class="reference internal" href="format.html#format"><span>フォーマッタ</span></a> を使用してフォーマットする方法を推奨する。</p>
@@ -2571,7 +2584,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </dl>
 </div>
 <div class="section" id="tag-write-error">
-<span id="id25"></span><h3><a class="toc-backref" href="#id67">7.18.4.23. エラー表示を行う</a><a class="headerlink" href="#tag-write-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id26"></span><h3><a class="toc-backref" href="#id69">7.19.4.23. エラー表示を行う</a><a class="headerlink" href="#tag-write-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>エラー表示では、以下の機能を提供する。</p>
 <ul class="simple">
 <li><a class="reference internal" href="#tag-write-error-errors-tag"><span>エラーメッセージの一覧表示</span></a></li>
@@ -2738,7 +2751,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </dl>
 </div>
 <div class="section" id="tag-code-input-output">
-<span id="id26"></span><h3><a class="toc-backref" href="#id68">7.18.4.24. コード値を表示する</a><a class="headerlink" href="#tag-code-input-output" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id27"></span><h3><a class="toc-backref" href="#id70">7.19.4.24. コード値を表示する</a><a class="headerlink" href="#tag-code-input-output" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグでは、 <a class="reference internal" href="code.html#code"><span>コード管理</span></a> から取得したコード値の選択項目や表示項目を出力する
 コード値専用のカスタムタグを提供する。</p>
 <ul class="simple">
@@ -2910,7 +2923,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </div>
 </div>
 <div class="section" id="tag-write-message">
-<span id="id27"></span><h3><a class="toc-backref" href="#id69">7.18.4.25. メッセージを出力する</a><a class="headerlink" href="#tag-write-message" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id28"></span><h3><a class="toc-backref" href="#id71">7.19.4.25. メッセージを出力する</a><a class="headerlink" href="#tag-write-message" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグでは、 <a class="reference internal" href="message.html#message"><span>メッセージ管理</span></a> を使用して取得したメッセージを出力するカスタムタグを提供する。</p>
 <ul class="simple">
 <li><a class="reference internal" href="tag/tag_reference.html#tag-message-tag"><span>messageタグ</span></a> (メッセージ)</li>
@@ -2952,7 +2965,7 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </dl>
 </div>
 <div class="section" id="tag-change-resource-path-of-lang">
-<span id="id28"></span><h3><a class="toc-backref" href="#id70">7.18.4.26. 言語毎にリソースパスを切り替える</a><a class="headerlink" href="#tag-change-resource-path-of-lang" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id29"></span><h3><a class="toc-backref" href="#id72">7.19.4.26. 言語毎にリソースパスを切り替える</a><a class="headerlink" href="#tag-change-resource-path-of-lang" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>リソースパスを扱うカスタムタグは、言語設定をもとにリソースパスを動的に切り替える機能をもつ。
 以下のカスタムタグが言語毎のリソースパスの切り替えに対応している。</p>
 <ul class="simple">
@@ -2984,8 +2997,8 @@ valueFormat属性の値がサーバサイドに送信されないためバリデ
 </div>
 </div>
 </div>
-<div class="section" id="id29">
-<h3><a class="toc-backref" href="#id71">7.18.4.27. ブラウザのキャッシュを防止する</a><a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id30">
+<h3><a class="toc-backref" href="#id73">7.19.4.27. ブラウザのキャッシュを防止する</a><a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ブラウザのキャッシュを防止することで、ブラウザの戻るボタンが押された場合に、
 前画面を表示できないようにすることができる。
 これにより、複数ユーザで同じ端末を使用するような環境において、
@@ -3044,8 +3057,8 @@ Pragma no-cache
 <p class="last">問題が発生するブラウザ： IE6, IE7, IE8</p>
 </div>
 </div>
-<div class="section" id="id30">
-<h3><a class="toc-backref" href="#id72">7.18.4.28. 静的コンテンツの変更時にクライアント側のキャッシュを参照しないようにする</a><a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id31">
+<h3><a class="toc-backref" href="#id74">7.19.4.28. 静的コンテンツの変更時にクライアント側のキャッシュを参照しないようにする</a><a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>クライアント側(ブラウザ)でキャッシュを有効化している場合、
 サーバ上に配置した静的コンテンツを置き換えても、
 クライアント側では最新のコンテンツではなくキャッシュされた古いコンテンツが表示される可能性がある。</p>
@@ -3083,10 +3096,10 @@ Pragma no-cache
 </div>
 </div>
 </div>
-<div class="section" id="id31">
-<h2><a class="toc-backref" href="#id73">7.18.5. 拡張例</a><a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id32">
-<h3><a class="toc-backref" href="#id74">7.18.5.1. フォーマッタを追加する</a><a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2><a class="toc-backref" href="#id75">7.19.5. 拡張例</a><a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id33">
+<h3><a class="toc-backref" href="#id76">7.19.5.1. フォーマッタを追加する</a><a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="format.html#format"><span>フォーマッタ</span></a> を使用する場合
 フォーマッタの追加方法は、 <a class="reference internal" href="format.html#format"><span>フォーマッタ</span></a> のフォーマッタを追加するの項を参照。</p>
 <p>valueFormat属性を使用する場合
@@ -3117,7 +3130,7 @@ Pragma no-cache
 </div>
 </div>
 <div class="section" id="tag-submit-display-control-change">
-<span id="id33"></span><h3><a class="toc-backref" href="#id75">7.18.5.2. ボタン/リンクの表示制御に使う判定処理を変更する</a><a class="headerlink" href="#tag-submit-display-control-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id34"></span><h3><a class="toc-backref" href="#id77">7.19.5.2. ボタン/リンクの表示制御に使う判定処理を変更する</a><a class="headerlink" href="#tag-submit-display-control-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-submit-display-control"><span>認可チェック/サービス提供可否に応じてボタン/リンクの表示/非表示を切り替える</span></a> に使用する判定処理を変更したい場合は、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/tag/DisplayControlChecker.html" title="nablarch.common.web.tag.DisplayControlChecker">DisplayControlChecker</a>
 インタフェースを実装することで変更できる。
@@ -3144,7 +3157,7 @@ Pragma no-cache
 </dl>
 </div>
 <div class="section" id="tag-double-submission-client-side-change">
-<span id="id34"></span><h3><a class="toc-backref" href="#id76">7.18.5.3. クライアント側の二重サブミット防止で、二重サブミット発生時の振る舞いを追加する</a><a class="headerlink" href="#tag-double-submission-client-side-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id35"></span><h3><a class="toc-backref" href="#id78">7.19.5.3. クライアント側の二重サブミット防止で、二重サブミット発生時の振る舞いを追加する</a><a class="headerlink" href="#tag-double-submission-client-side-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-double-submission-client-side"><span>クライアント側の二重サブミット防止</span></a> を使用していて、
 アプリケーションで二重サブミット発生時の振る舞いを追加する場合は、JavaScriptでコールバック関数を実装する。</p>
 <p>フレームワークのJavaScript関数は、2回目以降のサブミット要求が発生した場合、
@@ -3160,7 +3173,7 @@ Pragma no-cache
 </div>
 </div>
 <div class="section" id="tag-double-submission-server-side-change">
-<span id="id35"></span><h3><a class="toc-backref" href="#id77">7.18.5.4. サーバ側の二重サブミット防止で、トークンの発行処理を変更する</a><a class="headerlink" href="#tag-double-submission-server-side-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id36"></span><h3><a class="toc-backref" href="#id79">7.19.5.4. サーバ側の二重サブミット防止で、トークンの発行処理を変更する</a><a class="headerlink" href="#tag-double-submission-server-side-change" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><a class="reference internal" href="#tag-double-submission-server-side"><span>サーバ側の二重サブミット防止</span></a> を使用していて、
 トークンの発行処理を変更したい場合は、
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/TokenGenerator.html" title="nablarch.common.web.token.TokenGenerator">TokenGenerator</a>
@@ -3168,10 +3181,10 @@ Pragma no-cache
 実装したクラスをコンポーネント定義に <code class="docutils literal"><span class="pre">tokenGenerator</span></code> という名前で追加する。</p>
 </div>
 </div>
-<div class="section" id="id36">
-<h2><a class="toc-backref" href="#id78">7.18.6. カスタムタグのルール</a><a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id37">
+<h2><a class="toc-backref" href="#id80">7.19.6. カスタムタグのルール</a><a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="tag-naming-rule">
-<span id="id37"></span><h3><a class="toc-backref" href="#id79">7.18.6.1. 命名ルール</a><a class="headerlink" href="#tag-naming-rule" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id38"></span><h3><a class="toc-backref" href="#id81">7.19.6.1. 命名ルール</a><a class="headerlink" href="#tag-naming-rule" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグでは、CSSのクラス名やJavaScriptの関数名など、カスタムタグが規定する名前については、
 個別アプリケーションと重複しないようにプレフィックス <code class="docutils literal"><span class="pre">nablarch_</span></code> を使用する。
 そのため、個別アプリケーションでは、 <code class="docutils literal"><span class="pre">nablarch_</span></code> から始まる名前を使用しないこと。</p>
@@ -3184,7 +3197,7 @@ Pragma no-cache
 </ul>
 </div>
 <div class="section" id="tag-access-rule">
-<span id="id38"></span><h3><a class="toc-backref" href="#id80">7.18.6.2. 入力/出力データへのアクセスルール</a><a class="headerlink" href="#tag-access-rule" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id39"></span><h3><a class="toc-backref" href="#id82">7.19.6.2. 入力/出力データへのアクセスルール</a><a class="headerlink" href="#tag-access-rule" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>入力項目や出力項目を出力するカスタムタグ( <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>textタグ</span></a> や <a class="reference internal" href="tag/tag_reference.html#tag-write-tag"><span>writeタグ</span></a> など)では、
 name属性の値に基づき、出力対象となるデータにアクセスする。</p>
 <p>オブジェクトの種類に合わせて、name属性には以下の指定を行う。</p>
@@ -3266,7 +3279,7 @@ JSTLのタグを使用する場合は、アクション側で明示的にリク�
 </div>
 </div>
 <div class="section" id="uri">
-<span id="tag-specify-uri"></span><h3><a class="toc-backref" href="#id81">7.18.6.3. URIの指定方法</a><a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="tag-specify-uri"></span><h3><a class="toc-backref" href="#id83">7.19.6.3. URIの指定方法</a><a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>カスタムタグにおいてURIを指定する属性には、次のいずれかの方法で指定する。</p>
 <blockquote>
 <div><dl class="docutils">
@@ -3365,7 +3378,7 @@ https://sample.co.jp/&lt;コンテキストパス&gt;/action/logout
 </dl>
 </div>
 <div class="section" id="tag-html-escape">
-<span id="id39"></span><h3><a class="toc-backref" href="#id82">7.18.6.4. HTMLエスケープと改行、半角スペース変換</a><a class="headerlink" href="#tag-html-escape" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id40"></span><h3><a class="toc-backref" href="#id84">7.19.6.4. HTMLエスケープと改行、半角スペース変換</a><a class="headerlink" href="#tag-html-escape" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <dl class="docutils">
 <dt>HTMLエスケープ</dt>
 <dd><p class="first">カスタムタグでは、原則として出力する際に全てのHTMLの属性についてHTMLエスケープを行う。
@@ -3405,7 +3418,7 @@ https://sample.co.jp/&lt;コンテキストパス&gt;/action/logout
 </div>
 </div>
 <div class="section" id="tag-reference">
-<h2><a class="toc-backref" href="#id83">7.18.7. <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a></a><a class="headerlink" href="#tag-reference" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id85">7.19.7. <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a></a><a class="headerlink" href="#tag-reference" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>タグリファレンス</span></a> を参照。</p>
 </div>
 </div>
@@ -3422,7 +3435,7 @@ https://sample.co.jp/&lt;コンテキストパス&gt;/action/logout
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -3443,7 +3456,7 @@ https://sample.co.jp/&lt;コンテキストパス&gt;/action/logout
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

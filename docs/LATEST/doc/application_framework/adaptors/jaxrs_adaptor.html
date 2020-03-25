@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>JAX-RSアダプタ &mdash; ∇Nablarch  5u15 ドキュメント</title>
+  <title>JAX-RSアダプタ &mdash; ∇Nablarch  5u16 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/jaxrs_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u15 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
         <link rel="next" title="Domaアダプタ" href="doma_adaptor.html"/>
         <link rel="prev" title="IBM WebSphere MQアダプタ" href="webspheremq_adaptor.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u15</div>
+    <div id="sidebar-version">Version: 5u16</div>
   </a>
 
   <div role="search">
@@ -362,17 +362,18 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p>jacksonのバージョン2.8.11.1及び1.9.13を使用してテストを行っている。
+<p class="last">Jacksonのバージョン2.10.3を使用してテストを行っている。
 バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
-<p>jacksonの1系(nablarch.integration.jaxrs.jackson.Jackson1BodyConverter)を使用する場合には、
-jackson1系への依存を追加すること。</p>
-<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.codehaus.jackson<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>jackson-mapper-asl<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.9.13<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</pre></div>
 </div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>Jackson1系ライブラリの脆弱性対応が行われなくなったため、Nablarch5u16よりJackson1系のサポートを廃止した。
+Jackson1系を使用していた場合はJackson2系へ移行すること。</p>
+<p>【参考情報】</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-012258.html">https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-012258.html</a></li>
+<li><a class="reference external" href="https://github.com/advisories/GHSA-r6j9-8759-g62w">https://github.com/advisories/GHSA-r6j9-8759-g62w</a></li>
+</ul>
 </div>
 </div>
 <div class="section" id="jerseyrestful">
@@ -470,7 +471,7 @@ jackson1系への依存を追加すること。</p>
 
     <div role="contentinfo">
         <p>
-            &copy; Copyright 2010-2019, TIS Inc.
+            &copy; Copyright 2010-2020, TIS Inc.
         </p>
     </div>
     Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -491,7 +492,7 @@ jackson1系への依存を追加すること。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u15',
+            VERSION:'5u16',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
