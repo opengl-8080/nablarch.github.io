@@ -841,18 +841,18 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 <p>以下で説明する設定を行うことで、環境依存値をOS環境変数で上書きできるようになる。</p>
 <dl class="docutils">
 <dt>OS環境変数による上書きを有効にするための設定方法</dt>
-<dd><p class="first">環境依存値を上書きする仕組みは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/  ExternalizedComponentDefinitionLoader/package-summary.html" title="nablarch.core.repository.di.config.externalize.  ExternalizedComponentDefinitionLoader.package-summary">ExternalizedComponentDefinitionLoader</a> インタフェースを実装したクラスによって実現されている。</p>
+<dd><p class="first">環境依存値を上書きする仕組みは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/ExternalizedComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader">ExternalizedComponentDefinitionLoader</a> インタフェースを実装したクラスによって実現されている。</p>
 <p>この実装クラスは、 <code class="docutils literal"><span class="pre">java.util.ServiceLoader</span></code> を使ってロードされる。
-サービスプロバイダを何も設定していない場合は、デフォルトで <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/  externalize/SystemPropertyExternalizedLoader.html" title="nablarch.core.repository.di.config.  externalize.SystemPropertyExternalizedLoader">SystemPropertyExternalizedLoader</a> が使用される。
+サービスプロバイダを何も設定していない場合は、デフォルトで <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/SystemPropertyExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader">SystemPropertyExternalizedLoader</a> が使用される。
 このクラスはシステムプロパティで上書きを行うクラスとなっており、前節で説明したシステムプロパティによる上書きはこのクラスによって実現されている。</p>
-<p>OS環境変数で環境依存値を上書きする場合は、実装クラスとして <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/  config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.  config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a> を使用する。</p>
+<p>OS環境変数で環境依存値を上書きする場合は、実装クラスとして <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a> を使用する。</p>
 <p>具体的な設定は、次のようにして行う。</p>
 <ol class="arabic simple">
 <li>クラスパス直下に <code class="docutils literal"><span class="pre">META-INF/services</span></code> というディレクトリを作成する</li>
 <li>上で作成したディレクトリの中に、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> という名前のテキス  トファイルを作成する</li>
 <li>ファイルの中に、使用する実装クラスの完全修飾名を改行区切りで列挙する</li>
 </ol>
-<p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/  OsEnvironmentVariableExternalizedLoader/package-summary.html" title="nablarch.core.repository.di.config.externalize.  OsEnvironmentVariableExternalizedLoader.package-summary">OsEnvironmentVariableExternalizedLoader</a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> の中身を以下のように記述する。</p>
+<p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> の中身を以下のように記述する。</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader
 </pre></div>
 </div>
