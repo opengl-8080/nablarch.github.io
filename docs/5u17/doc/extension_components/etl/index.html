@@ -1,0 +1,1679 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. ETL &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/extension_components/etl/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="Nablarch拡張コンポーネント" href="../index.html"/>
+        <link rel="next" title="5. ETL Mavenプラグイン" href="etl_maven_plugin.html"/>
+        <link rel="prev" title="3. ワークフロー定義データ生成ツール" href="../workflow/tool/index.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch拡張コンポーネント</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/tool/index.html#id4">3.2. 使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch拡張コンポーネント</a> &raquo;</li>
+      
+    <li>4. ETL</li>
+      <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="etl">
+<span id="id1"></span><h1>4. ETL<a class="headerlink" href="#etl" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">目次</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id19">モジュール一覧</a></li>
+<li><a class="reference internal" href="#etl-phase" id="id20">ETLの各フェーズの仕様</a><ul>
+<li><a class="reference internal" href="#extract" id="id21">Extractフェーズ</a></li>
+<li><a class="reference internal" href="#transform" id="id22">Transformフェーズ</a></li>
+<li><a class="reference internal" href="#load" id="id23">Loadフェーズ</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id24">ETLを使用するバッチの設計ポイント</a><ul>
+<li><a class="reference internal" href="#etl-load-file-detail" id="id25">ファイル取り込み処理</a></li>
+<li><a class="reference internal" href="#id8" id="id26">ファイル出力処理</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9" id="id27">使用方法</a><ul>
+<li><a class="reference internal" href="#etl-job" id="id28">ETL JOBを実行するための設定を行う</a></li>
+<li><a class="reference internal" href="#etl-common-configuration" id="id29">ETL用環境設定ファイルを作成する</a></li>
+<li><a class="reference internal" href="#jobetljob" id="id30">JOB定義ファイルとETL用JOB設定ファイルを作成する</a></li>
+<li><a class="reference internal" href="#etl-truncate" id="id31">テーブルクリーニングステップを利用してテーブルのデータを削除する</a></li>
+<li><a class="reference internal" href="#extract-chunk" id="id32">Extractフェーズ(Chunk)を使用する</a></li>
+<li><a class="reference internal" href="#extract-sql-loader" id="id33">Extractフェーズ(SQL*Loader版)を使用する</a></li>
+<li><a class="reference internal" href="#etl-transform-validation" id="id34">Transformフェーズでバリデーションを行う</a></li>
+<li><a class="reference internal" href="#etl-load-file" id="id35">Loadフェーズでファイルにデータを出力する</a></li>
+<li><a class="reference internal" href="#etl-load-replace-database" id="id36">Loadフェーズでデータベースのデータの洗い替えを行う</a></li>
+<li><a class="reference internal" href="#etl-load-merge-database" id="id37">Loadフェーズでデータベースのデータのマージを行う</a></li>
+<li><a class="reference internal" href="#etl-load-insert-database" id="id38">Loadフェーズでデータベースへの登録を行う</a></li>
+<li><a class="reference internal" href="#etl-message" id="id39">ETLが使用するメッセージを定義する</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id18" id="id40">拡張例</a><ul>
+<li><a class="reference internal" href="#etljob" id="id41">ETL用JOB設定ファイルを配置するディレクトリのパスを変更する</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352に準拠したバッチアプリケーション</span></a> 上で動作するETL機能を提供する。</p>
+<p>ETLとは以下の略である。</p>
+<ul class="simple">
+<li>Extract(外部データの抽出)</li>
+<li>Transform(抽出したデータの検証と変換)</li>
+<li>Load(変換したデータの出力)</li>
+</ul>
+<p>ETLを使うことで以下のメリットが得られる。</p>
+<ul class="simple">
+<li>インタフェースファイルの取り込みや作成処理を、設定ファイルとSQLおよびBeanの作成のみで実現できる。</li>
+<li><a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352に準拠したバッチアプリケーション</span></a> のBatchletやChunkステップとして各フェーズが提供されているため、ステップを追加することで容易に任意の処理を追加できる。</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">NablarchのETLは、厳密には一般的なETLとは各フェーズで行っている処理の内容が異なっている。
+詳細は、後述の <a class="reference internal" href="#etl-phase"><span>ETLの各フェーズの仕様</span></a> を参照。</p>
+</div>
+<dl class="docutils">
+<dt>ETLの処理イメージ</dt>
+<dd><dl class="first last docutils">
+<dt>ファイルの内容をデータベースへ登録</dt>
+<dd><a class="first last reference internal image-reference" href="../../_images/file_to_db.png"><img alt="../../_images/file_to_db.png" src="../../_images/file_to_db.png" /></a>
+</dd>
+<dt>データベースの内容をファイルへ出力</dt>
+<dd><a class="first last reference internal image-reference" href="../../_images/db_to_file.png"><img alt="../../_images/db_to_file.png" src="../../_images/db_to_file.png" /></a>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>ETLを使用したバッチアプリケーションの実例は、<a class="reference external" href="https://github.com/nablarch/nablarch-example-batch-ee">Exampleアプリケーション</a>
+の以下のJOBを参照。</p>
+<ul class="last simple">
+<li>etl-zip-code-csv-to-db-insert-batchlet</li>
+<li>etl-zip-code-csv-to-db-chunk</li>
+<li>etl-zip-code-db-to-csv-chunk</li>
+<li>etl-zip-code-db-to-fixedlength-chunk</li>
+<li>etl-zip-code-fixedlength-to-db-chunk</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id19">4.1. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-etl<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="etl-phase">
+<span id="id4"></span><h2><a class="toc-backref" href="#id20">4.2. ETLの各フェーズの仕様</a><a class="headerlink" href="#etl-phase" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="extract">
+<span id="etl-extract-phase"></span><h3><a class="toc-backref" href="#id21">4.2.1. Extractフェーズ</a><a class="headerlink" href="#extract" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Extractフェーズでは、ファイルの内容をデータベース上のワークテーブルに取り込む処理を行う。</p>
+<dl class="docutils">
+<dt>データのロード方法の選択</dt>
+<dd><p class="first">本機能では、以下の2種類のロード方法を提供している。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ロード方法</th>
+<th class="head">内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Chunk</td>
+<td><p class="first">Chunkステップを使用してデータをワークテーブルにロードする。</p>
+<p class="last">詳細は、 <a class="reference internal" href="#etl-extract-chunk"><span>Extractフェーズ(Chunk)を使用する</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>SQL*Loader</td>
+<td><p class="first">Oracle SQL*Loaderを使用してデータをワークテーブルにロードする。</p>
+<p class="last">使用方法は、 <a class="reference internal" href="#etl-extract-sql-loader"><span>Extractフェーズ(SQL*Loader版)を使用する</span></a> を参照。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="transform">
+<span id="etl-transform-phase"></span><h3><a class="toc-backref" href="#id22">4.2.2. Transformフェーズ</a><a class="headerlink" href="#transform" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Transformフェーズでは、 <a class="reference internal" href="#etl-extract-phase"><span>Extractフェーズ</span></a> でワークテーブルに取り込んだデータに対するバリデーションを行う。
+なお、本機能では一般的なETLとは異なりデータの編集処理は <a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> にて行う。</p>
+<p>詳細は、 <a class="reference internal" href="#etl-transform-validation"><span>Transformフェーズでバリデーションを行う</span></a> を参照。</p>
+</div>
+<div class="section" id="load">
+<span id="etl-load-phase"></span><h3><a class="toc-backref" href="#id23">4.2.3. Loadフェーズ</a><a class="headerlink" href="#load" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Loadフェーズでは、データ変換用SQL文を実行し、データをデータベースやファイルに出力する。</p>
+<dl class="docutils">
+<dt>データのLoad方法の選択</dt>
+<dd><p class="first">本機能では出力先などに応じて以下のLoad方法を提供している。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ロード方法</th>
+<th class="head">内容</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ファイル出力</td>
+<td><p class="first">ファイルに出力する場合に使用する。</p>
+<p class="last">詳細は <a class="reference internal" href="#etl-load-file"><span>Loadフェーズでファイルにデータを出力する</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>データベースの洗い替え</td>
+<td><p class="first">ロード先テーブルのデータを削除後にワークテーブルのデータを登録する場合に使用する。</p>
+<p class="last">詳細は <a class="reference internal" href="#etl-load-replace-database"><span>Loadフェーズでデータベースのデータの洗い替えを行う</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-even"><td>データベースのマージ</td>
+<td><p class="first">ロード先テーブルにワークテーブルのデータをマージする場合に使用する。</p>
+<p>キーが一致するデータが存在する場合は更新処理が行われ、存在しない場合は登録処理が行われる。</p>
+<p>マージモードに対応しているデータベースは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/generator/MergeSqlGeneratorFactory.html" title="nablarch.etl.generator.MergeSqlGeneratorFactory">MergeSqlGeneratorFactory</a> を参照。</p>
+<p class="last">詳細は <a class="reference internal" href="#etl-load-merge-database"><span>Loadフェーズでデータベースのデータのマージを行う</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>データベースへの登録</td>
+<td><p class="first">Chunkステップを使用してデータベースのテーブルにデータを登録する場合に使用する。</p>
+<p>SQLだけでは編集処理を行えない場合にChunkステップのprocessorを追加することで、Java側で編集処理を行えるメリットがある。</p>
+<p class="last">詳細は <a class="reference internal" href="#etl-load-insert-database"><span>Loadフェーズでデータベースへの登録を行う</span></a> を参照</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id24">4.3. ETLを使用するバッチの設計ポイント</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="etl-load-file-detail">
+<span id="id6"></span><h3><a class="toc-backref" href="#id25">4.3.1. ファイル取り込み処理</a><a class="headerlink" href="#etl-load-file-detail" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイルを本テーブルに取り込む際の処理の流れは下の図のようになる。</p>
+<p>ワークテーブルやエラーテーブルなどの設計が誤っていると実装が出来ないため、本章の内容を理解し設計を行うこと。</p>
+<a class="reference internal image-reference" href="../../_images/file_to_db_detail.png"><img alt="../../_images/file_to_db_detail.png" src="../../_images/file_to_db_detail.png" /></a>
+<dl class="docutils" id="etl-worktable-point">
+<dt>ワークテーブル</dt>
+<dd><p class="first">取り込み対象のファイルの内容を保持するテーブル。</p>
+<p>ワークテーブルは、 <a class="reference internal" href="#etl-extract-phase"><span>Extractフェーズ</span></a> で取り込み対象ファイルの内容がロードされ、 <a class="reference internal" href="#etl-transform-phase"><span>Transformフェーズ</span></a> 及び <a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> の入力テーブルとなる。</p>
+<dl class="docutils">
+<dt>ファイル内の各項目に対応したカラムについて</dt>
+<dd><p class="first">上記図の通りファイル内の項目に対応したカラムは、不正な値 <a class="footnote-reference" href="#invalid-file" id="id7">[1]</a> であってもワークテーブルにロードできるよう以下の指針に従い設計すること。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>カラムの型</td>
+<td><p class="first">原則可変長の文字列型を使用する。</p>
+<p class="last">ただし、ファイル内のバイナリデータを保存するカラムに関しては、文字列型に変換出来ないためバイナリ型を使用する。</p>
+</td>
+</tr>
+<tr class="row-even"><td>カラムのデータ長</td>
+<td><p class="first">CSVなどの可変長ファイルは、ファイル内の各項目の桁数が不明である。このため、想定外の桁数でもワークテーブルにロードできるよう、データベースで定義可能な最も大きい値とする。</p>
+<p class="last">固定長の場合は決められた長さで各項目を区切るため、項目長をカラムのデータ長として使用する。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="last docutils" id="etl-line-number-col">
+<dt>行番号を格納するカラムについて</dt>
+<dd><p class="first">ファイルの行番号を保持するカラムを必ず定義する。カラム名は、 <code class="docutils literal"><span class="pre">LINE_NUMBER</span></code> とし整数型として定義する。
+行番号カラムは後続のフェーズで以下のように使用するため必ず必要となる。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>フェーズ</td>
+<td>利用目的</td>
+</tr>
+<tr class="row-even"><td>Transform</td>
+<td><a class="reference internal" href="#etl-transform-validation"><span>バリデーション</span></a> 時に、バリデーションエラーが発生した行番号をログに出力する際に使用する。
+また、ワークテーブルからエラーが発生したレコードを削除する際の条件として使用する。</td>
+</tr>
+<tr class="row-odd"><td>Load</td>
+<td><a class="reference internal" href="#etl-load-replace-database"><span>洗い替え</span></a> 及び <a class="reference internal" href="#etl-load-merge-database"><span>マージ</span></a> 処理でコミット間隔の制御を行う際に使用する。</td>
+</tr>
+</tbody>
+</table>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p>行番号カラムは本テーブルにはロードする必要がない。</p>
+<p><a class="reference internal" href="#etl-load-insert-database"><span>データベースへの登録</span></a> を使用する場合、本テーブルに対応したEntityからSQLが自動生成されるため、行番号カラムは自動的に除外される。
+<a class="reference internal" href="#etl-load-replace-database"><span>洗い替え</span></a> 及び <a class="reference internal" href="#etl-load-merge-database"><span>マージ</span></a> を使用する場合は、ワークテーブルから取得するSQLのSELECT句には行番号カラムを含めないようにすること。</p>
+<p class="last">上記以外の方法を使用して本テーブルにデータをロードする場合は、行番号を除外するよう設計及び実装を行うこと。</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>エラーテーブル</dt>
+<dd><p class="first"><a class="reference internal" href="#etl-transform-validation"><span>バリデーション</span></a> 時にエラーとなったレコードの退避先テーブル。</p>
+<p class="last">エラーテーブルは、ワークテーブルと全く同じレイアウトとすること。</p>
+</dd>
+<dt>本テーブル</dt>
+<dd><p class="first">本テーブルはアプリケーションの要件に従い設計する。ワークテーブルから本テーブルへデータをロードする際の変換処理は、 <a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> にて実施する。
+<a class="reference internal" href="#etl-line-number-col"><span>行番号カラム</span></a> で説明したように、行番号を保持するカラムは不要である。</p>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計ポイント</span></a> で説明したようにワークテーブルの各カラムの型は基本的に文字列型として定義する。
+このため、本テーブルに取り込む際には型変換が必要となる。</p>
+<p class="last"><a class="reference internal" href="#etl-load-insert-database"><span>データベースへの登録</span></a> を使用する場合は、本テーブルに対応したEntityの属性の型定義に従い自動的に型変換が行われる。
+<a class="reference internal" href="#etl-load-replace-database"><span>洗い替え</span></a> 及び <a class="reference internal" href="#etl-load-merge-database"><span>マージ</span></a> を使用する場合は、
+ワークテーブルからのデータ取得時のSQLで明示的な型変換を行う必要がある。
+明示的な型変換を行わなかった場合、データベースにより暗黙的な型変換が行われるため注意すること。</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id26">4.3.2. ファイル出力処理</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本テーブルの内容をファイルに出力する際の処理の流れは下の図のようになる。
+<a class="reference internal" href="#etl-load-file-detail"><span>ファイル取り込み処理</span></a> とは異なり、ファイル出力処理には設計時の注意点などはない。
+要件に従い、本テーブル及びファイルレイアウトの設計を行い、 <a class="reference internal" href="#etl-load-file"><span>ファイル出力</span></a> 時にSQLを使用して値の編集などを行う。</p>
+<a class="reference internal image-reference" href="../../_images/db_to_file_detail.png"><img alt="../../_images/db_to_file_detail.png" src="../../_images/db_to_file_detail.png" /></a>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id27">4.4. 使用方法</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="etl-job">
+<h3><a class="toc-backref" href="#id28">4.4.1. ETL JOBを実行するための設定を行う</a><a class="headerlink" href="#etl-job" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ETL JOBを実行するためには以下の設定ファイルが必要となる。</p>
+<img alt="../../_images/setting_file.png" src="../../_images/setting_file.png" />
+<dl class="docutils">
+<dt>ETL用環境設定ファイル</dt>
+<dd><p class="first">読み込むファイルパスなどの環境依存値の設定を行うファイル。</p>
+<p class="last">詳細は、 <a class="reference internal" href="#etl-common-configuration"><span>ETL用環境設定ファイルを作成する</span></a> を参照。</p>
+</dd>
+<dt>JOB定義ファイル</dt>
+<dd><p class="first">ETL JOBのJOB構成を定義するファイル。</p>
+<p class="last">詳細は、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> および <a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352に準拠したバッチアプリケーション</span></a> 及び <a class="reference external" href="https://jcp.org/en/jsr/detail?id=352">JSR352 Specification</a> を参照。</p>
+</dd>
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB毎に必要となる各フェーズ(Extract/Transform/Load)の設定を行うファイル。</p>
+<p class="last">詳細は、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> を参照。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="etl-common-configuration">
+<span id="id10"></span><h3><a class="toc-backref" href="#id29">4.4.2. ETL用環境設定ファイルを作成する</a><a class="headerlink" href="#etl-common-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>環境依存値はシステムリポジトリ機能の環境設定ファイルに設定する。
+設定方法は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
+<p>ETLでは以下の環境依存値を設定する。</p>
+<dl class="docutils">
+<dt>ファイル入力を行う場合</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>nablarch.etl.inputFileBasePath</td>
+<td>入力ファイルを配置するディレクトリのパス</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>ファイル出力を行う場合</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>nablarch.etl.outputFileBasePath</td>
+<td>出力ファイルを配置するディレクトリのパス</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt><a class="reference internal" href="#etl-extract-sql-loader"><span>Oracle SQL*Loaderを使用したデータのロード</span></a> を行う場合</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>nablarch.etl.sqlLoaderControlFileBasePath</td>
+<td>ctlファイルを配置するディレクトリのパス</td>
+</tr>
+<tr class="row-even"><td>nablarch.etl.sqlLoaderOutputFileBasePath</td>
+<td>実行ログを出力するディレクトリのパス</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="jobetljob">
+<span id="etl-json-configuration"></span><h3><a class="toc-backref" href="#id30">4.4.3. JOB定義ファイルとETL用JOB設定ファイルを作成する</a><a class="headerlink" href="#jobetljob" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ETL用JOB設定ファイルを作成する際は、ファイル名を <code class="docutils literal"><span class="pre">&lt;&lt;JOB</span> <span class="pre">ID&gt;&gt;.json</span></code> とし、<code class="docutils literal"><span class="pre">META-INF/etl-config/</span></code> 配下に配置する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">ETL用JOB設定ファイルを配置するディレクトリのパスを変更したい場合は、 <a class="reference internal" href="#etl-loader-dir-path"><span>ETL用JOB設定ファイルを配置するディレクトリのパスを変更する</span></a> を参照。</p>
+</div>
+<p>ジョブ設定ファイルは、以下からテンプレートをダウンロードし、ファイル内のコメントを参照し編集すること。</p>
+<dl class="docutils">
+<dt>Oracle SQL*Loaderを使用したファイル取り込みテンプレート</dt>
+<dd><dl class="first last docutils">
+<dt><a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> で洗い替えモードを使用する場合のテンプレート</dt>
+<dd><ul class="first last simple">
+<li><a class="reference download internal" href="../../_downloads/sql_loader_replace.xml" download=""><code class="xref download docutils literal"><span class="pre">JOB定義ファイルのテンプレート</span></code></a></li>
+<li><a class="reference download internal" href="../../_downloads/sql_loader_replace_config.json" download=""><code class="xref download docutils literal"><span class="pre">ETL用JOB設定ファイルテンプレート</span></code></a></li>
+</ul>
+</dd>
+<dt><a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> でマージモードを使用する場合のテンプレート</dt>
+<dd><ul class="first last simple">
+<li><a class="reference download internal" href="../../_downloads/sql_loader_merge.xml" download=""><code class="xref download docutils literal"><span class="pre">JOB定義ファイルのテンプレート</span></code></a></li>
+<li><a class="reference download internal" href="../../_downloads/sql_loader_merge_config.json" download=""><code class="xref download docutils literal"><span class="pre">ETL用JOB設定ファイルテンプレート</span></code></a></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>JSR352のChunkを使用したファイル取り込みのテンプレート</dt>
+<dd><ul class="first last simple">
+<li><a class="reference download internal" href="../../_downloads/chunk_replace.xml" download=""><code class="xref download docutils literal"><span class="pre">JOB定義ファイルのテンプレート</span></code></a></li>
+<li><a class="reference download internal" href="../../_downloads/chunk_replace.json" download=""><code class="xref download docutils literal"><span class="pre">ETL用JOB設定ファイルテンプレート</span></code></a></li>
+</ul>
+</dd>
+<dt>ファイル出力のテンプレート</dt>
+<dd><ul class="first last simple">
+<li><a class="reference download internal" href="../../_downloads/file_output.xml" download=""><code class="xref download docutils literal"><span class="pre">JOB定義ファイルのテンプレート</span></code></a></li>
+<li><a class="reference download internal" href="../../_downloads/file_output.json" download=""><code class="xref download docutils literal"><span class="pre">ETL用JOB設定ファイルテンプレート</span></code></a></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">テンプレートで要件を満たせない場合には、テンプレートをベースにステップの追加や変更などを行うことで対応すること。
+例えば、Chunkステップを用いてファイルをワークテーブルにロードし、マージモードを使用して本テーブルにデータをロードしたい場合には、
+SQL*LoaderとChunkのテンプレートから必要なものを組み合わせてジョブを構成すると良い。</p>
+</div>
+</div>
+<div class="section" id="etl-truncate">
+<span id="id11"></span><h3><a class="toc-backref" href="#id31">4.4.4. テーブルクリーニングステップを利用してテーブルのデータを削除する</a><a class="headerlink" href="#etl-truncate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ETLの処理の中で、テーブルのクリーニング(全削除)が必要となるシーンがある。
+例えば、ワークテーブルへのデータロード(Extract)の前にワークテーブルを空にしておきたい場合が該当する。</p>
+<p>このような場合は、テーブルクリーニング用のステップを定義することで対応する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Oracle SQL*Loaderを使用したファイル取り込みテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils">
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>batchletとしてステップを定義する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">tableCleaningBatchlet</a> を設定する。</li>
+</ul>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;truncate&quot;</span> <span class="na">next=</span><span class="s">&quot;extract&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="nt">&lt;batchlet</span> <span class="na">ref=</span><span class="s">&quot;tableCleaningBatchlet&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">TableCleaningBatchlet</a> は、
+<a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> 機能を使用してデータのクリーニングを行う。
+このため、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用するための設定を事前に行う必要がある。</p>
+</div>
+</dd>
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">truncate</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>entities</td>
+<td><p class="first">削除対象のテーブルに対応したEntityクラスの完全修飾名を配列で設定する。</p>
+<p class="last">Entityクラスは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> のルールに従い作成すること。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;truncate&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;truncate&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;entities&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;sample.SampleEntity1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sample.SampleEntity2&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="extract-chunk">
+<span id="etl-extract-chunk"></span><h3><a class="toc-backref" href="#id32">4.4.5. Extractフェーズ(Chunk)を使用する</a><a class="headerlink" href="#extract-chunk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Chunkを使用したExtractフェーズの実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">ワークテーブルの内容を事前に削除する必要がある場合は、Chunkステップの前処理として <a class="reference internal" href="#etl-truncate"><span>テーブルのクリーニング</span></a> を行うようステップを定義すること。</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-extract-chunk-bean">
+<dt>入力ファイルとワークテーブルに対応したJava Beansの作成</dt>
+<dd><p class="first">入力ファイルとワークテーブルに対応したJava Beansを以下のルールに従い作成する。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>行番号を保持する属性</td>
+<td><p class="first"><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計について</span></a> で説明したように、ワークテーブルには行番号を必ず保持させる。
+このため、ワークテーブルに対応したJava Beansにも行番号を保持するための属性を定義する。</p>
+<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
+</td>
+</tr>
+<tr class="row-even"><td>入力ファイルのレイアウトを定義</td>
+<td>ファイルを読み込む <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用する。
+このため、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を参照しアノテーションを設定すること。</td>
+</tr>
+<tr class="row-odd"><td>ワークテーブルのテーブルに関する定義</td>
+<td>データベースに出力する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">DatabaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用する。
+このため、 詳細は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照しアノテーションを設定すること。</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>Chunkとしてステップを定義する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
+</ul>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;extract&quot;</span> <span class="na">next=</span><span class="s">&quot;validation&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="c">&lt;!-- item-countは適宜変更すること --&gt;</span>
+  <span class="nt">&lt;chunk</span> <span class="na">item-count=</span><span class="s">&quot;3000&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;reader</span> <span class="na">ref=</span><span class="s">&quot;fileItemReader&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;writer</span> <span class="na">ref=</span><span class="s">&quot;databaseItemWriter&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/chunk&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用してファイルを読み込む。
+ファイルの行番号については、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beansの作成</span></a> に従って作成することで自動的に保持される。
+詳細は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind-line-number"><span>ファイルのデータの論理行番号を取得する</span></a> を参照</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用してワークテーブルにデータを登録する。</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="etl-extract-chunk-configuration">
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">file2db</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-extract-chunk-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>fileName</td>
+<td><p class="first">入力ファイル名を設定する。</p>
+<p class="last">入力ファイルの配置ディレクトリは、 <a class="reference internal" href="#etl-common-configuration"><span>ETL用環境設定ファイルを作成する</span></a> を参照。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;extract&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;file2db&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.Sample&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fileName&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.csv&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>メッセージの定義</dt>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
+例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
+詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
+</dl>
+</div>
+<div class="section" id="extract-sql-loader">
+<span id="etl-extract-sql-loader"></span><h3><a class="toc-backref" href="#id33">4.4.6. Extractフェーズ(SQL*Loader版)を使用する</a><a class="headerlink" href="#extract-sql-loader" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>SQL*Loaderを使用したExtractフェーズの実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">ワークテーブルの内容を事前に削除する必要がある場合は、SQL*Loaderの設定にてtruncateを実施すると良い。
+詳細は、Oracle社のマニュアルを参照。</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Oracle SQL*Loaderを使用したファイル取り込みテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-extract-sql-loader-bean">
+<dt>入力ファイルとワークテーブルに対応したJava Beansの作成</dt>
+<dd><p class="first">入力ファイルとワークテーブルに対応したJava Beansを以下のルールに従い作成する。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>行番号を保持する属性</td>
+<td><p class="first"><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計について</span></a> で説明したように、ワークテーブルには行番号を必ず保持させる。
+このため、ワークテーブルに対応したJava Beansにも行番号を保持するための属性を定義する。</p>
+<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
+</td>
+</tr>
+<tr class="row-even"><td>入力ファイルのレイアウトを定義</td>
+<td><p class="first"><a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を参照しファイルのレイアウト定義を表すアノテーションを設定する。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、SQL*Loader用のコントロールファイルを自動生成する際に使用する。
+詳細は、 <a class="reference internal" href="#etl-extract-sql-loader-control-file"><span>コントロールファイルの作成</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>ワークテーブルのテーブルに関する定義</td>
+<td><p class="first"><a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照し、ワークテーブルの定義を表すアノテーションを設定する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、
+<a class="reference internal" href="#etl-transform-validation"><span>バリデーション</span></a> 時に使用するため設定が必要となる。</p>
+<p class="last">また、SQL*Loader用のコントロールファイルを自動生成する際に使用する。
+詳細は、 <a class="reference internal" href="#etl-extract-sql-loader-control-file"><span>コントロールファイルの作成</span></a> を参照。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>batchletとしてステップを定義する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">sqlLoaderBatchlet</a> を設定する。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;extract&quot;</span> <span class="na">next=</span><span class="s">&quot;validation&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="nt">&lt;batchlet</span> <span class="na">ref=</span><span class="s">&quot;sqlLoaderBatchlet&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>ETL用JOB設定ファイル</dt>
+<dd><a class="reference internal" href="#etl-extract-chunk-configuration"><span>Extract(Chunk版)のETL用JOB設定ファイル</span></a> を参照。</dd>
+<dt>接続先データベースの設定</dt>
+<dd><p class="first"><a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository"><span>コンポーネント設定ファイル</span></a> に以下の設定を行う。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sqlLoaderConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.etl.SqlLoaderConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- 接続ユーザ --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userName&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.db.user}&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- 接続パスワード --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.db.password}&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- 接続先データベース名 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;databaseName&quot;</span> <span class="na">value=</span><span class="s">&quot;${sqlloader.database}&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<dl class="last docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コンポーネント名は <code class="docutils literal"><span class="pre">sqlLoaderConfig</span></code> とする。</li>
+<li>設定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderConfig.html" title="nablarch.etl.SqlLoaderConfig">nablarch.etl.SqlLoaderConfig</a> とする。</li>
+<li>接続先データベースの情報は、環境毎に変わる可能性があるため <a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository-environment-configuration"><span>環境設定ファイル</span></a> に定義し、
+<a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository-user-environment-configuration"><span>環境設定ファイルの値を参照</span></a> するとよい。</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="etl-extract-sql-loader-control-file">
+<dt>コントロールファイルの作成</dt>
+<dd><p class="first">コントロールファイルは、 <a class="reference internal" href="etl_maven_plugin.html#etl-maven-plugin"><span>ETL Mavenプラグイン</span></a> を使用して <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> から自動生成できる。
+ワークテーブルへの行番号の挿入に関しても、 <a class="reference internal" href="etl_maven_plugin.html#etl-maven-plugin"><span>ETL Mavenプラグイン</span></a> を使用した場合は、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> の定義を元に自動的に設定される。</p>
+<p class="last"><a class="reference internal" href="etl_maven_plugin.html#etl-maven-plugin"><span>ETL Mavenプラグイン</span></a> を使用せずにコントロールファイルを作成する場合は、ワークテーブルに対する行番号の設定を必ず行うこと。</p>
+</dd>
+<dt>SQL*Loaderに関わるファイルについて</dt>
+<dd><p class="first">SQL*Loaderに関わるファイルの命名ルールは以下の通り。
+なお、これらのファイルの配置ディレクトリの設定は、 <a class="reference internal" href="#etl-common-configuration"><span>ETL用環境設定ファイルを作成する</span></a> を参照。</p>
+<table border="1" class="colwidths-given white-space-normal last docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ファイルの種類</th>
+<th class="head">ファイル名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>コントロールファイル</td>
+<td><p class="first">ファイル名は、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.ctl</span></code></p>
+<p class="last">例えば、クラス名が <code class="docutils literal"><span class="pre">sample.SampleFile</span></code> の場合、コントロールファイルの名前は <code class="docutils literal"><span class="pre">SampleFile.ctl</span></code> となる。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>不良ファイル</td>
+<td><p class="first">ファイル名は、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.bad</span></code></p>
+<p class="last">例えば、クラス名が <code class="docutils literal"><span class="pre">sample.SampleFile</span></code> の場合、コントロールファイルの名前は <code class="docutils literal"><span class="pre">SampleFile.bad</span></code> となる。</p>
+</td>
+</tr>
+<tr class="row-even"><td>ログファイル</td>
+<td><p class="first">ファイル名は、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beans</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.log</span></code></p>
+<p class="last">例えば、クラス名が <code class="docutils literal"><span class="pre">sample.SampleFile</span></code> の場合、コントロールファイルの名前は <code class="docutils literal"><span class="pre">SampleFile.log</span></code> となる。</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>メッセージの定義</dt>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
+例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
+詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
+</dl>
+</div>
+<div class="section" id="etl-transform-validation">
+<span id="id12"></span><h3><a class="toc-backref" href="#id34">4.4.7. Transformフェーズでバリデーションを行う</a><a class="headerlink" href="#etl-transform-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Transformフェーズで行うバリデーションの実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils">
+<dt>バリデーションエラーとなったレコードを格納するテーブルを定義する</dt>
+<dd>バリデーションエラーとなったレコードはワークテーブルからエラーテーブルに移送(ワークテーブルからは削除)される。
+このため、ワークテーブルと全く同じレイアウトでエラーレコード格納用テーブルを定義する。</dd>
+</dl>
+<dl class="docutils" id="etl-transform-validation-error-entity">
+<dt>エラーテーブルに対応したEntityを作成する</dt>
+<dd><p class="first">エラーレコード格納用のテーブルは、ワークテーブルと全く同じレイアウトとなるため、
+<a class="reference internal" href="#etl-extract-chunk-bean"><span>Extract(Chunk版)</span></a> や <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>Extract(SQL*Loader版)</span></a>
+で作成したワークテーブルに対応するJava Beansを継承して作成すると良い。</p>
+<p class="last">継承した場合、Entityであることを表す <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html" title="javax.persistence.Entity">Entity</a> アノテーションと、
+テーブル名を設定する <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/Table.html" title="javax.persistence.Table">Table</a> アノテーションを設定する。</p>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>batchletとしてステップを定義する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">validationBatchlet</a> を設定する。</li>
+<li><code class="docutils literal"><span class="pre">progressLogOutputInterval</span></code> プロパティに、進捗ログの出力間隔を設定する。指定しない場合のデフォルトは <code class="docutils literal"><span class="pre">1000</span></code> 。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;validation&quot;</span> <span class="na">next=</span><span class="s">&quot;load&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="nt">&lt;batchlet</span> <span class="na">ref=</span><span class="s">&quot;validationBatchlet&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;progressLogOutputInterval&quot;</span> <span class="na">value=</span><span class="s">&quot;5000&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;/batchlet&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">validation</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-extract-chunk-bean"><span>Extract(chunk版)</span></a> や <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>Extract(SQL*Loader版)</span></a>
+で作成したワークテーブルに対応するJava Beansの完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>errorEntity</td>
+<td><a class="reference internal" href="#etl-transform-validation-error-entity"><span>エラーテーブルに対応したEntity</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-odd"><td>mode</td>
+<td><p class="first">バリデーションエラー発生時のJOBの継続モードを設定する。</p>
+<p><code class="docutils literal"><span class="pre">mode</span></code> を設定しなかった場合は、デフォルトの動作として <code class="docutils literal"><span class="pre">ABORT</span></code> となる。</p>
+<dl class="last docutils">
+<dt>ABORT</dt>
+<dd><code class="docutils literal"><span class="pre">ABORT</span></code> を設定した場合、バリデーションエラーが発生すると後続のステップは実行せずに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。
+なお、異常終了のタイミングは全てのレコードのバリデーション後となる。</dd>
+<dt>CONTINUE</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">CONTINUE</span></code> を設定した場合、バリデーションエラーが発生しても後続のステップが実行される。</p>
+<p class="last">なお、JOBの <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/batch/runtime/context/JobContext.html#setExitStatus-java.lang.String-" title="javax.batch.runtime.context.JobContext.setExitStatus(java.lang.String)">Exit Status</a> には、 <code class="docutils literal"><span class="pre">WARNING</span></code> を設定する。
+<code class="docutils literal"><span class="pre">WARNING</span></code> の詳細は、 <a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/feature_details/run_batch_application.html#jsr352-exitcode-batch-application"><span>バッチアプリケーションの終了コード</span></a> を参照</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>errorLimit</td>
+<td><p class="first">許容するエラー数を設定する。</p>
+<p><code class="docutils literal"><span class="pre">mode</span></code> の設定に関係なく、許容するエラー数を超えるバリデーションエラーが発生したタイミングで、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。</p>
+<p class="last">なお設定を省略した場合や負数を設定した場合は、本設定は無効となる。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;validation&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;com.nablarch.example.app.batch.ee.dto.ZipCodeDto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;errorEntity&quot;</span><span class="o">:</span> <span class="s2">&quot;com.nablarch.example.app.batch.ee.dto.ZipCodeErrorEntity&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mode&quot;</span><span class="o">:</span> <span class="s2">&quot;ABORT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;errorLimit&quot;</span> <span class="o">:</span> <span class="mi">100</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>メッセージの定義</dt>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">ValidationBatchlet</a> は、バリデーションエラーが発生したことをログに出力する。
+ログに出力する文言は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
+詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
+</dl>
+</div>
+<div class="section" id="etl-load-file">
+<span id="id13"></span><h3><a class="toc-backref" href="#id35">4.4.8. Loadフェーズでファイルにデータを出力する</a><a class="headerlink" href="#etl-load-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Loadフェーズで行うファイル出力の実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>ファイル出力のテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-load-file-bean">
+<dt>出力先ファイルに対応したJava Beansの作成</dt>
+<dd><p class="first">出力先ファイルに対応したJava Beansを作成する。</p>
+<p class="last">レイアウト定義は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を参照しアノテーションを設定する。</p>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-file-sql">
+<dt>編集用SQLの作成</dt>
+<dd><p class="first">ファイルに出力するデータを取得するSQLを作成する。なお、編集処理が必要な場合には、このSQLにて関数などを用いて実施する。</p>
+<p>作成したSQLは、以下のファイルに保存する。SQLファイル内でのSQLの記述方法は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。
+なお、本機能では外部から条件などのパラメータを与えることは出来ない。</p>
+<ul class="simple">
+<li>ファイル名は、 <a class="reference internal" href="#etl-load-file-bean"><span>出力先ファイルに対応したJava Beans</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.sql</span></code></li>
+<li>ファイルは、クラスパス配下の <a class="reference internal" href="#etl-load-file-bean"><span>出力先ファイルに対応したJava Beans</span></a> のパッケージと同じディレクトリに配置する</li>
+</ul>
+<p>例えば、 <a class="reference internal" href="#etl-load-file-bean"><span>出力先ファイルに対応したJava Beans</span></a> の完全修飾名が、 <code class="docutils literal"><span class="pre">nablarch.sample.SampleFileDto</span></code> の場合、
+ファイルの配置先はクラスパス配下の <code class="docutils literal"><span class="pre">nablarch/sample</span></code> ディレクトリ配下となる。
+ファイル名は、 <code class="docutils literal"><span class="pre">SampleFileDto.sql</span></code> となる。</p>
+<p class="last">SQLファイル内に定義するSQLIDは任意の値を指定する。SQLIDは <a class="reference internal" href="#etl-load-file-configuration"><span>ETL用JOB設定ファイル</span></a> で使用する。</p>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>Chunkとしてステップを定義する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">fileItemWriter</a>  を設定する。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">idは適宜変更すること</span>
+<span class="c">load後に後続のステップを実行したい場合は、nextを定義し次のステップを実行すること</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;load&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="c">&lt;!-- item-countは適宜変更すること --&gt;</span>
+  <span class="nt">&lt;chunk</span> <span class="na">item-count=</span><span class="s">&quot;3000&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;reader</span> <span class="na">ref=</span><span class="s">&quot;databaseItemReader&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;writer</span> <span class="na">ref=</span><span class="s">&quot;fileItemWriter&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/chunk&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-file-configuration">
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">db2file</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-load-file-bean"><span>出力先ファイルに対応したJava Beans</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>fileName</td>
+<td><p class="first">出力するファイルのファイル名を設定する。</p>
+<p class="last">ファイルの出力先ディレクトリは、 <a class="reference internal" href="#etl-common-configuration"><span>ETL用環境設定ファイルを作成する</span></a> を参照。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>sqlId</td>
+<td><a class="reference internal" href="#etl-load-file-sql"><span>編集用のSQL作成</span></a> で設定したSQLIDを設定する。</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;load&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;db2file&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.SampleDto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fileName&quot;</span><span class="o">:</span> <span class="s2">&quot;output.csv&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sqlId&quot;</span><span class="o">:</span> <span class="s2">&quot;SELECT_ALL&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>メッセージの定義</dt>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">FileItemWriter</a> は、出力先ファイルを開けない場合例外を送出する。
+例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
+詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
+</dl>
+</div>
+<div class="section" id="etl-load-replace-database">
+<span id="id14"></span><h3><a class="toc-backref" href="#id36">4.4.9. Loadフェーズでデータベースのデータの洗い替えを行う</a><a class="headerlink" href="#etl-load-replace-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Loadフェーズで行うデータベース上のテーブルデータの洗い替えの実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Loadフェーズで洗い替えモードを使用する場合のテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-load-replace-database-entity">
+<dt>洗い替え対象テーブルに対応したEntityを作成する</dt>
+<dd><p class="first">洗い替え対象テーブルの定義を表すEntityを作成する。</p>
+<p class="last">テーブルの定義は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照しアノテーションを設定する。</p>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-replace-database-sql">
+<dt>編集用SQLの作成</dt>
+<dd><p class="first">データベースのテーブルに登録するデータを取得するSQLを作成する。なお、編集処理が必要な場合には、このSQLにて関数などを用いて実施する。</p>
+<p>作成したSQLは、以下のファイルに保存する。SQLファイル内でのSQLの記述方法は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。
+なお、本機能では外部から条件などのパラメータを与えることは出来ない。</p>
+<ul class="simple">
+<li>ファイル名は、 <a class="reference internal" href="#etl-load-replace-database-entity"><span>洗い替え対象テーブルに対応したEntity</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.sql</span></code></li>
+<li>ファイルは、クラスパス配下の <a class="reference internal" href="#etl-load-replace-database-entity"><span>洗い替え対象テーブルに対応したEntity</span></a> のパッケージと同じディレクトリに配置する</li>
+</ul>
+<p>例えば、 <a class="reference internal" href="#etl-load-replace-database-entity"><span>洗い替え対象テーブルに対応したEntity</span></a> の完全修飾名が、 <code class="docutils literal"><span class="pre">nablarch.sample.SampleEntity</span></code> の場合、
+ファイルの配置先はクラスパス配下の <code class="docutils literal"><span class="pre">nablarch/sample</span></code> ディレクトリ配下となる。
+ファイル名は、 <code class="docutils literal"><span class="pre">SampleEntity.sql</span></code> となる。</p>
+<p class="last">SQLファイル内に定義するSQLIDは任意の値を指定する。SQLIDは <a class="reference internal" href="#etl-load-replace-database-configuration"><span>ETL用JOB設定ファイル</span></a> で使用する。</p>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>batchletとしてステップを定義する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DeleteInsertBatchlet.html" title="nablarch.etl.DeleteInsertBatchlet">deleteInsertBatchlet</a> を設定する。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">idは適宜変更すること</span>
+<span class="c">load後に後続のステップを実行したい場合は、nextを定義し次のステップを実行すること</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;load&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="nt">&lt;batchlet</span> <span class="na">ref=</span><span class="s">&quot;deleteInsertBatchlet&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-replace-database-configuration">
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">db2db</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-load-replace-database-entity"><span>洗い替え対象テーブルに対応したEntity</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>sqlId</td>
+<td><a class="reference internal" href="#etl-load-replace-database-sql"><span>編集用のSQLの作成</span></a> で設定したSQLIDを設定する。</td>
+</tr>
+<tr class="row-odd"><td>insertMode</td>
+<td><p class="first">データの登録(INSERT)時に使用するモードを設定する。設定を省略した場合は <code class="docutils literal"><span class="pre">NORMAL</span></code> モードで動作する。</p>
+<dl class="last docutils">
+<dt>NORMAL</dt>
+<dd><code class="docutils literal"><span class="pre">NORMAL</span></code> を設定した場合は、ヒント句の設定などは行わずデータの登録処理を行う。</dd>
+<dt>ORACLE_DIRECT_PATH</dt>
+<dd><code class="docutils literal"><span class="pre">ORACLE_DIRECT_PATH</span></code> を設定した場合、ヒント句を自動的に設定しダイレクトパスインサートモードにてデータの登録処理を行う。
+(Oracleデータベースの場合のみ有効)</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>updateSize.size</td>
+<td><p class="first">コミット間隔を設定する。</p>
+<p>コミット間隔を設定すると、INSERT～SELECTの実行をコミット間隔毎に分割して行う。
+なお、分割してSQLを実行するために、 <a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルに定義された行番号カラム</span></a> を使用する。
+このため、 <a class="reference internal" href="#etl-load-replace-database-sql"><span>編集用のSQL</span></a> には、行番号カラムを使用した範囲検索の条件を必ず設定する必要がある。
+付与する条件は、 <code class="docutils literal"><span class="pre">where</span> <span class="pre">line_number</span> <span class="pre">between</span> <span class="pre">?</span> <span class="pre">and</span> <span class="pre">?</span></code> となる。</p>
+<p>省略した場合(省略した場合は、 <code class="docutils literal"><span class="pre">updateSize</span></code> キー自体の定義を行わない)は、1回のINSERT～SELECTで全データの登録処理を行う。</p>
+<p class="last">本設定値を設定した場合は、 <code class="docutils literal"><span class="pre">updateSize.bean</span></code> も設定すること。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>updateSize.bean</td>
+<td><p class="first"><a class="reference internal" href="#etl-extract-chunk"><span>Extractフェーズ(Chunk版)</span></a> や <a class="reference internal" href="#etl-extract-sql-loader"><span>Extractフェーズ(SQL*Loader版)</span></a> で作成した
+ワークテーブルに対応したJava Beansの完全修飾名を設定する。</p>
+<p class="last">ここで設定したクラス名は、入力テーブル内の行番号カラムの中で最も大きい値を取得する際に、テーブル名を取得するために使用する。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;load&quot;</span><span class="o">:</span> <span class="p">{</span>
+   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;db2db&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.SampleEntity&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;sqlId&quot;</span><span class="o">:</span> <span class="s2">&quot;SELECT_ALL&quot;</span>
+   <span class="s2">&quot;insertMode&quot;</span> <span class="o">:</span> <span class="s2">&quot;NORMAL&quot;</span>
+   <span class="s2">&quot;updateSize&quot;</span><span class="o">:</span> <span class="p">{</span>
+     <span class="s2">&quot;size&quot;</span><span class="o">:</span> <span class="mi">5000</span>
+     <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.SampleWorkEntity&quot;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="etl-load-merge-database">
+<span id="id15"></span><h3><a class="toc-backref" href="#id37">4.4.10. Loadフェーズでデータベースのデータのマージを行う</a><a class="headerlink" href="#etl-load-merge-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Loadフェーズで行うデータベース上のデータのマージ処理の実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Loadフェーズでマージモードを使用する場合のテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-load-merge-database-entity">
+<dt>マージ対象テーブルに対応したEntityを作成する</dt>
+<dd><p class="first">マージ対象テーブルの定義を表すEntityを作成する。</p>
+<p class="last">テーブルの定義は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照しアノテーションを設定する。</p>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-merge-database-sql">
+<dt>編集用SQLの作成</dt>
+<dd><p class="first">データベースのテーブルにマージするデータを取得するSQLを作成する。なお、編集処理が必要な場合には、このSQLにて関数などを用いて実施する。</p>
+<p>作成したSQLは、以下のファイルに保存する。SQLファイル内でのSQLの記述方法は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。
+なお、本機能では外部から条件などのパラメータを与えることは出来ない。</p>
+<ul class="simple">
+<li>ファイル名は、 <a class="reference internal" href="#etl-load-merge-database-entity"><span>マージ対象テーブルに対応したEntity</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.sql</span></code></li>
+<li>ファイルは、クラスパス配下の <a class="reference internal" href="#etl-load-merge-database-entity"><span>マージ対象テーブルに対応したEntity</span></a> のパッケージと同じディレクトリに配置する</li>
+</ul>
+<p>例えば、 <a class="reference internal" href="#etl-load-merge-database-entity"><span>マージ対象テーブルに対応したEntity</span></a> の完全修飾名が、 <code class="docutils literal"><span class="pre">nablarch.sample.SampleEntity</span></code> の場合、
+ファイルの配置先はクラスパス配下の <code class="docutils literal"><span class="pre">nablarch/sample</span></code> ディレクトリ配下となる。
+ファイル名は、 <code class="docutils literal"><span class="pre">SampleEntity.sql</span></code> となる。</p>
+<p class="last">SQLファイル内に定義するSQLIDは任意の値を指定する。SQLIDは <a class="reference internal" href="#etl-load-merge-database-configuration"><span>ETL用JOB設定ファイル</span></a> で使用する。</p>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>batchletとしてステップを定義する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/MergeBatchlet.html" title="nablarch.etl.MergeBatchlet">mergeBatchlet</a> を設定する。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">  idは適宜変更すること</span>
+<span class="c">  load後に後続のステップを実行したい場合は、nextを定義し次のステップを実行すること</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;load&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="nt">&lt;batchlet</span> <span class="na">ref=</span><span class="s">&quot;mergeBatchlet&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-merge-database-configuration">
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">db2db</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-load-merge-database-entity"><span>マージ対象テーブルに対応したEntity</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>sqlId</td>
+<td><a class="reference internal" href="#etl-load-merge-database-sql"><span>編集用のSQL作成</span></a> で設定したSQLIDを設定する。</td>
+</tr>
+<tr class="row-odd"><td>mergeOnColumns</td>
+<td>マージ処理を行う際に、出力対象テーブルにデータが存在しているかをチェックする際に使用するカラム名を配列オブジェクトとして設定する。</td>
+</tr>
+<tr class="row-even"><td>updateSize.size</td>
+<td><p class="first">コミット間隔を設定する。</p>
+<p>コミット間隔を設定すると、マージ処理の実行をコミット間隔毎に分割して行う。
+なお、分割してSQLを実行するために、 <a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルに定義された行番号カラム</span></a> を使用する。
+このため、 <a class="reference internal" href="#etl-load-merge-database-sql"><span>編集用のSQL</span></a> には、行番号カラムを使用した範囲検索の条件を必ず設定する必要がある。
+付与する条件は、 <code class="docutils literal"><span class="pre">where</span> <span class="pre">line_number</span> <span class="pre">between</span> <span class="pre">?</span> <span class="pre">and</span> <span class="pre">?</span></code> となる。</p>
+<p>省略した場合(省略した場合は、 <code class="docutils literal"><span class="pre">updateSize</span></code> キー自体の定義を行わない)は、1回のマージ実行で全データの登録処理を行う。</p>
+<p class="last">本設定値を設定した場合は、 <code class="docutils literal"><span class="pre">updateSize.bean</span></code> も設定すること。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>updateSize.bean</td>
+<td><p class="first"><a class="reference internal" href="#etl-extract-chunk"><span>Extractフェーズ(Chunk版)</span></a> や <a class="reference internal" href="#etl-extract-sql-loader"><span>Extractフェーズ(SQL*Loader版)</span></a> で作成した
+ワークテーブルに対応したJava Beansの完全修飾名を設定する。</p>
+<p class="last">ここで設定したクラス名は、入力テーブル内の行番号カラムの中で最も大きい値を取得する際に、テーブル名を取得するために使用する。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;load&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;db2db&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.SampleEntity&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sqlId&quot;</span><span class="o">:</span> <span class="s2">&quot;SELECT_ALL&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mergeOnColumns&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;key1&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;updateSize&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;size&quot;</span><span class="o">:</span> <span class="mi">5000</span><span class="p">,</span>
+    <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.SampleWorkEntity&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="etl-load-insert-database">
+<span id="id16"></span><h3><a class="toc-backref" href="#id38">4.4.11. Loadフェーズでデータベースへの登録を行う</a><a class="headerlink" href="#etl-load-insert-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Loadフェーズで行うデータベースへの登録の実装と設定について解説する。</p>
+<div class="admonition tip">
+<p class="first admonition-title">ちなみに</p>
+<p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
+</div>
+<dl class="docutils" id="etl-load-insert-database-entity">
+<dt>登録対象テーブルに対応したEntityを作成する</dt>
+<dd><p class="first">登録対象テーブルの定義を表すEntityを作成する。</p>
+<p class="last">テーブルの定義は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照しアノテーションを設定する。</p>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-insert-database-sql">
+<dt>登録用SQLの作成</dt>
+<dd><p class="first">データベースのテーブルに登録するデータを取得するSQLを作成する。なお、編集処理が必要な場合には、このSQLにて関数などを用いて実施する。</p>
+<p>作成したSQLは、以下のファイルに保存する。SQLファイル内でのSQLの記述方法は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。
+なお、本機能では外部から条件などのパラメータを与えることは出来ない。</p>
+<ul class="simple">
+<li>ファイル名は、 <a class="reference internal" href="#etl-load-insert-database-entity"><span>登録対象テーブルに対応したEntity</span></a> のクラス名 + <code class="docutils literal"><span class="pre">.sql</span></code></li>
+<li>ファイルは、クラスパス配下の <a class="reference internal" href="#etl-load-insert-database-entity"><span>登録対象テーブルに対応したEntity</span></a> のパッケージと同じディレクトリに配置する</li>
+</ul>
+<p>例えば、 <a class="reference internal" href="#etl-load-insert-database-entity"><span>登録対象テーブルに対応したEntity</span></a> の完全修飾名が、 <code class="docutils literal"><span class="pre">nablarch.sample.SampleEntity</span></code> の場合、
+ファイルの配置先はクラスパス配下の <code class="docutils literal"><span class="pre">nablarch/sample</span></code> ディレクトリ配下となる。
+ファイル名は、 <code class="docutils literal"><span class="pre">SampleEntity.sql</span></code> となる。</p>
+<p class="last">SQLファイル内に定義するSQLIDは任意の値を指定する。SQLIDは <a class="reference internal" href="#etl-load-insert-database-configuration"><span>ETL用JOB設定ファイル</span></a> で使用する。</p>
+</dd>
+<dt>JOB定義</dt>
+<dd><ul class="first simple">
+<li>Chunkとしてステップを定義する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">  idは適宜変更すること</span>
+<span class="c">  load後に後続のステップを実行したい場合は、nextを定義し次のステップを実行すること</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;load&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;listeners&gt;</span>
+    <span class="c">&lt;!-- リスナーの設定は省略 --&gt;</span>
+  <span class="nt">&lt;/listeners&gt;</span>
+  <span class="c">&lt;!-- item-countは適宜変更すること --&gt;</span>
+  <span class="nt">&lt;chunk</span> <span class="na">item-count=</span><span class="s">&quot;3000&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;reader</span> <span class="na">ref=</span><span class="s">&quot;databaseItemReader&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;writer</span> <span class="na">ref=</span><span class="s">&quot;databaseItemWriter&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/chunk&gt;</span>
+<span class="nt">&lt;/step&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="etl-load-insert-database-configuration">
+<dt>ETL用JOB設定ファイル</dt>
+<dd><p class="first">JOB定義のステップ名(step id)に対応したキーに対して、以下の設定値を持つオブジェクトを設定する。</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">キー</th>
+<th class="head">設定する値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>type</td>
+<td><code class="docutils literal"><span class="pre">db2db</span></code> を固定で設定する。</td>
+</tr>
+<tr class="row-odd"><td>bean</td>
+<td><a class="reference internal" href="#etl-load-insert-database-entity"><span>登録対象テーブルに対応したEntity</span></a> の完全修飾名を設定する。</td>
+</tr>
+<tr class="row-even"><td>sqlId</td>
+<td><a class="reference internal" href="#etl-load-insert-database-sql"><span>登録用のSQL作成</span></a> で設定したSQLIDを設定する。</td>
+</tr>
+</tbody>
+</table>
+<dl class="last docutils">
+<dt>設定例</dt>
+<dd><div class="first last highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;extract&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;db2db&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bean&quot;</span><span class="o">:</span> <span class="s2">&quot;sample.Sample&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sqlId&quot;</span><span class="o">:</span> <span class="s2">&quot;SELECT_ALL&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="etl-message">
+<span id="id17"></span><h3><a class="toc-backref" href="#id39">4.4.12. ETLが使用するメッセージを定義する</a><a class="headerlink" href="#etl-message" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本機能では、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から以下のメッセージを取得する。
+このため、事前に <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> の設定に従いメッセージを定義すること。</p>
+<dl class="docutils">
+<dt>必要なメッセージ</dt>
+<dd><table border="1" class="colwidths-given white-space-normal first last docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">メッセージID</th>
+<th class="head">説明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nablarch.etl.input-file-not-found</td>
+<td><p class="first"><a class="reference internal" href="#etl-extract-sql-loader"><span>Extract(SQL*Loader版)</span></a> 及び <a class="reference internal" href="#etl-extract-chunk"><span>Extract(Chunk版)</span></a> で入力ファイルが存在しない場合の例外メッセージとして使用する。</p>
+<p class="last">メッセージのプレースホルダ(添字:0)には、存在しない(読み込めない)入力ファイルのパスが設定される。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>nablarch.etl.invalid-output-file-path</td>
+<td><p class="first"><a class="reference internal" href="#etl-load-file"><span>ファイル出力</span></a> で出力先ファイルが開けない場合の例外メッセージとして使用する。</p>
+<p class="last">メッセージのプレースホルダ(添字:0)には、開けないファイルのパスが設定される。</p>
+</td>
+</tr>
+<tr class="row-even"><td>nablarch.etl.validation-error</td>
+<td><a class="reference internal" href="#etl-transform-validation"><span>バリデーション</span></a> でバリデーションエラーが発生したことをログに出力する際のメッセージとして使用する。</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>定義例</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.etl.input-file-not-found</span><span class="o">=</span><span class="s">入力ファイルが存在しません。外部からファイルを受信できているか、ディレクトリやファイルの権限は正しいかを確認してください。入力ファイル=[{0}]</span>
+<span class="na">nablarch.etl.invalid-output-file-path</span><span class="o">=</span><span class="s">出力ファイルパスが正しくありません。ディレクトリが存在しているか、権限が正しいかを確認してください。出力ファイルパス=[{0}]</span>
+<span class="na">nablarch.etl.validation-error</span><span class="o">=</span><span class="s">入力ファイルのバリデーションでエラーが発生しました。入力ファイルが正しいかなどを相手先システムに確認してください。</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id18">
+<h2><a class="toc-backref" href="#id40">4.5. 拡張例</a><a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="etljob">
+<span id="etl-loader-dir-path"></span><h3><a class="toc-backref" href="#id41">4.5.1. ETL用JOB設定ファイルを配置するディレクトリのパスを変更する</a><a class="headerlink" href="#etljob" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ETL用JOB設定ファイルを配置するディレクトリのパスを変更したい場合は、コンポーネント設定ファイルに設定を行う。</p>
+<p>設定例を以下に示す。</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;etlConfigLoader&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.etl.config.JsonConfigLoader&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;configBasePath&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:META-INF/sample&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コンポーネント名は、 <code class="docutils literal"><span class="pre">etlConfigLoader</span></code> とすること。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/config/JsonConfigLoader.html" title="nablarch.etl.config.JsonConfigLoader">JsonConfigLoader</a> の <code class="docutils literal"><span class="pre">configBasePath</span></code> プロパティにパスを設定すること。</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="invalid-file" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[1]</a></td><td>ファイルの内容が不正とは、数値項目に非数値が設定されていた場合や、許容する桁数よりも大きい桁数の値が設定されていた場合のことを指す。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
