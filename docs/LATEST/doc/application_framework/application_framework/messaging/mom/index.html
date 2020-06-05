@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5.1. MOMによるメッセージング &mdash; ∇Nablarch  5u16 ドキュメント</title>
+  <title>5.1. MOMによるメッセージング &mdash; ∇Nablarch  5u17 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/mom/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="5. メッセージング編" href="../index.html"/>
         <link rel="next" title="5.1.1. アーキテクチャ概要" href="architecture.html"/>
         <link rel="prev" title="5. メッセージング編" href="../index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u16</div>
+    <div id="sidebar-version">Version: 5u17</div>
   </a>
 
   <div role="search">
@@ -329,10 +329,28 @@
 <p>本章ではNablarchアプリケーションフレームワークを利用してMOMを使ったメッセージングを開発するために必要となる情報を提供する。</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">5.1.1. アーキテクチャ概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">5.1.1. アーキテクチャ概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#mom">5.1.1.1. MOMメッセージングの構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id">5.1.1.2. 要求電文によるアクションとリクエストIDの指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id3">5.1.1.3. MOMメッセージングの処理の流れ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id4">5.1.1.4. MOMメッセージングで使用するハンドラ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#mom-messaging-data-reader">5.1.1.5. MOMメッセージングで使用するデータリーダ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#mom-messaging-action">5.1.1.6. MOMメッセージングで使用するアクション</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="application_design.html">5.1.2. アプリケーションの責務配置</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">5.1.3. Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="feature_details.html">5.1.4. 機能詳細</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_details.html">5.1.4. 機能詳細</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id3">5.1.4.1. アプリケーションの起動方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id4">5.1.4.2. システムリポジトリの初期化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id5">5.1.4.3. データベースアクセス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id6">5.1.4.4. 入力値のチェック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id7">5.1.4.5. 排他制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id8">5.1.4.6. 実行制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#mom">5.1.4.7. MOMメッセージング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#data-format-formatter">5.1.4.8. 出力するデータの表示形式のフォーマット</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -370,7 +388,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u16',
+            VERSION:'5u17',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

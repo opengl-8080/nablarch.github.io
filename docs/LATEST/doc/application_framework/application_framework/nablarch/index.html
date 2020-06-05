@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. Nablarchアプリケーションフレームワークとは &mdash; ∇Nablarch  5u16 ドキュメント</title>
+  <title>1. Nablarchアプリケーションフレームワークとは &mdash; ∇Nablarch  5u17 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/nablarch/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="アプリケーションフレームワーク" href="../index.html"/>
         <link rel="next" title="1.1. 全体像" href="big_picture.html"/>
         <link rel="prev" title="アプリケーションフレームワーク" href="../index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u16</div>
+    <div id="sidebar-version">Version: 5u17</div>
   </a>
 
   <div role="search">
@@ -327,9 +327,33 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="big_picture.html">1.1. 全体像</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">1.2. アーキテクチャ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="policy.html">1.3. 基本方針</a></li>
-<li class="toctree-l1"><a class="reference internal" href="platform.html">1.4. 稼動環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">1.2. アーキテクチャ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nablarch">1.2.1. Nablarchアプリケーションフレームワークの主な構成要素</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#handler-queue">1.2.2. ハンドラキュー(handler queue)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#library">1.2.3. ライブラリ(library)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="policy.html">1.3. 基本方針</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#nablarch-architecture-no-input">1.3.1. 外部から受け付ける未入力値の扱い</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#apinull">1.3.2. コレクションや配列を返すAPIは原則nullを戻さない</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#nablarch">1.3.3. Nablarchは検査例外を送出しない</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#id4">1.3.4. ログや例外のメッセージは英語で統一する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#nablarchsql">1.3.5. コンポーネントを差し替えることでNablarchが発行するSQLを変更できる</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#oss">1.3.6. OSSは利用しない</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#id5">1.3.7. 複数の例外が発生した場合は起因例外をスローする</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#id6">1.3.8. スレッドセーフである</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#java6">1.3.9. Java6に準拠している</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#api">1.3.10. アプリケーションで使用してもよいAPIについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#bigdecimal">1.3.11. 文字列からBigDecimal変換時に発生する可能性のあるヒープ不足について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="policy.html#deprecated-api">1.3.12. 非推奨(Deprecated)APIについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="platform.html">1.4. 稼動環境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#nablarch">1.4.1. Nablarchフレームワークの環境要件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#id3">1.4.2. Nablarchフレームワークのテスト環境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platform.html#id5">1.4.3. Nablarchフレームワークの稼動実績</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -367,7 +391,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u16',
+            VERSION:'5u17',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1. RESTfulウェブサービス編 &mdash; ∇Nablarch  5u16 ドキュメント</title>
+  <title>3.1. RESTfulウェブサービス編 &mdash; ∇Nablarch  5u17 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web_service/rest/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u16 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="3. ウェブサービス編" href="../index.html"/>
         <link rel="next" title="3.1.1. アーキテクチャ概要" href="architecture.html"/>
         <link rel="prev" title="3. ウェブサービス編" href="../index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u16</div>
+    <div id="sidebar-version">Version: 5u17</div>
   </a>
 
   <div role="search">
@@ -329,10 +329,34 @@
 <p>本章ではNablarchアプリケーションフレームワークを利用してRESTfulウェブサービスを開発するために必要となる情報を提供する。</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">3.1.1. アーキテクチャ概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">3.1.1. アーキテクチャ概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#restful">3.1.1.1. RESTfulウェブサービスの構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id3">3.1.1.2. RESTfulウェブサービスの処理の流れ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id4">3.1.1.3. RESTfulウェブサービスで使用するハンドラ</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="application_design.html">3.1.2. RESTFulウェブサービスの責務配置</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">3.1.3. Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="feature_details.html">3.1.4. 機能詳細</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">3.1.3. Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/create/index.html">3.1.3.1. 登録機能の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/search/index.html">3.1.3.2. 検索機能の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/update/index.html">3.1.3.3. 更新機能の作成</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="feature_details.html">3.1.4. 機能詳細</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#nablarch">3.1.4.1. Nablarchの初期化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#rest-request-validation">3.1.4.2. 入力値のチェック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id4">3.1.4.3. データベースアクセス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id5">3.1.4.4. 排他制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#uri">3.1.4.5. URIとリソース(アクション)クラスのマッピング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#rest-path-query-param">3.1.4.6. パスパラメータやクエリーパラメータ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id7">3.1.4.7. 国際化対応</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id8">3.1.4.8. 認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id9">3.1.4.9. 認可チェック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#id10">3.1.4.10. エラー時に返却するレスポンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#web">3.1.4.11. Webアプリケーションのスケールアウト設計</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_details.html#csrf">3.1.4.12. CSRF対策</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -370,7 +394,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u16',
+            VERSION:'5u17',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
