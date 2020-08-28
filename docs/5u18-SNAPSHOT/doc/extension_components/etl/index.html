@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/extension_components/etl/index.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/extension_components/etl/index.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch拡張コンポーネント" href="../index.html"/>
@@ -487,7 +487,7 @@
 <tr class="row-even"><td>データベースのマージ</td>
 <td><p class="first">ロード先テーブルにワークテーブルのデータをマージする場合に使用する。</p>
 <p>キーが一致するデータが存在する場合は更新処理が行われ、存在しない場合は登録処理が行われる。</p>
-<p>マージモードに対応しているデータベースは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/generator/MergeSqlGeneratorFactory.html" title="nablarch.etl.generator.MergeSqlGeneratorFactory">MergeSqlGeneratorFactory</a> を参照。</p>
+<p>マージモードに対応しているデータベースは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/generator/MergeSqlGeneratorFactory.html" title="nablarch.etl.generator.MergeSqlGeneratorFactory">MergeSqlGeneratorFactory</a> を参照。</p>
 <p class="last">詳細は <a class="reference internal" href="#etl-load-merge-database"><span>Loadフェーズでデータベースのデータのマージを行う</span></a> を参照。</p>
 </td>
 </tr>
@@ -725,7 +725,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>batchletとしてステップを定義する。</li>
-<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">tableCleaningBatchlet</a> を設定する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">tableCleaningBatchlet</a> を設定する。</li>
 </ul>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
 <span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;truncate&quot;</span> <span class="na">next=</span><span class="s">&quot;extract&quot;</span><span class="nt">&gt;</span>
@@ -738,7 +738,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </div>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">TableCleaningBatchlet</a> は、
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">TableCleaningBatchlet</a> は、
 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> 機能を使用してデータのクリーニングを行う。
 このため、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用するための設定を事前に行う必要がある。</p>
 </div>
@@ -805,16 +805,16 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <tr class="row-odd"><td>行番号を保持する属性</td>
 <td><p class="first"><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計について</span></a> で説明したように、ワークテーブルには行番号を必ず保持させる。
 このため、ワークテーブルに対応したJava Beansにも行番号を保持するための属性を定義する。</p>
-<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
+<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
 </td>
 </tr>
 <tr class="row-even"><td>入力ファイルのレイアウトを定義</td>
-<td>ファイルを読み込む <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用する。
+<td>ファイルを読み込む <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用する。
 このため、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を参照しアノテーションを設定すること。</td>
 </tr>
 <tr class="row-odd"><td>ワークテーブルのテーブルに関する定義</td>
-<td>データベースに出力する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">DatabaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用する。
+<td>データベースに出力する <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">DatabaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用する。
 このため、 詳細は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照しアノテーションを設定すること。</td>
 </tr>
 </tbody>
@@ -823,8 +823,8 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>Chunkとしてステップを定義する。</li>
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> を設定する。</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
 </ul>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
 <span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;extract&quot;</span> <span class="na">next=</span><span class="s">&quot;validation&quot;</span><span class="nt">&gt;</span>
@@ -841,10 +841,10 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </div>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用してファイルを読み込む。
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用してファイルを読み込む。
 ファイルの行番号については、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beansの作成</span></a> に従って作成することで自動的に保持される。
 詳細は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind-line-number"><span>ファイルのデータの論理行番号を取得する</span></a> を参照</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用してワークテーブルにデータを登録する。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用してワークテーブルにデータを登録する。</p>
 </div>
 </dd>
 </dl>
@@ -888,7 +888,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </dl>
 </dd>
 <dt>メッセージの定義</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">FileItemReader</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
 例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
 詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
 </dl>
@@ -917,19 +917,19 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <tr class="row-odd"><td>行番号を保持する属性</td>
 <td><p class="first"><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計について</span></a> で説明したように、ワークテーブルには行番号を必ず保持させる。
 このため、ワークテーブルに対応したJava Beansにも行番号を保持するための属性を定義する。</p>
-<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
+<p class="last">なお、行番号をもつ属性の追加は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承して実現すること。
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/WorkItem.html" title="nablarch.etl.WorkItem">WorkItem</a> を継承していない場合、後続のフェーズが実行できなくなるため注意すること。</p>
 </td>
 </tr>
 <tr class="row-even"><td>入力ファイルのレイアウトを定義</td>
 <td><p class="first"><a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を参照しファイルのレイアウト定義を表すアノテーションを設定する。</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、SQL*Loader用のコントロールファイルを自動生成する際に使用する。
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、SQL*Loader用のコントロールファイルを自動生成する際に使用する。
 詳細は、 <a class="reference internal" href="#etl-extract-sql-loader-control-file"><span>コントロールファイルの作成</span></a> を参照。</p>
 </td>
 </tr>
 <tr class="row-odd"><td>ワークテーブルのテーブルに関する定義</td>
 <td><p class="first"><a class="reference internal" href="../../application_framework/application_framework/libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を参照し、ワークテーブルの定義を表すアノテーションを設定する。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> では使用しないが、
 <a class="reference internal" href="#etl-transform-validation"><span>バリデーション</span></a> 時に使用するため設定が必要となる。</p>
 <p class="last">また、SQL*Loader用のコントロールファイルを自動生成する際に使用する。
 詳細は、 <a class="reference internal" href="#etl-extract-sql-loader-control-file"><span>コントロールファイルの作成</span></a> を参照。</p>
@@ -941,7 +941,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>batchletとしてステップを定義する。</li>
-<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">sqlLoaderBatchlet</a> を設定する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">sqlLoaderBatchlet</a> を設定する。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
 <span class="nt">&lt;step</span> <span class="na">id=</span><span class="s">&quot;extract&quot;</span> <span class="na">next=</span><span class="s">&quot;validation&quot;</span><span class="nt">&gt;</span>
@@ -971,7 +971,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>コンポーネント名は <code class="docutils literal"><span class="pre">sqlLoaderConfig</span></code> とする。</li>
-<li>設定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderConfig.html" title="nablarch.etl.SqlLoaderConfig">nablarch.etl.SqlLoaderConfig</a> とする。</li>
+<li>設定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/SqlLoaderConfig.html" title="nablarch.etl.SqlLoaderConfig">nablarch.etl.SqlLoaderConfig</a> とする。</li>
 <li>接続先データベースの情報は、環境毎に変わる可能性があるため <a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository-environment-configuration"><span>環境設定ファイル</span></a> に定義し、
 <a class="reference internal" href="../../application_framework/application_framework/libraries/repository.html#repository-user-environment-configuration"><span>環境設定ファイルの値を参照</span></a> するとよい。</li>
 </ul>
@@ -1018,7 +1018,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </table>
 </dd>
 <dt>メッセージの定義</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/SqlLoaderBatchlet.html" title="nablarch.etl.SqlLoaderBatchlet">SqlLoaderBatchlet</a> は、取り込み対象のファイルが存在しない場合例外を送出する。
 例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
 詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
 </dl>
@@ -1046,7 +1046,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>batchletとしてステップを定義する。</li>
-<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">validationBatchlet</a> を設定する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">validationBatchlet</a> を設定する。</li>
 <li><code class="docutils literal"><span class="pre">progressLogOutputInterval</span></code> プロパティに、進捗ログの出力間隔を設定する。指定しない場合のデフォルトは <code class="docutils literal"><span class="pre">1000</span></code> 。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- id及びnextは適宜変更すること --&gt;</span>
@@ -1091,7 +1091,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <p><code class="docutils literal"><span class="pre">mode</span></code> を設定しなかった場合は、デフォルトの動作として <code class="docutils literal"><span class="pre">ABORT</span></code> となる。</p>
 <dl class="last docutils">
 <dt>ABORT</dt>
-<dd><code class="docutils literal"><span class="pre">ABORT</span></code> を設定した場合、バリデーションエラーが発生すると後続のステップは実行せずに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。
+<dd><code class="docutils literal"><span class="pre">ABORT</span></code> を設定した場合、バリデーションエラーが発生すると後続のステップは実行せずに <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。
 なお、異常終了のタイミングは全てのレコードのバリデーション後となる。</dd>
 <dt>CONTINUE</dt>
 <dd><p class="first"><code class="docutils literal"><span class="pre">CONTINUE</span></code> を設定した場合、バリデーションエラーが発生しても後続のステップが実行される。</p>
@@ -1104,7 +1104,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <tr class="row-even"><td>errorLimit</td>
 <td><p class="first">許容するエラー数を設定する。</p>
 <p><code class="docutils literal"><span class="pre">mode</span></code> の設定に関係なく、許容するエラー数を超えるバリデーションエラーが発生したタイミングで、
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/EtlJobAbortedException.html" title="nablarch.etl.EtlJobAbortedException">EtlJobAbortedException</a> を送出しJOBを異常終了する。</p>
 <p class="last">なお設定を省略した場合や負数を設定した場合は、本設定は無効となる。</p>
 </td>
 </tr>
@@ -1125,7 +1125,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </dl>
 </dd>
 <dt>メッセージの定義</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">ValidationBatchlet</a> は、バリデーションエラーが発生したことをログに出力する。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/ValidationBatchlet.html" title="nablarch.etl.ValidationBatchlet">ValidationBatchlet</a> は、バリデーションエラーが発生したことをログに出力する。
 ログに出力する文言は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
 詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
 </dl>
@@ -1160,8 +1160,8 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>Chunkとしてステップを定義する。</li>
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">fileItemWriter</a>  を設定する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">fileItemWriter</a>  を設定する。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
 <span class="c">idは適宜変更すること</span>
@@ -1225,7 +1225,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </dl>
 </dd>
 <dt>メッセージの定義</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">FileItemWriter</a> は、出力先ファイルを開けない場合例外を送出する。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/FileItemWriter.html" title="nablarch.etl.FileItemWriter">FileItemWriter</a> は、出力先ファイルを開けない場合例外を送出する。
 例外に設定するメッセージは、 <a class="reference internal" href="../../application_framework/application_framework/libraries/message.html#message"><span>メッセージ管理</span></a> から取得するため、メッセージの設定が必要となる。
 詳細は、 <a class="reference internal" href="#etl-message"><span>ETLが使用するメッセージを定義する</span></a> を参照。</dd>
 </dl>
@@ -1260,7 +1260,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>batchletとしてステップを定義する。</li>
-<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DeleteInsertBatchlet.html" title="nablarch.etl.DeleteInsertBatchlet">deleteInsertBatchlet</a> を設定する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DeleteInsertBatchlet.html" title="nablarch.etl.DeleteInsertBatchlet">deleteInsertBatchlet</a> を設定する。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
 <span class="c">idは適宜変更すること</span>
@@ -1377,7 +1377,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>batchletとしてステップを定義する。</li>
-<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/MergeBatchlet.html" title="nablarch.etl.MergeBatchlet">mergeBatchlet</a> を設定する。</li>
+<li>batchletクラスには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/MergeBatchlet.html" title="nablarch.etl.MergeBatchlet">mergeBatchlet</a> を設定する。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
 <span class="c">  idは適宜変更すること</span>
@@ -1488,8 +1488,8 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>JOB定義</dt>
 <dd><ul class="first simple">
 <li>Chunkとしてステップを定義する。</li>
-<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
-<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
+<li>readerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemReader.html" title="nablarch.etl.DatabaseItemReader">databaseItemReader</a> を設定する。</li>
+<li>writerには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/DatabaseItemWriter.html" title="nablarch.etl.DatabaseItemWriter">databaseItemWriter</a> を設定する。</li>
 </ul>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
 <span class="c">  idは適宜変更すること</span>
@@ -1608,7 +1608,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>コンポーネント名は、 <code class="docutils literal"><span class="pre">etlConfigLoader</span></code> とすること。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/config/JsonConfigLoader.html" title="nablarch.etl.config.JsonConfigLoader">JsonConfigLoader</a> の <code class="docutils literal"><span class="pre">configBasePath</span></code> プロパティにパスを設定すること。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/etl/config/JsonConfigLoader.html" title="nablarch.etl.config.JsonConfigLoader">JsonConfigLoader</a> の <code class="docutils literal"><span class="pre">configBasePath</span></code> プロパティにパスを設定すること。</li>
 </ul>
 </dd>
 </dl>

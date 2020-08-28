@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/application_framework/batch/nablarch_batch/architecture.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="4.2. Nablarchバッチアプリケーション" href="index.html"/>
@@ -406,18 +406,18 @@ javaコマンドから直接起動し、システムリポジトリやログの�
 <a class="reference internal image-reference" href="../../../../_images/batch-flow.png"><img alt="../../../../_images/batch-flow.png" src="../../../../_images/batch-flow.png" /></a>
 <ol class="arabic simple">
 <li><a class="reference internal" href="../../handlers/standalone/main.html#main"><span>共通起動ランチャ(Main)</span></a> がハンドラキュー(handler queue)を実行する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">データリーダ(DataReader)</a> が入力データを読み込み、
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">データリーダ(DataReader)</a> が入力データを読み込み、
 データレコードを1件ずつ提供する。</li>
 <li>ハンドラキューに設定された
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DispatchHandler.html" title="nablarch.fw.handler.DispatchHandler">ディスパッチハンドラ(DispatchHandler)</a> が、
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/DispatchHandler.html" title="nablarch.fw.handler.DispatchHandler">ディスパッチハンドラ(DispatchHandler)</a> が、
 コマンドライン引数(-requestPath)で指定するリクエストパスを元に処理すべきアクションクラス(action class)を特定し、
 ハンドラキューの末尾に追加する。</li>
 <li>アクションクラス(action class)は、フォームクラス(form class)やエンティティクラス(entity class)を使用して、
 データレコード1件ごとの業務ロジック(business logic) を実行する。</li>
-<li>アクションクラス(action class)は、処理結果を示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.html" title="nablarch.fw.Result">Result</a> を返却する。</li>
+<li>アクションクラス(action class)は、処理結果を示す <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/Result.html" title="nablarch.fw.Result">Result</a> を返却する。</li>
 <li>処理対象データがなくなるまで2～5を繰り返す。</li>
 <li>ハンドラキューに設定された
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/StatusCodeConvertHandler.html" title="nablarch.fw.handler.StatusCodeConvertHandler">ステータスコード→プロセス終了コード変換ハンドラ(StatusCodeConvertHandler)</a> が、
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/StatusCodeConvertHandler.html" title="nablarch.fw.handler.StatusCodeConvertHandler">ステータスコード→プロセス終了コード変換ハンドラ(StatusCodeConvertHandler)</a> が、
 処理結果のステータスコードをプロセス終了コードに変換し、
 バッチアプリケーションの処理結果としてプロセス終了コードが返される。</li>
 </ol>
@@ -639,7 +639,7 @@ javaコマンドから直接起動し、システムリポジトリやログの�
 <td><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span>プロセス停止制御ハンドラ</span></a></td>
 <td>メイン</td>
 <td>リクエストテーブル上の処理停止フラグがオンであった場合は、後続ハンドラの処理は行なわずにプロセス停止例外(
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>
 )を送出する。</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -707,15 +707,15 @@ javaコマンドから直接起動し、システムリポジトリやログの�
 <p>Nablarchでは、バッチアプリケーションを構築するために必要なデータリーダを標準で幾つか提供している。
 各データリーダの詳細は、リンク先を参照すること。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader (データベース読み込み)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/FileDataReader.html" title="nablarch.fw.reader.FileDataReader">FileDataReader (ファイル読み込み)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/ValidatableFileDataReader.html" title="nablarch.fw.reader.ValidatableFileDataReader">ValidatableFileDataReader (バリデージョン機能付きファイル読み込み)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/ResumeDataReader.html" title="nablarch.fw.reader.ResumeDataReader">ResumeDataReader (レジューム機能付き読み込み)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader (データベース読み込み)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/reader/FileDataReader.html" title="nablarch.fw.reader.FileDataReader">FileDataReader (ファイル読み込み)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/reader/ValidatableFileDataReader.html" title="nablarch.fw.reader.ValidatableFileDataReader">ValidatableFileDataReader (バリデージョン機能付きファイル読み込み)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/reader/ResumeDataReader.html" title="nablarch.fw.reader.ResumeDataReader">ResumeDataReader (レジューム機能付き読み込み)</a></li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
 <p class="last">上記のデータリーダでプロジェクトの要件を満たせない場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> インタフェースを実装したクラスを
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/DataReader.html" title="nablarch.fw.DataReader">DataReader</a> インタフェースを実装したクラスを
 プロジェクトで作成して対応する。</p>
 </div>
 </div>
@@ -724,10 +724,10 @@ javaコマンドから直接起動し、システムリポジトリやログの�
 <p>Nablarchでは、バッチアプリケーションを構築するために必要なアクションクラスを標準で幾つか提供している。
 各アクションクラスの詳細は、リンク先を参照すること。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction (汎用的なバッチアクションのテンプレートクラス)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/FileBatchAction.html" title="nablarch.fw.action.FileBatchAction">FileBatchAction (ファイル入力のバッチアクションのテンプレートクラス)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/NoInputDataBatchAction.html" title="nablarch.fw.action.NoInputDataBatchAction">NoInputDataBatchAction (入力データを使用しないバッチアクションのテンプレートクラス)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/action/AsyncMessageSendAction.html" title="nablarch.fw.messaging.action.AsyncMessageSendAction">AsyncMessageSendAction (応答不要メッセージ送信用のアクションクラス)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction (汎用的なバッチアクションのテンプレートクラス)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/action/FileBatchAction.html" title="nablarch.fw.action.FileBatchAction">FileBatchAction (ファイル入力のバッチアクションのテンプレートクラス)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/action/NoInputDataBatchAction.html" title="nablarch.fw.action.NoInputDataBatchAction">NoInputDataBatchAction (入力データを使用しないバッチアクションのテンプレートクラス)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/messaging/action/AsyncMessageSendAction.html" title="nablarch.fw.messaging.action.AsyncMessageSendAction">AsyncMessageSendAction (応答不要メッセージ送信用のアクションクラス)</a></li>
 </ul>
 </div>
 </div>

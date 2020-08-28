@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/aws_xray_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/adaptors/aws_xray_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
@@ -356,7 +356,7 @@
 <div class="section" id="aws-xray-settings">
 <span id="id4"></span><h2><a class="toc-backref" href="#id10">AWS X-Ray アダプタを使用するための設定を行う</a><a class="headerlink" href="#aws-xray-settings" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本アダプタを使用するためには、コンポーネント設定ファイルでハンドラキューに
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/amazonaws/xray/AWSXRayServletFilterAdaptorHandler.html" title="nablarch.integration.amazonaws.xray.AWSXRayServletFilterAdaptorHandler">AWSXRayServletFilterAdaptorHandler</a> を設定する必要がある。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/amazonaws/xray/AWSXRayServletFilterAdaptorHandler.html" title="nablarch.integration.amazonaws.xray.AWSXRayServletFilterAdaptorHandler">AWSXRayServletFilterAdaptorHandler</a> を設定する必要がある。</p>
 <p>上記ハンドラを設定することでX-Rayのセグメントが作成されトレースが可能となる。
 <code class="docutils literal"><span class="pre">fixedSegmentName</span></code> プロパティにはセグメントの名前として任意の値を設定する。
 <code class="docutils literal"><span class="pre">fixedSegmentName</span></code> または <code class="docutils literal"><span class="pre">AWSXRayServletFilter</span></code> のいずれかのプロパティを必ず設定する必要がある。</p>
@@ -383,7 +383,7 @@
 <div class="section" id="id6">
 <h4>コンポーネント定義<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ハンドラキューに <code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandler</span></code> を直接定義するのではなく
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/amazonaws/xray/AWSXRayServletFilterAdaptorHandlerFactory.html" title="nablarch.integration.amazonaws.xray.AWSXRayServletFilterAdaptorHandlerFactory">AWSXRayServletFilterAdaptorHandlerFactory</a>  を定義することで
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/amazonaws/xray/AWSXRayServletFilterAdaptorHandlerFactory.html" title="nablarch.integration.amazonaws.xray.AWSXRayServletFilterAdaptorHandlerFactory">AWSXRayServletFilterAdaptorHandlerFactory</a>  を定義することで
 X-Rayの設定によりトレース可否を切り替えることができる。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- ハンドラキュー構成 --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
@@ -398,17 +398,17 @@ X-Rayの設定によりトレース可否を切り替えることができる。
       <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>上記のように <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を実装した <code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandlerFactory</span></code> をコンポーネントに定義し
+<p>上記のように <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を実装した <code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandlerFactory</span></code> をコンポーネントに定義し
 <code class="docutils literal"><span class="pre">aws.xray.enabled</span></code> の <a class="reference internal" href="../application_framework/libraries/repository.html#repository-environment-configuration"><span>設定値を環境ごとに変える</span></a> ことでトレース可否を切り替えることができる。</p>
 <p><code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandlerFactory</span></code> は <code class="docutils literal"><span class="pre">enabledXRay</span></code> が <code class="docutils literal"><span class="pre">true</span></code> の場合、 <code class="docutils literal"><span class="pre">fixedSegmentName</span></code> に設定した名前でセグメントを作成する
-<code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandler</span></code> を生成し、 <code class="docutils literal"><span class="pre">enabledXRay</span></code> が <code class="docutils literal"><span class="pre">false</span></code> の場合、何もしない <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/PassThroughHandler.html" title="nablarch.fw.web.handler.PassThroughHandler">PassThroughHandler</a> を生成する。</p>
+<code class="docutils literal"><span class="pre">AWSXRayServletFilterAdaptorHandler</span></code> を生成し、 <code class="docutils literal"><span class="pre">enabledXRay</span></code> が <code class="docutils literal"><span class="pre">false</span></code> の場合、何もしない <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/handler/PassThroughHandler.html" title="nablarch.fw.web.handler.PassThroughHandler">PassThroughHandler</a> を生成する。</p>
 </div>
 </div>
 </div>
 <div class="section" id="http">
 <span id="aws-xray-http-client"></span><h2><a class="toc-backref" href="#id11">HTTP呼び出しの計測</a><a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>アプリケーションがマイクロサービスまたはパブリックHTTP APIに呼び出しを実行する場合、 X-Ray SDK for Java の <code class="docutils literal"><span class="pre">HttpClient</span></code> を使用して呼び出しを計測することができる。
-本アダプタでは、X-Rayの有効な環境ではX-Ray SDK for Java の <code class="docutils literal"><span class="pre">HttpClient</span></code> を、無効な環境ではApache.orgの <code class="docutils literal"><span class="pre">HttpClient</span></code> を生成する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/amazonaws/xray/AWSXRayHttpClientFactory.html" title="nablarch.integration.amazonaws.xray.AWSXRayHttpClientFactory">AWSXRayHttpClientFactory</a> を提供する。</p>
+本アダプタでは、X-Rayの有効な環境ではX-Ray SDK for Java の <code class="docutils literal"><span class="pre">HttpClient</span></code> を、無効な環境ではApache.orgの <code class="docutils literal"><span class="pre">HttpClient</span></code> を生成する <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/amazonaws/xray/AWSXRayHttpClientFactory.html" title="nablarch.integration.amazonaws.xray.AWSXRayHttpClientFactory">AWSXRayHttpClientFactory</a> を提供する。</p>
 <div class="section" id="id7">
 <h3>コンポーネント定義<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>システムリポジトリに上記ファクトリで生成される  <code class="docutils literal"><span class="pre">HttpClient</span></code> を登録しておき、HTTP呼び出しのクライアントとして使用することでトレースが可能となる。</p>
@@ -460,7 +460,7 @@ X-Rayの設定によりトレース可否を切り替えることができる。
 </div>
 <div class="section" id="sql">
 <span id="aws-xray-sql-datasource"></span><h2><a class="toc-backref" href="#id12">SQLクエリの計測</a><a class="headerlink" href="#sql" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/amazonaws/xray/TracingDataSourceFactory.html" title="nablarch.integration.amazonaws.xray.TracingDataSourceFactory">TracingDataSourceFactory</a> を使用してデータソースを生成することで
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/amazonaws/xray/TracingDataSourceFactory.html" title="nablarch.integration.amazonaws.xray.TracingDataSourceFactory">TracingDataSourceFactory</a> を使用してデータソースを生成することで
 SQLクエリの計測が可能となる。</p>
 <div class="section" id="id8">
 <h3>コンポーネント定義<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>

@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/jaxrs_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/adaptors/jaxrs_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
@@ -390,14 +390,14 @@ Jackson1系を使用していた場合はJackson2系へ移行すること。</p>
 <p>ウェブアプリケーションサーバにバンドルされている <a class="reference external" href="https://jcp.org/en/jsr/detail?id=339">JAX-RS(外部サイト、英語)</a> の実装が、
 <a class="reference external" href="https://jersey.java.net/">Jersey(外部サイト、英語)</a> の場合には、Jersey用のアダプタを使用する。</p>
 <p>以下にJersey用アダプタの適用方法を示す。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsMethodBinderFactory.html#setHandlerList-java.util.List-" title="nablarch.fw.jaxrs.JaxRsMethodBinderFactory.setHandlerList(java.util.List)">JaxRsMethodBinderFactory#handlerList</a>
-に対して、Jersey用のハンドラを構築するファクトリクラス(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/jersey/JerseyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory">JerseyJaxRsHandlerListFactory</a>)
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/JaxRsMethodBinderFactory.html#setHandlerList-java.util.List-" title="nablarch.fw.jaxrs.JaxRsMethodBinderFactory.setHandlerList(java.util.List)">JaxRsMethodBinderFactory#handlerList</a>
+に対して、Jersey用のハンドラを構築するファクトリクラス(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/jersey/JerseyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory">JerseyJaxRsHandlerListFactory</a>)
 をファクトリインジェクションする。これにより、Jersey用の以下のハンドラ構成が自動的に設定される。</p>
 <ul class="simple">
 <li><a class="reference internal" href="../application_framework/handlers/rest/body_convert_handler.html#body-convert-handler"><span>リクエストボディ変換ハンドラ</span></a> の設定(以下のコンバータが設定される)<ul>
-<li>JSONのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/jackson/Jackson2BodyConverter.html" title="nablarch.integration.jaxrs.jackson.Jackson2BodyConverter">Jackson2BodyConverter</a> が設定される。</li>
-<li>XMLのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxbBodyConverter.html" title="nablarch.fw.jaxrs.JaxbBodyConverter">JaxbBodyConverter</a> が設定される。</li>
-<li>application/x-www-form-urlencodedのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/FormUrlEncodedConverter.html" title="nablarch.fw.jaxrs.FormUrlEncodedConverter">FormUrlEncodedConverter</a> が設定される。</li>
+<li>JSONのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/jackson/Jackson2BodyConverter.html" title="nablarch.integration.jaxrs.jackson.Jackson2BodyConverter">Jackson2BodyConverter</a> が設定される。</li>
+<li>XMLのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/JaxbBodyConverter.html" title="nablarch.fw.jaxrs.JaxbBodyConverter">JaxbBodyConverter</a> が設定される。</li>
+<li>application/x-www-form-urlencodedのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/FormUrlEncodedConverter.html" title="nablarch.fw.jaxrs.FormUrlEncodedConverter">FormUrlEncodedConverter</a> が設定される。</li>
 </ul>
 </li>
 <li><a class="reference internal" href="../application_framework/handlers/rest/jaxrs_bean_validation_handler.html#jaxrs-bean-validation-handler"><span>JAX-RS BeanValidationハンドラ</span></a></li>
@@ -427,14 +427,14 @@ Jackson1系を使用していた場合はJackson2系へ移行すること。</p>
 <p>ウェブアプリケーションサーバにバンドルされている <a class="reference external" href="https://jcp.org/en/jsr/detail?id=339">JAX-RS(外部サイト、英語)</a> の実装が、
 <a class="reference external" href="http://resteasy.jboss.org/">RESTEasy(外部サイト、英語)</a> の場合には、RESTEasy用のアダプタを使用する。</p>
 <p>以下にRESTEasy用アダプタの適用方法を示す。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsMethodBinderFactory.html#setHandlerList-java.util.List-" title="nablarch.fw.jaxrs.JaxRsMethodBinderFactory.setHandlerList(java.util.List)">JaxRsMethodBinderFactory#handlerList</a>
-に対して、RESTEasy用のハンドラを構築するファクトリクラス(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/resteasy/ResteasyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.resteasy.ResteasyJaxRsHandlerListFactory">ResteasyJaxRsHandlerListFactory</a>)
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/JaxRsMethodBinderFactory.html#setHandlerList-java.util.List-" title="nablarch.fw.jaxrs.JaxRsMethodBinderFactory.setHandlerList(java.util.List)">JaxRsMethodBinderFactory#handlerList</a>
+に対して、RESTEasy用のハンドラを構築するファクトリクラス(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/resteasy/ResteasyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.resteasy.ResteasyJaxRsHandlerListFactory">ResteasyJaxRsHandlerListFactory</a>)
 をファクトリインジェクションする。これにより、RESTEasy用の以下のハンドラ構成が自動的に設定される。</p>
 <ul class="simple">
 <li><a class="reference internal" href="../application_framework/handlers/rest/body_convert_handler.html#body-convert-handler"><span>リクエストボディ変換ハンドラ</span></a> の設定(以下のコンバータが設定される)<ul>
-<li>JSONのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/jackson/Jackson2BodyConverter.html" title="nablarch.integration.jaxrs.jackson.Jackson2BodyConverter">Jackson2BodyConverter</a> が設定される。</li>
-<li>XMLのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxbBodyConverter.html" title="nablarch.fw.jaxrs.JaxbBodyConverter">JaxbBodyConverter</a> が設定される。</li>
-<li>application/x-www-form-urlencodedのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/FormUrlEncodedConverter.html" title="nablarch.fw.jaxrs.FormUrlEncodedConverter">FormUrlEncodedConverter</a> が設定される。</li>
+<li>JSONのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/jackson/Jackson2BodyConverter.html" title="nablarch.integration.jaxrs.jackson.Jackson2BodyConverter">Jackson2BodyConverter</a> が設定される。</li>
+<li>XMLのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/JaxbBodyConverter.html" title="nablarch.fw.jaxrs.JaxbBodyConverter">JaxbBodyConverter</a> が設定される。</li>
+<li>application/x-www-form-urlencodedのコンバータには <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/FormUrlEncodedConverter.html" title="nablarch.fw.jaxrs.FormUrlEncodedConverter">FormUrlEncodedConverter</a> が設定される。</li>
 </ul>
 </li>
 <li><a class="reference internal" href="../application_framework/handlers/rest/jaxrs_bean_validation_handler.html#jaxrs-bean-validation-handler"><span>JAX-RS BeanValidationハンドラ</span></a></li>
@@ -461,9 +461,9 @@ Jackson1系を使用していた場合はJackson2系へ移行すること。</p>
 </div>
 <div class="section" id="id9">
 <h2><a class="toc-backref" href="#id13">各環境下で利用するボディコンバータを変更（追加）したい</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>プロジェクトで対応すべきMIMEが増えた場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsHandlerListFactory.html" title="nablarch.fw.jaxrs.JaxRsHandlerListFactory">JaxRsHandlerListFactory</a> を実装し対応する。</p>
+<p>プロジェクトで対応すべきMIMEが増えた場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/jaxrs/JaxRsHandlerListFactory.html" title="nablarch.fw.jaxrs.JaxRsHandlerListFactory">JaxRsHandlerListFactory</a> を実装し対応する。</p>
 <p>実装方法は、本アダプタ
-(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/jersey/JerseyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory">JerseyJaxRsHandlerListFactory</a> 、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/jaxrs/resteasy/ResteasyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.resteasy.ResteasyJaxRsHandlerListFactory">ResteasyJaxRsHandlerListFactory</a>)
+(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/jersey/JerseyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory">JerseyJaxRsHandlerListFactory</a> 、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/integration/jaxrs/resteasy/ResteasyJaxRsHandlerListFactory.html" title="nablarch.integration.jaxrs.resteasy.ResteasyJaxRsHandlerListFactory">ResteasyJaxRsHandlerListFactory</a>)
 を参考にすると良い。</p>
 </div>
 </div>

@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/feature_details/forward_error_page.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/application_framework/web/feature_details/forward_error_page.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="2.4. 機能詳細" href="../feature_details.html"/>
@@ -346,7 +346,7 @@
 <p>このため、システムで共通のエラーページに遷移させる場合には、個別のアクションに対して遷移先を指定するのではなく、
 エラー時の遷移先を制御するハンドラを追加して対応すると良い。</p>
 <p>以下に例を示す。</p>
-<p>この例では、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> と <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html" title="javax.persistence.OptimisticLockException">javax.persistence.OptimisticLockException</a> が発生した場合に、専用のエラー画面へ遷移させている。</p>
+<p>この例では、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> と <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html" title="javax.persistence.OptimisticLockException">javax.persistence.OptimisticLockException</a> が発生した場合に、専用のエラー画面へ遷移させている。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleErrorForwardHandler</span> <span class="kd">implements</span> <span class="n">Handler</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span>
 
   <span class="nd">@Override</span>
@@ -371,9 +371,9 @@
 </div>
 <div class="section" id="forward-error-page-try-catch">
 <span id="id3"></span><h2>2.4.16.1.2. 1つの例外クラスに対して複数の遷移先がある場合の実装方法<a class="headerlink" href="#forward-error-page-try-catch" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>業務例外( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> )が発生した箇所によって、エラー時の遷移先画面を切り替えたい場合がる。
+<p>業務例外( <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> )が発生した箇所によって、エラー時の遷移先画面を切り替えたい場合がる。
 しかし、 <a class="reference internal" href="../../handlers/web_interceptor/on_error.html#on-error-interceptor"><span>OnErrorインターセプター</span></a> では、例外クラスに対して1つの遷移先しか指定することができないため、
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> に対して複数の遷移先の画面を指定することができない。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> に対して複数の遷移先の画面を指定することができない。</p>
 <p>このような場合は、アクションのメソッド内で <code class="docutils literal"><span class="pre">try-catch</span></code> を用いて、例外を捕捉しエラー時の遷移先画面を設定する必要がある。</p>
 <p>以下に例を示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@InjectForm</span><span class="o">(</span><span class="n">form</span> <span class="o">=</span> <span class="n">ClientSearchForm</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;form&quot;</span><span class="o">)</span>

@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/standalone/request_thread_loop_handler.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/application_framework/handlers/standalone/request_thread_loop_handler.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.6. スタンドアローン型アプリケーション共通ハンドラ" href="index.html"/>
@@ -370,7 +370,7 @@
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id9">6.6.8.1. ハンドラクラス名</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/RequestThreadLoopHandler.html" title="nablarch.fw.handler.RequestThreadLoopHandler">nablarch.fw.handler.RequestThreadLoopHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/RequestThreadLoopHandler.html" title="nablarch.fw.handler.RequestThreadLoopHandler">nablarch.fw.handler.RequestThreadLoopHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -386,13 +386,13 @@
 <h2><a class="toc-backref" href="#id11">6.6.8.3. 制約</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <dl class="docutils">
 <dt><a class="reference internal" href="retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> より後ろに配置すること</dt>
-<dd>このハンドラでは、処理が継続可能な例外の場合に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。
+<dd>このハンドラでは、処理が継続可能な例外の場合に <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。
 このため、リトライ可能例外を処理する <a class="reference internal" href="retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> よりも後ろにこのハンドラを設定する必要がある。</dd>
 </dl>
 </div>
 <div class="section" id="request-thread-loop-handler-interval">
 <span id="id6"></span><h2><a class="toc-backref" href="#id12">6.6.8.4. サービス閉塞中の待機時間を設定する</a><a class="headerlink" href="#request-thread-loop-handler-interval" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>後続のハンドラからサービス閉塞中を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/results/ServiceUnavailable.html" title="nablarch.fw.results.ServiceUnavailable">ServiceUnavailable</a>)が発生した場合の待機時間を設定することが出来る。
+<p>後続のハンドラからサービス閉塞中を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/results/ServiceUnavailable.html" title="nablarch.fw.results.ServiceUnavailable">ServiceUnavailable</a>)が発生した場合の待機時間を設定することが出来る。
 この時間を設定することで、サービスが開局されたかどうかのチェックタイミングを調整することが出来る。</p>
 <p>待機時間を長くし過ぎると、サービスが開局中に変更されても、即処理が開始されない問題があるので、要件にあわせて値を設定すること。
 なお、設定を省略した場合は、1秒待機後に後続ハンドラを再実行する。</p>
@@ -420,32 +420,32 @@
 <span id="id8"></span><h2><a class="toc-backref" href="#id14">6.6.8.6. 後続ハンドラで発生した例外(エラー)に応じた処理内容</a><a class="headerlink" href="#request-thread-loop-handler-error-handling" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>このハンドラで行う後続ハンドラで発生した例外(エラー)に応じた処理内容について解説する。</p>
 <dl class="docutils">
-<dt>サービス閉塞中例外(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/results/ServiceUnavailable.html" title="nablarch.fw.results.ServiceUnavailable">ServiceUnavailable</a>)</dt>
+<dt>サービス閉塞中例外(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/results/ServiceUnavailable.html" title="nablarch.fw.results.ServiceUnavailable">ServiceUnavailable</a>)</dt>
 <dd>一定時間待機後に、再度後続ハンドラに処理を委譲する。
 待機時間の設定方法は、 <a class="reference internal" href="#request-thread-loop-handler-interval"><span>サービス閉塞中の待機時間を設定する</span></a> を参照。</dd>
-<dt>プロセス停止要求を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>)</dt>
+<dt>プロセス停止要求を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>)</dt>
 <dd>プロセス停止要求を示す例外であるため、本ハンドラの処理を終了する。</dd>
-<dt>プロセスの異常終了を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/launcher/ProcessAbnormalEnd.html" title="nablarch.fw.launcher.ProcessAbnormalEnd">ProcessAbnormalEnd</a>)</dt>
+<dt>プロセスの異常終了を示す例外(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/launcher/ProcessAbnormalEnd.html" title="nablarch.fw.launcher.ProcessAbnormalEnd">ProcessAbnormalEnd</a>)</dt>
 <dd>プロセスの異常終了を示す例外のため、捕捉した例外を再送出する。</dd>
-<dt>処理を継続することができなかったことを示すサービスエラー(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/results/ServiceError.html" title="nablarch.fw.results.ServiceError">ServiceError</a>)</dt>
-<dd>補足した例外クラスにログ出力処理を委譲し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
-<dt>ハンドラの処理が異常終了したことを示す例外(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Error.html" title="nablarch.fw.Result.Error">Result.Error</a>)</dt>
-<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
+<dt>処理を継続することができなかったことを示すサービスエラー(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/results/ServiceError.html" title="nablarch.fw.results.ServiceError">ServiceError</a>)</dt>
+<dd>補足した例外クラスにログ出力処理を委譲し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
+<dt>ハンドラの処理が異常終了したことを示す例外(<a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/Result.Error.html" title="nablarch.fw.Result.Error">Result.Error</a>)</dt>
+<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
 <dt>実行時例外(<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html" title="java.lang.RuntimeException">RuntimeException</a>)</dt>
-<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
+<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
 <dt>スレッドの停止を示す例外(<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/ThreadDeath.html" title="java.lang.ThreadDeath">ThreadDeath</a>)</dt>
 <dd><code class="docutils literal"><span class="pre">INFO</span></code> レベルのログを出力し、補足した例外(ThreadDeath)を再送出する。</dd>
 <dt>スタックオーバーフローエラー(<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/StackOverflowError.html" title="java.lang.StackOverflowError">StackOverflowError</a>)</dt>
-<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
+<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
 <dt>ヒープ不足のエラー(<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/OutOfMemoryError.html" title="java.lang.OutOfMemoryError">OutOfMemoryError</a>)</dt>
 <dd><p class="first">標準エラー出力にヒープ不足が発生したことを示すメッセージを出力し、 <code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログ出力を行う。
 (ログ出力時に再度ヒープ不足が発生する可能性があるため、標準エラー出力にメッセージ出力後にログを出力する。)</p>
-<p class="last">ヒープ不足の原因不足となったオブジェクトへの参照が切れ、処理継続可能な場合があるため <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</p>
+<p class="last">ヒープ不足の原因不足となったオブジェクトへの参照が切れ、処理継続可能な場合があるため <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</p>
 </dd>
 <dt>JVMの異常を示すエラー(<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/VirtualMachineError.html" title="java.lang.VirtualMachineError">VirtualMachineError</a>)</dt>
 <dd>発生した例外を再送出する</dd>
 <dt>上記以外のエラー</dt>
-<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
+<dd><code class="docutils literal"><span class="pre">FATAL</span></code> レベルのログを出力し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/handler/retry/Retryable.html" title="nablarch.fw.handler.retry.Retryable">リトライ可能例外(Retryable)</a> を送出する。</dd>
 </dl>
 </div>
 </div>

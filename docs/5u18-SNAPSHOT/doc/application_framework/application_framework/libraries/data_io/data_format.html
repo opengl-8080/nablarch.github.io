@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_format.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/doc/application_framework/application_framework/libraries/data_io/data_format.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.4. 様々なフォーマットのデータへのアクセス" href="../data_converter.html"/>
@@ -397,7 +397,7 @@
 <li>アプリケーション側で、Mapから取り出した値をダウンキャストする必要がある。(誤ると、実行時に例外が送出される。)</li>
 </ul>
 </li>
-<li><p class="first">データとJavaオブジェクトのマッピングに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用していないため、他の機能とはマッピング方法が異なる。</p>
+<li><p class="first">データとJavaオブジェクトのマッピングに <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用していないため、他の機能とはマッピング方法が異なる。</p>
 </li>
 <li><p class="first">出力対象の <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> の扱い方がフォーマットによって異なる。このため、同じデータを複数のフォーマットに対応させる機能を使用した場合に、フォーマットによっては例外が発生するなど正常に動作しない場合がある。</p>
 <p>例えば、下のケースで問題がある。</p>
@@ -411,10 +411,10 @@
 </dl>
 </li>
 <li><p class="first">出力対象のデータによってはJSONの仕様を満たせない場合がある。</p>
-<p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonNumber.html" title="nablarch.core.dataformat.convertor.datatype.JsonNumber">数値型</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonBoolean.html" title="nablarch.core.dataformat.convertor.datatype.JsonBoolean">真偽値型</a> を使用し、出力対象のデータ型がこれらの型に対応していない場合に不正なJSONが出力される。</p>
+<p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/JsonNumber.html" title="nablarch.core.dataformat.convertor.datatype.JsonNumber">数値型</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/JsonBoolean.html" title="nablarch.core.dataformat.convertor.datatype.JsonBoolean">真偽値型</a> を使用し、出力対象のデータ型がこれらの型に対応していない場合に不正なJSONが出力される。</p>
 <p>例：数値型を指定し、出力対象が「data」などの文字列の場合、{&#8220;number&#8221;:data}のような不正なJSONが出力される。</p>
 </li>
-<li><p class="first">データ形式によって使用できる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">データタイプ</a> の実装クラスが異なるため拡張しづらい。また、この設定の誤りは実行時まで検知できない。</p>
+<li><p class="first">データ形式によって使用できる <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">データタイプ</a> の実装クラスが異なるため拡張しづらい。また、この設定の誤りは実行時まで検知できない。</p>
 </li>
 </ul>
 <p>このため原則本機能はやむを得ない場合を除き非推奨とする。
@@ -517,15 +517,15 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <div class="section" id="id10">
 <h3><a class="toc-backref" href="#id26">7.4.2.3.2. ファイルにデータを出力する</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データレコードの内容をファイルに出力する方法について説明する。</p>
-<p>ファイルへのデータ出力は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用することで実現できる。</p>
+<p>ファイルへのデータ出力は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用することで実現できる。</p>
 <p>以下に実装例を示す。</p>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>ファイルに書き込むデータは <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> として準備する。</li>
 <li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> のキー値は、 <a class="reference internal" href="#data-format-format-definition-file"><span>入出力データのフォーマットを定義する</span></a> で定義したフィールド名を設定する。(大文字、小文字は区別しない)</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>open</cite> メソッドを呼び出して、ファイルリソースを書き込み可能状態にする。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>write</cite> メソッドを呼び出して、データをファイルに書き込む。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>open</cite> メソッドを呼び出して、ファイルリソースを書き込み可能状態にする。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> の <cite>write</cite> メソッドを呼び出して、データをファイルに書き込む。</li>
 </ul>
 </dd>
 </dl>
@@ -543,16 +543,16 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用するためには、
+<p><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用するためには、
 <a class="reference internal" href="#data-format-format-definition-file"><span>フォーマット定義ファイル</span></a> の配置ディレクトリや出力先ディレクトリを
 <a class="reference internal" href="../file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> に設定する必要がある。</p>
-<p class="last">必要となるディレクトリの設定値については、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を参照。</p>
+<p class="last">必要となるディレクトリの設定値については、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を参照。</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> で開いたファイルリソースは、
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> で開いたファイルリソースは、
 <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a> にて自動的に開放される。
-このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用する場合には、
+このため、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> を使用する場合には、
 必ず <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>出力ファイル開放ハンドラ</span></a> をハンドラキュー上に設定すること。</p>
 </div>
 <div class="admonition important">
@@ -571,24 +571,24 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p class="last">出力に使用するバッファサイズは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a>
+<p class="last">出力に使用するバッファサイズは <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a>
 の <cite>open</cite> メソッドで指定できる。</p>
 </div>
 </div>
 <div class="section" id="data-format-file-download">
 <span id="id11"></span><h3><a class="toc-backref" href="#id27">7.4.2.3.3. ファイルダウンロードで使用する</a><a class="headerlink" href="#data-format-file-download" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データレコードの内容をファイルダウンロード形式でクライアントに応答する方法について解説する。</p>
-<p>ファイルダウンロード形式のレスポンスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を使用することで実現できる。</p>
+<p>ファイルダウンロード形式のレスポンスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を使用することで実現できる。</p>
 <p>以下に実装例を示す。</p>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> 生成時に、
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> 生成時に、
 フォーマット定義ファイルが格納された論理パス名と、フォーマット定義ファイル名を指定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html#write-java.util.Map-" title="nablarch.common.web.download.DataRecordResponse.write(java.util.Map)">DataRecordResponse#write</a> を使って、
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/web/download/DataRecordResponse.html#write-java.util.Map-" title="nablarch.common.web.download.DataRecordResponse.write(java.util.Map)">DataRecordResponse#write</a> を使って、
 データを出力する。(複数のレコードをダウンロードする場合には、繰り返し出力する)</li>
 <li><cite>Content-Type</cite> 及び <cite>Content-Disposition</cite> を設定する。</li>
-<li>業務アクションから <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を返却する。</li>
+<li>業務アクションから <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> を返却する。</li>
 </ul>
 </dd>
 </dl>
@@ -638,14 +638,14 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/util/FilePathSetting.html" title="nablarch.core.util.FilePathSetting">FilePathSetting</a> からフォーマット定義ファイルの <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html" title="java.io.File">File</a> オブジェクトを取得する。</li>
-<li>フォーマット定義ファイルを指定し、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/FormatterFactory.html" title="nablarch.core.dataformat.FormatterFactory">FormatterFactory</a>
-から <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> を生成する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> にアップロードファイルを読み込むための <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> を設定する。
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/util/FilePathSetting.html" title="nablarch.core.util.FilePathSetting">FilePathSetting</a> からフォーマット定義ファイルの <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html" title="java.io.File">File</a> オブジェクトを取得する。</li>
+<li>フォーマット定義ファイルを指定し、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/FormatterFactory.html" title="nablarch.core.dataformat.FormatterFactory">FormatterFactory</a>
+から <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> を生成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> にアップロードファイルを読み込むための <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> を設定する。
 設定する <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> の実装クラスは、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#mark-int-" title="java.io.InputStream.mark(int)">mark</a>/<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#reset--" title="java.io.InputStream.reset()">reset</a> がサポートされている必要がある。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> のAPIを呼び出し、アップロードファイルのレコードを読み込む。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> のAPIを呼び出し、アップロードファイルのレコードを読み込む。</li>
 </ul>
 </dd>
 </dl>
@@ -687,7 +687,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 </dl>
 <dl class="docutils" id="data-format-upload-helper">
 <dt>アップロードヘルパーを使用したアップロードファイルの読み込み</dt>
-<dd><p class="first">アップロードヘルパー( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> )を使用すると、
+<dd><p class="first">アップロードヘルパー( <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> )を使用すると、
 ファイルの読み込み、バリデーション、データベースへの保存を簡易的に実行出来る。</p>
 <p>しかし、この機能では以下の制限(デメリット)があるため、 <a class="reference internal" href="#data-format-native-upload-file-load"><span>汎用データフォーマット(本機能)のみを使ったアップロードファイルの読み込み</span></a>
 を使用することを推奨する。</p>
@@ -699,13 +699,13 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
-<li>取得したアップロードファイルを元に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> を生成する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#applyFormat-java.lang.String-" title="nablarch.fw.web.upload.util.UploadHelper.applyFormat(java.lang.String)">UploadHelper#applyFormat</a> を使って、フォーマット定義ファイルを設定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidator.html#setUpMessageIdOnError-java.lang.String-java.lang.String-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.setUpMessageIdOnError(java.lang.String-java.lang.String-java.lang.String)">setUpMessageIdOnError</a> を使って、バリデーションエラー用のメッセージIDを設定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidator.ErrorHandlingBulkValidator.html#validateWith-java.lang.Class-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.ErrorHandlingBulkValidator.validateWith(java.lang.Class-java.lang.String)">validateWith</a> を使って、バリデーションを実行するJava Beansクラスとバリデーションメソッドを設定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidationResult.html#importWith-nablarch.core.db.support.DbAccessSupport-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidationResult.importWith(nablarch.core.db.support.DbAccessSupport-java.lang.String)">importWith</a> を使って、バリデーション実行後のJava Beansオブジェクトの内容をデータベースに登録する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を呼び出してアップロードされたファイルを取得する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> の引数には、パラメータ名を指定する。</li>
+<li>取得したアップロードファイルを元に <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> を生成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#applyFormat-java.lang.String-" title="nablarch.fw.web.upload.util.UploadHelper.applyFormat(java.lang.String)">UploadHelper#applyFormat</a> を使って、フォーマット定義ファイルを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/BulkValidator.html#setUpMessageIdOnError-java.lang.String-java.lang.String-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.setUpMessageIdOnError(java.lang.String-java.lang.String-java.lang.String)">setUpMessageIdOnError</a> を使って、バリデーションエラー用のメッセージIDを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/BulkValidator.ErrorHandlingBulkValidator.html#validateWith-java.lang.Class-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.ErrorHandlingBulkValidator.validateWith(java.lang.Class-java.lang.String)">validateWith</a> を使って、バリデーションを実行するJava Beansクラスとバリデーションメソッドを設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/BulkValidationResult.html#importWith-nablarch.core.db.support.DbAccessSupport-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidationResult.importWith(nablarch.core.db.support.DbAccessSupport-java.lang.String)">importWith</a> を使って、バリデーション実行後のJava Beansオブジェクトの内容をデータベースに登録する。</li>
 </ul>
 </dd>
 </dl>
@@ -729,7 +729,7 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 </div>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/package-summary.html" title="nablarch.fw.web.upload.util.package-summary">nablarch.fw.web.upload.util</a> パッケージ内のクラスのドキュメントを合わせて参照すること。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/fw/web/upload/util/package-summary.html" title="nablarch.fw.web.upload.util.package-summary">nablarch.fw.web.upload.util</a> パッケージ内のクラスのドキュメントを合わせて参照すること。</p>
 </div>
 </dd>
 </dl>
@@ -835,7 +835,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <p class="last">本機能でXMLを入力する場合、DTDをデフォルトで使用することはできない。DTDを使用したXMLを読み込もうとした場合、例外が発生する。
 これは <a class="reference external" href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing">XML外部実体参照(XXE)</a> を防止するための措置である。</p>
 </div>
-<p>読み込み対象となるXMLが信頼できる場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> の <code class="docutils literal"><span class="pre">allowDTD</span></code> プロパティを使用してDTDの使用を許可することができる。
+<p>読み込み対象となるXMLが信頼できる場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> の <code class="docutils literal"><span class="pre">allowDTD</span></code> プロパティを使用してDTDの使用を許可することができる。
 使用方法は下記の通り。</p>
 <p><code class="docutils literal"><span class="pre">XmlDataParser</span></code> という名前で明示的にコンポーネント設定ファイルに設定を記載し、DTDの使用を許可する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -977,9 +977,9 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <dd><dl class="first docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html" title="nablarch.core.dataformat.CharacterReplacementManager">CharacterReplacementManager</a> をコンポーネント名 <code class="docutils literal"><span class="pre">characterReplacementManager</span></code> で設定する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html#setConfigList-java.util.List-" title="nablarch.core.dataformat.CharacterReplacementManager.setConfigList(java.util.List)">configList</a> プロパティにリスト形式で <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html" title="nablarch.core.dataformat.CharacterReplacementConfig">CharacterReplacementConfig</a> を設定する。</li>
-<li>複数のプロパティファイルを定義する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html#setTypeName-java.lang.String-" title="nablarch.core.dataformat.CharacterReplacementConfig.setTypeName(java.lang.String)">typeName</a> プロパティに異なる名前を設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html" title="nablarch.core.dataformat.CharacterReplacementManager">CharacterReplacementManager</a> をコンポーネント名 <code class="docutils literal"><span class="pre">characterReplacementManager</span></code> で設定する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html#setConfigList-java.util.List-" title="nablarch.core.dataformat.CharacterReplacementManager.setConfigList(java.util.List)">configList</a> プロパティにリスト形式で <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html" title="nablarch.core.dataformat.CharacterReplacementConfig">CharacterReplacementConfig</a> を設定する。</li>
+<li>複数のプロパティファイルを定義する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html#setTypeName-java.lang.String-" title="nablarch.core.dataformat.CharacterReplacementConfig.setTypeName(java.lang.String)">typeName</a> プロパティに異なる名前を設定する。</li>
 </ul>
 </dd>
 </dl>
@@ -1033,17 +1033,17 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <p>このような場合は、プロジェクト固有のフィールドタイプを定義することで対応する。</p>
 <p>以下に手順を示す。</p>
 <ol class="arabic simple">
-<li>フィールドタイプを処理するための <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> 実装クラスを作成する。</li>
+<li>フィールドタイプを処理するための <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> 実装クラスを作成する。</li>
 <li>追加したフィールドタイプを有効にするため、フォーマットに応じたファクトリの継承クラスを作成する。</li>
 <li>作成したファクトリクラスを、フォーマットに応じた設定クラスのプロパティに設定する。</li>
 </ol>
 <p>詳細な手順は以下のとおり。</p>
 <dl class="docutils">
 <dt>フィールドタイプに対応したデータタイプ実装の追加</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> を実装したクラスを作成する。</p>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> を実装したクラスを作成する。</p>
 <div class="last admonition tip">
 <p class="first admonition-title">ちなみに</p>
-<p class="last">標準のフィールドタイプ実装は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/package-summary.html" title="nablarch.core.dataformat.convertor.datatype.package-summary">nablarch.core.dataformat.convertor.datatype</a> パッケージ配下に配置されている。
+<p class="last">標準のフィールドタイプ実装は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/datatype/package-summary.html" title="nablarch.core.dataformat.convertor.datatype.package-summary">nablarch.core.dataformat.convertor.datatype</a> パッケージ配下に配置されている。
 実装を追加する際には、これらのクラスを参考にすると良い。</p>
 </div>
 </dd>
@@ -1063,16 +1063,16 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Fixed(固定長)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorFactory">FixedLengthConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorFactory">FixedLengthConvertorFactory</a></td>
 </tr>
 <tr class="row-odd"><td>Variable(可変長)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorFactory">VariableLengthConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorFactory">VariableLengthConvertorFactory</a></td>
 </tr>
 <tr class="row-even"><td>JSON</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorFactory">JsonDataConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorFactory">JsonDataConvertorFactory</a></td>
 </tr>
 <tr class="row-odd"><td>XML</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorFactory">XmlDataConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorFactory">XmlDataConvertorFactory</a></td>
 </tr>
 </tbody>
 </table>
@@ -1106,24 +1106,24 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Fixed(固定長)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting">FixedLengthConvertorSetting</a>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting">FixedLengthConvertorSetting</a>
 (fixedLengthConvertorSetting)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html#setFixedLengthConvertorFactory-nablarch.core.dataformat.convertor.FixedLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting.setFixedLengthConvertorFactory(nablarch.core.dataformat.convertor.FixedLengthConvertorFactory)">fixedLengthConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html#setFixedLengthConvertorFactory-nablarch.core.dataformat.convertor.FixedLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting.setFixedLengthConvertorFactory(nablarch.core.dataformat.convertor.FixedLengthConvertorFactory)">fixedLengthConvertorFactory</a></td>
 </tr>
 <tr class="row-odd"><td>Variable(可変長)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting">VariableLengthConvertorSetting</a>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting">VariableLengthConvertorSetting</a>
 (variableLengthConvertorSetting)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html#setVariableLengthConvertorFactory-nablarch.core.dataformat.convertor.VariableLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting.setVariableLengthConvertorFactory(nablarch.core.dataformat.convertor.VariableLengthConvertorFactory)">variableLengthConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html#setVariableLengthConvertorFactory-nablarch.core.dataformat.convertor.VariableLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting.setVariableLengthConvertorFactory(nablarch.core.dataformat.convertor.VariableLengthConvertorFactory)">variableLengthConvertorFactory</a></td>
 </tr>
 <tr class="row-even"><td>JSON</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting">JsonDataConvertorSetting</a>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting">JsonDataConvertorSetting</a>
 (jsonDataConvertorSetting)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html#setJsonDataConvertorFactory-nablarch.core.dataformat.convertor.JsonDataConvertorFactory-" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting.setJsonDataConvertorFactory(nablarch.core.dataformat.convertor.JsonDataConvertorFactory)">jsonDataConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html#setJsonDataConvertorFactory-nablarch.core.dataformat.convertor.JsonDataConvertorFactory-" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting.setJsonDataConvertorFactory(nablarch.core.dataformat.convertor.JsonDataConvertorFactory)">jsonDataConvertorFactory</a></td>
 </tr>
 <tr class="row-odd"><td>XML</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting">XmlDataConvertorSetting</a>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting">XmlDataConvertorSetting</a>
 (xmlDataConvertorSetting)</td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html#setXmlDataConvertorFactory-nablarch.core.dataformat.convertor.XmlDataConvertorFactory-" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting.setXmlDataConvertorFactory(nablarch.core.dataformat.convertor.XmlDataConvertorFactory)">xmlDataConvertorFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html#setXmlDataConvertorFactory-nablarch.core.dataformat.convertor.XmlDataConvertorFactory-" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting.setXmlDataConvertorFactory(nablarch.core.dataformat.convertor.XmlDataConvertorFactory)">xmlDataConvertorFactory</a></td>
 </tr>
 </tbody>
 </table>
@@ -1156,15 +1156,15 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
 <p>属性を持つ要素のコンテンツ名を変更するには、
 以下のクラスをコンポーネント設定ファイルに設定し、<code class="docutils literal"><span class="pre">contentName</span></code> プロパティに変更後のコンテンツ名をそれぞれ設定する。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a></li>
 </ul>
 <p>コンポーネント設定ファイルの設定例を以下に示す。</p>
 <dl class="docutils">
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataParser</span></code> とすること</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataBuilder</span></code> とすること</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataParser</span></code> とすること</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/5u18-SNAPSHOT/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a> のコンポーネント名は <code class="docutils literal"><span class="pre">XmlDataBuilder</span></code> とすること</li>
 </ul>
 </dd>
 </dl>
