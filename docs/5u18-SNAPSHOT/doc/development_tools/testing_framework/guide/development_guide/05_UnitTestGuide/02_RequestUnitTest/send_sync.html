@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>3.1.17. リクエスト単体テストの実施方法(同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -37,8 +37,8 @@
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
-        <link rel="next" title="3.1.16. リクエスト単体テストの実施方法（応答不要メッセージ送信処理）" href="delayed_send.html"/>
-        <link rel="prev" title="3.1.14. リクエスト単体テストの実施方法（HTTP同期応答メッセージ受信処理）" href="http_real.html"/>
+        <link rel="next" title="3.1.18. リクエスト単体テストの実施方法（応答不要メッセージ送信処理）" href="delayed_send.html"/>
+        <link rel="prev" title="3.1.16. リクエスト単体テストの実施方法（HTTP同期応答メッセージ受信処理）" href="http_real.html"/>
  
 
   
@@ -178,21 +178,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../rest_testing_framework/index.html">4. RESTfulウェブサービス実行基盤向けテスティングフレームワーク</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../rest_testing_framework/01_Setup.html">4.1. テスティングフレームワークの使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../rest_testing_framework/02_development_guide/index.html">4.2. 単体テスト実施方法</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">5. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">5.1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">5.2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">5.3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -319,11 +314,11 @@
       
           <li><a href="../../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
-    <li>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</li>
+    <li>3.1.17. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -334,9 +329,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="message-sendsyncmessage-test">
-<span id="id1"></span><h1>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)<a class="headerlink" href="#message-sendsyncmessage-test" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>3.1.17. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)<a class="headerlink" href="#message-sendsyncmessage-test" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1.15.1. 出力ライブラリ(同期応答メッセージ送信処理)の構造とテスト範囲<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.17.1. 出力ライブラリ(同期応答メッセージ送信処理)の構造とテスト範囲<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>同期応答メッセージ送信処理のリクエスト単体テストは、当該処理に付与されたリクエストID<a class="footnote-reference" href="#id4" id="id3">[1]</a>単位で行う。</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -387,16 +382,16 @@ Excelファイルを使用することで、外部インターフェース設計
 </div></blockquote>
 </div>
 <div class="section" id="id5">
-<h2>3.1.15.2. テストの実施方法<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.17.2. テストの実施方法<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>同期応答メッセージ送信処理のテストは、ウェブアプリケーションやバッチ処理などのテスト方式を踏襲して行われる。
 テストクラスの書き方や各種準備データの準備方法については、これらのテストの実施方法を参照すること。 </p>
 <p>本項では、同期応答メッセージ送信処理個有の実施方法についてのみ解説する。</p>
 <div class="section" id="send-sync-request-write-test-data">
-<span id="id6"></span><h3>3.1.15.2.1. テストデータの書き方<a class="headerlink" href="#send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id6"></span><h3>3.1.17.2.1. テストデータの書き方<a class="headerlink" href="#send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストデータを記載したExcelファイルは、クラス単体テストと同様にテストソースコードと同じディレクトリに同じ名前で格納する（拡張子のみ異なる）。</p>
 <p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Excelによるテストデータ記述</span></a>」を参照。</p>
 <div class="section" id="id7">
-<h4>3.1.15.2.1.1. 要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.17.2.1.1. 要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>同期応答メッセージ送信処理を行う場合、リクエストIDごとに、要求電文および応答電文のヘッダ部とボディ部のフォーマットおよび、データを定義する。</p>
 <p>テストケースと要求電文の期待値および応答電文は、グループIDで対応付ける。
 具体的には、テストケースのexpectedMessageおよびresponseMessageのフィールドに記載されたグループIDが、
@@ -621,7 +616,7 @@ Excelファイルを使用することで、外部インターフェース設計
 </div>
 </div>
 <div class="section" id="send-sync-failure-test">
-<span id="id16"></span><h4>3.1.15.2.1.2. 障害系のテスト<a class="headerlink" href="#send-sync-failure-test" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<span id="id16"></span><h4>3.1.17.2.1.2. 障害系のテスト<a class="headerlink" href="#send-sync-failure-test" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>応答電文の表に「errorMode:」から始まる特定の値を設定することで、障害系のテストを行うことができる<a class="footnote-reference" href="#id18" id="id17">[6]</a>。</p>
 <p>以下に、設定値と、障害系のテストの対応を示す。</p>
 <blockquote>
@@ -665,7 +660,7 @@ Excelファイルを使用することで、外部インターフェース設計
 </div>
 </div>
 <div class="section" id="id19">
-<h3>3.1.15.2.2. テスト結果検証<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.17.2.2. テスト結果検証<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>要求電文の期待値を定義した場合、自動テストフレームワーク側で以下の検証が行われる。</p>
 <ul class="simple">
 <li>要求電文の内容の検証</li>

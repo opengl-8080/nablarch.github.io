@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.8. リクエスト単体テストの実施方法(バッチ) &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>3.1.10. リクエスト単体テストの実施方法(バッチ) &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -37,8 +37,8 @@
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
-        <link rel="next" title="3.1.9. 取引単体テストの実施方法（バッチ）" href="../03_DealUnitTest/batch.html"/>
-        <link rel="prev" title="3.1.7. 二重サブミット防止機能のテスト実施方法" href="double_transmission.html"/>
+        <link rel="next" title="3.1.11. 取引単体テストの実施方法（バッチ）" href="../03_DealUnitTest/batch.html"/>
+        <link rel="prev" title="3.1.9. 取引単体テストの実施方法" href="../03_DealUnitTest/rest.html"/>
  
 
   
@@ -178,21 +178,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../rest_testing_framework/index.html">4. RESTfulウェブサービス実行基盤向けテスティングフレームワーク</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../rest_testing_framework/01_Setup.html">4.1. テスティングフレームワークの使用方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../rest_testing_framework/02_development_guide/index.html">4.2. 単体テスト実施方法</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">5. アプリケーション開発時に使える便利なツール</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">5.1. JSP静的解析ツール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">5.2. Nablarch SQL Executor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">5.3. 業務画面JSP検証ツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
 </ul>
 </li>
 </ul>
@@ -319,11 +314,11 @@
       
           <li><a href="../../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
-    <li>3.1.8. リクエスト単体テストの実施方法(バッチ)</li>
+    <li>3.1.10. リクエスト単体テストの実施方法(バッチ)</li>
       <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -334,9 +329,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="batch-request-test">
-<span id="id1"></span><h1>3.1.8. リクエスト単体テストの実施方法(バッチ)<a class="headerlink" href="#batch-request-test" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>3.1.10. リクエスト単体テストの実施方法(バッチ)<a class="headerlink" href="#batch-request-test" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1.8.1. テストクラスの書き方<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.1. テストクラスの書き方<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テストクラスは以下の条件を満たすように作成する。</p>
 <ul class="simple">
 <li>テストクラスのパッケージは、テスト対象のActionクラスと同じとする。</li>
@@ -353,7 +348,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>3.1.8.2. テストメソッド分割<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.2. テストメソッド分割<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>１テストケースにつき１テストメソッドを原則とする。
 以下の手順により、作成するテストメソッドを決定する。</p>
 <ul class="simple">
@@ -368,15 +363,15 @@
 </ul>
 </div>
 <div class="section" id="id4">
-<h2>3.1.8.3. テストデータの書き方<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.3. テストデータの書き方<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テストデータを記載したExcelファイルは、クラス単体テストと同様にテストソースコードと同じディレクトリに同じ名前で格納する（拡張子のみ異なる）。</p>
 <p>テストデータの記述方法詳細については、「<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Excelによるテストデータ記述</span></a>」を参照。</p>
 <div class="section" id="id5">
-<h3>3.1.8.3.1. テストクラスで共通のデータベース初期値<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.3.1. テストクラスで共通のデータベース初期値<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ウェブアプリケーションの場合と同様である。「<a class="reference internal" href="index.html#request-test-setup-db"><span>テストクラスで共通のデータベース初期値</span></a>」を参照。</p>
 </div>
 <div class="section" id="batch-test-testcases">
-<span id="id6"></span><h3>3.1.8.3.2. テストケース一覧<a class="headerlink" href="#batch-test-testcases" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id6"></span><h3>3.1.10.3.2. テストケース一覧<a class="headerlink" href="#batch-test-testcases" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>LIST_MAPのデータタイプで１テストメソッド分のケース表を記載する。IDは、<strong>testShots</strong>とする。</p>
 <p>１ケース毎に以下の要素を持たせる。</p>
 <table border="1" class="docutils">
@@ -471,7 +466,7 @@
 </tbody>
 </table>
 <div class="section" id="id12">
-<h4>3.1.8.3.2.1. コマンドライン引数<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.2.1. コマンドライン引数<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>テストデータで、<a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>コマンドライン引数</span></a>を指定する方法を説明する。</p>
 <p>バッチ起動時の引数を指定するには、<code class="docutils literal"><span class="pre">args[n]</span></code>（<strong>添字nは0以上の整数</strong>）という形式でカラムを追加する。</p>
 <blockquote>
@@ -545,15 +540,15 @@
 </div>
 </div>
 <div class="section" id="id13">
-<h3>3.1.8.3.3. 各種準備データ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.3.3. 各種準備データ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テスト実施に際して必要となる各種準備データの記述方法を説明する。
 バッチでは、データベース、入力ファイルの準備を行う。</p>
 <div class="section" id="id14">
-<h4>3.1.8.3.3.1. データベースの準備<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.3.1. データベースの準備<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><a class="reference internal" href="index.html#request-test-testcases"><span>オンライン</span></a>と同様に、グループIDで対応付けを行う。</p>
 </div>
 <div class="section" id="how-to-setup-fixed-length-file">
-<span id="id15"></span><h4>3.1.8.3.3.2. 固定長ファイルの準備<a class="headerlink" href="#how-to-setup-fixed-length-file" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<span id="id15"></span><h4>3.1.10.3.3.2. 固定長ファイルの準備<a class="headerlink" href="#how-to-setup-fixed-length-file" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>テストデータに固定長ファイルの情報を記載しておくと、自動テストフレームワークがテスト実行前にファイルを作成する。
 以下の書式で記述する。</p>
 <p>SETUP_FIXED[グループID]=ファイルパス</p>
@@ -855,7 +850,7 @@
 <hr class="docutils" />
 </div>
 <div class="section" id="csv">
-<span id="how-to-setup-csv-file"></span><h4>3.1.8.3.3.3. 可変長ファイル（CSVファイル）の準備<a class="headerlink" href="#csv" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<span id="how-to-setup-csv-file"></span><h4>3.1.10.3.3.3. 可変長ファイル（CSVファイル）の準備<a class="headerlink" href="#csv" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>可変長ファイル（CSVファイル）の準備も、固定長とほぼ同様である。
 固定長との違いは、可変長ファイルの場合はフィールド長を記載しない点である。</p>
 <p><code class="docutils literal"><span class="pre">SETUP_VARIABLE=work/members.csv</span></code></p>
@@ -940,7 +935,7 @@
 </div>
 </div>
 <div class="section" id="id22">
-<h4>3.1.8.3.3.4. 空のファイルを定義する方法<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.3.4. 空のファイルを定義する方法<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>準備データや期待値として空のファイル(0バイトファイル)を定義したい場合がある。</p>
 <p>テストシート上での空ファイルの定義は、以下の例のようにディレクティブ行を定義しレコードの定義を省略することで実現出来る。</p>
 <p><strong>空のファイルの定義例</strong></p>
@@ -966,22 +961,22 @@
 </div>
 </div>
 <div class="section" id="id23">
-<h3>3.1.8.3.4. 各種期待値<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.3.4. 各種期待値<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>検索結果、データベースを期待値と比較する場合は、
 それぞれのデータとテストケース一覧とをIDで紐付けする。</p>
 <div class="section" id="id24">
-<h4>3.1.8.3.4.1. 期待するデータベースの状態<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.4.1. 期待するデータベースの状態<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><a class="reference internal" href="index.html#request-test-expected-tables"><span>オンライン</span></a>と同様に、期待するデータベースの状態をテストケース一覧とリンクさせる。</p>
 </div>
 <div class="section" id="id25">
-<h4>3.1.8.3.4.2. 期待する固定長ファイル<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.4.2. 期待する固定長ファイル<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>テスト対象バッチが出力する固定長ファイルをアサートする。</p>
 <p>準備データの場合、データタイプが、<cite>SETUP_FIXED</cite>であったが、
 期待値を記述する場合は、<cite>EXPECTED_FIXED</cite>となる。</p>
 <p>その他のテストデータの記述方法は、準備データと同様である。<a class="reference internal" href="#id15">固定長ファイルの準備</a>を参照。</p>
 </div>
 <div class="section" id="id26">
-<h4>3.1.8.3.4.3. 期待する可変長ファイル<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.1.10.3.4.3. 期待する可変長ファイル<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>テスト対象バッチが出力する可変長ファイルをアサートする。</p>
 <p>準備データの場合、データタイプが、<cite>SETUP_VARIABLE</cite>であったが、
 期待値を記述する場合は、<cite>EXPECTED_VARIABLE</cite>となる。</p>
@@ -990,14 +985,14 @@
 </div>
 </div>
 <div class="section" id="id27">
-<h2>3.1.8.4. テストメソッドの書き方<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.4. テストメソッドの書き方<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id28">
-<h3>3.1.8.4.1. スーパクラスについて<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.4.1. スーパクラスについて<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">BatchRequestTestSupport</span></code>クラスを継承する。
 このクラスでは、準備したテストデータを元に以下の手順でリクエスト単体テストを実行する。</p>
 </div>
 <div class="section" id="id29">
-<h3>3.1.8.4.2. テストメソッド作成<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.4.2. テストメソッド作成<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>準備したテストシートに対応するメソッドを作成する。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser</span><span class="o">()</span> <span class="o">{</span>
@@ -1006,7 +1001,7 @@
 </div>
 </div>
 <div class="section" id="id30">
-<h3>3.1.8.4.3. スーパクラスのメソッド呼び出し<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.4.3. スーパクラスのメソッド呼び出し<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストメソッド内で、スーパクラスの以下のいずれかのメソッドを呼び出す。</p>
 <ul class="simple">
 <li>void execute()</li>
@@ -1024,18 +1019,18 @@
 </div>
 </div>
 <div class="section" id="id31">
-<h2>3.1.8.5. テスト起動方法<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.5. テスト起動方法<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>クラス単体テストと同様。通常のJUnitテストと同じように実行する。</p>
 </div>
 <div class="section" id="id32">
-<h2>3.1.8.6. テスト結果検証<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.10.6. テスト結果検証<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id33">
-<h3>3.1.8.6.1. データベースの結果検証<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.6.1. データベースの結果検証<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストケース一覧のexpectedTable欄にグループIDを記載することにより、
 そのグループIDのテストデータで実際のファイル出力結果を確認することができる。</p>
 </div>
 <div class="section" id="id34">
-<h3>3.1.8.6.2. ファイルの結果検証<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.6.2. ファイルの結果検証<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストケース一覧のexpectedFile欄にグループIDを記載することにより、
 そのグループIDのテストデータで実際のファイル出力結果を確認することができる。</p>
 <p>ファイル期待値の記述方法は、準備データの記述方法とほぼ同じである。
@@ -1066,7 +1061,7 @@ IDの記述方法だけが異なる。
 </table>
 </div>
 <div class="section" id="id35">
-<h3>3.1.8.6.3. ログの結果検証<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.10.6.3. ログの結果検証<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストケース一覧のexpectedLog欄にグループIDを記載することにより、
 そのグループIDのテストデータで実際のログ出力結果を確認することができる。</p>
 <p>以下の内容を記載する。</p>
