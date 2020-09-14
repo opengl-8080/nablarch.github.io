@@ -315,9 +315,12 @@
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
     <li>7.8. トランザクション管理</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -400,7 +403,7 @@
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">上記に設定したクラスを直接使用することは基本的にない。
 トランザクション制御を必要とする場合には、 <a class="reference internal" href="../handlers/common/transaction_management_handler.html#transaction-management-handler"><span>トランザクション制御ハンドラ</span></a> を使用すること。</p>
 </div>
@@ -410,7 +413,7 @@
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/JdbcTransactionFactory.html" title="nablarch.core.db.transaction.JdbcTransactionFactory">JdbcTransactionFactory</a> に対してトランザクションタイムアウト秒数を設定することで、トランザクションタイムアウト機能が有効となる。
 もし、設定されたトランザクションタイムアウト秒数が0以下の場合には、トランザクションタイムアウト機能は無効化される。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>バッチアプリケーションなどの大量データを一括で処理するような機能では、トランザクションタイムアウト機能を使用するのではなく、
 ジョブスケジューラの終了遅延監視などで処理遅延のハンドリングを行うこと。</p>
 <p class="last">なぜなら、バッチアプリケーションでは、全体の処理時間が想定内であればよく、個々のトランザクションで遅延が起きても問題ないからである。
@@ -466,7 +469,7 @@ SQLの実行が正常に終わった場合でもチェックを行っている�
 </dd>
 </dl>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>この機能は、データベースアクセス時にトランザクションタイムアウトチェックを行うため、
 データベースにアクセスしないロジックで処理遅延が発生した場合は、トランザクションタイムアウトとはならない。</p>
 <p class="last">例えば、データベースアクセスを行わないロジックで無限ループが発生した場合は、本機能ではトランザクションタイムアウトを検出することはできない。

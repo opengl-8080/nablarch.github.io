@@ -315,9 +315,12 @@
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
     <li>3.1.15. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -351,7 +354,7 @@
 <div class="line">⑤自動テストフレームワークは、テストデータを元に応答電文を生成し、Actionへ返却する。（応答電文はキューからGETしない）</div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">自動テストフレームワークは、「送信キュー」「受信キュー」を使用せず、キューの手前で要求電文のアサートおよび、応答電文の生成を行う。
 このため、特別なミドルウェアのインストールや環境設定は不要である。</p>
 </div>
@@ -407,7 +410,7 @@ Excelファイルを使用することで、外部インターフェース設計
 <p>以下に、実際にExcelで書かれたテストデータを示す。（グループIDの関連も示す）</p>
 <a class="reference internal image-reference" href="../../../../../../_images/send_sync.png"><img alt="../../../../../../_images/send_sync.png" src="../../../../../../_images/send_sync.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Nablarchが標準で提供する同期応答メッセージ送信機能では、要求電文と応答電文のヘッダ部は共通のフォーマットを使用するので、
 テストデータも同様にヘッダ部のフォーマット定義をリクエスト単位で統一すること。
 ボディ部については、要求電文と応答電文で異なるフォーマットを定義することができる。</p>
@@ -558,7 +561,7 @@ Excelファイルを使用することで、外部インターフェース設計
 （通常、このような場合は「本会員氏名」と「家族会員氏名」のようにユニークなフィールド名称が付与される）</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">フィールド名称、データ型、フィールド長の記述は、外部インタフェース設計書からコピー＆ペーストすることで効率良く作成できる。（ペーストする際、「<strong>行列を入れ替える</strong>」オプションにチェックすること）</p>
 </div>
 <hr class="docutils" />
@@ -607,7 +610,7 @@ Excelファイルを使用することで、外部インターフェース設計
 <p>以下に、複数回メッセージを送信する場合の要求電文の本文の期待値の記載例を示す。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/send_sync_ok_pattern_expected.png" src="../../../../../../_images/send_sync_ok_pattern_expected.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">送信対象のリクエストIDが複数存在する場合、送信順のテストは不可能である。上記の例の場合、 <code class="docutils literal"><span class="pre">ProjectInsertMessage</span></code> より先に、 <code class="docutils literal"><span class="pre">ProjectInsert2Messag</span></code> が送信された場合であってもテストは成功となる。</p>
 </div>
 </div>

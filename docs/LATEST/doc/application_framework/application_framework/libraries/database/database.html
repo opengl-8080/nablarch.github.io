@@ -317,9 +317,12 @@
           <li><a href="../database_management.html">7.3. データベースアクセス</a> &raquo;</li>
       
     <li>7.3.1. データベースアクセス(JDBCラッパー)</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -377,7 +380,7 @@
 </div>
 <p>JDBCを使用してデータベースに対してSQL文を実行する機能を提供する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference internal" href="../database_management.html#database-management"><span>データベースアクセス</span></a> で説明したように、SQLの実行に関しては <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用することを推奨する。</p>
 <p class="last">なお、<a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> 内部では、この機能のAPIを使用してデータベースアクセスを行っているため、
 この機能を使用するための設定は必ず必要になる。</p>
@@ -414,7 +417,7 @@
 <p>SQLファイルに記述することで、ロジックでSQLの組み立てを行う必要がなく、
 必ず <cite>PreparedStatement</cite> を使用するため、SQLインジェクションの脆弱性が排除できる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">どうしてもSQLファイルに定義できない場合は、SQLを直接指定して実行するAPIも提供しているので、そちらを使用すること。
 ただし、安易に使用するとSQLインジェクションの脆弱性が埋め込まれる可能性があるため注意すること。
 また、SQLインジェクションの脆弱性がないことなど、テストやレビューで担保出来ることが前提となる。</p>
@@ -495,7 +498,7 @@ INパラメータが増減した際のインデクス修正などが不要とな
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>上記に設定したクラスを直接使用することは基本的にない。
 データベースアクセスを必要とする場合には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> を使用すること。</p>
 <p class="last">なお、データベースを利用する場合はトランザクション管理も必要となる。
@@ -506,7 +509,7 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <span id="id8"></span><h3><a class="toc-backref" href="#id41">7.3.1.3.2. データベース製品に対応したダイアレクトを使用する</a><a class="headerlink" href="#database-use-dialect" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベース製品に対応したダイアレクトをコンポーネント設定ファイルに設定することで、ダイアレクト機能が有効になる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>設定を行わなかった場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> が利用される。
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> は原則全ての機能が無効化されるので、必ずデータベース製品に対応したダイアレクトを設定すること。</p>
 <p class="last">なお、使用するデータベース製品に対応するダイアレクトが存在しない場合や、
@@ -710,7 +713,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">検索範囲が指定された場合、検索用のSQLを取得範囲指定のSQLに書き換えてから実行を行う。
 なお、取得範囲指定のSQLは <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> により行われる。</p>
 </div>
@@ -766,7 +769,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Beanの代わりに <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">java.util.Map</a> の実装クラスも指定できる。
 Mapを指定した場合は、Mapのキー値と一致するINパラメータに対して、Mapの値が設定される。</p>
 <p>なお、Beanを指定した場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用して、Mapに変換後に処理を行う。
@@ -774,7 +777,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でMapにコピーできる型を増やしたい場合には、 <a class="reference internal" href="../bean_util.html#utility-conversion"><span>BeanUtilの型変換ルール</span></a> を参照し対応すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Beanへのアクセス方法をプロパティからフィールドに変更することができる。
 フィールドアクセスに変更する場合には、configファイルに以下の設定を追加する。</p>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.dbAccess.isFieldAccess</span><span class="o">=</span><span class="s">true</span>
@@ -1043,7 +1046,7 @@ where
 また名前付きパラメータに対応するBeanオブジェクトのプロパティの型は、
 配列か <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> (サブタイプ含む) <a class="footnote-reference" href="#collection" id="id18">[1]</a> とする必要がある。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>in句の条件となるプロパティ値がnullやサイズ0となる場合には、該当条件は必ず可変条件として定義すること。
 もし、可変条件としなかった場合でプロパティ値がnullの場合、条件が <code class="docutils literal"><span class="pre">xxxx</span> <span class="pre">in</span> <span class="pre">(null)</span></code> となるため、
 検索結果が正しく取得できない可能性がある。</p>
@@ -1299,7 +1302,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">データベースアクセスエラー発生時の例外を変更したい場合（より細かく分けたい場合）などは、
 <a class="reference internal" href="#database-change-exception"><span>データベースアクセス時の例外クラスを切り替える</span></a> を参照すること。</p>
 </div>
@@ -1592,7 +1595,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 のプロパティ<code class="docutils literal"><span class="pre">schemaName</span></code>に設定する。
 上記の例では、置き換え後の値を <code class="docutils literal"><span class="pre">nablarch.schemaReplacer.schemaName</span></code> という環境依存値に設定している。この値を環境毎に切り替えることにより、SQL文中のスキーマをその環境に応じたものに置き換えることができる（切替方法の詳細については <a class="reference internal" href="../../setting_guide/ManagingEnvironmentalConfiguration/index.html#how-to-switch-env-values"><span>環境ごとに環境設定値を切り替える方法</span></a> を参照）。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本機能によるSQL文中のスキーマ置き換えは単純な文字列置換処理であり、スキーマが存在するか、スキーマ置き換え後のSQLが妥当であるかといったチェックは行われない（SQL文実行時にエラーとなる）。</p>
 </div>
 </div>

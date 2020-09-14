@@ -317,9 +317,12 @@
           <li><a href="../database_management.html">7.3. データベースアクセス</a> &raquo;</li>
       
     <li>7.3.2. ユニバーサルDAO</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -368,7 +371,7 @@
 <p>ユニバーサルDAOの内部では、 <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用しているので、
 ユニバーサルDAOを使用するには <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> の設定が必要となる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ユニバーサルDAOは、簡易的なO/Rマッパーと位置付けていて、
 すべてのデータベースアクセスをユニバーサルDAOで実現しようとは考えていない。
 ユニバーサルDAOで実現できない場合は、素直に <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使うこと。</p>
@@ -376,7 +379,7 @@
 <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用する必要がある。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ユニバーサルDAOは、共通項目(全てのテーブルに定義する登録ユーザや更新ユーザ等)に対する値の自動設定機能は提供しない。
 共通項目に対する値の自動設定を行いたい場合は、 <a class="reference internal" href="../../../adaptors/doma_adaptor.html#doma-adaptor"><span>Domaアダプタ</span></a> を適用し、Domaのエンティティリスナー機能を使用すれば良い。</p>
 <p class="last">どうしてもユニバーサルDAOを使用したい場合は、ユニバーサルDAOの機能を使用する前にアプリケーションで明示的に共通項目を設定すること。</p>
@@ -395,7 +398,7 @@ SQL文は、JPAアノテーションを元に実行時に構築する。</p>
 </ul>
 <p>Entityに使用できるJPAアノテーションについては、 <a class="reference internal" href="#universal-dao-jpa-annotations"><span>Entityに使用できるJPAアノテーション</span></a> を参照。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ユニバーサルDAOの上記CRUD機能では、<code class="docutils literal"><span class="pre">&#64;Table</span></code>アノテーションを使ってスキーマを指定することができる（ <a class="reference internal" href="#universal-dao-jpa-annotations"><span>Entityに使用できるJPAアノテーション</span></a> を参照）。
 ただし、 <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> の <a class="reference internal" href="database.html#database-replace-schema"><span>SQL文中のスキーマを環境毎に切り替える</span></a> 機能は、ユニバーサルDAOの上記CRUD機能では使用できない。環境毎にスキーマを切り替える用途には、ユニバーサルDAOではなく <a class="reference internal" href="database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用すること。</p>
 </div>
@@ -449,7 +452,7 @@ SQL IDがFIND_BY_NAMEとなる。</p>
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">「#」を含めた指定は、機能単位（Actionハンドラ単位）にSQLを集約したい場合などに使用できる。
 ただし、指定が煩雑になるデメリットがあるため、基本は「#」を付けない指定を使用すること。</p>
 </div>
@@ -567,7 +570,7 @@ JDBCドライバのマニュアルを参照すること。</p>
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ページング用の検索処理は、 <a class="reference internal" href="database.html#database-paging"><span>データベースアクセス(JDBCラッパー)の範囲指定検索機能</span></a> を使用して行う。</p>
 </div>
 </div>
@@ -645,7 +648,7 @@ JDBCドライバのマニュアルを参照すること。</p>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">シーケンス及びテーブルを使用したサロゲートキーの採番処理は、 <a class="reference internal" href="generator.html#generator"><span>サロゲートキーの採番</span></a> を使用して行う。
 設定値(テーブルを使用した場合のテーブル名やカラム名の設定など)は、リンク先を参照すること。</p>
 </div>
@@ -852,7 +855,7 @@ JDBCドライバのマニュアルを参照すること。</p>
 <p>フィールドとプロパティは名前で紐づいているため、名前が異なるとフィールドのアノテーションをプロパティで参照できなくなる。
 そのためフィールド名と、プロパティ名(get〇〇,set〇〇の〇〇の部分)を必ず同じものにすること。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">例えば、Lombokのようなボイラープレートコードを生成するライブラリを使用する場合、
 アノテーションをフィールドに設定することでgetterを自分で作成する必要がなくなり、
 ライブラリの利点をより活かすことができる。</p>
@@ -867,7 +870,7 @@ BookAuthorクラス  -&gt; BOOK_AUTHOR
 </pre></div>
 </div>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">クラス名からテーブル名を導出できない場合は、
 後述の <a class="reference internal" href="#universal-dao-jpa-table"><span>&#64;Table</span></a> を用いて明示的にテーブル名を指定すること。</p>
 </div>
@@ -892,7 +895,7 @@ schema属性に値が指定されている場合、指定されたスキーマ�
 <dd><p class="first">カラム名を指定するために使用するアノテーション。</p>
 <p>name属性に値が指定されている場合、その値がカラム名として使用される。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本アノテーションが設定されていない場合は、プロパティ名からカラム名が導出される。
 導出方法は、テーブル名の導出方法と同じである。
 詳細は、 <a class="reference internal" href="#universal-dao-jpa-entity"><span>&#64;Entity</span></a> を参照。</p>
@@ -913,7 +916,7 @@ schema属性に値が指定されている場合、指定されたスキーマ�
 <p>本アノテーションが設定されている場合、
 更新処理時にバージョンカラムが条件に自動的に追加され楽観ロックが行われる。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本アノテーションは、Entity内に1つだけ指定可能。</p>
 </div>
 </dd>
@@ -938,7 +941,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
 </ul>
 <p>generator属性に任意の名前を設定する。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a> を使用して、
 シーケンス採番のシーケンスオブジェクト名や
 テーブル採番のレコードを識別する値を取得できない場合は、
@@ -956,7 +959,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
 のgenerator属性と同じ値を設定する。</p>
 <p>sequenceName属性には、データベース上に作成されているシーケンスオブジェクト名を設定する。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">シーケンス採番は、採番機能を使用して行う。
 このため、 <a class="reference internal" href="generator.html#generator-dao-setting"><span>採番用の設定</span></a> を別途行う必要がある。</p>
 </div>
@@ -969,7 +972,7 @@ AUTOを設定した場合、以下のルールにて採番方法が選択され�
 のgenerator属性と同じ値を設定する。</p>
 <p>pkColumnValue属性には、採番テーブルのレコードを識別するための値を設定する。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">テーブル採番は、採番機能を使用して行う。
 このため、 <a class="reference internal" href="generator.html#generator-dao-setting"><span>採番用の設定</span></a> を別途行う必要がある。</p>
 </div>

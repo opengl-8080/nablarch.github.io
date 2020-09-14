@@ -317,9 +317,12 @@
           <li><a href="../feature_details.html">2.4. 機能詳細</a> &raquo;</li>
       
     <li>2.4.2.1. バリデーションエラーのメッセージを画面表示する</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -332,7 +335,7 @@
 テンプレートエンジンでは、リクエストスコープに格納された <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/message/ErrorMessages.html" title="nablarch.fw.web.message.ErrorMessages">ErrorMessages</a> にアクセスすることでエラーメッセージを表示できる。
 リクエストスコープの変数名は、<a class="reference internal" href="../../handlers/web/HttpErrorHandler.html#http-error-handler-error-messages"><span>エラーメッセージのリクエストスコープへの設定</span></a> を参照。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>JSPを使用した場合、 <a class="reference internal" href="../../libraries/tag.html#tag-write-error"><span>カスタムタグを使用したエラー表示</span></a> を使用することでエラーメッセージの表示ができるが、
 カスタムタグが出力するDOM構造の制約によりCSSフレームワークとの相性が悪い問題がある。</p>
 <p class="last">リクエストスコープ上のオブジェクトを使用した場合、DOM構造の制約がなくなるためJSPでも直接リクエストスコープ上のオブジェクトにアクセスしエラーメッセージを表示しても良い。</p>
@@ -341,7 +344,7 @@
 <dl class="docutils">
 <dt>特定のプロパティに対応したメッセージを表示したい</dt>
 <dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/message/ErrorMessages.html#hasError-java.lang.String-" title="nablarch.fw.web.message.ErrorMessages.hasError(java.lang.String)">ErrorMessages#hasError</a> や
-<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/message/ErrorMessages.html#getMessage-java.lang.String-" title="nablarch.fw.web.message.ErrorMessages.getMessage(java.lang.String)">ErrorMessages#hasError</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/message/ErrorMessages.html#getMessage-java.lang.String-" title="nablarch.fw.web.message.ErrorMessages.getMessage(java.lang.String)">ErrorMessages#getMessage</a>
 を使用することでプロパティ(入力項目のname属性の値)に対応したエラー有無やメッセージの表示ができる。</p>
 <p>この例では、 <code class="docutils literal"><span class="pre">form.userName</span></code> プロパティに対応したエラーメッセージがリクエストスコープにある場合にメッセージが表示される。</p>
 <div class="last highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#39;text&#39;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#39;form.txt&#39;</span> <span class="p">/&gt;</span>

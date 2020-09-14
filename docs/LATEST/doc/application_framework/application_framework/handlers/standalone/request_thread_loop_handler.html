@@ -317,9 +317,12 @@
           <li><a href="index.html">6.6. スタンドアローン型アプリケーション共通ハンドラ</a> &raquo;</li>
       
     <li>6.6.8. リクエストスレッド内ループ制御ハンドラ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -342,7 +345,7 @@
 <p>プロセスの停止要求があるまで、後続のハンドラを繰り返し実行するハンドラ。
 このハンドラは、メッセージキューやデータベース上のテーブルなどを監視し、未処理のデータを随時処理するプロセスで使用する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>メッセージキューやデータベース上のテーブルを監視して処理するプロセスでは、個々のリクエスト(データ)は独立して扱われる。
 1つのリクエスト処理がエラーとなっても他のリクエスト処理はそのまま継続しなければならない。
 このため、このハンドラで捕捉した例外は、プロセス正常停止要求や致命的な一部の例外を除き処理を継続する。</p>
@@ -351,7 +354,7 @@
 <p>本ハンドラでは、以下の処理を行う。</p>
 <ul class="simple">
 <li>後続ハンドラを繰り返し実行</li>
-<li>プロテス停止要求例外発生時の後続ハンドラ実行の停止 <br/>
+<li>プロセス停止要求例外発生時の後続ハンドラ実行の停止 <br/>
 詳細は、 <a class="reference internal" href="#request-thread-loop-handler-stop"><span>本ハンドラの停止方法</span></a> を参照</li>
 <li>後続ハンドラで発生した例外(エラー)に応じた処理(ログ出力等) <br/>
 詳細は、 <a class="reference internal" href="#request-thread-loop-handler-error-handling"><span>後続ハンドラで発生した例外(エラー)に応じた処理内容</span></a> を参照</li>
@@ -395,7 +398,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">後続ハンドラに <a class="reference internal" href="../common/ServiceAvailabilityCheckHandler.html#serviceavailabilitycheckhandler"><span>サービス提供可否チェックハンドラ</span></a> を設定しない場合には、本設定値は設定する必要が無い。
 (設定したとしても、この値が使われることはない。)</p>
 </div>

@@ -1,0 +1,628 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. Job Screen JSP Validation Tool &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/toolbox/JspVerifier/JspVerifier.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+        <link rel="up" title="4. Useful Tools When Developing Applications" href="../index.html"/>
+        <link rel="next" title="Nablarch Implementation Examples" href="../../../examples/index.html"/>
+        <link rel="prev" title="4.2. Nablarch SQL Executor" href="../SqlExecutor/SqlExecutor.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">4. Useful Tools When Developing Applications</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../index.html">4. Useful Tools When Developing Applications</a> &raquo;</li>
+      
+    <li>4.3. Job Screen JSP Validation Tool</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="job-screen-jsp-validation-tool">
+<h1>4.3. Job Screen JSP Validation Tool<a class="headerlink" href="#job-screen-jsp-validation-tool" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#summary" id="id1">Summary</a></li>
+<li><a class="reference internal" href="#initial-environment-construction" id="id2">Initial Environment Construction</a><ul>
+<li><a class="reference internal" href="#node-js-installation" id="id3">Node.js installation</a></li>
+<li><a class="reference internal" href="#check-environment-variables" id="id4">Check environment variables</a></li>
+<li><a class="reference internal" href="#install-dependent-packages" id="id5">Install dependent packages</a></li>
+<li><a class="reference internal" href="#confirm-if-it-can-be-used-normally" id="id6">Confirm if it can be used normally.</a></li>
+<li><a class="reference internal" href="#modification-of-environment-dependency-setting-value" id="id7">Modification of environment dependency setting value.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-to-use-the-tool" id="id8">How to Use the tool</a><ul>
+<li><a class="reference internal" href="#execute-with-a-bat-file" id="id9">Execute with a bat file</a></li>
+<li><a class="reference internal" href="#execution-from-command-line" id="id10">Execution from command line.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-method" id="id11">Configuration method</a><ul>
+<li><a class="reference internal" href="#default-setting-contents" id="id12">Default setting contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2>4.3.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This tool performs the following verifications on JSP files.</p>
+<p>Also, it has the capability to change the verification contents in the settings file, and the verification content itself can be added.</p>
+<p><strong>Implemented</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>It can verify to ensure that only the tags that are permitted to be used, are used in the JSP of the business screen.</li>
+<li>It can verify that the required structure is satisfied in the JSP.</li>
+<li>It can verify that the prohibited structure is not being used in the JSP.</li>
+<li>It can verify that the attributes specified for each tag are indeed the attributes defined for each tag.</li>
+</ul>
+</div></blockquote>
+<p><strong>Not implemented</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>It can verify that attribute value of each tag corresponds to the type of attribute.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="initial-environment-construction">
+<h2>4.3.2. Initial Environment Construction<a class="headerlink" href="#initial-environment-construction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="node-js-installation">
+<h3>4.3.2.1. Node.js installation<a class="headerlink" href="#node-js-installation" title="Permalink to this headline">¶</a></h3>
+<p>Since this tool depends on <a class="reference external" href="http://nodejs.org/">Node.js</a> , the installer from the below site based on the environment being used is to be downloaded and installed.</p>
+<blockquote>
+<div><a class="reference external" href="http://nodejs.org/">http://nodejs.org/</a></div></blockquote>
+</div>
+<div class="section" id="check-environment-variables">
+<h3>4.3.2.2. Check environment variables<a class="headerlink" href="#check-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>When performing the below procedure under a proxy environment, the below values of the environment variables are to be checked.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Explanatory variable name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HTTP_PROXY</td>
+<td>URL of the proxy server for HTTP</td>
+</tr>
+<tr class="row-odd"><td>HTTPS_PROXY</td>
+<td>URL of the proxy server for HTTPS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="install-dependent-packages">
+<h3>4.3.2.3. Install dependent packages<a class="headerlink" href="#install-dependent-packages" title="Permalink to this headline">¶</a></h3>
+<p>This tool is dependent on multiple open source libraries. (To know more about the libraries that the tool depends on, refer to <cite>package.json</cite>.)</p>
+<p>To install the libraries, execute the below command in the root directory (directory where <cite>package.json</cite> is saved) of this tool.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Execution directory</th>
+<th class="head">Command</th>
+<th class="head">Details to be checked</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Root directory of this tool (directory where <cite>package.json</cite> is saved.)</td>
+<td><cite>npm install</cite></td>
+<td><ul class="first last simple">
+<li>The command must have been completed successfully.</li>
+<li>The <cite>node_modules</cite>directory must be created in the root directory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>To install the dependent package according to the above procedure, the environment needs to be connected to the Internet.</p>
+<p>Also, if a proxy environment is used, it is necessary for the proxy server address to be configured to the below environment variables.</p>
+<ul class="simple">
+<li>http_proxy ：example: http_proxy=http://proxy.example.com:8080</li>
+<li>https_proxy ：example: https_proxy=http://proxy.example.com:8080</li>
+</ul>
+<p class="last">Also, if installed in an environment that is not connected to the Internet,
+it can be used by initially performing the above procedures in an environment connected to the Internet,
+and placing the <cite>node_modules</cite> directory created in the root directory,
+in the root directory of this tool that has been extracted in the target environment.</p>
+</div>
+</div>
+<div class="section" id="confirm-if-it-can-be-used-normally">
+<h3>4.3.2.4. Confirm if it can be used normally.<a class="headerlink" href="#confirm-if-it-can-be-used-normally" title="Permalink to this headline">¶</a></h3>
+<p>Ensure that all tests are successful by executing the below commands in the root directory of this tool.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="44%" />
+<col width="16%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Execution directory</th>
+<th class="head">Command</th>
+<th class="head">Details to be checked</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Root directory of this tool (directory where <cite>package.json</cite> is saved.)</td>
+<td><cite>npm test</cite></td>
+<td><ul class="first last simple">
+<li>Success of all tests.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modification-of-environment-dependency-setting-value">
+<h3>4.3.2.5. Modification of environment dependency setting value.<a class="headerlink" href="#modification-of-environment-dependency-setting-value" title="Permalink to this headline">¶</a></h3>
+<p>Modify the below setting value of verification_config.json at the directory where the actual tag file is saved.</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;TagAttributeVerifier&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;directory&quot;</span> <span class="p">:</span> <span class="s2">&quot;C:\\nablarch\\workspace\\tutorial\\main\\web\\WEB-INF\\tags\\widget&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;encoding&quot;</span> <span class="p">:</span> <span class="s2">&quot;utf-8&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-use-the-tool">
+<h2>4.3.3. How to Use the tool<a class="headerlink" href="#how-to-use-the-tool" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="execute-with-a-bat-file">
+<h3>4.3.3.1. Execute with a bat file<a class="headerlink" href="#execute-with-a-bat-file" title="Permalink to this headline">¶</a></h3>
+<p>Drag and drop the file to <cite>jsp_verifier.bat</cite> that is in the root directory of this tool.</p>
+<p>If a command line window is displayed and there are 0 verification errors,</p>
+<p>Verification Succeeded.</p>
+<p>Is displayed, and if there are one or more verification error,</p>
+<p>Verification Failed!! <br />
+12 violations are found. <br />
+Detected violations are dumped to violations-1390366626297.log.</p>
+<p>The file name where the error content is output is displayed like this.</p>
+</div>
+<div class="section" id="execution-from-command-line">
+<h3>4.3.3.2. Execution from command line.<a class="headerlink" href="#execution-from-command-line" title="Permalink to this headline">¶</a></h3>
+<p>The below commands are executed in the root directory of this tool.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>node bin/jsp_verifier &lt;Verification target JSP file path<span class="o">(</span>s<span class="o">)</span>&gt;
+</pre></div>
+</div>
+<p>The output contents of the standard output are as above.</p>
+</div>
+</div>
+<div class="section" id="configuration-method">
+<h2>4.3.4. Configuration method<a class="headerlink" href="#configuration-method" title="Permalink to this headline">¶</a></h2>
+<p><cite>verification_config.json</cite> of the root directory is the configuration file of this tool.
+Verification is performed by detailing the verification contents to be executed in this file and settings of each verification content.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">In the below example configuration file, for the purpose of explanation, though comments are written in JavaScript format, comments cannot be written in the actual JSON file.</p>
+</div>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="c1">// Verification contents to be implemented are described in verifiers.</span>
+  <span class="s2">&quot;verifiers&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// Verification of tags that can be used</span>
+    <span class="s2">&quot;TagUsageVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// Regular expression verification</span>
+    <span class="s2">&quot;RegexpBasedVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// DOM tree verification</span>
+    <span class="s2">&quot;SelectorBasedVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// Parent tag verification</span>
+    <span class="s2">&quot;WrappingTagVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// Tag attribute verification</span>
+    <span class="s2">&quot;TagAttributeVerifier&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// Verification not defined here will not be performed</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="default-setting-contents">
+<h3>4.3.4.1. Default setting contents<a class="headerlink" href="#default-setting-contents" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="verification-of-tags-that-can-be-used">
+<h4>4.3.4.1.1. Verification of tags that can be used<a class="headerlink" href="#verification-of-tags-that-can-be-used" title="Permalink to this headline">¶</a></h4>
+<p>Only the below tags that have usage permission are to be used.</p>
+<ul class="simple">
+<li>n:form</li>
+<li>n:set</li>
+<li>n:write</li>
+<li>n:ConfirmationPage</li>
+<li>n:forConfirmationPage</li>
+<li>n:forInputPage</li>
+<li>n:param</li>
+<li>n:hidden</li>
+<li>t:page_template</li>
+<li>t:errorpage_template</li>
+<li>box:.*</li>
+<li>button:.*</li>
+<li>field:.*</li>
+<li>link:.*</li>
+<li>tab:.*</li>
+<li>table:.*</li>
+<li>column:.*</li>
+<li>spec:.*</li>
+<li>c:if</li>
+<li>jsp:attribute</li>
+<li>%&#8211;</li>
+<li>%&#64;page</li>
+<li>%&#64;taglib</li>
+</ul>
+</div>
+<div class="section" id="regular-expression-verification">
+<h4>4.3.4.1.2. Regular expression verification<a class="headerlink" href="#regular-expression-verification" title="Permalink to this headline">¶</a></h4>
+<p>Strings matching the below regular expression are not recognized (uppercase/lowercase not sensitive).</p>
+<ul class="simple">
+<li>/&gt; (Self terminating element. If a self-terminating element is used, as the description content cannot be drawn after that element, it is prohibited)</li>
+</ul>
+</div>
+<div class="section" id="dom-tree-validation">
+<h4>4.3.4.1.3. DOM tree validation<a class="headerlink" href="#dom-tree-validation" title="Permalink to this headline">¶</a></h4>
+<p>The below prohibited structures are not to be used.</p>
+<ul class="simple">
+<li>table:not([id]) （As IDs is required when displaying multiple tables, ID is forced on the table.）</li>
+<li>table:not([listSearchInfoName]) （listSearchInfoName is forced as the number of results cannot be displayed if the table does not have listSearchInfoName.）</li>
+</ul>
+</div>
+<div class="section" id="parent-tag-verification">
+<h4>4.3.4.1.4. Parent tag verification<a class="headerlink" href="#parent-tag-verification" title="Permalink to this headline">¶</a></h4>
+<p>The below required structure is to be satisfied.</p>
+<ul class="simple">
+<li>The table widget must be enclosed with n:form.</li>
+<li>The button widget needs to be enclosed with n:form.</li>
+<li>The widget displayed in the screen item definition in the design view must be enclosed by spec:layout.</li>
+</ul>
+</div>
+<div class="section" id="tag-attribute-verification">
+<h4>4.3.4.1.5. Tag attribute verification<a class="headerlink" href="#tag-attribute-verification" title="Permalink to this headline">¶</a></h4>
+<p>The attribute of the tag (the one with the tag file stored under C:\nablarch\workspace\tutorial\main\web\WEB-INF\tags\widget) being used in JSP should be the actual attribute that defines the tag.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
