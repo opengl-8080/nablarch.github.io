@@ -317,9 +317,12 @@
           <li><a href="../validation.html">7.10. 入力値のチェック</a> &raquo;</li>
       
     <li>7.10.1. Bean Validation</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -487,7 +490,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><a class="reference internal" href="#bean-validation-configuration"><span>Bean Validationを使うための設定を行う</span></a> で、デフォルト動作を変更している場合には、
 <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a> の実装に従いメッセージを定義すること。</p>
 </div>
@@ -497,7 +500,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <p>バリデーションルールは、アノテーションをFieldかProperty(getter)に設定することで指定できる。
 なお、setterにはアノテーションを指定できないので注意すること。(指定しても意味が無い(無視する))</p>
 <div class="admonition tip" id="bean-validation-form-property">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Beanクラスのプロパティの型は全てStringとして定義すること。</p>
 <p>Bean Validationでは、入力値をBeanに変換した後でバリデーションが実施される。
 このため、外部からどのような値が入力値として送られてきても、必ずBeanに変換する必要がある。</p>
@@ -514,7 +517,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <dt>実装例</dt>
 <dd><p class="first"><a class="reference internal" href="#bean-validation-validator"><span>Nablarchで提供しているバリデータ</span></a> を参照し、アノテーションを設定する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">個別にアノテーションを設定した場合、実装時のミスが増えたりメンテナンスコストが大きくなるため、
 後述する <a class="reference internal" href="#bean-validation-domain-validation"><span>ドメインバリデーション</span></a> を使うことを推奨する。</p>
 </div>
@@ -545,7 +548,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <p>このBeanクラスには、ドメインごとのフィールドを定義し、フィールドに対してアノテーションを設定する。
 フィールド名がドメイン名となる。以下の例では <code class="docutils literal"><span class="pre">name</span></code> と <code class="docutils literal"><span class="pre">date</span></code> の２つのドメインが定義されている。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">必須項目を表す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> アノテーションは、ドメインBeanに設定するのではなく個別のBean側に設定すること。
 必須かどうかはドメイン側で強制できるものではなく、機能の設計によるため。</p>
 </div>
@@ -675,7 +678,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>許容する文字セットの文字数が大きくなった場合、後方に定義されている文字のチェックには時間を要する。(単純に前方から順に文字セットに含まれるかをチェックするため)
 この問題を解決するために、一度チェックした文字の結果をキャッシュする仕組みを提供している。</p>
 <p>※原則キャッシュ機能は使わずに開発を進め、どうしても文字種バリデーションがボトルネックとなる場合に、キャッシュ機能を使うか否か検討すると良い。</p>
@@ -784,7 +787,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 <p>一括登録のように同一の情報を複数入力するケースがある。
 このような場合には、バリデーション対象のBeanに対してネストしたBeanを定義することで対応する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">これはBean Validationの仕様のため、詳細はBean Validationの仕様を参照すること。</p>
 </div>
 <p>以下に例を示す。</p>
@@ -863,7 +866,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>BeanValidationStrategyでは、バリデーションエラーのエラーメッセージを、以下の順でソートする。</p>
 <ul class="simple">
 <li>javax.servlet.ServletRequest#getParameterNamesが返す項目名順
@@ -967,7 +970,7 @@ Java EE環境外で利用するには、別途Bean Validationの実装を参照�
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">メッセージへの項目名の追加方法を変更したい場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a>
 を参考にし、プロジェクト側で実装を追加し対応すること。</p>
 </div>

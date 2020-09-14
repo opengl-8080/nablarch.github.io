@@ -311,9 +311,12 @@
           <li><a href="../index.html">Nablarch拡張コンポーネント</a> &raquo;</li>
       
     <li>4. ETL</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -371,7 +374,7 @@
 <li><a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352に準拠したバッチアプリケーション</span></a> のBatchletやChunkステップとして各フェーズが提供されているため、ステップを追加することで容易に任意の処理を追加できる。</li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">NablarchのETLは、厳密には一般的なETLとは各フェーズで行っている処理の内容が異なっている。
 詳細は、後述の <a class="reference internal" href="#etl-phase"><span>ETLの各フェーズの仕様</span></a> を参照。</p>
 </div>
@@ -388,7 +391,7 @@
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ETLを使用したバッチアプリケーションの実例は、<a class="reference external" href="https://github.com/nablarch/nablarch-example-batch-ee">Exampleアプリケーション</a>
 の以下のJOBを参照。</p>
 <ul class="last simple">
@@ -551,7 +554,7 @@
 </tbody>
 </table>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>行番号カラムは本テーブルにはロードする必要がない。</p>
 <p><a class="reference internal" href="#etl-load-insert-database"><span>データベースへの登録</span></a> を使用する場合、本テーブルに対応したEntityからSQLが自動生成されるため、行番号カラムは自動的に除外される。
 <a class="reference internal" href="#etl-load-replace-database"><span>洗い替え</span></a> 及び <a class="reference internal" href="#etl-load-merge-database"><span>マージ</span></a> を使用する場合は、ワークテーブルから取得するSQLのSELECT句には行番号カラムを含めないようにすること。</p>
@@ -568,7 +571,7 @@
 <dd><p class="first">本テーブルはアプリケーションの要件に従い設計する。ワークテーブルから本テーブルへデータをロードする際の変換処理は、 <a class="reference internal" href="#etl-load-phase"><span>Loadフェーズ</span></a> にて実施する。
 <a class="reference internal" href="#etl-line-number-col"><span>行番号カラム</span></a> で説明したように、行番号を保持するカラムは不要である。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference internal" href="#etl-worktable-point"><span>ワークテーブルの設計ポイント</span></a> で説明したようにワークテーブルの各カラムの型は基本的に文字列型として定義する。
 このため、本テーブルに取り込む際には型変換が必要となる。</p>
 <p class="last"><a class="reference internal" href="#etl-load-insert-database"><span>データベースへの登録</span></a> を使用する場合は、本テーブルに対応したEntityの属性の型定義に従い自動的に型変換が行われる。
@@ -662,7 +665,7 @@
 <span id="etl-json-configuration"></span><h3><a class="toc-backref" href="#id30">4.4.3. JOB定義ファイルとETL用JOB設定ファイルを作成する</a><a class="headerlink" href="#jobetljob" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ETL用JOB設定ファイルを作成する際は、ファイル名を <code class="docutils literal"><span class="pre">&lt;&lt;JOB</span> <span class="pre">ID&gt;&gt;.json</span></code> とし、<code class="docutils literal"><span class="pre">META-INF/etl-config/</span></code> 配下に配置する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ETL用JOB設定ファイルを配置するディレクトリのパスを変更したい場合は、 <a class="reference internal" href="#etl-loader-dir-path"><span>ETL用JOB設定ファイルを配置するディレクトリのパスを変更する</span></a> を参照。</p>
 </div>
 <p>ジョブ設定ファイルは、以下からテンプレートをダウンロードし、ファイル内のコメントを参照し編集すること。</p>
@@ -697,7 +700,7 @@
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">テンプレートで要件を満たせない場合には、テンプレートをベースにステップの追加や変更などを行うことで対応すること。
 例えば、Chunkステップを用いてファイルをワークテーブルにロードし、マージモードを使用して本テーブルにデータをロードしたい場合には、
 SQL*LoaderとChunkのテンプレートから必要なものを組み合わせてジョブを構成すると良い。</p>
@@ -709,7 +712,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 例えば、ワークテーブルへのデータロード(Extract)の前にワークテーブルを空にしておきたい場合が該当する。</p>
 <p>このような場合は、テーブルクリーニング用のステップを定義することで対応する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Oracle SQL*Loaderを使用したファイル取り込みテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils">
@@ -728,7 +731,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </pre></div>
 </div>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/TableCleaningBatchlet.html" title="nablarch.etl.TableCleaningBatchlet">TableCleaningBatchlet</a> は、
 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> 機能を使用してデータのクリーニングを行う。
 このため、 <a class="reference internal" href="../../application_framework/application_framework/libraries/database/database.html#database"><span>データベースアクセス(JDBCラッパー)</span></a> を使用するための設定を事前に行う必要がある。</p>
@@ -777,11 +780,11 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="etl-extract-chunk"></span><h3><a class="toc-backref" href="#id32">4.4.5. Extractフェーズ(Chunk)を使用する</a><a class="headerlink" href="#extract-chunk" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Chunkを使用したExtractフェーズの実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ワークテーブルの内容を事前に削除する必要がある場合は、Chunkステップの前処理として <a class="reference internal" href="#etl-truncate"><span>テーブルのクリーニング</span></a> を行うようステップを定義すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-extract-chunk-bean">
@@ -831,7 +834,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 </pre></div>
 </div>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/etl/FileItemReader.html" title="nablarch.etl.FileItemReader">fileItemReader</a> は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> を使用してファイルを読み込む。
 ファイルの行番号については、 <a class="reference internal" href="#etl-extract-sql-loader-bean"><span>入力ファイルとワークテーブルに対応したJava Beansの作成</span></a> に従って作成することで自動的に保持される。
 詳細は、 <a class="reference internal" href="../../application_framework/application_framework/libraries/data_io/data_bind.html#data-bind-line-number"><span>ファイルのデータの論理行番号を取得する</span></a> を参照</p>
@@ -888,12 +891,12 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="etl-extract-sql-loader"></span><h3><a class="toc-backref" href="#id33">4.4.6. Extractフェーズ(SQL*Loader版)を使用する</a><a class="headerlink" href="#extract-sql-loader" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>SQL*Loaderを使用したExtractフェーズの実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ワークテーブルの内容を事前に削除する必要がある場合は、SQL*Loaderの設定にてtruncateを実施すると良い。
 詳細は、Oracle社のマニュアルを参照。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Oracle SQL*Loaderを使用したファイル取り込みテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-extract-sql-loader-bean">
@@ -1018,7 +1021,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="id12"></span><h3><a class="toc-backref" href="#id34">4.4.7. Transformフェーズでバリデーションを行う</a><a class="headerlink" href="#etl-transform-validation" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Transformフェーズで行うバリデーションの実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils">
@@ -1125,7 +1128,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="id13"></span><h3><a class="toc-backref" href="#id35">4.4.8. Loadフェーズでファイルにデータを出力する</a><a class="headerlink" href="#etl-load-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Loadフェーズで行うファイル出力の実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>ファイル出力のテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-load-file-bean">
@@ -1225,7 +1228,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="id14"></span><h3><a class="toc-backref" href="#id36">4.4.9. Loadフェーズでデータベースのデータの洗い替えを行う</a><a class="headerlink" href="#etl-load-replace-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Loadフェーズで行うデータベース上のテーブルデータの洗い替えの実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Loadフェーズで洗い替えモードを使用する場合のテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-load-replace-database-entity">
@@ -1342,7 +1345,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="id15"></span><h3><a class="toc-backref" href="#id37">4.4.10. Loadフェーズでデータベースのデータのマージを行う</a><a class="headerlink" href="#etl-load-merge-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Loadフェーズで行うデータベース上のデータのマージ処理の実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>Loadフェーズでマージモードを使用する場合のテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-load-merge-database-entity">
@@ -1453,7 +1456,7 @@ SQL*LoaderとChunkのテンプレートから必要なものを組み合わせ�
 <span id="id16"></span><h3><a class="toc-backref" href="#id38">4.4.11. Loadフェーズでデータベースへの登録を行う</a><a class="headerlink" href="#etl-load-insert-database" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Loadフェーズで行うデータベースへの登録の実装と設定について解説する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JOB定義及びETL用JOB設定ファイルは、 <a class="reference internal" href="#etl-json-configuration"><span>JOB定義ファイルとETL用JOB設定ファイルを作成する</span></a> の <strong>JSR352のChunkを使用したファイル取り込みのテンプレート</strong> をダウンロードし編集すると良い。</p>
 </div>
 <dl class="docutils" id="etl-load-insert-database-entity">

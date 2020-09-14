@@ -1,0 +1,1090 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.4.1. Data Bind &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_bind.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../index.html"/>
+        <link rel="up" title="7.4. Access to Data in Various Formats" href="../data_converter.html"/>
+        <link rel="next" title="7.4.2. General Data Format" href="data_format.html"/>
+        <link rel="prev" title="7.4. Access to Data in Various Formats" href="../data_converter.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../data_converter.html">7.4. Access to Data in Various Formats</a> &raquo;</li>
+      
+    <li>7.4.1. Data Bind</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-bind">
+<span id="id1"></span><h1>7.4.1. Data Bind<a class="headerlink" href="#data-bind" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id6">Function overview</a><ul>
+<li><a class="reference internal" href="#data-can-be-handled-as-a-java-beans-object" id="id7">Data can be handled as a Java Beans object</a></li>
+<li><a class="reference internal" href="#data-can-be-handled-as-a-map-object" id="id8">Data can be handled as a Map object</a></li>
+<li><a class="reference internal" href="#annotations-can-be-used-to-specify-the-data-file-format" id="id9">Annotations can be used to specify the data file format</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id10">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id11">How to use</a><ul>
+<li><a class="reference internal" href="#read-data-as-a-java-beans-object" id="id12">Read data as a Java Beans object</a></li>
+<li><a class="reference internal" href="#write-the-contents-of-the-java-beans-object-to-the-data-file" id="id13">Write the contents of the Java Beans object to the data file</a></li>
+<li><a class="reference internal" href="#read-data-as-a-map-object" id="id14">Read data as a Map object</a></li>
+<li><a class="reference internal" href="#write-the-contents-of-the-map-object-to-the-data-file" id="id15">Write the contents of the Map object to the data file</a></li>
+<li><a class="reference internal" href="#get-the-logical-line-number-of-the-file-data" id="id16">Get the logical line number of the file data</a></li>
+<li><a class="reference internal" href="#check-the-data-input-values" id="id17">Check the data input values</a></li>
+<li><a class="reference internal" href="#used-for-file-download" id="id18">Used for file download</a></li>
+<li><a class="reference internal" href="#read-the-data-of-an-upload-file" id="id19">Read the data of an upload file</a></li>
+<li><a class="reference internal" href="#specify-the-csv-file-format" id="id20">Specify the CSV file format</a></li>
+<li><a class="reference internal" href="#specify-the-fixed-length-file-format" id="id21">Specify the fixed-length file format</a></li>
+<li><a class="reference internal" href="#specify-multiple-formats-for-the-fixed-length-file" id="id22">Specify multiple formats for the fixed-length file</a></li>
+<li><a class="reference internal" href="#format-the-display-format-of-the-output-data" id="id23">Format the display format of the output data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id24">Expansion example</a><ul>
+<li><a class="reference internal" href="#add-a-file-format-that-can-be-bound-to-the-java-beans-class" id="id25">Add a file format that can be bound to the Java Beans class.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#format-sets-that-can-be-specified-as-the-csv-file-format" id="id26">Format sets that can be specified as the CSV file format</a></li>
+</ul>
+</div>
+<p>Provides a function to handle data such as CSV, TSV and fixed-length as Java Beans objects Map objects.</p>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id6">7.4.1.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-can-be-handled-as-a-java-beans-object">
+<h3><a class="toc-backref" href="#id7">7.4.1.1.1. Data can be handled as a Java Beans object</a><a class="headerlink" href="#data-can-be-handled-as-a-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<p>Data of data files can be handled as a Java Beans object.</p>
+<p>When converting to a Java Beans object, type conversion is automatically performed using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> for the property type defined in the Java Beans class. When there is failure in the type conversion, an exception occurs and the Java Beans object is not generated.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When reading external data such as upload files, all properties of the Java Beans class must be defined as String type since it is necessary to notify an invalid value as a business error without abnormal termination, even if the data is invalid.</p>
+</div>
+<p>See below for details on how to handle data as a Java Beans object.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#data-bind-file-to-bean"><span>Read data as a Java Beans object</span></a></li>
+<li><a class="reference internal" href="#data-bind-bean-to-file"><span>Write the contents of the Java Beans object to the data file</span></a></li>
+</ul>
+</div>
+<div class="section" id="data-can-be-handled-as-a-map-object">
+<h3><a class="toc-backref" href="#id8">7.4.1.1.2. Data can be handled as a Map object</a><a class="headerlink" href="#data-can-be-handled-as-a-map-object" title="Permalink to this headline">¶</a></h3>
+<p>Data of data files can be handled as a Map object.</p>
+<p>When converting to a Map object, all values are stored in String type.</p>
+<p>See below for details.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#data-bind-file-to-map"><span>Read data as a Map object</span></a></li>
+<li><a class="reference internal" href="#data-bind-map-to-file"><span>Write the contents of the Map object to the data file</span></a></li>
+</ul>
+</div>
+<div class="section" id="annotations-can-be-used-to-specify-the-data-file-format">
+<h3><a class="toc-backref" href="#id9">7.4.1.1.3. Annotations can be used to specify the data file format</a><a class="headerlink" href="#annotations-can-be-used-to-specify-the-data-file-format" title="Permalink to this headline">¶</a></h3>
+<p>The data file format can be defined using annotations or <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> instead of describing it in the configuration file.</p>
+<p>See below for the detailed format specification methods.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#data-bind-csv-format"><span>Specify the CSV file format</span></a></li>
+<li><a class="reference internal" href="#data-bind-fixed-length-format"><span>Specify the fixed-length file format</span></a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id10">7.4.1.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-databind<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- Only when using file download --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web-extension<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id11">7.4.1.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="read-data-as-a-java-beans-object">
+<span id="data-bind-file-to-bean"></span><h3><a class="toc-backref" href="#id12">7.4.1.3.1. Read data as a Java Beans object</a><a class="headerlink" href="#read-data-as-a-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<p>Data files are read one by one from the beginning, and can be acquired as Java Beans objects.</p>
+<p>The data is read by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> <a class="footnote-reference" href="#thread-unsafe" id="id2">[1]</a> that is generated by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html#create-java.lang.Class-java.io.InputStream-" title="nablarch.common.databind.ObjectMapperFactory.create(java.lang.Class-java.io.InputStream)">ObjectMapperFactory#create</a> , and the data is read based on the annotation defined in the Java Beans class specified when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p>See below for details on how to define annotations for Java Beans classes.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#data-bind-csv-format-beans"><span>Format specification method when binding a CSV file to the Java Beans class</span></a></li>
+<li><a class="reference internal" href="#data-bind-fixed-length-format-beans"><span>Format specification method when binding a fixed-length file to the Java Beans class</span></a></li>
+</ul>
+</div></blockquote>
+<p>An implementation example to read all the data is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">Person</span> <span class="n">person</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">((</span><span class="n">person</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Describes the process for each Java Beans object (conversion processing to Java Beans object, etc.)</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidDataFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Describes the process when the format of the read data is invalid</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>After reading all the data, release the resource using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html#close--" title="nablarch.common.databind.ObjectMapper.close()">ObjectMapper#close</a> .</p>
+<p class="last">However, it is possible to omit the close process in Java7 or later environments by using <code class="docutils literal"><span class="pre">try-with-resources</span></code> .</p>
+</div>
+</div>
+<div class="section" id="write-the-contents-of-the-java-beans-object-to-the-data-file">
+<span id="data-bind-bean-to-file"></span><h3><a class="toc-backref" href="#id13">7.4.1.3.2. Write the contents of the Java Beans object to the data file</a><a class="headerlink" href="#write-the-contents-of-the-java-beans-object-to-the-data-file" title="Permalink to this headline">¶</a></h3>
+<p>The contents of the Java Beans object can be written to the data file one by one.</p>
+<p>The contents are written to the data file by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a>  <a class="footnote-reference" href="#thread-unsafe" id="id3">[1]</a> that is generated by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html#create-java.lang.Class-java.io.OutputStream-" title="nablarch.common.databind.ObjectMapperFactory.create(java.lang.Class-java.io.OutputStream)">ObjectMapperFactory#create</a> , and the data is written based on the annotation defined in the Java Beans class specified when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p>See below for details on how to define annotations for Java Beans classes.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#data-bind-csv-format-beans"><span>Format specification method when binding a CSV file to the Java Beans class</span></a></li>
+<li><a class="reference internal" href="#data-bind-fixed-length-format-beans"><span>Format specification method when binding a fixed-length file to the Java Beans class</span></a></li>
+</ul>
+</div></blockquote>
+<p>An implementation example when writing all the Java Beans objects in the list to a data file is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">personList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mapper</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the value of the property is <code class="docutils literal"><span class="pre">null</span></code> , outputs a value indicating that there is no input. For example, empty characters are output when writing to a CSV file.</p>
+</div>
+</div>
+<div class="section" id="read-data-as-a-map-object">
+<span id="data-bind-file-to-map"></span><h3><a class="toc-backref" href="#id14">7.4.1.3.3. Read data as a Map object</a><a class="headerlink" href="#read-data-as-a-map-object" title="Permalink to this headline">¶</a></h3>
+<p>Data files are read one by one from the beginning and can be acquired as Map objects.</p>
+<p>The data is read by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> <a class="footnote-reference" href="#thread-unsafe" id="id4">[1]</a> that is generated by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html#create-java.lang.Class-java.io.InputStream-nablarch.common.databind.DataBindConfig-" title="nablarch.common.databind.ObjectMapperFactory.create(java.lang.Class-java.io.InputStream-nablarch.common.databind.DataBindConfig)">ObjectMapperFactory#create</a> , and the data is read based on the configuration value of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> specified when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p>See below for details on how to configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> .</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#data-bind-csv-format-map"><span>Format specification method when binding a CSV file to Map class</span></a></li>
+<li><a class="reference internal" href="#data-bind-fixed-length-format-map"><span>Format specification method when binding fixed-length file to Map class</span></a></li>
+</ul>
+</div></blockquote>
+<p>Implementation example to read all the data of a CSV file is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create DataBindConfig object</span>
+<span class="n">DataBindConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">CsvDataBindConfig</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">.</span><span class="na">withHeaderTitles</span><span class="o">(</span><span class="s">&quot;Age&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">)</span>
+                                                 <span class="o">.</span><span class="na">withProperties</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">Person</span> <span class="n">person</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">((</span><span class="n">person</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Describes the process for each Java Beans object (conversion processing to Java Beans object, etc.)</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidDataFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Describes the process when the format of the read data is invalid</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="write-the-contents-of-the-map-object-to-the-data-file">
+<span id="data-bind-map-to-file"></span><h3><a class="toc-backref" href="#id15">7.4.1.3.4. Write the contents of the Map object to the data file</a><a class="headerlink" href="#write-the-contents-of-the-map-object-to-the-data-file" title="Permalink to this headline">¶</a></h3>
+<p>The contents of the map object can be written to the data file one by one.</p>
+<p>The contents are written to the data file by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> <a class="footnote-reference" href="#thread-unsafe" id="id5">[1]</a> that is generated by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html#create-java.lang.Class-java.io.OutputStream-nablarch.common.databind.DataBindConfig-" title="nablarch.common.databind.ObjectMapperFactory.create(java.lang.Class-java.io.OutputStream-nablarch.common.databind.DataBindConfig)">ObjectMapperFactory#create</a> , and the data is written based on the configuration value of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> specified when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p>See below for details on how to configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> .</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#data-bind-csv-format-map"><span>Format specification method when binding a CSV file to Map class</span></a></li>
+<li><a class="reference internal" href="#data-bind-fixed-length-format-map"><span>Format specification method when binding fixed-length file to Map class</span></a></li>
+</ul>
+</div></blockquote>
+<p>An implementation example when writing all Map objects in the list to a CSV file is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create DataBindConfig object</span>
+<span class="n">DataBindConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">CsvDataBindConfig</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">.</span><span class="na">withHeaderTitles</span><span class="o">(</span><span class="s">&quot;Age&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">)</span>
+                                                 <span class="o">.</span><span class="na">withProperties</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">person</span> <span class="o">:</span> <span class="n">personList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mapper</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the value of the Map object is <code class="docutils literal"><span class="pre">null</span></code> , outputs a value indicating that there is no input. For example, empty characters are output when writing to a CSV file.</p>
+</div>
+</div>
+<div class="section" id="get-the-logical-line-number-of-the-file-data">
+<span id="data-bind-line-number"></span><h3><a class="toc-backref" href="#id16">7.4.1.3.5. Get the logical line number of the file data</a><a class="headerlink" href="#get-the-logical-line-number-of-the-file-data" title="Permalink to this headline">¶</a></h3>
+<p>When acquiring the file data as a Java Beans object, the logical line number of the data can also be acquired by defining properties in the Java Beans class and using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/LineNumber.html" title="nablarch.common.databind.LineNumber">LineNumber</a> .</p>
+<p>For example, it is used to output the line number of the data with the validation error to the log when checking the input values.</p>
+<p>An implementation example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">Long</span> <span class="n">lineNumber</span><span class="o">;</span>
+
+<span class="nd">@LineNumber</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getLineNumber</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">lineNumber</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Note that it is not possible to get the line number of the data when acquiring as a Map object.</p>
+</div>
+</div>
+<div class="section" id="check-the-data-input-values">
+<span id="data-bind-validation"></span><h3><a class="toc-backref" href="#id17">7.4.1.3.6. Check the data input values</a><a class="headerlink" href="#check-the-data-input-values" title="Permalink to this headline">¶</a></h3>
+<p>Input values can be checked by <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> since the data can be read as a Java Beans object.</p>
+<p>An implementation example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">Person</span> <span class="n">person</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">((</span><span class="n">person</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Execute the input value check</span>
+        <span class="n">ValidatorUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+
+        <span class="c1">// Subsequent process is omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidDataFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Describe the process when data file format is invalid</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="used-for-file-download">
+<span id="data-bind-file-download"></span><h3><a class="toc-backref" href="#id18">7.4.1.3.7. Used for file download</a><a class="headerlink" href="#used-for-file-download" title="Permalink to this headline">¶</a></h3>
+<p>An implementation example to download the contents of a Java Beans object as a data file in a web application is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Since the memory may be burdened when a large amount of data is downloaded when the data is expanded in the memory, the data is output to a temporary file.</li>
+<li>For writing to a data file, see <a class="reference internal" href="#data-bind-bean-to-file"><span>Write the contents of the Java Beans object to the data file</span></a> .</li>
+<li>Specify a data file when creating a <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/FileResponse.html" title="nablarch.common.web.download.FileResponse">FileResponse</a> .</li>
+<li>To delete the file automatically at the end of the request process, specify <code class="docutils literal"><span class="pre">true</span></code> in the second argument of the <cite>FileResponse</cite> constructor.</li>
+<li>Configure <cite>Content-Type</cite> and <cite>Content-Disposition</cite> to response.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">download</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Business process</span>
+
+    <span class="kd">final</span> <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">createTempFile</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span>
+            <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">Files</span><span class="o">.</span><span class="na">newOutputStream</span><span class="o">(</span><span class="n">path</span><span class="o">)))</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">persons</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mapper</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">PersonDto</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">person</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Configure file to the body</span>
+    <span class="n">FileResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileResponse</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">toFile</span><span class="o">(),</span> <span class="kc">true</span><span class="o">);</span>
+
+    <span class="c1">// Configure Content-Type header and Content-Disposition header</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/csv; charset=Shift_JIS&quot;</span><span class="o">);</span>
+    <span class="n">response</span><span class="o">.</span><span class="na">setContentDisposition</span><span class="o">(</span><span class="s">&quot;person.csv&quot;</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-the-data-of-an-upload-file">
+<span id="data-bind-upload-file"></span><h3><a class="toc-backref" href="#id19">7.4.1.3.8. Read the data of an upload file</a><a class="headerlink" href="#read-the-data-of-an-upload-file" title="Permalink to this headline">¶</a></h3>
+<p>An implementation example for reading a data file uploaded as a Java Beans object in the web application from the screen is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/PartInfo.html#getInputStream--" title="nablarch.fw.web.upload.PartInfo.getInputStream()">PartInfo#getInputStream</a> to acquire the upload file stream.</li>
+<li>Perform input check using <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> since invalid data may have been input.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">PartInfo</span><span class="o">&gt;</span> <span class="n">partInfoList</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;uploadFile&quot;</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">partInfoList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+    <span class="c1">// Describe the process when upload file is not found</span>
+<span class="o">}</span>
+
+<span class="n">PartInfo</span> <span class="n">partInfo</span> <span class="o">=</span> <span class="n">partInfoList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">partInfo</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()))</span> <span class="o">{</span>
+    <span class="n">Person</span> <span class="n">person</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">((</span><span class="n">person</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Execute the input value check</span>
+        <span class="n">ValidatorUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+
+        <span class="c1">// Subsequent process is omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidDataFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Describe the process when data file format is invalid</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specify-the-csv-file-format">
+<span id="data-bind-csv-format"></span><h3><a class="toc-backref" href="#id20">7.4.1.3.9. Specify the CSV file format</a><a class="headerlink" href="#specify-the-csv-file-format" title="Permalink to this headline">¶</a></h3>
+<p>There are 2 ways of specifying the CSV file format: When binding to a Java Beans class and when binding to a Map class.</p>
+<dl class="docutils" id="data-bind-csv-format-beans">
+<dt>When binding to a Java Beans class</dt>
+<dd><p class="first">Specify the format using the following annotations.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/Csv.html" title="nablarch.common.databind.csv.Csv">Csv</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">CsvFormat</a></li>
+</ul>
+<p>The format of the CSV file can be selected from a format set prepared in advance. For information on format set, see <a class="reference internal" href="#data-bind-csv-format-set"><span>Format sets that can be specified as the CSV file format</span></a> .</p>
+<p>An implementation example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Csv</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">Csv</span><span class="o">.</span><span class="na">CsvType</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;Age&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If the CSV file format does not correspond to any of the pre-prepared format sets, the format can be specified individually using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">CsvFormat</a> .</p>
+<p>An implementation example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Specify CUSTOM in the type attribute.</span>
+<span class="nd">@Csv</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">Csv</span><span class="o">.</span><span class="na">CsvType</span><span class="o">.</span><span class="na">CUSTOM</span><span class="o">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">})</span>
+<span class="nd">@CsvFormat</span><span class="o">(</span>
+        <span class="n">fieldSeparator</span> <span class="o">=</span> <span class="sc">&#39;\t&#39;</span><span class="o">,</span>
+        <span class="n">lineSeparator</span> <span class="o">=</span> <span class="s">&quot;\r\n&quot;</span><span class="o">,</span>
+        <span class="n">quote</span> <span class="o">=</span> <span class="sc">&#39;\&#39;&#39;</span><span class="o">,</span>
+        <span class="n">ignoreEmptyLine</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span>
+        <span class="n">requiredHeader</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span>
+        <span class="n">charset</span> <span class="o">=</span> <span class="s">&quot;UTF−8&quot;</span><span class="o">,</span>
+        <span class="n">quoteMode</span> <span class="o">=</span> <span class="n">CsvDataBindConfig</span><span class="o">.</span><span class="na">QuoteMode</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since the format is specified by an annotation when binding to a Java Beans class, the format cannot be specified using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/DataBindConfig.html" title="nablarch.common.databind.DataBindConfig">DataBindConfig</a> when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="data-bind-csv-format-map">
+<dt>When binding to a Map class</dt>
+<dd><p class="first">Specify the format separately using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvDataBindConfig.html" title="nablarch.common.databind.csv.CsvDataBindConfig">CsvDataBindConfig</a> when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p>The property name configured in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvDataBindConfig.html#withProperties-java.lang.String...-" title="nablarch.common.databind.csv.CsvDataBindConfig.withProperties(java.lang.String...)">CsvDataBindConfig#withProperties</a> is used as the key of the Map object when specifying the format. When the header row exists in CSV, the header title can be used as a key by omitting the configuration of the property name.</p>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Define the header title and property name according to the order of CSV items</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Define the header title and property name according to the order of CSV items</span>
+<span class="n">DataBindConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">CsvDataBindConfig</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">.</span><span class="na">withHeaderTitles</span><span class="o">(</span><span class="s">&quot;Age&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">)</span>
+                                                 <span class="o">.</span><span class="na">withProperties</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="s">&quot;name&quot;</span><span class="o">);</span>
+<span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="specify-the-fixed-length-file-format">
+<span id="data-bind-fixed-length-format"></span><h3><a class="toc-backref" href="#id21">7.4.1.3.10. Specify the fixed-length file format</a><a class="headerlink" href="#specify-the-fixed-length-file-format" title="Permalink to this headline">¶</a></h3>
+<p>There are 2 ways of specifying the fixed-length file format: When binding to a Java Beans class and when binding to a Map class.</p>
+<dl class="docutils" id="data-bind-fixed-length-format-beans">
+<dt>When binding to a Java Beans class</dt>
+<dd><p class="first">Specify the format using the following annotations.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/FixedLength.html" title="nablarch.common.databind.fixedlength.FixedLength">FixedLength</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/Field.html" title="nablarch.common.databind.fixedlength.Field">Field</a></li>
+</ul>
+<p>In addition, a converter that performs conversion such as padding and trimming can be specified for each field of the fixed-length file. For converters that can be specified as standard, see below the package <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/converter/package-summary.html" title="nablarch.common.databind.fixedlength.converter.package-summary">nablarch.common.databind.fixedlength.converter</a> .</p>
+<p>An implementation example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@FixedLength</span><span class="o">(</span><span class="n">length</span> <span class="o">=</span> <span class="mi">19</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="s">&quot;MS932&quot;</span><span class="o">,</span> <span class="n">lineSeparator</span> <span class="o">=</span> <span class="s">&quot;\r\n&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">)</span>
+    <span class="nd">@Lpad</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">4</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">16</span><span class="o">)</span>
+    <span class="nd">@Rpad</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If the format has unused areas as shown below, they will be automatically padded with the characters configured in <code class="docutils literal"><span class="pre">FixedLength#fillChar</span></code> when writing to a fixed-length file. (The default is half-width space)</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@FixedLength</span><span class="o">(</span><span class="n">length</span> <span class="o">=</span> <span class="mi">24</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="s">&quot;MS932&quot;</span><span class="o">,</span> <span class="n">lineSeparator</span> <span class="o">=</span> <span class="s">&quot;\r\n&quot;</span><span class="o">,</span> <span class="n">fillChar</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">)</span>
+    <span class="nd">@Lpad</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">9</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">16</span><span class="o">)</span>
+    <span class="nd">@Rpad</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="data-bind-fixed-length-format-map">
+<dt>When binding to a Map class</dt>
+<dd><p class="first">Specify the format separately using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/FixedLengthDataBindConfig.html" title="nablarch.common.databind.fixedlength.FixedLengthDataBindConfig">FixedLengthDataBindConfig</a> when <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is generated.</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/FixedLengthDataBindConfig.html" title="nablarch.common.databind.fixedlength.FixedLengthDataBindConfig">FixedLengthDataBindConfig</a> can be generated using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/FixedLengthDataBindConfigBuilder.html" title="nablarch.common.databind.fixedlength.FixedLengthDataBindConfigBuilder">FixedLengthDataBindConfigBuilder</a> .</p>
+<p>An implementation example is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">DataBindConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">FixedLengthDataBindConfigBuilder</span>
+        <span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">length</span><span class="o">(</span><span class="mi">19</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">charset</span><span class="o">(</span><span class="n">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;MS932&quot;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">lineSeparator</span><span class="o">(</span><span class="s">&quot;\r\n&quot;</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">singleLayout</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="k">new</span> <span class="n">Lpad</span><span class="o">.</span><span class="na">Converter</span><span class="o">(</span><span class="sc">&#39;0&#39;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">16</span><span class="o">,</span> <span class="k">new</span> <span class="n">Rpad</span><span class="o">.</span><span class="na">RpadConverter</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="kd">final</span> <span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="specify-multiple-formats-for-the-fixed-length-file">
+<span id="data-bind-fixed-length-format-multi-layout"></span><h3><a class="toc-backref" href="#id22">7.4.1.3.11. Specify multiple formats for the fixed-length file</a><a class="headerlink" href="#specify-multiple-formats-for-the-fixed-length-file" title="Permalink to this headline">¶</a></h3>
+<p>There are 2 ways of specifying the fixed-length file with multiple formats: When binding to a Java Beans class and when binding to a Map class.</p>
+<dl class="docutils">
+<dt>When binding to a Java Beans class</dt>
+<dd><p class="first">Fixed-length files in multiple formats can be supported by defining a JavaBeans class for each format and creating an inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayout.html" title="nablarch.common.databind.fixedlength.MultiLayout">MultiLayout</a> with the Java Beans classes as properties.</p>
+<p>An implementation example for specifying the formats is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Define a Java Beans class for each format.</li>
+<li>Define an inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayout.html" title="nablarch.common.databind.fixedlength.MultiLayout">MultiLayout</a> with a Java Beans class that defines the above format as a property.</li>
+<li>Configure the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/FixedLength.html" title="nablarch.common.databind.fixedlength.FixedLength">FixedLength</a> annotation to the inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayout.html" title="nablarch.common.databind.fixedlength.MultiLayout">MultiLayout</a> and configure <code class="docutils literal"><span class="pre">true</span></code> in the <code class="docutils literal"><span class="pre">multiLayout</span></code> attribute.</li>
+<li>Override the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayout.html#getRecordIdentifier--" title="nablarch.common.databind.fixedlength.MultiLayout.getRecordIdentifier()">MultiLayout#getRecordIdentifier</a> method and return <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayoutConfig.RecordIdentifier.html" title="nablarch.common.databind.fixedlength.MultiLayoutConfig.RecordIdentifier">RecordIdentifier</a> that identifies the format to which the target data is associated.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@FixedLength</span><span class="o">(</span><span class="n">length</span> <span class="o">=</span> <span class="mi">20</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="s">&quot;MS932&quot;</span><span class="o">,</span> <span class="n">lineSeparator</span> <span class="o">=</span> <span class="s">&quot;\r\n&quot;</span><span class="o">,</span> <span class="n">multiLayout</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">extends</span> <span class="n">MultiLayout</span> <span class="o">{</span>
+
+    <span class="nd">@Record</span>
+    <span class="kd">private</span> <span class="n">Header</span> <span class="n">header</span><span class="o">;</span>
+
+    <span class="nd">@Record</span>
+    <span class="kd">private</span> <span class="n">Data</span> <span class="n">data</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">RecordIdentifier</span> <span class="nf">getRecordIdentifier</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">RecordIdentifier</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">RecordName</span> <span class="nf">identifyRecordName</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">record</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">record</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mh">0x31</span> <span class="o">?</span> <span class="n">RecordType</span><span class="o">.</span><span class="na">HEADER</span> <span class="o">:</span> <span class="n">RecordType</span><span class="o">.</span><span class="na">DATA</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Header</span> <span class="o">{</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Rpad</span>
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">19</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">field</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Data</span> <span class="o">{</span>
+
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Lpad</span>
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">3</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@Rpad</span>
+    <span class="nd">@Field</span><span class="o">(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">5</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">16</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted.</span>
+<span class="o">}</span>
+
+<span class="kd">enum</span> <span class="n">RecordType</span> <span class="kd">implements</span> <span class="n">MultiLayoutConfig</span><span class="o">.</span><span class="na">RecordName</span> <span class="o">{</span>
+    <span class="n">HEADER</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getRecordName</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">&quot;header&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">},</span>
+    <span class="n">DATA</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getRecordName</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">&quot;data&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>An implementation example of reading and writing fixed-length data based on a specified format is shown next.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Implementation example for reading</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">))</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">RecordType</span><span class="o">.</span><span class="na">HEADER</span> <span class="o">==</span> <span class="n">person</span><span class="o">.</span><span class="na">getRecordName</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Header</span> <span class="n">header</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">getHeader</span><span class="o">();</span>
+
+        <span class="c1">// Subsequent process is omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Implementation example for writing</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">))</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+    <span class="n">person</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="k">new</span> <span class="n">Header</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">));</span>
+    <span class="n">mapper</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>When binding to a Map class</dt>
+<dd><p class="first">When binding a fixed-length file to a Map class, the format can be specified using the same procedure as the format specification method <a class="reference internal" href="#data-bind-fixed-length-format-map"><span>Format specification method when binding fixed-length file to Map class</span></a>.</p>
+<p>An implementation example for specifying the formats is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Call the <code class="docutils literal"><span class="pre">multiLayout</span></code> method and generate DataBindConfig for multi-layout.</li>
+<li>Specify the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/fixedlength/MultiLayoutConfig.RecordIdentifier.html" title="nablarch.common.databind.fixedlength.MultiLayoutConfig.RecordIdentifier">RecordIdentifier</a> in the <code class="docutils literal"><span class="pre">recordIdentifier</span></code>  method to identify the associated format of the target data.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">DataBindConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">FixedLengthDataBindConfigBuilder</span>
+        <span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">length</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">charset</span><span class="o">(</span><span class="n">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;MS932&quot;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">lineSeparator</span><span class="o">(</span><span class="s">&quot;\r\n&quot;</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">multiLayout</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">record</span><span class="o">(</span><span class="s">&quot;header&quot;</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="k">new</span> <span class="n">DefaultConverter</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;field&quot;</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="k">new</span> <span class="n">Rpad</span><span class="o">.</span><span class="na">RpadConverter</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">record</span><span class="o">(</span><span class="s">&quot;data&quot;</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="k">new</span> <span class="n">DefaultConverter</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="k">new</span> <span class="n">Lpad</span><span class="o">.</span><span class="na">LpadConverter</span><span class="o">(</span><span class="sc">&#39;0&#39;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">16</span><span class="o">,</span> <span class="k">new</span> <span class="n">Rpad</span><span class="o">.</span><span class="na">RpadConverter</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">recordIdentifier</span><span class="o">(</span><span class="k">new</span> <span class="n">RecordIdentifier</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">RecordName</span> <span class="nf">identifyRecordName</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">record</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">record</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mh">0x31</span> <span class="o">?</span> <span class="n">RecordType</span><span class="o">.</span><span class="na">HEADER</span> <span class="o">:</span> <span class="n">RecordType</span><span class="o">.</span><span class="na">DATA</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">})</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>An implementation example of reading and writing fixed-length data based on a specified format is shown next.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Implementation example for reading</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">inputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">))</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">RecordType</span><span class="o">.</span><span class="na">HEADER</span> <span class="o">==</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;recordName&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;header&quot;</span><span class="o">);</span>
+
+        <span class="c1">// Subsequent process is omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Implementation example for writing</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">ObjectMapper</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">ObjectMapperFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">outputStream</span><span class="o">,</span> <span class="n">config</span><span class="o">))</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="n">header</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="s">&quot;1&quot;</span><span class="o">);</span>
+    <span class="n">header</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;field&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">);</span>
+
+    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;recordName&quot;</span><span class="o">,</span> <span class="n">RecordType</span><span class="o">.</span><span class="na">HEADER</span><span class="o">);</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;header&quot;</span><span class="o">,</span> <span class="n">header</span><span class="o">);</span>
+
+    <span class="n">mapper</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="format-the-display-format-of-the-output-data">
+<span id="data-bind-formatter"></span><h3><a class="toc-backref" href="#id23">7.4.1.3.12. Format the display format of the output data</a><a class="headerlink" href="#format-the-display-format-of-the-output-data" title="Permalink to this headline">¶</a></h3>
+<p>When the data is output, display format of the data such as date and numbers can be formatted by using <a class="reference internal" href="../format.html#format"><span>Formatter</span></a> .</p>
+<p>For details, see <a class="reference internal" href="../format.html#format"><span>Formatter</span></a> .</p>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id24">7.4.1.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-a-file-format-that-can-be-bound-to-the-java-beans-class">
+<h3><a class="toc-backref" href="#id25">7.4.1.4.1. Add a file format that can be bound to the Java Beans class.</a><a class="headerlink" href="#add-a-file-format-that-can-be-bound-to-the-java-beans-class" title="Permalink to this headline">¶</a></h3>
+<p>The following steps are required to add a file format that can be bound to the Java Beans class.</p>
+<ol class="arabic simple">
+<li>Create an implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> to bind the Java Beans class with the file of a specified format.</li>
+<li>Create a class inheriting <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html" title="nablarch.common.databind.ObjectMapperFactory">ObjectMapperFactory</a> , and add the process to generate the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> created earlier.</li>
+<li>Configure the inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapperFactory.html" title="nablarch.common.databind.ObjectMapperFactory">ObjectMapperFactory</a> in the component configuration file. The configuration example of the component configuration file is shown below.</li>
+</ol>
+<blockquote>
+<div><dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>The component name should be <strong>objectMapperFactory</strong> .</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;objectMapperFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleObjectMapperFactory&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="format-sets-that-can-be-specified-as-the-csv-file-format">
+<span id="data-bind-csv-format-set"></span><h2><a class="toc-backref" href="#id26">7.4.1.5. Format sets that can be specified as the CSV file format</a><a class="headerlink" href="#format-sets-that-can-be-specified-as-the-csv-file-format" title="Permalink to this headline">¶</a></h2>
+<p>The format sets and configuration values for the CSV file provided by default are as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head">DEFAULT</th>
+<th class="head">RFC4180</th>
+<th class="head">EXCEL</th>
+<th class="head">TSV</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Column break</td>
+<td>Comma (,)</td>
+<td>Comma (,)</td>
+<td>Comma (,)</td>
+<td>Tab(\t)</td>
+</tr>
+<tr class="row-odd"><td>Line break</td>
+<td>Carriage return and Line feed (\r\n)</td>
+<td>Carriage return and Line feed (\r\n)</td>
+<td>Carriage return and Line feed (\r\n)</td>
+<td>Carriage return and Line feed (\r\n)</td>
+</tr>
+<tr class="row-even"><td>Field enclosing character</td>
+<td>Double quotation (&#8221;)</td>
+<td>Double quotation (&#8221;)</td>
+<td>Double quotation (&#8221;)</td>
+<td>Double quotation (&#8221;)</td>
+</tr>
+<tr class="row-odd"><td>Ignore empty lines</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>With header line</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Character code</td>
+<td>UTF-8</td>
+<td>UTF-8</td>
+<td>UTF-8</td>
+<td>UTF-8</td>
+</tr>
+<tr class="row-even"><td>Quote mode</td>
+<td>NORMAL</td>
+<td>NORMAL</td>
+<td>NORMAL</td>
+<td>NORMAL</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Quote mode</dt>
+<dd><p class="first">Quote mode indicates which field is enclosed by field enclosing characters when writing to a CSV file. The following modes can be selected from for the quote mode.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Quote mode name</th>
+<th class="head">Field to be enclosed with field enclosing characters</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NORMAL</td>
+<td>Fields that contain either field enclosing characters, column delimiters or line breaks</td>
+</tr>
+<tr class="row-odd"><td>ALL</td>
+<td>All fields</td>
+</tr>
+</tbody>
+</table>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">When reading a CSV file, the existence of field enclosing characters is automatically determined without using the quote mode.</p>
+</div>
+</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="thread-unsafe" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id4">3</a>, <a class="fn-backref" href="#id5">4</a>)</em> Since the reading and writing of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is not thread safe, operation is not guaranteed when it is called from multiple threads simultaneously. For this reason, synchronous operation is performed by the caller when the instance <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> is shared by multiple threads.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

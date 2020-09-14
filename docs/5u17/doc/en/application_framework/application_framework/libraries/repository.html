@@ -1,0 +1,1142 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.2. System Repository &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/repository.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+        <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
+        <link rel="next" title="7.3. Database Access" href="database_management.html"/>
+        <link rel="prev" title="7.1.1.2.5. Output Messaging Log" href="log/messaging_log.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+    <li>7.2. System Repository</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="system-repository">
+<span id="repository"></span><h1>7.2. System Repository<a class="headerlink" href="#system-repository" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
+<li><a class="reference internal" href="#objects-can-be-constructed-using-di-containers" id="id2">Objects can be constructed using DI containers</a></li>
+<li><a class="reference internal" href="#objects-can-be-initialized" id="id3">Objects can be initialized</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id4">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id5">How to use</a><ul>
+<li><a class="reference internal" href="#define-root-node-in-xml" id="id6">Define root node in xml</a></li>
+<li><a class="reference internal" href="#configure-java-beans-object" id="id7">Configure Java Beans object</a></li>
+<li><a class="reference internal" href="#overwrite-the-configuration-of-java-beans-object" id="id8">Overwrite the configuration of Java Beans object</a></li>
+<li><a class="reference internal" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" id="id9">Use a string, numeric, or boolean value as the configuration value</a></li>
+<li><a class="reference internal" href="#use-list-or-map-as-the-configuration-value" id="id10">Use list or map as the configuration value</a></li>
+<li><a class="reference internal" href="#inject-components-automatically" id="id11">Inject components automatically</a></li>
+<li><a class="reference internal" href="#split-the-component-configuration-file-xml" id="id12">Split the component configuration file (xml)</a></li>
+<li><a class="reference internal" href="#set-the-dependent-value" id="id13">Set the dependent value</a></li>
+<li><a class="reference internal" href="#reference-environment-dependent-value-from-the-component-configuration-file" id="id14">Reference environment dependent value from the component configuration file</a></li>
+<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-system-properties" id="id15">Overwrite environment dependent values using system properties</a></li>
+<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-os-environment-variables" id="id16">Overwrite environment dependent values using OS environment variables</a></li>
+<li><a class="reference internal" href="#inject-the-object-created-by-the-factory-class" id="id17">Inject the object created by the factory class</a></li>
+<li><a class="reference internal" href="#initialize-the-object" id="id18">Initialize the object</a></li>
+<li><a class="reference internal" href="#configure-the-di-container-information-to-the-system-repository" id="id19">Configure the DI container information to the system repository</a></li>
+<li><a class="reference internal" href="#get-object-from-system-repository" id="id20">Get object from system repository</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rules-for-describing-environment-configuration-file" id="id21">Rules for describing environment configuration file</a></li>
+</ul>
+</div>
+<p>Provides a function to manage objects used in various places and configuration values when implementing an application.</p>
+<p>The function can be used for the following.</p>
+<ul class="simple">
+<li>Logic that may differ for each environment (generated class and property values) can be defined in an external file.</li>
+<li>Relationships can be built between objects based on the definition of external files. (with DI container function)</li>
+</ul>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id1">7.2.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="objects-can-be-constructed-using-di-containers">
+<h3><a class="toc-backref" href="#id2">7.2.1.1. Objects can be constructed using DI containers</a><a class="headerlink" href="#objects-can-be-constructed-using-di-containers" title="Permalink to this headline">¶</a></h3>
+<p>The DI container feature allows objects to be constructed based on the definition of components defined in <a class="reference internal" href="#repository-root-node"><span>xml</span></a>.
+The constructed object is a <strong>singleton</strong>.</p>
+<p>The DI container function can do the following:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#repository-definition-bean"><span>Can inject setter.</span></a></li>
+<li><a class="reference internal" href="#repository-property-type"><span>Strings, numbers and booleans can be used.</span></a></li>
+<li><a class="reference internal" href="#repository-map-list"><span>Can inject list and map.</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>Allows automatic injection into setters with matching types and names.</span></a></li>
+<li><a class="reference internal" href="#repository-factory-injection"><span>Can inject factory.</span></a></li>
+<li><a class="reference internal" href="#repository-environment-configuration"><span>Allows management of environment-dependent values.</span></a></li>
+</ul>
+<p>DI container is accessed from the system repository instead of direct access from the application.
+For details, see <a class="reference internal" href="#repository-use-system-repository"><span>Configure the DI container information to the system repository</span></a>.</p>
+</div>
+<div class="section" id="objects-can-be-initialized">
+<h3><a class="toc-backref" href="#id3">7.2.1.2. Objects can be initialized</a><a class="headerlink" href="#objects-can-be-initialized" title="Permalink to this headline">¶</a></h3>
+<p>Any initialization processing can be executed after object construction.</p>
+<p>Since restrictions may occur in the initialization order based on the dependency of the objects,
+this function allows the initialization order of the objects to be specified.</p>
+<p>For details, see <a class="reference internal" href="#repository-initialize-object"><span>Initialize the object</span></a>.</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id4">7.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-repository<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id5">7.2.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-root-node-in-xml">
+<span id="repository-root-node"></span><h3><a class="toc-backref" href="#id6">7.2.3.1. Define root node in xml</a><a class="headerlink" href="#define-root-node-in-xml" title="Permalink to this headline">¶</a></h3>
+<p>The root node of the component configuration file (xml) is <cite>component-configuration</cite>.
+If <cite>schemaLocation</cite> is configured correctly, the document of each element and attribute in the IDE can be referred, and the completion functions can be utilized effectively.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
+   <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration /component-configuration.xsd&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/component-configuration&gt;</span>
+</pre></div>
+</div>
+<p>Refer below for details on how to define components in xml.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#repository-definition-bean"><span>Configure Java Beans object</span></a></li>
+<li><a class="reference internal" href="#repository-override-bean"><span>Overwrite the configuration of Java Beans object</span></a></li>
+<li><a class="reference internal" href="#repository-property-type"><span>Use a string, numeric, or boolean value as the configuration value</span></a></li>
+<li><a class="reference internal" href="#repository-map-list"><span>Use list or map as the configuration value</span></a></li>
+<li><a class="reference internal" href="#repository-autowired"><span>Inject components automatically</span></a></li>
+<li><a class="reference internal" href="#repository-environment-configuration"><span>Set the dependent value</span></a></li>
+<li><a class="reference internal" href="#repository-user-environment-configuration"><span>Reference environment dependent value from the component configuration file</span></a></li>
+<li><a class="reference internal" href="#repository-factory-injection"><span>Inject the object created by the factory class</span></a></li>
+<li><a class="reference internal" href="#repository-initialize-object"><span>Initialize the object</span></a></li>
+<li><a class="reference internal" href="#repository-split-xml"><span>Split the component configuration file (xml)</span></a></li>
+</ul>
+</div>
+<div class="section" id="configure-java-beans-object">
+<span id="repository-definition-bean"></span><h3><a class="toc-backref" href="#id7">7.2.3.2. Configure Java Beans object</a><a class="headerlink" href="#configure-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<p>Java Beans object is defined using the component element.</p>
+<ul class="simple">
+<li>Configure FQCN of the class managed by DI container in class attribute.</li>
+<li>An any name can be configured using the name attribute.</li>
+<li>Setter can be injected using the property child element.</li>
+<li>Component can be defined in the property child element.</li>
+<li>Component defined elsewhere can be injected with the setter using ref attribute of property.</li>
+</ul>
+<p>An example is shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configure Java Beans object using component element --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;component&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!--</span>
+<span class="c">   Setter injection with property element</span>
+<span class="c">   In this example, the object defined as component with the name sample is injected</span>
+<span class="c">   --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">ref=</span><span class="s">&quot;sample&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Component can also be defined in the child element of property</span>
+<span class="c">  without using the ref attribute --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;obj&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleObject&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="c">&lt;!-- Setter injection of literal value --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;limit&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The created instance is a singleton. Therefore, note the following points.</p>
+<ul class="simple">
+<li>Since the instance is a singleton, it is not created each time it is acquired (not a prototype).</li>
+<li>The instance is not destroyed until the application is terminated.</li>
+</ul>
+<p>Special caution is required as a serious bug will be embedded if this is not understood.
+For example, there is a possibility of causing serious bugs such as the generated instance mistaken for a prototype,
+and a certain request will cause the input value of user A to be set in the component and request from another user B will use that value.</p>
+<p class="last">If the state of a component is intentionally changed or shared across the application, that component must be thread-safe.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Instance of an object is created for each component element. For example, if a component is defined in 2 places as follows, separate instances will be created.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Two instances of SampleBean are registered in the repository --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample1&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since the component defined by nesting is also stored in the global area of the repository, the name can be specified to acquire the object.
+For information on how to get the object, see <a class="reference internal" href="#repository-get-object"><span>Get object from system repository</span></a>.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Injection is not performed for static properties (static setter methods).
+If the property to be injected is static, an exception will be thrown when building the DI container.</p>
+</div>
+</div>
+<div class="section" id="overwrite-the-configuration-of-java-beans-object">
+<span id="repository-override-bean"></span><h3><a class="toc-backref" href="#id8">7.2.3.3. Overwrite the configuration of Java Beans object</a><a class="headerlink" href="#overwrite-the-configuration-of-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<p>The configuration of previously read objects can be overwritten by registering objects with the same name attribute of component tag.
+This function can be used to replace the object for production environment with the object (mock) for testing when testing is conducted.</p>
+<p>When an object is overwritten, simply registering an object with the same name will automatically give priority to the object that is read later.</p>
+<p>An example is shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;prop&quot;</span> <span class="na">value=</span><span class="s">&quot;message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Define and overwrite a component with the same name --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.MockSampleBean&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>If different classes are configured as in the above example, all the property configurations before overwriting will be discarded.
+This is because even if the class implements the same interface, they do not always have the same property.</p>
+<p>However, when the same class is configured, the configuration of property before overwriting are all inherited to the class after overwriting.
+Therefore, the configuration to a specific property cannot be removed with the configuration after overwriting.
+For example, when the following overwrite configuration is configured, the property element does not exist in the configuration after overwriting,
+but message is configured in prop as the value of prop before overwriting is inherited.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;prop&quot;</span> <span class="na">value=</span><span class="s">&quot;message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">Property is not set, but the value of prop before overwriting is inherited</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sample&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="use-a-string-numeric-or-boolean-value-as-the-configuration-value">
+<span id="repository-property-type"></span><h3><a class="toc-backref" href="#id9">7.2.3.4. Use a string, numeric, or boolean value as the configuration value</a><a class="headerlink" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
+<p>If property type is of the following type, the value can be easily configured using literal notation.</p>
+<ul class="simple">
+<li>java.lang.String</li>
+<li>java.lang.String[]</li>
+<li>java.lang.Integer(int)</li>
+<li>java.lang.Integer[](int[])</li>
+<li>java.lang.Long(long)</li>
+<li>java.lang.Boolean(boolean)</li>
+</ul>
+<p>A configuration example is shown below.</p>
+<dl class="docutils">
+<dt>java.lang.String</dt>
+<dd><p class="first">When configuring a value in java.lang.String type, describe the value to be configured with literal in the value attribute.</p>
+<p>In this example, &#8220;abcde&#8221; is set for the str property.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;str&quot;</span> <span class="na">value=</span><span class="s">&quot;abcde&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>java.lang.String[]</dt>
+<dd><p class="first">When configuring a value in java.lang.String [] type, configure the value in value attribute using the comma (,) delimiter.
+Values separated by commas will be one element of the array.</p>
+<p>In this example, &#8220;a, b, c, d, e&#8221; is set for the array property.
+The delimiter, cannot be set as an element.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;array&quot;</span> <span class="na">value=</span><span class="s">&quot;a, b, c, d, e&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>java.lang.Integer(int)</dt>
+<dd><p class="first">When configuring a value in java.lang.Integer type and int type, describe the value to be configured in the value attribute.
+The value that can be configured is the value that can be converted by <cite>Integer#valueOf</cite>.</p>
+<p>In this example, &#8220;12345&#8221; is configured to the num property of Integer (int) type.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;num&quot;</span> <span class="na">value=</span><span class="s">&quot;12345&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>java.lang.Integer[](int[])</dt>
+<dd>Similar to java.lang.String [] type, configure the value in the value attribute using the comma (,) delimiter.
+The value that can be configured in each element is the value that can be converted by <cite>Integer#valueOf</cite>.</dd>
+<dt>java.lang.Long(long)</dt>
+<dd>Similar to java.lang.Integer(int), describe the value to be configured in value attribute.
+The value that can be configured is the value that can be converted by <cite>Long#valueOf</cite>.</dd>
+<dt>java.lang.Boolean(boolean)</dt>
+<dd><p class="first">When configuring a value in java.lang.Boolean type, describe the value to be configured with literal in the value attribute.
+The value that can be configured is the value that can be converted by <cite>Boolean#valueOf</cite>.</p>
+<p>In this example, &#8220;true&#8221; is configured to the bool property of Boolean(boolean) type.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;bool&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="use-list-or-map-as-the-configuration-value">
+<span id="repository-map-list"></span><h3><a class="toc-backref" href="#id10">7.2.3.5. Use list or map as the configuration value</a><a class="headerlink" href="#use-list-or-map-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
+<p>By configuring the component using list element and map element, setter can be injected for the property receiving list or map.</p>
+<dl class="docutils">
+<dt>Configuration of the list using the list element</dt>
+<dd><p class="first">In this example, list with [1, 2, 3] in the element is configured for the integerList property of SampleBean.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;integerList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;value&gt;</span>3<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>An any name can be configured for the list element and the name can be referenced in the property element.
+The configuration of this example is the same as the above example.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;list</span> <span class="na">name=</span><span class="s">&quot;numList&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;value&gt;</span>3<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/list&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.ListSample&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Configure a List named numList --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;integerList&quot;</span> <span class="na">ref=</span><span class="s">&quot;numList&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>Any Java Beans object can be configured for the list.
+In this example, list with <cite>SampleHandler1</cite>, <cite>SampleHandler2</cite> and <cite>SampleHandler3</cite> is configured for the handlers property.
+The name can be referenced by using the component-ref element, which is also shown in the following example.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleHandler3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleHandler3&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.ListSample&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlers&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleHandler1&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleHandler2&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleHandler3&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Map configuration using the map element</dt>
+<dd><p class="first">In this example, map with &#8220;{key1=1, key2=2, key3=3}&#8221; in the entry is configured for the map property.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;map&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;map&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key1&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key2&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key3&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/map&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</pre></div>
+</div>
+<p>An any name can be configured for the map and the name can be referenced in the property element.
+The configuration of this example is the same as the above example.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>  <span class="nt">&lt;map</span> <span class="na">name=</span><span class="s">&quot;map&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key1&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key2&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;key3&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/map&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.ListSample&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Configure a Map named map --&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;map&quot;</span> <span class="na">ref=</span><span class="s">&quot;map&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>An any Bean can be configured as Map value by using value-component element.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;settings&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;map&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;sample1&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;value-component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;sample2&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;value-component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/entry&gt;</span>
+  <span class="nt">&lt;/map&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When multiple name attributes of map or list are defined, the one defined first is valid.
+Note that this is a different behavior from <a class="reference internal" href="#repository-override-bean"><span>bean overwrite</span></a>.</p>
+<p class="last">To change the map or list information for each environment, change the file to be read for each environment.</p>
+</div>
+</div>
+<div class="section" id="inject-components-automatically">
+<span id="repository-autowired"></span><h3><a class="toc-backref" href="#id11">7.2.3.6. Inject components automatically</a><a class="headerlink" href="#inject-components-automatically" title="Permalink to this headline">¶</a></h3>
+<p>Provide a function to automatically inject a component even if the property tag definition of the component is omitted.
+Automatic injection type can be specified for this function by using autowireType attribute of the component element.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The following are the problems when using the automatic injection function, explicitly specifying <cite>None</cite> in autowireType attribute is recommended.</p>
+<ul class="last simple">
+<li>The state of the final generated object cannot be read from the component configuration file (xml).</li>
+<li>If the property definition of an optional item is omitted, an object that is not expected may be automatically injected.</li>
+<li>When automatic injection by type is used and object configuration of the same type are increased during derivation development,
+maintainability is poor as it requires property to be defined.</li>
+</ul>
+</div>
+<p>The types that can be specified for the autowireType attribute are as follows.</p>
+<dl class="docutils">
+<dt>ByType</dt>
+<dd>Automatically injects the component if there is only one type of that property in the DI container.Inject components automatically.
+This type is is used by default.</dd>
+<dt>ByName</dt>
+<dd>A component with the same name as the property name is automatically injected.
+An error occurs if the property and component type does not match.</dd>
+<dt>None</dt>
+<dd>Automatic injection is not performed.</dd>
+</dl>
+<p>An example of automatic injection with the default (ByType) configuration is shown below.</p>
+<dl class="docutils">
+<dt>Create an injection target class</dt>
+<dd><p class="first">Create an injection target interface and implementation class.
+Although the interface is created in this example, it is not required.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">SampleComponent</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BasicSampleComponent</span> <span class="kd">implements</span> <span class="n">SampleComponent</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Create a class that uses the object to be injected</dt>
+<dd><p class="first">Create a class that processes using the class created above.
+This class receives the above class by setter injection.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleClient</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">SampleComponent</span> <span class="n">component</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSampleComponent</span><span class="o">(</span><span class="n">SampleComponent</span> <span class="n">component</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">component</span> <span class="o">=</span> <span class="n">component</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Define component in component configuration file</dt>
+<dd><p class="first">In this example, <cite>sampleComponent</cite> property is not defined in <cite>SampleClient</cite>, but since there is only one configuration in the class implementing `SampleComponent`,
+<cite>BasicSampleComponent</cite> is automatically configured in the <cite>sampleComponent</cite> property.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.BasicSampleComponent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleClient&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleClient&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>The above configuration is the same as when the property is explicitly defined as given below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.BasicSampleComponent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleClient&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleClient&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">ref=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="split-the-component-configuration-file-xml">
+<span id="repository-split-xml"></span><h3><a class="toc-backref" href="#id12">7.2.3.7. Split the component configuration file (xml)</a><a class="headerlink" href="#split-the-component-configuration-file-xml" title="Permalink to this headline">¶</a></h3>
+<p>The xml file size increases significantly if all the definitions are defined in one component configuration file, which causes the problem of poor maintainability.
+Therefore, a function to split the xml file into multiple files is provided.</p>
+<p>When splitting the xml file, it is better to split the file based on functional units, etc.
+The split xml file can be read using the import element.</p>
+<p>An example is shown below.</p>
+<p>In the following example, 3 xml files are loaded.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;library/database.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;library/validation.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;handler/multipart.xml&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-the-dependent-value">
+<span id="repository-environment-configuration"></span><h3><a class="toc-backref" href="#id13">7.2.3.8. Set the dependent value</a><a class="headerlink" href="#set-the-dependent-value" title="Permalink to this headline">¶</a></h3>
+<p>Values (database connection information, directory path, etc.) that differ between the test and production environments can be managed in the environment configuration file.</p>
+<p>Describe the environment configuration file in the simple key-value format as given below.
+For detailed description rules, see <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>Rules for describing environment configuration file</span></a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>database.url <span class="o">=</span> jdbc:h2:mem:sample
+database.user <span class="o">=</span> sa
+database.password <span class="o">=</span> sa
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that if the key value of the environment configuration value is duplicated, the one defined later will be valid.</p>
+</div>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Environment dependent value</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>database.url <span class="o">=</span> jdbc:h2:mem:sample
+database.user <span class="o">=</span> sa
+database.password <span class="o">=</span> sa
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="reference-environment-dependent-value-from-the-component-configuration-file">
+<span id="repository-user-environment-configuration"></span><h3><a class="toc-backref" href="#id14">7.2.3.9. Reference environment dependent value from the component configuration file</a><a class="headerlink" href="#reference-environment-dependent-value-from-the-component-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>The environment configuration file can be read from the component configuration file (xml) and used as the configuration value of Java Beans object.</p>
+<p>When configuring (injection) the environment dependent value for the object managed by the DI container,
+describe the key value of the environment dependent value in the component configuration file by enclosing with <code class="docutils literal"><span class="pre">${</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</p>
+<p>Note that this notation cannot be used in the configuration files. (other environment dependent values cannot be referenced in the environment configuration file.)</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Environment configuration file</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>database.url <span class="o">=</span> jdbc:h2:mem:sample
+database.user <span class="o">=</span> sa
+database.password <span class="o">=</span> sa
+</pre></div>
+</div>
+</dd>
+<dt>Component configuration file</dt>
+<dd><p class="first">Config-file element is used to read the environment configuration file.
+The file can be read by specifying the file name as in this example, or all the files under a specific directory can be read at once.</p>
+<p>When the name of the environment configuration file is &#8220;database.properties&#8221;, &#8220;jdbc:h2:mem:sample&#8221; is configured in the <cite>url</cite> of <cite>JdbcDataSource</cite>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Reading the database.properties file --&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;database.properties&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;org.h2.jdbcx.JdbcDataSource&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;url&quot;</span> <span class="na">value=</span><span class="s">&quot;${database.url}&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>There are two types of environment configuration files, config file and properties file.
+The config file is parsed by independent specifications of Nablarch, and the properties file is parsed by java.util.Properties.
+Since the config file is an independent specification of Nablarch, the properties file is recommended as the environment configuration file.</p>
+<p class="last">For specifications of the environment configuration file, refer to <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>Rules for describing environment configuration file</span></a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="overwrite-environment-dependent-values-using-system-properties">
+<span id="repository-overwrite-environment-configuration"></span><h3><a class="toc-backref" href="#id15">7.2.3.10. Overwrite environment dependent values using system properties</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-system-properties" title="Permalink to this headline">¶</a></h3>
+<p>Environment dependent value can be overwritten with the system property (value that can be acquired by <cite>java.lang.System#getProperties()</cite>).
+Since the system property has priority over the value set in the environment configuration file, the configuration value can be easily overwritten with the vm option.</p>
+<p>For example, to change the configuration value only for a specific batch application, the system property can be used to overwrite the environment dependent value.</p>
+<p>An example is shown below.</p>
+<p>Environment configuration file</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">Message</span><span class="o">=</span> Message to be overwritten
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Overwrite values with system properties</dt>
+<dd><p class="first">By configuring the system property with the <code class="docutils literal"><span class="pre">-D</span></code> option of Java command, the value of the environment configuration file can be overwritten.
+In this example, the value of <cite>message</cite> is &#8220;message which will be overwritten&#8221;.</p>
+<p class="last">java -Dmessage= Message which will be overwritten</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="overwrite-environment-dependent-values-using-os-environment-variables">
+<span id="repository-overwrite-environment-configuration-by-os-env-var"></span><h3><a class="toc-backref" href="#id16">7.2.3.11. Overwrite environment dependent values using OS environment variables</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-os-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>With the settings described below, you can override environment dependent values with OS environment variables.</p>
+<dl class="docutils">
+<dt>How to enable overwriting by OS environment variables</dt>
+<dd><p class="first">The mechanism for overriding environment dependent values is implemented by a class that implements the Externalsized <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/ExternalizedComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader">ExternalizedComponentDefinitionLoader</a> interface.</p>
+<p>This implementation class is loaded using <code class="docutils literal"><span class="pre">java.util.ServiceLoader</span></code>.
+If no service provider has been set, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/SystemPropertyExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader">SystemPropertyExternalizedLoader</a> is used by default.
+This class is a class for overwriting by system properties, and the overwriting by system properties described in the previous section is implemented by this class.</p>
+<p>To override environment-dependent values with OS environment variables, use the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a> as an implementation class.</p>
+<p>The concrete configuration is as follows:</p>
+<ol class="arabic simple">
+<li>Create a directory named <code class="docutils literal"><span class="pre">META-INF/services</span></code> directly under the classpath</li>
+<li>In the directory created above, create a text file named <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code></li>
+<li>In the file, list the fully qualified name of the implementation class to be used, separated by a new line</li>
+</ol>
+<p>For example, to use an <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a>,
+the content of the <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> is described as follows:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader
+</pre></div>
+</div>
+<p>When you combine multiple implementation classes, you can also enumerate them with a line separator as shown below.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader
+nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
+</pre></div>
+</div>
+<p class="last">If multiple implementation classes are specified, they are overwritten in order from the top.
+Therefore, when an environment dependent value with the same name is overwritten by each method, the class described at the bottom is finally adopted.
+In the case of the above example, a value set in a system property takes precedence over a value set in an OS environment variable.</p>
+</dd>
+<dt>About the names of OS environment variables</dt>
+<dd><p class="first">On Linux, you cannot use <code class="docutils literal"><span class="pre">.</span></code> or <code class="docutils literal"><span class="pre">-</span></code> in the name of the OS environment variable.
+Therefore, it is not possible to define OS environment variables to override an environment dependent value with a name like <code class="docutils literal"><span class="pre">example.error-message</span></code>.</p>
+<p>In order to avoid this problem, Nablarch searches for OS environment variables after performing the following transformations to the names of environment dependent values.</p>
+<ol class="arabic simple">
+<li>Replace <code class="docutils literal"><span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">-</span></code> with <code class="docutils literal"><span class="pre">_</span></code></li>
+<li>Convert alphabet to uppercase</li>
+</ol>
+<p>That is, the environment dependent value named <code class="docutils literal"><span class="pre">example.error-message</span></code> can be overridden by defining an OS environment variable named <code class="docutils literal"><span class="pre">EXAMPLE_ERROR_MESSAGE</span></code>.</p>
+<p class="last">On Windows, you can use <code class="docutils literal"><span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">-</span></code> as OS environment variables, but the above conversion process is performed regardless of the OS at the time of execution.
+Therefore, the OS environment variable to override <code class="docutils literal"><span class="pre">example.error-message</span></code> must be named <code class="docutils literal"><span class="pre">EXAMPLE_ERROR_MESSAGE</span></code> on Windows as well.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="inject-the-object-created-by-the-factory-class">
+<span id="repository-factory-injection"></span><h3><a class="toc-backref" href="#id17">7.2.3.12. Inject the object created by the factory class</a><a class="headerlink" href="#inject-the-object-created-by-the-factory-class" title="Permalink to this headline">¶</a></h3>
+<p>If the class is implemented as Java Beans, a value can be configured using setter injection and an object can be generated.
+However, there are cases where objects, which are not implemented as Java Beans such as those provided by the vendor or OSS, have to be managed in the system repository.</p>
+<p>In this case, these classes can be managed in the system repository by creating a factory class and then creating an object through the factory class.</p>
+<p>The procedure is shown below.</p>
+<dl class="docutils">
+<dt>Create a factory class</dt>
+<dd><p class="first">The factory class is created by implementing <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a>.</p>
+<dl class="last docutils">
+<dt>Implementation examples</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponentFactory</span> <span class="kd">implements</span> <span class="n">ComponentFactory</span><span class="o">&lt;</span><span class="n">SampleComponent</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Configuration value for the generated object</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">configValue</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setConfigValue</span><span class="o">(</span><span class="n">String</span> <span class="n">configValue</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">configValue</span> <span class="o">=</span> <span class="n">configValue</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="n">SampleComponent</span> <span class="nf">createObject</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Create an object.</span>
+    <span class="c1">// In this example, an object is created using the value that is injected</span>
+    <span class="c1">// by the setter into this class.</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">SampleComponent</span><span class="o">(</span><span class="n">configValue</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>Configure the factory class in the component configuration file</dt>
+<dd><p class="first">The object created by the factory class is automatically configured
+by configuring the factory class like a normal component.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Factory class definition --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponentFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;configValue&quot;</span> <span class="na">value=</span><span class="s">&quot;Configuration value&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Class that configures the object generated by the factory class --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleBean&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Object generated with factory class is configured in the sampleObject property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span> <span class="na">ref=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="initialize-the-object">
+<span id="repository-initialize-object"></span><h3><a class="toc-backref" href="#id18">7.2.3.13. Initialize the object</a><a class="headerlink" href="#initialize-the-object" title="Permalink to this headline">¶</a></h3>
+<p>The following steps are required for the initialization process of the object.</p>
+<ol class="arabic simple">
+<li>Implement the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> interface.</li>
+<li>Configure a list targets for initialization in the component configuration file.</li>
+</ol>
+<p>The detailed procedure is shown below.</p>
+<dl class="docutils">
+<dt>Implement Initializable interface</dt>
+<dd><p class="first">Initialize with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize--" title="nablarch.core.repository.initialization.Initializable.initialize()">initialzie</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Initializable</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Initialize based on the value injected into the property</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Configure a list targets for initialization in the component configuration file</dt>
+<dd><p class="first">Configure the object to be initialized to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a>.</p>
+<p>If information of the initialization order of the object to be initialized is required, configure the object that is to be initialized first to a higher order.
+For the configuration example given below, initialization is performed in the following order.</p>
+<ol class="arabic simple">
+<li><cite>sampleObject</cite></li>
+<li><cite>sampleObject3</cite></li>
+<li><cite>sampleObject2</cite></li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Set the component name of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> to <strong>initializer</strong>.</p>
+</div>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configure the object to be initialized --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent2&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent3&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- List the objects to be initialized with the list element in the initializeList property--&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="configure-the-di-container-information-to-the-system-repository">
+<span id="repository-use-system-repository"></span><h3><a class="toc-backref" href="#id19">7.2.3.14. Configure the DI container information to the system repository</a><a class="headerlink" href="#configure-the-di-container-information-to-the-system-repository" title="Permalink to this headline">¶</a></h3>
+<p>By loading the information of the DI container into the system repository, the objects in the DI container from all points in the application can be accessed.</p>
+<p>An example of loading and configuring the component configuration file in the system repository is shown below.</p>
+<p>In this example, information of the DI container constructed based on <code class="docutils literal"><span class="pre">web-boot.xml</span></code> is configured in the system repository.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">XmlComponentDefinitionLoader</span> <span class="n">loader</span>
+    <span class="o">=</span> <span class="k">new</span> <span class="n">XmlComponentDefinitionLoader</span><span class="o">(</span><span class="s">&quot;web-boot.xml&quot;</span><span class="o">);</span>
+<span class="n">SystemRepository</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="n">DiContainer</span><span class="o">(</span><span class="n">loader</span><span class="o">));</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The process of registering DI container information in the system repository is implemented by the following classes provided by Nablarch.
+Therefore, there is basically no individual implementation.</p>
+<ul class="last simple">
+<li>Implementation class of ServletContextListener</li>
+<li>Launch class of independent application</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-object-from-system-repository">
+<span id="repository-get-object"></span><h3><a class="toc-backref" href="#id20">7.2.3.15. Get object from system repository</a><a class="headerlink" href="#get-object-from-system-repository" title="Permalink to this headline">¶</a></h3>
+<p>To acquire the object from the system repository, use the class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a>.</p>
+<p>The DI container information must be configured in the system repository in advance.
+For details, see <a class="reference internal" href="#repository-use-system-repository"><span>Configure the DI container information to the system repository</span></a>.</p>
+<p>Object can be acquired by specifying the value of name attribute configured in the component element (including list and map elements) as shown below.</p>
+<dl class="docutils">
+<dt>Component definition</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;component&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.Component&quot;</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;component2&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;component2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.Component2&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Acquisition example</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Get using SystemRepository#get.</span>
+<span class="n">SampleComponent</span> <span class="n">sample</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;sampleComponent&quot;</span><span class="o">);</span>
+
+<span class="c1">// Obtain nested component by concatenating the parent name and its own name with &quot;.&quot;.</span>
+<span class="n">Component2</span> <span class="n">component2</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;component.component2&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="rules-for-describing-environment-configuration-file">
+<span id="repository-environment-configuration-file-rule"></span><h2><a class="toc-backref" href="#id21">7.2.4. Rules for describing environment configuration file</a><a class="headerlink" href="#rules-for-describing-environment-configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>There are two types of environment configuration files, config file and properties file. The description rules of each environment configuration file are explained.</p>
+<dl class="docutils">
+<dt>Specifications of properties file</dt>
+<dd>Analyzed based on the Java Properties specifications.</dd>
+<dt>config file specifications</dt>
+<dd><p class="first">The specifications of the config file are described below.</p>
+<dl class="last docutils">
+<dt>Description format of setting value</dt>
+<dd><p class="first">The configuration value is described by separating the key and value with <code class="docutils literal"><span class="pre">=</span></code>.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key1</span><span class="o">=</span>value1
+<span class="nv">key2</span><span class="o">=</span>value2
+</pre></div>
+</div>
+</dd>
+<dt>Comment description</dt>
+<dd><p class="first">Only line comments using <code class="docutils literal"><span class="pre">#</span></code> is supported.
+If <code class="docutils literal"><span class="pre">#</span></code> is present in a line, the rest of the line is considered as a comment.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+<span class="nv">key</span> <span class="o">=</span> value   <span class="c1"># This is a comment</span>
+</pre></div>
+</div>
+</dd>
+<dt>Description of configuration values that spans multiple lines</dt>
+<dd><p class="first">By using <code class="docutils literal"><span class="pre">\</span></code> at the end of the line, the configuration value can be described over multiple lines.</p>
+<p>In the case of the example below, the combinations of configuration values are as follows.</p>
+<ul class="simple">
+<li>key -&gt; value</li>
+<li>key2 -&gt; value,value2</li>
+<li>key3 -&gt; abcdefg</li>
+</ul>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key</span> <span class="o">=</span> value
+<span class="nv">key2</span> <span class="o">=</span> value,<span class="se">\</span>
+value2
+<span class="nv">key3</span> <span class="o">=</span> abcd<span class="se">\ </span>   <span class="c1"># Comments can be defined here</span>
+efg
+</pre></div>
+</div>
+</dd>
+<dt>Reserved word escape</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">\</span></code> is used to escape when handling the following reserved words as general characters.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">#</span></code></li>
+<li><code class="docutils literal"><span class="pre">=</span></code></li>
+<li><code class="docutils literal"><span class="pre">\</span></code></li>
+</ul>
+<p>In the case of the example below, the combinations of configuration values are as follows.</p>
+<ul class="simple">
+<li>key -&gt; a=a</li>
+<li>key2 -&gt; #This is not a comment</li>
+<li>key3 -&gt; a\b</li>
+</ul>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key</span> <span class="o">=</span> a<span class="se">\=</span>a
+<span class="nv">key2</span> <span class="o">=</span> <span class="se">\#</span> This is not a comment
+<span class="nv">key3</span> <span class="o">=</span> a<span class="se">\\</span>b
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Only the value of half-width space is not supported in the config file, but it can be handled by configuring the numeric reference character in the properties file.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="nv">key</span> <span class="o">=</span> <span class="se">\u</span><span class="m">0020</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

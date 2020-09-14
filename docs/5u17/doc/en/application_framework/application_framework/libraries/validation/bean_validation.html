@@ -1,0 +1,1030 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.10.1. Bean Validation &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/validation/bean_validation.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../index.html"/>
+        <link rel="up" title="7.10. Input Value Check" href="../validation.html"/>
+        <link rel="next" title="7.10.2. Nablarch Validation" href="nablarch_validation.html"/>
+        <link rel="prev" title="7.10. Input Value Check" href="../validation.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../validation.html">7.10. Input Value Check</a> &raquo;</li>
+      
+    <li>7.10.1. Bean Validation</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bean-validation">
+<span id="id1"></span><h1>7.10.1. Bean Validation<a class="headerlink" href="#bean-validation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id5">Function overview</a><ul>
+<li><a class="reference internal" href="#can-validate-domains" id="id6">Can validate domains</a></li>
+<li><a class="reference internal" href="#commonly-used-validators-are-provided" id="id7">Commonly Used Validators are Provided</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id8">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id9">How to use</a><ul>
+<li><a class="reference internal" href="#configure-settings-to-use-bean-validation" id="id10">Configure settings to use Bean Validation</a></li>
+<li><a class="reference internal" href="#define-the-error-message-for-validation-error" id="id11">Define the error message for validation error</a></li>
+<li><a class="reference internal" href="#how-to-configure-validation-rules" id="id12">How to configure validation rules</a></li>
+<li><a class="reference internal" href="#use-domain-validation" id="id13">Use domain validation</a></li>
+<li><a class="reference internal" href="#performing-character-type-validation" id="id14">Performing Character Type Validation</a></li>
+<li><a class="reference internal" href="#performing-correlation-validation" id="id15">Performing Correlation Validation</a></li>
+<li><a class="reference internal" href="#performing-correlation-validation-with-the-database" id="id16">Performing Correlation Validation with the Database</a></li>
+<li><a class="reference internal" href="#to-create-a-validation-error-message-linked-to-a-specific-item" id="id17">To create a validation error message linked to a specific item</a></li>
+<li><a class="reference internal" href="#performing-validation-using-a-function-that-performs-bean-multiple-input-such-as-batch-registration" id="id18">Performing validation using a function that performs Bean multiple input, such as batch registration</a></li>
+<li><a class="reference internal" href="#important-points-when-validating-nested-bean" id="id19">Important points when validating nested Bean</a></li>
+<li><a class="reference internal" href="#checking-user-input-values-for-web-applications" id="id20">Checking User Input Values for Web Applications</a></li>
+<li><a class="reference internal" href="#request-parameters-are-to-be-obtained-from-the-request-scope-even-when-there-is-a-validation-error" id="id21">Request parameters are to be obtained from the request scope even when there is a validation error</a></li>
+<li><a class="reference internal" href="#embed-the-item-name-in-the-message-when-a-validation-error-occurs" id="id22">Embed the item name in the message when a validation error occurs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id23">Expansion example</a><ul>
+<li><a class="reference internal" href="#to-add-project-specific-annotations-and-validation-logic" id="id24">To add project-specific annotations and validation logic</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This chapter describes the validation function compliant with Bean Validation (JSR349) of Java EE7.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The Bean Validation engine is not implemented by this function.</p>
+<p class="last">Java EE environments (such as WebLogic and WildFly) use the Bean Validation implementation that is bundled in the server.
+For use outside Java EE environments, the Bean Validation implementation must be added to the reference library separately.
+(It is recommended that the reference implementation <a class="reference external" href="http://hibernate.org/validator/">Hibernate Validator(external site)</a> be used.)</p>
+</div>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id5">7.10.1.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-validate-domains">
+<h3><a class="toc-backref" href="#id6">7.10.1.1.1. Can validate domains</a><a class="headerlink" href="#can-validate-domains" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function that can define validation rules for each domain.</p>
+<p>When using domain validation, it is only necessary to specify the domain name in the Bean property, which makes changing the validation rules easy.</p>
+<p>For details, see <a class="reference internal" href="#use-domain-validation">Use domain validation</a>.</p>
+</div>
+<div class="section" id="commonly-used-validators-are-provided">
+<span id="bean-validation-validator"></span><h3><a class="toc-backref" href="#id7">7.10.1.1.2. Commonly Used Validators are Provided</a><a class="headerlink" href="#commonly-used-validators-are-provided" title="Permalink to this headline">¶</a></h3>
+<p>Since Nablarch provides commonly used validators, basic validations can be used without having to create anything.</p>
+<p>For the validators provided by Nablarch, see the annotations (annotation type) in the following packages.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/package-summary.html" title="nablarch.core.validation.ee.package-summary">nablarch.core.validation.ee</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/ee/package-summary.html" title="nablarch.common.code.validator.ee.package-summary">nablarch.common.code.validator.ee</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id8">7.10.1.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;Dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-validation-ee<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c"> Only to build messages using message management</span>
+<span class="c"> Message management is used by default</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;Dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-message<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- Only when using a code value validator --&gt;</span>
+<span class="nt">&lt;Dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-code<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- For use in web applications--&gt;</span>
+<span class="nt">&lt;Dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id9">7.10.1.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-settings-to-use-bean-validation">
+<span id="bean-validation-configuration"></span><h3><a class="toc-backref" href="#id10">7.10.1.3.1. Configure settings to use Bean Validation</a><a class="headerlink" href="#configure-settings-to-use-bean-validation" title="Permalink to this headline">¶</a></h3>
+<p>The configuration required to use Bean Validation are shown below.</p>
+<dl class="docutils">
+<dt>MessageInterpolator configuration</dt>
+<dd><p class="first">Configure the class that constructs the message when validation errors occur in Bean Validation (a class that implements <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a>).</p>
+<p>If this is not configured, then <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> which uses <a class="reference internal" href="../message.html#message"><span>Message Management</span></a> is used.</p>
+<p>For example, when using the implementation that builds a message from the property file of Hibernate Validator, configure as shown below.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Be sure to use component name <strong>messageInterpolator</strong>.</p>
+</div>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Specify messageInterpolator for the component name and configure the MessageInterpolator implementation class --&gt;</span>
+<span class="nt">&lt;compnent</span> <span class="na">name=</span><span class="s">&quot;messageInterpolator&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Configuration for domain validation</dt>
+<dd>See <a class="reference internal" href="#bean-validation-domain-validation"><span>Use domain validation</span></a></dd>
+<dt>Configuration for using Bean Validation in web application</dt>
+<dd>See <a class="reference internal" href="#bean-validation-web-application"><span>Checking User Input Values for Web Applications</span></a></dd>
+</dl>
+</div>
+<div class="section" id="define-the-error-message-for-validation-error">
+<h3><a class="toc-backref" href="#id11">7.10.1.3.2. Define the error message for validation error</a><a class="headerlink" href="#define-the-error-message-for-validation-error" title="Permalink to this headline">¶</a></h3>
+<p>As explained in <a class="reference internal" href="#bean-validation-configuration"><span>Configure settings to use Bean Validation</span></a>, message during an error is built using <a class="reference internal" href="../message.html#message"><span>Message Management</span></a> by default.
+Therefore, refer to <a class="reference internal" href="../message.html#message"><span>Message Management</span></a> for more information, such as where the message is defined.</p>
+<p>The message definition rule when using the default <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/NablarchMessageInterpolator.html" title="nablarch.core.validation.ee.NablarchMessageInterpolator">NablarchMessageInterpolator</a> is as given below.</p>
+<ul class="simple">
+<li>Build a message using <a class="reference internal" href="../message.html#message"><span>Message Management</span></a> only when the value specified in the <code class="docutils literal"><span class="pre">message</span></code> attribute of the annotation is enclosed within <code class="docutils literal"><span class="pre">{</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</li>
+<li>A placeholder for embedding the attribute information of the validation annotation can be used in the message text.
+A placeholder is defined by enclosing the attribute name of the annotation within <code class="docutils literal"><span class="pre">{</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</li>
+<li>Expressions that dynamically build messages (ex: EL expressions) cannot be used.</li>
+</ul>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Java implementation example</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Full-width character&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Half-width character&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// Getter and setter are omitted</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Message definition example</dt>
+<dd><p class="first">Define a message using the message ID specified in the annotation as the key.
+When the message attribute of the annotation is not specified, the default value will be the message ID.</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># Message corresponding to Length annotation</span>
+<span class="c"># Value specified in min or max attribute of Length annotation can be embedded in the message</span>
+<span class="na">nablarch.core.validation.ee.Length.min.message</span><span class="o">=</span> <span class="s">Enter at least {min} characters.</span>
+<span class="na">nablarch.core.validation.ee.Length.max.message</span><span class="o">=</span> <span class="s">Enter no more than{max} characters</span>
+<span class="na">nablarch.core.validation.ee.Length.min.max.message</span><span class="o">=</span><span class="s">{min} Enter a value between {min} and {max} characters.</span>
+
+<span class="c"># Message corresponding to SystemChar</span>
+<span class="na">nablarch.core.validation.ee.SystemChar.message</span><span class="o">=</span> <span class="s">Please enter with {charsetDef}.</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">When the default behavior is changed in <a class="reference internal" href="#bean-validation-configuration"><span>Configure settings to use Bean Validation</span></a>,
+the message is defined according to the <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/MessageInterpolator.html" title="javax.validation.MessageInterpolator">MessageInterpolator</a> implementation.</p>
+</div>
+</div>
+<div class="section" id="how-to-configure-validation-rules">
+<h3><a class="toc-backref" href="#id12">7.10.1.3.3. How to configure validation rules</a><a class="headerlink" href="#how-to-configure-validation-rules" title="Permalink to this headline">¶</a></h3>
+<p>Validation rules can be specified by configuring annotations in a Field or Property (getter).
+Also, note that annotations cannot be specified for a setter. (It is meaningless even if specified (will be ignored))</p>
+<div class="admonition tip" id="bean-validation-form-property">
+<p class="first admonition-title">Tip</p>
+<p>All the property types of Bean class should be defined as a String.</p>
+<p>Bean Validation is performed after converting the input values to Bean.
+Therefore, whatever values are sent as external input values must be converted to Bean.</p>
+<p>When a property other than String exists and an invalid value is sent (for example, if an alphabetic character is sent for a numeric type),
+the conversion process to Bean, which is performed before validation, fails and an unexpected exception is thrown, resulting in a failure.</p>
+<p>Normally, a failure should not occur no matter what value is input, and the validation result should be notified externally (for example, the screen).</p>
+<p>To convert an external value to a type other than String, convert it after validation is performed.</p>
+<p class="last">Even if validation is performed on the client side using JavaScript,
+there is no guarantee that the validated value will be sent to the server side, hence, the property must be a <cite>String</cite>.
+This is because the user can easily disable JavaScript and tamper with it using the browser developer tools on the client side.
+When such an operation is performed, there is a possibility that an invalid value will be sent to the server side, bypassing the client side validation.</p>
+</div>
+<dl class="docutils">
+<dt>Implementation examples</dt>
+<dd><p class="first">Configure annotations by referring to <a class="reference internal" href="#bean-validation-validator"><span>the validators provided by Nablarch</span></a>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If annotations are configured individually, errors during implementation and maintenance costs will increase.
+Hence, it is recommended to use <a class="reference internal" href="#bean-validation-domain-validation"><span>the domain validation</span></a> described below.</p>
+</div>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Full-width character&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+  <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Half-width character&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// Getter and setter are omitted</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="use-domain-validation">
+<span id="bean-validation-domain-validation"></span><h3><a class="toc-backref" href="#id13">7.10.1.3.4. Use domain validation</a><a class="headerlink" href="#use-domain-validation" title="Permalink to this headline">¶</a></h3>
+<p>Show the configuration and implementation examples to use domain validation.</p>
+<dl class="docutils">
+<dt>Creating Bean that defines the validation rules for each domain</dt>
+<dd><p class="first">To use domain validation, first create an Bean (domain Bean) with validation rules for each domain.</p>
+<p>This Bean class defines fields for each domain and configures annotations for the fields.
+The field name becomes the domain name. In the following example, two domains, <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">date</span></code>, have been defined.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Configure the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> annotation which indicates required items on the individual Bean side instead of in the domain Bean.
+Whether an item is required or not cannot be enforced on the domain side, since it depends on the function design.</p>
+</div>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">nablarch.core.validation.ee.Length</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">nablarch.core.validation.ee.SystemChar</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainBean</span> <span class="o">{</span>
+
+    <span class="nd">@Length</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span>
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Full-width character&quot;</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Length</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">8</span><span class="o">)</span>
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Half-width character&quot;</span><span class="o">)</span>
+    <span class="n">String</span> <span class="n">date</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Domain Bean Enabled</dt>
+<dd><p class="first">To enable the domain bean, create the implementation class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a>.
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/DomainManager.html#getDomainBean--" title="nablarch.core.validation.ee.DomainManager.getDomainBean()">getDomainBean</a> returns the domain Bean class object.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainManager</span> <span class="kd">implements</span> <span class="n">DomainManager</span><span class="o">&lt;</span><span class="n">SampleDomainBean</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">SampleDomainBean</span><span class="o">&gt;</span> <span class="nf">getDomainBean</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// Returns the Class object for the domain bean</span>
+      <span class="k">return</span> <span class="n">SampleDomainBean</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>By defining <cite>SampleDomainBean</cite> of the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/DomainManager.html" title="nablarch.core.validation.ee.DomainManager">DomainManager</a> implementation class in the component configuration file,
+domain validation using <cite>SampleDomainBean</cite> will be enabled.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- DomainManager implementation class should be configured with the name domainManager --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;domainManager&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDomainManager&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Use domain validation for each Bean</dt>
+<dd><p class="first">Domain validation is performed by configuring the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a> annotation to the bean properties to be validated.</p>
+<p>In this example, validation configured in the <cite>name</cite> field of <cite>SampleDomainBean</cite> is performed for <cite>userName</cite>.
+Similarly, validation configured in the <cite>date</cite> field is performed for <cite>birthday</cite>.</p>
+<ul class="simple">
+<li>UserName is a required item.</li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">)</span>
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;date&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">birthday</span><span class="o">;</span>
+
+  <span class="c1">// Getter and setter are omitted</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="performing-character-type-validation">
+<span id="bean-validation-system-char-validator"></span><h3><a class="toc-backref" href="#id14">7.10.1.3.5. Performing Character Type Validation</a><a class="headerlink" href="#performing-character-type-validation" title="Permalink to this headline">¶</a></h3>
+<p>Validation by character type can be performed using the validation function of system allowed characters.</p>
+<p>To perform validation by character type, define the character set for each character type.
+For example, it is necessary to define that half-width numbers from <code class="docutils literal"><span class="pre">0</span></code> to <code class="docutils literal"><span class="pre">9</span></code> are allowed in the character type of half-width numbers.</p>
+<p>The method of defining allowed character sets for each character type is shown below.</p>
+<dl class="docutils">
+<dt>Define the allowed character set in the component definition</dt>
+<dd><p class="first">The set of allowed characters is registered using any one of the following classes.
+During registration, configure the component name to an arbitrary name that indicates the character type.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/unicode/RangedCharsetDef.html" title="nablarch.core.validation.validator.unicode.RangedCharsetDef">RangedCharsetDef</a> (Used when registering the allowed character sets in the range)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/unicode/LiteralCharsetDef.html" title="nablarch.core.validation.validator.unicode.LiteralCharsetDef">LiteralCharsetDef</a> (Used when registering all allowed character sets in the literal)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/unicode/CompositeCharsetDef.html" title="nablarch.core.validation.validator.unicode.CompositeCharsetDef">CompositeCharsetDef</a> (Used when registering allowed characters consisting of multiple RangedCharsetDef and LiteralCharsetDef)</li>
+</ul>
+<p>A configuration example is shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Half-width number --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;Half-width number&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span> <span class="na">value=</span><span class="s">&quot;01234567890&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;numberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ASCII (excluding control code) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;ascii&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.RangedCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;startCodePoint&quot;</span> <span class="na">value=</span><span class="s">&quot;U+0020&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;endCodePoint&quot;</span> <span class="na">value=</span><span class="s">&quot;U+007F&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;ascii.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Alphanumeric --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;Alphanumeric&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.CompositeCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charsetDefList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Definition of half-width number --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;Half-width number&quot;</span> <span class="nt">/&gt;</span>
+
+      <span class="c">&lt;!-- Definition of half-width characters --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span>
+            <span class="na">value=</span><span class="s">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;asciiAndNumberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Specify the character type with annotation</dt>
+<dd><p class="first">Configure the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/SystemChar.html" title="nablarch.core.validation.ee.SystemChar">&#64;SystemChar</a> annotation in the property that performs character type validation.
+Configure the name indicating the allowed character type in the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/SystemChar.html#charsetDef--" title="nablarch.core.validation.ee.SystemChar.charsetDef()">charsetDef</a> attribute of this annotation.
+This name will be the component name when the character type set is registered in the component configuration file mentioned above.</p>
+<p>Since <code class="docutils literal"><span class="pre">half-width</span> <span class="pre">numbers</span></code> have been specified in this example, &#8220;0123456789&#8221; are allowed as per the component definition mentioned above.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+    <span class="nd">@SystemChar</span><span class="o">(</span><span class="n">charsetDef</span> <span class="o">=</span> <span class="s">&quot;Half-width character&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAccountNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">accountNumber</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">accountNumber</span> <span class="o">=</span> <span class="n">accountNumber</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When there are a large number of characters in the set of allowed characters, it takes time to check the characters that are defined after. (To simply check whether the characters are included in the character set in order from the beginning)
+To solve this problem, provide a mechanism to cache the results of a character once it has been checked.</p>
+<ul class="simple">
+<li>In principle, it is advisable to proceed with development without using the cache function, and consider using the cache function if character type validation becomes a bottleneck.</li>
+</ul>
+<p>Usage is simple. Configure the definition of the original character type set to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/validator/unicode/CachingCharsetDef.html" title="nablarch.core.validation.validator.unicode.CachingCharsetDef">CachingCharsetDef</a>
+for caching, as in the component definition shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;Half-width character&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.CachingCharsetDef&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charsetDef&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.unicode.LiteralCharsetDef&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowedCharacters&quot;</span> <span class="na">value=</span><span class="s">&quot;01234567890&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;numberString.message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<dl class="docutils">
+<dt>Allowing Surrogate Pairs</dt>
+<dd><p class="first">This validation does not allow surrogate pairs by default.
+(They are not allowed even if the characters for surrogate pairs are explicitly defined in <cite>LiteralCharsetDef</cite>.)</p>
+<p>To allow surrogate pairs, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/SystemCharConfig.html" title="nablarch.core.validation.ee.SystemCharConfig">SystemCharConfig</a> must be configured in the component configuration file as follows.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>The component name should be <code class="docutils literal"><span class="pre">ee.SystemCharConfig</span></code></li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;ee.SystemCharConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.ee.SystemCharConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Allows surrogate pairs --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowSurrogatePair&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="performing-correlation-validation">
+<span id="bean-validation-correlation-validation"></span><h3><a class="toc-backref" href="#id15">7.10.1.3.6. Performing Correlation Validation</a><a class="headerlink" href="#performing-correlation-validation" title="Permalink to this headline">¶</a></h3>
+<p>To perform correlation validation using multiple items, use the <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/constraints/AssertTrue.html" title="javax.validation.constraints.AssertTrue">&#64;AssertTrue</a> annotation of Bean Validation.</p>
+<dl class="docutils">
+<dt>Implementation examples</dt>
+<dd><p class="first">In this example, it has been verified that the email address and the confirmation email address match.
+When a verification error occurs, the message specified in the <cite>message</cite> property becomes the error message.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">mailAddress</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">confirmMailAddress</span><span class="o">;</span>
+
+  <span class="nd">@AssertTrue</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{compareMailAddress}&quot;</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEqualsMailAddress</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">,</span> <span class="n">confirmMailAddress</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Since the execution order of the validation is not guaranteed in Bean Validation,
+correlation validation may be called even before the validation of individual items.</p>
+<p>Therefore, it is necessary to implement validation logic so that unexpected exceptions do not occur,
+even if the validation of individual items is not executed in correlation validation.</p>
+<p>If <cite>mailAddress</cite> and <cite>confirmMailAddress</cite> are optional items in the example above,
+a result must be returned without executing validation if they have not been input.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@AssertTrue</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{compareMailAddress}&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEqualsMailAddress</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNullOrEmpty</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">)</span> <span class="o">||</span> <span class="n">StringUtil</span><span class="o">.</span><span class="na">isNullOrEmpty</span><span class="o">(</span><span class="n">confirmMailAddress</span><span class="o">))</span> <span class="o">{</span>
+    <span class="c1">// If either of them is not input, correlation validation is not performed.(Validation is OK)</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">mailAddress</span><span class="o">,</span> <span class="n">confirmMailAddress</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="performing-correlation-validation-with-the-database">
+<span id="bean-validation-database-validation"></span><h3><a class="toc-backref" href="#id16">7.10.1.3.7. Performing Correlation Validation with the Database</a><a class="headerlink" href="#performing-correlation-validation-with-the-database" title="Permalink to this headline">¶</a></h3>
+<p>Correlation validation with the database is implemented on the business action side for the following reasons.</p>
+<dl class="docutils">
+<dt>Reason</dt>
+<dd><p class="first">When correlation validation is performed for the database using Bean Validation,
+the database is accessed using the unsafe value before validation is performed.
+(There is no guarantee that the value of the object during Bean Validation is safe.)
+This is an implementation that should be avoided as it causes vulnerabilities such as SQL injection.</p>
+<p class="last">By validating with a business action after validation is performed,
+the database can be accessed using the validated safe value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="to-create-a-validation-error-message-linked-to-a-specific-item">
+<span id="bean-validation-create-message-for-property"></span><h3><a class="toc-backref" href="#id17">7.10.1.3.8. To create a validation error message linked to a specific item</a><a class="headerlink" href="#to-create-a-validation-error-message-linked-to-a-specific-item" title="Permalink to this headline">¶</a></h3>
+<p>When an error occurs in the validation performed with action handlers such as <a class="reference internal" href="#bean-validation-database-validation"><span>Correlation validation with the database</span></a>,
+sometimes it may be required to highlight the target item as an error on the screen.</p>
+<p>In this case, as shown in the implementation example below, an error message is built using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ValidationUtil.html#createMessageForProperty-java.lang.String-java.lang.String-java.lang.Object...-" title="nablarch.core.validation.ValidationUtil.createMessageForProperty(java.lang.String-java.lang.String-java.lang.Object...)">ValidationUtil#createMessageForProperty</a>
+and the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> is thrown.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
+        <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">createMessageForProperty</span><span class="o">(</span><span class="s">&quot;form.mailAddress&quot;</span><span class="o">,</span> <span class="s">&quot;duplicate.mailAddress&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="performing-validation-using-a-function-that-performs-bean-multiple-input-such-as-batch-registration">
+<h3><a class="toc-backref" href="#id18">7.10.1.3.9. Performing validation using a function that performs Bean multiple input, such as batch registration</a><a class="headerlink" href="#performing-validation-using-a-function-that-performs-bean-multiple-input-such-as-batch-registration" title="Permalink to this headline">¶</a></h3>
+<p>There are cases where the same information is input multiple times, such as in batch registration.
+In such cases, a nested Bean is defined for the Bean for validation.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since this is the specifications for Bean Validation, see Bean Validation specifications for details.</p>
+</div>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Form that stores all the information that has been batch input</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleBulkForm</span> <span class="o">{</span>
+
+  <span class="c1">// Configure the Valid annotation that indicates</span>
+  <span class="c1">// validation is also executed for nested Bean.</span>
+  <span class="nd">@Valid</span>
+  <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SampleForm</span><span class="o">&gt;</span> <span class="n">sampleForm</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">SampleBulkForm</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">sampleForm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+  <span class="o">}</span>
+
+  <span class="c1">// Getter and setter are omitted</span>
+<span class="o">}</span>
+
+
+<span class="c1">// Form that retains the information of one input of the information that is input in batch</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+  <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="c1">// Getter and setter are omitted</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="important-points-when-validating-nested-bean">
+<h3><a class="toc-backref" href="#id19">7.10.1.3.10. Important points when validating nested Bean</a><a class="headerlink" href="#important-points-when-validating-nested-bean" title="Permalink to this headline">¶</a></h3>
+<p>Nested bean information may not be sent, for example, when the html is tampered with a browser developer tool and the web service receives an invalid Json or XML, etc.
+In this case, the nested Bean becomes uninitialized (null) and will not be a target for validation.
+Hence, implementation is required so that the status of the nested Bean can be reliably validated.</p>
+<p>Some implementation examples are shown below.</p>
+<dl class="docutils">
+<dt>When parent Bean and nested Bean are 1:N</dt>
+<dd><p class="first">The nested Bean will be a target for validation, and the fields of the nested Bean are also initialized when the parent Bean is initialized.
+If the information of nested Bean is required (select or input at least one),
+configure the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Size.html" title="nablarch.core.validation.ee.Size">Size</a> annotation.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Validates that at least one is selected by configuring the Size annotation.</span>
+<span class="nd">@Valid</span>
+<span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">5</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SampleNestForm</span><span class="o">&gt;</span> <span class="n">sampleNestForms</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">SampleForm</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// Initialize the fields of the nested Bean when creating an instance</span>
+  <span class="n">sampleNestForms</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>When parent Bean and nested Bean are 1:1</dt>
+<dd><p class="first">Consider whether a flat Bean can be made without nesting the Bean.
+When unable to respond to requests from the connection destination, perform implementation so that nested Bean validation can be executed reliably.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Target nested Beans for validation</span>
+<span class="nd">@Valid</span>
+<span class="kd">private</span> <span class="n">SampleNestForm</span> <span class="n">sampleNestForm</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">SampleForm</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// Initialize the fields of the nested Bean when creating an instance</span>
+  <span class="n">sampleNestForm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SampleNestForm</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="checking-user-input-values-for-web-applications">
+<span id="bean-validation-web-application"></span><h3><a class="toc-backref" href="#id20">7.10.1.3.11. Checking User Input Values for Web Applications</a><a class="headerlink" href="#checking-user-input-values-for-web-applications" title="Permalink to this headline">¶</a></h3>
+<p>The user input values for web applications are checked using <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm Interceptor</span></a>.
+For details, see <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm Interceptor</span></a>.</p>
+<p>To use Bean Validation with <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm Interceptor</span></a>, it must be defined in the component configuration file.
+As shown in the example below, Define a component definition of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a> with the name  <code class="docutils literal"><span class="pre">validationStrategy</span></code>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;validationStrategy&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.validator.BeanValidationStrategy&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>BeanValidationStrategy sorts the error messages for validation errors in the following order.</p>
+<ul class="simple">
+<li>Order of item names returned by javax.servlet.ServletRequest#getParameterNames
+(If the item in which the error occurred does not exist in the request parameter, it is moved to the end)</li>
+</ul>
+<p class="last">Note that the value returned by <code class="docutils literal"><span class="pre">getParameterNames</span></code> is implementation-dependent, and the alignment order may change depending on the application server used.
+To change the sort order in the project, BeanValidationStrategy is inherited.</p>
+</div>
+</div>
+<div class="section" id="request-parameters-are-to-be-obtained-from-the-request-scope-even-when-there-is-a-validation-error">
+<span id="bean-validation-onerror"></span><h3><a class="toc-backref" href="#id21">7.10.1.3.12. Request parameters are to be obtained from the request scope even when there is a validation error</a><a class="headerlink" href="#request-parameters-are-to-be-obtained-from-the-request-scope-even-when-there-is-a-validation-error" title="Permalink to this headline">¶</a></h3>
+<p>When <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm Interceptor</span></a> is used, the validated Form is stored in the request scope after successful validation.
+This can be used to reference the request parameters, but there may also be similar cases where you would like to get the parameters from the request scope when a validation error occurs.</p>
+<p>For example, the following process must be added when using the JSTL tag (EL expression),
+since it is not possible to implicitly refer to <a class="footnote-reference" href="#id3" id="id2">[2]</a> the request parameters unlike with the Nablarch custom tag.</p>
+<ul class="simple">
+<li>Use Nablarch tag <code class="docutils literal"><span class="pre">&lt;n:set&gt;</span></code> once to store the values of request parameters in a variable.</li>
+<li>Access request parameters using the implicit object <code class="docutils literal"><span class="pre">param</span></code></li>
+</ul>
+<p>An example using the former <code class="docutils literal"><span class="pre">&lt;n:set&gt;</span></code> is shown below.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Substitutes</span> <span class="n">the</span> <span class="n">values</span> <span class="n">of</span> <span class="n">request</span> <span class="n">parameters</span> <span class="n">in</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">so</span> <span class="n">that</span> <span class="n">they</span> <span class="n">can</span> <span class="n">be</span> <span class="n">referenced</span> <span class="n">even</span> <span class="n">with</span> <span class="nf">JSTL</span> <span class="o">(</span><span class="n">EL</span> <span class="n">expression</span><span class="o">)</span> <span class="o">--</span><span class="k">%&gt;</span>
+<span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;quantity&quot;</span> <span class="na">name=</span><span class="s">&quot;form.quantity&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${quantity &gt;= 100}&quot;</span><span class="nt">&gt;</span>
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">When</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">is</span> <span class="mi">100</span> <span class="n">or</span> <span class="n">more</span><span class="o">...</span> <span class="o">--</span><span class="k">%&gt;</span>
+</pre></div>
+</div>
+<p>In such a case, the Bean that copied the request parameters can be stored in the request scope
+even when a validation error occurs by configuring the property <code class="docutils literal"><span class="pre">copyBeanToRequestScopeOnError</span></code> of
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/validator/BeanValidationStrategy.html" title="nablarch.common.web.validator.BeanValidationStrategy">BeanValidationStrategy</a> to <code class="docutils literal"><span class="pre">true</span></code>.
+A configuration example is shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;validationStrategy&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.validator.BeanValidationStrategy&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Copies values to the request scope when a validation error occurs --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;copyBeanToRequestScopeOnError&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>The Bean is stored in the request scope using a key specified with the <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">&#64;InjectForm</span></code>
+(same as normal operation of <a class="reference internal" href="../../handlers/web_interceptor/InjectForm.html#inject-form-interceptor"><span>InjectForm Interceptor</span></a>).</p>
+<p>By enabling this function, the JSP mentioned above can be described as follows.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Request</span> <span class="n">parameter</span> <span class="n">values</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">referenced</span> <span class="n">with</span> <span class="nf">JSTL</span> <span class="o">(</span><span class="n">EL</span> <span class="n">expression</span><span class="o">)</span> <span class="n">via</span> <span class="n">request</span> <span class="n">scope</span> <span class="o">--</span><span class="k">%&gt;</span>
+<span class="nt">&lt;c:if</span> <span class="na">test=</span><span class="s">&quot;${form.quantity &gt;= 100}&quot;</span><span class="nt">&gt;</span>
+  <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">When</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">is</span> <span class="mi">100</span> <span class="n">or</span> <span class="n">more</span><span class="o">...</span> <span class="o">--</span><span class="k">%&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>For a description of how the Nablarch custom tag works, see <a class="reference internal" href="../tag.html#tag-access-rule"><span>Rules to access input/output data</span></a>.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="embed-the-item-name-in-the-message-when-a-validation-error-occurs">
+<span id="bean-validation-property-name"></span><h3><a class="toc-backref" href="#id22">7.10.1.3.13. Embed the item name in the message when a validation error occurs</a><a class="headerlink" href="#embed-the-item-name-in-the-message-when-a-validation-error-occurs" title="Permalink to this headline">¶</a></h3>
+<p>Although the item name cannot be embedded in the message as per the Bean Validation (JSR349) specifications,
+you may want to embed the item name in the message according to the requirements etc.
+Therefore, Nablarch provides a function that embeds the item name of the item in which an error has occurred, even if Bean Validation is used.</p>
+<p>The usage method is shown below.</p>
+<dl class="docutils">
+<dt>Component configuration file</dt>
+<dd><p class="first">Configure the factory class that generates the message converter which embeds the item name in a message.
+Configure <code class="docutils literal"><span class="pre">constraintViolationConverterFactory</span></code> in the component name
+and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a> in the class name.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;constraintViolationConverterFactory&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Form to be validated</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+  <span class="nd">@Required</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">address</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Definition of item name</dt>
+<dd><p class="first">Item names are defined as messages.
+The message ID of item name is the fully qualified class name for validation + &#8221;.&#8221; + item property name.</p>
+<p>In the case of the above Form class, <code class="docutils literal"><span class="pre">sample.User</span></code> is a fully qualified name with 2 properties- <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">address</span></code>.
+As shown below, <code class="docutils literal"><span class="pre">sample.User.name</span></code> and <code class="docutils literal"><span class="pre">sample.User.address</span></code> are required to define the item name.</p>
+<p>If the item name is not defined, it will not be added in the message.</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># Required message</span>
+<span class="na">nablarch.core.validation.ee.Required.message</span><span class="o">=</span> <span class="s">Please enter</span>
+
+<span class="c"># Definition of item name</span>
+<span class="na">sample.User.name</span> <span class="o">=</span> <span class="s">User name</span>
+<span class="na">sample.User.address</span> <span class="o">=</span> <span class="s">Mailing address</span>
+</pre></div>
+</div>
+</dd>
+<dt>Generated Message</dt>
+<dd><p class="first">In the generated message, the item name is added to the beginning of the error message.
+Item name is enclosed by <code class="docutils literal"><span class="pre">[</span></code> , <code class="docutils literal"><span class="pre">]</span></code>.</p>
+<div class="last highlight-text"><div class="highlight"><pre><span></span>[User Name] Please enter.
+[Mailing Address] Please enter.
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To change the method of adding the item name to the message, see <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/ItemNamedConstraintViolationConverterFactory.html" title="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory">ItemNamedConstraintViolationConverterFactory</a>
+and add the implementation on the project side.</p>
+</div>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id23">7.10.1.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="to-add-project-specific-annotations-and-validation-logic">
+<h3><a class="toc-backref" href="#id24">7.10.1.4.1. To add project-specific annotations and validation logic</a><a class="headerlink" href="#to-add-project-specific-annotations-and-validation-logic" title="Permalink to this headline">¶</a></h3>
+<p>If the requirements cannot be satisfied with the validators described in <a class="reference internal" href="#bean-validation-validator"><span>Commonly Used Validators are Provided</span></a>,
+annotations and validation logic are added on the project side.</p>
+<p>For details on the implementation method, see the following links and Nablarch implementation.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://hibernate.org/validator/">Hibernate Validator(external site)</a></li>
+<li><a class="reference external" href="https://jcp.org/en/jsr/detail?id=349">JSR349(external site)</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

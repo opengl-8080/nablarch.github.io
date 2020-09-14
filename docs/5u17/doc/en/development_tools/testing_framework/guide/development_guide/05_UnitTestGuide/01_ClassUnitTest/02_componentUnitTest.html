@@ -1,0 +1,703 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.1.2. Class Unit Test of Action/Component &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/01_ClassUnitTest/02_componentUnitTest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1.1. How to conduct a Class Unit Test" href="index.html"/>
+        <link rel="next" title="3.1.2. How to Execute a Request Unit Test" href="../02_RequestUnitTest/index.html"/>
+        <link rel="prev" title="3.1.1.1. Class Unit Testing of Form/Entity" href="01_entityUnitTest.html"/>
+ 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
+      
+          <li><a href="index.html">3.1.1. How to conduct a Class Unit Test</a> &raquo;</li>
+      
+    <li>3.1.1.2. Class Unit Test of Action/Component</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-unit-test-of-action-component">
+<span id="componentunittest"></span><h1>3.1.1.2. Class Unit Test of Action/Component<a class="headerlink" href="#class-unit-test-of-action-component" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the component class unit test of Action/Component (hereinafter referred to as Component unit test).
+The difference in the case of Action class unit test (hereinafter referred to as Action unit test) is the test class name.</p>
+<div class="section" id="how-to-write-action-component-unit-test">
+<h2>3.1.1.2.1. How to write action/component unit test<a class="headerlink" href="#how-to-write-action-component-unit-test" title="Permalink to this headline">¶</a></h2>
+<p>The test class and test data used as examples in this chapter are as follows (right click -&gt; Download and Save).</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../../../../../../_downloads/UserRegistration_UserComponent_ClassUnitTestCase.xlsx" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">case</span> <span class="pre">list</span> <span class="pre">(UserRegistration_UserComponent_ClassUnitTestCase.xlsx)</span></code></a></li>
+<li><a class="reference download internal" href="../../../../../../_downloads/UserComponentTest.java" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">class(UserComponentTest.java)</span></code></a></li>
+<li><a class="reference download internal" href="../../../../../../_downloads/UserComponentTest.xlsx" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">data(UserComponentTest.xlsx)</span></code></a></li>
+<li><a class="reference download internal" href="../../../../../../_downloads/UserComponent.java" download=""><code class="xref download docutils literal"><span class="pre">Tested</span> <span class="pre">class(UserComponent.java)</span></code></a></li>
+</ul>
+<p>This chapter describes the method for user registration (UserComponent#registerUser) as an example.</p>
+<div class="section" id="pattern-division-of-test-case-execution">
+<h3>3.1.1.2.1.1. Pattern division of test case execution<a class="headerlink" href="#pattern-division-of-test-case-execution" title="Permalink to this headline">¶</a></h3>
+<p>The test cases are classified into the following four categories from the list of test cases and methods to be tested.
+This is because there are differences in the test class and data creation methods depending on the pattern they belong to.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Pattern</th>
+<th class="head">Example of a matching process</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test cases whose return value (database search result) must be checked</td>
+<td>Search process</td>
+</tr>
+<tr class="row-odd"><td>Test cases whose return value (other than database search results) must be checked</td>
+<td>Calculation, judgment process</td>
+</tr>
+<tr class="row-even"><td>Test cases whose database status must be checked after processing is completed</td>
+<td>Update process (including insert and delete)</td>
+</tr>
+<tr class="row-odd"><td>Test cases whose message ID must be checked</td>
+<td>Error handling</td>
+</tr>
+</tbody>
+</table>
+<p>Since this example shows DB insertion processing and error handling during double registration, the test cases are classified into &#8220;Test cases whose database status must be checked after processing is completed &#8221; and &#8220;Test cases whose message ID must be checked&#8221;.</p>
+</div>
+<div class="section" id="create-test-data-and-test-class">
+<h3>3.1.1.2.1.2. Create test data and test class<a class="headerlink" href="#create-test-data-and-test-class" title="Permalink to this headline">¶</a></h3>
+<p>This section explains how to create test data and a test class for <a class="reference internal" href="#componentunittest-setup"><span>Process of creating pre-prepared data</span></a>、<a class="reference internal" href="#componentunittest-db"><span>Test cases whose database status must be checked after processing is completed</span></a>、<a class="reference internal" href="#componentunittest-messageid"><span>Test cases whose message ID must be checked</span></a> respectively.
+First of all, the test data (Excel file) itself and the method of creating a test class (class that should be inherited, etc.) is described.Next, the data for each pattern and how a test method is created is described.</p>
+<div class="section" id="create-test-data">
+<h4>3.1.1.2.1.2.1. Create test data<a class="headerlink" href="#create-test-data" title="Permalink to this headline">¶</a></h4>
+<p>Similar to <a class="reference internal" href="01_entityUnitTest.html#entityunittest"><span>Class Unit Testing of Form/Entity</span></a>, the Excel file containing the test data is stored with the same name in the same directory as the test source code (only the extension is different).
+It is a prerequisite that all the test data is entered in the same Excel sheet.</p>
+<p>For details on how to describe the test data, see <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><em>Automated Testing Framework</em></a>、<a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>Testing a Class that Uses the Database</em></a>.</p>
+<p>It is a prerequisite that the static master data stored in the database, such as message data and code master, has been input with data managed by the project in advance (these data are not created as individual test data).</p>
+</div>
+<div class="section" id="create-a-test-class">
+<h4>3.1.1.2.1.2.2. Create a test class<a class="headerlink" href="#create-a-test-class" title="Permalink to this headline">¶</a></h4>
+<p>The test class of component unit test should be created to satisfy the following conditions. For more information, see <a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>Testing a Class that Uses the Database</em></a>.</p>
+<ul class="simple">
+<li>The package of the test class is the same as the Action/Component to be tested.</li>
+<li>Create a test class with the class name &lt;Action/Component class name&gt; Test.</li>
+<li>Inherit nablarch.test.core.db.DbAccessTestSupport.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.management.user</span><span class="o">;</span> <span class="c1">// [Description] The package is the same as UserComponent</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.assertEquals</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.assertTrue</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.fail</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map.Entry</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">nablarch.core.db.statement.SqlResultSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">nablarch.core.message.ApplicationException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">nablarch.test.core.db.DbAccessTestSupport</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="cm">/** Test class of</span>
+<span class="cm"> * {@link UserComponentTest}.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author Tsuyoshi Kawasaki</span>
+<span class="cm"> * @since 1.0</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
+<span class="c1">// [Description] The class name is UserComponentTest and it inherits DbAccessTestSupport</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="process-of-creating-pre-prepared-data">
+<span id="componentunittest-setup"></span><h4>3.1.1.2.1.2.3. Process of creating pre-prepared data<a class="headerlink" href="#process-of-creating-pre-prepared-data" title="Permalink to this headline">¶</a></h4>
+<p>Create the pre-data and pre-data input process. In this example, the following data is created.</p>
+<ul class="simple">
+<li>Configuration of thread context　<a class="footnote-reference" href="#id2" id="id1">[1]</a><ul>
+<li>USER_ID: User ID. USERID0001.</li>
+<li>REQUEST_ID: Request ID. USERS00301.</li>
+</ul>
+</li>
+<li>Initialization of the table to be inserted<ul>
+<li>SYSTEM_ACCOUNT:System account table. Initial item is 3 records.</li>
+<li>USERS:User table. Initial item is 0 records.</li>
+<li>UGROUP_SYSTEM_ACCOUNT:Group system account table. Initial item is 0 records.</li>
+<li>SYSTEM_ACCOUNT_AUTHORITY:System account permission table. Initial item is 0 records.</li>
+</ul>
+</li>
+<li>Master data input<ul>
+<li>ID_GENERATE:Numbering table. For performing the numbering process at the time of registration.If the numbering table is not initialized, the numbering result when the test is run will not be known, and the insertion result cannot be verified.</li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_Setup.png"><img alt="../../../../../../_images/componentUnitTest_Setup.png" src="../../../../../../_images/componentUnitTest_Setup.png" style="width: 800px;" /></a>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>A thread context is an object that stores data that is commonly required by multiple methods in the call stack when executing a series of processes, such as user IDs, request IDs, and languages used.</td></tr>
+</tbody>
+</table>
+<p>The process of reading these data is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ~ Previous is omitted ~</span>
+
+<span class="cm">/** Test class of</span>
+<span class="cm"> * {@link UserComponent#registerUser()} test1。 &lt;br&gt;</span>
+<span class="cm"> * Normal pattern.</span>
+<span class="cm"> */</span>
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;registerUser&quot;</span><span class="o">;</span>
+
+    <span class="n">setThreadContextValues</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;threadContext&quot;</span><span class="o">);</span> <span class="c1">// [Description] Thread context setting</span>
+
+
+<span class="c1">// ~ Middle is omitted</span>
+
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sysAcctDatas</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+
+<span class="c1">// ~ Middle is omitted</span>
+
+        <span class="c1">// Database preparation</span>
+        <span class="n">setUpDb</span><span class="o">(</span><span class="n">sheetName</span><span class="o">);</span> <span class="c1">// [Description] Pre-data input.</span>
+                            <span class="c1">// [Description] Executed in a loop to initialize each case.</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-cases-whose-database-status-must-be-checked-after-processing-is-completed">
+<span id="componentunittest-db"></span><h4>3.1.1.2.1.2.4. Test cases whose database status must be checked after processing is completed<a class="headerlink" href="#test-cases-whose-database-status-must-be-checked-after-processing-is-completed" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="create-test-data-input-values">
+<span id="componentunittest-inputdata-normal"></span><h5>3.1.1.2.1.2.4.1. Create test data (input values)<a class="headerlink" href="#create-test-data-input-values" title="Permalink to this headline">¶</a></h5>
+<p>Prepare arguments for the methods to be tested. In this example, the following 3 are required. The same row for each data is considered as a set of test data (For example, the first row of sysAcctEntity, the first row of usersEntity and the first row of grpSysAcctEntity will be the test data for 1 case).</p>
+<ul class="simple">
+<li>sysAcctEntity: System account entity data</li>
+<li>usersEntity: User entity data</li>
+<li>grpSysAcctEntity: Group system account entity data</li>
+</ul>
+<p>useCaseId in sysAcctEntity are not values set in the useCaseId property itself (the useCaseId property of SystemAccountEntity is an array), but points to data in other tables indicated by the arrows in the figure.
+The acquired values in the test code are used as a key to further acquire data, create an array, and set in the useCaseId property.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_inputData.png"><img alt="../../../../../../_images/componentUnitTest_inputData.png" src="../../../../../../_images/componentUnitTest_inputData.png" style="width: 800px;" /></a>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ~ Previous is omitted ~</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;registerUser&quot;</span><span class="o">;</span>
+
+    <span class="n">setThreadContextValues</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;threadContext&quot;</span><span class="o">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">sysAcctDatas</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;sysAcctEntity&quot;</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">usersDatas</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;usersEntity&quot;</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">grpSysAcctDatas</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;grpSysAcctEntity&quot;</span><span class="o">);</span>
+    <span class="c1">// Map, List that receive the Excel data temporarily</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">work</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">useCaseData</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="n">SystemAccountEntity</span> <span class="n">sysAcct</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">UsersEntity</span> <span class="n">users</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">UgroupSystemAccountEntity</span> <span class="n">grpSysAcct</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sysAcctDatas</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+
+<span class="c1">// ~ Middle is omitted</span>
+
+
+        <span class="c1">// System account  // [Description] Preparation of SystemAccountEntity</span>
+        <span class="n">work</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">:</span> <span class="n">sysAcctDatas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">work</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="c1">// Create arguments for useCaseId</span>
+        <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">sysAcctDatas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;useCaseId&quot;</span><span class="o">);</span> <span class="c1">// [Description] Obtains the table ID at the base of the arrows in the figure</span>
+        <span class="n">useCaseData</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span> <span class="c1">// [Description] Uses the ID acquired to obtain the data of the array at the tip of the arrow in the figure</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">useCaseId</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">useCaseData</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span> <span class="c1">// [Description] Create an array</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">useCaseData</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">useCaseId</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">useCaseData</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;useCaseId&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">work</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;useCase&quot;</span><span class="o">,</span> <span class="n">useCaseId</span><span class="o">);</span> <span class="c1">// [Description] Configures the created array in the Map that is transferred to the SystemAccountEntity constructor</span>
+        <span class="n">sysAcct</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SystemAccountEntity</span><span class="o">(</span><span class="n">work</span><span class="o">);</span>
+
+        <span class="c1">// User  //  [Description] Preparation of UsersEntity</span>
+        <span class="n">work</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">:</span> <span class="n">usersDatas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">work</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UsersEntity</span><span class="o">(</span><span class="n">work</span><span class="o">);</span>
+
+        <span class="c1">// Group system account  // [Description] Preparation of UgroupSystemAccountEntity</span>
+        <span class="n">work</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">:</span> <span class="n">grpSysAcctDatas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">work</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">grpSysAcct</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UgroupSystemAccountEntity</span><span class="o">(</span><span class="n">work</span><span class="o">);</span>
+
+        <span class="c1">// Execution</span>
+        <span class="n">target</span><span class="o">.</span><span class="na">registerUser</span><span class="o">(</span><span class="n">sysAcct</span><span class="o">,</span> <span class="n">users</span><span class="o">,</span> <span class="n">grpSysAcct</span><span class="o">);</span>
+        <span class="n">commitTransactions</span><span class="o">();</span>   <span class="c1">//  [Description] Commits all transactions</span>
+
+        <span class="c1">// Verification</span>
+        <span class="n">String</span> <span class="n">expectedGroupId</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expected&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;caseNo&quot;</span><span class="o">);</span>
+        <span class="n">assertTableEquals</span><span class="o">(</span><span class="n">expectedGroupId</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedGroupId</span><span class="o">);</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In the above source code, data is read from the Excel sheet using the getListMap method.
+For more information on getListMap,
+see &#8220;<a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#how-to-get-data-from-excel"><span>To acquire input parameters and expected values for return values, etc. from an Excel file</span></a>&#8221; of <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html"><em>How to Use Purpose-specific APIs</em></a>.</p>
+</div>
+<p>Transaction control by the framework is not performed in the class unit test since the class that accesses the database is directly launched from the test class.
+If the database status is required to be checked after processing, it is necessary to commit the transaction in the test class.</p>
+<p>Launch the <code class="docutils literal"><span class="pre">commitTransactions()</span></code> method of the superclass and commit.
+If the transaction is not committed, the test results cannot be confirmed normally. (A transaction need not be committed in the case of a reference test)</p>
+</div>
+<div class="section" id="create-test-data-expected-result">
+<h5>3.1.1.2.1.2.4.2. Create test data (Expected result)<a class="headerlink" href="#create-test-data-expected-result" title="Permalink to this headline">¶</a></h5>
+<p>Prepare the expected result for each test case.
+In addition to the items configured by the application, prepare the expected results for automatic configuration items as well (see <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/database/database.html#database-common-bean"><span>Automatically configure a common value when executing SQL</span></a>). Use the &#8220;assertTableEquals&#8221; method for verification.</p>
+<p>The sample application handles multiple expected results by preparing data (expected) that defines the group ID (see <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>To describe the data of multiple test cases on a single sheet</span></a>) and transferring it to the arguments of assertTableEquals.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataNormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataNormal.png" src="../../../../../../_images/componentUnitTest_expectedDataNormal.png" style="width: 800px;" /></a>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ~ Previous is omitted ~</span>
+
+<span class="cm">/** Test class of</span>
+<span class="cm"> * {@link UserComponent#registerUser()} test1。 &lt;br&gt;</span>
+<span class="cm"> * Normal pattern.</span>
+<span class="cm"> */</span>
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;registerUser&quot;</span><span class="o">;</span>
+
+<span class="c1">// ~ Middle is omitted</span>
+
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sysAcctDatas</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+
+<span class="c1">// ~ Middle is omitted</span>
+
+
+         <span class="c1">// Verification</span>
+         <span class="c1">// [Description] Acquire group ID</span>
+         <span class="n">String</span> <span class="n">expectedGroupId</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expected&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;caseNo&quot;</span><span class="o">);</span>
+         <span class="c1">// [Description] Execution of assertTableEquals with the acquired group ID as an argument</span>
+         <span class="n">assertTableEquals</span><span class="o">(</span><span class="n">expectedGroupId</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedGroupId</span><span class="o">);</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+<p>Taking case1 as an example, the expected result is as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Table name</th>
+<th class="head">Expected</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SYSTEM_ACCOUNT</td>
+<td>Add the record shown in <a class="reference internal" href="#componentunittest-setup"><span>Process of creating pre-prepared data</span></a> + 1 record. Total 4 records.</td>
+</tr>
+<tr class="row-odd"><td>USERS</td>
+<td>Added 1 record. (Initialized to 0 records with <a class="reference internal" href="#componentunittest-setup"><span>Process of creating pre-prepared data</span></a> and added 1 record in the test target process)</td>
+</tr>
+<tr class="row-even"><td>UGROUP_SYSTEM_ACCOUNT</td>
+<td>Added 1 record. (Initialized to 0 records with <a class="reference internal" href="#componentunittest-setup"><span>Process of creating pre-prepared data</span></a> and added 1 record in the test target process)</td>
+</tr>
+<tr class="row-odd"><td>SYSTEM_ACCOUNT_AUTHORITY</td>
+<td>No change (no new additions).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="test-cases-whose-message-id-must-be-checked">
+<span id="componentunittest-messageid"></span><h4>3.1.1.2.1.2.5. Test cases whose message ID must be checked<a class="headerlink" href="#test-cases-whose-message-id-must-be-checked" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="create-test-data-input-values-and-expected-values">
+<h5>3.1.1.2.1.2.5.1. Create test data (input values and expected values)<a class="headerlink" href="#create-test-data-input-values-and-expected-values" title="Permalink to this headline">¶</a></h5>
+<p>Create test data (input values) in the same way as create <a class="reference internal" href="#componentunittest-inputdata-normal"><span>test data (input values) of the previous section</span></a>.
+Here, &#8220;Err&#8221; is added to the end of the ID specified of the <a class="reference internal" href="#componentunittest-inputdata-normal"><span>previous section</span></a> so that normal pattern and abnormal pattern data can be consolidated in the same Excel sheet.
+The expected value is the message ID.</p>
+<p>The content to be checked here is the occurrence of an exception caused by unique key constraint violation. The test code catches the intended exception and verifies it by comparing the message IDs.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The exceptions to be caught are those that are expected to occur, and exception classes higher in the inheritance tree such as RuntimeException are not used.
+Although there are message IDs, the bug that mistakes the exception itself cannot be detected.</p>
+</div>
+<a class="reference internal image-reference" href="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png"><img alt="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" src="../../../../../../_images/componentUnitTest_expectedDataAbnormal.png" style="width: 800.0px;" /></a>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ~ Previous is omitted ~</span>
+
+<span class="cm">/** Test class of</span>
+<span class="cm"> * {@link UserComponent#registerUser()}2。 &lt;br&gt;</span>
+<span class="cm"> * Abnormal pattern.</span>
+<span class="cm"> */</span>
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;registerUser&quot;</span><span class="o">;</span>
+
+<span class="c1">// ~ Middle is omitted</span>
+
+        <span class="c1">// Execution</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">target</span><span class="o">.</span><span class="na">registerUser</span><span class="o">(</span><span class="n">sysAcct</span><span class="o">,</span> <span class="n">users</span><span class="o">,</span> <span class="n">grpSysAcct</span><span class="o">);</span> <span class="c1">// [Description] Executes the method to be tested</span>
+            <span class="n">fail</span><span class="o">();</span> <span class="c1">// [Description] Test failure if an exception is not thrown</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ApplicationException</span> <span class="n">ae</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// [Description] Catches exceptions that should be thrown</span>
+            <span class="c1">// [Description] Verification of message ID</span>
+            <span class="n">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;messageId&quot;</span><span class="o">),</span> <span class="n">ae</span><span class="o">.</span><span class="na">getMessages</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getMessageId</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

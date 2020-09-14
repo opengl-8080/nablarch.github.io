@@ -311,9 +311,12 @@
           <li><a href="../index.html">Nablarch実装例集</a> &raquo;</li>
       
     <li>検索結果の一覧表示</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -620,22 +623,20 @@
 </pre></div>
 </div>
 <p>デフォルトの書式を変更したい場合は、resultCountFragment属性にJSPフラグメントを指定する。resultCountFragment属性の指定例を下記に示す。JSPフラグメントは、カスタムタグから呼び出されて評価されるため、listSearchInfoName属性で指定した名前を使用してListSearchInfoオブジェクトにアクセスすることが可能となる。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;nbs:listSearchResult listSearchInfoName=&quot;11AC_W11AC01&quot;
+                   searchUri=&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;
+                   resultSetName=&quot;searchResult&quot;&gt;
+
+   &lt;%-- resultCountFragment属性にJSPフラグメントを指定する。 --%&gt;
+   &lt;jsp:attribute name=&quot;resultCountFragment&quot;&gt;
+   [サーチ結果 &lt;n:write name=&quot;searchCondition.resultCount&quot; /&gt;頁]
+   &lt;/jsp:attribute&gt;
+
+   &lt;%-- その他の属性は省略。 --%&gt;
+
+&lt;/nbs:listSearchResult&gt;
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchResult listSearchInfoName=&#8221;11AC_W11AC01&#8221;</dt>
-<dd><blockquote class="first">
-<div>searchUri=&#8221;/action/ss11AC/W11AC01Action/RW11AC0102&#8221;
-resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
-<p>&lt;%&#8211; resultCountFragment属性にJSPフラグメントを指定する。 &#8211;%&gt;
-&lt;jsp:attribute name=&#8221;resultCountFragment&#8221;&gt;
-[サーチ結果 &lt;n:write name=&#8221;searchCondition.resultCount&#8221; /&gt;頁]
-&lt;/jsp:attribute&gt;</p>
-<p class="last">&lt;%&#8211; その他の属性は省略。 &#8211;%&gt;</p>
-</dd>
-</dl>
-<p>&lt;/nbs:listSearchResult&gt;</p>
 <p>上記指定後の検索結果件数の書式を下記に示す。</p>
 <div class="highlight-jsp"><div class="highlight"><pre><span></span>[サーチ結果 <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">ListSearchInfoのresultCountプロパティ</span> <span class="o">--</span><span class="k">%&gt;</span>頁]
 </pre></div>
@@ -782,7 +783,7 @@ resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
 <td><p class="first">ボディ行のフラグメントでステータス(c:forEachタグのstatus属性)を参照する際に使用する変数名。<br />
 デフォルトは&#8221;status&#8221;。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>n:writeタグを使用してステータスにアクセスすると、n:writeタグとEL式でアクセス方法が異なるためにエラーが発生し値を取得できない。n:setタグを使用してステータスにアクセスすることで、このエラーを回避できる。下記に使用例を示す。</p>
 <div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;rowCount&quot;</span> <span class="na">value=</span><span class="s">&quot;${status.count}&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;rowCount&quot;</span> <span class="nt">/&gt;</span>
@@ -829,48 +830,51 @@ resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
 </tbody>
 </table>
 <p>ユーザ検索の指定例を下記に示す。タグファイルのプレフィックスは nbs とする。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;nbs:listSearchResult listSearchInfoName=&quot;11AC_W11AC01&quot;
+                   searchUri=&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;
+                   resultSetName=&quot;searchResult&quot;&gt;
+
+   &lt;%-- ヘッダ行のJSPフラグメント指定。 --%&gt;
+
+   &lt;jsp:attribute name=&quot;headerRowFragment&quot;&gt;
+
+       &lt;tr&gt;
+
+           &lt;th&gt;ログインID&lt;/th&gt;
+           &lt;th&gt;漢字氏名&lt;/th&gt;
+           &lt;th&gt;カナ氏名&lt;/th&gt;
+           &lt;th&gt;グループ&lt;/th&gt;
+           &lt;th&gt;内線番号&lt;/th&gt;
+           &lt;th&gt;メールアドレス&lt;/th&gt;
+
+       &lt;/tr&gt;
+
+   &lt;/jsp:attribute&gt;
+
+   &lt;%-- ボディ行のJSPフラグメント指定。 --%&gt;
+
+   &lt;jsp:attribute name=&quot;bodyRowFragment&quot;&gt;
+
+       &lt;%-- デフォルトの変数名&quot;oddEvenCss&quot;を使用してclass属性にアクセスする。 --%&gt;
+
+       &lt;tr class=&quot;&lt;n:write name=&#39;oddEvenCss&#39; /&gt;&quot;&gt;
+
+           &lt;%-- デフォルトの変数名&quot;row&quot;を使用して行データにアクセスする。 --%&gt;
+
+           &lt;td&gt;[&lt;n:write name=&quot;count&quot; /&gt;]&lt;br/&gt;[&lt;n:write name=&quot;rowCount&quot; /&gt;]&lt;br/&gt;&lt;n:write name=&quot;row.loginId&quot; /&gt;&lt;/td&gt;
+           &lt;td&gt;&lt;n:write name=&quot;row.kanjiName&quot; /&gt;&lt;/td&gt;
+           &lt;td&gt;&lt;n:write name=&quot;row.kanaName&quot; /&gt;&lt;/td&gt;
+           &lt;td&gt;&lt;n:write name=&quot;row.ugroupId&quot; /&gt;:&lt;n:write name=&quot;row.ugroupName&quot; /&gt;&lt;/td&gt;
+           &lt;td&gt;&lt;n:write name=&quot;row.extensionNumberBuilding&quot; /&gt;-&lt;n:write name=&quot;row.extensionNumberPersonal&quot; /&gt;&lt;/td&gt;
+           &lt;td&gt;&lt;n:write name=&quot;row.mailAddress&quot; /&gt;&lt;/td&gt;
+
+       &lt;/tr&gt;
+
+   &lt;/jsp:attribute&gt;
+
+&lt;/nbs:listSearchResult&gt;
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchResult listSearchInfoName=&#8221;11AC_W11AC01&#8221;</dt>
-<dd><blockquote class="first">
-<div>searchUri=&#8221;/action/ss11AC/W11AC01Action/RW11AC0102&#8221;
-resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
-<p>&lt;%&#8211; ヘッダ行のJSPフラグメント指定。 &#8211;%&gt;</p>
-<p>&lt;jsp:attribute name=&#8221;headerRowFragment&#8221;&gt;</p>
-<blockquote>
-<div><p>&lt;tr&gt;</p>
-<blockquote>
-<div>&lt;th&gt;ログインID&lt;/th&gt;
-&lt;th&gt;漢字氏名&lt;/th&gt;
-&lt;th&gt;カナ氏名&lt;/th&gt;
-&lt;th&gt;グループ&lt;/th&gt;
-&lt;th&gt;内線番号&lt;/th&gt;
-&lt;th&gt;メールアドレス&lt;/th&gt;</div></blockquote>
-<p>&lt;/tr&gt;</p>
-</div></blockquote>
-<p>&lt;/jsp:attribute&gt;</p>
-<p>&lt;%&#8211; ボディ行のJSPフラグメント指定。 &#8211;%&gt;</p>
-<p>&lt;jsp:attribute name=&#8221;bodyRowFragment&#8221;&gt;</p>
-<blockquote>
-<div><p>&lt;%&#8211; デフォルトの変数名&#8221;oddEvenCss&#8221;を使用してclass属性にアクセスする。 &#8211;%&gt;</p>
-<p>&lt;tr class=&#8221;&lt;n:write name=&#8217;oddEvenCss&#8217; /&gt;&#8221;&gt;</p>
-<blockquote>
-<div><p>&lt;%&#8211; デフォルトの変数名&#8221;row&#8221;を使用して行データにアクセスする。 &#8211;%&gt;</p>
-<p>&lt;td&gt;[&lt;n:write name=&#8221;count&#8221; /&gt;]&lt;br/&gt;[&lt;n:write name=&#8221;rowCount&#8221; /&gt;]&lt;br/&gt;&lt;n:write name=&#8221;row.loginId&#8221; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;n:write name=&#8221;row.kanjiName&#8221; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;n:write name=&#8221;row.kanaName&#8221; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;n:write name=&#8221;row.ugroupId&#8221; /&gt;:&lt;n:write name=&#8221;row.ugroupName&#8221; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;n:write name=&#8221;row.extensionNumberBuilding&#8221; /&gt;-&lt;n:write name=&#8221;row.extensionNumberPersonal&#8221; /&gt;&lt;/td&gt;
-&lt;td&gt;&lt;n:write name=&#8221;row.mailAddress&#8221; /&gt;&lt;/td&gt;</p>
-</div></blockquote>
-<p>&lt;/tr&gt;</p>
-</div></blockquote>
-<p class="last">&lt;/jsp:attribute&gt;</p>
-</dd>
-</dl>
-<p>&lt;/nbs:listSearchResult&gt;</p>
 <p>上記指定後の検索結果を下記に示す。</p>
 <a class="reference internal image-reference" href="../../_images/ListSearchResult_TableStatus.jpg"><img alt="../../_images/ListSearchResult_TableStatus.jpg" src="../../_images/ListSearchResult_TableStatus.jpg" /></a>
 </div>
@@ -886,26 +890,26 @@ resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
 <p>検索結果の並び替えを行うには、可変ORDER BY構文を使用してSQL文を定義する。可変ORDER BY構文を使用したSQL文の例を下記に示す。</p>
 <p>下記のSQL文では、漢字氏名とカナ氏名を並び替えるための可変ORDER BY句を使用している。
 どのORDER BYを使用するかは、$sort (sortId)の記述により、検索条件オブジェクトのsortIdフィールドから取得した値が使用される。例えば、検索条件オブジェクトのsortIdフィールドが kanaName_asc の場合、ORDER BY句は&#8221;ORDER BY USR.KANA_NAME, SA.LOGIN_ID&#8221;に変換される。</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span>-- 可変ORDER BY構文を使用したSQL文
+SELECT
+
+   -- 省略
+
+FROM
+
+   -- 省略
+
+WHERE
+
+   -- 省略
+
+$sort (sortId) {
+   (kanjiName_asc  USR.KANJI_NAME, SA.LOGIN_ID)
+   (kanjiName_desc USR.KANJI_NAME DESC, SA.LOGIN_ID)
+   (kanaName_asc   USR.KANA_NAME, SA.LOGIN_ID)
+   (kanaName_desc  USR.KANA_NAME DESC, SA.LOGIN_ID) }
 </pre></div>
 </div>
-<p>&#8211; 可変ORDER BY構文を使用したSQL文
-SELECT</p>
-<blockquote>
-<div>&#8211; 省略</div></blockquote>
-<p>FROM</p>
-<blockquote>
-<div>&#8211; 省略</div></blockquote>
-<p>WHERE</p>
-<blockquote>
-<div>&#8211; 省略</div></blockquote>
-<dl class="docutils">
-<dt>$sort (sortId) {</dt>
-<dd>(kanjiName_asc  USR.KANJI_NAME, SA.LOGIN_ID)
-(kanjiName_desc USR.KANJI_NAME DESC, SA.LOGIN_ID)
-(kanaName_asc   USR.KANA_NAME, SA.LOGIN_ID)
-(kanaName_desc  USR.KANA_NAME DESC, SA.LOGIN_ID) }</dd>
-</dl>
 <p>ListSearchInfoクラスは、並び替えに対応するためにsortIdプロパティを定義している。検索結果の並び替えを行う場合は、sortIdプロパティを入力精査に含める。ListSearchInfoを継承したクラス(W11AC01SearchForm)の実装例を下記に示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// ListSearchInfoを継承したクラス。</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01SearchForm</span> <span class="kd">extends</span> <span class="n">ListSearchInfo</span> <span class="o">{</span>
@@ -997,43 +1001,42 @@ name属性は、画面内で一意にすること。</td>
 </tbody>
 </table>
 <p>listSearchSortSubmitタグを使用したJSPの実装例を下記に示す。タグファイルのプレフィックスは nbs とする。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;nbs:listSearchResult listSearchInfoName=&quot;11AC_W11AC01&quot;
+                   searchUri=&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;
+                   resultSetName=&quot;searchResult&quot;
+                   usePageNumberSubmit=&quot;true&quot;
+                   useLastSubmit=&quot;true&quot;&gt;
+
+   &lt;jsp:attribute name=&quot;headerRowFragment&quot;&gt;
+
+       &lt;tr&gt;
+
+           &lt;%-- 漢字氏名以外の列は省略。 --%&gt;
+
+           &lt;th&gt;
+
+               &lt;%-- 漢字氏名を並び替え用のリンクにする。--%&gt;
+               &lt;%-- SQL文に合わせて昇順(kanjiName_asc)と降順(kanjiName_desc)のソートIDを指定する。 --%&gt;
+
+               &lt;nbs:listSearchSortSubmit ascSortId=&quot;kanjiName_asc&quot; descSortId=&quot;kanjiName_desc&quot;
+                                       label=&quot;漢字氏名&quot; uri=&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;
+                                       name=&quot;kanjiNameSort&quot; listSearchInfoName=&quot;11AC_W11AC01&quot; /&gt;
+
+           &lt;/th&gt;
+
+       &lt;/tr&gt;
+
+   &lt;/jsp:attribute&gt;
+
+   &lt;jsp:attribute name=&quot;bodyRowFragment&quot;&gt;
+
+       &lt;%-- 省略 --%&gt;
+
+   &lt;/jsp:attribute&gt;
+
+&lt;/nbs:listSearchResult&gt;
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchResult listSearchInfoName=&#8221;11AC_W11AC01&#8221;</dt>
-<dd><blockquote class="first">
-<div>searchUri=&#8221;/action/ss11AC/W11AC01Action/RW11AC0102&#8221;
-resultSetName=&#8221;searchResult&#8221;
-usePageNumberSubmit=&#8221;true&#8221;
-useLastSubmit=&#8221;true&#8221;&gt;</div></blockquote>
-<p>&lt;jsp:attribute name=&#8221;headerRowFragment&#8221;&gt;</p>
-<blockquote>
-<div><p>&lt;tr&gt;</p>
-<blockquote>
-<div><p>&lt;%&#8211; 漢字氏名以外の列は省略。 &#8211;%&gt;</p>
-<p>&lt;th&gt;</p>
-<blockquote>
-<div><p>&lt;%&#8211; 漢字氏名を並び替え用のリンクにする。&#8211;%&gt;
-&lt;%&#8211; SQL文に合わせて昇順(kanjiName_asc)と降順(kanjiName_desc)のソートIDを指定する。 &#8211;%&gt;</p>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchSortSubmit ascSortId=&#8221;kanjiName_asc&#8221; descSortId=&#8221;kanjiName_desc&#8221;</dt>
-<dd>label=&#8221;漢字氏名&#8221; uri=&#8221;/action/ss11AC/W11AC01Action/RW11AC0102&#8221;
-name=&#8221;kanjiNameSort&#8221; listSearchInfoName=&#8221;11AC_W11AC01&#8221; /&gt;</dd>
-</dl>
-</div></blockquote>
-<p>&lt;/th&gt;</p>
-</div></blockquote>
-<p>&lt;/tr&gt;</p>
-</div></blockquote>
-<p>&lt;/jsp:attribute&gt;</p>
-<p>&lt;jsp:attribute name=&#8221;bodyRowFragment&#8221;&gt;</p>
-<blockquote>
-<div>&lt;%&#8211; 省略 &#8211;%&gt;</div></blockquote>
-<p class="last">&lt;/jsp:attribute&gt;</p>
-</dd>
-</dl>
-<p>&lt;/nbs:listSearchResult&gt;</p>
 <p>並び替えのサブミット要素では、検索フォームから検索された時点の検索条件を使用して検索を実行する。ページング使用時の検索条件と同様に、ウィンドウスコープを使用して検索条件を維持する。</p>
 <p>並び替えのサブミット要素では、常に先頭ページ(ページ番号:1)を検索する。並び替えが変更された場合、検索前のページ番号は異なる並び順に対する相対位置となり、検索後に意味のあるページ位置とならないためである。</p>
 <p><strong>現在の並び替え状態に応じたlistSearchSortSubmitタグの動作</strong></p>
@@ -1043,16 +1046,14 @@ name=&#8221;kanjiNameSort&#8221; listSearchInfoName=&#8221;11AC_W11AC01&#8221; /
 <li>昇順又は降順に応じてサブミット要素に指定するCSSクラス</li>
 </ul>
 <p>ここでは、下記の実装例を前提に、listSearchSortSubmitタグの動作を解説する。</p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;%-- 漢字氏名を並び替え用のリンクにする。--%&gt;
+&lt;%-- SQL文に合わせて昇順(kanjiName_asc)と降順(kanjiName_desc)のソートIDを指定する。 --%&gt;
+
+&lt;nbs:listSearchSortSubmit ascSortId=&quot;kanjiName_asc&quot; descSortId=&quot;kanjiName_desc&quot;
+                         label=&quot;漢字氏名&quot; uri=&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;
+                         name=&quot;kanjiNameSort&quot; listSearchInfoName=&quot;11AC_W11AC01&quot; /&gt;
 </pre></div>
 </div>
-<p>&lt;%&#8211; 漢字氏名を並び替え用のリンクにする。&#8211;%&gt;
-&lt;%&#8211; SQL文に合わせて昇順(kanjiName_asc)と降順(kanjiName_desc)のソートIDを指定する。 &#8211;%&gt;</p>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchSortSubmit ascSortId=&#8221;kanjiName_asc&#8221; descSortId=&#8221;kanjiName_desc&#8221;</dt>
-<dd>label=&#8221;漢字氏名&#8221; uri=&#8221;/action/ss11AC/W11AC01Action/RW11AC0102&#8221;
-name=&#8221;kanjiNameSort&#8221; listSearchInfoName=&#8221;11AC_W11AC01&#8221; /&gt;</dd>
-</dl>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -1168,20 +1169,18 @@ name=&#8221;kanjiNameSort&#8221; listSearchInfoName=&#8221;11AC_W11AC01&#8221; /
 </pre></div>
 </div>
 <p><strong>JSP(ユーザ検索)の実装例</strong></p>
-<div class="highlight-jsp"><div class="highlight"><pre><span></span>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>&lt;%-- ページングを使用しないのでusePaging属性にfalseを指定する。 --%&gt;
+&lt;%-- ページングを使用しないのでsearchUri属性の指定は不要。 --%&gt;
+
+&lt;nbs:listSearchResult listSearchInfoName=&quot;11AC_W11AC01&quot;
+                     usePaging=&quot;false&quot;
+                     resultSetName=&quot;searchResult&quot;&gt;
+
+  &lt;%-- その他の属性は省略。 --%&gt;
+
+&lt;/nbs:listSearchResult&gt;
 </pre></div>
 </div>
-<p>&lt;%&#8211; ページングを使用しないのでusePaging属性にfalseを指定する。 &#8211;%&gt;
-&lt;%&#8211; ページングを使用しないのでsearchUri属性の指定は不要。 &#8211;%&gt;</p>
-<dl class="docutils">
-<dt>&lt;nbs:listSearchResult listSearchInfoName=&#8221;11AC_W11AC01&#8221;</dt>
-<dd><blockquote class="first">
-<div>usePaging=&#8221;false&#8221;
-resultSetName=&#8221;searchResult&#8221;&gt;</div></blockquote>
-<p class="last">&lt;%&#8211; その他の属性は省略。 &#8211;%&gt;</p>
-</dd>
-</dl>
-<p>&lt;/nbs:listSearchResult&gt;</p>
 </div>
 <div class="section" id="listsearchresult-defaultcondition">
 <span id="id16"></span><h2>デフォルトの検索条件で検索した結果を初期表示する場合の実装方法<a class="headerlink" href="#listsearchresult-defaultcondition" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -1689,7 +1688,7 @@ button <br />
 <td><p class="first">ボディ行のフラグメントでステータス(c:forEachタグのstatus属性)を参照する際に使用する変数名。<br />
 デフォルトは&#8221;status&#8221;。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>n:writeタグを使用してステータスにアクセスすると、n:writeタグとEL式でアクセス方法が異なるためにエラーが発生し値を取得できない。n:setタグを使用してステータスにアクセスすることで、このエラーを回避できる。下記に使用例を示す。</p>
 <div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;rowCount&quot;</span> <span class="na">value=</span><span class="s">&quot;${status.count}&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;rowCount&quot;</span> <span class="nt">/&gt;</span>

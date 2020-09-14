@@ -315,9 +315,12 @@
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
     <li>3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -336,7 +339,7 @@
 <p>以下に、電文を1回送信する場合の返却する応答電文の記述例を示す。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_response.png"><img alt="../../../../../../_images/http_send_sync_response.png" src="../../../../../../_images/http_send_sync_response.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>RESPONSE_BODY_MESSAGES(及び後の例で使用するEXPECTED_REQUEST_BODY_MESSAGES)は、複数フィールドに分割して記述することが可能である。</p>
 <p>文字列が長く、1セルに全部記述すると可読性が落ちる場合に分割して記述する。</p>
 <p class="last">分割する際、「フィールド名」は任意の文字列を指定する。上記の例では <code class="docutils literal"><span class="pre">XML1</span></code> 、 <code class="docutils literal"><span class="pre">XML2</span></code> 、 <code class="docutils literal"><span class="pre">XML3</span></code> としている。</p>
@@ -344,7 +347,7 @@
 <p>以下に、電文を1回送信する場合の要求電文の期待値の記述例を示す。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_expected.png"><img alt="../../../../../../_images/http_send_sync_expected.png" src="../../../../../../_images/http_send_sync_expected.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>JSON及びXMLデータ形式使用時は、1Excelシートに1テストケースのみ記述すること。</p>
 <p class="last">これはメッセージボディについて、Excelの各行の文字列長が同一であることを期待しているというNTFの制約によるものである。JSON及びXMLデータ形式は、要求電文の長さがリクエスト毎に異なるのが一般的なので、事実上1テストケースしか記述できない。</p>
 </div>
@@ -362,7 +365,7 @@
 <p>以下に複数回電文送信を行う際の、要求電文の期待値の記述例を示す。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/http_send_sync_ok_pattern_expected.png" src="../../../../../../_images/http_send_sync_ok_pattern_expected.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">送信対象のリクエストIDが複数存在する場合、送信順のテストは不可能である。上記の例の場合、 <code class="docutils literal"><span class="pre">ProjectSaveMessage</span></code> より先に、 <code class="docutils literal"><span class="pre">ProjectSaveMessage2</span></code> が送信された場合であってもテストは成功となる。</p>
 </div>
 </div>
@@ -379,7 +382,7 @@
 </div>
 <a class="reference internal image-reference" href="../../../../../../_images/http_mom_send_sync_shot.png"><img alt="../../../../../../_images/http_mom_send_sync_shot.png" src="../../../../../../_images/http_mom_send_sync_shot.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">グループIDはMOMによる同期応答メッセージ送信処理とHTTP同期応答メッセージ送信処理でそれぞれ別の値を設定する必要がある。
 同一のグループIDを指定した場合、正しく結果検証が行われないため、注意すること。</p>
 </div>

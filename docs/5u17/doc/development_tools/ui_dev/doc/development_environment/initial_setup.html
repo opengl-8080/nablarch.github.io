@@ -315,9 +315,12 @@
           <li><a href="../index.html">2.1. Nablarch UI開発基盤 解説書</a> &raquo;</li>
       
     <li>2.1.8. UI開発基盤の導入</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -331,14 +334,14 @@ UI開発基盤の導入時に以下の手順を実施すればよく、各担当
 <p>以下の手順で使用するインストール用コマンドの詳細仕様については、
 <a class="reference internal" href="../plugin_build.html"><em>プラグインビルドコマンド仕様</em></a> を参照すること。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本節では、UI開発基盤用プロジェクトテンプレートを使用したUI開発基盤の導入手順を記載している。
 UI開発基盤用プロジェクトテンプレートは <a class="reference internal" href="../internals/css_framework.html"><em>CSSフレームワーク</em></a> を使用しているため、
 <a class="reference internal" href="../internals/multicol_css_framework.html"><em>マルチレイアウト用CSSフレームワーク</em></a> を使用する場合には、 <a class="reference internal" href="../internals/multicol_css_framework.html#apply-multicol-layout"><span>マルチレイアウトモードの適用方法</span></a>
 を参考に導入用の設定を行うこと。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">開発作業手順はUI開発基盤を導入したプロジェクトが構成管理にSubversionを利用する想定で記載している。
 Gitを利用する場合はプロジェクト構成やコマンド名などを読み替えること。</p>
 </div>
@@ -352,7 +355,7 @@ Gitを利用する場合はプロジェクト構成やコマンド名などを�
 <div><a class="reference external" href="http://nodejs.org/dist/v0.10.26/">http://nodejs.org/dist/v0.10.26/</a></div></blockquote>
 <p>バージョンによってはUI開発基盤が動作しないため、動作検証済みのバージョンである 0.10.26 の使用を推奨する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">なお <strong>Node.js</strong> を必要とするのは初期環境構築作業を行うアーキテクトのみである。
 通常の設計・開発を行う担当者はインストール不要である。</p>
 </div>
@@ -368,7 +371,7 @@ Gitを利用する場合はプロジェクト構成やコマンド名などを�
 <p>下記手順を実行することにより、UI開発基盤を使用するためのプロジェクトを作成する。
 作成したプロジェクトの構成は以下のようになる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ここでは、プロジェクト名は仮想のプロジェクト名(web_project)で示す。</p>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>プロジェクトルート/
@@ -395,7 +398,7 @@ Gitを利用する場合はプロジェクト構成やコマンド名などを�
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ここで展開される各ディレクトリの内容については
 <a class="reference internal" href="../structure/directory_layout.html"><em>標準プロジェクト構成</em></a> で解説する。</p>
 </div>
@@ -427,11 +430,11 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <div><a class="reference internal" href="#clone-project-template"><span>3. UI開発基盤用プロジェクトテンプレートの取得</span></a> で取得したプロジェクトテンプレートにブランクプロジェクトをセットアップする。
 セットアップ方法は、 <a class="reference internal" href="../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><em>ウェブプロジェクトの初期セットアップ</em></a> を参照すること。</div></blockquote>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ここでは、ブランクプロジェクトを生成する際、 <code class="docutils literal"><span class="pre">artifactId</span></code> に <cite>web</cite> と指定すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>mavenのインストールや設定を行っていない場合には、以下を参考にそれぞれを実施してからセットアップを行うこと。</p>
 <ul class="last simple">
 <li><a class="reference internal" href="../../../../application_framework/application_framework/blank_project/maven.html"><em>Apache Mavenについて</em></a></li>
@@ -448,7 +451,7 @@ git clone https://github.com/nablarch/nablarch-ui-development-template.git web_p
 <span id="id7"></span><h3>2.1.8.3.1. 1. プラグインのセットアップ<a class="headerlink" href="#initial-setup-plugin-setup" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><cite>nablarch_plugins_bundle/bin/setup.bat</cite> を実行する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>プロキシ配下でインターネットに接続している場合には、
 以下の環境変数にプロキシのアドレスを設定すること。</p>
 <ul class="last simple">
@@ -607,7 +610,7 @@ import定義が列挙されている。</p>
 <li><cite>web_project/ui_plugins/css/ui_public/wide.less</cite></li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">使用するプラグインの選別は、開発中であっても随時実施することが可能である。
 ただ、その場合でも、開発チーム側での誤用を避けるため、
 使用しないプラグインはなるべく早い段階で除いておくことが望ましい。</p>
@@ -635,7 +638,7 @@ import定義が列挙されている。</p>
 <dd><cite>nablarch_plugins_bundle/bin/install.bat</cite> を実行する。</dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">なお、このスクリプトは完了までに通常5から10分程度の時間がかかる。</p>
 </div>
 <p>以下のようなログが表示される。</p>

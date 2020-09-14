@@ -1,0 +1,1052 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.3.2. Universal DAO &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/universal_dao.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../index.html"/>
+        <link rel="up" title="7.3. Database Access" href="../database_management.html"/>
+        <link rel="next" title="7.3.2.3.8.1. Surrogate Key Numbering" href="generator.html"/>
+        <link rel="prev" title="7.3.1. Database Access (JDBC Wrapper)" href="database.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../database_management.html">7.3. Database Access</a> &raquo;</li>
+      
+    <li>7.3.2. Universal DAO</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="universal-dao">
+<span id="id1"></span><h1>7.3.2. Universal DAO<a class="headerlink" href="#universal-dao" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id2">Function overview</a><ul>
+<li><a class="reference internal" href="#simple-crud-without-writing-sql" id="id3">Simple CRUD without writing SQL</a></li>
+<li><a class="reference internal" href="#search-results-can-be-mapped-to-bean" id="id4">Search results can be mapped to Bean</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id5">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id6">How to use</a><ul>
+<li><a class="reference internal" href="#configure-settings-to-use-universal-dao" id="id7">Configure settings to use Universal DAO</a></li>
+<li><a class="reference internal" href="#search-with-any-sql-sql-file" id="id8">Search with any SQL (SQL file)</a></li>
+<li><a class="reference internal" href="#obtain-search-results-using-join-of-tables" id="id9">Obtain search results using JOIN of tables</a></li>
+<li><a class="reference internal" href="#deferred-loading-of-search-results" id="id10">Deferred loading of search results</a></li>
+<li><a class="reference internal" href="#searching-by-specifying-the-conditions" id="id11">Searching by specifying the conditions</a></li>
+<li><a class="reference internal" href="#convert-type" id="id12">Convert type</a></li>
+<li><a class="reference internal" href="#paging" id="id13">Paging</a></li>
+<li><a class="reference internal" href="#numbering-the-surrogate-keys" id="id14">Numbering the surrogate keys</a></li>
+<li><a class="reference internal" href="#perform-batch-execution-batch-registration-update-and-deletion" id="id15">Perform batch execution (batch registration, update and deletion)</a></li>
+<li><a class="reference internal" href="#optimistic-locking" id="id16">Optimistic locking</a></li>
+<li><a class="reference internal" href="#pessimistic-locking" id="id17">Pessimistic locking</a></li>
+<li><a class="reference internal" href="#concept-of-exclusive-control" id="id18">Concept of exclusive control</a></li>
+<li><a class="reference internal" href="#register-update-binary-data-with-a-large-data-size" id="id19">Register (update) binary data with a large data size</a></li>
+<li><a class="reference internal" href="#registration-update-of-text-data-with-a-large-data-size" id="id20">Registration (update) of text data with a large data size</a></li>
+<li><a class="reference internal" href="#execute-in-a-transaction-different-from-the-current-transaction" id="id21">Execute in a transaction different from the current transaction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id22">Expansion example</a><ul>
+<li><a class="reference internal" href="#support-when-information-cannot-be-obtained-from-databasemetadata" id="id23">Support when information cannot be obtained from DatabaseMetaData</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jpa-annotation-that-can-be-used-for-entity" id="id24">JPA annotation that can be used for Entity</a></li>
+<li><a class="reference internal" href="#data-types-that-can-be-used-for-bean" id="id25">Data types that can be used for Bean</a></li>
+</ul>
+</div>
+<p>Universal DAO provides a simple O/R mapper that
+uses <a class="reference external" href="https://jcp.org/en/jsr/detail?id=317">JPA2.0(JSR317) (external site, English)</a> annotations.</p>
+<p>Since Universal DAO uses a <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a>,
+the <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> must be configured to use Universal DAO.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Universal DAO is positioned as a simple O/R mapper
+and is not intended to realize all database access.
+Perform <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> operations directly if it cannot be realized with Universal DAO.</p>
+<p class="last">For example, in Universal DAO, update/delete with conditions other than the primary key cannot be performed,
+so <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> operations must be performed directly.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Universal DAO does not provide an automatic configuration function for common items (insert users, update users, etc. defined in all tables).
+To automatically configure values for common items, apply <a class="reference internal" href="../../../adaptors/doma_adaptor.html#doma-adaptor"><span>Doma Adapter</span></a> and use Doma entity listener function.</p>
+<p class="last">To use Universal DAO in any case, configure the common items explicitly in the application before using the functions of Universal DAO.</p>
+</div>
+<div class="section" id="function-overview">
+<span id="universal-dao-spec"></span><h2><a class="toc-backref" href="#id2">7.3.2.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-crud-without-writing-sql">
+<span id="universal-dao-execute-crud-sql"></span><h3><a class="toc-backref" href="#id3">7.3.2.1.1. Simple CRUD without writing SQL</a><a class="headerlink" href="#simple-crud-without-writing-sql" title="Permalink to this headline">¶</a></h3>
+<p>Just by adding JPA annotation to Entity, a simple CRUD can be created without writing SQL.
+SQL statements are constructed at runtime based on JPA annotations.</p>
+<ul class="simple">
+<li>Registration/Batch registration</li>
+<li>Update/Batch update by specifying the primary key</li>
+<li>Delete/Batch delete by specifying the primary key</li>
+<li>Search by specifying the primary key</li>
+</ul>
+<p>For JPA annotations that can be used in Entity, see <a class="reference internal" href="#universal-dao-jpa-annotations"><span>JPA annotation that can be used for Entity</span></a>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In the above CRUD function of Universal DAO, schema can be specified using <code class="docutils literal"><span class="pre">&#64;Table</span></code>annotation (see <a class="reference internal" href="#universal-dao-jpa-annotations"><span>JPA annotation that can be used for Entity</span></a>).
+However, <a class="reference internal" href="database.html#database-replace-schema"><span>Switch the schema in SQL statement for each environment</span></a> function of <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> cannot be used with the above CRUD function of Universal DAO. Use the <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> directly instead of Universal DAO for switching the schema for each environment.</p>
+</div>
+</div>
+<div class="section" id="search-results-can-be-mapped-to-bean">
+<span id="universal-dao-bean-mapping"></span><h3><a class="toc-backref" href="#id4">7.3.2.1.2. Search results can be mapped to Bean</a><a class="headerlink" href="#search-results-can-be-mapped-to-bean" title="Permalink to this headline">¶</a></h3>
+<p>In search, as with <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a>, you can create an SQL file and perform a search by specifying the SQL ID.
+In Universal DAO, search results can be obtained by mapping them to Bean (Entity, Form, DTO).
+Map the items whose Bean property name matches the SELECT clause name.</p>
+<p>For data types that can be used for Bean, see <a class="reference internal" href="#universal-dao-bean-data-types"><span>Data types that can be used for Bean</span></a>.</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id5">7.3.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-dao<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id6">7.3.2.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">See <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html" title="nablarch.common.dao.UniversalDao">nablarch.common.dao.UniversalDao</a> for the basic usage of Universal DAO.</p>
+</div>
+<div class="section" id="configure-settings-to-use-universal-dao">
+<h3><a class="toc-backref" href="#id7">7.3.2.3.1. Configure settings to use Universal DAO</a><a class="headerlink" href="#configure-settings-to-use-universal-dao" title="Permalink to this headline">¶</a></h3>
+<p>To use universal DAO, add <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/BasicDaoContextFactory.html" title="nablarch.common.dao.BasicDaoContextFactory">BasicDaoContextFactory</a> configuration
+to component definition in addition to <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a> configuration.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configure the component name in &quot;daoContextFactory&quot;. --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;daoContextFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.dao.BasicDaoContextFactory&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-with-any-sql-sql-file">
+<span id="universal-dao-sql-file"></span><h3><a class="toc-backref" href="#id8">7.3.2.3.2. Search with any SQL (SQL file)</a><a class="headerlink" href="#search-with-any-sql-sql-file" title="Permalink to this headline">¶</a></h3>
+<p>To search using SQL, create an SQL file and search by specifying the SQL ID,
+similar to <a class="reference internal" href="database.html#database-use-sql-file"><span>Manage SQL in files</span></a> of database access.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_BY_NAME&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>SQL file is derived from Bean that maps the search results.
+When User.class in the above example is sample.entity.User,
+the path of the SQL file is sample/entity/User.sql under the class path.</p>
+<p>If &#8220;#&#8221; is included in the SQL ID, it is interpreted as &#8220;SQL file path#SQL ID&#8221;.
+In the example below, the SQL file path is sample/entity/Member.sql under the class path,
+and the SQL ID is FIND_BY_NAME.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">GoldUser</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;sample.entity.Member#FIND_BY_NAME&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The specification including &#8220;#&#8221; can be used when SQL is to be aggregated in function units (action handler units).
+However, since there is a disadvantage that the specification becomes complicated, basically use the specification without &#8220;#&#8221;.</p>
+</div>
+</div>
+<div class="section" id="obtain-search-results-using-join-of-tables">
+<span id="universal-dao-join"></span><h3><a class="toc-backref" href="#id9">7.3.2.3.3. Obtain search results using JOIN of tables</a><a class="headerlink" href="#obtain-search-results-using-join-of-tables" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes the result of JOIN of multiple tables in list search is required to be acquired.
+Since it is inefficient in such cases, create <strong>a Bean that maps the SQL that can be searched once and JOIN results</strong>,
+without individually searching the JOIN target data.</p>
+</div>
+<div class="section" id="deferred-loading-of-search-results">
+<span id="universal-dao-lazy-load"></span><h3><a class="toc-backref" href="#id10">7.3.2.3.4. Deferred loading of search results</a><a class="headerlink" href="#deferred-loading-of-search-results" title="Permalink to this headline">¶</a></h3>
+<p>The memory becomes insufficient in processes that handle large amounts of search results, and all search results cannot be expanded in the memory.
+Some of the cases are as follows.</p>
+<ul class="simple">
+<li>Download large amounts of data on the Web</li>
+<li>Process large amounts of data in batch</li>
+</ul>
+<p>In such cases, use deferred loading of Universal DAO.
+When deferred loading is used, Universal DAO loads the records one by one,
+but the amount of memory used changes depending on the JDBC fetch size.
+For details of the fetch size, refer to the manual provided by the database vendor.</p>
+<p>Deferred loading can be used by just calling the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#defer--" title="nablarch.common.dao.UniversalDao.defer()">UniversalDao#defer</a> method first during search.
+since server cursor is used internally,
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/DeferredEntityList.html#close--" title="nablarch.common.dao.DeferredEntityList.close()">DeferredEntityList#close</a> method must be called.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Call close using try-with-resources.</span>
+<span class="c1">// Get DeferredEntityList by downcast.</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">DeferredEntityList</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span>
+        <span class="o">=</span> <span class="o">(</span><span class="n">DeferredEntityList</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;)</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">defer</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_BY_NAME&quot;</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span> <span class="o">:</span> <span class="n">users</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Process using the user</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="searching-by-specifying-the-conditions">
+<span id="universal-dao-search-with-condition"></span><h3><a class="toc-backref" href="#id11">7.3.2.3.5. Searching by specifying the conditions</a><a class="headerlink" href="#searching-by-specifying-the-conditions" title="Permalink to this headline">¶</a></h3>
+<p>Like the search screen, Universal DAO also provides a search with specified conditions.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Get the search conditions</span>
+<span class="n">ProjectSearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+
+<span class="c1">// Search by specifying the conditions</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Project</span><span class="o">&gt;</span> <span class="n">projects</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span>
+    <span class="n">Project</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;SEARCH_PROJECT&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">For the search condition, specify a dedicated Bean that has the search condition instead of Entity.
+However, Entity may be specified when accessing only one table.</p>
+</div>
+</div>
+<div class="section" id="convert-type">
+<h3><a class="toc-backref" href="#id12">7.3.2.3.6. Convert type</a><a class="headerlink" href="#convert-type" title="Permalink to this headline">¶</a></h3>
+<p>In Universal DAO, <a class="reference internal" href="#universal-dao-jpa-temporal"><span>&#64;Temporal</span></a> can be used to specify how to map <code class="docutils literal"><span class="pre">java.util.Date</span></code> and <code class="docutils literal"><span class="pre">java.util.Calendar</span></code> type values to the database.
+Since arbitrary mapping is not possible for other types, Entity properties must be defined according to the database type and specifications of the JDBC driver to be used.</p>
+<p>Though Universal DAO uses JPA annotation information when sending automatically generated SQL to the DB, JPA annotation information is not used when sending arbitrary SQL to the DB.
+Therefore, the type conversion is as follows.</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="#universal-dao-execute-crud-sql"><span>When executing SQL automatically generated from the Entity</span></a></dt>
+<dd><dl class="first last docutils">
+<dt>During output to a database</dt>
+<dd><ul class="first last simple">
+<li>For properties configured with <a class="reference internal" href="#universal-dao-jpa-temporal"><span>&#64;Temporal</span></a>, converts to the type specified in &#64;Temporal.</li>
+<li>For other than above, conversion is performed by delegating the process to the <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a>.</li>
+</ul>
+</dd>
+<dt>When fetching from database</dt>
+<dd><ul class="first last simple">
+<li>For properties configured with <a class="reference internal" href="#universal-dao-jpa-temporal"><span>&#64;Temporal</span></a>, converts from the type specified in &#64;Temporal.</li>
+<li>For other than the above, values are converted based on Entity information.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><a class="reference internal" href="#universal-dao-sql-file"><span>When searching with an arbitrary SQL</span></a></dt>
+<dd><dl class="first last docutils">
+<dt>During output to a database</dt>
+<dd><ul class="first last simple">
+<li>Conversion is performed by delegating the process to the <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a>.</li>
+</ul>
+</dd>
+<dt>When fetching from database</dt>
+<dd><ul class="first last simple">
+<li>Perform the same process as when executing SQL automatically generated from the Entity.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>If the database type and property type do not match, a type conversion error may occur during runtime.
+In addition, implicit type conversion is performed during SQL execution, which may cause performance degradation (caused as index is not used).</p>
+<p>To map between database and Java data type,
+refer to the JDBC driver manual as it depends on the product used.</p>
+<p class="last">For example, if the DB is a date type, the property type is <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Date.html" title="java.sql.Date">java.sql.Date</a> in many databases.
+If the DB is a numeric type (integer, bigint, number), the property type will be
+<cite>int</cite> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html" title="java.lang.Integer">java.lang.Integer</a>) or <cite>long</cite> (<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html" title="java.lang.Long">java.lang.Long</a>).</p>
+</div>
+</div>
+<div class="section" id="paging">
+<span id="universal-dao-paging"></span><h3><a class="toc-backref" href="#id13">7.3.2.3.7. Paging</a><a class="headerlink" href="#paging" title="Permalink to this headline">¶</a></h3>
+<p>Universal DAO Search supports paging.
+First call the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#per-long-" title="nablarch.common.dao.UniversalDao.per(long)">UniversalDao#per</a> method and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#page-long-" title="nablarch.common.dao.UniversalDao.page(long)">UniversalDao#page</a> method for paging at the time of search.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">EntityList</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">per</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="na">page</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_ALL_USERS&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Information such as the number of search results required for displaying the paging screen is stored in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/Pagination.html" title="nablarch.common.dao.Pagination">Pagination</a>.
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/Pagination.html" title="nablarch.common.dao.Pagination">Pagination</a> can be obtained from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/EntityList.html" title="nablarch.common.dao.EntityList">EntityList</a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Pagination</span> <span class="n">pagination</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="na">getPagination</span><span class="o">();</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Search process for paging is performed using <a class="reference internal" href="database.html#database-paging"><span>range specified search function of database access (JDBC wrapper)</span></a>.</p>
+</div>
+</div>
+<div class="section" id="numbering-the-surrogate-keys">
+<span id="universal-dao-generate-surrogate-key"></span><h3><a class="toc-backref" href="#id14">7.3.2.3.8. Numbering the surrogate keys</a><a class="headerlink" href="#numbering-the-surrogate-keys" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+</div>
+<p>When numbering the surrogate keys, use the following annotations.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-sequence-generator"><span>&#64;SequenceGenerator</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-table-generator"><span>&#64;TableGenerator</span></a></li>
+</ul>
+<p>Universal DAO supports all strategies of <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/GenerationType.html" title="javax.persistence.GenerationType">javax.persistence.GenerationType</a>.</p>
+<dl class="docutils">
+<dt>GenerationType.AUTO</dt>
+<dd><p class="first"></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Id</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;USER_ID&quot;</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">15</span><span class="o">)</span>
+<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="last simple">
+<li>Select the numbering method based on <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> configured in the database function.
+The priority is in the order IDENTITY → SEQUENCE → TABLE.</li>
+<li>If SEQUENCE is selected, the sequence object name will be &#8220;&lt;table name&gt;_&lt;column name to be numbered&gt;&#8221;.</li>
+<li>To specify the sequence object name, use <a class="reference internal" href="#universal-dao-jpa-sequence-generator"><span>&#64;SequenceGenerator</span></a>.</li>
+</ul>
+</dd>
+<dt>GenerationType.IDENTITY</dt>
+<dd><p class="first"></p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Id</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;USER_ID&quot;</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">15</span><span class="o">)</span>
+<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>GenerationType.SEQUENCE</dt>
+<dd><p class="first"></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Id</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;USER_ID&quot;</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">15</span><span class="o">)</span>
+<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">SEQUENCE</span><span class="o">,</span> <span class="n">generator</span> <span class="o">=</span> <span class="s">&quot;seq&quot;</span><span class="o">)</span>
+<span class="nd">@SequenceGenerator</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;seq&quot;</span><span class="o">,</span> <span class="n">sequenceName</span> <span class="o">=</span> <span class="s">&quot;USER_ID_SEQ&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="last simple">
+<li>Specify the sequence object name with <a class="reference internal" href="#universal-dao-jpa-sequence-generator"><span>&#64;SequenceGenerator</span></a>.</li>
+<li>If the sequenceName attribute is omitted, it will be &#8220;&lt;table name&gt;_&lt;column name to be numbered&gt;&#8221;.</li>
+</ul>
+</dd>
+<dt>GenerationType.TABLE</dt>
+<dd><p class="first"></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Id</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;USER_ID&quot;</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">15</span><span class="o">)</span>
+<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">TABLE</span><span class="o">,</span> <span class="n">generator</span> <span class="o">=</span> <span class="s">&quot;table&quot;</span><span class="o">)</span>
+<span class="nd">@TableGenerator</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;table&quot;</span><span class="o">,</span> <span class="n">pkColumnValue</span> <span class="o">=</span> <span class="s">&quot;USER_ID&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="last simple">
+<li>Specify the value that identifies a record with <a class="reference internal" href="#universal-dao-jpa-table-generator"><span>&#64;TableGenerator</span></a>.</li>
+<li>If the pkColumnValue attribute is omitted, it will be &#8220;&lt;table name&gt;_&lt;column name to be numbered&gt;&#8221;.</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Numbering process of surrogate key using sequence and table is performed using <a class="reference internal" href="generator.html#generator"><span>Surrogate Key Numbering</span></a>.
+Refer to the link destination for configuring the value (configuring the table and column names when using a table).</p>
+</div>
+</div>
+<div class="section" id="perform-batch-execution-batch-registration-update-and-deletion">
+<span id="universal-dao-batch-execute"></span><h3><a class="toc-backref" href="#id15">7.3.2.3.9. Perform batch execution (batch registration, update and deletion)</a><a class="headerlink" href="#perform-batch-execution-batch-registration-update-and-deletion" title="Permalink to this headline">¶</a></h3>
+<p>Universal DAO allows batch execution when registering, updating, or deleting large amounts of data.
+By performing batch execution, the number of round trips between the application server and database server can be reduced, and improvement in performance can be expected.</p>
+<p>Batch execution uses the following methods.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#batchInsert-java.util.List-" title="nablarch.common.dao.UniversalDao.batchInsert(java.util.List)">batchInsert</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#batchUpdate-java.util.List-" title="nablarch.common.dao.UniversalDao.batchUpdate(java.util.List)">batchUpdate</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#batchDelete-java.util.List-" title="nablarch.common.dao.UniversalDao.batchDelete(java.util.List)">batchDelete</a></li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Exclusive control processing is not performed in the batch update processing that uses <cite>batchUpdate</cite>.
+If the version of the Entity to be updated and the version in the database do not match, the process ends normally without updating the record.</p>
+<p class="last">If the update processing requires exclusive control, call the update process for each record instead of batch update.</p>
+</div>
+</div>
+<div class="section" id="optimistic-locking">
+<span id="universal-dao-jpa-optimistic-lock"></span><h3><a class="toc-backref" href="#id16">7.3.2.3.10. Optimistic locking</a><a class="headerlink" href="#optimistic-locking" title="Permalink to this headline">¶</a></h3>
+<p>Universal DAO automatically performs optimistic locking
+when an Entity with <a class="reference internal" href="#universal-dao-jpa-version"><span>&#64;Version</span></a> is updated.
+Throws <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/persistence/OptimisticLockException.html" title="javax.persistence.OptimisticLockException">javax.persistence.OptimisticLockException</a> if an exclusive error occurs in optimistic locking.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><a class="reference internal" href="#universal-dao-jpa-version"><span>&#64;Version</span></a> can be specified only for numeric type properties.
+It does not work properly with string type properties.</p>
+</div>
+<p>Screen transition during an exclusive error is performed using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/interceptor/OnError.html" title="nablarch.fw.web.interceptor.OnError">OnError</a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Specify the target exception in the type attribute and transition destination path</span>
+<span class="c1">// in the path attribute.</span>
+<span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">OptimisticLockException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+         <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/WEB-INF/view/common/errorPages/userError.jsp&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">update</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">UniversalDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">user</span><span class="o">);</span> <span class="c1">// Before and after processing is omitted.</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that optimistic locking cannot be used in batch update process (<cite>batchUpdate</cite>)
+as described in <a class="reference internal" href="#universal-dao-batch-execute"><span>Perform batch execution (batch registration, update and deletion)</span></a>.</p>
+</div>
+</div>
+<div class="section" id="pessimistic-locking">
+<span id="universal-dao-jpa-pessimistic-lock"></span><h3><a class="toc-backref" href="#id17">7.3.2.3.11. Pessimistic locking</a><a class="headerlink" href="#pessimistic-locking" title="Permalink to this headline">¶</a></h3>
+<p>Universal DAO does not particularly provide the pessimistic locking function.</p>
+<p>Pessimistic locking is done by using the database row locking (select for update).
+SQL with the row lock (select for update) executes using
+the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#findBySqlFile-java.lang.Class-java.lang.String-java.lang.Object-" title="nablarch.common.dao.UniversalDao.findBySqlFile(java.lang.Class-java.lang.String-java.lang.Object)">UniversalDao#findBySqlFile</a> method.</p>
+</div>
+<div class="section" id="concept-of-exclusive-control">
+<h3><a class="toc-backref" href="#id18">7.3.2.3.12. Concept of exclusive control</a><a class="headerlink" href="#concept-of-exclusive-control" title="Permalink to this headline">¶</a></h3>
+<p>It is necessary to decide from a business perspective the table in which the version column used for exclusive control has to be defined.</p>
+<p>Tables with version numbers are defined for each unit of exclusive control and the largest unit in which conflicts are allowed.
+For example, if business allows locking in a large unit called &#8220;user&#8221;, a version number is defined in the user table.
+However, note that the possibility of conflict increases if the unit is increased, and update failure (in the case of optimistic locking) and processing delay (in the case of pessimistic locking) will occur.</p>
+</div>
+<div class="section" id="register-update-binary-data-with-a-large-data-size">
+<h3><a class="toc-backref" href="#id19">7.3.2.3.13. Register (update) binary data with a large data size</a><a class="headerlink" href="#register-update-binary-data-with-a-large-data-size" title="Permalink to this headline">¶</a></h3>
+<p>You may want to register (update) binary data with a large data size, such as BLOB of Oracle.
+In the case of Universal DAO, since registration (update) cannot be performed unless all data is loaded into memory,
+use the functions provided by the database to register (update) directly from a file.</p>
+<p>For details, see <a class="reference internal" href="database.html#database-binary-column"><span>Accessing columns of binary type</span></a>.</p>
+</div>
+<div class="section" id="registration-update-of-text-data-with-a-large-data-size">
+<h3><a class="toc-backref" href="#id20">7.3.2.3.14. Registration (update) of text data with a large data size</a><a class="headerlink" href="#registration-update-of-text-data-with-a-large-data-size" title="Permalink to this headline">¶</a></h3>
+<p>You may want to register (update) text data with a large data size, such as CLOB of Oracle.
+In the case of Universal DAO, since registration (update) cannot be performed unless all data is loaded into memory,
+use the functions provided by the database to register (update) directly from a file.</p>
+<p>For details, see <a class="reference internal" href="database.html#database-clob-column"><span>Access columns of string type with a large number of digits (e.g. CLOB)</span></a>.</p>
+</div>
+<div class="section" id="execute-in-a-transaction-different-from-the-current-transaction">
+<span id="universal-dao-transaction"></span><h3><a class="toc-backref" href="#id21">7.3.2.3.15. Execute in a transaction different from the current transaction</a><a class="headerlink" href="#execute-in-a-transaction-different-from-the-current-transaction" title="Permalink to this headline">¶</a></h3>
+<p>This section explains how to perform the same process as <a class="reference internal" href="database.html#database-new-transaction"><span>Execute SQL in a transaction different from the current transaction</span></a> of <a class="reference internal" href="database.html#database"><span>Database Access (JDBC Wrapper)</span></a>  with universal DAO.</p>
+<p>The following procedures are required to use individual transactions.</p>
+<ol class="arabic simple">
+<li>Define <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> in the component configuration file.</li>
+<li>Use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> to execute Universal DAO in a new transaction.</li>
+</ol>
+<p>An usage example is shown below.</p>
+<dl class="docutils">
+<dt>Component configuration file</dt>
+<dd><p class="first">Define <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> in the component configuration file.</p>
+<ul class="simple">
+<li>Configure implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a>
+to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setConnectionFactory-nablarch.core.db.connection.ConnectionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setConnectionFactory(nablarch.core.db.connection.ConnectionFactory)">connectionFactory</a> property.
+For details of implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a>, see <a class="reference internal" href="database.html#database-connect"><span>Connection configuration for the database</span></a>.</li>
+<li>Configure implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a>
+to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setTransactionFactory-nablarch.core.transaction.TransactionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a> property.
+For details of implementation of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a>, see <a class="reference internal" href="../transaction.html#transaction-database"><span>Perform transaction control for the database</span></a>.</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;find-persons-transaction&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.db.transaction.SimpleDbTransactionManager&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Configure ConnectionFactory implementation class in the connectionFactory property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connectionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;connectionFactory&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Configure TransactionFactory implementation class in the transactionFactory property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Configure a name to identify the transaction --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> configured in the component configuration file and execute universal DAO.
+In addition, instead of using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> directly,
+use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.Transaction.html" title="nablarch.common.dao.UniversalDao.Transaction">UniversalDao.Transaction</a> to perform transaction control.</p>
+<p>First, create a class that inherits <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.Transaction.html" title="nablarch.common.dao.UniversalDao.Transaction">UniversalDao.Transaction</a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">FindPersonsTransaction</span> <span class="kd">extends</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">Transaction</span> <span class="o">{</span>
+
+    <span class="c1">// Prepare a container to receive the result.</span>
+    <span class="kd">private</span> <span class="n">EntityList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">persons</span><span class="o">;</span>
+
+    <span class="n">FindPersonsTransaction</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Specify SimpleDbTransactionManager as super ().</span>
+        <span class="c1">// The name specified in the component definition or the SimpleDbTransactionManager object can be specified.</span>
+        <span class="c1">// In this example, the name mentioned in the component definition is specified.</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">&quot;find-persons-transaction&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">//This method is automatically executed in another transaction.</span>
+    <span class="c1">// If the process is completed successfully, the transaction is committed.</span>
+    <span class="c1">// If an exception or error is thrown, the transaction is rolled back.</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Implement the process using UniversalDao in the execute method.</span>
+        <span class="n">persons</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_PERSONS&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Prepare getter that returns the result.</span>
+    <span class="kd">public</span> <span class="n">EntityList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getPersons</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">persons</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, call the class that inherits <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.Transaction.html" title="nablarch.common.dao.UniversalDao.Transaction">UniversalDao.Transaction</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Executed in a different transaction after generation.</span>
+<span class="n">FindPersonsTransaction</span> <span class="n">findPersonsTransaction</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FindPersonsTransaction</span><span class="o">();</span>
+
+<span class="c1">// Acquire the result.</span>
+<span class="n">EntityList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">persons</span> <span class="o">=</span> <span class="n">findPersonsTransaction</span><span class="o">.</span><span class="na">getPersons</span><span class="o">();</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id22">7.3.2.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="support-when-information-cannot-be-obtained-from-databasemetadata">
+<h3><a class="toc-backref" href="#id23">7.3.2.4.1. Support when information cannot be obtained from DatabaseMetaData</a><a class="headerlink" href="#support-when-information-cannot-be-obtained-from-databasemetadata" title="Permalink to this headline">¶</a></h3>
+<p>Depending on the database, the primary key information cannot be acquired
+from <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html" title="java.sql.DatabaseMetaData">java.sql.DatabaseMetaData</a> due to the use of synonyms or permission problems.
+If the primary key information cannot be acquired, the search that specifies the primary key does not work properly.
+For such cases, support by creating an inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/DatabaseMetaDataExtractor.html" title="nablarch.common.dao.DatabaseMetaDataExtractor">DatabaseMetaDataExtractor</a>.
+Refer to the product manual as the method to acquire the primary key information depends on the database.</p>
+<p>Configuration is required to use the created class.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--</span>
+<span class="c">Configuration example when sample.dao.CustomDatabaseMetaDataExtractor is created</span>
+<span class="c">Configure the component name as &quot;databaseMetaDataExtractor&quot;.</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;databaseMetaDataExtractor&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.dao.CustomDatabaseMetaDataExtractor&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="jpa-annotation-that-can-be-used-for-entity">
+<span id="universal-dao-jpa-annotations"></span><h2><a class="toc-backref" href="#id24">7.3.2.5. JPA annotation that can be used for Entity</a><a class="headerlink" href="#jpa-annotation-that-can-be-used-for-entity" title="Permalink to this headline">¶</a></h2>
+<p>JPA annotations that can be used for entity are as follows.</p>
+<ul class="simple">
+<li>Annotation configured in class<ul>
+<li><a class="reference internal" href="#universal-dao-jpa-entity"><span>&#64;Entity</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-table"><span>&#64;Table</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-access"><span>&#64;Access</span></a></li>
+</ul>
+</li>
+<li>Annotation configured in getter or field<ul>
+<li><a class="reference internal" href="#universal-dao-jpa-column"><span>&#64;Column</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-id"><span>&#64;Id</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-version"><span>&#64;Version</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-temporal"><span>&#64;Temporal</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-sequence-generator"><span>&#64;SequenceGenerator</span></a></li>
+<li><a class="reference internal" href="#universal-dao-jpa-table-generator"><span>&#64;TableGenerator</span></a></li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Using annotations and attributes that are not described here will not work.</p>
+</div>
+<p>When configuring in a field, specify explicitly with &#64;Access. Refers to the field annotation only when explicitly specified with &#64;Access.</p>
+<p>Even when configuring an annotation in a field, since acquiring and configuring values are performed through properties in UniversalDao, getters and setters must be created.</p>
+<p>Since the field and property are linked by name, if the names are different, the annotation of the field cannot be referenced by the property.
+Therefore, be sure to use the same field and property names (getXX, setXX).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">For example, when using a library that generates boilerplate code such as Lombok,
+take full advantage of the library as configuring the annotation on the field
+eliminates the need to create a getter.</p>
+</div>
+<dl class="docutils" id="universal-dao-jpa-entity">
+<dt><em>javax.persistence.Entity</em></dt>
+<dd><p class="first">This annotation is configured in the Entity class corresponding to the database table.</p>
+<p>When this annotation is configured, the table name is derived from the class name.
+The table name is the value obtained by converting the class name (Pascal case) into the snake case (all uppercase).</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Book class        -&gt; BOOK
+BookAuthor class  -&gt; BOOK_AUTHOR
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the table name cannot be derived from the class name,
+specify the table name explicitly using <a class="reference internal" href="#universal-dao-jpa-table"><span>&#64;Table</span></a> that is described later.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-table">
+<dt><em>javax.persistence.Table</em></dt>
+<dd><p class="first">This annotation is used to specify the table name.</p>
+<p class="last">If a value is specified in the name attribute, that value will be used as the table name.
+If a value is specified in schema attribute, access the table by specifying the specified schema name as a qualifier.
+For example, when work is specified in the schema attribute and the table name is users_work, work.users_work is accessed.</p>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-access">
+<dt><em>javax.persistence.Access</em></dt>
+<dd><p class="first">This annotation is used to specify the location to configure the annotation.</p>
+<p class="last">Refers to the field annotation only when explicitly specified in the field.</p>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-column">
+<dt><em>javax.persistence.Column</em></dt>
+<dd><p class="first">This annotation is used to specify the column name.</p>
+<p>If a value is specified in the name attribute, that value will be used as the column name.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If this annotation is not set, the column name is derived from the property name.
+The derivation method is the same as the derivation method used for the table name.
+For details, see <a class="reference internal" href="#universal-dao-jpa-entity"><span>&#64;Entity</span></a>.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-id">
+<dt><em>javax.persistence.Id</em></dt>
+<dd><p class="first">This annotation is configured in the primary key.</p>
+<p class="last">In the case of a compound primary key, configure this annotation to multiple getters or fields.</p>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-version">
+<dt><em>javax.persistence.Version</em></dt>
+<dd><p class="first">This annotation is configured in the version column used for exclusive control.</p>
+<p>This annotation can be specified only for numeric type properties.
+It does not work properly with string type properties.</p>
+<p>When this annotation is set,
+the version column is automatically added to the condition during update processing, and optimistic locking is performed.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Only one annotation can be specified in the Entity.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-temporal">
+<dt><em>javax.persistence.Temporal</em></dt>
+<dd><p class="first">This annotation specifies how to map the values of
+<em>java.util.Date</em> and <em>java.util.Calendar</em> types to the database.</p>
+<p class="last">Converts the value of the Java object to the database type specified in value attribute and registers it in the database.</p>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-generated-value">
+<dt><em>javax.persistence.GeneratedValue</em></dt>
+<dd><p class="first">This annotation indicates that the automatically numbered value is registered.</p>
+<p>Configures the numbering method to the strategy attribute.
+When AUTO is configured, the numbering method is selected according to the following rules.</p>
+<ul class="simple">
+<li>If there is a Generator configuration corresponding to the generator attribute, performs the numbering process using that Generator.</li>
+<li>If generator is not configured or there is no corresponding Generator configuration,
+select the numbering method based on <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> configured in the database function.
+The priority is in the order IDENTITY → SEQUENCE → TABLE.</li>
+</ul>
+<p>Configure an arbitrary name in the generator attribute.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If <a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a> cannot be used to
+acquire the sequence object name for sequence numbering or the value
+that identifies the record for table numbering,
+derive each value from the table name and column name to be automatically numbered.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>Table name <span class="s2">&quot;USER&quot;</span>, Column name to be numbered <span class="s2">&quot;ID&quot;</span> -&gt; USER_ID
+</pre></div>
+</div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-sequence-generator">
+<dt><em>javax.persistence.SequenceGenerator</em></dt>
+<dd><p class="first">This annotation has to be configured when using sequence numbering.</p>
+<p>In the name attribute, configure the same value as the generator attribute of
+<a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a>.</p>
+<p>Configure the sequence object name created in the database to the sequenceName attribute.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The numbering function is used to perform sequence numbering.
+For this reason, <a class="reference internal" href="generator.html#generator-dao-setting"><span>numbering configuration</span></a> must be performed separately.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="universal-dao-jpa-table-generator">
+<dt><em>javax.persistence.TableGenerator</em></dt>
+<dd><p class="first">This annotation is configured when using table numbering.</p>
+<p>In the name attribute, configure the same value as the generator attribute of
+<a class="reference internal" href="#universal-dao-jpa-generated-value"><span>&#64;GeneratedValue</span></a>.</p>
+<p>In the pkColumnValue attribute, configure a value to identify the record in the numbering table.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The numbering function is used to perform table numbering.
+For this reason, <a class="reference internal" href="generator.html#generator-dao-setting"><span>numbering configuration</span></a> must be performed separately.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-types-that-can-be-used-for-bean">
+<span id="universal-dao-bean-data-types"></span><h2><a class="toc-backref" href="#id25">7.3.2.6. Data types that can be used for Bean</a><a class="headerlink" href="#data-types-that-can-be-used-for-bean" title="Permalink to this headline">¶</a></h2>
+<p>Data types that can be used in Bean, which maps search results, are as follows.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Search results cannot be mapped to data types not listed here (runtime exception is thrown).</p>
+</div>
+<dl class="docutils">
+<dt><em>java.lang.String</em></dt>
+<dd></dd>
+<dt><em>java.lang.Short</em></dt>
+<dd>Primitive types can also be specified. For primitive types, <code class="docutils literal"><span class="pre">null</span></code> is handled as <code class="docutils literal"><span class="pre">0</span></code>.</dd>
+<dt><em>java.lang.Integer</em></dt>
+<dd>Primitive types can also be specified. For primitive types, <code class="docutils literal"><span class="pre">null</span></code> is handled as <code class="docutils literal"><span class="pre">0</span></code>.</dd>
+<dt><em>java.lang.Long</em></dt>
+<dd>Primitive types can also be specified. For primitive types, <code class="docutils literal"><span class="pre">null</span></code> is handled as <code class="docutils literal"><span class="pre">0</span></code>.</dd>
+<dt><em>java.math.BigDecimal</em></dt>
+<dd></dd>
+<dt><em>java.lang.Boolean</em></dt>
+<dd>Primitive types can also be specified. For primitive types, <code class="docutils literal"><span class="pre">null</span></code> is handled as <code class="docutils literal"><span class="pre">false</span></code>.
+In the case of wrapper type (Boolean), the read method name must start with get.
+In the case of a primitive type, the read method name may start with &#8216;is&#8217;.</dd>
+<dt><em>java.util.Date</em></dt>
+<dd>The data type has to be specified in the database
+with <a class="reference internal" href="#universal-dao-jpa-temporal"><span>&#64;Temporal</span></a> of JPA.</dd>
+<dt><em>java.sql.Date</em></dt>
+<dd></dd>
+<dt><em>java.sql.Timestamp</em></dt>
+<dd></dd>
+<dt><em>byte[]</em></dt>
+<dd><p class="first">Be careful not to expand the data in the heap by using this function
+for the value of data type of very large size such as BLOB.
+When handling very large binary data,
+use database access directly and refer to the data through Stream.</p>
+<p class="last">For details, see <a class="reference internal" href="database.html#database-binary-column"><span>Accessing columns of binary type</span></a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

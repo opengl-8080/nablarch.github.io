@@ -317,9 +317,12 @@
           <li><a href="index.html">6.2. ウェブアプリケーション専用ハンドラ</a> &raquo;</li>
       
     <li>6.2.9. マルチパートリクエストハンドラ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -406,7 +409,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>上記の例では、保存先ディレクトリを直接指定しているが、この値は環境ごとに異なることが想定される。
 このため、直接コンポーネント設定ファイルに設定するのではなく、環境設定ファイルに設定することを推奨する。</p>
 <p class="last">詳細は、<a class="reference internal" href="../../libraries/repository.html#repository-environment-configuration"><span>依存値を設定する</span></a> を参照。</p>
@@ -429,7 +432,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>アップロードサイズの上限は、ファイル単位ではなく1リクエストでアップロード出来る上限となる。</p>
 <p>このため、複数のファイルをアップロードした場合には、それらのファイルサイズの合計値(厳密には、Content-Length)により、上限チェックが実施される。</p>
 <p class="last">もし、ファイル単位でサイズチェックをする必要がある場合には、アクション側で実装すること。</p>
@@ -454,7 +457,7 @@
 <cite>web.xml</cite> へのエラーページ設定を省略した場合は、ウェブアプリケーションサーバが持つデフォルトのページなどがクライアントに返却される。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
-<p class="last">このハンドラは、<a class="reference internal" href="#multipart-handler-constraint"><span>制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
+<p class="last">このハンドラは、<a class="reference internal" href="SessionStoreHandler.html#session-store-handler-constraint"><span>制約</span></a> にあるとおり、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> より手前に設定する必要がある。
 このため、 <a class="reference internal" href="SessionStoreHandler.html#session-store-handler"><span>セッション変数保存ハンドラ</span></a> の後続に設定される <a class="reference internal" href="HttpErrorHandler.html#http-error-handler"><span>HTTPエラー制御ハンドラ</span></a> の <a class="reference internal" href="HttpErrorHandler.html#httperrorhandler-defaultpage"><span>デフォルトページの設定</span></a> は使用することができない。</p>
 </div>
 <table class="docutils footnote" frame="void" id="part-error" rules="none">
@@ -504,7 +507,7 @@
 <li><a class="reference internal" href="../../libraries/data_io/data_format.html#data-format-load-upload-file"><span>汎用データフォーマットを使ってアップロードファイルを処理する</span></a></li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>アップロードされたファイルが画像ファイル等のバイナリファイルの場合は、読み込んだバイナリデータを使用して処理を行うこと。</p>
 <p>Java8であれば以下の様に実装することでアップロードファイルのバイトデータを読み込むことができる。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="n">savedFile</span> <span class="o">=</span> <span class="n">partInfo</span><span class="o">.</span><span class="na">getSavedFile</span><span class="o">();</span>

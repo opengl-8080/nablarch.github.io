@@ -317,9 +317,12 @@
           <li><a href="index.html">3.1.1. クラス単体テストの実施方法</a> &raquo;</li>
       
     <li>3.1.1.1. Form/Entityのクラス単体テスト</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -331,7 +334,7 @@
 <p>本項では、FormおよびFormの一種であるEntityのクラス単体テスト(以下Form単体テストまたはEntity単体テスト)について説明する。
 両者はほぼ同じように単体テストを行えるため、共通する内容についてはEntity単体テストをベースに説明し、特有の処理については個別に説明する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Entityとは、テーブルのカラムと1対1に対応するプロパティを持つFormのことである。</p>
 </div>
 <div class="section" id="id1">
@@ -439,7 +442,7 @@
 <li>保守性の高いテストデータが作成でき、レビューやメンテナンスが容易になる。</li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>本テスト方法は、プロパティとして別のFormを保持するFormに対しては使用できない。その場合、独自に精査処理のテストを実装すること。
 プロパティとして別のFormを保持するFormとは、以下の形式でプロパティにアクセスする親Formのこと。</p>
 <div class="last highlight-none"><div class="highlight"><pre><span></span>&lt;親Form&gt;.&lt;子Form&gt;.&lt;子フォームのプロパティ名&gt;
@@ -655,7 +658,7 @@
 各プロパティについて、１つの入力値と期待するメッセージIDのペアを記述することで、
 任意の値で単項目精査のテストができる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>本テスト方法は、プロパティとして別のFormを保持するFormに対しては使用できない。その場合は、独自に精査処理のテストを実装すること。
 プロパティとして別のFormを保持するFormとは、以下の形式でプロパティにアクセスする親Formのこと。</p>
 <div class="last highlight-none"><div class="highlight"><pre><span></span>&lt;親Form&gt;.&lt;子Form&gt;.&lt;子フォームのプロパティ名&gt;
@@ -817,7 +820,7 @@
 <p>精査対象のプロパティを指定(<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a>参照)した場合、その指定が正しいかどうか確認するケースを作成する。</p>
 <p>全てのプロパティに対して、おのおの単項目精査でエラーとなるデータを用意する。精査対象プロパティの指定が正しければ、精査対象のプロパティだけが単項目精査になるはずである。よって、期待値として、全精査対象プロパティ名と、各プロパティ単項目精査エラー時のメッセージIDを記載する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">精査対象プロパティが誤って精査対象から漏れていた場合、期待したメッセージが出力されない為、メッセージIDのアサートが失敗する。また、精査対象でないプロパティが誤って精査対象となっていた場合は、入力値が不正により単項目精査が失敗し、予期しないメッセージが出力される。これにより、精査対象の誤りを検知することができる。</p>
 </div>
 <p>テストケース表には、全精査対象プロパティのプロパティ名と、そのプロパティ単項目精査エラーメッセージIDを記載する。</p>
@@ -825,7 +828,7 @@
 <p>入力パラメータ表には、全てのプロパティに対してそれぞれ単項目精査エラーとなる値を記載する。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropParams.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropParams.png" src="../../../../../../_images/entityUnitTest_ValidationPropParams.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Form単体テストのテストケースやテストデータを作成する際、<strong>プロパティに保持している別のFormのプロパティ</strong> を指定したいことがある。この場合、次のように指定できる。</p>
 <ul class="simple">
 <li>Formのコード例</li>
@@ -897,7 +900,7 @@
 <p>実際のテストコードでは、コンストラクタへの値の設定及び値の確認は、自動テストフレームワークで提供されるメソッド内で行われる。
 詳細は、 <a class="reference internal" href="#test-constructor-java-label"><span>テストコード</span></a> を参照すること。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Entityは自動生成されるため、アプリケーションで使用されないコンストラクタが生成される可能性がある。その場合リクエスト単体テストではテストできないため、Entity単体テストでコンストラクタに対するテストを必ず行うこと。</p>
 <p class="last">一方、一般的なFormの場合、アプリケーションで使用するコンストラクタのみを作成する。したがって、リクエスト単体テストでコンストラクタのテストを行うことができる。そのため、一般的なFormについては、クラス単体テストでコンストラクタのテストを行う必要はない。</p>
 </div>
@@ -951,7 +954,7 @@
 </pre></div>
 </div>
 <div class="admonition tip" id="testconstructorandgetter-note-label">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>testConstructorAndGetterでテスト可能なプロパティの型(クラス)には制限がある。
 下記型(クラス)に該当しない場合には、各テストクラスにてコンストラクタとgetterを明示的に呼び出してテストする必要がある。</p>
 <ul class="simple">
@@ -1012,7 +1015,7 @@
 <p>実際のテストコードでは、setterへの値の設定及び値の確認(期待値との比較)は、
 自動テストフレームワークで提供されるメソッド内で行われる。 詳細は、 テストコード を参照すること。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Entityは自動生成されるため、アプリケーションで使用されないsetter/getterが生成される可能性がある。その場合リクエスト単体テストではテストできないため、Entity単体テストでsetter/getterに対するテストを必ず行うこと。</p>
 <p class="last">一方、一般的なFormの場合、アプリケーションで使用するsetter/getterのみを作成する。したがって、リクエスト単体テストでsetter/getterのテストを行うことができる。そのため、一般的なFormについては、クラス単体テストでsetter/getterのテストを行う必要はない。</p>
 </div>
@@ -1040,12 +1043,12 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">testGetterAndSetterでテスト可能なプロパティの型(クラス)には制限がある。
 制限内容の詳細は、 <a class="reference internal" href="#entityunittest-constructorcase"><span>コンストラクタに対するテストケース</span></a> を参照すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>setterやgetterにロジックを記述した場合(例えば、setterは郵便番号上3桁と下4桁に別れているが、getterはまとめて7桁取得する場合など)は、
 そのロジックを確認するテストケースを作成すること。</p>
 <p>上記のテストをExcelに定義する場合には、下記画像のように定義する。:</p>

@@ -1,0 +1,986 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.13. Code Management &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/code.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+        <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
+        <link rel="next" title="7.14. Date Management" href="date.html"/>
+        <link rel="prev" title="7.12. Exclusive Control" href="exclusive_control.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+    <li>7.13. Code Management</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="code-management">
+<span id="code"></span><h1>7.13. Code Management<a class="headerlink" href="#code-management" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
+<li><a class="reference internal" href="#can-handle-internationalization" id="id2">Can handle internationalization</a></li>
+<li><a class="reference internal" href="#manage-code-information-in-a-table" id="id3">Manage code information in a table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id4">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id5">How to use</a><ul>
+<li><a class="reference internal" href="#initial-configuration-to-use-the-code-value-management-function" id="id6">Initial configuration to use the code value management function</a></li>
+<li><a class="reference internal" href="#switch-code-information-used-for-each-function" id="id7">Switch code information used for each function</a></li>
+<li><a class="reference internal" href="#support-for-multilingualization-of-names" id="id8">Support for multilingualization of names</a></li>
+<li><a class="reference internal" href="#define-the-sort-order-of-names-to-be-displayed-on-the-screen" id="id9">Define the sort order of names to be displayed on the screen</a></li>
+<li><a class="reference internal" href="#define-names-other-than-names-and-abbreviations" id="id10">Define names other than names and abbreviations</a></li>
+<li><a class="reference internal" href="#check-if-the-input-value-is-a-valid-code-value" id="id11">Check if the input value is a valid code value</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Provides a function that manages mapping with the values and names used in the application.</p>
+<p>For example, manages the mapping information of gender classification and display name given below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="29%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Name</th>
+<th class="head">Abbreviation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>male</td>
+<td>Male</td>
+<td>M</td>
+</tr>
+<tr class="row-odd"><td>female</td>
+<td>Female</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This function manages the static code information (mapping between value and name) and information whose value is dynamically changed, such as &#8220;product code&#8221; or &#8220;company code&#8221; is excluded. Such information should be managed by creating a master table in the application.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When this function is used, RDBMS referential integrity constraint cannot be configured for the table with code name and table with code value.
+Use  <a class="reference internal" href="#code-validation"><span>Check if the input value is a valid code value</span></a>  to check such constraints.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Static code information should be represented by enum for the following reasons.</p>
+<ul class="simple">
+<li>If a simple mapping is required between the value and name, code definition using database is complex and maintenance cost is high.</li>
+<li>In the case of code definition using database, double maintenance occurs because the numeric constants for handling code values are often defined in Java.</li>
+</ul>
+<p>However, Nablarch does not have the function of mutual conversion between the enum value and database value, and the enum value cannot be registered in the database.</p>
+<p class="last">The value of enum can be registered in the database by using Doma.
+When using Doma, configure by referring to  <a class="reference internal" href="../../adaptors/doma_adaptor.html#doma-adaptor"><span>Doma Adapter</span></a> .</p>
+</div>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id1">7.13.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-handle-internationalization">
+<h3><a class="toc-backref" href="#id2">7.13.1.1. Can handle internationalization</a><a class="headerlink" href="#can-handle-internationalization" title="Permalink to this headline">¶</a></h3>
+<p>This function can manage names for each language.</p>
+<p>For details, see  <a class="reference internal" href="#code-use-multilingualization"><span>Support for multilingualization of names</span></a> .</p>
+</div>
+<div class="section" id="manage-code-information-in-a-table">
+<span id="code-table"></span><h3><a class="toc-backref" href="#id3">7.13.1.2. Manage code information in a table</a><a class="headerlink" href="#manage-code-information-in-a-table" title="Permalink to this headline">¶</a></h3>
+<p>This function manages value and name information in a database.
+Therefore, create a table in the database in advance and register static code information on the table.</p>
+<p>For details, see  <a class="reference internal" href="#code-setup-table"><span>Initial configuration to use the code value management function</span></a> .</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id4">7.13.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-code<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-code-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id5">7.13.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="initial-configuration-to-use-the-code-value-management-function">
+<span id="code-setup-table"></span><h3><a class="toc-backref" href="#id6">7.13.3.1. Initial configuration to use the code value management function</a><a class="headerlink" href="#initial-configuration-to-use-the-code-value-management-function" title="Permalink to this headline">¶</a></h3>
+<p>To use this function, create a table to manage the code and configure the information in a configuration file.</p>
+<p>The table structure and configuration examples are shown below.</p>
+<dl class="docutils">
+<dt>Table structure</dt>
+<dd><p class="first">Code information uses two tables, a  <code class="docutils literal"><span class="pre">code</span> <span class="pre">pattern</span> <span class="pre">table</span></code> and a <code class="docutils literal"><span class="pre">code</span> <span class="pre">name</span> <span class="pre">table</span></code> .
+The relationship between the two tables is as follows.</p>
+<img alt="../../../_images/code_table.png" src="../../../_images/code_table.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>The usage of each column is as follows.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">ID:</th><td class="field-body"><p class="first">ID for uniquely identifying code information</p>
+<p>Configure a unique ID for each gender or mailing address category.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">VALUE:</th><td class="field-body"><p class="first">Value that identifies the name in the code information</p>
+<p>For gender classification, the value will be <code class="docutils literal"><span class="pre">male</span></code>  or <code class="docutils literal"><span class="pre">female</span></code>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">PATTERN:</th><td class="field-body"><p class="first">Flag whether to use the value (set to <code class="docutils literal"><span class="pre">0</span></code> or <code class="docutils literal"><span class="pre">1</span></code> )</p>
+<p>Use to switch valid values. Can be omitted if not required.</p>
+<p>For details, see  <a class="reference internal" href="#code-use-pattern"><span>Switch code information used for each function</span></a> .</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">LANG:</th><td class="field-body"><p class="first">Language</p>
+<p>When supporting multilingualization, store  <em>Local#getLanguage()</em>  of the supported language.</p>
+<p>Configure <code class="docutils literal"><span class="pre">ja</span></code> if only Japanese is supported</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">SORT_ORDER:</th><td class="field-body"><p class="first">Sort order</p>
+<p>When list information associated with ID is obtained, results are returned in ascending order of the values set in this column.</p>
+<p>For details, see  <a class="reference internal" href="#code-use-sort-order"><span>Define the sort order of names to be displayed on the screen</span></a> .</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">NAME:</th><td class="field-body"><p class="first">Name</p>
+<p>Configure the name corresponding to VALUE.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">SHORT_NAME:</th><td class="field-body"><p class="first">Abbreviation</p>
+<p>Configure the abbreviation corresponding to VALUE.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">OPTIONAL_NAME:</th><td class="field-body"><p class="first">Option name</p>
+<p>Used when the value of the displayed text cannot be managed with only the name and abbreviation.
+The required number of column names and columns can be defined.</p>
+<p class="last">For details, see  <a class="reference internal" href="#code-option-name"><span>Define names other than names and abbreviations</span></a> .</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Configuration file example</dt>
+<dd><p class="first">An example of configuration file when using code management is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Set the component name of  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/BasicCodeManager.html" title="nablarch.common.code.BasicCodeManager">BasicCodeManager</a>  to  <strong>codeManager</strong> .</li>
+<li>Refer to  <a class="reference internal" href="static_data_cache.html#static-data-cache-cache-timing"><span>Control the cache timing of data</span></a>  for configuration value of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html#setLoadOnStartup-boolean-" title="nablarch.core.cache.BasicStaticDataCache.setLoadOnStartup(boolean)">loadOnStartup</a> of  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html" title="nablarch.core.cache.BasicStaticDataCache">BasicStaticDataCache</a> .</li>
+<li>Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/BasicStaticDataCache.html" title="nablarch.core.cache.BasicStaticDataCache">BasicStaticDataCache</a>  in the list of initialization targets as it needs to be initialized.</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;codeLoader&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.code.BasicCodeLoader&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Schema information of code pattern table  --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;codePatternSchema&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.code.schema.CodePatternSchema&quot;</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- Configure the table name and column name in CodePatternSchema property. --&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="c">&lt;!-- Schema information of code name table--&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;codeNameSchema&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.code.schema.CodeNameSchema&quot;</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- Configure table name and column name in CodeNameSchema property. --&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Configuration for caching the information acquired from the database --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;codeCache&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.cache.BasicStaticDataCache&quot;</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loader&quot;</span> <span class="na">ref=</span><span class="s">&quot;codeLoader&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loadOnStartup&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Configure the class that caches the information acquired from the database</span>
+<span class="c">in BasicCodeManager --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;codeManager&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.code.BasicCodeManager&quot;</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;codeDefinitionCache&quot;</span> <span class="na">ref=</span><span class="s">&quot;codeCache&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Configure BasicStaticDataCache in the initialization list as it requires</span>
+<span class="c">to be initialized --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;codeCache&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="switch-code-information-used-for-each-function">
+<span id="code-use-pattern"></span><h3><a class="toc-backref" href="#id7">7.13.3.2. Switch code information used for each function</a><a class="headerlink" href="#switch-code-information-used-for-each-function" title="Permalink to this headline">¶</a></h3>
+<p>When listing code information, switching between display/non-display for each function may be required.
+In such a case, the pattern of the code pattern table is used to switch which pattern of information is displayed for each function.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Define pattern column in the code pattern table</dt>
+<dd><p class="first">Define a pattern column that has a display pattern in the code pattern table.</p>
+<p>Pattern column can be used by configuring  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/schema/CodePatternSchema.html#setPatternColumnNames-java.lang.String:A-" title="nablarch.common.code.schema.CodePatternSchema.setPatternColumnNames(java.lang.String:A)">CodePatternSchema.patternColumnNames</a> .
+For configuring the configuration file, see  <a class="reference internal" href="#code-setup-table"><span>Initial configuration to use the code value management function</span></a> .</p>
+<p>In this example, two patterns <code class="docutils literal"><span class="pre">PATTERN1</span></code> and <code class="docutils literal"><span class="pre">PATTERN2</span></code> are defined,
+and OTHER is hidden in <code class="docutils literal"><span class="pre">PATTERN2</span></code> .</p>
+<dl class="last docutils">
+<dt>code pattern table</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="20%" />
+<col width="26%" />
+<col width="23%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">VALUE</th>
+<th class="head">PATTERN1</th>
+<th class="head">PATTERN2</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GENDER</td>
+<td>MALE</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>FEMALE</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>OTHER</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>code name table</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="8%" />
+<col width="20%" />
+<col width="20%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">VALUE</th>
+<th class="head">LANG</th>
+<th class="head">SORT_ORDER</th>
+<th class="head">NAME</th>
+<th class="head">SHORT_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GENDER</td>
+<td>MALE</td>
+<td>ja</td>
+<td>1</td>
+<td>男性</td>
+<td>男</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>FEMALE</td>
+<td>ja</td>
+<td>2</td>
+<td>女性</td>
+<td>女</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>OTHER</td>
+<td>ja</td>
+<td>3</td>
+<td>その他</td>
+<td>他</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd>
+<dt>Specify the pattern and acquire the code information</dt>
+<dd><blockquote class="first">
+<div><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a>  is used to acquire the code name.</div></blockquote>
+<p>When using a pattern, specify which pattern to use with a character string.
+This value must exactly match the column name configured in the configuration file with  <a class="reference internal" href="#code-setup-table"><span>Initial configuration to use the code value management function</span></a> .</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Acquire the PATTER1 list.</span>
+<span class="c1">// [MALE, FEMALE, OTHER] can be acquired.</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pattern1</span> <span class="o">=</span> <span class="n">CodeUtil</span><span class="o">.</span><span class="na">getValues</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;PATTERN1&quot;</span><span class="o">);</span>
+
+<span class="c1">// Acquire PATTER2 list.</span>
+<span class="c1">// [MALE, FEMALE] can be acquired.</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pattern2</span> <span class="o">=</span> <span class="n">CodeUtil</span><span class="o">.</span><span class="na">getValues</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;PATTERN2&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>Specify the pattern on the screen (JSP) and acquire the code information</dt>
+<dd><p class="first">When a custom tag library that acquires code information is used, only the information of that pattern is displayed by specifying a pattern.</p>
+<p>For details on how to use the custom tag library, refer to the following.</p>
+<ul class="simple">
+<li><a class="reference internal" href="tag.html#tag-code-input-output"><span>Display code values</span></a></li>
+</ul>
+<p>Specify PATTERN2 in <cite>pattern</cite>  attribute as shown below.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:codeSelect</span> <span class="na">name=</span><span class="s">&quot;form.gender&quot;</span> <span class="na">codeId=</span><span class="s">&quot;GENDER&quot;</span> <span class="na">pattern=</span><span class="s">&quot;PATTERN2&quot;</span> <span class="na">cssClass=</span><span class="s">&quot;form-control&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Outputs <code class="docutils literal"><span class="pre">男性(Male)</span></code> and <code class="docutils literal"><span class="pre">女性(Female)</span></code> , which are the targets of PATTERN2.</p>
+<img alt="../../../_images/code_pattern.png" class="last" src="../../../_images/code_pattern.png" />
+</dd>
+</dl>
+</div>
+<div class="section" id="support-for-multilingualization-of-names">
+<span id="code-use-multilingualization"></span><h3><a class="toc-backref" href="#id8">7.13.3.3. Support for multilingualization of names</a><a class="headerlink" href="#support-for-multilingualization-of-names" title="Permalink to this headline">¶</a></h3>
+<p>Prepare data for each supported language in the code name table to support multilingualization of names.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Data of code name table</dt>
+<dd><p class="first">In this example, 2 languages <code class="docutils literal"><span class="pre">ja</span></code> and <code class="docutils literal"><span class="pre">en</span></code> are supported.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="8%" />
+<col width="20%" />
+<col width="20%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">VALUE</th>
+<th class="head">LANG</th>
+<th class="head">SORT_ORDER</th>
+<th class="head">NAME</th>
+<th class="head">SHORT_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GENDER</td>
+<td>MALE</td>
+<td>ja</td>
+<td>1</td>
+<td>男性</td>
+<td>男</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>FEMALE</td>
+<td>ja</td>
+<td>2</td>
+<td>女性</td>
+<td>女</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>OTHER</td>
+<td>ja</td>
+<td>3</td>
+<td>その他</td>
+<td>他</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>MALE</td>
+<td>en</td>
+<td>1</td>
+<td>Male</td>
+<td>M</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>FEMALE</td>
+<td>en</td>
+<td>2</td>
+<td>Female</td>
+<td>F</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>OTHER</td>
+<td>en</td>
+<td>3</td>
+<td>Unknown</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Specify the language and get the code information</dt>
+<dd><p class="first">The name corresponding to the language can be obtained by specifying the language when acquiring the code name, etc. by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> .</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Name</span>
+<span class="n">CodeUtil</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">JAPANESE</span><span class="o">);</span>    <span class="c1">// -&gt; 男性</span>
+<span class="n">CodeUtil</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>     <span class="c1">// -&gt; Male</span>
+
+<span class="c1">// Abbreviation</span>
+<span class="n">CodeUtil</span><span class="o">.</span><span class="na">getShortName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">JAPANESE</span><span class="o">)</span> <span class="c1">// -&gt; 男</span>
+<span class="n">CodeUtil</span><span class="o">.</span><span class="na">getShortName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">)</span> <span class="c1">// -&gt; M</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that the custom tag library provided for JSP cannot acquire the value by specifying the language.
+Refer to <a class="reference internal" href="tag.html#tag-code-input-output"><span>Display code values</span></a> for details of the language information used by custom tag library.</p>
+</div>
+</div>
+<div class="section" id="define-the-sort-order-of-names-to-be-displayed-on-the-screen">
+<span id="code-use-sort-order"></span><h3><a class="toc-backref" href="#id9">7.13.3.4. Define the sort order of names to be displayed on the screen</a><a class="headerlink" href="#define-the-sort-order-of-names-to-be-displayed-on-the-screen" title="Permalink to this headline">¶</a></h3>
+<p>The sort order can be defined when displaying the code information in the list box or check box on the screen.
+The sort order can be configured for each language as it may be different for each country.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Configure the sort order in SORT_ORDER of code name table</dt>
+<dd><p class="first">Configure the sort order in SORT_ORDER column of code name table.</p>
+<p>In this example, displayed in the order <code class="docutils literal"><span class="pre">MALE</span></code> -&gt; <code class="docutils literal"><span class="pre">FEMALE</span></code> -&gt; <code class="docutils literal"><span class="pre">OTHER</span></code> .</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="8%" />
+<col width="20%" />
+<col width="20%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">VALUE</th>
+<th class="head">LANG</th>
+<th class="head">SORT_ORDER</th>
+<th class="head">NAME</th>
+<th class="head">SHORT_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GENDER</td>
+<td>MALE</td>
+<td>ja</td>
+<td>1</td>
+<td>男性</td>
+<td>男</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>FEMALE</td>
+<td>ja</td>
+<td>2</td>
+<td>女性</td>
+<td>女</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>OTHER</td>
+<td>ja</td>
+<td>3</td>
+<td>その他</td>
+<td>他</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Screen display example</dt>
+<dd><p class="first">When <cite>codeSelect</cite> of the custom tag library is used,
+it is displayed in the order <code class="docutils literal"><span class="pre">MALE</span> <span class="pre">(男性)</span></code> -&gt; <code class="docutils literal"><span class="pre">FEMALE</span> <span class="pre">(女性)</span></code> -&gt; <code class="docutils literal"><span class="pre">OTHER</span> <span class="pre">(その他)</span></code>　as shown below.</p>
+<img alt="../../../_images/code_sort.png" class="last" src="../../../_images/code_sort.png" />
+</dd>
+</dl>
+</div>
+<div class="section" id="define-names-other-than-names-and-abbreviations">
+<span id="code-option-name"></span><h3><a class="toc-backref" href="#id10">7.13.3.5. Define names other than names and abbreviations</a><a class="headerlink" href="#define-names-other-than-names-and-abbreviations" title="Permalink to this headline">¶</a></h3>
+<p>Two types of naming can be used in the default behavior, name and abbreviation.</p>
+<p>Depending on the requirements, display names other than these may require to be defined.
+Support such cases by using the option name area.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Define option name column in the code name table</dt>
+<dd><p class="first">Define a column with an optional name in the code name table.</p>
+<p>Pattern column can be used by configuring <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/schema/CodePatternSchema.html#setPatternColumnNames-java.lang.String:A-" title="nablarch.common.code.schema.CodePatternSchema.setPatternColumnNames(java.lang.String:A)">CodePatternSchema.patternColumnNames</a> .
+For configuring the configuration file, see  <a class="reference internal" href="#code-setup-table"><span>Initial configuration to use the code value management function</span></a> .</p>
+<p>In this example, two columns are defined as option name columns, <code class="docutils literal"><span class="pre">FORM_NAME</span></code> and <code class="docutils literal"><span class="pre">KANA_NAME</span></code> .</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="10%" />
+<col width="12%" />
+<col width="5%" />
+<col width="14%" />
+<col width="14%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">VALUE</th>
+<th class="head">LANG</th>
+<th class="head">SORT_ORDER</th>
+<th class="head">NAME</th>
+<th class="head">SHORT_NAME</th>
+<th class="head">FORM_NAME</th>
+<th class="head">KANA_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GENDER</td>
+<td>MALE</td>
+<td>ja</td>
+<td>1</td>
+<td>男性</td>
+<td>男</td>
+<td>Male</td>
+<td>おとこ</td>
+</tr>
+<tr class="row-odd"><td>GENDER</td>
+<td>FEMALE</td>
+<td>ja</td>
+<td>2</td>
+<td>女性</td>
+<td>女</td>
+<td>Female</td>
+<td>おんな</td>
+</tr>
+<tr class="row-even"><td>GENDER</td>
+<td>OTHER</td>
+<td>ja</td>
+<td>3</td>
+<td>その他</td>
+<td>他</td>
+<td>Other</td>
+<td>そのた</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Acquire option name</dt>
+<dd><blockquote class="first">
+<div><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/CodeUtil.html" title="nablarch.common.code.CodeUtil">CodeUtil</a> is used to acquire option name.</div></blockquote>
+<p>When acquiring the option name, specify which option name is to be acquired with a string.
+This value must exactly match the column name configured in the configuration file with <a class="reference internal" href="#code-setup-table"><span>Initial configuration to use the code value management function</span></a> .</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">CodeUtil</span><span class="o">.</span><span class="na">getOptionalName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;MALE&quot;</span><span class="o">,</span> <span class="s">&quot;KANA_NAME&quot;</span><span class="o">)</span> <span class="c1">// -&gt; おとこ</span>
+<span class="n">CodeUtil</span><span class="o">.</span><span class="na">getOptionalName</span><span class="o">(</span><span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="s">&quot;FEMALE&quot;</span><span class="o">,</span> <span class="s">&quot;FORM_NAME&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">JAPANESE</span><span class="o">)</span> <span class="c1">// -&gt; Female</span>
+</pre></div>
+</div>
+</dd>
+<dt>Display optional name on the screen (JSP)</dt>
+<dd><p class="first">When using a custom tag library, the name can be displayed by specifying an optional name.</p>
+<p>For details on how to use the custom tag library, refer to the following.</p>
+<ul class="simple">
+<li>code_select</li>
+<li>code</li>
+</ul>
+<p>To display the name of KANA_NAME, specify <cite>optionColumnName</cite> as shown below and specify <strong>$OPTIONALNAME$</strong> in  <cite>labelPattern</cite> .</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:codeSelect</span> <span class="na">name=</span><span class="s">&quot;form.gender&quot;</span> <span class="na">codeId=</span><span class="s">&quot;GENDER&quot;</span> <span class="na">optionColumnName=</span><span class="s">&quot;KANA_NAME&quot;</span> <span class="na">cssClass=</span><span class="s">&quot;form-control&quot;</span> <span class="na">labelPattern=</span><span class="s">&quot;$OPTIONALNAME$&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>The value of KANA_NAME of the option name is displayed.</p>
+<img alt="../../../_images/code_option_name.png" class="last" src="../../../_images/code_option_name.png" />
+</dd>
+</dl>
+</div>
+<div class="section" id="check-if-the-input-value-is-a-valid-code-value">
+<span id="code-validation"></span><h3><a class="toc-backref" href="#id11">7.13.3.6. Check if the input value is a valid code value</a><a class="headerlink" href="#check-if-the-input-value-is-a-valid-code-value" title="Permalink to this headline">¶</a></h3>
+<p>Provide a function to check whether the input value (request parameter sent from the client in the case of a screen) is within the valid range of code.
+Input values can be checked with this function only by configuring the annotation.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a></dt>
+<dd><p class="first">To use <a class="reference internal" href="validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> , use the annotation <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/ee/CodeValue.html" title="nablarch.common.code.validator.ee.CodeValue">nablarch.common.code.validator.ee.CodeValue</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;GENDER&quot;</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">String</span> <span class="n">gender</span><span class="o">;</span>
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a></dt>
+<dd><p class="first">To use <a class="reference internal" href="validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a> , use the annotation  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/code/validator/CodeValue.html" title="nablarch.common.code.validator.CodeValue">nablarch.common.code.validator.CodeValue</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;GENDER&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGender</span><span class="o">(</span><span class="n">String</span> <span class="n">gender</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">gender</span> <span class="o">=</span> <span class="n">gender</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>When the value that can be selected is limited by using  <a class="reference internal" href="#code-use-pattern"><span>pattern</span></a>  for the input screen,
+it is necessary to check whether the values are valid in the pattern even during validation.</p>
+<p>Whether the value is valid in the pattern can be checked by specifying the pattern name in the <cite>pattern</cite> attribute of annotation for validation.</p>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;GENDER&quot;</span><span class="o">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;PATTERN2&quot;</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">String</span> <span class="n">gender</span><span class="o">;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When <a class="reference internal" href="validation/bean_validation.html#bean-validation-domain-validation"><span>Domain validation</span></a>  is used, only one pattern can be specified for one domain.
+Therefore, to support multiple patterns, a domain corresponding to the pattern is required to be defined.</p>
+<p>However, it is not necessary to define the domains corresponding to all patterns, only the domains required for validation need to be defined.</p>
+<p>An example is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleDomainBean</span> <span class="o">{</span>
+
+  <span class="c1">// Domain for PATTERN1</span>
+  <span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;FLOW_STATUS&quot;</span><span class="o">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;PATTERN1&quot;</span><span class="o">)</span>
+  <span class="n">String</span> <span class="n">flowStatusGeneral</span><span class="o">;</span>
+
+  <span class="c1">// Domain for PATTERN2</span>
+  <span class="nd">@CodeValue</span><span class="o">(</span><span class="n">codeId</span> <span class="o">=</span> <span class="s">&quot;FLOW_STATUS&quot;</span><span class="o">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;PATTERN2&quot;</span><span class="o">)</span>
+  <span class="n">String</span> <span class="n">flowStatusGuest</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

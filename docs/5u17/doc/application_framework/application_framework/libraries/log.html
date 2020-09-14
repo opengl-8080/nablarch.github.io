@@ -315,9 +315,12 @@
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
     <li>7.1. ログ出力</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -410,7 +413,7 @@
 を使う場合は、 <a class="reference internal" href="#log-synchronous-file-log-writer-attention"><span>SynchronousFileLogWriterを使用するにあたっての注意事項</span></a> を参照すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ログ出力機能で使用するログレベルについては、 <a class="reference internal" href="#log-log-level"><span>ログレベルの定義</span></a> を参照。</p>
 </div>
 </div>
@@ -461,7 +464,7 @@ Nablarchの提供するアーキタイプから生成したブランクプロジ
 </tbody>
 </table>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本フレームワークでは、 <a class="reference internal" href="log/failure_log.html#failure-log"><span>障害通知ログ</span></a> と <a class="reference internal" href="log/failure_log.html#failure-log"><span>障害解析ログ</span></a> を合わせて障害ログと呼ぶ。</p>
 </div>
 </div>
@@ -527,7 +530,7 @@ Nablarchの提供するアーキタイプから生成したブランクプロジ
 FATALレベルからINFOレベルまでは事前チェックしなくてよい。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ロガー名には、SQLログや監視ログなど、特定の用途向けのログ出力を行う場合は、
 その用途を表す名前(SQLやMONITOR等)を指定し、それ以外はクラスのFQCNを指定する。</p>
 </div>
@@ -719,7 +722,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 </pre></div>
 </div>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ロガー設定では、全てのログ出力にマッチするロガー設定を1つ用意し、availableLoggersNamesOrderの最後に指定することを推奨する。
 万が一設定が漏れた場合でも、重要なログの出力を逃してしまう事態を防ぐことができる。
 設定例としては、上記の記述例にあるロガー設定 <code class="docutils literal"><span class="pre">root</span></code> を参照。</p>
@@ -831,7 +834,7 @@ FATALレベルからINFOレベルまでは事前チェックしなくてよい�
 <p>改行コードは、Java標準のシステムプロパティに含まれる <code class="docutils literal"><span class="pre">line.separator</span></code> から取得する。
 このため、システムプロパティの <code class="docutils literal"><span class="pre">line.separator</span></code> を変更しなければOSの改行コードが使用される。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/basic/BasicLogFormatter.html" title="nablarch.core.log.basic.BasicLogFormatter">BasicLogFormatter</a> では
 <code class="docutils literal"><span class="pre">\n</span></code> と <code class="docutils literal"><span class="pre">\t</span></code> という文字列を出力することはできない。</p>
 </div>
@@ -1212,12 +1215,12 @@ LogFormatterの設定は、下記を想定する。</p>
 そして、ログ出力機能では、設定で指定されたレベル以上のログを全て出力する。
 例えば、WARNレベルが設定で指定された場合は、FATALレベル,ERRORレベル,WARNレベルが指定されたログのみ出力する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本番運用時は、INFOレベルでログを出力することを想定している。
 ログファイルのサイズが肥大化しないように、プロジェクト毎にログの出力内容を規定すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本フレームワークでも、ログ出力機能を使ってログを出力している。
 フレームワークが出力するログについては、 <a class="reference internal" href="#log-fw-log-policy"><span>フレームワークのログ出力方針</span></a> を参照すること。</p>
 </div>
@@ -1239,7 +1242,7 @@ LogFormatterの設定は、下記を想定する。</p>
 <tbody valign="top">
 <tr class="row-even"><td>FATAL/ERROR</td>
 <td><p class="first">障害ログの出力時にFATAL/ERRORレベルで出力する。</p>
-<p>障害ログは、障害監視の対象であり、障害発生時の一時切り分けの起点ともなる為、
+<p>障害ログは、障害監視の対象であり、障害発生時の1次切り分けの起点ともなる為、
 原則として1件の障害に対して、1件の障害ログを出力する方針としている。</p>
 <p class="last">このため、実行制御基盤では単一のハンドラ(例外を処理するハンドラ)により、
 障害通知ログを出力する方針としている。</p>
