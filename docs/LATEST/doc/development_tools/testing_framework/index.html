@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. 大規模開発向け重厚なテスティングフレームワーク &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3. テスティングフレームワーク &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="Nablarch開発ツール" href="../index.html"/>
         <link rel="next" title="3.1. 単体テスト実施方法" href="guide/development_guide/05_UnitTestGuide/index.html"/>
         <link rel="prev" title="2.3. UI部品の実装サンプルで提供しているウィジェットの一覧" href="../ui_dev/guide/widget_usage/widget_list.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -310,7 +314,7 @@
       
           <li><a href="../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-    <li>3. 大規模開発向け重厚なテスティングフレームワーク</li>
+    <li>3. テスティングフレームワーク</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -324,7 +328,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>3. 大規模開発向け重厚なテスティングフレームワーク<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>3. テスティングフレームワーク<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
@@ -332,12 +336,13 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
 </ul>
 </div>
+<p>テスティングフレームワークを利用して機能のテストを実装するテストの実装者は <a class="reference internal" href="guide/development_guide/05_UnitTestGuide/index.html#unittestguide"><span>単体テスト実施方法</span></a> を、
+テスティングフレームワークの導入をするアーキテクトは <a class="reference internal" href="guide/development_guide/06_TestFWGuide/index.html#testfwguide"><span>自動テストフレームワークの使用方法</span></a> を参照してください。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p>テスティングフレームワークは、以下の基盤やライブラリには対応していない。
 このため、これらの基盤やライブラリを使用するアプリケーションに対するテストは、 <a class="reference external" href="http://junit.org">JUnit(外部サイト、英語)</a> などのテスティングフレームワークを使用して行うこと。</p>
 <ul class="last simple">
-<li><a class="reference internal" href="../../application_framework/application_framework/web_service/rest/index.html#restful-web-service"><span>RESTfulウェブサービス</span></a></li>
 <li><a class="reference internal" href="../../application_framework/application_framework/batch/jsr352/index.html#jsr352-batch"><span>JSR352に準拠したバッチアプリケーション</span></a></li>
 <li><a class="reference internal" href="../../application_framework/application_framework/libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a></li>
 </ul>
@@ -382,7 +387,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

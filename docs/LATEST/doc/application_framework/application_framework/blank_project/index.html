@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8. ブランクプロジェクト &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>8. ブランクプロジェクト &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="アプリケーションフレームワーク" href="../index.html"/>
         <link rel="next" title="8.1. Apache Mavenについて" href="maven.html"/>
         <link rel="prev" title="7.23. フォーマッタ" href="../libraries/format.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -356,15 +360,20 @@
 <li class="toctree-l2"><a class="reference internal" href="setup_blankProject/setup_Java11.html">8.3.5. Java11で使用する場合のセットアップ方法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="MavenModuleStructures/index.html">8.4. Mavenアーキタイプの構成</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#id2">8.4.1. 全体構成の概要</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#id3">8.4.2. 各構成要素の詳細</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#mavenmodulestructuresmoduledivisionpolicy">8.4.3. 【参考】プロジェクト分割方針</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FirstStepContainer.html">8.4. 初期セットアップ手順（コンテナ）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup_containerBlankProject/setup_ContainerWeb.html">8.4.1. コンテナ用ウェブプロジェクトの初期セットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_containerBlankProject/setup_ContainerWebService.html">8.4.2. コンテナ用RESTfulウェブサービスプロジェクトの初期セットアップ</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ModifySettings.html">8.5. 初期セットアップ後に必要となる設定変更</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="CustomizeDB.html">8.5.1. 使用するRDBMSの変更手順</a></li>
-<li class="toctree-l2"><a class="reference internal" href="addin_gsp.html">8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MavenModuleStructures/index.html">8.5. Mavenアーキタイプの構成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#id2">8.5.1. 全体構成の概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#id3">8.5.2. 各構成要素の詳細</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MavenModuleStructures/index.html#mavenmodulestructuresmoduledivisionpolicy">8.5.3. 【参考】プロジェクト分割方針</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ModifySettings.html">8.6. 初期セットアップ後に必要となる設定変更</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CustomizeDB.html">8.6.1. 使用するRDBMSの変更手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="addin_gsp.html">8.6.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</a></li>
 </ul>
 </li>
 </ul>
@@ -404,7 +413,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法 &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>8.6.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法 &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/addin_gsp.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../index.html"/>
-        <link rel="up" title="8.5. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
+        <link rel="up" title="8.6. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
         <link rel="next" title="9. Nablarchアプリケーションフレームワーク設定ガイド" href="../setting_guide/index.html"/>
-        <link rel="prev" title="8.5.1. 使用するRDBMSの変更手順" href="CustomizeDB.html"/>
+        <link rel="prev" title="8.6.1. 使用するRDBMSの変更手順" href="CustomizeDB.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -314,9 +318,9 @@
       
           <li><a href="index.html">8. ブランクプロジェクト</a> &raquo;</li>
       
-          <li><a href="ModifySettings.html">8.5. 初期セットアップ後に必要となる設定変更</a> &raquo;</li>
+          <li><a href="ModifySettings.html">8.6. 初期セットアップ後に必要となる設定変更</a> &raquo;</li>
       
-    <li>8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</li>
+    <li>8.6.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -330,7 +334,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="gsp-dba-maven-plugin-dba">
-<span id="gsp-maven-plugin"></span><h1>8.5.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法<a class="headerlink" href="#gsp-dba-maven-plugin-dba" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="gsp-maven-plugin"></span><h1>8.6.2. gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法<a class="headerlink" href="#gsp-dba-maven-plugin-dba" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
@@ -346,20 +350,20 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id6">8.5.2.1. 概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">8.6.2.1. 概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference external" href="https://github.com/coastland/gsp-dba-maven-plugin">gsp-dba-maven-plugin(外部サイト)</a> は、Apache License Version 2.0 ライセンスで提供されるオープンソースのツールである。</p>
 <p>gsp-dba-maven-pluginは、利用開始前にRDBMSにあわせた設定を行う必要がある。</p>
 <p>本手順では、アーキタイプから生成したプロジェクトで、gsp-dba-maven-pluginを使用するための設定方法を示す。</p>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7">8.5.2.2. 前提</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">8.6.2.2. 前提</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下のプロジェクトを対象とする。</p>
 <ul class="simple">
 <li>アーキタイプから生成後、<a class="reference internal" href="CustomizeDB.html"><em>使用するRDBMSの変更手順</em></a> の手順を実施した各種プロジェクト。</li>
 </ul>
 </div>
 <div class="section" id="maven">
-<h2><a class="toc-backref" href="#id8">8.5.2.3. Mavenの設定</a><a class="headerlink" href="#maven" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">8.6.2.3. Mavenの設定</a><a class="headerlink" href="#maven" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>gsp-dba-maven-pluginを使用するにあたって、3rd Party Repositoryの設定が必要である。</p>
 <p>設定は、&lt;ホームディレクトリ&gt;/.m2/settings.xmlに行う。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;settings&gt;</span>
@@ -400,11 +404,11 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id9">8.5.2.4. ファイル修正</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">8.6.2.4. ファイル修正</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="pom-xml">
-<h3><a class="toc-backref" href="#id10">8.5.2.4.1. pom.xmlファイルの修正</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">8.6.2.4.1. pom.xmlファイルの修正</a><a class="headerlink" href="#pom-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="section" id="properties">
-<h4>8.5.2.4.1.1. properties要素内<a class="headerlink" href="#properties" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>8.6.2.4.1.1. properties要素内<a class="headerlink" href="#properties" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>pom.xmlのpropertiesタグ内の以下の箇所を修正する。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -487,7 +491,7 @@
 </div>
 </div>
 <div class="section" id="build">
-<h4>8.5.2.4.1.2. build要素内<a class="headerlink" href="#build" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>8.6.2.4.1.2. build要素内<a class="headerlink" href="#build" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>gsp-dba-maven-pluginに対する依存関係を、H2のJDBCドライバから使用するRDBMSにあわせたものに修正する。</p>
 <p>POMの設定例は、 <a class="reference internal" href="CustomizeDB.html#customizedb-pom-dependencies"><span>pom.xmlファイルの修正</span></a> を参照。
 例えば、PostgreSQLを利用する場合は以下のように設定する。</p>
@@ -512,12 +516,12 @@
 </div>
 </div>
 <div class="section" id="data-model-edm-src-main-resources-entity">
-<h3><a class="toc-backref" href="#id11">8.5.2.4.2. data-model.edm  (src/main/resources/entity)の準備</a><a class="headerlink" href="#data-model-edm-src-main-resources-entity" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">8.6.2.4.2. data-model.edm  (src/main/resources/entity)の準備</a><a class="headerlink" href="#data-model-edm-src-main-resources-entity" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>src/main/resources/entity以下にRDBMS毎にedmファイルが存在するので、使用するRDBMSに対応するファイルを「data-model.edm」にリネームする。</p>
 </div>
 </div>
 <div class="section" id="confirm-gsp">
-<span id="id5"></span><h2><a class="toc-backref" href="#id12">8.5.2.5. 動作確認</a><a class="headerlink" href="#confirm-gsp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id12">8.6.2.5. 動作確認</a><a class="headerlink" href="#confirm-gsp" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">DBのデータが削除されるため、必要であれば現在DBに格納されているデータを退避しておくこと。</p>
@@ -629,7 +633,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

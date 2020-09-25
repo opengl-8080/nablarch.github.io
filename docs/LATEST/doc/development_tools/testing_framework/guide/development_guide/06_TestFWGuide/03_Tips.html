@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.8. 目的別API使用方法 &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3.2.9. 目的別API使用方法 &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
-        <link rel="next" title="3.2.9. マスタデータ復旧機能" href="04_MasterDataRestore.html"/>
-        <link rel="prev" title="3.2.7. リクエスト単体テスト（HTTP同期応答メッセージ送信処理）" href="RequestUnitTest_http_send_sync.html"/>
+        <link rel="next" title="3.2.10. マスタデータ復旧機能" href="04_MasterDataRestore.html"/>
+        <link rel="prev" title="3.2.8. リクエスト単体テスト（HTTP同期応答メッセージ送信処理）" href="RequestUnitTest_http_send_sync.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -310,11 +314,11 @@
       
           <li><a href="../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="index.html">3.2. 自動テストフレームワークの使用方法</a> &raquo;</li>
       
-    <li>3.2.8. 目的別API使用方法</li>
+    <li>3.2.9. 目的別API使用方法</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -328,7 +332,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api">
-<h1>3.2.8. 目的別API使用方法<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>3.2.9. 目的別API使用方法<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>目的別のAPIの使用方法について説明する。</p>
 <ul class="simple">
 <li><a class="reference internal" href="#how-to-get-data-from-excel"><span>Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a></li>
@@ -349,7 +353,7 @@
 <li><a class="reference internal" href="#how-to-convert-test-data"><span>メッセージング処理でテストデータに対し定型的な変換処理を追加したい</span></a></li>
 </ul>
 <div class="section" id="excel">
-<span id="how-to-get-data-from-excel"></span><h2>3.2.8.1. Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="how-to-get-data-from-excel"></span><h2>3.2.9.1. Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい<a class="headerlink" href="#excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テスト対象クラスのメソッドを呼び出す際の引数や、メソッドの戻り値をExcelファイルに記載しておくことができる。
 記載したデータは、List-Map形式（List&lt;Map&lt;String, String&gt;&gt;の形式）で取得できる。</p>
 <dl class="docutils">
@@ -367,7 +371,7 @@
 </ul>
 </div></blockquote>
 <div class="section" id="id1">
-<h3>3.2.8.1.1. テストソースコード実装例<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.1.1. テストソースコード実装例<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
 
@@ -395,7 +399,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="id2">
-<h3>3.2.8.1.2. Excelファイル記述例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.1.2. Excelファイル記述例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>LIST_MAP=parameters</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -433,12 +437,12 @@
 </div>
 </div>
 <div class="section" id="how-to-run-the-same-test">
-<span id="id3"></span><h2>3.2.8.2. 同じテストメソッドをテストデータを変えて実行したい<a class="headerlink" href="#how-to-run-the-same-test" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id3"></span><h2>3.2.9.2. 同じテストメソッドをテストデータを変えて実行したい<a class="headerlink" href="#how-to-run-the-same-test" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>同じテストメソッドをテストデータを変えて実行したい場合、前述のList-Map取得メソッドを使用して
 テストをループさせる。これにより、Excelデータを追加するだけで、データバリエーションを増やすことができる。</p>
 <p>以下の例では、前述のList-Map形式を使用して複数のテストを１つのメソッドで実行している。</p>
 <div class="section" id="id4">
-<h3>3.2.8.2.1. テストソースコード実装例<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.2.1. テストソースコード実装例<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
 
@@ -468,7 +472,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="id5">
-<h3>3.2.8.2.2. Excelファイル記述例<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.2.2. Excelファイル記述例<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>// ループさせるデータ</p>
 <p>LIST_MAP=parameters</p>
 <table border="1" class="docutils">
@@ -555,7 +559,7 @@
 </div>
 </div>
 <div class="section" id="tips-groupid">
-<span id="id6"></span><h2>3.2.8.3. 一つのシートに複数テストケースのデータを記載したい<a class="headerlink" href="#tips-groupid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id6"></span><h2>3.2.9.3. 一つのシートに複数テストケースのデータを記載したい<a class="headerlink" href="#tips-groupid" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>一つのテスト対象メソッドに対して多くのテストケースが存在する場合、
 １シート１テストケースという書き方をすると、シート数が増加して保守容易性が落ちることが懸念される。</p>
 <p>テーブルデータをグルーピングするための情報（グループID）を付与することで、複数テストケースのデータをひとつのシートに混在させることができる。</p>
@@ -571,7 +575,7 @@
 <p>テストクラス側では、前述のAPIと同名のオーバーロードメソッドに引数グループIDを渡す。
 これにより、指定したグループIDのデータのみを処理対象とすることができる。</p>
 <div class="section" id="id7">
-<h3>3.2.8.3.1. テストソースコード実装例<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.3.1. テストソースコード実装例<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// DBにデータ登録（グループIDが&quot;case_001&quot;のものだけ登録対象になる）</span>
 <span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testUpdate&quot;</span><span class="o">,</span> <span class="s">&quot;case_001&quot;</span><span class="o">);</span>
@@ -584,7 +588,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="id8">
-<h3>3.2.8.3.2. Excelファイル記述例<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.3.2. Excelファイル記述例<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>// ケース001:従業員の所属を変更する。</p>
 <p>SETUP_TABLE[case_001]=EMPLOYEE_TABLE</p>
 <table border="1" class="docutils">
@@ -711,18 +715,18 @@
 </table>
 </div>
 <div class="section" id="id9">
-<h3>3.2.8.3.3. 注意事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.3.3. 注意事項<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>複数のグループIDのデータを記述する際は、 <a class="reference internal" href="01_Abstract.html#auto-test-framework-multi-datatype"><span>複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a> のようにグループIDごとにまとめて記述すること。
 グループIDごとにまとめて記述しないとデータの読み込みが途中で終了しテストが正しく実行されない。</p>
 </div>
 </div>
 <div class="section" id="how-to-fix-date">
-<span id="id10"></span><h2>3.2.8.4. システム日時を任意の値に固定したい<a class="headerlink" href="#how-to-fix-date" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id10"></span><h2>3.2.9.4. システム日時を任意の値に固定したい<a class="headerlink" href="#how-to-fix-date" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>登録日時や更新日時などのシステム日付を設定する項目の場合、普通にテストを実行すると日によって想定結果が変わるため、自動テストで設定値が正しいことを確認できない。
 そこで、本フレームワークではシステム日付に固定値を設定する機能を提供する。この機能を使用することにより、システム日付を設定する項目も自動テストで設定値が正しいことを確認することができる。</p>
 <p>Nablarch Application Frameworkでは、SystemTimeProviderインタフェースの実装クラスがシステム日時を提供する。この実装クラスを、固定値を返却するテスト用クラスに差し替えることにより、任意のシステム日時を返却させることができる。</p>
 <div class="section" id="id11">
-<h3>3.2.8.4.1. 設定ファイル例<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.4.1. 設定ファイル例<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント設定ファイルにて、SystemTimeProviderインタフェースの実装クラスを指定する箇所に
 FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を設定する。
 例えば、システム日時を2010年9月14日12時34分56秒とする場合は以下のように設定する。</p>
@@ -764,7 +768,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="how-to-numbering-sequence">
-<span id="id12"></span><h2>3.2.8.5. シーケンスオブジェクトを使った採番のテストをしたい<a class="headerlink" href="#how-to-numbering-sequence" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id12"></span><h2>3.2.9.5. シーケンスオブジェクトを使った採番のテストをしたい<a class="headerlink" href="#how-to-numbering-sequence" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>シーケンスオブジェクトを使用して値の採番処理を行った場合、次に採番される値が事前に予測できないため期待値を設定することができない。
 そこで、本フレームワークではシーケンスオブジェクトを使用した採番処理を設定ファイルの変更のみでテーブル採番に置き換える機能を提供する。
 この機能を利用することで、正しく採番処理を行なっていることを確認できる。</p>
@@ -777,7 +781,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div></blockquote>
 <p>以下に設定例及び使用例を示す。</p>
 <div class="section" id="id13">
-<h3>3.2.8.5.1. 設定ファイルの例<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.5.1. 設定ファイルの例<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>この例では、下記のように本番用の設定ファイルにシーケンスオブジェクトの採番定義がされているとする。</p>
 <blockquote>
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- シーケンスオブジェクトを使用した採番設定 --&gt;</span>
@@ -812,7 +816,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div></blockquote>
 </div>
 <div class="section" id="id14">
-<h3>3.2.8.5.2. Excelファイル記述例<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.5.2. Excelファイル記述例<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>採番対象ID:1101を採番する処理をテストする場合を例に説明する。</p>
 <blockquote>
 <div><div class="line-block">
@@ -895,7 +899,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="threadcontextidid">
-<span id="using-threadcontext"></span><h2>3.2.8.6. ThreadContextにユーザID、リクエストIDなどを設定したい<a class="headerlink" href="#threadcontextidid" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="using-threadcontext"></span><h2>3.2.9.6. ThreadContextにユーザID、リクエストIDなどを設定したい<a class="headerlink" href="#threadcontextidid" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Nablarch Application Frameworkでは、通常ThreadContextにてユーザIDやリクエストIDがあらかじめ設定されている。データベースアクセスクラスの自動テストを行う場合、フレームワークを経由せず、テストクラスからテスト対象クラスを直接起動するため、ThreadContextには値が設定されていない。</p>
 <p>Excelファイルに設定する値を記述して下記メソッドを呼び出すことで、ThreadContextに値を設定できる。</p>
 <blockquote>
@@ -909,7 +913,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 <p class="last">特に自動設定項目を利用してデータベースに登録・更新する際は、ThreadContextにリクエストIDとユーザIDが設定されている必要がある。テスト対象クラス起動前にこれらの値をThreadContextに設定しておくこと。</p>
 </div>
 <div class="section" id="id15">
-<h3>3.2.8.6.1. テストソースコード実装例<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.6.1. テストソースコード実装例<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DbAccessTestSample</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
     <span class="c1">// ＜中略＞</span>
@@ -924,7 +928,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div></blockquote>
 </div>
 <div class="section" id="id16">
-<h3>3.2.8.6.2. テストデータ記述例<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.6.2. テストデータ記述例<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>シート[testInsert]に以下のようにデータを記載する。(IDは任意）</p>
 <p>LIST_MAP=threadContext</p>
 <table border="1" class="docutils">
@@ -949,13 +953,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="using-testdataparser">
-<span id="id17"></span><h2>3.2.8.7. 任意のディレクトリのExcelファイルを読み込みたい<a class="headerlink" href="#using-testdataparser" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id17"></span><h2>3.2.9.7. 任意のディレクトリのExcelファイルを読み込みたい<a class="headerlink" href="#using-testdataparser" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テストソースコードと同じディレクトリに存在するExcelファイルであれば、
 シート名を指定するだけで読み込み可能であるが、別のディレクトリに存在するファイルを
 読み込みたい場合は、TestDataParser実装クラスを直接使用することで取得できる。</p>
 <p>&#8220;/foo/bar/&#8221;に存在する&#8221;Buz.xlsx&#8221;というファイルからデータを読み込む場合の例を以下に示す。</p>
 <div class="section" id="id18">
-<h3>3.2.8.7.1. テストソースコード実装例<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.7.1. テストソースコード実装例<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">TestDataParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="o">(</span><span class="n">TestDataParser</span><span class="o">)</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">getObject</span><span class="o">(</span><span class="s">&quot;testDataParser&quot;</span><span class="o">);</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getListMap</span><span class="o">(</span><span class="s">&quot;/foo/bar/Baz.xlsx&quot;</span><span class="o">,</span> <span class="s">&quot;sheet001&quot;</span><span class="o">,</span> <span class="s">&quot;params&quot;</span><span class="o">);</span>
@@ -965,14 +969,14 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="using-junit-annotation">
-<span id="id19"></span><h2>3.2.8.8. テスト実行前後に共通処理を行いたい。<a class="headerlink" href="#using-junit-annotation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id19"></span><h2>3.2.9.8. テスト実行前後に共通処理を行いたい。<a class="headerlink" href="#using-junit-annotation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>JUnit4で用意されたアノテーション(&#64;Before, &#64;After, &#64;BeforeClass, &#64;AfterClass)を使用することで、
 テスト実行前後に共通処理を実行させることができる。</p>
 <div class="section" id="id20">
-<h3>3.2.8.8.1. 注意事項<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.8.1. 注意事項<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>上記のアノテーションを利用する際は、以下の点に注意すること。</p>
 <div class="section" id="beforeclass-afterclass">
-<h4>3.2.8.8.1.1. &#64;BeforeClass, &#64;AfterClass使用時の注意点<a class="headerlink" href="#beforeclass-afterclass" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.2.9.8.1.1. &#64;BeforeClass, &#64;AfterClass使用時の注意点<a class="headerlink" href="#beforeclass-afterclass" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li>サブクラスにて、スーパークラスと同名の名前、同じアノテーションを付与のメソッドを作成しないこと。
@@ -1005,7 +1009,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="using-transactions">
-<span id="id21"></span><h2>3.2.8.9. デフォルト以外のトランザクションを使用したい<a class="headerlink" href="#using-transactions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id21"></span><h2>3.2.9.9. デフォルト以外のトランザクションを使用したい<a class="headerlink" href="#using-transactions" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースアクセスクラスの単体テストを行う場合、テストクラスからデータベースアクセスクラスを起動する。
 通常、データベースアクセスクラスではトランザクション制御を行わないので、テストクラス側でトランザクションを制御する必要がある。</p>
 <p>トランザクション制御は定型処理であるため、テスティングフレームワークにてトランザクションを制御する機構を用意している。プロパティファイルにトランザクション名を記載しておけば、テスティングフレームワークは、テストメソッド実行前にトランザクション開始、テストメソッド終了後にトランザクションを終了する。
@@ -1019,13 +1023,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </dl>
 </div>
 <div class="section" id="using-ohter-class">
-<span id="id22"></span><h2>3.2.8.10. 本フレームワークのクラスを継承せずに使用したい<a class="headerlink" href="#using-ohter-class" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id22"></span><h2>3.2.9.10. 本フレームワークのクラスを継承せずに使用したい<a class="headerlink" href="#using-ohter-class" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>通常、テストクラス作成時は本フレームワークで用意されているスーパークラスを継承すればよいが、
 別のクラスを継承しなければならない等の理由で、本フレームワークのスーパークラスを継承できない場合がある。この場合、本フレームワークのスーパークラスをインスタンス化し、処理を委譲することで代替可能である。</p>
 <p>委譲を使用する場合、コンストラクタにテストクラス自身のClassインスタンスを渡す必要がある。
 また、前処理(&#64;Before)メソッド、後処理(&#64;After)メソッドについては、明示的に呼び出す必要がある。</p>
 <div class="section" id="id23">
-<h3>3.2.8.10.1. テストソースコード実装例<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.10.1. テストソースコード実装例<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="kd">extends</span> <span class="n">AnotherSuperClass</span> <span class="o">{</span>
 
@@ -1062,7 +1066,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="how-to-assert-property-from-excel">
-<span id="id24"></span><h2>3.2.8.11. クラスのプロパティを検証したい<a class="headerlink" href="#how-to-assert-property-from-excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id24"></span><h2>3.2.9.11. クラスのプロパティを検証したい<a class="headerlink" href="#how-to-assert-property-from-excel" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テスト対象クラスのプロパティの検証を、容易に実装できる。</p>
 <p>テストデータの記述方法は、 <a class="reference internal" href="#how-to-get-data-from-excel"><span>Excelファイルから、入力パラメータや戻り値に対する期待値などを取得したい</span></a> で記載した方法と同様に記載する。</p>
 <p>データの意味は、2行目が プロパティ名、3行目以降が検証時に使用するプロパティの値となる。</p>
@@ -1076,7 +1080,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </ul>
 </div></blockquote>
 <div class="section" id="id25">
-<h3>3.2.8.11.1. テストソースコード実装例<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.11.1. テストソースコード実装例<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserUpdateActionRequestTest</span> <span class="kd">extends</span> <span class="n">HttpRequestTestSupport</span> <span class="o">{</span>
 
@@ -1102,7 +1106,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div></blockquote>
 </div>
 <div class="section" id="id26">
-<h3>3.2.8.11.2. Excelファイル記述例<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.11.2. Excelファイル記述例<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>LIST_MAP=expectedUsers</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1126,13 +1130,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="null">
-<span id="tips-test-data"></span><h2>3.2.8.12. テストデータに空白、空文字、改行やnullを記述したい<a class="headerlink" href="#null" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="tips-test-data"></span><h2>3.2.9.12. テストデータに空白、空文字、改行やnullを記述したい<a class="headerlink" href="#null" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <blockquote>
 <div><a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a> を参照。</div></blockquote>
 <p></p>
 </div>
 <div class="section" id="how-to-express-empty-line">
-<span id="id27"></span><h2>3.2.8.13. テストデータに空行を記述したい<a class="headerlink" href="#how-to-express-empty-line" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id27"></span><h2>3.2.9.13. テストデータに空行を記述したい<a class="headerlink" href="#how-to-express-empty-line" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>可変長ファイルを扱う場合等で、テストデータに空行を含めたい場合がある。
 全くの空行は無視されるため、<a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span>セルへの特殊な記述方法</span></a> の
 ダブルクォーテーションを使用して<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>のように空文字列を記述することで、
@@ -1171,12 +1175,12 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="how-to-change-master-data">
-<span id="id28"></span><h2>3.2.8.14. マスタデータを変更してテストを行いたい<a class="headerlink" href="#how-to-change-master-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id28"></span><h2>3.2.9.14. マスタデータを変更してテストを行いたい<a class="headerlink" href="#how-to-change-master-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <blockquote>
 <div><a class="reference internal" href="04_MasterDataRestore.html"><em>マスタデータ復旧機能</em></a> を参照</div></blockquote>
 </div>
 <div class="section" id="how-to-change-test-data-dir">
-<span id="id29"></span><h2>3.2.8.15. テストデータ読み込みディレクトリを変更したい<a class="headerlink" href="#how-to-change-test-data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id29"></span><h2>3.2.9.15. テストデータ読み込みディレクトリを変更したい<a class="headerlink" href="#how-to-change-test-data-dir" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>デフォルトの設定では、テストデータは<code class="docutils literal"><span class="pre">test/java</span></code>配下から読み込まれる。</p>
 <p>プロジェクトのディレクトリ構成に応じて、テストデータディレクトリを変更する必要がある場合、
 コンポーネント設定ファイルに以下の設定を追加する<a class="footnote-reference" href="#id32" id="id30">[1]</a>。</p>
@@ -1229,13 +1233,13 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </table>
 </div>
 <div class="section" id="how-to-convert-test-data">
-<span id="id34"></span><h2>3.2.8.16. メッセージング処理でテストデータに対し定型的な変換処理を追加したい<a class="headerlink" href="#how-to-convert-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id34"></span><h2>3.2.9.16. メッセージング処理でテストデータに対し定型的な変換処理を追加したい<a class="headerlink" href="#how-to-convert-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テストデータ用のExcelに記述されたデータはデフォルトでは指定されたエンコーディングを使用してバイト列に変換されるのみである。
 例えばURLエンコーディングされたデータが他システムから連携される場合、URLエンコーディングされたデータをExcelに記述する必要があるが、
 可読性や保守性、作業効率といった面で現実的ではない。</p>
 <p>以下のインタフェースを実装し、システムリポジトリに登録することでURLエンコーディングのような定型的な変換処理を追加することができる。</p>
 <div class="section" id="id35">
-<h3>3.2.8.16.1. 実装するインタフェース<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.16.1. 実装するインタフェース<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">nablarch.test.core.file.TestDataConverter</span></code></li>
@@ -1243,7 +1247,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div></blockquote>
 </div>
 <div class="section" id="id36">
-<h3>3.2.8.16.2. システムリポジトリ登録内容<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.16.2. システムリポジトリ登録内容<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="38%" />
@@ -1263,7 +1267,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </table>
 </div>
 <div class="section" id="id37">
-<h3>3.2.8.16.3. システムリポジトリ登録例<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.16.3. システムリポジトリ登録例<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- テストデータコンバータ定義 --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;TestDataConverter_FormUrlEncoded&quot;</span>
            <span class="na">class=</span><span class="s">&quot;please.change.me.test.core.file.FormUrlEncodedTestDataConverter&quot;</span><span class="nt">/&gt;</span>
@@ -1271,7 +1275,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
 </div>
 </div>
 <div class="section" id="id38">
-<h3>3.2.8.16.4. Excelファイル記述例<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.9.16.4. Excelファイル記述例<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <img alt="../../../../../_images/data_convert_example.png" src="../../../../../_images/data_convert_example.png" />
 <p>上記で指定したコンバータでセル内の各データにURLエンコーディングを行うように実装した場合、
 テストフレームワーク内部では以下のデータを記述した場合と同様に扱われる。</p>
@@ -1313,7 +1317,7 @@ FixedSystemTimeProviderを指定し、そのプロパティに任意の日時を
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

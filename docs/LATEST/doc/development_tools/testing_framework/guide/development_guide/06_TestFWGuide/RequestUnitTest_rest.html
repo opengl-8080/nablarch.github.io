@@ -1,0 +1,739 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.4. リクエスト単体テスト（RESTfulウェブサービス） &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_rest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
+        <link rel="next" title="3.2.5. リクエスト単体テスト（バッチ処理）" href="RequestUnitTest_batch.html"/>
+        <link rel="prev" title="3.2.3. リクエスト単体テスト（ウェブアプリケーション）" href="02_RequestUnitTest.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u18</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarchアプリケーションフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch開発ツール</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. テスティングフレームワーク</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. 自動テストフレームワークの使用方法</a> &raquo;</li>
+      
+    <li>3.2.4. リクエスト単体テスト（RESTfulウェブサービス）</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="restful">
+<span id="rest-testing-fw"></span><h1>3.2.4. リクエスト単体テスト（RESTfulウェブサービス）<a class="headerlink" href="#restful" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.2.4.1. 概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>リクエスト単体テスト(REST)では、 <a class="reference internal" href="02_RequestUnitTest.html#request-util-test-online"><span>リクエスト単体テスト(ウェブアプリケーション)</span></a> 同様、内蔵サーバを使用してテストを行う。
+RESTfulウェブサービス用実行基盤のみ、必要なモジュールが他の実行基盤より多くなるため、 <a class="reference internal" href="#rest-test-modules"><span>モジュール一覧</span></a> に記載のモジュールを
+依存関係に追加する必要がある。</p>
+<div class="section" id="id2">
+<h3>3.2.4.1.1. 全体像<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<img alt="../../../../../_images/rest_request_unit_test_structure.png" src="../../../../../_images/rest_request_unit_test_structure.png" />
+</div>
+<div class="section" id="id3">
+<h3>3.2.4.1.2. 主なクラス, リソース<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="43%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">名称</th>
+<th class="head">役割</th>
+<th class="head">作成単位</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>リクエスト単体テストクラス</td>
+<td>テストロジックを実装する。</td>
+<td>テスト対象クラス(Action)につき１つ作成</td>
+</tr>
+<tr class="row-odd"><td>テストデータ（Excelファイル）</td>
+<td>テーブルに格納する準備データや期待する結果、HTTPパラメータなど、テストデータを記載する。</td>
+<td>必要に応じてテストクラスにつき１つ作成</td>
+</tr>
+<tr class="row-even"><td>テスト対象クラス(Action)</td>
+<td>テスト対象のクラス
+(Action以降の業務ロジックを実装する各クラスを含む)</td>
+<td>取引につき1クラス作成</td>
+</tr>
+<tr class="row-odd"><td>DbAccessTestSupport</td>
+<td>準備データ投入などデータベースを使用するテストに必要な機能を提供する。</td>
+<td>－</td>
+</tr>
+<tr class="row-even"><td>HttpServer</td>
+<td>内蔵サーバ。サーブレットコンテナとして動作する。</td>
+<td>－</td>
+</tr>
+<tr class="row-odd"><td>RestTestSupport</td>
+<td>内蔵サーバの起動やリクエスト単体テストで必要となるステータスコードのアサートを提供する。</td>
+<td>－</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rest-test-modules">
+<span id="id4"></span><h3>3.2.4.1.3. モジュール一覧<a class="headerlink" href="#rest-test-modules" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  テスティングフレームワーク本体  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-rest<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!--  テスティングフレームワークで使用するデフォルト設定  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.configuration<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-default-configuration<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!--  テスティングフレームワークで使用する内蔵サーバの実装  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-jetty6<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><code class="docutils literal"><span class="pre">nablarch-testing-rest</span></code> は <code class="docutils literal"><span class="pre">nablarch-testing</span></code> (<a class="reference internal" href="../05_UnitTestGuide/index.html#unittestguide"><span>テスティングフレームワーク</span></a>) に依存している。
+上記のモジュールを依存に追加することで <a class="reference internal" href="../05_UnitTestGuide/index.html#unittestguide"><span>テスティングフレームワーク</span></a> のAPIも同時に使用することができる。</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last">Java11を使用している場合は <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Java11.html#setup-java11-jetty9"><span>自動テストで使用するJettyのモジュール変更</span></a> の通り
+内蔵サーバを差し替えること。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>3.2.4.1.4. 設定<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>アーキタイプからブランクプロジェクトを作成した場合、 <code class="docutils literal"><span class="pre">src/test/resources/unit-test.xml</span></code> に
+テスティングフレームワークの設定がされている。RESTfulウェブサービス向けテスティングフレームワークの
+設定を追加するためデフォルト設定で提供している以下の設定ファイルを読み込む。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/test/rest-request-test.xml&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>リクエスト単体テストの設定は <a class="reference internal" href="#rest-test-configuration"><span>各種設定値</span></a> を参照。</p>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last">Nablarch5u18以降のアーキタイプから <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTfulウェブサービス</em></a> の
+ブランクプロジェクトを作成した場合上記が既に設定されている。
+<a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><em>ウェブプロジェクト</em></a> や
+<a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_NablarchBatch.html"><em>バッチプロジェクト</em></a> では追加が必要となる。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>3.2.4.2. 構造<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="simpleresttestsupport">
+<span id="rest-test-superclasses"></span><h3>3.2.4.2.1. SimpleRestTestSupport<a class="headerlink" href="#simpleresttestsupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>リクエスト単体テスト用に用意されたスーパークラス。リクエスト単体テスト用のメソッドを用意している。
+データベース関連機能が不要な場合は後述の <code class="docutils literal"><span class="pre">RestTestSupport</span></code> ではなくこちらのクラスを使用する。
+<a class="reference internal" href="#rest-test-helper"><span>事前準備補助機能</span></a> 、 <a class="reference internal" href="#rest-test-execute"><span>実行</span></a> 、 <a class="reference internal" href="#rest-test-assert"><span>結果確認</span></a> については以下の <code class="docutils literal"><span class="pre">RestTestSupport</span></code> と同じ機能を持つ。</p>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last">RestTestSupportを使用する場合、<code class="docutils literal"><span class="pre">dbInfo</span></code> または <code class="docutils literal"><span class="pre">testDataParser</span></code> のコンポーネントを準備する必要がある。
+データベースへの依存が不要な場合は、<code class="docutils literal"><span class="pre">SimpleRestTestSupport</span></code> を使用することでコンポーネント定義を簡略化できる。</p>
+</div>
+</div>
+<div class="section" id="resttestsupport">
+<h3>3.2.4.2.2. RestTestSupport<a class="headerlink" href="#resttestsupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>リクエスト単体テスト用に用意されたスーパークラス。リクエスト単体テスト用のメソッドを用意している。
+<code class="docutils literal"><span class="pre">SimpleRestTestSupport</span></code> を継承し、データベース関連機能を持つ。</p>
+</div>
+<div class="section" id="id7">
+<h3>3.2.4.2.3. データベース関連機能<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データベースに関する機能は、 <code class="docutils literal"><span class="pre">RestTestSupport</span></code> クラスから <code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> クラスに処理を委譲することで実現している。
+<code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> クラスの詳細は、<a class="reference internal" href="02_DbAccessTest.html"><em>データベースを使用するクラスのテスト</em></a>を参照。</p>
+<p>ただし、 <code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> のうち以下のメソッドは、リクエスト単体テスト(REST)では不要であり、アプリケーションプログラマに誤解を与えないよう、意図的に委譲を行っていない。</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">beginTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">commitTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">endTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">setThreadContextValues(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">assertSqlResultSetEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">SqlResultSet</span> <span class="pre">actual)</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">assertSqlRowEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">SqlRow</span> <span class="pre">actual)</span></code></li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">利用者の利便性を考慮し、データベース関連機能の委譲を行っている。しかしRESTfulウェブサービスの単体テストにおいては、委譲された <code class="docutils literal"><span class="pre">assertTableEquals</span></code> などを使って
+データベースのテーブル内容を確認するテストより、サービスとして公開されたAPIに問い合わせることで
+データベースに依存することなくシステムが持つデータを確認するテストを推奨する。</p>
+</div>
+</div>
+<div class="section" id="rest-test-helper">
+<span id="id8"></span><h3>3.2.4.2.4. 事前準備補助機能<a class="headerlink" href="#rest-test-helper" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>内蔵サーバへのリクエスト送信には、 <code class="docutils literal"><span class="pre">HttpRequest</span></code> のインスタンスが必要となる。<code class="docutils literal"><span class="pre">RestTestSupport</span></code> クラスでは、 <code class="docutils literal"><span class="pre">HttpRequest</span></code> をリクエスト単体テスト用に拡張した<code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> のオブジェクトを簡単に作成できるよう4つのメソッドを用意している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">RestMockHttpRequest</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">post</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>引数には、以下の値を引き渡す。</p>
+<ul class="simple">
+<li>テスト対象となるリクエストURI</li>
+</ul>
+<p>これらのメソッドでは、受け取ったリクエストURIを元に <code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> インスタンスを生成し、メソッド名に応じたHTTPメソッドを設定した上で返却する。リクエストパラメータなどURI以外のデータを設定したい場合は、本メソッド呼び出しにより取得したインスタンスに対してデータの設定を行うとよい。</p>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p><code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> は流れるようなインターフェイスでパラメータなどを設定できるよう
+メソッドをオーバーライドして自身のインスタンスを返すようにしてある。
+使用できるメソッドの詳細は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/RestMockHttpRequest.html" title="nablarch.fw.web.RestMockHttpRequest">Javadoc</a> を参照</p>
+<p>リクエストを構築する例</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">RestMockHttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">post</span><span class="o">(</span><span class="s">&quot;/projects&quot;</span><span class="o">)</span>
+                                  <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Authorization&quot;</span><span class="o">,</span><span class="s">&quot;Bearer token&quot;</span><span class="o">)</span>
+                                  <span class="o">.</span><span class="na">setCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rest-test-execute">
+<span id="id9"></span><h3>3.2.4.2.5. 実行<a class="headerlink" href="#rest-test-execute" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">RestTestSupport</span></code>  にある下記のメソッドを呼び出すことで、内蔵サーバが起動されリクエストが送信される。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">HttpResponse</span> <span class="nf">sendRequest</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rest-test-assert">
+<span id="id10"></span><h3>3.2.4.2.6. 結果確認<a class="headerlink" href="#rest-test-assert" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id11">
+<h4>3.2.4.2.6.1. ステータスコード<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">RestTestSupport</span></code> にある下記のメソッドを呼び出すことで、レスポンスのHTTPステータスコードが想定通りであることを確認する。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">assertStatusCode</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="n">HttpResponse</span><span class="o">.</span><span class="na">Status</span> <span class="n">expected</span><span class="o">,</span> <span class="n">HttpResponse</span> <span class="n">response</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>引数には、以下の値を引き渡す。</p>
+<ul class="simple">
+<li>アサート失敗時のメッセージ</li>
+<li>期待するステータス( <code class="docutils literal"><span class="pre">HttpResponse.Status</span></code> のEnum)</li>
+<li>内蔵サーバから返却された <code class="docutils literal"><span class="pre">HttpResponse</span></code> インスタンス</li>
+</ul>
+<p>期待するステータスコードとレスポンスのステータスコードが一致しなかった場合アサート失敗となる。</p>
+</div>
+<div class="section" id="id12">
+<h4>3.2.4.2.6.2. レスポンスボディ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>レスポンスボディの検証についてはフレームワークでは仕組みを用意していない。
+各プロジェクトの要件に合わせて <a class="reference external" href="http://jsonassert.skyscreamer.org/">JSONAssert(外部サイト、英語)</a> や
+<a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(外部サイト、英語)</a> 、
+<a class="reference external" href="https://github.com/xmlunit/user-guide/wiki">XMLUnit(外部サイト、英語)</a> などのライブラリを使用すること。</p>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTfulウェブサービスのブランクプロジェクト</em></a>を作成した場合
+上記の <a class="reference external" href="http://jsonassert.skyscreamer.org/">JSONAssert(外部サイト、英語)</a> 、
+<a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(外部サイト、英語)</a> 、
+<a class="reference external" href="https://github.com/xmlunit/user-guide/wiki">XMLUnit(外部サイト、英語)</a> がpom.xmlに記載されている。
+必要に応じてライブラリの削除や差し替えを行うこと。</p>
+</div>
+<p><strong>レスポンスボディ検証の補助機能</strong></p>
+<p>レスポンスボディの検証をする際に、期待されるボディをJSONファイルやXMLファイルとして用意したい場合がある。
+JSONAssertのように外部ライブラリが期待値として <code class="docutils literal"><span class="pre">String</span></code> しか引数に受け付けない場合に対応するため
+<code class="docutils literal"><span class="pre">RestTestSupport</span></code> にはファイルを読み込み <code class="docutils literal"><span class="pre">String</span></code> に変換するメソッドを用意している。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="nf">readTextResource</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>このメソッドでは、以下のようにテストクラスと同じ名前のディレクトリにあるリソースから
+引数で指定したファイル名でファイルを読み込み <code class="docutils literal"><span class="pre">String</span></code> に変換する。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="43%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ファイルの種類</th>
+<th class="head">配置ディレクトリ</th>
+<th class="head">ファイル名</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>テストクラスソースファイル</td>
+<td>&lt;PROJECT_ROOT&gt;/test/java/com/example/</td>
+<td>SampleTest.java</td>
+</tr>
+<tr class="row-odd"><td>レスポンスボディの期待値ファイル</td>
+<td>&lt;PROJECT_ROOT&gt;/test/resources/com/example/SampleTest</td>
+<td>response.json(引数のfileNameに指定)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="rest-test-configuration">
+<span id="id16"></span><h2>3.2.4.3. 各種設定値<a class="headerlink" href="#rest-test-configuration" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>環境設定に依存する設定値については、コンポーネント設定ファイルで変更できる。設定可能な項目を以下に示す。</p>
+<div class="section" id="id17">
+<h3>3.2.4.3.1. コンポーネント設定ファイル設定項目一覧<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="47%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">設定項目名</th>
+<th class="head">説明</th>
+<th class="head">デフォルト値</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>webBaseDir</td>
+<td>ウェブアプリケーションのルートディレクトリ<a class="footnote-reference" href="#id20" id="id18">[1]</a></td>
+<td>src/main/webapp</td>
+</tr>
+<tr class="row-odd"><td>webFrontControllerKey</td>
+<td>Webフロントコントローラーのリポジトリキー<a class="footnote-reference" href="#id21" id="id19">[2]</a></td>
+<td>webFrontController</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id18">[1]</a></td><td><p class="first">PJ共通のwebモジュールが存在する場合、このプロパティにカンマ区切りでディレクトリを設定する。
+複数指定された場合、先頭から順にリソースが読み込まれる。</p>
+<p>以下に例を示す。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;restTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.RestTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webBaseDir&quot;</span> <span class="na">value=</span><span class="s">&quot;/path/to/web-a/,/path/to/web-common&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p class="last">この場合、web-a、web-commonの順にリソースが探索される。</p>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id19">[2]</a></td><td><p class="first">ウェブアプリケーション実行基盤とウェブサービス実行基盤をひとつのWarで実行する場合など
+<a class="reference internal" href="../../../../../application_framework/application_framework/web/feature_details/web_front_controller.html#web-front-controller"><span>Webフロントコントローラー</span></a> をデフォルトの&#8221;webFrontController&#8221;以外の名前で
+コンポーネント登録する場合がある。
+そのような場合は、このプロパティにウェブサービスで使用するWebフロントコントローラーのリポジトリキーを設定することで
+内蔵サーバで実行されるハンドラを制御することができる。</p>
+<p>以下に例を示す。</p>
+<p>ウェブアプリケーション実行基盤用のWebフロントコントローラー( <code class="docutils literal"><span class="pre">webFrontController</span></code> )と
+ウェブサービス実行基盤用のWebフロントコントローラー( <code class="docutils literal"><span class="pre">jaxrsController</span></code> )が登録されているコンポーネント定義。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- ハンドラキュー構成 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpCharacterEncodingHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.GlobalErrorHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.handler.threadcontext.ThreadContextClearHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpResponseHandler&quot;</span><span class="nt">/&gt;</span>
+      ・
+      ・
+      ・
+      (略)
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;jaxrsController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpCharacterEncodingHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.GlobalErrorHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsResponseHandler&quot;</span><span class="nt">/&gt;</span>
+      ・
+      ・
+      ・
+      (略)
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>デフォルト設定でRESTfulウェブサービス実行基盤向けテスティングフレームワークを使用すると
+&#8220;webFrontController&#8221;が使用されるため、ウェブアプリケーション向けのWebフロントコントローラーが実行される。
+以下のように設定を上書きすることでウェブサービス向けのWebフロントコントローラーを使用できる。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/test/rest-request-test.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="c">&lt;!--  デフォルトのコンポーネント定義をimport後に上書きする。--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;restTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.RestTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webFrontControllerKey&quot;</span> <span class="na">value=</span><span class="s">&quot;jaxrsController&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u18',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

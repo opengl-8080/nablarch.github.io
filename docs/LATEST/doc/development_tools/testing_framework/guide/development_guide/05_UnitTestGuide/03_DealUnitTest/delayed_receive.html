@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.13. 取引単体テストの実施方法（応答不要メッセージ受信処理） &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3.1.15. 取引単体テストの実施方法（応答不要メッセージ受信処理） &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/delayed_receive.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
-        <link rel="next" title="3.1.14. リクエスト単体テストの実施方法（HTTP同期応答メッセージ受信処理）" href="../02_RequestUnitTest/http_real.html"/>
-        <link rel="prev" title="3.1.12. リクエスト単体テストの実施方法（応答不要メッセージ受信処理）" href="../02_RequestUnitTest/delayed_receive.html"/>
+        <link rel="next" title="3.1.16. リクエスト単体テストの実施方法（HTTP同期応答メッセージ受信処理）" href="../02_RequestUnitTest/http_real.html"/>
+        <link rel="prev" title="3.1.14. リクエスト単体テストの実施方法（応答不要メッセージ受信処理）" href="../02_RequestUnitTest/delayed_receive.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -310,11 +314,11 @@
       
           <li><a href="../../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
-    <li>3.1.13. 取引単体テストの実施方法（応答不要メッセージ受信処理）</li>
+    <li>3.1.15. 取引単体テストの実施方法（応答不要メッセージ受信処理）</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -328,7 +332,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>3.1.13. 取引単体テストの実施方法（応答不要メッセージ受信処理）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>3.1.15. 取引単体テストの実施方法（応答不要メッセージ受信処理）<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>取引単体テストの実施方法は、同期応答メッセージン受信処理と同じである。
 実施方法の詳細は<a class="reference internal" href="real.html"><em>取引単体テストの実施方法（同期応答メッセージ受信処理)</em></a>を参照すること。</p>
 </div>
@@ -366,7 +370,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

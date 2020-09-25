@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3.1.20. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理) &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/http_send_sync.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
-        <link rel="next" title="3.1.19. リクエスト単体テストの実施方法(メール送信)" href="mail.html"/>
-        <link rel="prev" title="3.1.17. 取引単体テストの実施方法（応答不要メッセージ送信処理）" href="../03_DealUnitTest/delayed_send.html"/>
+        <link rel="next" title="3.1.21. リクエスト単体テストの実施方法(メール送信)" href="mail.html"/>
+        <link rel="prev" title="3.1.19. 取引単体テストの実施方法（応答不要メッセージ送信処理）" href="../03_DealUnitTest/delayed_send.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -310,11 +314,11 @@
       
           <li><a href="../../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
-    <li>3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)</li>
+    <li>3.1.20. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -328,14 +332,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="http">
-<span id="message-httpsendsyncmessage-test"></span><h1>3.1.18. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="message-httpsendsyncmessage-test"></span><h1>3.1.20. リクエスト単体テストの実施方法(HTTP同期応答メッセージ送信処理)<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>リクエスト単体テスト実施方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。</p>
 <p>ただし、「送信キュー」「受信キュー」を「通信先」と読み替えること。</p>
 <p>本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と異なる箇所の解説を行う。</p>
 <div class="section" id="http-send-sync-request-write-test-data">
-<span id="id1"></span><h2>3.1.18.1. テストデータの書き方<a class="headerlink" href="#http-send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id1"></span><h2>3.1.20.1. テストデータの書き方<a class="headerlink" href="#http-send-sync-request-write-test-data" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
-<h3>3.1.18.1.1. 電文を1回送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.20.1.1. 電文を1回送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下に、電文を1回送信する場合の返却する応答電文の記述例を示す。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_response.png"><img alt="../../../../../../_images/http_send_sync_response.png" src="../../../../../../_images/http_send_sync_response.png" /></a>
 <div class="admonition tip">
@@ -353,7 +357,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h3>3.1.18.1.2. 電文を2回以上送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.20.1.2. 電文を2回以上送信する場合の要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の例<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>複数回電文送信を行う場合のテストは、テスティングフレームワークの以下の仕様に注意をして記述すること。</p>
 <ul class="simple">
 <li>同一データタイプ(以下の例では <code class="docutils literal"><span class="pre">RESPONSE_HEADER_MESSAGES</span></code> と <code class="docutils literal"><span class="pre">RESPONSE_BODY_MESSAGES</span></code> )は、それぞれ、まとめて記述する。詳細は、 <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>一つのシートに複数テストケースのデータを記載したい</span></a>及び、 <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#auto-test-framework-multi-datatype"><span>複数のデータタイプ使用時はデータタイプごとにまとめてデータを記述する</span></a>を参照。</li>
@@ -370,7 +374,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h3>3.1.18.1.3. モックアップを使用するための記述<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.20.1.3. モックアップを使用するための記述<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>testShotsに <code class="docutils literal"><span class="pre">expectedMessageByClient</span></code> および <code class="docutils literal"><span class="pre">responseMessageByClient</span></code> にグループIDを設定する。モックアップ自体については、<a class="reference internal" href="../03_DealUnitTest/send_sync.html#dealunittest-send-sync"><span>同期応答メッセージ送信処理を伴う取引単体テストの実施方法</span></a>を参照。</p>
 <p>グループIDの関連については<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>における <code class="docutils literal"><span class="pre">expectedMessage</span></code> および <code class="docutils literal"><span class="pre">responseMessage</span></code> の場合と同様であるため割愛する。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/http_send_sync_shot.png"><img alt="../../../../../../_images/http_send_sync_shot.png" src="../../../../../../_images/http_send_sync_shot.png" /></a>
@@ -388,16 +392,16 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h3>3.1.18.1.4. 要求電文のアサート<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.20.1.4. 要求電文のアサート<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テストデータのディレクティブ行に設定されたfile-typeの値により、要求電文のアサート方法が変化する。</p>
 <p>設定方法やアサート内容についての詳細は <a class="reference internal" href="real.html#real-request-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a> のレスポンスメッセージの項を参照すること。</p>
 </div>
 </div>
 <div class="section" id="id6">
-<h2>3.1.18.2. フレームワークで使用するクラスの設定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.1.20.2. フレームワークで使用するクラスの設定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>通常、これらの設定はアーキテクトが行うものでありアプリケーションプログラマが設定する必要はない。</p>
 <div class="section" id="id7">
-<h3>3.1.18.2.1. モックアップクラスの設定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.1.20.2.1. モックアップクラスの設定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント設定ファイルに、リクエスト単体テストで使用するモックアップクラスを設定する。</p>
 <blockquote>
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- HTTP通信用クライアント --&gt;</span>
@@ -447,7 +451,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

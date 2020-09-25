@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6.4.3. JAX-RSレスポンスハンドラ &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>6.4.3. JAX-RSレスポンスハンドラ &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,9 +35,9 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/rest/jaxrs_response_handler.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.4. RESTfulウェブサービス専用ハンドラ" href="index.html"/>
-        <link rel="next" title="6.5. HTTPメッセージング専用ハンドラ" href="../http_messaging/index.html"/>
+        <link rel="next" title="6.4.4. CORSプリフライトリクエストハンドラ" href="cors_preflight_request_handler.html"/>
         <link rel="prev" title="6.4.2. JAX-RS BeanValidationハンドラ" href="jaxrs_bean_validation_handler.html"/>
  
 
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -334,14 +338,15 @@
 <div class="contents local topic" id="id1">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id2" id="id10">ハンドラクラス名</a></li>
-<li><a class="reference internal" href="#id3" id="id11">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id4" id="id12">制約</a></li>
-<li><a class="reference internal" href="#jaxrs-response-handler-error-response" id="id13">例外及びエラーに応じたレスポンスの生成</a></li>
-<li><a class="reference internal" href="#jaxrs-response-handler-error-log" id="id14">例外及びエラーに応じたログ出力</a></li>
-<li><a class="reference internal" href="#id7" id="id15">拡張例</a><ul>
-<li><a class="reference internal" href="#jaxrs-response-handler-error-response-body" id="id16">エラー時のレスポンスにメッセージを設定する</a></li>
-<li><a class="reference internal" href="#jaxrs-response-handler-individually-error-response" id="id17">特定のエラーの場合に個別に定義したエラーレスポンスを返却する</a></li>
+<li><a class="reference internal" href="#id2" id="id11">ハンドラクラス名</a></li>
+<li><a class="reference internal" href="#id3" id="id12">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id4" id="id13">制約</a></li>
+<li><a class="reference internal" href="#jaxrs-response-handler-error-response" id="id14">例外及びエラーに応じたレスポンスの生成</a></li>
+<li><a class="reference internal" href="#jaxrs-response-handler-error-log" id="id15">例外及びエラーに応じたログ出力</a></li>
+<li><a class="reference internal" href="#id7" id="id16">拡張例</a><ul>
+<li><a class="reference internal" href="#jaxrs-response-handler-error-response-body" id="id17">エラー時のレスポンスにメッセージを設定する</a></li>
+<li><a class="reference internal" href="#jaxrs-response-handler-individually-error-response" id="id18">特定のエラーの場合に個別に定義したエラーレスポンスを返却する</a></li>
+<li><a class="reference internal" href="#jaxrs-response-handler-response-finisher" id="id19">クライアントに返すレスポンスに共通処理を追加する</a></li>
 </ul>
 </li>
 </ul>
@@ -358,15 +363,15 @@
 <li>クライアントへのレスポンスの返却を行う。</li>
 </ul>
 <p>処理の流れは以下のとおり。</p>
-<a class="reference internal image-reference" href="../../../../_images/flow16.png"><img alt="../../../../_images/flow16.png" src="../../../../_images/flow16.png" /></a>
+<a class="reference internal image-reference" href="../../../../_images/flow17.png"><img alt="../../../../_images/flow17.png" src="../../../../_images/flow17.png" /></a>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id10">6.4.3.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">6.4.3.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsResponseHandler.html" title="nablarch.fw.jaxrs.JaxRsResponseHandler">nablarch.fw.jaxrs.JaxRsResponseHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id11">6.4.3.2. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">6.4.3.2. モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-jaxrs<span class="nt">&lt;/artifactId&gt;</span>
@@ -375,11 +380,11 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id12">6.4.3.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">6.4.3.3. 制約</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>なし。</p>
 </div>
 <div class="section" id="jaxrs-response-handler-error-response">
-<span id="id5"></span><h2><a class="toc-backref" href="#id13">6.4.3.4. 例外及びエラーに応じたレスポンスの生成</a><a class="headerlink" href="#jaxrs-response-handler-error-response" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2><a class="toc-backref" href="#id14">6.4.3.4. 例外及びエラーに応じたレスポンスの生成</a><a class="headerlink" href="#jaxrs-response-handler-error-response" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>例外及びエラーに応じたレスポンス情報の生成は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsResponseHandler.html#setErrorResponseBuilder-nablarch.fw.jaxrs.ErrorResponseBuilder-" title="nablarch.fw.jaxrs.JaxRsResponseHandler.setErrorResponseBuilder(nablarch.fw.jaxrs.ErrorResponseBuilder)">errorResponseBuilder</a> プロパティに設定された
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/ErrorResponseBuilder.html" title="nablarch.fw.jaxrs.ErrorResponseBuilder">ErrorResponseBuilder</a> により行われる。
 ただし、発生した例外クラスが <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpErrorResponse.html" title="nablarch.fw.web.HttpErrorResponse">HttpErrorResponse</a> の場合は、
@@ -395,9 +400,16 @@
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">ErrorResponseBuilderは例外及びエラーに応じたレスポンス生成を行う役割のため、ErrorResponseBuilderの処理中に例外が発生するとレスポンスが生成されず、クライアントにレスポンスを返せない状態となる。
+そのため、プロジェクトでErrorResponseBuilderをカスタマイズする場合は、ErrorResponseBuilderの処理中に例外が発生しないように実装すること。
+ErrorResponseBuilderの処理中に例外が発生した場合、フレームワークはErrorResponseBuilderの処理中に発生した例外をWARNレベルで
+ログ出力を行い、ステータスコード500のレスポンスを生成し、後続処理を継続する。</p>
+</div>
 </div>
 <div class="section" id="jaxrs-response-handler-error-log">
-<span id="id6"></span><h2><a class="toc-backref" href="#id14">6.4.3.5. 例外及びエラーに応じたログ出力</a><a class="headerlink" href="#jaxrs-response-handler-error-log" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id6"></span><h2><a class="toc-backref" href="#id15">6.4.3.5. 例外及びエラーに応じたログ出力</a><a class="headerlink" href="#jaxrs-response-handler-error-log" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>例外及びエラーに応じたログ出力は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsResponseHandler.html#setErrorLogWriter-nablarch.fw.jaxrs.JaxRsErrorLogWriter-" title="nablarch.fw.jaxrs.JaxRsResponseHandler.setErrorLogWriter(nablarch.fw.jaxrs.JaxRsErrorLogWriter)">errorLogWriter</a> プロパティに設定された
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsErrorLogWriter.html" title="nablarch.fw.jaxrs.JaxRsErrorLogWriter">JaxRsErrorLogWriter</a> により行われる。</p>
 <p>設定を省略した場合は、デフォルト実装の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/JaxRsErrorLogWriter.html" title="nablarch.fw.jaxrs.JaxRsErrorLogWriter">JaxRsErrorLogWriter</a> が使用される。
@@ -412,9 +424,9 @@
 </div>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id15">6.4.3.6. 拡張例</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">6.4.3.6. 拡張例</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="jaxrs-response-handler-error-response-body">
-<span id="id8"></span><h3><a class="toc-backref" href="#id16">6.4.3.6.1. エラー時のレスポンスにメッセージを設定する</a><a class="headerlink" href="#jaxrs-response-handler-error-response-body" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id17">6.4.3.6.1. エラー時のレスポンスにメッセージを設定する</a><a class="headerlink" href="#jaxrs-response-handler-error-response-body" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バリデーションエラー発生時など、エラーレスポンスのボディにエラーメッセージを設定して返却したい場合がある。
 このような場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/ErrorResponseBuilder.html" title="nablarch.fw.jaxrs.ErrorResponseBuilder">ErrorResponseBuilder</a> の継承クラスを作成して対応する。</p>
 <p>以下に、JSON形式のエラーメッセージをレスポンスに設定する場合の実装例を示す。</p>
@@ -450,7 +462,7 @@
 </div>
 </div>
 <div class="section" id="jaxrs-response-handler-individually-error-response">
-<span id="id9"></span><h3><a class="toc-backref" href="#id17">6.4.3.6.2. 特定のエラーの場合に個別に定義したエラーレスポンスを返却する</a><a class="headerlink" href="#jaxrs-response-handler-individually-error-response" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id18">6.4.3.6.2. 特定のエラーの場合に個別に定義したエラーレスポンスを返却する</a><a class="headerlink" href="#jaxrs-response-handler-individually-error-response" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>本ハンドラの後続の処理で発生したエラーに対し、
 個別にステータスコードやボディを定義したエラーレスポンスを返却したい場合がある。</p>
 <p>その場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/ErrorResponseBuilder.html" title="nablarch.fw.jaxrs.ErrorResponseBuilder">ErrorResponseBuilder</a> の継承クラスを作成し、
@@ -468,6 +480,50 @@
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jaxrs-response-handler-response-finisher">
+<span id="id10"></span><h3><a class="toc-backref" href="#id19">6.4.3.6.3. クライアントに返すレスポンスに共通処理を追加する</a><a class="headerlink" href="#jaxrs-response-handler-response-finisher" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>正常時やエラー発生時を問わず、クライアントに返すレスポンスに対してCORS対応やセキュリティ対応で共通的にレスポンスヘッダを指定したい場合がある。</p>
+<p>そのような場合に対応するため、フレームワークはレスポンスを仕上げる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/ResponseFinisher.html" title="nablarch.fw.jaxrs.ResponseFinisher">ResponseFinisher</a> インタフェースを提供している。
+レスポンスに共通処理を追加したい場合は、ResponseFinisherインタフェースを実装したクラスを作成し、
+本ハンドラのresponseFinishersプロパティに指定すればよい。</p>
+<p>実装例と設定例を以下に示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomResponseFinisher</span> <span class="kd">implements</span> <span class="n">ResponseFinisher</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">finish</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// レスポンスヘッダを設定するなど、共通処理を行う。</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsResponseHandler&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;responseFinishers&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- ResponseFinisherを実装したクラスを指定 --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.CustomResponseFinisher&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>セキュリティ関連のレスポンスヘッダを設定する <a class="reference internal" href="../web/secure_handler.html#secure-handler"><span>セキュアハンドラ</span></a> のような既存のハンドラをResponseFinisherとして利用したい場合がある。
+このような場合に対応するため、ハンドラをResponseFinisherに適用する
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/jaxrs/AdoptHandlerResponseFinisher.html" title="nablarch.fw.jaxrs.AdoptHandlerResponseFinisher">AdoptHandlerResponseFinisher</a> クラスを提供している。</p>
+<p>AdoptHandlerResponseFinisherで使用できるハンドラは、自らレスポンスを作成せず、後続ハンドラが返すレスポンスに変更を加えるハンドラに限定される。</p>
+<p>AdoptHandlerResponseFinisherの使用例を下記に示す。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsResponseHandler&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;responseFinishers&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- AdoptHandlerResponseFinisher --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.AdoptHandlerResponseFinisher&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- handlerプロパティにハンドラを指定 --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handler&quot;</span> <span class="na">ref=</span><span class="s">&quot;secureHandler&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -507,7 +563,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

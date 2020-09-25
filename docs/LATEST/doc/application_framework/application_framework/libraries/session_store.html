@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.17. セッションストア &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>7.17. セッションストア &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/session_store.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.17.4.2.1. 登録機能での実装例" href="session_store/create_example.html"/>
         <link rel="prev" title="7.16. サービス提供可否チェック" href="service_availability.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -405,6 +409,7 @@
 <li><a class="reference internal" href="#session-store-http-session-store"><span>HTTPセッションストア</span></a></li>
 </ul>
 <p>セッションストアの特長や選択基準については、 <a class="reference internal" href="#session-store-future-of-store"><span>セッションストアの特長と選択基準</span></a> を参照。</p>
+<p>また、 <a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redisストア(Lettuce)アダプタ</span></a> を使用することで、Redisを保存先として使用することもできる。</p>
 </div>
 <div class="section" id="session-store-serialize">
 <span id="id5"></span><h3><a class="toc-backref" href="#id26">7.17.1.2. セッション変数の直列化の仕組みを選択できる</a><a class="headerlink" href="#session-store-serialize" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -866,12 +871,17 @@ Java8で追加された <code class="docutils literal"><span class="pre">java.ut
 <tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id18">1</a>, <a class="fn-backref" href="#id19">2</a>)</em> 画面表示に使用する値はリクエストスコープを使用して受け渡しを行えばよい。</td></tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last"><a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redisストア(Lettuce)アダプタ</span></a> については、保存先が異なるだけで特徴はDBストアと同じになる。</p>
+</div>
 </div>
 <div class="section" id="session-store-expiration">
 <span id="id23"></span><h2><a class="toc-backref" href="#id40">7.17.7. 有効期間の管理方法</a><a class="headerlink" href="#session-store-expiration" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>セッションの有効期間はデフォルトではHTTPセッションに保存されている。
 設定を変更することで有効期間の保存先をデータベースにすることができる。</p>
 <p>詳細は <a class="reference internal" href="../handlers/web/SessionStoreHandler.html#db-managed-expiration"><span>有効期間をデータベースに保存する</span></a> を参照。</p>
+<p>また、 <a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redisストア(Lettuce)アダプタ</span></a> を使用した場合は有効期限をRedisに保存できる。</p>
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
 <p class="last">有効期間をデータベースに保存する意義については <a class="reference internal" href="stateless_web_app.html#stateless-web-app"><span>Webアプリケーションをステートレスにする</span></a> 参照。</p>
@@ -912,7 +922,7 @@ Java8で追加された <code class="docutils literal"><span class="pre">java.ut
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

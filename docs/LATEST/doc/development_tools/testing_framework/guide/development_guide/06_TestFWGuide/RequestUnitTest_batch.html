@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.4. リクエスト単体テスト（バッチ処理） &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3.2.5. リクエスト単体テスト（バッチ処理） &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_batch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
-        <link rel="next" title="3.2.5. リクエスト単体テスト（メッセージ受信処理）" href="RequestUnitTest_real.html"/>
-        <link rel="prev" title="3.2.3. リクエスト単体テスト（ウェブアプリケーション）" href="02_RequestUnitTest.html"/>
+        <link rel="next" title="3.2.6. リクエスト単体テスト（メッセージ受信処理）" href="RequestUnitTest_real.html"/>
+        <link rel="prev" title="3.2.4. リクエスト単体テスト（RESTfulウェブサービス）" href="RequestUnitTest_rest.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. テスティングフレームワーク</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -310,11 +314,11 @@
       
           <li><a href="../../../../index.html">Nablarch開発ツール</a> &raquo;</li>
       
-          <li><a href="../../../index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a> &raquo;</li>
+          <li><a href="../../../index.html">3. テスティングフレームワーク</a> &raquo;</li>
       
           <li><a href="index.html">3.2. 自動テストフレームワークの使用方法</a> &raquo;</li>
       
-    <li>3.2.4. リクエスト単体テスト（バッチ処理）</li>
+    <li>3.2.5. リクエスト単体テスト（バッチ処理）</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -328,17 +332,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="request-util-test-batch">
-<span id="id1"></span><h1>3.2.4. リクエスト単体テスト（バッチ処理）<a class="headerlink" href="#request-util-test-batch" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>3.2.5. リクエスト単体テスト（バッチ処理）<a class="headerlink" href="#request-util-test-batch" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.2.4.1. 概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.2.5.1. 概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>リクエスト単体テスト（バッチ処理)では、実際にバッチをコマンドラインから起動したときの動作を擬似的に再現し、テストを行う。</p>
 <div class="section" id="id3">
-<h3>3.2.4.1.1. 全体像<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.1.1. 全体像<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <a class="reference internal image-reference" href="../../../../../_images/batch_request_test_class.png"><img alt="../../../../../_images/batch_request_test_class.png" src="../../../../../_images/batch_request_test_class.png" /></a>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>3.2.4.2. 主なクラス, リソース<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.2.5.2. 主なクラス, リソース<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="19%" />
@@ -388,14 +392,14 @@
 </table>
 </div>
 <div class="section" id="id5">
-<h2>3.2.4.3. 構造<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.2.5.3. 構造<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="standalonetestsupporttemplate">
-<h3>3.2.4.3.1. StandaloneTestSupportTemplate<a class="headerlink" href="#standalonetestsupporttemplate" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.3.1. StandaloneTestSupportTemplate<a class="headerlink" href="#standalonetestsupporttemplate" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バッチやメッセージング処理などコンテナ外で動作する処理のテスト実行環境を提供する。
 テストデータを読み取り、全テストショット(<a class="reference internal" href="#testshot">TestShot</a> )を実行する。</p>
 </div>
 <div class="section" id="testshot">
-<h3>3.2.4.3.2. TestShot<a class="headerlink" href="#testshot" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.3.2. TestShot<a class="headerlink" href="#testshot" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>1テストショットの情報保持とテストショット実行を行う。テストショットは以下の要素で成り立っている。</p>
 <ul class="simple">
 <li>入力データの準備</li>
@@ -429,7 +433,7 @@
 <p>入力データ準備や結果確認ロジックはバッチや各種メッセージング処理ごとに異なるので方式に応じたカスタマイズが可能となっている。</p>
 </div>
 <div class="section" id="batchrequesttestsupport">
-<h3>3.2.4.3.3. BatchRequestTestSupport<a class="headerlink" href="#batchrequesttestsupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.3.3. BatchRequestTestSupport<a class="headerlink" href="#batchrequesttestsupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>バッチ処理テスト用のスーパクラス。アプリケーションプログラマは本クラスを継承してテストクラスを作成する。</p>
 <p>本クラスは、<a class="reference internal" href="#testshot">TestShot</a> が提供する準備処理、結果確認に以下の機能を追加する。</p>
 <blockquote>
@@ -454,7 +458,7 @@
 <p>具体的な使用方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html"><em>リクエスト単体テストの実施方法(バッチ)</em></a>を参照。</p>
 </div>
 <div class="section" id="mainforrequesttesting">
-<h3>3.2.4.3.4. MainForRequestTesting<a class="headerlink" href="#mainforrequesttesting" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.3.4. MainForRequestTesting<a class="headerlink" href="#mainforrequesttesting" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>リクエスト単体テスト用のメインクラス。本番用メインクラスとの主な差異は以下の通り。</p>
 <ul class="simple">
 <li>テスト用のコンポーネント設定ファイルからシステムリポジトリを初期化する。</li>
@@ -462,7 +466,7 @@
 </ul>
 </div>
 <div class="section" id="filesupport">
-<h3>3.2.4.3.5. FileSupport<a class="headerlink" href="#filesupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.3.5. FileSupport<a class="headerlink" href="#filesupport" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ファイルに関する操作を提供するクラス。
 主に以下の機能を提供する。</p>
 <ul class="simple">
@@ -473,21 +477,21 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2>3.2.4.4. テストデータ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.2.5.4. テストデータ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>バッチ処理固有のテストデータについて説明する。</p>
 <blockquote>
 <div></div></blockquote>
 <div class="section" id="about-fixed-length-file">
-<span id="id7"></span><h3>3.2.4.4.1. 固定長ファイル<a class="headerlink" href="#about-fixed-length-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id7"></span><h3>3.2.5.4.1. 固定長ファイル<a class="headerlink" href="#about-fixed-length-file" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html#batch-request-test"><span>リクエスト単体テストの実施方法(バッチ)</span></a>を参照。</p>
 <div class="section" id="id8">
-<h4>3.2.4.4.1.1. パディング<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.2.5.4.1.1. パディング<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>指定したフィールド長に対して、データのバイト長が短い場合、
 そのフィールドのデータ型に応じたパディングが行われる。
 パディングのアルゴリズムはNablarch Application Framework本体と同様である。</p>
 </div>
 <div class="section" id="id9">
-<h4>3.2.4.4.1.2. バイナリデータの記述方法<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<h4>3.2.5.4.1.2. バイナリデータの記述方法<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>バイナリデータを表現するには、16進数形式でテストデータを記述する。
 例えば、<code class="docutils literal"><span class="pre">0x4AD</span></code>と記述した場合、<code class="docutils literal"><span class="pre">0000</span> <span class="pre">0100</span> <span class="pre">1010</span> <span class="pre">1101</span></code> (<code class="docutils literal"><span class="pre">0x04AD</span></code>)という2バイトのバイト配列に解釈される。</p>
 <div class="admonition tip">
@@ -499,14 +503,14 @@
 </div>
 </div>
 <div class="section" id="id10">
-<h3>3.2.4.4.2. 可変長ファイル<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.4.2. 可変長ファイル<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>基本的な記述方法は、<a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html#batch-request-test"><span>リクエスト単体テストの実施方法(バッチ)</span></a>を参照。</p>
 </div>
 </div>
 <div class="section" id="id11">
-<h2>3.2.4.5. 各種設定値<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>3.2.5.5. 各種設定値<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id12">
-<h3>3.2.4.5.1. 常駐バッチのテスト用ハンドラ構成<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.5.1. 常駐バッチのテスト用ハンドラ構成<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>常駐バッチのテストを実施する際には、プロダクション用ハンドラ構成をテスト用に変更する必要がある。
 この変更を行わずにテストを実施した場合、テスト対象の常駐バッチアプリケーションの処理が終わらないため、テストが正常に実施できなくなる。</p>
 <p><strong>【変更が必要なハンドラ】</strong></p>
@@ -554,7 +558,7 @@
 </ul>
 </div>
 <div class="section" id="id13">
-<h3>3.2.4.5.2. ディレクティブのデフォルト値<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>3.2.5.5.2. ディレクティブのデフォルト値<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ファイルのディレクティブがシステム内である程度統一されている場合、
 個々のテストデータに同じディレクティブを記載することは冗長である。</p>
 <p>このような場合には、デフォルトのディレクティブを
@@ -638,7 +642,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.4.2. 汎用データフォーマット &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>7.4.2. 汎用データフォーマット &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_format.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.4. 様々なフォーマットのデータへのアクセス" href="../data_converter.html"/>
         <link rel="next" title="7.4.2.3.1.1. フォーマット定義ファイルの記述ルール" href="data_format/format_definition.html"/>
         <link rel="prev" title="7.4.1. データバインド" href="data_bind.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -552,6 +556,21 @@ field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1">
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last">出力するデータに不正な値が設定されていた場合に正しく処理できない可能性があるため、事前にアプリケーション側で不正な値でないかをチェックすること。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>デフォルトの動作では1レコード毎にファイルへの書き込みを行う。
+大量データを出力する場合はレコード毎にファイルに書き込むと性能要件を満たせない可能性がある。
+そのような場合は、1レコード毎でなく指定したバッファサイズで書き込みを行うようにデフォルトの動作を変更して対応すること。</p>
+<p>下記のコンポーネント定義を追加することで、1レコード毎でなく指定したバッファサイズで書き込みを行うようにできる。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- コンポーネント名はdataFormatConfigとする --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;dataFormatConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.DataFormatConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;flushEachRecordInWriting&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p class="last">出力に使用するバッファサイズは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a>
+の <cite>open</cite> メソッドで指定できる。</p>
 </div>
 </div>
 <div class="section" id="data-format-file-download">
@@ -1193,7 +1212,7 @@ text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

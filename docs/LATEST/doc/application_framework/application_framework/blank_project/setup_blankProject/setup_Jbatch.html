@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.3.3. JSR352に準拠したバッチプロジェクトの初期セットアップ &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>8.3.3. JSR352に準拠したバッチプロジェクトの初期セットアップ &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/setup_blankProject/setup_Jbatch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="8.3. 初期セットアップ手順" href="../FirstStep.html"/>
         <link rel="next" title="8.3.4. Nablarchバッチプロジェクトの初期セットアップ" href="setup_NablarchBatch.html"/>
         <link rel="prev" title="8.3.2. RESTfulウェブサービスプロジェクトの初期セットアップ" href="setup_WebService.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -388,9 +392,9 @@
 <p>カレントディレクトリを、ブランクプロジェクトを作成したいディレクトリ(任意のディレクトリで可)に変更し、以下のファイルを配置する。</p>
 <p><a class="reference download internal" href="../../../../_downloads/generateJbatchProject.bat" download=""><code class="xref download docutils literal"><span class="pre">バッチファイル</span></code></a></p>
 <p>配置後、引数に必要なパラメータを指定しbatファイルを実行する。</p>
-<p>generateJbatchProject.bat 5u17 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(任意)&gt;&gt;</p>
+<p>generateJbatchProject.bat 5u18 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(任意)&gt;&gt;</p>
 <p>上記コマンドに設定するパラメータは以下の通り。
-なお、nablarchのバージョンを変更したい場合には 5u17 を変更すること。</p>
+なお、nablarchのバージョンを変更したい場合には 5u18 を変更すること。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -463,11 +467,11 @@ mvn test
 [INFO] Building myapp-batch-ee 0.1.0
 [INFO] ------------------------------------------------------------------------
 (中略)
-2020-03-25 18:39:11.013 -WARN- nablarch.core.repository.di.config.xml.XmlComponentDefinitionLoader [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] component property was overridden. component name = businessDateProvider, property = dbTransactionManager
-18:39:11.060 INFO  c.z.h.HikariDataSource HikariPool-1 - Starting...
-18:39:11.411 INFO  c.z.h.p.PoolBase HikariPool-1 - Driver does not support get/set network timeout for connections. (org.h2.jdbc.JdbcConnection.getNetworkTimeout()I)
-18:39:11.415 INFO  c.z.h.HikariDataSource HikariPool-1 - Start completed.
-2020-03-25 18:39:11.499 -INFO- com.example.batchlet.SampleBatchlet [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] 削除件数：10件
+2020-04-28 10:32:31.096 -WARN- nablarch.core.repository.di.config.xml.XmlComponentDefinitionLoader [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] component property was overridden. component name = businessDateProvider, property = dbTransactionManager
+10:32:31.144 INFO  c.z.h.HikariDataSource HikariPool-1 - Starting...
+10:32:31.477 INFO  c.z.h.p.PoolBase HikariPool-1 - Driver does not support get/set network timeout for connections. (org.h2.jdbc.JdbcConnection.getNetworkTimeout()I)
+10:32:31.480 INFO  c.z.h.HikariDataSource HikariPool-1 - Start completed.
+2020-04-28 10:32:31.555 -INFO- com.example.batchlet.SampleBatchlet [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] 削除件数：10件
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.877 s - in com.example.batchlet.SampleBatchletTest
 [INFO]
 [INFO] Results:
@@ -526,10 +530,10 @@ mvn test
 </pre></div>
 </div>
 <p>実行に成功すると、以下のようなログが <code class="docutils literal"><span class="pre">./progress.log</span></code> に出力される。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:32:26.669 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] start job. job name: [sample-batchlet]
-2020-03-25 18:32:26.680 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] start step. job name: [sample-batchlet] step name: [step1]
-2020-03-25 18:32:26.923 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish step. job name: [sample-batchlet] step name: [step1] step status: [SUCCESS]
-2020-03-25 18:32:26.929 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish job. job name: [sample-batchlet]
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 10:35:27.002 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] start job. job name: [sample-batchlet]
+2020-04-28 10:35:27.011 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] start step. job name: [sample-batchlet] step name: [step1]
+2020-04-28 10:35:27.247 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish step. job name: [sample-batchlet] step name: [step1] step status: [SUCCESS]
+2020-04-28 10:35:27.255 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish job. job name: [sample-batchlet]
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -545,12 +549,12 @@ mvn test
 </pre></div>
 </div>
 <p>起動に成功すると、以下のようなログが <code class="docutils literal"><span class="pre">./progress.log</span></code> に出力される。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:33:43.331 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] start step. job name: [sample-etl] step name: [load]
-2020-03-25 18:33:43.345 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] input count: [10]
-2020-03-25 18:33:43.353 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] write table name: [SAMPLE_USER]
-2020-03-25 18:33:43.359 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] total tps: [769.23] current tps: [769.23] estimated end time: [2020/03/25 06:33:43.359] remaining count: [0]
-2020-03-25 18:33:43.365 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish step. job name: [sample-etl] step name: [load] step status: [COMPLETED]
-2020-03-25 18:33:43.370 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish job. job name: [sample-etl]
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 10:37:21.921 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] start step. job name: [sample-etl] step name: [load]
+2020-04-28 10:37:21.932 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] input count: [10]
+2020-04-28 10:37:21.944 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] write table name: [SAMPLE_USER]
+2020-04-28 10:37:21.954 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-etl] step name: [load] total tps: [500.00] current tps: [500.00] estimated end time: [2020/04/28 10:37:21.954] remaining count: [0]
+2020-04-28 10:37:21.963 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish step. job name: [sample-etl] step name: [load] step status: [COMPLETED]
+2020-04-28 10:37:21.973 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish job. job name: [sample-etl]
 </pre></div>
 </div>
 </div>
@@ -562,13 +566,13 @@ mvn test
 </pre></div>
 </div>
 <p>起動に成功すると、以下のようなログが <code class="docutils literal"><span class="pre">./progress.log</span></code> に出力される。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:34:50.681 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] start job. job name: [sample-chunk]
-2020-03-25 18:34:50.691 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] start step. job name: [sample-chunk] step name: [step1]
-2020-03-25 18:34:50.925 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] input count: [10]
-2020-03-25 18:34:50.960 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] total tps: [151.52] current tps: [151.52] estimated end time: [2020/03/25 06:34:50.959] remaining count: [5]
-2020-03-25 18:34:50.966 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] total tps: [243.90] current tps: [714.29] estimated end time: [2020/03/25 06:34:50.966] remaining count: [0]
-2020-03-25 18:34:50.977 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish step. job name: [sample-chunk] step name: [step1] step status: [COMPLETED]
-2020-03-25 18:34:50.984 -INFO- progress [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] finish job. job name: [sample-chunk]
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 10:39:46.955 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] start job. job name: [sample-chunk]
+2020-04-28 10:39:46.974 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] start step. job name: [sample-chunk] step name: [step1]
+2020-04-28 10:39:47.202 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] input count: [10]
+2020-04-28 10:39:47.235 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] total tps: [156.25] current tps: [156.25] estimated end time: [2020/04/28 10:39:47.235] remaining count: [5]
+2020-04-28 10:39:47.244 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] job name: [sample-chunk] step name: [step1] total tps: [243.90] current tps: [625.00] estimated end time: [2020/04/28 10:39:47.243] remaining count: [0]
+2020-04-28 10:39:47.257 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish step. job name: [sample-chunk] step name: [step1] step status: [COMPLETED]
+2020-04-28 10:39:47.263 -INFO- progress [null] boot_proc = [] proc_sys = [batch-ee] req_id = [null] usr_id = [null] finish job. job name: [sample-chunk]
 </pre></div>
 </div>
 <p>また、testdata/output/outputdata.csvに以下のデータが出力される。</p>
@@ -637,7 +641,7 @@ testdata/output/outputdata.csvの内容を確認する際、Excelで開くと化
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

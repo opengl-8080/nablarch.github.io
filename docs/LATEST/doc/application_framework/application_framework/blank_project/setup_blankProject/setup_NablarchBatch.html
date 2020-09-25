@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.3.4. Nablarchバッチプロジェクトの初期セットアップ &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>8.3.4. Nablarchバッチプロジェクトの初期セットアップ &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/setup_blankProject/setup_NablarchBatch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="8.3. 初期セットアップ手順" href="../FirstStep.html"/>
         <link rel="next" title="8.3.5. Java11で使用する場合のセットアップ方法" href="setup_Java11.html"/>
         <link rel="prev" title="8.3.3. JSR352に準拠したバッチプロジェクトの初期セットアップ" href="setup_Jbatch.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -390,9 +394,9 @@
 <p>カレントディレクトリを、ブランクプロジェクトを作成したいディレクトリ(任意のディレクトリで可)に変更し、以下のファイルを配置する。</p>
 <p><a class="reference download internal" href="../../../../_downloads/generateNablarchBatchProject.bat" download=""><code class="xref download docutils literal"><span class="pre">バッチファイル</span></code></a></p>
 <p>配置後、引数に必要なパラメータを指定しbatファイルを実行する。</p>
-<p>generateNablarchBatchProject.bat 5u17 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(任意)&gt;&gt;</p>
+<p>generateNablarchBatchProject.bat 5u18 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(任意)&gt;&gt;</p>
 <p>上記コマンドに設定するパラメータは以下の通り。
-なお、nablarchのバージョンを変更したい場合には 5u17 を変更すること。
+なお、nablarchのバージョンを変更したい場合には 5u18 を変更すること。
 カレントディレクトリを、ブランクプロジェクトを作成したいディレクトリ(任意のディレクトリで可)に変更する。</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -514,14 +518,14 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 </pre></div>
 </div>
 <p>起動に成功すると、以下のようなログがコンソールに出力される。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:40:40.229 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認を開始します。
-2020-03-25 18:40:40.258 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 取得したコード名称：ロック
-2020-03-25 18:40:40.264 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認が完了しました。
-2020-03-25 18:40:40.273 -INFO- nablarch.fw.handler.MultiThreadExecutionHandler [202003251840402220001] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user]
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 08:56:23.353 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認を開始します。
+2020-04-28 08:56:23.379 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 取得したコード名称：ロック
+2020-04-28 08:56:23.383 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認が完了しました。
+2020-04-28 08:56:23.396 -INFO- nablarch.fw.handler.MultiThreadExecutionHandler [202004280856233470001] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user]
 Thread Status: normal end.
 Thread Result:[200 Success] The request has succeeded.
-2020-03-25 18:40:40.281 -INFO- nablarch.core.log.app.BasicCommitLogger [202003251840402220001] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] TOTAL COMMIT COUNT = [1]
-2020-03-25 18:40:40.285 -INFO- nablarch.fw.launcher.Main [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] @@@@ END @@@@ exit code = [0] execute time(ms) = [486]
+2020-04-28 08:56:23.407 -INFO- nablarch.core.log.app.BasicCommitLogger [202004280856233470001] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] TOTAL COMMIT COUNT = [1]
+2020-04-28 08:56:23.413 -INFO- nablarch.fw.launcher.Main [null] boot_proc = [] proc_sys = [batch] req_id = [null] usr_id = [null] @@@@ END @@@@ exit code = [0] execute time(ms) = [559]
 </pre></div>
 </div>
 </div>
@@ -569,12 +573,12 @@ Thread Result:[200 Success] The request has succeeded.
 </ul>
 </div>
 <p>起動に成功すると、以下のようなログがコンソールに出力される。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:41:20.767 -INFO- nablarch.fw.reader.DatabaseTableQueueReader [202003251841207560001] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] read database record. key info: {USER_INFO_ID=00000000000000000001}
-2020-03-25 18:41:20.774 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] handleが呼ばれました。
-2020-03-25 18:41:20.779 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] USER_INFO_ID:00000000000000000001
-2020-03-25 18:41:20.784 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] LOGIN_ID:TAROU
-2020-03-25 18:41:20.792 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] KANA_NAME:たろう
-2020-03-25 18:41:20.799 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] KANJI_NAME:太郎
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 08:58:15.350 -INFO- nablarch.fw.reader.DatabaseTableQueueReader [202004280858153390001] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] read database record. key info: {USER_INFO_ID=00000000000000000001}
+2020-04-28 08:58:15.356 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] handleが呼ばれました。
+2020-04-28 08:58:15.363 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] USER_INFO_ID:00000000000000000001
+2020-04-28 08:58:15.367 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] LOGIN_ID:TAROU
+2020-04-28 08:58:15.371 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] KANA_NAME:たろう
+2020-04-28 08:58:15.379 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] KANJI_NAME:太郎
 </pre></div>
 </div>
 <p>終了はctrl + c等で強制終了すること。</p>
@@ -630,7 +634,7 @@ Thread Result:[200 Success] The request has succeeded.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

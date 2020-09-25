@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>7.2. システムリポジトリ &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/repository.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
         <link rel="next" title="7.3. データベースアクセス" href="database_management.html"/>
         <link rel="prev" title="7.1.1.2.5. メッセージングログの出力" href="log/messaging_log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -332,31 +336,38 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id3" id="id19">機能概要</a><ul>
-<li><a class="reference internal" href="#di" id="id20">DIコンテナによるオブジェクトの構築ができる</a></li>
-<li><a class="reference internal" href="#id4" id="id21">オブジェクトの初期化ができる</a></li>
+<li><a class="reference internal" href="#id3" id="id23">機能概要</a><ul>
+<li><a class="reference internal" href="#di" id="id24">DIコンテナによるオブジェクトの構築ができる</a></li>
+<li><a class="reference internal" href="#id4" id="id25">オブジェクトの初期化ができる</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5" id="id22">モジュール一覧</a></li>
-<li><a class="reference internal" href="#id6" id="id23">使用方法</a><ul>
-<li><a class="reference internal" href="#xml" id="id24">xmlにルートノードを定義する</a></li>
-<li><a class="reference internal" href="#java-beans" id="id25">Java Beansオブジェクトを設定する</a></li>
-<li><a class="reference internal" href="#repository-override-bean" id="id26">Java Beansオブジェクトの設定を上書きする</a></li>
-<li><a class="reference internal" href="#repository-property-type" id="id27">文字列や数値、真偽値を設定値として使う</a></li>
-<li><a class="reference internal" href="#listmap" id="id28">ListやMapを設定値として使う</a></li>
-<li><a class="reference internal" href="#repository-autowired" id="id29">コンポーネントを自動的にインジェクションする</a></li>
-<li><a class="reference internal" href="#repository-split-xml" id="id30">コンポーネント設定ファイル(xml)を分割する</a></li>
-<li><a class="reference internal" href="#repository-environment-configuration" id="id31">依存値を設定する</a></li>
-<li><a class="reference internal" href="#repository-user-environment-configuration" id="id32">コンポーネント設定ファイルから環境依存値を参照する</a></li>
-<li><a class="reference internal" href="#repository-overwrite-environment-configuration" id="id33">システムプロパティを使って環境依存値を上書きする</a></li>
-<li><a class="reference internal" href="#os" id="id34">OS環境変数を使って環境依存値を上書きする</a></li>
-<li><a class="reference internal" href="#repository-factory-injection" id="id35">ファクトリクラスで生成したオブジェクトをインジェクションする</a></li>
-<li><a class="reference internal" href="#repository-initialize-object" id="id36">オブジェクトの初期化処理を行う</a></li>
-<li><a class="reference internal" href="#repository-use-system-repository" id="id37">DIコンテナの情報をシステムリポジトリに設定する</a></li>
-<li><a class="reference internal" href="#repository-get-object" id="id38">システムリポジトリからオブジェクトを取得する</a></li>
+<li><a class="reference internal" href="#id5" id="id26">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id6" id="id27">使用方法</a><ul>
+<li><a class="reference internal" href="#xml" id="id28">xmlにルートノードを定義する</a></li>
+<li><a class="reference internal" href="#java-beans" id="id29">Java Beansオブジェクトを設定する</a></li>
+<li><a class="reference internal" href="#repository-override-bean" id="id30">Java Beansオブジェクトの設定を上書きする</a></li>
+<li><a class="reference internal" href="#repository-property-type" id="id31">文字列や数値、真偽値を設定値として使う</a></li>
+<li><a class="reference internal" href="#listmap" id="id32">ListやMapを設定値として使う</a></li>
+<li><a class="reference internal" href="#repository-autowired" id="id33">コンポーネントを自動的にインジェクションする</a></li>
+<li><a class="reference internal" href="#repository-split-xml" id="id34">コンポーネント設定ファイル(xml)を分割する</a></li>
+<li><a class="reference internal" href="#repository-environment-configuration" id="id35">依存値を設定する</a></li>
+<li><a class="reference internal" href="#repository-user-environment-configuration" id="id36">コンポーネント設定ファイルから環境依存値を参照する</a></li>
+<li><a class="reference internal" href="#repository-overwrite-environment-configuration" id="id37">システムプロパティを使って環境依存値を上書きする</a></li>
+<li><a class="reference internal" href="#os" id="id38">OS環境変数を使って環境依存値を上書きする</a></li>
+<li><a class="reference internal" href="#repository-factory-injection" id="id39">ファクトリクラスで生成したオブジェクトをインジェクションする</a></li>
+<li><a class="reference internal" href="#repository-inject-annotation-component" id="id40">アノテーションを付与したクラスのオブジェクトを構築する</a><ul>
+<li><a class="reference internal" href="#id16" id="id41">使用方法</a></li>
+<li><a class="reference internal" href="#id17" id="id42">コンストラクタインジェクションを使用する</a></li>
+<li><a class="reference internal" href="#actiondi" id="id43">ActionクラスをDIコンテナで管理する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#repository-environment-configuration-file-rule" id="id39">環境設定ファイルの記述ルール</a></li>
+<li><a class="reference internal" href="#repository-initialize-object" id="id44">オブジェクトの初期化処理を行う</a></li>
+<li><a class="reference internal" href="#repository-dispose-object" id="id45">オブジェクトの廃棄処理を行う</a></li>
+<li><a class="reference internal" href="#repository-use-system-repository" id="id46">DIコンテナの情報をシステムリポジトリに設定する</a></li>
+<li><a class="reference internal" href="#repository-get-object" id="id47">システムリポジトリからオブジェクトを取得する</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#repository-environment-configuration-file-rule" id="id48">環境設定ファイルの記述ルール</a></li>
 </ul>
 </div>
 <p>アプリケーションを実装する際に様々な箇所で使用されるオブジェクトや、設定値などを管理する機能を提供する。</p>
@@ -366,10 +377,11 @@
 <li>外部ファイルの定義を元に、オブジェクト間の関連を構築できる。(DIコンテナ機能を持つ)</li>
 </ul>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id19">7.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">7.2.1. 機能概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="di">
-<h3><a class="toc-backref" href="#id20">7.2.1.1. DIコンテナによるオブジェクトの構築ができる</a><a class="headerlink" href="#di" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span>xml</span></a> に定義されたコンポーネントの定義を元にオブジェクトを構築できる。
+<h3><a class="toc-backref" href="#id24">7.2.1.1. DIコンテナによるオブジェクトの構築ができる</a><a class="headerlink" href="#di" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>DIコンテナ機能を使うことで、 <a class="reference internal" href="#repository-root-node"><span>xml</span></a> に定義されたコンポーネントの定義または
+<a class="reference internal" href="#repository-inject-annotation-component"><span>アノテーションを付与したクラス</span></a> を元にオブジェクトを構築できる。
 構築されるオブジェクトは <strong>シングルトン</strong> となる。</p>
 <p>DIコンテナ機能では、以下のことができる。</p>
 <ul class="simple">
@@ -378,13 +390,14 @@
 <li><a class="reference internal" href="#repository-map-list"><span>ListやMapをインジェクションできる。</span></a></li>
 <li><a class="reference internal" href="#repository-autowired"><span>型や名前が一致するsetterへの自動インジェクションができる。</span></a></li>
 <li><a class="reference internal" href="#repository-factory-injection"><span>ファクトリインジェクションができる。</span></a></li>
+<li><a class="reference internal" href="#repository-inject-annotation-component"><span>アノテーションを付与したクラスのオブジェクトが構築できる。</span></a></li>
 <li><a class="reference internal" href="#repository-environment-configuration"><span>環境依存値を管理できる。</span></a></li>
 </ul>
 <p>アプリケーションからはDIコンテナに直接アクセスするのではなく、システムリポジトリ経由でアクセスする。
 詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span>DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
 </div>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id21">7.2.1.2. オブジェクトの初期化ができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">7.2.1.2. オブジェクトの初期化ができる</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オブジェクト構築後に任意の初期化処理を実行できる。</p>
 <p>オブジェクトの依存関係によっては、初期化順に制約が発生することが考えられるため、
 この機能ではオブジェクトの初期化順が指定できる。</p>
@@ -392,7 +405,7 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id22">7.2.2. モジュール一覧</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id26">7.2.2. モジュール一覧</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-core<span class="nt">&lt;/artifactId&gt;</span>
@@ -405,9 +418,9 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id23">7.2.3. 使用方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id27">7.2.3. 使用方法</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="xml">
-<span id="repository-root-node"></span><h3><a class="toc-backref" href="#id24">7.2.3.1. xmlにルートノードを定義する</a><a class="headerlink" href="#xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="repository-root-node"></span><h3><a class="toc-backref" href="#id28">7.2.3.1. xmlにルートノードを定義する</a><a class="headerlink" href="#xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント設定ファイル(xml)のルートノードは、 <cite>component-configuration</cite> とする。
 <cite>schemaLocation</cite> を正しく設定すると、IDEで各要素や属性のドキュメントが参照できたり、補完機能が有効活用できる。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
@@ -432,7 +445,7 @@
 </ul>
 </div>
 <div class="section" id="java-beans">
-<span id="repository-definition-bean"></span><h3><a class="toc-backref" href="#id25">7.2.3.2. Java Beansオブジェクトを設定する</a><a class="headerlink" href="#java-beans" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="repository-definition-bean"></span><h3><a class="toc-backref" href="#id29">7.2.3.2. Java Beansオブジェクトを設定する</a><a class="headerlink" href="#java-beans" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Java Beansオブジェクトは、component要素を用いて定義する。</p>
 <ul class="simple">
 <li>class属性にDIコンテナで管理するクラスのFQCNを設定する。</li>
@@ -495,7 +508,7 @@
 </div>
 </div>
 <div class="section" id="repository-override-bean">
-<span id="id7"></span><h3><a class="toc-backref" href="#id26">7.2.3.3. Java Beansオブジェクトの設定を上書きする</a><a class="headerlink" href="#repository-override-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id30">7.2.3.3. Java Beansオブジェクトの設定を上書きする</a><a class="headerlink" href="#repository-override-bean" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>componentタグのname属性が同じオブジェクトを登録することで、前に読み込まれたオブジェクトの設定を上書きできる。
 この機能は、テスト時にプロダクション環境用のオブジェクトをテスト用のオブジェクト(モック)に置き換える際に利用できる。</p>
 <p>オブジェクトを上書きする場合は、同じ名前のオブジェクトを登録するだけで自動的に後で読み込まれたオブジェクトが優先される。</p>
@@ -529,7 +542,7 @@
 </div>
 </div>
 <div class="section" id="repository-property-type">
-<span id="id8"></span><h3><a class="toc-backref" href="#id27">7.2.3.4. 文字列や数値、真偽値を設定値として使う</a><a class="headerlink" href="#repository-property-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id31">7.2.3.4. 文字列や数値、真偽値を設定値として使う</a><a class="headerlink" href="#repository-property-type" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>プロパティの型が以下の型の場合、リテラル表記で値を簡易的に設定できる。</p>
 <ul class="simple">
 <li>java.lang.String</li>
@@ -582,7 +595,7 @@
 </dl>
 </div>
 <div class="section" id="listmap">
-<span id="repository-map-list"></span><h3><a class="toc-backref" href="#id28">7.2.3.5. ListやMapを設定値として使う</a><a class="headerlink" href="#listmap" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="repository-map-list"></span><h3><a class="toc-backref" href="#id32">7.2.3.5. ListやMapを設定値として使う</a><a class="headerlink" href="#listmap" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>list要素やmap要素を使ってコンポーネント設定をすることで、ListやMapを受け取るpropertyに対するsetterインジェクションが行える。</p>
 <dl class="docutils">
 <dt>list要素を使ったListの設定</dt>
@@ -677,7 +690,7 @@
 </div>
 </div>
 <div class="section" id="repository-autowired">
-<span id="id9"></span><h3><a class="toc-backref" href="#id29">7.2.3.6. コンポーネントを自動的にインジェクションする</a><a class="headerlink" href="#repository-autowired" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id33">7.2.3.6. コンポーネントを自動的にインジェクションする</a><a class="headerlink" href="#repository-autowired" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネントのpropertyタグの定義を省略した場合でも、自動的にコンポーネントをインジェクションする機能を提供する。
 この機能ではcomponent要素のautowireType属性を使用することで、自動インジェクションタイプを指定することができる。</p>
 <div class="admonition important">
@@ -747,7 +760,7 @@ propertyの定義が必要になるためメンテナンス性が悪い。</li>
 </dl>
 </div>
 <div class="section" id="repository-split-xml">
-<span id="id10"></span><h3><a class="toc-backref" href="#id30">7.2.3.7. コンポーネント設定ファイル(xml)を分割する</a><a class="headerlink" href="#repository-split-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id10"></span><h3><a class="toc-backref" href="#id34">7.2.3.7. コンポーネント設定ファイル(xml)を分割する</a><a class="headerlink" href="#repository-split-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>全ての定義を1つのコンポーネント設定ファイルに定義するとxmlが巨大となり、メンテナンス性が悪くなる問題がある。
 このため、xmlファイルを複数ファイルに分割できる機能を提供している。</p>
 <p>xmlファイルを分割する際には、機能単位などある程度の粒度でファイルを分割すると良い。
@@ -761,7 +774,7 @@ propertyの定義が必要になるためメンテナンス性が悪い。</li>
 </div>
 </div>
 <div class="section" id="repository-environment-configuration">
-<span id="id11"></span><h3><a class="toc-backref" href="#id31">7.2.3.8. 依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id35">7.2.3.8. 依存値を設定する</a><a class="headerlink" href="#repository-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テスト環境や本番環境で異なる値(データベースの接続情報やディレクトリのパスなど)は、環境設定ファイルで管理できる。</p>
 <p>環境設定ファイルは、以下のようにシンプルなkey-value形式で記述する。
 詳細な記述ルールは、 <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>環境設定ファイルの記述ルール</span></a> を参照。</p>
@@ -786,7 +799,7 @@ database.password <span class="o">=</span> sa
 </dl>
 </div>
 <div class="section" id="repository-user-environment-configuration">
-<span id="id12"></span><h3><a class="toc-backref" href="#id32">7.2.3.9. コンポーネント設定ファイルから環境依存値を参照する</a><a class="headerlink" href="#repository-user-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id12"></span><h3><a class="toc-backref" href="#id36">7.2.3.9. コンポーネント設定ファイルから環境依存値を参照する</a><a class="headerlink" href="#repository-user-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>コンポーネント設定ファイル(xml)から環境設定ファイルを読み込み、Java Beansオブジェクトの設定値として使用できる。</p>
 <p>DIコンテナで管理するオブジェクトに対して環境依存値を設定(インジェクション)する場合は、
 コンポーネント設定ファイルに環境依存値のキー値を <code class="docutils literal"><span class="pre">${</span></code> と <code class="docutils literal"><span class="pre">}</span></code> で囲んで記述する。</p>
@@ -820,7 +833,7 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 </dl>
 </div>
 <div class="section" id="repository-overwrite-environment-configuration">
-<span id="id13"></span><h3><a class="toc-backref" href="#id33">7.2.3.10. システムプロパティを使って環境依存値を上書きする</a><a class="headerlink" href="#repository-overwrite-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id13"></span><h3><a class="toc-backref" href="#id37">7.2.3.10. システムプロパティを使って環境依存値を上書きする</a><a class="headerlink" href="#repository-overwrite-environment-configuration" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>環境依存値は、システムプロパティ( <cite>java.lang.System#getProperties()</cite> で取得できる値)で上書きできる。
 システムプロパティは、環境設定ファイルに設定した値より優先されるため、vmオプションで容易に設定値を上書きすることができる。</p>
 <p>例えば、特定のバッチアプリケーションだけ設定値を変えたいといった場合に、システムプロパティを使用して環境依存値を上書きするといったことができる。</p>
@@ -840,7 +853,7 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 </dl>
 </div>
 <div class="section" id="os">
-<span id="repository-overwrite-environment-configuration-by-os-env-var"></span><h3><a class="toc-backref" href="#id34">7.2.3.11. OS環境変数を使って環境依存値を上書きする</a><a class="headerlink" href="#os" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="repository-overwrite-environment-configuration-by-os-env-var"></span><h3><a class="toc-backref" href="#id38">7.2.3.11. OS環境変数を使って環境依存値を上書きする</a><a class="headerlink" href="#os" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下で説明する設定を行うことで、環境依存値をOS環境変数で上書きできるようになる。</p>
 <dl class="docutils">
 <dt>OS環境変数による上書きを有効にするための設定方法</dt>
@@ -852,7 +865,7 @@ propertiesファイルはjava.util.Propertiesによりパースされる。confi
 <p>具体的な設定は、次のようにして行う。</p>
 <ol class="arabic simple">
 <li>クラスパス直下に <code class="docutils literal"><span class="pre">META-INF/services</span></code> というディレクトリを作成する</li>
-<li>上で作成したディレクトリの中に、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> という名前のテキス  トファイルを作成する</li>
+<li>上で作成したディレクトリの中に、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> という名前のテキストファイルを作成する</li>
 <li>ファイルの中に、使用する実装クラスの完全修飾名を改行区切りで列挙する</li>
 </ol>
 <p>例えば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/OsEnvironmentVariableExternalizedLoader.html" title="nablarch.core.repository.di.config.externalize.OsEnvironmentVariableExternalizedLoader">OsEnvironmentVariableExternalizedLoader</a> を使用する場合は、 <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> の中身を以下のように記述する。</p>
@@ -868,6 +881,8 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 したがって、同じ名前の環境依存値をそれぞれの方法で上書きした場合は、一番下に記述したクラスによる上書きが最終的に採用されることになる。
 上記例の場合は、OS環境変数で設定した値よりもシステムプロパティで設定した値の方が優先されることになる。</p>
 </dd>
+</dl>
+<dl class="docutils" id="repository-overwrite-environment-configuration-by-os-env-var-naming-rule">
 <dt>OS環境変数の名前について</dt>
 <dd><p class="first">Linuxでは、OS環境変数の名前に <code class="docutils literal"><span class="pre">.</span></code> や <code class="docutils literal"><span class="pre">-</span></code> を使用できない。
 したがって、 <code class="docutils literal"><span class="pre">example.error-message</span></code> のような名前の環境依存値があった場合に、これを上書きするためのOS環境変数をそのままの名前で定義することはできない。</p>
@@ -883,7 +898,7 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 </dl>
 </div>
 <div class="section" id="repository-factory-injection">
-<span id="id14"></span><h3><a class="toc-backref" href="#id35">7.2.3.12. ファクトリクラスで生成したオブジェクトをインジェクションする</a><a class="headerlink" href="#repository-factory-injection" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id14"></span><h3><a class="toc-backref" href="#id39">7.2.3.12. ファクトリクラスで生成したオブジェクトをインジェクションする</a><a class="headerlink" href="#repository-factory-injection" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Java Beansとして実装されているクラスであれば、setterインジェクションを使用して値を設定しオブジェクトを生成することができる。
 しかし、ベンダー提供やOSSなどのJava Beansとして実装されていないオブジェクトをシステムリポジトリで管理したい場合がある。</p>
 <p>この場合は、ファクトリクラスを作成しファクトリクラス経由でオブジェクトを生成することで、これらのクラスをシステムリポジトリで管理できるようになる。</p>
@@ -929,9 +944,159 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 </div>
 </dd>
 </dl>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>Nablarchではファクトリクラスの入れ子に対応していない。
+つまり、ファクトリクラスのプロパティに他のファクトリクラスを指定できない。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponentFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- ファクトリクラスの入れ子 --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;property&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.OtherSampleComponentFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p class="last">この場合は、1つのファクトリクラス内で入れ子のファクトリクラスで構築するオブジェクトも含めてオブジェクトを構築するか、
+入れ子のファクトリクラスで構築するオブジェクトを生成するCreator/Builder/Providerといったクラスを作成し、
+コンポーネントとしてインジェクションすることで対応すること。</p>
+</div>
+</div>
+<div class="section" id="repository-inject-annotation-component">
+<span id="id15"></span><h3><a class="toc-backref" href="#id40">7.2.3.13. アノテーションを付与したクラスのオブジェクトを構築する</a><a class="headerlink" href="#repository-inject-annotation-component" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a> を
+クラスに付与することで、 <a class="reference internal" href="#repository-definition-bean"><span>XMLに設定</span></a> を書かなくともDIコンテナの管理対象とすることができる。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>本機能は、クラスパス配下のリソースを独自のファイルシステムで管理している一部のウェブアプリケーションサーバーでは使用できない。</p>
+<p>例えば、JbossやWildflyでは、vfsと呼ばれるバーチャルファイルシステムで
+クラスパス配下のリソースが管理されるため、 <code class="docutils literal"><span class="pre">SystemRepositoryComponent</span></code> アノテーションで注釈されたクラスの検索ができない。</p>
+<p class="last">そのようなウェブアプリケーションサーバーを使用する場合は、コンポーネントの定義は従来通り <a class="reference internal" href="#repository-definition-bean"><span>XMLに定義</span></a> すること。</p>
+</div>
+<div class="section" id="id16">
+<h4><a class="toc-backref" href="#id41">7.2.3.13.1. 使用方法</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<dl class="docutils">
+<dt>収集対象のパッケージを特定するクラスを作成する。</dt>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a> が付与された
+クラスの収集は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/ExternalizedComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader">ExternalizedComponentDefinitionLoader</a> インタフェースを実装したクラスで行っている。
+このクラスは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader">AnnotationComponentDefinitionLoader</a> という抽象クラスで、収集対象の基点となるパッケージを返す
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html#getBasePackage--" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader.getBasePackage()">getBasePackage</a> という抽象メソッドを持っている。</p>
+<p>各プロジェクトのパッケージ名に合わせて収集が行われるよう上記の抽象メソッドをオーバーライドする。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleComponentDefinitionLoader</span> <span class="kd">extends</span> <span class="n">AnnotationComponentDefinitionLoader</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBasePackage</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;com.example&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>作成したクラスをサービスプロバイダとして設定する。</dt>
+<dd><code class="docutils literal"><span class="pre">java.util.ServiceLoader</span></code> でロードされるよう <a class="reference internal" href="#repository-overwrite-environment-configuration-by-os-env-var"><span>OS環境変数による上書きを有効にするための設定方法</span></a> と同様
+<code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code> というファイルを作成し上記のクラスの完全修飾名を記述する。</dd>
+<dt>DIコンテナで管理したいクラスにアノテーションを付与する。</dt>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a> を付与することでDIコンテナで管理される。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleAction</span> <span class="o">{</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id17">
+<h4><a class="toc-backref" href="#id42">7.2.3.13.2. コンストラクタインジェクションを使用する</a><a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a> が付与されたクラスは構築時に以下の条件を満たすことでコンストラクタインジェクションが実行される。</p>
+<ul class="simple">
+<li>コンストラクタが1つだけ定義されている</li>
+<li>コンストラクタが引数をもつ</li>
+</ul>
+<p>条件を満たす場合、以下の仕様でインジェクションされる。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ConfigValue.html" title="nablarch.core.repository.di.config.externalize.annotation.ConfigValue">ConfigValue</a> が付与されている引数には設定値がインジェクションされる</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ComponentRef.html" title="nablarch.core.repository.di.config.externalize.annotation.ComponentRef">ComponentRef</a> が付与されている引数にはDIコンテナに登録されたコンポーネントがインジェクションされる</li>
+<li>上記いずれのアノテーションも付与されていない場合は<ul>
+<li>引数の型に一致するコンポーネントがDIコンテナ上に1つしか存在しない場合は、そのコンポーネントを自動的にインジェクションする</li>
+<li>引数の型に一致するコンポーネントがDIコンテナ上に存在しないまたは複数存在する場合は、何もインジェクションしない</li>
+</ul>
+</li>
+</ul>
+<dl class="docutils">
+<dt>設定値をインジェクションする</dt>
+<dd><p class="first">コンストラクタ引数に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ConfigValue.html" title="nablarch.core.repository.di.config.externalize.annotation.ConfigValue">ConfigValue</a> を
+付与することでアノテーションの <code class="docutils literal"><span class="pre">value</span></code> に設定した値がインジェクションされる。
+使用可能な設定値の型は <a class="reference internal" href="#repository-property-type"><span>文字列や数値、真偽値を設定値として使う</span></a> に準ずる。</p>
+<p><a class="reference internal" href="#repository-user-environment-configuration"><span>コンポーネント設定ファイルから環境依存値を参照する</span></a> 場合同様
+環境依存値のキー値を <code class="docutils literal"><span class="pre">${</span></code> と <code class="docutils literal"><span class="pre">}</span></code> で囲んで記述することができる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">errorMessageId</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ExampleService</span><span class="o">(</span><span class="nd">@ConfigValue</span><span class="o">(</span><span class="s">&quot;${example.service.errorMessageId}&quot;</span><span class="o">)</span> <span class="n">String</span> <span class="n">errorMessageId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">errorMessageId</span> <span class="o">=</span> <span class="n">errorMessageId</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>コンポーネントをインジェクションする</dt>
+<dd><p class="first">コンストラクタ引数に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ComponentRef.html" title="nablarch.core.repository.di.config.externalize.annotation.ComponentRef">ComponentRef</a> を
+付与することでアノテーションの <code class="docutils literal"><span class="pre">value</span></code> に設定した名前のコンポーネントがインジェクションされる。</p>
+<p>以下の例では <code class="docutils literal"><span class="pre">lettuceRedisClientProvider</span></code> という名前で定義されたコンポーネントがインジェクションされる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleService</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="n">LettuceRedisClient</span> <span class="n">client</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">ExampleService</span><span class="o">(</span><span class="nd">@ComponentRef</span><span class="o">(</span><span class="s">&quot;lettuceRedisClientProvider&quot;</span><span class="o">)</span> <span class="n">LettuceRedisClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p>コンストラクタインジェクションは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/ConstructorInjectionComponentCreator.html" title="nablarch.core.repository.di.config.ConstructorInjectionComponentCreator">ConstructorInjectionComponentCreator</a> というクラスで実現している。
+<code class="docutils literal"><span class="pre">AnnotationComponentDefinitionLoader</span></code> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html#newComponentCreator--" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader.newComponentCreator()">newComponentCreator</a>
+をオーバーライドすることで、アノテーションを付与したクラスのオブジェクト構築時に任意の処理を行う <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentCreator.html" title="nablarch.core.repository.di.ComponentCreator">ComponentCreator</a> 実装に差し替えることができる。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleComponentDefinitionLoader</span> <span class="kd">extends</span> <span class="n">AnnotationComponentDefinitionLoader</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBasePackage</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="s">&quot;com.example&quot;</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">ComponentCreator</span> <span class="nf">newComponentCreator</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// 任意のComponentCreator実装クラスに変更する。</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ExampleComponentCreator</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="actiondi">
+<h4><a class="toc-backref" href="#id43">7.2.3.13.3. ActionクラスをDIコンテナで管理する</a><a class="headerlink" href="#actiondi" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>アノテーションをActionクラスに付与することでDIコンテナで管理することが可能となる。
+Nablarchで用意されたディスパッチハンドラ（ <a class="reference internal" href="../../adaptors/router_adaptor.html#router-adaptor"><span>ルーティングアダプタ</span></a> 、 <a class="reference internal" href="../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span>リクエストディスパッチハンドラ</span></a> 、
+<a class="reference internal" href="../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span>HTTPリクエストディスパッチハンドラ</span></a> ）では
+ディスパッチ先のクラスはディスパッチハンドラ内でインスタンス化される。
+そのため、ActionクラスをDIコンテナに登録する場合は、ディスパッチ先のクラスをシステムリポジトリから取得するよう <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DelegateFactory.html" title="nablarch.fw.handler.DelegateFactory">DelegateFactory</a> を
+差し替える必要がある。差し替えは以下のように <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DispatchHandler.html#setDelegateFactory-nablarch.fw.handler.DelegateFactory-" title="nablarch.fw.handler.DispatchHandler.setDelegateFactory(nablarch.fw.handler.DelegateFactory)">DispatchHandler#setDelegateFactory</a> にて設定する。</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.RoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- ディスパッチ先をシステムリポジトリから取得するDelegateFactory --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;delegateFactory&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.SystemRepositoryDelegateFactory&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="c">&lt;!-- その他のプロパティは省略 --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="repository-initialize-object">
-<span id="id15"></span><h3><a class="toc-backref" href="#id36">7.2.3.13. オブジェクトの初期化処理を行う</a><a class="headerlink" href="#repository-initialize-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id18"></span><h3><a class="toc-backref" href="#id44">7.2.3.14. オブジェクトの初期化処理を行う</a><a class="headerlink" href="#repository-initialize-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オブジェクトの初期化処理を行うためには、以下の手順が必要となる。</p>
 <ol class="arabic simple">
 <li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> インタフェースを実装する。</li>
@@ -940,7 +1105,7 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 <p>以下に詳細な手順を示す。</p>
 <dl class="docutils">
 <dt>Initializableインタフェースを実装する</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize--" title="nablarch.core.repository.initialization.Initializable.initialize()">initialzie</a> で初期化処理を行う。</p>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize--" title="nablarch.core.repository.initialization.Initializable.initialize()">initialize</a> で初期化処理を行う。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Initializable</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
     <span class="c1">// プロパティにインジェクションされた値などを元に初期化処理を行う</span>
@@ -954,16 +1119,16 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 <p>初期化対象のオブジェクトの初期化順を意識する必要がある場合は、先に初期化を行いたいオブジェクトをより上に設定する。
 下の設定例の場合、以下の順で初期化が行われる。</p>
 <ol class="arabic simple">
-<li><cite>sampleObject</cite></li>
-<li><cite>sampleObject3</cite></li>
+<li><cite>sampleObject1</cite></li>
 <li><cite>sampleObject2</cite></li>
+<li><cite>sampleObject3</cite></li>
 </ol>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> のコンポーネント名は、 必ず <strong>initializer</strong> とすること。</p>
 </div>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 初期化対象のオブジェクトの設定 --&gt;</span>
-<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent1&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent2&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent3&quot;</span> <span class="nt">/&gt;</span>
 
@@ -973,9 +1138,91 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
   <span class="c">&lt;!-- initializeListプロパティにlist要素で初期化対象のオブジェクトを列挙する --&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;list&gt;</span>
-      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="repository-dispose-object">
+<span id="id19"></span><h3><a class="toc-backref" href="#id45">7.2.3.15. オブジェクトの廃棄処理を行う</a><a class="headerlink" href="#repository-dispose-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの廃棄処理を行うためには、以下の手順が必要となる。</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> インタフェースを実装する。</li>
+<li>コンポーネント設定ファイルに廃棄対象のリストを設定する。</li>
+</ol>
+<p>以下に詳細な手順を示す。</p>
+<dl class="docutils">
+<dt>Disposableインタフェースを実装する</dt>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html#dispose--" title="nablarch.core.repository.disposal.Disposable.dispose()">dispose</a> で廃棄処理を行う。</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Disposable</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispose</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+    <span class="c1">// リソースの解放など、廃棄処理を行う</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>コンポーネント設定ファイルに廃棄対象のリストを設定する</dt>
+<dd><p class="first">廃棄対象のオブジェクトを <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> に設定する。</p>
+<p>廃棄対象のオブジェクトの廃棄順を意識する必要がある場合は、先に廃棄を行いたいオブジェクトをより <strong>下に設定する</strong> 。
+下の設定例の場合、以下の順で廃棄処理が行われる。</p>
+<ol class="arabic simple">
+<li><cite>sampleObject1</cite></li>
+<li><cite>sampleObject2</cite></li>
+<li><cite>sampleObject3</cite></li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> のコンポーネント名は、 必ず <strong>disposer</strong> とすること。</p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 廃棄対象のオブジェクトの設定 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent2&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent3&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- disposableListプロパティにlist要素で廃棄対象のオブジェクトを列挙する --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;disposableList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
       <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="nt">/&gt;</span>
       <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">BasicApplicationDisposer</span></code> には <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html#addDisposable-Disposable-" title="nablarch.core.repository.disposal.BasicApplicationDisposer.addDisposable(Disposable)">addDisposable</a> というメソッドが用意されており、コンポーネント生成後に任意の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> を追加できる。</p>
+<div class="line-block">
+<div class="line">この <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html#addDisposable-Disposable-" title="nablarch.core.repository.disposal.BasicApplicationDisposer.addDisposable(Disposable)">addDisposable</a> で追加される <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> は、そのインスタンスが生成された順番で追加されることが予想される。</div>
+<div class="line">その場合、廃棄処理はインスタンス生成とは逆の順序で行うことが望ましい（例：JDBCの <code class="docutils literal"><span class="pre">Connection</span></code>, <code class="docutils literal"><span class="pre">Statement</span></code>, <code class="docutils literal"><span class="pre">ResultSet</span></code>）。</div>
+</div>
+<p class="last">このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> では <code class="docutils literal"><span class="pre">disposableList</span></code> に設定されている順序とは逆の順序で廃棄処理を呼ぶようになっている。</p>
+</dd>
+<dt>Closeableオブジェクトを廃棄対象リストに設定する</dt>
+<dd><p class="first"><code class="docutils literal"><span class="pre">java.io.Closeable</span></code> を実装したコンポーネントであれば、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/DisposableAdaptor.html" title="nablarch.core.repository.disposal.DisposableAdaptor">DisposableAdaptor</a> を用いることで、次のように廃棄対象リストに簡単に設定できる。</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- java.io.Closeable を実装したコンポーネント --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;closeableComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.CloseableComponent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;disposableList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.DisposableAdaptor&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- DisposableAdaptor の target プロパティに、 Closeable を実装したコンポーネントを設定する --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;closeableComponent&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
     <span class="nt">&lt;/list&gt;</span>
   <span class="nt">&lt;/property&gt;</span>
 
@@ -986,7 +1233,7 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 </dl>
 </div>
 <div class="section" id="repository-use-system-repository">
-<span id="id16"></span><h3><a class="toc-backref" href="#id37">7.2.3.14. DIコンテナの情報をシステムリポジトリに設定する</a><a class="headerlink" href="#repository-use-system-repository" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id20"></span><h3><a class="toc-backref" href="#id46">7.2.3.16. DIコンテナの情報をシステムリポジトリに設定する</a><a class="headerlink" href="#repository-use-system-repository" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>DIコンテナの情報をシステムリポジトリにロードすることで、アプリケーション内の全ての箇所からDIコンテナ上のオブジェクトにアクセスできる。</p>
 <p>コンポーネント設定ファイルをロードし、システムリポジトリに設定する例を以下に示す。</p>
 <p>この例では、 <code class="docutils literal"><span class="pre">web-boot.xml</span></code> を元に構築されたDIコンテナの情報がシステムリポジトリに設定される。</p>
@@ -1006,7 +1253,7 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 </div>
 </div>
 <div class="section" id="repository-get-object">
-<span id="id17"></span><h3><a class="toc-backref" href="#id38">7.2.3.15. システムリポジトリからオブジェクトを取得する</a><a class="headerlink" href="#repository-get-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id21"></span><h3><a class="toc-backref" href="#id47">7.2.3.17. システムリポジトリからオブジェクトを取得する</a><a class="headerlink" href="#repository-get-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>システムリポジトリ上からオブジェクトを取得する場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a> クラスを使用する。</p>
 <p>なお、システムリポジトリには事前にDIコンテナの情報を設定しておく必要がある。
 詳細は、 <a class="reference internal" href="#repository-use-system-repository"><span>DIコンテナの情報をシステムリポジトリに設定する</span></a> を参照。</p>
@@ -1036,7 +1283,7 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 </div>
 </div>
 <div class="section" id="repository-environment-configuration-file-rule">
-<span id="id18"></span><h2><a class="toc-backref" href="#id39">7.2.4. 環境設定ファイルの記述ルール</a><a class="headerlink" href="#repository-environment-configuration-file-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id22"></span><h2><a class="toc-backref" href="#id48">7.2.4. 環境設定ファイルの記述ルール</a><a class="headerlink" href="#repository-environment-configuration-file-rule" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>環境設定ファイルにはconfigファイルとpropertiesファイルの二種類があり、ここでは各環境設定ファイルの記述ルールについて説明する。</p>
 <dl class="docutils">
 <dt>propertisファイルの仕様</dt>
@@ -1140,7 +1387,7 @@ efg
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

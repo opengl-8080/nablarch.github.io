@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.4. 機能詳細 &mdash; ∇Nablarch  5u17 ドキュメント</title>
+  <title>3.1.4. 機能詳細 &mdash; ∇Nablarch  5u18 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web_service/rest/feature_details.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="3.1. RESTfulウェブサービス編" href="index.html"/>
         <link rel="next" title="3.1.4.5.1. リソース(アクション)クラスの実装に関して" href="feature_details/resource_signature.html"/>
         <link rel="prev" title="3.1.3.3. 更新機能の作成" href="getting_started/update/index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. ブランクプロジェクト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">アダプタ</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometerアダプタ</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -174,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. 大規模開発向け重厚なテスティングフレームワーク</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
@@ -334,38 +338,40 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">目次</p>
 <ul class="simple">
-<li><a class="reference internal" href="#nablarch" id="id11">Nablarchの初期化</a></li>
-<li><a class="reference internal" href="#rest-request-validation" id="id12">入力値のチェック</a></li>
-<li><a class="reference internal" href="#id4" id="id13">データベースアクセス</a></li>
-<li><a class="reference internal" href="#id5" id="id14">排他制御</a></li>
-<li><a class="reference internal" href="#uri" id="id15">URIとリソース(アクション)クラスのマッピング</a></li>
-<li><a class="reference internal" href="#rest-path-query-param" id="id16">パスパラメータやクエリーパラメータ</a></li>
-<li><a class="reference internal" href="#id7" id="id17">国際化対応</a></li>
-<li><a class="reference internal" href="#id8" id="id18">認証</a></li>
-<li><a class="reference internal" href="#id9" id="id19">認可チェック</a></li>
-<li><a class="reference internal" href="#id10" id="id20">エラー時に返却するレスポンス</a></li>
-<li><a class="reference internal" href="#web" id="id21">Webアプリケーションのスケールアウト設計</a></li>
-<li><a class="reference internal" href="#csrf" id="id22">CSRF対策</a></li>
+<li><a class="reference internal" href="#nablarch" id="id12">Nablarchの初期化</a></li>
+<li><a class="reference internal" href="#rest-request-validation" id="id13">入力値のチェック</a></li>
+<li><a class="reference internal" href="#id4" id="id14">データベースアクセス</a></li>
+<li><a class="reference internal" href="#id5" id="id15">排他制御</a></li>
+<li><a class="reference internal" href="#uri" id="id16">URIとリソース(アクション)クラスのマッピング</a></li>
+<li><a class="reference internal" href="#rest-path-query-param" id="id17">パスパラメータやクエリーパラメータ</a></li>
+<li><a class="reference internal" href="#id7" id="id18">レスポンスヘッダ</a></li>
+<li><a class="reference internal" href="#id8" id="id19">国際化対応</a></li>
+<li><a class="reference internal" href="#id9" id="id20">認証</a></li>
+<li><a class="reference internal" href="#id10" id="id21">認可チェック</a></li>
+<li><a class="reference internal" href="#id11" id="id22">エラー時に返却するレスポンス</a></li>
+<li><a class="reference internal" href="#web" id="id23">Webアプリケーションのスケールアウト設計</a></li>
+<li><a class="reference internal" href="#csrf" id="id24">CSRF対策</a></li>
+<li><a class="reference internal" href="#cors" id="id25">CORS</a></li>
 </ul>
 </div>
 <div class="section" id="nablarch">
-<h2><a class="toc-backref" href="#id11">3.1.4.1. Nablarchの初期化</a><a class="headerlink" href="#nablarch" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">3.1.4.1. Nablarchの初期化</a><a class="headerlink" href="#nablarch" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference internal" href="../../web/feature_details.html#web-feature-details-nablarch-initialization"><span>ウェブアプリケーションのNablarchの初期化</span></a> を参照。</p>
 </div>
 <div class="section" id="rest-request-validation">
-<span id="id3"></span><h2><a class="toc-backref" href="#id12">3.1.4.2. 入力値のチェック</a><a class="headerlink" href="#rest-request-validation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#id13">3.1.4.2. 入力値のチェック</a><a class="headerlink" href="#rest-request-validation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../libraries/validation.html#validation"><span>入力値のチェック</span></a></li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id13">3.1.4.3. データベースアクセス</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">3.1.4.3. データベースアクセス</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../libraries/database_management.html#database-management"><span>データベースアクセス</span></a></li>
 </ul>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id14">3.1.4.4. 排他制御</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">3.1.4.4. 排他制御</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../libraries/database/universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a><ul>
 <li><a class="reference internal" href="../../libraries/database/universal_dao.html#universal-dao-jpa-optimistic-lock"><span>楽観的ロックを行う</span></a></li>
@@ -385,7 +391,7 @@ RESTfulウェブサービスでは使用できない。</p>
 </div>
 </div>
 <div class="section" id="uri">
-<span id="rest-action-mapping"></span><h2><a class="toc-backref" href="#id15">3.1.4.5. URIとリソース(アクション)クラスのマッピング</a><a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="rest-action-mapping"></span><h2><a class="toc-backref" href="#id16">3.1.4.5. URIとリソース(アクション)クラスのマッピング</a><a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="toctree-wrapper compound">
 </div>
 <ul class="simple">
@@ -394,45 +400,58 @@ RESTfulウェブサービスでは使用できない。</p>
 </ul>
 </div>
 <div class="section" id="rest-path-query-param">
-<span id="id6"></span><h2><a class="toc-backref" href="#id16">3.1.4.6. パスパラメータやクエリーパラメータ</a><a class="headerlink" href="#rest-path-query-param" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id6"></span><h2><a class="toc-backref" href="#id17">3.1.4.6. パスパラメータやクエリーパラメータ</a><a class="headerlink" href="#rest-path-query-param" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="feature_details/resource_signature.html#rest-feature-details-path-param"><span>パスパラメータを扱う</span></a></li>
 <li><a class="reference internal" href="feature_details/resource_signature.html#rest-feature-details-query-param"><span>クエリーパラメータを扱う</span></a></li>
 </ul>
 </div>
 <div class="section" id="id7">
-<h2><a class="toc-backref" href="#id17">3.1.4.7. 国際化対応</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">3.1.4.7. レスポンスヘッダ</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="feature_details/resource_signature.html#rest-feature-details-response-header"><span>リソースクラスのメソッドで個別にレスポンスヘッダを設定する</span></a></li>
+<li><a class="reference internal" href="../../handlers/rest/jaxrs_response_handler.html#jaxrs-response-handler-response-finisher"><span>クライアントに返すレスポンスに共通処理を追加する</span></a></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id19">3.1.4.8. 国際化対応</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>静的リソースの多言語化対応については以下を参照。</p>
 <ul class="simple">
 <li><a class="reference internal" href="../../libraries/message.html#message-multi-lang"><span>メッセージの多言語化</span></a></li>
 <li><a class="reference internal" href="../../libraries/code.html#code-use-multilingualization"><span>コード名称の多言語化</span></a></li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h2><a class="toc-backref" href="#id18">3.1.4.8. 認証</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id20">3.1.4.9. 認証</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>認証については、プロジェクト要件により仕様が異なるため、フレークワークとしては提供していない。</p>
 </div>
-<div class="section" id="id9">
-<h2><a class="toc-backref" href="#id19">3.1.4.9. 認可チェック</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id21">3.1.4.10. 認可チェック</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>認可チェックについては、プロジェクト要件により仕様が異なるため、フレークワークとしては提供していない。</p>
 </div>
-<div class="section" id="id10">
-<h2><a class="toc-backref" href="#id20">3.1.4.10. エラー時に返却するレスポンス</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id22">3.1.4.11. エラー時に返却するレスポンス</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../handlers/rest/jaxrs_response_handler.html#jaxrs-response-handler-error-response-body"><span>エラー時のレスポンスにメッセージを設定する</span></a></li>
 <li><a class="reference internal" href="../../handlers/rest/jaxrs_response_handler.html#jaxrs-response-handler-individually-error-response"><span>特定のエラーの場合に個別に定義したエラーレスポンスを返却する</span></a></li>
 </ul>
 </div>
 <div class="section" id="web">
-<h2><a class="toc-backref" href="#id21">3.1.4.11. Webアプリケーションのスケールアウト設計</a><a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">3.1.4.12. Webアプリケーションのスケールアウト設計</a><a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../libraries/stateless_web_app.html#stateless-web-app"><span>Webアプリケーションをステートレスにする</span></a></li>
 </ul>
 </div>
 <div class="section" id="csrf">
-<h2><a class="toc-backref" href="#id22">3.1.4.12. CSRF対策</a><a class="headerlink" href="#csrf" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id24">3.1.4.13. CSRF対策</a><a class="headerlink" href="#csrf" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../../handlers/web/csrf_token_verification_handler.html#csrf-token-verification-handler"><span>CSRF対策</span></a></li>
+</ul>
+</div>
+<div class="section" id="cors">
+<h2><a class="toc-backref" href="#id25">3.1.4.14. CORS</a><a class="headerlink" href="#cors" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../handlers/rest/cors_preflight_request_handler.html#cors-preflight-request-handler"><span>CORS</span></a></li>
 </ul>
 </div>
 </div>
@@ -470,7 +489,7 @@ RESTfulウェブサービスでは使用できない。</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
