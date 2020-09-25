@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/web/getting_started/project_upload/index.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/getting_started/project_upload/index.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="2.3. Getting Started" href="../index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="../index.html">2.3. Getting Started</a> &raquo;</li>
       
     <li>2.3.5. アップロードを用いた一括登録機能の作成</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -486,7 +489,7 @@
 <dd><ul class="first last simple">
 <li>マルチパートファイルを送信するため、 <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-form-tag"><span>formタグ</span></a> の <cite>enctype</cite> 属性を <cite>multipart/form-data</cite> と指定する。</li>
 <li><a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-file-tag"><span>fileタグ</span></a> を用いてファイルアップロード欄を作成する。 <cite>name</cite> 属性にはリクエストオブジェクトへの登録名を指定する。
-業務アクションでファイルを取得するには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a>
+業務アクションでファイルを取得するには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a>
 の引数にこの登録名を指定する。</li>
 <li>アップロード完了時に、 <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-message-tag"><span>messageタグ</span></a> でアップロード完了メッセージを表示する。
 完了メッセージにアップロード件数を含めるため、 <cite>option0</cite> 属性には、リクエストスコープに設定されたアップロード件数を指定する。</li>
@@ -535,16 +538,16 @@
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last">
-<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を使用してファイルを取得する。</p>
+<li><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> を使用してファイルを取得する。</p>
 </li>
-<li><p class="first">ファイルが存在しない(アップロードされていない)場合は、取得した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/upload/PartInfo.html" title="nablarch.fw.web.upload.PartInfo">PartInfo</a> リストのサイズは0となる。
+<li><p class="first">ファイルが存在しない(アップロードされていない)場合は、取得した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/PartInfo.html" title="nablarch.fw.web.upload.PartInfo">PartInfo</a> リストのサイズは0となる。
 この値を使用して業務例外を送出するなどの制御を行う。</p>
 </li>
 <li><p class="first">アップロードされたファイルは <a class="reference internal" href="../../../handlers/web/multipart_handler.html#multipart-handler"><span>マルチパートリクエストハンドラ</span></a> によって一時領域に保存される。
 一時領域は自動で削除されるため、アップロードファイルを永続化（保存）する必要がある場合は、ファイルを任意のディレクトリへ移送する。
 ただし、ファイルの移送は <a class="reference internal" href="../../../libraries/file_path_management.html#file-path-management"><span>ファイルパス管理</span></a> を使用してファイルやディレクトリの入出力を管理している場合のみ可能である。</p>
 </li>
-<li><p class="first">ファイルの移送には <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#moveFileTo-java.lang.String-java.lang.String-" title="nablarch.fw.web.upload.util.UploadHelper.moveFileTo(java.lang.String-java.lang.String)">UploadHelper#moveFileTo</a> メソッドを使用する。
+<li><p class="first">ファイルの移送には <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#moveFileTo-java.lang.String-java.lang.String-" title="nablarch.fw.web.upload.util.UploadHelper.moveFileTo(java.lang.String-java.lang.String)">UploadHelper#moveFileTo</a> メソッドを使用する。
 第一引数には、設定ファイルに登録されたファイル格納ディレクトリのキー名を指定する。
 Exampleアプリケーションでは下記ファイルに設定が記載されている。</p>
 <dl class="docutils">
@@ -625,19 +628,19 @@ Exampleアプリケーションでは下記ファイルに設定が記載され�
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first simple">
-<li>アップロードされたCSVファイルの内容と、Beanのプロパティとの紐付けの設定は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/csv/Csv.html" title="nablarch.common.databind.csv.Csv">&#64;Csv</a> を使用する。
-受け付けるCSVのフォーマットの指定は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">&#64;CsvFormat</a> を使用する。
-（ <a class="reference internal" href="../../../libraries/data_io/data_bind.html#data-bind-csv-format-set"><span>デフォルトのフォーマットの指定</span></a> を利用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">&#64;CsvFormat</a> は不要）
+<li>アップロードされたCSVファイルの内容と、Beanのプロパティとの紐付けの設定は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/Csv.html" title="nablarch.common.databind.csv.Csv">&#64;Csv</a> を使用する。
+受け付けるCSVのフォーマットの指定は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">&#64;CsvFormat</a> を使用する。
+（ <a class="reference internal" href="../../../libraries/data_io/data_bind.html#data-bind-csv-format-set"><span>デフォルトのフォーマットの指定</span></a> を利用する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/csv/CsvFormat.html" title="nablarch.common.databind.csv.CsvFormat">&#64;CsvFormat</a> は不要）
 アノテーションの設定方法の詳細は、 <a class="reference internal" href="../../../libraries/data_io/data_bind.html#data-bind-csv-format-beans"><span>CSVファイルをJava Beansクラスにバインドする場合のフォーマット指定方法</span></a> を参照。</li>
-<li>プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a>
+<li>プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Required.html" title="nablarch.core.validation.ee.Required">&#64;Required</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/Domain.html" title="nablarch.core.validation.ee.Domain">&#64;Domain</a>
 などのバリデーション用のアノテーションを付与して <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を行う。</li>
 <li>ファイルからの入力値を受け付けるため、 <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-form-property"><span>プロパティはString型で定義し</span></a>、
 適切な型への変換はバリデーションを通過した安全な値に対して行う。</li>
-<li>行数プロパティを定義し、ゲッタに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/LineNumber.html" title="nablarch.common.databind.LineNumber">LineNumber</a> を付与することで、
+<li>行数プロパティを定義し、ゲッタに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/LineNumber.html" title="nablarch.common.databind.LineNumber">LineNumber</a> を付与することで、
 対象データが何行目のデータであるかを自動的に設定できる。</li>
 </ul>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">入力必須項目のバリデーションエラーメッセージを、ファイルアップロードに対するメッセージとして適切なものに変更している。
 バリデーションメッセージの指定方法については、 <a class="reference internal" href="../client_create/client_create2.html#client-create-validation-rule"><span>入力値のチェックルールを設定する</span></a> を参照。</p>
 </div>
@@ -719,14 +722,14 @@ Exampleアプリケーションでは下記ファイルに設定が記載され�
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
 <li>ファイルをBeanにバインドして取得するには、 <a class="reference internal" href="../../../libraries/data_io/data_bind.html#data-bind"><span>データバインド</span></a> が提供する、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> を使用する。</li>
-<li>取得した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> オブジェクトに対して、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/databind/ObjectMapper.html#read--" title="nablarch.common.databind.ObjectMapper.read()">ObjectMapper#read</a> を実行することで、バインド済みBeanのリストを取得できる。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/validation/ee/ValidatorUtil.html#getValidator--" title="nablarch.core.validation.ee.ValidatorUtil.getValidator()">ValidatorUtil#getValidator</a> を使用して
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> を使用する。</li>
+<li>取得した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html" title="nablarch.common.databind.ObjectMapper">ObjectMapper</a> オブジェクトに対して、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/databind/ObjectMapper.html#read--" title="nablarch.common.databind.ObjectMapper.read()">ObjectMapper#read</a> を実行することで、バインド済みBeanのリストを取得できる。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/validation/ee/ValidatorUtil.html#getValidator--" title="nablarch.core.validation.ee.ValidatorUtil.getValidator()">ValidatorUtil#getValidator</a> を使用して
 <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/validation/Validator.html" title="javax.validation.Validator">Validator</a> オブジェクトを生成することで、任意のBeanに対して <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> を実行することができる。</li>
 <li>エラーが発生した時点でバリデーションを中止せず、最終行まで検証を行う場合、
-バリデーション終了後に全行分のエラーメッセージを格納した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/message/Message.html" title="nablarch.core.message.Message">Message</a> のリスト
-を引数に <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を生成して送出することで、
+バリデーション終了後に全行分のエラーメッセージを格納した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/Message.html" title="nablarch.core.message.Message">Message</a> のリスト
+を引数に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> を生成して送出することで、
 <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-errors-tag"><span>errorsタグ</span></a> で画面に出力できる。</li>
 <li>バリデーションメッセージにプロパティ名を付与する方法については
 <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-property-name"><span>バリデーションエラー時のメッセージに項目名を含めたい</span></a> を参照し実装する。</li>
@@ -776,7 +779,7 @@ Exampleアプリケーションでは下記ファイルに設定が記載され�
 </dd>
 <dt>この実装のポイント</dt>
 <dd><ul class="first last simple">
-<li>一括登録は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/dao/UniversalDao.html#batchInsert-java.util.List-" title="nablarch.common.dao.UniversalDao.batchInsert(java.util.List)">UniversalDao#batchInsert</a>
+<li>一括登録は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#batchInsert-java.util.List-" title="nablarch.common.dao.UniversalDao.batchInsert(java.util.List)">UniversalDao#batchInsert</a>
 を使用して実行する。</li>
 <li>一度に登録する件数が膨大になるとパフォーマンスの低下を招く可能性があるため、一括登録一回ごとの件数に上限を設定する。</li>
 </ul>

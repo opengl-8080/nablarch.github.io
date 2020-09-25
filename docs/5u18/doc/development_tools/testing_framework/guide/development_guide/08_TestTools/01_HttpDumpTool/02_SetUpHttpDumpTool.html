@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/development_tools/testing_framework/guide/development_guide/08_TestTools/01_HttpDumpTool/02_SetUpHttpDumpTool.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/08_TestTools/01_HttpDumpTool/02_SetUpHttpDumpTool.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.3.1. リクエスト単体データ作成ツール" href="index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="index.html">3.3.1. リクエスト単体データ作成ツール</a> &raquo;</li>
       
     <li>3.3.1.2. リクエスト単体データ作成ツール インストールガイド</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -337,72 +340,56 @@
 <span id="id2"></span><h2>3.3.1.2.1. 前提事項<a class="headerlink" href="#http-dump-tool-prerequisite" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本ツールを使用する際、以下の前提事項を満たす必要がある。</p>
 <ul class="simple">
-<li>javaコマンドがパスに含まれていること</li>
+<li>以下のツールがインストール済みであること<ul>
+<li>Java</li>
+<li>Maven</li>
+</ul>
+</li>
+<li>プロジェクトがMavenで管理されていること</li>
 <li>htmlファイルがブラウザに関連付けされていること</li>
 <li>ブラウザのプロキシ設定で、localhostが除外されていること</li>
 </ul>
 </div>
 <div class="section" id="id3">
 <h2>3.3.1.2.2. 提供方法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ツールは、Nablarchのサンプルアプリケーションに同梱して提供する。
-本ツールのツール構成を下記に示す。</p>
-<blockquote>
-<div><table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="67%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">ファイル名</th>
-<th class="head">説明</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>httpDump.bat</td>
-<td><div class="first last line-block">
-<div class="line">起動バッチファイル（Windows用）</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td>nablarch-tfw-X.X.jar</td>
-<td><div class="first last line-block">
-<div class="line">Nablarch Testing Framework のJARファイル（X.Xの部分はバージョン番号）</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td>poi-X.X.jar</td>
-<td><div class="first last line-block">
-<div class="line">Apache POI のJARファイル（X.Xの部分はバージョン番号など）</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td>jetty.jar</td>
-<td><div class="first last line-block">
-<div class="line">Jetty Server のJARファイル</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td>jetty-util.jar</td>
-<td><div class="first last line-block">
-<div class="line">Jetty Utilities のJARファイル</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td>servlet-api.jar</td>
-<td><div class="first last line-block">
-<div class="line">Servlet Specification 2.5 API のJARファイル</div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-<p>各JARファイルへのクラスパスが設定されたhttpDump.batがサンプルアプリケーションの下記パスに配置されている。</p>
-<blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>/test/tool/httpDump.bat
+<p>本ツールは以下のjarにて提供する。</p>
+<ul class="simple">
+<li>nablarch-testing-XXX.jar</li>
+<li>nablarch-testing-jetty6-XXX.jar (Java 8 以前のバージョンで使用する)</li>
+<li>nablarch-testing-jetty9-XXX.jar (Java 11 以降のバージョンで使用する)</li>
+</ul>
+<p>そのため、pom.xmlのdependencies要素以下の記述があることを確認する。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependencies&gt;</span>
+  <span class="c">&lt;!-- 中略 --&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>nablarch-testing<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+  <span class="c">&lt;!-- Java 8 以前のバージョンで使用する場合 --&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-jetty6<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+  <span class="c">&lt;!-- Java 11 以降のバージョンで使用する場合 --&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-jetty9<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+  <span class="c">&lt;!-- 中略 --&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
 </pre></div>
 </div>
-</div></blockquote>
+<p>プロジェクトのディレクトリで以下のコマンドを実行し、jar ファイルをダウンロードする。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>mvn dependency:copy-dependencies -DoutputDirectory=lib
+</pre></div>
+</div>
+<p>以下のファイルをプロジェクトのpom.xmlと同じディレクトリに配置する。</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../../../../../../_downloads/httpDump.bat" download=""><code class="xref download docutils literal"><span class="pre">httpDump.bat</span></code></a></li>
+</ul>
 </div>
 <div class="section" id="eclipse">
 <h2>3.3.1.2.3. Eclipseとの連携<a class="headerlink" href="#eclipse" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -423,7 +410,7 @@
 <h3>3.3.1.2.3.3. 起動用バッチファイル（シェルスクリプト）選択<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Windowsの場合はバッチファイル(httpDump.bat)を、
 Linuxの場合はシェルスクリプト(httpDump.sh)を選択する。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/03_Eclipse_OpenFile.png"><img alt="../../../../../../_images/03_Eclipse_OpenFile.png" src="../../../../../../_images/03_Eclipse_OpenFile.png" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/03_Eclipse_OpenFile.png"><img alt="../../../../../../_images/03_Eclipse_OpenFile.png" src="../../../../../../_images/03_Eclipse_OpenFile.png" style="width: 100%;" /></a>
 </div>
 <div class="section" id="html">
 <span id="howtoexecutefromeclipse"></span><h3>3.3.1.2.3.4. HTMLファイルからの起動方法<a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h3>

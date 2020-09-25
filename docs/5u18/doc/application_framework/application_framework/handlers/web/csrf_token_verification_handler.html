@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/handlers/web/csrf_token_verification_handler.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/csrf_token_verification_handler.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="6.2. ウェブアプリケーション専用ハンドラ" href="index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="index.html">6.2. ウェブアプリケーション専用ハンドラ</a> &raquo;</li>
       
     <li>6.2.18. CSRFトークン検証ハンドラ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -352,7 +355,7 @@ CSRFトークンが画面に自動で出力される。
 <p><a class="reference internal" href="../../web_service/rest/index.html#restful-web-service"><span>RESTfulウェブサービス</span></a> においてCSRF対策を実現できるように、
 本ハンドラはリクエストヘッダまたはリクエストパラメータからCSRFトークンを取得する。
 生成されたCSRFトークンを取得するためのユーティリティクラス(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/csrf/CsrfTokenUtil.html" title="nablarch.common.web.csrf.CsrfTokenUtil">CsrfTokenUtil</a> )を提供しているので、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/csrf/CsrfTokenUtil.html" title="nablarch.common.web.csrf.CsrfTokenUtil">CsrfTokenUtil</a> )を提供しているので、
 プロジェクトのアーキテクチャに合わせてクライアントにCSRFトークンを送る仕組みを実装できる。</p>
 <p>本ハンドラはCSRFトークンをセッションストアに格納するため、本ハンドラを使用する場合は <a class="reference internal" href="../../libraries/session_store.html#session-store"><span>セッションストア</span></a> の使用が必須となる。</p>
 <p>本ハンドラでは、以下の処理を行う。</p>
@@ -369,7 +372,7 @@ CSRFトークンが画面に自動で出力される。
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id7">6.2.18.1. ハンドラクラス名</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/CsrfTokenVerificationHandler.html" title="nablarch.fw.web.handler.CsrfTokenVerificationHandler">nablarch.fw.web.handler.CsrfTokenVerificationHandler</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/CsrfTokenVerificationHandler.html" title="nablarch.fw.web.handler.CsrfTokenVerificationHandler">nablarch.fw.web.handler.CsrfTokenVerificationHandler</a></li>
 </ul>
 </div>
 <div class="section" id="id3">
@@ -427,16 +430,16 @@ CSRFトークンが画面に自動で出力される。
 </dd>
 <dt>取得できなかった場合はCSRFトークンを生成してセッションストアへ保存する</dt>
 <dd><ul class="first last simple">
-<li>CSRFトークンの生成は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/CsrfTokenGenerator.html" title="nablarch.fw.web.handler.csrf.CsrfTokenGenerator">CsrfTokenGenerator</a> が行う。
-デフォルトではバージョン4のUUIDを使用してCSRFトークンの生成を行う <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/UUIDv4CsrfTokenGenerator.html" title="nablarch.fw.web.handler.csrf.UUIDv4CsrfTokenGenerator">UUIDv4CsrfTokenGenerator</a> を使用する。</li>
+<li>CSRFトークンの生成は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/CsrfTokenGenerator.html" title="nablarch.fw.web.handler.csrf.CsrfTokenGenerator">CsrfTokenGenerator</a> が行う。
+デフォルトではバージョン4のUUIDを使用してCSRFトークンの生成を行う <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/UUIDv4CsrfTokenGenerator.html" title="nablarch.fw.web.handler.csrf.UUIDv4CsrfTokenGenerator">UUIDv4CsrfTokenGenerator</a> を使用する。</li>
 <li>CSRFトークンの格納先となるセッションストアはデフォルトのセッションストアとなる。（セッションストアの名前を指定しないでCSRFトークンを格納する）</li>
 </ul>
 </dd>
 <dt>HTTPリクエストが検証対象か否かを判定する</dt>
 <dd><ul class="first last simple">
-<li>検証対象か否かの判定は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/VerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.VerificationTargetMatcher">VerificationTargetMatcher</a> が行う。
-デフォルトではHTTPメソッドからHTTPリクエストが検証対象か否かを判定する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/HttpMethodVerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.HttpMethodVerificationTargetMatcher">HttpMethodVerificationTargetMatcher</a> を使用する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/HttpMethodVerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.HttpMethodVerificationTargetMatcher">HttpMethodVerificationTargetMatcher</a> は、HTTPメソッドの <code class="docutils literal"><span class="pre">GET</span></code> <code class="docutils literal"><span class="pre">HEAD</span></code> <code class="docutils literal"><span class="pre">TRACE</span></code> <code class="docutils literal"><span class="pre">OPTIONS</span></code> をCSRFトークンの検証対象 <strong>外</strong> と判定する（つまりPOSTやPUT等は検査対象となる）。</li>
+<li>検証対象か否かの判定は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/VerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.VerificationTargetMatcher">VerificationTargetMatcher</a> が行う。
+デフォルトではHTTPメソッドからHTTPリクエストが検証対象か否かを判定する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/HttpMethodVerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.HttpMethodVerificationTargetMatcher">HttpMethodVerificationTargetMatcher</a> を使用する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/HttpMethodVerificationTargetMatcher.html" title="nablarch.fw.web.handler.csrf.HttpMethodVerificationTargetMatcher">HttpMethodVerificationTargetMatcher</a> は、HTTPメソッドの <code class="docutils literal"><span class="pre">GET</span></code> <code class="docutils literal"><span class="pre">HEAD</span></code> <code class="docutils literal"><span class="pre">TRACE</span></code> <code class="docutils literal"><span class="pre">OPTIONS</span></code> をCSRFトークンの検証対象 <strong>外</strong> と判定する（つまりPOSTやPUT等は検査対象となる）。</li>
 </ul>
 </dd>
 <dt>検証対象の場合はHTTPリクエストからCSRFトークンを取得して検証を行う</dt>
@@ -451,8 +454,8 @@ CSRFトークンが画面に自動で出力される。
 </dd>
 <dt>検証に成功した場合は次のハンドラへ処理を移し、検証に失敗した場合はBadRequest(400)のレスポンスを返す</dt>
 <dd><ul class="first last simple">
-<li>検証失敗時の処理は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/VerificationFailureHandler.html" title="nablarch.fw.web.handler.csrf.VerificationFailureHandler">VerificationFailureHandler</a> が行う。
-デフォルトではBadRequest(400)のレスポンスを生成する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/csrf/BadRequestVerificationFailureHandler.html" title="nablarch.fw.web.handler.csrf.BadRequestVerificationFailureHandler">BadRequestVerificationFailureHandler</a> を使用する。</li>
+<li>検証失敗時の処理は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/VerificationFailureHandler.html" title="nablarch.fw.web.handler.csrf.VerificationFailureHandler">VerificationFailureHandler</a> が行う。
+デフォルトではBadRequest(400)のレスポンスを生成する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/csrf/BadRequestVerificationFailureHandler.html" title="nablarch.fw.web.handler.csrf.BadRequestVerificationFailureHandler">BadRequestVerificationFailureHandler</a> を使用する。</li>
 </ul>
 </dd>
 </dl>
@@ -521,7 +524,7 @@ CSRF対策はアプリケーションプログラマが実装して作り込む�
 利用者にリンクのクリックなどの操作をさせることで利用者の意図しない攻撃リクエストを送信させることができてしまう。
 これを防ぐためにはログイン時にCSRFトークンを再生成しなくてはならない。</p>
 <p>CSRFトークンの再生成は、アクション等のリクエスト処理の中で
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/csrf/CsrfTokenUtil.html#regenerateCsrfToken-nablarch.fw.ExecutionContext-" title="nablarch.common.web.csrf.CsrfTokenUtil.regenerateCsrfToken(nablarch.fw.ExecutionContext)">CsrfTokenUtil.regenerateCsrfToken</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/csrf/CsrfTokenUtil.html#regenerateCsrfToken-nablarch.fw.ExecutionContext-" title="nablarch.common.web.csrf.CsrfTokenUtil.regenerateCsrfToken(nablarch.fw.ExecutionContext)">CsrfTokenUtil.regenerateCsrfToken</a>
 メソッドを呼び出すと、本ハンドラの戻りの処理でCSRFトークンの再生成が行われる。</p>
 <p>ログイン時にセッションストアを破棄して再生成する実装であればこのメソッドを利用する必要はない。
 セッションストアの破棄と共にCSRFトークンも破棄され、その後のページ表示時に新しいCSRFトークンが生成されるためである。

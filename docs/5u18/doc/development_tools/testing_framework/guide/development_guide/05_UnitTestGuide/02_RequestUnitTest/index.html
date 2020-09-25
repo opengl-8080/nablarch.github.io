@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/index.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/index.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
@@ -319,9 +319,12 @@
           <li><a href="../index.html">3.1. 単体テスト実施方法</a> &raquo;</li>
       
     <li>3.1.2. リクエスト単体テストの実施方法</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -349,7 +352,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">スーパクラスBasicHttpRequestTestTemplateは、リクエスト単体テストに必要な各種メソッドを用意している。DbAccessTestSupportの機能も兼ね備えているので、データベースの設定などもクラス単体テストと同じように実行できる。</p>
 </div>
 </div>
@@ -396,7 +399,7 @@
 </tbody>
 </table>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">上記のようにメソッドを分割するのは、テストデータシートが煩雑になり可読性が下がることを避ける為である。上記以外でも、１つのテストデータシートにさまざまなテストケースを詰め込むと可読性が下がる場合は、テストデータシートを分割する。</p>
 </div>
 </div>
@@ -563,7 +566,7 @@ Cookieを必要としないケースの場合には、以下例の8ケース目�
 <p>テストケースとのひもづけを分かりやすくするため <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#marker-column"><span>マーカーカラム</span></a> としてテストケース番号を記載すること。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/testcase_and_request.png"><img alt="../../../../../../_images/testcase_and_request.png" src="../../../../../../_images/testcase_and_request.png" /></a>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>リクエストパラメータは必ず記載する必要がある。</p>
 <p>例えば初期画面表示のリクエストなど、リクエストパラメータが存在しない場合でも LIST_MAP=requestParams には必ず列を定義する必要がある。</p>
 <p>リクエストパラメータが不要な場合は、下記のようにテストケース番号の列のみを記載する。
@@ -715,7 +718,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 <li>void afterExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">これらのメソッド両方をオーバーライドする必要はない。必要なものだけをオーバーライドする。
 また、これらのメソッド内に全ての処理を記述する必要はない。記述が長くなったり、
 テストメソッド間で共通する処理がある場合は、プライベートメソッドに切り出すこと。</p>
@@ -800,7 +803,7 @@ BasicAdviceクラスには以下のメソッドが用意されており、それ
 ただし、この場合はsetterの欄は不要である。</p>
 <img alt="../../../../../../_images/assert_entity.png" src="../../../../../../_images/assert_entity.png" />
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>リクエストスコープにFormが格納されている場合、別のFormを設定したプロパティでなければEntityの場合と同様にテストが出来る。</p>
 <p>別のFormを設定したプロパティの場合、そのFormを取得してEntityと同様にテストをすればよい。以下に例を示す。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
@@ -899,7 +902,7 @@ Excelに記載した期待値と直接比較するメソッドが用意されて
 </div>
 <p></p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <dl class="last docutils">
 <dt>テストデータの取得方法については、以下のリンク先を参照。</dt>
 <dd><ul class="first last simple">
@@ -953,7 +956,7 @@ Excelに記載した期待値と直接比較するメソッドが用意されて
 <h2>3.1.2.6. テスト結果確認（目視）<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>１リクエスト毎にHTMLダンプファイルが出力される。ファイルをブラウザで開き、目視確認を行う。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">リクエスト単体テストで生成されたHTMLファイルは自動テストフレームワークにて自動的にチェックされる。自動テストフレームワークは、<a class="reference internal" href="../../08_TestTools/03_HtmlCheckTool/index.html"><em>HTMLチェックツール</em></a>を用いて生成されたHTMLファイルをチェックする。
 HTMLファイル内に構文エラー等の違反があった場合は、その違反内容に応じた例外が発生し、そのテストケースは失敗となる。</p>
 </div>
@@ -966,7 +969,7 @@ HTMLダンプ出力結果が格納されるディレクトリの詳細は、 <a 
 <div><img alt="../../../../../../_images/htmlDumpDir.png" src="../../../../../../_images/htmlDumpDir.png" />
 </div></blockquote>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">HTMLダンプファイル名には、<a class="reference internal" href="#id6">テストケース一覧</a>のテストケース説明（testShotsのdescription欄）
 の記述が使用される。</p>
 </div>

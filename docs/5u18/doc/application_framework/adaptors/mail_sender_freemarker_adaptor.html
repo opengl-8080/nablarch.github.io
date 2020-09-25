@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/adaptors/mail_sender_freemarker_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/mail_sender_freemarker_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
@@ -317,9 +317,12 @@
           <li><a href="index.html">アダプタ</a> &raquo;</li>
       
     <li>E-mail FreeMarkerアダプタ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -348,16 +351,16 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">FreeMarkerのバージョン2.3.27-incubatingを使用してテストを行っている。
 バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
 </div>
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id7">E-mail FreeMarkerアダプタを使用するための設定を行う</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本アダプタを使用するためには、コンポーネント設定ファイルで <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/mail/freemarker/FreeMarkerMailProcessor.html" title="nablarch.integration.mail.freemarker.FreeMarkerMailProcessor">FreeMarkerMailProcessor</a> を <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> へ設定する。</p>
+<p>本アダプタを使用するためには、コンポーネント設定ファイルで <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/mail/freemarker/FreeMarkerMailProcessor.html" title="nablarch.integration.mail.freemarker.FreeMarkerMailProcessor">FreeMarkerMailProcessor</a> を <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> へ設定する。</p>
 <p><code class="docutils literal"><span class="pre">FreeMarkerMailProcessor</span></code> にはFreeMarkerが提供する <code class="docutils literal"><span class="pre">Configuration</span></code> を設定する必要がある。
-<code class="docutils literal"><span class="pre">Configuration</span></code> は以下の理由により <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> の実装クラスを作成してコンポーネント設定を行うことを推奨する。</p>
+<code class="docutils literal"><span class="pre">Configuration</span></code> は以下の理由により <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> の実装クラスを作成してコンポーネント設定を行うことを推奨する。</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">Configuration</span></code> はデフォルトコンストラクタが非推奨である</li>
 <li><code class="docutils literal"><span class="pre">Configuration</span></code> への設定はコンポーネント設定ファイルよりもJavaコードで行う方がやりやすい</li>
@@ -424,7 +427,7 @@ ${title}は、申請番号${requestId}で申請されました。
 ${approver}は速やかに${title}を承認してください。${option}
 </pre></div>
 </div>
-<p>より詳しい件名と本文の分割ルールは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/mail/TemplateEngineProcessedResult.html#valueOf-java.lang.String-" title="nablarch.common.mail.TemplateEngineProcessedResult.valueOf(java.lang.String)">TemplateEngineProcessedResult#valueOf</a> を参照。</p>
+<p>より詳しい件名と本文の分割ルールは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/TemplateEngineProcessedResult.html#valueOf-java.lang.String-" title="nablarch.common.mail.TemplateEngineProcessedResult.valueOf(java.lang.String)">TemplateEngineProcessedResult#valueOf</a> を参照。</p>
 <p>テンプレートファイルを配置する場所は <code class="docutils literal"><span class="pre">Configuration</span></code> の設定によって異なる。
 例えば、前節で示した設定例だとテンプレートファイルはクラスパスからロードされる。
 また、 <code class="docutils literal"><span class="pre">basePackagePath</span></code> に <code class="docutils literal"><span class="pre">com/example/template/</span></code> と設定されているので、クラスパス上の <code class="docutils literal"><span class="pre">com/example/template/</span></code> ディレクトリにテンプレートファイルを配置することになる。</p>

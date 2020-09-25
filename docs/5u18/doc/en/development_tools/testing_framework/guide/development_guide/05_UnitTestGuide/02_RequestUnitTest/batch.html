@@ -1,0 +1,1175 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.8. How to Execute a Request Unit Test (Batch) &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/batch.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
+        <link rel="next" title="3.1.9. How to Perform a Subfunction Unit Test (Batch)" href="../03_DealUnitTest/batch.html"/>
+        <link rel="prev" title="3.1.7. How to Test Execution of Duplicate Form Submission Prevention Function" href="duplicate_form_submission.html"/>
+ 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
+      
+    <li>3.1.8. How to Execute a Request Unit Test (Batch)</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-execute-a-request-unit-test-batch">
+<span id="batch-request-test"></span><h1>3.1.8. How to Execute a Request Unit Test (Batch)<a class="headerlink" href="#how-to-execute-a-request-unit-test-batch" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-write-a-test-class">
+<h2>3.1.8.1. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
+<p>The test class should be created in such a way that the following conditions are met.</p>
+<ul class="simple">
+<li>The test class package should be the same as the Action class to be tested.</li>
+<li>Create a test class with a class name of &lt;Action class name&gt;RequestTest.</li>
+<li>Inherits <code class="docutils literal"><span class="pre">nablarch.test.core.batch.BatchRequestTestSupport</span></code>.</li>
+</ul>
+<p>For example, if the Action class to be tested is <code class="docutils literal"><span class="pre">nablarch.sample.ss21AA.RM21AA001Action</span></code>,
+the test class would be as follows.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.ss21AA</span><span class="o">;</span>
+
+<span class="c1">// ~ Middle is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RM21AA001ActionRequestTest</span> <span class="kd">extends</span> <span class="n">BatchRequestTestSupport</span> <span class="o">{</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-method-division">
+<h2>3.1.8.2. Test method division<a class="headerlink" href="#test-method-division" title="Permalink to this headline">¶</a></h2>
+<p>In principle, there is one test method per test case.
+The test method to be created is determined by the following procedure:</p>
+<ul class="simple">
+<li>In principle, one test method is created for one test case.</li>
+<li>As an exception, if it is more efficient to describe multiple cases collectively, consider using multiple test cases in one test method.</li>
+</ul>
+<p>In batch processing, multiple records are handled at once, so the test data is relatively large.If multiple test cases are described in one test method, a large amount of test data will be described in one sheet,and readability and maintainability will be reduced. Therefore, in principle, we use one test case and one test method.</p>
+<p>However, it may be more efficient to describe multiple test cases together. In this case, we consider describing multiple cases together.</p>
+<ul class="simple">
+<li>When the test cases have a strong relationship and the readability is degraded by dividing the sheet. (e.g., a test case for checking the format of an input file)</li>
+<li>Since the test data is small, description on one sheet does not affect readability and maintainability.</li>
+</ul>
+</div>
+<div class="section" id="how-to-write-test-data">
+<h2>3.1.8.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
+<p>The Excel file containing the test data should be stored in the same directory with the same name as the test source code, same as in the class unit test (only the extension differs).</p>
+<p>For information on how to write test data, refer to &#8220;<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Test data description using Excel</span></a>&#8221;.</p>
+<div class="section" id="common-database-initial-values-for-test-classes">
+<h3>3.1.8.3.1. Common database initial values for test classes<a class="headerlink" href="#common-database-initial-values-for-test-classes" title="Permalink to this headline">¶</a></h3>
+<p>The same applies for web applications. See &#8220;<a class="reference internal" href="index.html#request-test-setup-db"><span>Common database initial values for test classes</span></a>&#8221;.</p>
+</div>
+<div class="section" id="list-of-test-cases">
+<span id="batch-test-testcases"></span><h3>3.1.8.3.2. List of test cases<a class="headerlink" href="#list-of-test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Case table for a single test method is described in the data type of LIST_MAP. The ID is <strong>testShots</strong>.</p>
+<p>Each case should have the following elements:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="78%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Description</th>
+<th class="head">Required</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>no</td>
+<td>Write the test case numbers sequentially from 1.</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>description</td>
+<td>Write an explanation of the test case.</td>
+<td>Required</td>
+</tr>
+<tr class="row-even"><td>expectedStatusCode</td>
+<td>Expected status code</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>setUpTable</td>
+<td>When registering in the database before each test case execution,
+the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a>of the data described in the same sheet should be described<a class="footnote-reference" href="#id5" id="id1">[1]</a>.
+Data is input by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>setUpFile</td>
+<td>When creating the input file before executing each test case,
+enter the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the data that is described in the same sheet<a class="footnote-reference" href="#id5" id="id2">[1]</a>.
+The creation of the file is done by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedFile</td>
+<td>When comparing the contents of output files,
+describe the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the expected file<a class="footnote-reference" href="#id5" id="id3">[1]</a>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedTable</td>
+<td>When comparing the contents of the database,
+the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the table that is be expected should be mentioned<a class="footnote-reference" href="#id5" id="id4">[1]</a>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedLog</td>
+<td>Describe the LIST_MAP data ID that describes the expected log message.
+The log message is verified by the automated test framework to see if it has actually been output.
+(See &#8220;<a class="reference internal" href="#log-result-verification">Log result verification</a>&#8221;)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>diConfig</td>
+<td>Describe the path to the component configuration file when executing a batch.
+(See <a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>Command line arguments</span></a>)</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>requestPath</td>
+<td>The request path to execute the batch is described.
+(See <a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>Command line arguments</span></a>)</td>
+<td>Required</td>
+</tr>
+<tr class="row-even"><td>userId</td>
+<td>Enter the batch execution user ID.
+(See <a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>Command line arguments</span></a>)</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>expectedMessage</td>
+<td>When sending synchronous message, the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the expected request message is described. Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>responseMessage</td>
+<td>If sending synchronous message, the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the response message to be returned is described.Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedMessageByClient</td>
+<td>When sending synchronous HTTP message, the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the expected request message is described.Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>responseMessageByClient</td>
+<td>If sending synchronous HTTP message, the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>Group ID</span></a> of the response message to be returned is described.Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id3">3</a>, <a class="fn-backref" href="#id4">4</a>)</em> To use the default group ID (but not the group ID), write <cite>default</cite>.
+Default group ID and individual groups can be used together.
+When both data are mixed, both data of the default group ID and data of the specified group ID are valid.</td></tr>
+</tbody>
+</table>
+<div class="section" id="command-line-arguments">
+<h4>3.1.8.3.2.1. Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h4>
+<p>The method to specify the <a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/standalone/main.html#main-run-application"><span>Command line arguments</span></a> in the test data is described.</p>
+<p>To specify the batch start-up arguments, add a column in the form of <code class="docutils literal"><span class="pre">args[n]</span></code> (<strong>where the index n is an integer greater than or equal to 0</strong>).</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="16%" />
+<col width="4%" />
+<col width="24%" />
+<col width="28%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">no</th>
+<th class="head">case</th>
+<th class="head">...</th>
+<th class="head">args[0]</th>
+<th class="head">args[1]</th>
+<th class="head">args[2]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>xxx case</td>
+<td>...</td>
+<td>First argument</td>
+<td>Second argument</td>
+<td>Third argument</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The index n must be a continuous integer.</p>
+</div>
+</div></blockquote>
+<p>If the column other than the above is added to the Test Case list, the column is considered to be a command line option.</p>
+<p>For example, suppose you have the following column in the list of Test Cases</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="35%" />
+<col width="10%" />
+<col width="26%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">no</th>
+<th class="head">case</th>
+<th class="head">...</th>
+<th class="head">paramA</th>
+<th class="head">paramB</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>xxx case</td>
+<td>...</td>
+<td>valueA</td>
+<td>valueB</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>-paramA<span class="o">=</span>valueA -paramB<span class="o">=</span>valueB
+</pre></div>
+</div>
+<p>Command line option is specified.</p>
+</div>
+</div>
+<div class="section" id="various-preparation-data">
+<h3>3.1.8.3.3. Various preparation data<a class="headerlink" href="#various-preparation-data" title="Permalink to this headline">¶</a></h3>
+<p>This section explains how to describe the various preparation data required for testing.
+In batches, the database and input files are prepared.</p>
+<div class="section" id="database-preparation">
+<h4>3.1.8.3.3.1. Database preparation<a class="headerlink" href="#database-preparation" title="Permalink to this headline">¶</a></h4>
+<p>Map with groupID in the same way as <a class="reference internal" href="index.html#request-test-testcases"><span>online</span></a>.</p>
+</div>
+<div class="section" id="preparing-a-fixed-length-file">
+<span id="how-to-setup-fixed-length-file"></span><h4>3.1.8.3.3.2. Preparing a fixed-length file<a class="headerlink" href="#preparing-a-fixed-length-file" title="Permalink to this headline">¶</a></h4>
+<p>If the information of the fixed length file is described in the test data, the automated test framework will create the file before the test execution.
+Describe in the following format.</p>
+<p>SETUP_FIXED[Group ID]=filepath.</p>
+<p>Directive line</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="28%" />
+<col width="28%" />
+<col width="22%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6">Record type</td>
+<td>Field name(1)</td>
+<td>Field name(2)</td>
+<td>...  <a class="footnote-reference" href="#id8" id="id6">[2]</a></td>
+</tr>
+<tr class="row-even"><td>Data type(1)</td>
+<td>Data type(2)</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>Field length(1)</td>
+<td>Field length(2)</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>Data(1-1)</td>
+<td>Data(2-1)</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>Data(1-2)</td>
+<td>Data(2-2)</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>... <a class="footnote-reference" href="#id9" id="id7">[3]</a></td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td>On the right side, the number of fields continues in the same way.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[3]</a></td><td>Below this, the number of data continues in the same way.</td></tr>
+</tbody>
+</table>
+<p></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Group ID</td>
+<td>Specify the group ID. It is connected with the group ID described in the <code class="docutils literal"><span class="pre">setUpFile</span></code>of the test case list.</td>
+</tr>
+<tr class="row-odd"><td>File path</td>
+<td>Enter the file path from the current directory (including the file name).</td>
+</tr>
+<tr class="row-even"><td>Directive line <a class="footnote-reference" href="#id11" id="id10">[4]</a></td>
+<td>Describes the directive. The cell to the right of the directive name cell contains the configuration value (multiple lines are allowed).</td>
+</tr>
+<tr class="row-odd"><td>Record type</td>
+<td>Describe the record type. In the case of multiple layouts, this description should be written in succession.</td>
+</tr>
+<tr class="row-even"><td>Field name</td>
+<td>Describes the field name. Describes only the number of fields.</td>
+</tr>
+<tr class="row-odd"><td>Data type</td>
+<td><p class="first">Describes the data type of the field. Describes only the number of fields.</p>
+<p class="last">The data type is described with a Japanese name such as &#8220;half-width alphabets (半角英字)&#8221;.Refer to the member variable DEFAULT_TABLE of <a class="reference external" href="https://github.com/nablarch/nablarch-testing/blob/master/src/main/java/nablarch/test/core/file/BasicDataTypeMapping.java">BasicDataTypeMapping</a>  for the mapping between data types in the format definition file and data types with Japanese names.</p>
+</td>
+</tr>
+<tr class="row-even"><td>Field length</td>
+<td>Describes the field type of the field. Describes only the number of fields.</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td>Describe the data stored in that field. If multiple records exist, the entry of data should be continued in the next line.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[4]</a></td><td><p class="first">When writing a directive, the contents corresponding to the following in the format definition file need not be described.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item</th>
+<th class="head">Reason</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file-type</td>
+<td>To indicate that the data type is a fixed length with SETUP_FIXED specification.</td>
+</tr>
+<tr class="row-odd"><td>record-length</td>
+<td>To pad with the size specified in the field length.</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Duplicate field names are <strong>not allowed in one record type</strong>. For example, there should be not more than 1 field named as &#8220;Name&#8221;.
+(Typically, unique field names are given in such cases, such as &#8220;Name of this member&#8221; and &#8220;Name of family member.&#8221;)
+It does not matter if the same name exists between different record types.
+(For example, the header record and trailer record may each have the field name &#8220;number of cases&#8221;)</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Field names, data types and field lengths can be efficiently created by copying and pasting them from the external interface design document.
+(Check the &#8220;<strong>transpose matrix</strong>&#8221; option when pasting.)</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When &#8220;unsigned numeric&#8221; or &#8220;signed numeric&#8221; data types are used, the data shall contain the value input from the fixed length file (value output to the fixed length file) as it is.
+In other words, if there are padding characters or signs in a fixed-length file, it is necessary to describe them.</p>
+<p>The following are examples of values to be represented and their representation method when the data type is a signed numeric value.（Format definition: Field length 10 digits, padding character &#8216;0&#8217;, decimal point required, code position fixed, positive sign not required）</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">numeric value to be expressed</th>
+<th class="head">Description on test data</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>12345</td>
+<td>0000012345</td>
+</tr>
+<tr class="row-odd"><td>-12.34</td>
+<td>-000012.34</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>When &#8220;signed numeric&#8221; and &#8220;signed numeric&#8221; are used as test data, it is necessary to set the data type for the test.</p>
+<p>See the example configuration below and add the settings for testing.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;fixedLengthConvertorSetting&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.convertor.FixedLengthConvertorSetting&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;convertorTable&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;map&gt;</span>
+      <span class="c">&lt;!--</span>
+<span class="c">      Default configuration</span>
+<span class="c">      If the default configuration is not configured, the default configuration will be overridden with the values configured here.</span>
+<span class="c">      --&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;X&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SingleByteCharacterString&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;N&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.DoubleByteCharacterString&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;XN&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.ByteStreamDataString&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;Z&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.ZonedDecimal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SZ&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedZonedDecimal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;P&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.PackedDecimal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SP&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedPackedDecimal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;B&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.Bytes&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;X9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.NumberStringDecimal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;SX9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.datatype.SignedNumberStringDecimal&quot;</span><span class="nt">/&gt;</span>
+
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;pad&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.Padding&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.UseEncoding&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;_LITERAL_&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.DefaultValue&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;number&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.NumberString&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;signed_number&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.core.dataformat.convertor.value.SignedNumberString&quot;</span><span class="nt">/&gt;</span>
+
+      <span class="c">&lt;!--</span>
+<span class="c">      Configuring the data type for testing</span>
+<span class="c">      Unsigned number (X9)-&gt;TEST_X9:nablarch.test.core.file.StringDataType</span>
+<span class="c">      Signed number (X9)-&gt;TEST_SX9:nablarch.test.core.file.StringDataType</span>
+<span class="c">      --&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;TEST_X9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.test.core.file.StringDataType&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;TEST_SX9&quot;</span> <span class="na">value=</span><span class="s">&quot;nablarch.test.core.file.StringDataType&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/map&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>Specific examples are given. This file consists of the following records:</dt>
+<dd><ul class="first last simple">
+<li>1 Header record</li>
+<li>2 Data records</li>
+<li>1 Trailer record</li>
+<li>One end record</li>
+</ul>
+</dd>
+</dl>
+<p>Character code is <code class="docutils literal"><span class="pre">Windows-31J</span></code>, record delimiting character is <code class="docutils literal"><span class="pre">CRLF</span></code>.</p>
+<hr class="docutils" />
+<p><code class="docutils literal"><span class="pre">SETUP_FIXED=work/members.txt</span></code></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="30%" />
+<col width="26%" />
+<col width="22%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>text-encoding</td>
+<td colspan="3">Windows-31J</td>
+</tr>
+<tr class="row-even"><td>record-separator</td>
+<td colspan="3">CRLF</td>
+</tr>
+<tr class="row-odd"><td rowspan="4">Header</td>
+<td>Record classification</td>
+<td>FILLER</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>半角数字</td>
+<td>半角</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>10</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td rowspan="5">Data</td>
+<td>Record classification</td>
+<td>Membership number</td>
+<td>Enrollment date</td>
+</tr>
+<tr class="row-even"><td>半角数字</td>
+<td>半角数字</td>
+<td>半角数字</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>10</td>
+<td>8</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>0000000001</td>
+<td>20100101</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0000000002</td>
+<td>20100102</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Trailer</td>
+<td>Record classification</td>
+<td>Record count</td>
+<td>FILLER</td>
+</tr>
+<tr class="row-odd"><td>半角数字</td>
+<td>数値</td>
+<td>半角</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td rowspan="4">End</td>
+<td>Record classification</td>
+<td>FILLER</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>半角数字</td>
+<td>半角</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>10</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+</div>
+<div class="section" id="prepare-variable-length-file-csv-file">
+<span id="how-to-setup-csv-file"></span><h4>3.1.8.3.3.3. Prepare variable-length file (CSV file)<a class="headerlink" href="#prepare-variable-length-file-csv-file" title="Permalink to this headline">¶</a></h4>
+<p>Preparation of variable length file (CSV file) is almost the same as fixed length file.
+The difference from fixed length is that the field length is not described for variable length files.</p>
+<p><code class="docutils literal"><span class="pre">SETUP_VARIABLE=work/members.csv</span></code></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="31%" />
+<col width="24%" />
+<col width="21%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>text-encoding</td>
+<td colspan="3">Windows-31J</td>
+</tr>
+<tr class="row-even"><td>record-separator</td>
+<td colspan="3">CRLF</td>
+</tr>
+<tr class="row-odd"><td rowspan="3">Header</td>
+<td>Record classification</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>半角数字</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Data</td>
+<td>Record classification</td>
+<td>Membership number</td>
+<td>Enrollment date</td>
+</tr>
+<tr class="row-odd"><td>半角数字</td>
+<td>半角数字</td>
+<td>半角数字</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>0000000001</td>
+<td>20100101</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0000000002</td>
+<td>20100102</td>
+</tr>
+<tr class="row-even"><td rowspan="3">Trailer</td>
+<td>Record classification</td>
+<td>Record count</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>半角数字</td>
+<td>数値</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td rowspan="3">End</td>
+<td>Record classification</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>半角数字</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you want to change the field delimiter, specify the field delimiter explicitly in the directive.
+For example, if you want to use tabs as delimiters (TSV file), specify the directive as follows.</p>
+<p class="last"><code class="docutils literal"><span class="pre">field-separator=\t</span></code></p>
+</div>
+</div>
+<div class="section" id="how-to-define-an-empty-file">
+<h4>3.1.8.3.3.4. How to define an empty file<a class="headerlink" href="#how-to-define-an-empty-file" title="Permalink to this headline">¶</a></h4>
+<p>You may want to define an empty file (0-byte file) as the preparation data or expected value.</p>
+<p>The definition of the empty file on the test sheet can be realized by defining the directive line and omitting the record definition as in the example below.</p>
+<p><strong>Definition example of empty file</strong></p>
+<p><code class="docutils literal"><span class="pre">SETUP_VARIABLE=work/members.csv</span></code></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="24%" />
+<col width="24%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>text-encoding</td>
+<td colspan="3">Windows-31J</td>
+</tr>
+<tr class="row-even"><td>record-separator</td>
+<td colspan="3">CRLF</td>
+</tr>
+<tr class="row-odd"><td colspan="4">// Empty file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="various-expected-values">
+<h3>3.1.8.3.4. Various expected values<a class="headerlink" href="#various-expected-values" title="Permalink to this headline">¶</a></h3>
+<p>When comparing the search results and database with expected values,
+link each data with the list of test cases using ID.</p>
+<div class="section" id="expected-database-status">
+<h4>3.1.8.3.4.1. Expected database status<a class="headerlink" href="#expected-database-status" title="Permalink to this headline">¶</a></h4>
+<p>Link the expected database state with the test case list in the same way as <a class="reference internal" href="index.html#request-test-expected-tables"><span>online</span></a> .</p>
+</div>
+<div class="section" id="expected-fixed-length-file">
+<h4>3.1.8.3.4.2. Expected fixed-length file<a class="headerlink" href="#expected-fixed-length-file" title="Permalink to this headline">¶</a></h4>
+<p>Assert the fixed length file output by the tested batch. </p>
+<p>In the case of the preparation data, the data type is <cite>SETUP_FIXED</cite>,
+but when the expected value is described, it becomes <cite>EXPECTED_FIXED</cite>.</p>
+<p>Other test data are described in the same way as the preparation data.See <a class="reference internal" href="#preparing-a-fixed-length-file">Preparing a fixed-length file</a>.</p>
+</div>
+<div class="section" id="expected-variable-length-file">
+<h4>3.1.8.3.4.3. Expected variable length file<a class="headerlink" href="#expected-variable-length-file" title="Permalink to this headline">¶</a></h4>
+<p>Assert the variable length file output by the batch to be tested.</p>
+<p>In the case of preparation data, the data type is <cite>SETUP_VARIABLE</cite>,
+but <cite>EXPECTED_VARIABLE</cite>is used to describe the expected value.</p>
+<p>Other test data are described in the same way as the preparation data. See <a class="reference internal" href="#prepare-variable-length-file-csv-file">Prepare variable-length file (CSV file)</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-write-a-test-method">
+<h2>3.1.8.4. How to write a test method<a class="headerlink" href="#how-to-write-a-test-method" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="super-class">
+<h3>3.1.8.4.1. Super class<a class="headerlink" href="#super-class" title="Permalink to this headline">¶</a></h3>
+<p>Inherits the <code class="docutils literal"><span class="pre">BatchRequestTestSupport</span></code> class.
+In this class, the request unit test is executed by the following procedure based on the prepared test data.</p>
+</div>
+<div class="section" id="create-a-test-method">
+<h3>3.1.8.4.2. Create a test method<a class="headerlink" href="#create-a-test-method" title="Permalink to this headline">¶</a></h3>
+<p>Create a method corresponding to the prepared test sheet.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser</span><span class="o">()</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="call-a-superclass-method">
+<h3>3.1.8.4.3. Call a superclass method<a class="headerlink" href="#call-a-superclass-method" title="Permalink to this headline">¶</a></h3>
+<p>In the test method, call one of the following methods of the superclass.</p>
+<ul class="simple">
+<li>void execute()</li>
+<li>void execute(String sheetName)</li>
+</ul>
+<p>Normally, execute() is used.Normally, the test sheet name and the test method name are the same though the execute method with argument can specify the sheet name of the test data.
+If the execute method with no argument is used, it is the same behavior as specifying the test method name to the sheet name of the test data.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testResigster</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">();</span>   <span class="c1">// [Description] Equivalent to execute (&quot;testRegisterUser&quot;)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-launch-the-test">
+<h2>3.1.8.5. How to launch the test<a class="headerlink" href="#how-to-launch-the-test" title="Permalink to this headline">¶</a></h2>
+<p>Same as the class unit test. Execute the test in the same way as a normal JUnit test.</p>
+</div>
+<div class="section" id="test-result-verification">
+<h2>3.1.8.6. Test result verification<a class="headerlink" href="#test-result-verification" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="result-verification-of-database">
+<h3>3.1.8.6.1. Result verification of database<a class="headerlink" href="#result-verification-of-database" title="Permalink to this headline">¶</a></h3>
+<p>By entering the group ID in the expectedTable column of the test case list,
+the file output result can be checked with the test data of the group ID.</p>
+</div>
+<div class="section" id="result-verification-of-file">
+<h3>3.1.8.6.2. Result verification of file<a class="headerlink" href="#result-verification-of-file" title="Permalink to this headline">¶</a></h3>
+<p>By entering the group ID in the expectedFile column of the test case list,
+the file output result can be checked with the test data of the group ID.</p>
+<p>The method of describing file expectation values is almost the same as the method of describing prepared data.
+Only the ID description method is different.
+The description method for each file type is shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="38%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type of file</th>
+<th class="head">Group ID not specified</th>
+<th class="head">When group ID is specified</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fixed-length file</td>
+<td><code class="docutils literal"><span class="pre">EXPECTED_FIXED</span> <span class="pre">=</span> <span class="pre">Path</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">compared</span></code></td>
+<td><code class="docutils literal"><span class="pre">EXPECTED_FIXED</span> <span class="pre">[Group</span> <span class="pre">ID]</span> <span class="pre">=</span> <span class="pre">Path</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">compared</span></code></td>
+</tr>
+<tr class="row-odd"><td>Variable length file</td>
+<td><code class="docutils literal"><span class="pre">EXPECTED_VARIABLE</span> <span class="pre">=</span> <span class="pre">Path</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">compared</span></code></td>
+<td><code class="docutils literal"><span class="pre">EXPECTED_VARIABLE</span> <span class="pre">[Group</span> <span class="pre">ID]</span> <span class="pre">=</span> <span class="pre">Path</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">compared</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="log-result-verification">
+<h3>3.1.8.6.3. Log result verification<a class="headerlink" href="#log-result-verification" title="Permalink to this headline">¶</a></h3>
+<p>By entering the group ID in the expectedLog column of the test case list,
+the log output result can be checked with the test data of the group ID.</p>
+<p>The following should be included.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Details</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>logLevel</td>
+<td>Log level of expected log</td>
+</tr>
+<tr class="row-odd"><td>message<strong>N</strong><a class="footnote-reference" href="#id13" id="id12">[5]</a></td>
+<td>Wording included in the expected log</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[5]</a></td><td>Where <strong>N</strong>is an integer greater than or equal to 1, multiple values (consecutive values)
+Example: messsage1, message2...</td></tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>All of these conditions are <strong>AND</strong> conditions.
+In the following cases, the expected log is not considered to have been output.</p>
+<ul class="last simple">
+<li>If the expected text is logged, but the <strong>log level is not as expected</strong></li>
+<li>If the log level matches, but there is at <strong>least one</strong> expected text that is not logged</li>
+</ul>
+</div>
+<p>A specific example is shown below.</p>
+<p>In the following example, we expect two types of log output.</p>
+<p><code class="docutils literal"><span class="pre">LIST_MAP=expectedLogMessages</span></code></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="21%" />
+<col width="39%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">logLevel</th>
+<th class="head">message1</th>
+<th class="head">message2</th>
+<th class="head">message3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>INFO</td>
+<td>NB11AA0101</td>
+<td>Starts the process.</td>
+<td>Member ID=[0001]</td>
+</tr>
+<tr class="row-odd"><td>FATAL</td>
+<td>NB11AA0109</td>
+<td>An error has occurred.</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If a group ID is entered in the expectedLog field, be sure to set at least one line of the expected message.
+When the expected message is not set (when the expected message is 0 lines) or when the LIST_MAP element attached to the group ID described in the expectedLog column does not exist,
+this framework judges that the preparation of the expected value is insufficient and throws out an exception.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

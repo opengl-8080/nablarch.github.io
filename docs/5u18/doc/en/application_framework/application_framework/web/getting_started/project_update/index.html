@@ -1,0 +1,776 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.3.3. Create Update Function &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web/getting_started/project_update/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="2.3. Getting Started" href="../index.html"/>
+        <link rel="next" title="2.3.4. Create a Delete Function" href="../project_delete/index.html"/>
+        <link rel="prev" title="2.3.2. Create a Search Function" href="../project_search/index.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">2. Web Application</a> &raquo;</li>
+      
+          <li><a href="../index.html">2.3. Getting Started</a> &raquo;</li>
+      
+    <li>2.3.3. Create Update Function</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="create-update-function">
+<span id="project-update"></span><h1>2.3.3. Create Update Function<a class="headerlink" href="#create-update-function" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the update function based on an example application.</p>
+<dl class="docutils">
+<dt>Description of the function to be created</dt>
+<dd><ol class="first arabic simple">
+<li>Click the project ID in the project list.</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/project_update_detail_link.png"><img alt="../../../../../_images/project_update_detail_link.png" src="../../../../../_images/project_update_detail_link.png" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Click the &#8220;Change(変更)&#8221; button on the target project&#8217;s detail screen.</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/project_update_detail.png"><img alt="../../../../../_images/project_update_detail.png" src="../../../../../_images/project_update_detail.png" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Rewrite the item to be updated and click the Update (更新) button.</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/project_update_update.png"><img alt="../../../../../_images/project_update_update.png" src="../../../../../_images/project_update_update.png" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>When the update confirmation screen is displayed, click on the confirm (確定) button.</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../_images/project_update_confirm.png"><img alt="../../../../../_images/project_update_confirm.png" src="../../../../../_images/project_update_confirm.png" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>The database is updated and the update completion screen is displayed.</li>
+</ol>
+<blockquote class="last">
+<div><a class="reference internal image-reference" href="../../../../../_images/project_update_complete.png"><img alt="../../../../../_images/project_update_complete.png" src="../../../../../_images/project_update_complete.png" /></a>
+</div></blockquote>
+</dd>
+</dl>
+<div class="section" id="enter-and-confirm-update-contents">
+<h2>2.3.3.1. Enter and confirm update contents<a class="headerlink" href="#enter-and-confirm-update-contents" title="Permalink to this headline">¶</a></h2>
+<p>Of the implementation methods of the update function, the input and confirmation of the update contents are described in the following order.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference internal" href="#project-update-create-form"><span>Create a form</span></a></li>
+<li><a class="reference internal" href="#project-update-create-edit-action"><span>Create a business action method to display the update screen</span></a></li>
+<li><a class="reference internal" href="#project-update-create-update-jsp"><span>Create a JSP for the update screen</span></a></li>
+<li><a class="reference internal" href="#project-update-create-confirm-action"><span>Create a business action method to check the updated contents</span></a></li>
+<li><a class="reference internal" href="#project-update-create-confirm-jsp"><span>Create a JSP for the update confirmation screen</span></a></li>
+</ol>
+</div></blockquote>
+<dl class="docutils" id="project-update-create-form">
+<dt>Create a form</dt>
+<dd><p class="first">Create a form to accept parameters for transitioning from detail screen to update screen and a form to accept input values for edit field of update screen.</p>
+<dl class="last docutils">
+<dt>A form to accept parameters when transitioning from the detail screen to the update screen</dt>
+<dd><p class="first">Create a form to accept the target project ID which is passed as a path parameter ( &#8221;:projectId&#8221; part of &#8220;show/:projectId&#8221;)
+when transitioning from the detail screen to the update screen.</p>
+<dl class="last docutils">
+<dt>ProjectTargetForm.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProjectTargetForm</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+
+    <span class="cm">/** Project ID */</span>
+    <span class="nd">@Required</span>
+    <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">projectId</span><span class="o">;</span>
+
+    <span class="c1">// Getter and setter are omitted</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>A form that accepts values entered from the update screen</dt>
+<dd><p class="first">Create a form to accept the value entered from the update screen after editing.</p>
+<dl class="last docutils">
+<dt>ProjectUpdateForm.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProjectUpdateForm</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+
+    <span class="c1">// Partial excerpt</span>
+
+    <span class="cm">/** Project name */</span>
+    <span class="nd">@Required</span>
+    <span class="nd">@Domain</span><span class="o">(</span><span class="s">&quot;projectName&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">projectName</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Acquire the project name.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @return Project name</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getProjectName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">projectName</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Set the project name.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param projectName Project name to be set</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProjectName</span><span class="o">(</span><span class="n">String</span> <span class="n">projectName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">projectName</span> <span class="o">=</span> <span class="n">projectName</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>Although the input items are duplicated with the project registration screen,
+the form for the project update screen should be created since <a class="reference internal" href="../../../web_service/rest/application_design.html#application-design-form-html"><span>form should be created for each HTML form</span></a> for responsibility assignment.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="project-update-create-edit-action">
+<dt>Create a business action method to display the update screen</dt>
+<dd><p class="first">Create a business action method that retrieves the current information from the database and displays the update screen.</p>
+<dl class="last docutils">
+<dt>ProjectAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@InjectForm</span><span class="o">(</span><span class="n">form</span> <span class="o">=</span> <span class="n">ProjectTargetForm</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">edit</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Delete the session information used in the update process.</span>
+    <span class="n">SessionUtil</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;project&quot;</span><span class="o">);</span>
+
+    <span class="n">ProjectTargetForm</span> <span class="n">targetForm</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+    <span class="n">LoginUserPrincipal</span> <span class="n">userContext</span> <span class="o">=</span> <span class="n">SessionUtil</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;userContext&quot;</span><span class="o">);</span>
+
+    <span class="c1">// Throws a NoDataException if the target project has been deleted by another user</span>
+    <span class="n">ProjectDto</span> <span class="n">dto</span> <span class="o">=</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">findBySqlFile</span><span class="o">(</span><span class="n">ProjectDto</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_BY_PROJECT&quot;</span><span class="o">,</span>
+            <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">targetForm</span><span class="o">.</span><span class="na">getProjectId</span><span class="o">(),</span> <span class="n">userContext</span><span class="o">.</span><span class="na">getUserId</span><span class="o">()});</span>
+
+    <span class="c1">// Set the output information to the request scope</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">,</span> <span class="n">dto</span><span class="o">);</span>
+
+    <span class="n">SessionUtil</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;project&quot;</span><span class="o">,</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">Project</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">dto</span><span class="o">));</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/WEB-INF/view/project/update.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last">
+<li><p class="first">A unique key lookup using
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#findBySqlFile-java.lang.Class-java.lang.String-java.lang.Object-" title="nablarch.common.dao.UniversalDao.findBySqlFile(java.lang.Class-java.lang.String-java.lang.Object)">UniversalDao#findBySqlFile</a>
+to get the initial value to display in the edit form.
+For <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-join"><span>acquire the result of table JOIN</span></a>, the search result is accepted as a bean.
+If there is no target data in the unique key search, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> is thrown.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since an error control handler is added to the example application, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/NoDataException.html" title="nablarch.common.dao.NoDataException">NoDataException</a> occurs, the screen transitions to the 404 error screen.
+For how to create an error control handler, refer to <a class="reference internal" href="../../feature_details/forward_error_page.html#forward-error-page-handler"><span>transition to the error page for the exception class with the handler</span></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Considering the possibility of updates by other users during editing, the entity at the time of the start of editing is registered in <a class="reference internal" href="../../../libraries/session_store.html#session-store"><span>Session Store</span></a>
+to perform an <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-jpa-version"><span>optimistic lock</span></a> (described below) using the version number at the time of the start of editing.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="project-update-create-update-jsp">
+<dt>Create a JSP for the update screen</dt>
+<dd>Screen creation has been described in <a class="reference internal" href="../client_create/client_create1.html#client-create-1"><span>Create Initial Display of Registration Screen</span></a> in the registration section and is omitted.</dd>
+</dl>
+<dl class="docutils" id="project-update-create-confirm-action">
+<dt>Create a business action method to check the updated contents</dt>
+<dd><p class="first">Create a business action method that validates the update content and displays the confirmation screen.
+In addition to <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a>, the validation with database search is implemented in the business action method.</p>
+<dl class="last docutils">
+<dt>ProjectAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@InjectForm</span><span class="o">(</span><span class="n">form</span> <span class="o">=</span> <span class="n">ProjectUpdateForm</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;form&quot;</span><span class="o">)</span>
+<span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/WEB-INF/view/project/update.jsp&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">confirmOfUpdate</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ProjectUpdateForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+
+    <span class="c1">// Search the database to check if there are any customers with the entered ID</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">hasClientId</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">UniversalDao</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">Client</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_BY_CLIENT_ID&quot;</span><span class="o">,</span>
+                <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="o">{</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">getClientId</span><span class="o">())</span> <span class="o">}))</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
+                        <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span>
+                            <span class="s">&quot;errors.nothing.client&quot;</span><span class="o">,</span> <span class="n">form</span><span class="o">.</span><span class="na">getClientId</span><span class="o">()));</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">Project</span> <span class="n">project</span> <span class="o">=</span> <span class="n">SessionUtil</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;project&quot;</span><span class="o">);</span>
+
+    <span class="c1">// Overwrite a form value to a session</span>
+    <span class="n">BeanUtil</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">form</span><span class="o">,</span> <span class="n">project</span><span class="o">);</span>
+
+    <span class="c1">// Set the output information to the request scope</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">,</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">ProjectDto</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">form</span><span class="o">));</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;profit&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">ProjectProfit</span><span class="o">(</span>
+            <span class="n">project</span><span class="o">.</span><span class="na">getSales</span><span class="o">(),</span>
+            <span class="n">project</span><span class="o">.</span><span class="na">getCostOfGoodsSold</span><span class="o">(),</span>
+            <span class="n">project</span><span class="o">.</span><span class="na">getSga</span><span class="o">(),</span>
+            <span class="n">project</span><span class="o">.</span><span class="na">getAllocationOfCorpExpenses</span><span class="o">()</span>
+    <span class="o">));</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/WEB-INF/view/project/confirmOfUpdate.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>Validation that requires a database search is described in the business action method.
+To confirm the existence of data, use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#exists-java.lang.Class-java.lang.String-java.lang.Object-" title="nablarch.common.dao.UniversalDao.exists(java.lang.Class-java.lang.String-java.lang.Object)">UniversalDao#exists</a>.
+For more information, see <a class="reference internal" href="../../../libraries/validation/bean_validation.html#bean-validation-database-validation"><span>Validation that requires a database lookup</span></a>.</li>
+<li>Since the <a class="reference internal" href="../../../libraries/session_store.html#session-store-form"><span>form should not be stored directly in the session store</span></a> due to responsibility assignment, it should be reworded to a bean.</li>
+</ul>
+</dd>
+<dt>Create SQL</dt>
+<dd><p class="first">Create SQL to acquire customer information from customer IDs to confirm the existence of a customer.</p>
+<dl class="last docutils">
+<dt>client.sql</dt>
+<dd><div class="first highlight-sql"><div class="highlight"><pre><span></span><span class="n">FIND_BY_CLIENT_ID</span> <span class="o">=</span>
+<span class="k">SELECT</span>
+    <span class="n">CLIENT_ID</span><span class="p">,</span>
+    <span class="n">CLIENT_NAME</span><span class="p">,</span>
+    <span class="n">INDUSTRY_CODE</span>
+<span class="k">FROM</span>
+    <span class="n">CLIENT</span>
+<span class="k">WHERE</span>
+    <span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="p">:</span><span class="n">clientId</span>
+</pre></div>
+</div>
+<dl class="last docutils">
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>The SQL for existence confirmation is made as a SELECT statement.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="project-update-create-confirm-jsp">
+<dt>Create a JSP for the update confirmation screen</dt>
+<dd><p class="first">Create an update confirmation screen by reusing the update screen.</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/project/update.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form</span> <span class="na">useToken=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Confirmation of registration --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;title-nav page-footer&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Button at the bottom of the page --&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;n:forInputPage&gt;</span>
+                <span class="c">&lt;!-- Button for input screen --&gt;</span>
+            <span class="nt">&lt;/n:forInputPage&gt;</span>
+            <span class="nt">&lt;n:forConfirmationPage&gt;</span>
+                <span class="c">&lt;!-- Button for confirmation screen --&gt;</span>
+                <span class="nt">&lt;n:submit</span> <span class="na">value =</span> <span class="s">&quot;Confirm&quot;</span> <span class="na">uri=</span><span class="s">&quot;/action/project/update&quot;</span> <span class="na">id=</span><span class="s">&quot;bottomSubmitButton&quot;</span>
+                        <span class="na">cssClass=</span><span class="s">&quot;btn btn-raised btn-success&quot;</span>
+                        <span class="na">allowDoubleSubmission=</span><span class="s">&quot;false&quot;</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/n:forConfirmationPage&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>How to use the update screen as a confirmation screen has been omitted as it is explained in <a class="reference internal" href="../client_create/client_create2.html#client-create-forconfirmationpage"><span>create a confirmation screen for the registration function</span></a>.</li>
+<li>To add JavaScript to prevent duplicate form submission, set the <cite>allowDoubleSubmission</cite> attribute of <a class="reference internal" href="../../../libraries/tag/tag_reference.html#tag-submit-tag"><span>submit tag</span></a> to false.
+For more information, see <a class="reference internal" href="../../../libraries/tag.html#tag-double-submission"><span>Preventing double submission</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="database-update">
+<h2>2.3.3.2. Database update<a class="headerlink" href="#database-update" title="Permalink to this headline">¶</a></h2>
+<p>Among the implementation methods of update function, confirmation of update content is explained in the following order.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference internal" href="#project-update-create-decide-action"><span>Create a business action method</span></a></li>
+<li><a class="reference internal" href="#project-update-create-success-jsp"><span>Create an update completion screen</span></a></li>
+</ol>
+</div></blockquote>
+<dl class="docutils" id="project-update-create-decide-action">
+<dt>Create a business action method</dt>
+<dd><p class="first">Create a business action method to update the database and finalize the changes.
+The entity definition for performing <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-jpa-version"><span>optimistic lock</span></a> is also explained.</p>
+<dl class="docutils">
+<dt>Create a business action method for database update</dt>
+<dd><p class="first">Create a business action method to update the database and redirect to the completion screen display method.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>ProjectAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@OnDoubleSubmission</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">update</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Project</span> <span class="n">targetProject</span> <span class="o">=</span> <span class="n">SessionUtil</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;project&quot;</span><span class="o">);</span>
+    <span class="n">UniversalDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">targetProject</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="mi">303</span><span class="o">,</span> <span class="s">&quot;redirect://completeOfUpdate&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="last docutils">
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>Sets the values you want to update to an entity and updates the database using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/dao/UniversalDao.html#update-java.lang.Object-" title="nablarch.common.dao.UniversalDao.update(java.lang.Object)">UniversalDao#update</a>.
+In the update process, optimistic locking is performed.</li>
+<li>Assign <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/OnDoubleSubmission.html" title="nablarch.common.web.token.OnDoubleSubmission">&#64;OnDoubleSubmission</a> to prevent duplicate form submission.</li>
+<li>Redirect the response to prevent a rerun in the browser update.<ul>
+<li>For the format of the resource path, see <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html" title="nablarch.fw.web.ResourceLocator">ResourceLocator</a>.</li>
+<li>For the status code specified in redirect, see <a class="reference internal" href="../../feature_details.html#web-feature-details-status-code"><span>Status code</span></a>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Create an entity for optimistic locking</dt>
+<dd><p class="first">Create an entity with <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-jpa-version"><span>optimistic lock</span></a> enabled.</p>
+<dl class="last docutils">
+<dt>Project.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Other properties are omitted</span>
+
+<span class="cm">/** Version number */</span>
+<span class="kd">private</span> <span class="n">Long</span> <span class="n">version</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the version number.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Version number</span>
+<span class="cm"> */</span>
+<span class="nd">@Version</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;VERSION&quot;</span><span class="o">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="mi">19</span><span class="o">,</span> <span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">unique</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">Long</span> <span class="nf">getVersion</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">version</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Set the version number.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param version Version number</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setVersion</span><span class="o">(</span><span class="n">Long</span> <span class="n">version</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">version</span> <span class="o">=</span> <span class="n">version</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>To perform <a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-jpa-version"><span>optimistic locking</span></a>, create a <cite>version</cite> property in the entity and assign
+<a class="reference internal" href="../../../libraries/database/universal_dao.html#universal-dao-jpa-version"><span>&#64;Version</span></a> to the getter.</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="last docutils" id="project-update-create-complete-action">
+<dt>Create a business action method to display the completion screen</dt>
+<dd><p class="first">Create a business action method that displays the completion screen, which is the redirect destination of the update method.</p>
+<dl class="last docutils">
+<dt>ProjectAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">completeOfUpdate</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/WEB-INF/view/project/completeOfUpdate.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="project-update-create-success-jsp">
+<dt>Create an update completion screen</dt>
+<dd><p class="first">Creates an update completion screen.</p>
+<dl class="last docutils">
+<dt>/src/main/webapp/WEB-INF/view/project/completeOfUpdate.jsp</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;title-nav&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">&quot;page-title&quot;</span><span class="nt">&gt;</span>Project change completion screen<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;button-nav&quot;</span><span class="nt">&gt;</span>
+          <span class="c">&lt;!-- Omitted --&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;message-area message-info&quot;</span><span class="nt">&gt;</span>
+        Project update is now complete.
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="c">&lt;!-- Omitted --&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>This completes the description of the update function.</p>
+<p><a class="reference internal" href="../index.html#getting-started"><span>Getting Started To TOP page</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

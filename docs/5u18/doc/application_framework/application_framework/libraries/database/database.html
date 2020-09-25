@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/libraries/database/database.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/database.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.3. データベースアクセス" href="../database_management.html"/>
@@ -321,9 +321,12 @@
           <li><a href="../database_management.html">7.3. データベースアクセス</a> &raquo;</li>
       
     <li>7.3.1. データベースアクセス(JDBCラッパー)</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -381,7 +384,7 @@
 </div>
 <p>JDBCを使用してデータベースに対してSQL文を実行する機能を提供する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference internal" href="../database_management.html#database-management"><span>データベースアクセス</span></a> で説明したように、SQLの実行に関しては <a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> を使用することを推奨する。</p>
 <p class="last">なお、<a class="reference internal" href="universal_dao.html#universal-dao"><span>ユニバーサルDAO</span></a> 内部では、この機能のAPIを使用してデータベースアクセスを行っているため、
 この機能を使用するための設定は必ず必要になる。</p>
@@ -394,23 +397,23 @@
 <h2><a class="toc-backref" href="#id31">7.3.1.1. 機能概要</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="database-dialect">
 <span id="id3"></span><h3><a class="toc-backref" href="#id32">7.3.1.1.1. データベースの方言を意識することなく利用できる</a><a class="headerlink" href="#database-dialect" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>使用するデータベース製品に対応した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> を設定することで、
+<p>使用するデータベース製品に対応した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> を設定することで、
 製品ごとの方言を意識せずにアプリケーションを実装できる。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> は、以下の機能を提供する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> は、以下の機能を提供する。</p>
 <ul class="simple">
-<li>identityカラムを使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentity--" title="nablarch.core.db.dialect.Dialect.supportsIdentity()">supportsIdentity</a> )</li>
-<li>identity(自動採番)カラムを持つテーブル対してbatch insertが行えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentityWithBatchInsert--" title="nablarch.core.db.dialect.Dialect.supportsIdentityWithBatchInsert()">supportsIdentityWithBatchInsert</a>)</li>
-<li>シーケンスオブジェクトを使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#supportsSequence--" title="nablarch.core.db.dialect.Dialect.supportsSequence()">supportsSequence</a> )</li>
-<li>検索クエリーの範囲指定でoffset（またはoffsetと同等の機能）を使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#supportsOffset--" title="nablarch.core.db.dialect.Dialect.supportsOffset()">supportsOffset</a> )</li>
-<li>一意制約違反を表す <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> か否かを判定するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#isDuplicateException-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isDuplicateException(java.sql.SQLException)">isDuplicateException</a> )</li>
-<li>トランザクションタイムアウト対象の  <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> か否かを判定するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#isTransactionTimeoutError-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isTransactionTimeoutError(java.sql.SQLException)">isTransactionTimeoutError</a> )</li>
-<li>シーケンスオブジェクトから次の値を取得するSQL文生成するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#buildSequenceGeneratorSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.buildSequenceGeneratorSql(java.lang.String)">buildSequenceGeneratorSql</a> )</li>
-<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html" title="java.sql.ResultSet">ResultSet</a> から値を取得する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/ResultSetConvertor.html" title="nablarch.core.db.statement.ResultSetConvertor">ResultSetConvertor</a> を返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#getResultSetConvertor--" title="nablarch.core.db.dialect.Dialect.getResultSetConvertor()">getResultSetConvertor</a> )</li>
-<li>検索クエリーを範囲指定（ページング用）SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#convertPaginationSql-java.lang.String-nablarch.core.db.statement.SelectOption-" title="nablarch.core.db.dialect.Dialect.convertPaginationSql(java.lang.String-nablarch.core.db.statement.SelectOption)">convertPaginationSql</a> )</li>
-<li>検索クエリーを件数取得SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#convertCountSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.convertCountSql(java.lang.String)">convertCountSql</a> )</li>
-<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">Connection</a> がデータベースに接続されているかチェックを行うSQLを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html#getPingSql--" title="nablarch.core.db.dialect.Dialect.getPingSql()">getPingSql</a> )</li>
+<li>identityカラムを使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentity--" title="nablarch.core.db.dialect.Dialect.supportsIdentity()">supportsIdentity</a> )</li>
+<li>identity(自動採番)カラムを持つテーブル対してbatch insertが行えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentityWithBatchInsert--" title="nablarch.core.db.dialect.Dialect.supportsIdentityWithBatchInsert()">supportsIdentityWithBatchInsert</a>)</li>
+<li>シーケンスオブジェクトを使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsSequence--" title="nablarch.core.db.dialect.Dialect.supportsSequence()">supportsSequence</a> )</li>
+<li>検索クエリーの範囲指定でoffset（またはoffsetと同等の機能）を使えるか否かを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsOffset--" title="nablarch.core.db.dialect.Dialect.supportsOffset()">supportsOffset</a> )</li>
+<li>一意制約違反を表す <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> か否かを判定するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#isDuplicateException-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isDuplicateException(java.sql.SQLException)">isDuplicateException</a> )</li>
+<li>トランザクションタイムアウト対象の  <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> か否かを判定するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#isTransactionTimeoutError-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isTransactionTimeoutError(java.sql.SQLException)">isTransactionTimeoutError</a> )</li>
+<li>シーケンスオブジェクトから次の値を取得するSQL文生成するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#buildSequenceGeneratorSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.buildSequenceGeneratorSql(java.lang.String)">buildSequenceGeneratorSql</a> )</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html" title="java.sql.ResultSet">ResultSet</a> から値を取得する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ResultSetConvertor.html" title="nablarch.core.db.statement.ResultSetConvertor">ResultSetConvertor</a> を返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#getResultSetConvertor--" title="nablarch.core.db.dialect.Dialect.getResultSetConvertor()">getResultSetConvertor</a> )</li>
+<li>検索クエリーを範囲指定（ページング用）SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertPaginationSql-java.lang.String-nablarch.core.db.statement.SelectOption-" title="nablarch.core.db.dialect.Dialect.convertPaginationSql(java.lang.String-nablarch.core.db.statement.SelectOption)">convertPaginationSql</a> )</li>
+<li>検索クエリーを件数取得SQLに変換するメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertCountSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.convertCountSql(java.lang.String)">convertCountSql</a> )</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">Connection</a> がデータベースに接続されているかチェックを行うSQLを返すメソッド(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#getPingSql--" title="nablarch.core.db.dialect.Dialect.getPingSql()">getPingSql</a> )</li>
 </ul>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> の設定方法は、 <a class="reference internal" href="#database-use-dialect"><span>データベース製品に対応したダイアレクトを使用する</span></a> を参照。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> の設定方法は、 <a class="reference internal" href="#database-use-dialect"><span>データベース製品に対応したダイアレクトを使用する</span></a> を参照。</p>
 </div>
 <div class="section" id="sqlsql">
 <span id="database-sql-file"></span><h3><a class="toc-backref" href="#id33">7.3.1.1.2. SQLはロジックではなくSQLファイルに記述する</a><a class="headerlink" href="#sqlsql" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -418,7 +421,7 @@
 <p>SQLファイルに記述することで、ロジックでSQLの組み立てを行う必要がなく、
 必ず <cite>PreparedStatement</cite> を使用するため、SQLインジェクションの脆弱性が排除できる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">どうしてもSQLファイルに定義できない場合は、SQLを直接指定して実行するAPIも提供しているので、そちらを使用すること。
 ただし、安易に使用するとSQLインジェクションの脆弱性が埋め込まれる可能性があるため注意すること。
 また、SQLインジェクションの脆弱性がないことなど、テストやレビューで担保出来ることが前提となる。</p>
@@ -493,13 +496,13 @@ INパラメータが増減した際のインデクス修正などが不要とな
 </div>
 </dd>
 </dl>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForDataSource.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource">BasicDbConnectionFactoryForDataSource</a> や
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> への
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForDataSource.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource">BasicDbConnectionFactoryForDataSource</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> への
 設定値については、それぞれのクラスのJavadocを参照すること。</p>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>上記に設定したクラスを直接使用することは基本的にない。
 データベースアクセスを必要とする場合には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> を使用すること。</p>
 <p class="last">なお、データベースを利用する場合はトランザクション管理も必要となる。
@@ -510,17 +513,17 @@ INパラメータが増減した際のインデクス修正などが不要とな
 <span id="id8"></span><h3><a class="toc-backref" href="#id41">7.3.1.3.2. データベース製品に対応したダイアレクトを使用する</a><a class="headerlink" href="#database-use-dialect" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>データベース製品に対応したダイアレクトをコンポーネント設定ファイルに設定することで、ダイアレクト機能が有効になる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p>設定を行わなかった場合は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> が利用される。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> は原則全ての機能が無効化されるので、必ずデータベース製品に対応したダイアレクトを設定すること。</p>
+<p class="first admonition-title">補足</p>
+<p>設定を行わなかった場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> が利用される。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> は原則全ての機能が無効化されるので、必ずデータベース製品に対応したダイアレクトを設定すること。</p>
 <p class="last">なお、使用するデータベース製品に対応するダイアレクトが存在しない場合や、
 新しいバージョンの新機能を使いたい場合には、 <a class="reference internal" href="#database-add-dialect"><span>ダイアレクトを追加する</span></a> を参照し新しいダイアレクトを作成すること。</p>
 </div>
 <dl class="docutils">
 <dt>コンポーネント設定例</dt>
 <dd><p class="first">この例では、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource">javax.sql.DataSource</a> からデータベース接続を取得するコンポーネントへの設定例となる。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> の場合も以下の例と同じように
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html#setDialect-nablarch.core.db.dialect.Dialect-" title="nablarch.core.db.connection.ConnectionFactorySupport.setDialect(nablarch.core.db.dialect.Dialect)">dialect</a> プロパティにダイアレクトを設定すれば良い。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> の場合も以下の例と同じように
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html#setDialect-nablarch.core.db.dialect.Dialect-" title="nablarch.core.db.connection.ConnectionFactorySupport.setDialect(nablarch.core.db.dialect.Dialect)">dialect</a> プロパティにダイアレクトを設定すれば良い。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ダイアレクトと関係のないプロパティについては省略 --&gt;</span>
 
@@ -585,8 +588,8 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 <dl class="docutils" id="database-load-sql">
 <dt>SQLファイルからSQLをロードするための設定</dt>
 <dd><p class="first">SQLファイルからSQLをロードするために必要な設定内容を説明する。</p>
-<p>SQLをロードするためには、以下の例のように <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setSqlLoader-nablarch.core.cache.StaticDataLoader-" title="nablarch.core.db.statement.BasicStatementFactory.setSqlLoader(nablarch.core.cache.StaticDataLoader)">BasicStatementFactory#sqlLoader</a>
-に <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> を設定する。</p>
+<p>SQLをロードするためには、以下の例のように <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setSqlLoader-nablarch.core.cache.StaticDataLoader-" title="nablarch.core.db.statement.BasicStatementFactory.setSqlLoader(nablarch.core.cache.StaticDataLoader)">BasicStatementFactory#sqlLoader</a>
+に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> を設定する。</p>
 <p>この例では、ファイルエンコーディングと拡張子を設定している。設定を省略した場合は以下の設定値となる。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -598,7 +601,7 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 </tr>
 </tbody>
 </table>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <dl class="last docutils">
 <dt>設定例</dt>
@@ -619,8 +622,8 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 </div>
 <div class="section" id="sqlidsql">
 <span id="database-execute-sqlid"></span><h3><a class="toc-backref" href="#id43">7.3.1.3.4. SQLIDを指定してSQLを実行する</a><a class="headerlink" href="#sqlidsql" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>SQLIDを元にSQLを実行するには、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得したデータベース接続を使用する。
-なお、  <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> でデータベース接続を登録する必要がある。</p>
+<p>SQLIDを元にSQLを実行するには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得したデータベース接続を使用する。
+なお、  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> には、 <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>データベース接続管理ハンドラ</span></a> でデータベース接続を登録する必要がある。</p>
 <p>SQLIDと実際に実行されるSQLとのマッピングルールは以下のとおり。</p>
 <ul class="simple">
 <li>SQLIDの <code class="docutils literal"><span class="pre">#</span></code> までがSQLファイル名となる。</li>
@@ -632,8 +635,8 @@ SQLファイルを扱うためには、コンポーネント設定ファイル�
 SQLファイルはクラスパス配下の <code class="docutils literal"><span class="pre">jp.co.tis.sample.action.SampleAction.sql</span></code> となる。
 SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre">findUser</span></code> となる。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a> の使用方法は、Javadocを参照。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a> の使用方法は、Javadocを参照。</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// DbConnectionContextからデータベース接続を取得する。</span>
 <span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
@@ -665,7 +668,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 </div>
 <p>以下に例を示す。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlCStatement.html" title="nablarch.core.db.statement.SqlCStatement">SqlCStatement</a> の詳細な使用方法は、Javadocを参照すること。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlCStatement.html" title="nablarch.core.db.statement.SqlCStatement">SqlCStatement</a> の詳細な使用方法は、Javadocを参照すること。</li>
 </ul>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// SQLIDを元にストアードプロシージャ実行用のステートメントを生成する。</span>
 <span class="n">SqlCStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareCallBySqlId</span><span class="o">(</span>
@@ -714,7 +717,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">検索範囲が指定された場合、検索用のSQLを取得範囲指定のSQLに書き換えてから実行を行う。
 なお、取得範囲指定のSQLは <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> により行われる。</p>
 </div>
@@ -746,7 +749,7 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 <dt>実装例</dt>
 <dd><p class="first">Beanオブジェクトに必要な値を設定し、Beanオブジェクトを入力としてSQLを実行する機能を呼び出す。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
 <li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span>SQLIDを指定してSQLを実行する</span></a> を参照</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// beanを生成しプロパティに値を設定</span>
@@ -770,22 +773,22 @@ SQLファイル内のSQLIDは、 <code class="docutils literal"><span class="pre
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Beanの代わりに <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">java.util.Map</a> の実装クラスも指定できる。
 Mapを指定した場合は、Mapのキー値と一致するINパラメータに対して、Mapの値が設定される。</p>
-<p>なお、Beanを指定した場合は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用して、Mapに変換後に処理を行う。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で対応していない型がBeanのプロパティに存在した場合、そのプロパティについてはこの機能で使用することが出来ない。</p>
-<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でMapにコピーできる型を増やしたい場合には、 <a class="reference internal" href="../bean_util.html#utility-conversion"><span>BeanUtilの型変換ルール</span></a> を参照し対応すること。</p>
+<p>なお、Beanを指定した場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用して、Mapに変換後に処理を行う。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で対応していない型がBeanのプロパティに存在した場合、そのプロパティについてはこの機能で使用することが出来ない。</p>
+<p class="last"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でMapにコピーできる型を増やしたい場合には、 <a class="reference internal" href="../bean_util.html#utility-conversion"><span>BeanUtilの型変換ルール</span></a> を参照し対応すること。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>Beanへのアクセス方法をプロパティからフィールドに変更することができる。
 フィールドアクセスに変更する場合には、configファイルに以下の設定を追加する。</p>
 <div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.dbAccess.isFieldAccess</span><span class="o">=</span><span class="s">true</span>
 </pre></div>
 </div>
 <p>なお、フィールドアクセスは以下の理由により推奨しない。</p>
-<p class="last">本フレームワークのその他の機能(例えば <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a>)では、Beanから値を取得する方法はプロパティアクセスで統一されている。
+<p class="last">本フレームワークのその他の機能(例えば <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a>)では、Beanから値を取得する方法はプロパティアクセスで統一されている。
 データベース機能のみフィールドアクセスに変更した場合、プログラマはフィールドアクセスとプロパティアクセスの両方を意識する必要があり、生産性の低下や不具合の原因ともなる。</p>
 </div>
 </div>
@@ -797,7 +800,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <ul class="simple">
 <li>入力にBeanを使用する場合はBeanのプロパティに値を設定する際、出力にBeanを使用する場合はプロパティから値を取り出した後に型変換を行う。</li>
 <li>入力にMapを使用する場合はMapに値を設定する際、出力にMapを使用する場合は値を取り出した後に型変換を行う。</li>
-<li>インデックスを指定してバインド変数を設定する際に、バインド変数に設定するオブジェクトを適切な型に変換する。 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> から値を取得する際は、取得後に型変換を行う。</li>
+<li>インデックスを指定してバインド変数を設定する際に、バインド変数に設定するオブジェクトを適切な型に変換する。 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> から値を取得する際は、取得後に型変換を行う。</li>
 </ul>
 </div>
 <div class="section" id="database-common-bean">
@@ -810,10 +813,10 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <dl class="docutils">
 <dt>コンポーネント設定ファイル</dt>
 <dd><p class="first">この機能を使用するには、コンポーネント設定ファイルに値の自動設定を行うクラスを設定する。</p>
-<p>以下の例のように、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setUpdatePreHookObjectHandlerList-java.util.List-" title="nablarch.core.db.statement.BasicStatementFactory.setUpdatePreHookObjectHandlerList(java.util.List)">BasicStatementFactory#updatePreHookObjectHandlerList</a> に対して、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/AutoPropertyHandler.html" title="nablarch.core.db.statement.AutoPropertyHandler">AutoPropertyHandler</a> 実装クラスをlistで設定する。
-なお、標準で提供される実装クラスは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> パッケージ配下に配置されている。</p>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
+<p>以下の例のように、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setUpdatePreHookObjectHandlerList-java.util.List-" title="nablarch.core.db.statement.BasicStatementFactory.setUpdatePreHookObjectHandlerList(java.util.List)">BasicStatementFactory#updatePreHookObjectHandlerList</a> に対して、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/AutoPropertyHandler.html" title="nablarch.core.db.statement.AutoPropertyHandler">AutoPropertyHandler</a> 実装クラスをlistで設定する。
+なお、標準で提供される実装クラスは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> パッケージ配下に配置されている。</p>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span>
     <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
@@ -829,7 +832,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 </dd>
 <dt>Beanオブジェクト(Entity)</dt>
 <dd><p class="first">自動で値を設定したいプロパティにアノテーションを設定する。
-なお、標準で提供されるアノテーションは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> パッケージ配下に配置されている。</p>
+なお、標準で提供されるアノテーションは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> パッケージ配下に配置されている。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserEntity</span> <span class="o">{</span>
   <span class="c1">// ユーザID</span>
   <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
@@ -919,7 +922,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <dd><p class="first"><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> と同じようにSQLを実行するだけで、like条件用に値の書き換えやエスケープ処理が行われる。
 この例の場合、実際の条件は <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">'な%'</span> <span class="pre">escape</span> <span class="pre">'\'</span></code> となる。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> や <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> の使用方法は、Javadocを参照。</li>
 <li>SQLIDと実行されるSQLの関係については、 <a class="reference internal" href="#database-execute-sqlid"><span>SQLIDを指定してSQLを実行する</span></a> を参照</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// beanを生成しプロパティに値を設定</span>
@@ -959,7 +962,7 @@ Mapを指定した場合は、Mapのキー値と一致するINパラメータに
 <dl class="docutils">
 <dt>コンポーネント設定例</dt>
 <dd><p class="first">この例ではエスケープ文字に <code class="docutils literal"><span class="pre">\</span></code> を設定し、エスケープ文字には <code class="docutils literal"><span class="pre">%</span></code> 、 <code class="docutils literal"><span class="pre">％</span></code> 、 <code class="docutils literal"><span class="pre">_</span></code> 、 <code class="docutils literal"><span class="pre">＿</span></code> の4文字を設定している。</p>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> コンポーネントは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- エスケープ文字の定義 --&gt;</span>
@@ -1047,7 +1050,7 @@ where
 また名前付きパラメータに対応するBeanオブジェクトのプロパティの型は、
 配列か <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> (サブタイプ含む) <a class="footnote-reference" href="#collection" id="id18">[1]</a> とする必要がある。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>in句の条件となるプロパティ値がnullやサイズ0となる場合には、該当条件は必ず可変条件として定義すること。
 もし、可変条件としなかった場合でプロパティ値がnullの場合、条件が <code class="docutils literal"><span class="pre">xxxx</span> <span class="pre">in</span> <span class="pre">(null)</span></code> となるため、
 検索結果が正しく取得できない可能性がある。</p>
@@ -1097,10 +1100,10 @@ where
 <table class="docutils footnote" frame="void" id="collection" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[1]</a></td><td><p class="first"><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> に記載がある通り、プロパティの値は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用してMapに変換してから使用する。
-このため、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でサポートされていない型でプロパティが宣言されていた場合、
+<tr><td class="label"><a class="fn-backref" href="#id18">[1]</a></td><td><p class="first"><a class="reference internal" href="#database-input-bean"><span>Beanオブジェクトを入力としてSQLを実行する</span></a> に記載がある通り、プロパティの値は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> を使用してMapに変換してから使用する。
+このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> でサポートされていない型でプロパティが宣言されていた場合、
 in句に条件を設定できないため注意すること。</p>
-<p class="last">なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で変換対象の型を追加する方法は、
+<p class="last">なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> で変換対象の型を追加する方法は、
 <a class="reference internal" href="../bean_util.html#utility-conversion-add-rule"><span>型変換ルールを追加する</span></a> を参照。</p>
 </td></tr>
 </tbody>
@@ -1180,7 +1183,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <p>blob(データベース製品によりバイナリ型の型は異なる)などのバイナリ型のカラムへのアクセス方法について説明する。</p>
 <dl class="docutils">
 <dt>バイナリ型の値を取得する</dt>
-<dd><p class="first">バイナリ型の値を取得する場合には、検索結果オブジェクトの <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> から <cite>byte[]</cite> として値を取得する。</p>
+<dd><p class="first">バイナリ型の値を取得する場合には、検索結果オブジェクトの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> から <cite>byte[]</cite> として値を取得する。</p>
 <p>以下に例を示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
 
@@ -1210,7 +1213,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dd>
 <dt>バイナリ型の値を登録・更新する</dt>
 <dd><blockquote class="first">
-<div><p>サイズの小さいバイナリ値を登録・更新する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBytes-int-byte:A-" title="nablarch.core.db.statement.SqlPStatement.setBytes(int-byte:A)">SqlPStatement#setByte</a> を使用する。</p>
+<div><p>サイズの小さいバイナリ値を登録・更新する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBytes-int-byte:A-" title="nablarch.core.db.statement.SqlPStatement.setBytes(int-byte:A)">SqlPStatement#setByte</a> を使用する。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">getSqlPStatement</span><span class="o">(</span><span class="s">&quot;UPDATE_PASSWORD&quot;</span><span class="o">);</span>
 
 <span class="n">statement</span><span class="o">.</span><span class="na">setBytes</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[]</span> <span class="o">{</span><span class="mh">0x30</span><span class="o">,</span> <span class="mh">0x31</span><span class="o">,</span> <span class="mh">0x32</span><span class="o">});</span>
@@ -1218,7 +1221,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </pre></div>
 </div>
 </div></blockquote>
-<p>サイズが大きいバイナリ値を登録更新する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBinaryStream-int-java.io.InputStream-int-" title="nablarch.core.db.statement.SqlPStatement.setBinaryStream(int-java.io.InputStream-int)">SqlPStatement#setBinaryStream</a>
+<p>サイズが大きいバイナリ値を登録更新する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBinaryStream-int-java.io.InputStream-int-" title="nablarch.core.db.statement.SqlPStatement.setBinaryStream(int-java.io.InputStream-int)">SqlPStatement#setBinaryStream</a>
 を使用して、ファイルなどを表す <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> から直接データベースに値を送信する。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">Path</span> <span class="n">pdf</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;input.pdf&quot;</span><span class="o">);</span>
 <span class="k">try</span> <span class="o">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newInputStream</span><span class="o">(</span><span class="n">pdf</span><span class="o">))</span> <span class="o">{</span>
@@ -1234,7 +1237,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <p>CLOBのような大きいサイズの文字列型カラムへのアクセス方法について解説する。</p>
 <dl class="docutils">
 <dt>CLOB型の値を取得する</dt>
-<dd><p class="first">CLOB型の値を取得する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">検索結果オブジェクト</a> から文字列型として値を取得する。</p>
+<dd><p class="first">CLOB型の値を取得する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">検索結果オブジェクト</a> から文字列型として値を取得する。</p>
 <p>以下に例を示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
 <span class="n">SqlRow</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
@@ -1263,13 +1266,13 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </div>
 </dd>
 <dt>CLOB型に値を登録(更新)する</dt>
-<dd><p class="first">サイズが小さい値を登録更新する場合は、String型の値を <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html#setString-int-java.lang.String-" title="nablarch.core.db.statement.SqlPStatement.setString(int-java.lang.String)">SqlPStatement#setString</a> を使用して設定する。</p>
+<dd><p class="first">サイズが小さい値を登録更新する場合は、String型の値を <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setString-int-java.lang.String-" title="nablarch.core.db.statement.SqlPStatement.setString(int-java.lang.String)">SqlPStatement#setString</a> を使用して設定する。</p>
 <p>以下に例を示す。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">statement</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;値&quot;</span><span class="o">);</span>
 <span class="n">statement</span><span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
 </pre></div>
 </div>
-<p>サイズが大きい値を登録、更新する場合は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html#setCharacterStream-int-java.io.Reader-int-" title="nablarch.core.db.statement.SqlPStatement.setCharacterStream(int-java.io.Reader-int)">SqlPStatement#setCharacterStream</a>
+<p>サイズが大きい値を登録、更新する場合は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setCharacterStream-int-java.io.Reader-int-" title="nablarch.core.db.statement.SqlPStatement.setCharacterStream(int-java.io.Reader-int)">SqlPStatement#setCharacterStream</a>
 を使用して、テキストファイルなどを表す <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html" title="java.io.Reader">Reader</a> 経由でデータベースに値を送信する。</p>
 <p>以下に例を示す。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
@@ -1288,29 +1291,29 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 <p>これらの例外は全て非チェック例外のため、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> のように <code class="docutils literal"><span class="pre">try-catch</span></code> で補足する必要はない。</p>
 <dl class="docutils">
 <dt>データベースアクセスエラー時の例外</dt>
-<dd>データベースアクセス時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> が送出される。</dd>
+<dd>データベースアクセス時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> が送出される。</dd>
 <dt>データベース接続エラー時の例外</dt>
-<dd><p class="first">データベースアクセスエラー時の例外がデータベース接続エラーを示す場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/exception/DbConnectionException.html" title="nablarch.core.db.connection.exception.DbConnectionException">DbConnectionException</a> が送出される。
+<dd><p class="first">データベースアクセスエラー時の例外がデータベース接続エラーを示す場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/exception/DbConnectionException.html" title="nablarch.core.db.connection.exception.DbConnectionException">DbConnectionException</a> が送出される。
 この例外は、 <a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> により処理される。(<a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>リトライハンドラ</span></a> 未適用の場合には、実行時例外として扱われる。)</p>
 <p class="last">なお、データベース接続エラーの判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 </dd>
 <dt>SQL実行時の例外</dt>
-<dd>SQLの実行に失敗した時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> が送出される。</dd>
+<dd>SQLの実行に失敗した時に発生する例外で、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> が送出される。</dd>
 <dt>SQL実行時の例外が一意制約違反の場合の例外</dt>
-<dd><p class="first">SQL実行時の例外が一意制約違反を示す例外の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> が送出される。</p>
+<dd><p class="first">SQL実行時の例外が一意制約違反を示す例外の場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> が送出される。</p>
 <p>一意制約違反をハンドリングしたい場合には、 <a class="reference internal" href="#database-duplicated-error"><span>一意制約違反をハンドリングして処理を行う</span></a> を参照。</p>
 <p class="last">なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">データベースアクセスエラー発生時の例外を変更したい場合（より細かく分けたい場合）などは、
 <a class="reference internal" href="#database-change-exception"><span>データベースアクセス時の例外クラスを切り替える</span></a> を参照すること。</p>
 </div>
 </div>
 <div class="section" id="database-duplicated-error">
 <span id="id21"></span><h3><a class="toc-backref" href="#id57">7.3.1.3.18. 一意制約違反をハンドリングして処理を行う</a><a class="headerlink" href="#database-duplicated-error" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>一意制約違反時に何か処理を行う必要がある場合には、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> を <code class="docutils literal"><span class="pre">try-catch</span></code> で補足し処理をする。</p>
+<p>一意制約違反時に何か処理を行う必要がある場合には、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> を <code class="docutils literal"><span class="pre">try-catch</span></code> で補足し処理をする。</p>
 <p>なお、一意制約違反の判定には、 <a class="reference internal" href="#database-dialect"><span>ダイアレクト</span></a> が使用される。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -1333,20 +1336,20 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 現在のトランザクションとは異なるトランザクションを定義してデータベースにアクセスする。</p>
 <p>個別トランザクションを使用するには、以下の手順が必要となる。</p>
 <ol class="arabic simple">
-<li>コンポーネント設定ファイルに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を定義する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> をシステムリポジトリから取得し、新たなトランザクションでSQLを実行する。
-（システムリポジトリから取得するのではなく、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を設定して使用してもよい)</li>
+<li>コンポーネント設定ファイルに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を定義する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> をシステムリポジトリから取得し、新たなトランザクションでSQLを実行する。
+（システムリポジトリから取得するのではなく、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を設定して使用してもよい)</li>
 </ol>
 <p>以下に使用例を示す。</p>
 <dl class="docutils">
 <dt>コンポーネント設定ファイル</dt>
-<dd><p class="first">コンポーネント設定ファイルに  <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を定義する。</p>
+<dd><p class="first">コンポーネント設定ファイルに  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を定義する。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setConnectionFactory-nablarch.core.db.connection.ConnectionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setConnectionFactory(nablarch.core.db.connection.ConnectionFactory)">connectionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスを設定する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setConnectionFactory-nablarch.core.db.connection.ConnectionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setConnectionFactory(nablarch.core.db.connection.ConnectionFactory)">connectionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスを設定する。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照。</li>
 <li><dl class="first docutils">
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setTransactionFactory-nablarch.core.transaction.TransactionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスを設定する。</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="../transaction.html#transaction-database"><span>データベースに対するトランザクション制御を行う</span></a> を参照。</dd>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setTransactionFactory-nablarch.core.transaction.TransactionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスを設定する。</dt>
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> 実装クラスの詳細は、 <a class="reference internal" href="../transaction.html#transaction-database"><span>データベースに対するトランザクション制御を行う</span></a> を参照。</dd>
 </dl>
 </li>
 </ul>
@@ -1365,9 +1368,9 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </div>
 </dd>
 <dt>実装例</dt>
-<dd><p class="first">コンポーネント設定ファイルに設定した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を使って、SQLを実行する。
-なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を直接使うのではなくトランザクション制御を行う、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/transaction/SimpleDbTransactionExecutor.html" title="nablarch.core.db.transaction.SimpleDbTransactionExecutor">SimpleDbTransactionExecutor</a> を使用すること。</p>
+<dd><p class="first">コンポーネント設定ファイルに設定した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を使って、SQLを実行する。
+なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> を直接使うのではなくトランザクション制御を行う、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionExecutor.html" title="nablarch.core.db.transaction.SimpleDbTransactionExecutor">SimpleDbTransactionExecutor</a> を使用すること。</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// システムリポジトリからSimpleDbTransactionManagerを取得する</span>
 <span class="n">SimpleDbTransactionManager</span> <span class="n">dbTransactionManager</span> <span class="o">=</span>
     <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span><span class="o">);</span>
@@ -1439,7 +1442,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </ol>
 <dl class="last docutils">
 <dt>クエリ結果のキャッシュクラスのコンポーネントの定義</dt>
-<dd><p class="first">デフォルトで提供されるクエリ結果をキャッシュするクラスの <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/InMemoryResultSetCache.html" title="nablarch.core.db.cache.InMemoryResultSetCache">InMemoryResultSetCache</a> を設定する。</p>
+<dd><p class="first">デフォルトで提供されるクエリ結果をキャッシュするクラスの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/InMemoryResultSetCache.html" title="nablarch.core.db.cache.InMemoryResultSetCache">InMemoryResultSetCache</a> を設定する。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;resultSetCache&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.cache.InMemoryResultSetCache&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;cacheSize&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;systemTimeProvider&quot;</span><span class="nt">/&gt;</span>
@@ -1449,7 +1452,7 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </dd>
 <dt>SQLID毎のキャッシュ設定</dt>
 <dd><p class="first">SQLID毎のキャッシュ設定を行う。
-デフォルトで提供される <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/cache/expirable/BasicExpirationSetting.html" title="nablarch.core.cache.expirable.BasicExpirationSetting">BasicExpirationSetting</a> では、SQLID毎にキャッシュの有効期限が設定できる。</p>
+デフォルトで提供される <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/expirable/BasicExpirationSetting.html" title="nablarch.core.cache.expirable.BasicExpirationSetting">BasicExpirationSetting</a> では、SQLID毎にキャッシュの有効期限が設定できる。</p>
 <p>有効期限には、以下の単位が使用できる。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1482,14 +1485,14 @@ order by句は <code class="docutils literal"><span class="pre">order</span> <sp
 </div>
 </dd>
 <dt>検索結果をキャッシュするSQL実行コンポーネントの定義</dt>
-<dd><p class="first">検索結果をキャッシュさせるためには、SQL実行コンポーネントの生成クラスに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> を設定する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> は、 デフォルトで提供される
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> を継承しているため、
-基本的な設定値は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> と同じである。</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setExpirationSetting-nablarch.core.cache.expirable.ExpirationSetting-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setExpirationSetting(nablarch.core.cache.expirable.ExpirationSetting)">expirationSetting</a> 及び
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setResultSetCache-nablarch.core.db.cache.ResultSetCache-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setResultSetCache(nablarch.core.db.cache.ResultSetCache)">resultSetCache</a> プロパティに対しては、上で設定したクエリー結果のキャッシュコンポーネントと
+<dd><p class="first">検索結果をキャッシュさせるためには、SQL実行コンポーネントの生成クラスに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> を設定する。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> は、 デフォルトで提供される
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> を継承しているため、
+基本的な設定値は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> と同じである。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setExpirationSetting-nablarch.core.cache.expirable.ExpirationSetting-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setExpirationSetting(nablarch.core.cache.expirable.ExpirationSetting)">expirationSetting</a> 及び
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setResultSetCache-nablarch.core.db.cache.ResultSetCache-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setResultSetCache(nablarch.core.db.cache.ResultSetCache)">resultSetCache</a> プロパティに対しては、上で設定したクエリー結果のキャッシュコンポーネントと
 SQLID毎のキャッシュ設定のコンポーネントを設定すること。</p>
-<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> コンポーネントは、
+<p>ここで定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> コンポーネントは、
 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定すること。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- キャッシュ可能なステートメントを生成するCacheableStatementFactoryを設定する --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;cacheableStatementFactory&quot;</span>
@@ -1520,8 +1523,8 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <h3><a class="toc-backref" href="#id61">7.3.1.3.22. <cite>java.sql.Connection</cite> を使って処理を行う</a><a class="headerlink" href="#java-sql-connection" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>JDBCのネイティブなデータベース接続( <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> )を扱いたい場合がある。
 例えば、 <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html" title="java.sql.DatabaseMetaData">java.sql.DatabaseMetaData</a> を使用したい場合がこれに該当する。</p>
-<p>この場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得した
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/TransactionManagerConnection.html" title="nablarch.core.db.connection.TransactionManagerConnection">TransactionManagerConnection</a> から <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> を取得することで対応できる。</p>
+<p>この場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> から取得した
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/TransactionManagerConnection.html" title="nablarch.core.db.connection.TransactionManagerConnection">TransactionManagerConnection</a> から <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> を取得することで対応できる。</p>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p class="last"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> を使用した場合、チェック例外である <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">java.sql.SQLException</a> をハンドリングして例外制御を行う必要がある。
@@ -1576,7 +1579,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <tr><td class="label"><a class="fn-backref" href="#id26">[2]</a></td><td>このプレースホルダーの文字列は固定である。</td></tr>
 </tbody>
 </table>
-<p>プレースホルダーを置き換えるために、以下の例のように<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> を設定する。</p>
+<p>プレースホルダーを置き換えるために、以下の例のように<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> を設定する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sqlLoader&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicSqlLoader&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlLoaderCallback&quot;</span><span class="nt">&gt;</span>
@@ -1592,11 +1595,11 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 </pre></div>
 </div>
 <p>プレースホルダーをどのような値に置き換えるかは、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/sqlloader/SchemaReplacer.html" title="nablarch.core.db.statement.sqlloader.SchemaReplacer">SchemaReplacer</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/sqlloader/SchemaReplacer.html" title="nablarch.core.db.statement.sqlloader.SchemaReplacer">SchemaReplacer</a>
 のプロパティ<code class="docutils literal"><span class="pre">schemaName</span></code>に設定する。
 上記の例では、置き換え後の値を <code class="docutils literal"><span class="pre">nablarch.schemaReplacer.schemaName</span></code> という環境依存値に設定している。この値を環境毎に切り替えることにより、SQL文中のスキーマをその環境に応じたものに置き換えることができる（切替方法の詳細については <a class="reference internal" href="../../setting_guide/ManagingEnvironmentalConfiguration/index.html#how-to-switch-env-values"><span>環境ごとに環境設定値を切り替える方法</span></a> を参照）。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">本機能によるSQL文中のスキーマ置き換えは単純な文字列置換処理であり、スキーマが存在するか、スキーマ置き換え後のSQLが妥当であるかといったチェックは行われない（SQL文実行時にエラーとなる）。</p>
 </div>
 </div>
@@ -1608,7 +1611,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <p>データベースの接続方法を追加する手順を説明する。
 例えば、OSSのコネクションプールライブラリを使用する場合などは、この手順に従い作業すると良い。</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html" title="nablarch.core.db.connection.ConnectionFactorySupport">ConnectionFactorySupport</a> を継承し、データベース接続を生成するクラスを作成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html" title="nablarch.core.db.connection.ConnectionFactorySupport">ConnectionFactorySupport</a> を継承し、データベース接続を生成するクラスを作成する。</li>
 <li>作成したクラスをコンポーネント設定ファイルに設定する。( <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> を参照)</li>
 </ol>
 </div>
@@ -1617,7 +1620,7 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <p>ダイアレクトを追加する手順を説明する。</p>
 <p>例えば、使用するデータベース製品に対応したダイアレクトがない場合や、特定機能の使用可否を切り替えたい場合にはダイアレクトを追加する必要がある。</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> を継承し、 データベース製品に対応したダイアレクトを作成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> を継承し、 データベース製品に対応したダイアレクトを作成する。</li>
 <li>作成したダイアレクトをコンポーネント設定ファイルに設定する ( <a class="reference internal" href="#database-use-dialect"><span>データベース製品に対応したダイアレクトを使用する</span></a> を参照)</li>
 </ol>
 </div>
@@ -1626,25 +1629,25 @@ SQLID毎のキャッシュ設定のコンポーネントを設定すること。
 <p>データベースアクセス時の例外クラスを切り替える手順を説明する。</p>
 <p>例えば、デッドロックエラーの例外クラスを変更したい場合には、この手順に従い作業すると良い。</p>
 <ol class="arabic simple">
-<li>データベースアクセスエラーを生成する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスを作成する。</li>
-<li>SQL実行時エラーを生成する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスを作成する。</li>
+<li>データベースアクセスエラーを生成する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスを作成する。</li>
+<li>SQL実行時エラーを生成する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスを作成する。</li>
 <li>作成したクラスをコンポーネント設定ファイルに定義する。</li>
 </ol>
 <p>以下に詳細な手順を示す。</p>
 <dl class="docutils">
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスを作成する</dt>
-<dd>データベース接続取得時及びトランザクション制御時(commitやrollback)に発生させる <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> を変更したい場合は、
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスを作成する</dt>
+<dd>データベース接続取得時及びトランザクション制御時(commitやrollback)に発生させる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> を変更したい場合は、
 このインタフェースの実装クラスを作成する。</dd>
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスを作成する</dt>
-<dd>SQL実行時に発生させる <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> を変更したい場合は、 このインタフェースの実装クラスを作成する。</dd>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスを作成する</dt>
+<dd>SQL実行時に発生させる <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> を変更したい場合は、 このインタフェースの実装クラスを作成する。</dd>
 <dt>コンポーネント設定ファイルに定義する</dt>
-<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> の実装クラスは、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a>
 で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDbAccessExceptionFactory&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> に対して設定する。
-なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> の実装クラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> に対して設定する。
+なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> は、 <a class="reference internal" href="#database-connect"><span>データベースに対する接続設定を行う</span></a> で定義したデータベース接続を取得するコンポーネントに設定する必要がある。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlStatementExceptionFactory&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleStatementExceptionFactory&quot;</span> <span class="nt">/&gt;</span>

@@ -1,0 +1,911 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.3. Request Unit Test (Web Applications) &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/02_RequestUnitTest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
+        <link rel="next" title="3.2.4. Request Unit Test (Batch Process)" href="RequestUnitTest_batch.html"/>
+        <link rel="prev" title="3.2.2. Testing a Class that Uses the Database" href="02_DbAccessTest.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
+      
+    <li>3.2.3. Request Unit Test (Web Applications)</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="request-unit-test-web-applications">
+<span id="request-util-test-online"></span><h1>3.2.3. Request Unit Test (Web Applications)<a class="headerlink" href="#request-unit-test-web-applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>3.2.3.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In the request unit test (web application), the test is performed using the built-in server.
+Here, we will describe how to use the test helper classes of the request unit test and the built-in server.</p>
+<div class="section" id="overall-picture">
+<h3>3.2.3.1.1. Overall picture<a class="headerlink" href="#overall-picture" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../../../../_images/request_unit_test_structure.png"><img alt="../../../../../_images/request_unit_test_structure.png" src="../../../../../_images/request_unit_test_structure.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="main-classes-resources">
+<h3>3.2.3.1.2. Main Classes, resources<a class="headerlink" href="#main-classes-resources" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="42%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Role</th>
+<th class="head">Creation unit</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test class</td>
+<td>Implement the test logic.</td>
+<td>Create one per class (Action) to be tested.</td>
+</tr>
+<tr class="row-odd"><td>Test data (Excel file)</td>
+<td>Describe test data such as preparation data,
+expected results, HTTP parameters, etc.
+to be stored in a table.</td>
+<td>Create one per test class</td>
+</tr>
+<tr class="row-even"><td>Class to be tested (Action)</td>
+<td>Class to be tested (includes each class that
+implements business logic after Action)</td>
+<td>Create one class per subfunction</td>
+</tr>
+<tr class="row-odd"><td>DbAccessTestSupport</td>
+<td>Provides the necessary functions for testing using
+the database, such as preparation data input.</td>
+<td>-</td>
+</tr>
+<tr class="row-even"><td>HttpServer</td>
+<td>Built-in server. Operates as a servlet container
+having the function to output HTTP response to a file.</td>
+<td>-</td>
+</tr>
+<tr class="row-odd"><td>HttpRequestTestSupport</td>
+<td>Provides various asserts that are required for starting
+the built-in server and for the request unit test.</td>
+<td>-</td>
+</tr>
+<tr class="row-even"><td>AbstractHttpReqestTestSupport <br />
+BasicHttpReqestTestSupport</td>
+<td>Class for templating the request unit test.
+Standardizes the test source and test data
+of the request unit test.</td>
+<td>-</td>
+</tr>
+<tr class="row-odd"><td>TestCaseInfo</td>
+<td>Class that stores test case information defined
+in a data sheet.</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>All of the above classes, including the built-in server, run on the same JVM.
+Therefore, server-side objects such as requests and sessions can be processed.</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>3.2.3.1.3. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>The request unit test where an HTML dump is output using the built-in server,
+is for a thin client web application with one request-one screen transition.
+In the case of an application that uses Ajax or rich client,
+you can&#8217;t use HTML dump to check the layout.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In this document, though JSP is used for View technology,
+if the entire screen is rendered on a servlet container,
+then View technologies other than JSP can be used to output HTML dump.</p>
+</div>
+</div>
+</div>
+<div class="section" id="structure">
+<h2>3.2.3.2. Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basichttprequesttesttemplate">
+<h3>3.2.3.2.1. BasicHttpRequestTestTemplate<a class="headerlink" href="#basichttprequesttesttemplate" title="Permalink to this headline">¶</a></h3>
+<p>Superclass of each test class.
+By using this class, the test source and test data of the request unit test can be standardized,
+and the amount of test source to be described can be greatly reduced.</p>
+<p>For the specific usage method, refer to <a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/index.html"><em>How to Execute a Request Unit Test</em></a>.</p>
+</div>
+<div class="section" id="abstracthttprequesttesttemplate">
+<h3>3.2.3.2.2. AbstractHttpRequestTestTemplate<a class="headerlink" href="#abstracthttprequesttesttemplate" title="Permalink to this headline">¶</a></h3>
+<p>Not used directly by the application programmers. This is used to extend the automated testing framework when you want to change the way you write test data.</p>
+</div>
+<div class="section" id="testcaseinfo">
+<h3>3.2.3.2.3. TestCaseInfo<a class="headerlink" href="#testcaseinfo" title="Permalink to this headline">¶</a></h3>
+<p>Class that stores test case information defined in a data sheet. If you want to change the way you write test data, inherit this class and the AbstractionHttpRequestTestTemplate described above.</p>
+</div>
+<div class="section" id="httprequesttestsupport">
+<h3>3.2.3.2.4. HttpRequestTestSupport<a class="headerlink" href="#httprequesttestsupport" title="Permalink to this headline">¶</a></h3>
+<p>Superclass provided for the request unit test. Provides methods for the request unit test.</p>
+<div class="section" id="database-related-functions">
+<h4>3.2.3.2.4.1. Database related functions<a class="headerlink" href="#database-related-functions" title="Permalink to this headline">¶</a></h4>
+<p>The functions related to the database are implemented by delegating to the DbAccessTestSupport class.
+For more information, see <a class="reference internal" href="02_DbAccessTest.html"><em>Testing a Class that Uses the Database</em></a>.</p>
+<p>However, the following methods in DbAccessTestSupport are not required for the request unit test,
+and are not delegated deliberately so as not to mislead application programmers.</p>
+<ul class="simple">
+<li>public void beginTransactions()</li>
+<li>public void commitTransactions()</li>
+<li>public void endTransactions()</li>
+<li>public void setThreadContextValues(String sheetName, String id)</li>
+</ul>
+</div>
+<div class="section" id="advance-preparation-assistance-function">
+<h4>3.2.3.2.4.2. Advance preparation assistance function<a class="headerlink" href="#advance-preparation-assistance-function" title="Permalink to this headline">¶</a></h4>
+<p>To send a request to the built-in server, instances of HttpRequest and ExecutionContext are required.
+In HttpRequestTestSupport class, a method is provided by which these objects can be easily created.</p>
+<div class="section" id="httprequest">
+<h5>3.2.3.2.4.2.1. HttpRequest<a class="headerlink" href="#httprequest" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">HttpRequest</span> <span class="nf">createHttpRequest</span><span class="o">(</span><span class="n">String</span> <span class="n">requestUri</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">[]&gt;</span> <span class="n">params</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>The following values are passed as arguments.</p>
+<ul class="simple">
+<li>Request URI to be tested</li>
+<li>Request parameters acquired above</li>
+</ul>
+<p>In this method, an HTTPRequest instance is created based on the received request URI and request parameters,
+and the HTTP method is set to POST before returning.
+To configure data other than request parameters and URI to HttpRequest,
+configured with respect to an instance acquired by calling this method.</p>
+</div>
+<div class="section" id="executioncontext">
+<h5>3.2.3.2.4.2.2. ExecutionContext<a class="headerlink" href="#executioncontext" title="Permalink to this headline">¶</a></h5>
+<p>Create an ExecutionContext instance.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">ExecutionContext</span> <span class="nf">createExecutionContext</span><span class="o">(</span><span class="n">String</span> <span class="n">userId</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>The user ID is specified in the argument.The specified user ID is stored in the session.
+By doing so, you are logged in with that user ID.</p>
+</div>
+<div class="section" id="token-issuance">
+<span id="how-to-set-token-in-request-unit-test"></span><h5>3.2.3.2.4.2.3. Token issuance<a class="headerlink" href="#token-issuance" title="Permalink to this headline">¶</a></h5>
+<p>In order to test a URI with duplicate form submission protection,
+it is necessary to issue a token and set it in the session before executing the test.
+By calling the following method in HttpRequestTestSupport,
+the token will be issued and stored in the session.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setValidToken</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>To control whether or not to set a token for test data when a request unit is executed,
+use the following method.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setToken</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">valid</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>If the third argument is boolean and true, the method works in the same way as setValidToken above.
+If the third argument is false, the token information is removed from the session. By using the method as follows,
+the need to write the branching process for whether or not to set a token in the test class, is eliminated.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// [Description] Assumed to be acquired from the test data.</span>
+<span class="n">String</span> <span class="n">isTokenValid</span><span class="o">;</span>
+
+<span class="c1">// [Description] The token is configured, if true.</span>
+<span class="n">setToken</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">ctx</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">parseBoolean</span><span class="o">(</span><span class="n">isTokenValid</span><span class="o">)));</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="execution">
+<h3>3.2.3.2.5. Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h3>
+<p>By calling the following method in HttpRequestTestSupport,
+the built-in server is started and the request is sent.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">HttpResponse</span> <span class="nf">execute</span><span class="o">(</span><span class="n">String</span> <span class="n">caseName</span><span class="o">,</span> <span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>The following values are passed as arguments.</p>
+<ul class="simple">
+<li>Test case description</li>
+<li>HttpRequest</li>
+<li>ExectionContext</li>
+</ul>
+<p>The test case description is used for the file name at the time of HTML dump output.
+For more information, see
+<a class="reference internal" href="#dump-dir-label"><span>HTML dump output directory</span></a>.</p>
+<div class="section" id="initializing-the-system-repository">
+<h4>3.2.3.2.5.1. Initializing the system repository<a class="headerlink" href="#initializing-the-system-repository" title="Permalink to this headline">¶</a></h4>
+<p>Inside the execute method, the system repository is reinitialized.
+This allows continuous execution without separating the settings between class unit test and request unit test.</p>
+<ul class="simple">
+<li>Taking backup of the state of the current system repository</li>
+<li>Reinitializing the system repository using the component configuration file of the web application to be tested</li>
+<li>The backed up system repository is restored when the execute method ends</li>
+</ul>
+<p>Refer to
+<a class="reference internal" href="#howtoconfigurerequestunittestenv"><span>Various configuration values</span></a>
+for configuration related to the web application to be tested.</p>
+</div>
+</div>
+<div class="section" id="confirmation-of-results">
+<h3>3.2.3.2.6. Confirmation of results<a class="headerlink" href="#confirmation-of-results" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="message">
+<h4>3.2.3.2.6.1. Message<a class="headerlink" href="#message" title="Permalink to this headline">¶</a></h4>
+<p>Check that the message stored in the application exception is as expected,
+by calling the following method in HttpRequestTestSupport.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">assertApplicationMessageId</span><span class="o">(</span><span class="n">String</span> <span class="n">expectedCommaSeparated</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">actual</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>The following values are passed as arguments.</p>
+<ul class="simple">
+<li>Expected message (if there are more than one, specify by separating with a comma).</li>
+<li>Previously created ExecutionContext</li>
+</ul>
+<p>If no exception is raised, or if an exception other than an application exception is raised,
+the assertion fails.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since the comparison of message IDs is done after sorting the IDs,
+there is no need to worry about the order when describing the test data.</p>
+</div>
+</div>
+</div>
+<div class="section" id="html-dump-output">
+<h3>3.2.3.2.7. HTML dump output<a class="headerlink" href="#html-dump-output" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="html-dump-output-directory">
+<span id="dump-dir-label"></span><h4>3.2.3.2.7.1. HTML dump output directory<a class="headerlink" href="#html-dump-output-directory" title="Permalink to this headline">¶</a></h4>
+<p>When the test is run, the tmp/html_dump directory is created in the root directory of the project for testing.
+A directory with the same name is created for each test class under that directory,
+and an HTML dump file with the same name as the description of the test case executed using the test class, is output.</p>
+<p>In addition, since the HTML resources (resources such as style sheets and images) referenced by the HTML dump file are also output in this directory,
+you can refer to HTML in the same way in any environment by saving this directory.</p>
+<ul class="simple">
+<li>If the html_dump directory already exists, then the directory is backed up with the name html_dump_bk.</li>
+</ul>
+<img alt="../../../../../_images/htmlDumpDir1.png" src="../../../../../_images/htmlDumpDir1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="various-configuration-values">
+<span id="howtoconfigurerequestunittestenv"></span><h2>3.2.3.3. Various configuration values<a class="headerlink" href="#various-configuration-values" title="Permalink to this headline">¶</a></h2>
+<p>Setting values that depend on the environment settings can be changed in the component configuration file.
+The items that can be configured are shown below.</p>
+<div class="section" id="configuration-item-list-of-component-configuration-file">
+<h3>3.2.3.3.1. Configuration item list of component configuration file<a class="headerlink" href="#configuration-item-list-of-component-configuration-file" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="54%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration item name</th>
+<th class="head">Description</th>
+<th class="head">Default values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>htmlDumpDir</td>
+<td>Specifies the directory to output the HTML dump file.</td>
+<td>./tmp/http_dump</td>
+</tr>
+<tr class="row-odd"><td>webBaseDir</td>
+<td>Root directory of the web application<a class="footnote-reference" href="#id3" id="id1">[1]</a></td>
+<td>../main/web</td>
+</tr>
+<tr class="row-even"><td>xmlComponentFile</td>
+<td>Component configuration file to be used when request unit test is executed<a class="footnote-reference" href="#id4" id="id2">[2]</a></td>
+<td>(None)</td>
+</tr>
+<tr class="row-odd"><td>userIdSessionKey</td>
+<td>Session key to store the user ID during login</td>
+<td>user.id</td>
+</tr>
+<tr class="row-even"><td>exceptionRequestVarKey</td>
+<td>Key of the request scope where the ApplicationException is stored.</td>
+<td>nablarch_application_error</td>
+</tr>
+<tr class="row-odd"><td>dumpFileExtension</td>
+<td>Dump file extension</td>
+<td>html</td>
+</tr>
+<tr class="row-even"><td>httpHeader</td>
+<td>Value stored as HTTP request header in HttpRequest</td>
+<td><p class="first">Content-Type : application/x-www-form-urlencoded</p>
+<p class="last">Accept-Language : ja JP</p>
+</td>
+</tr>
+<tr class="row-odd"><td>sessionInfo</td>
+<td>Value stored in the session</td>
+<td>(None)</td>
+</tr>
+<tr class="row-even"><td>htmlResourcesExtensionList</td>
+<td>Extension of HTML resource copied to the dump directory</td>
+<td>css, jpg, js</td>
+</tr>
+<tr class="row-odd"><td>jsTestResourceDir</td>
+<td>The name of the directory to copy the resources used when executing the javascript automated test.</td>
+<td>../test/web</td>
+</tr>
+<tr class="row-even"><td>backup</td>
+<td>Dump directory backup On/Off</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>htmlResourcesCharset</td>
+<td>Character code of CSS file (style sheet)</td>
+<td>UTF-8</td>
+</tr>
+<tr class="row-even"><td>checkHtml</td>
+<td>Executing HTML check On/Off</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>htmlChecker</td>
+<td>Specify the object to check HTML. <br />
+The object must implement the nablarch.test.tool.htmlcheck.HtmlChecker
+interface. <br />
+For more information, see <a class="reference internal" href="../08_TestTools/03_HtmlCheckTool/index.html#customize-html-check"><span>Change HTML check contents</span></a>.</td>
+<td>An instance of the
+nablarch.test.tool.htmlcheck.Html4HtmlChecker
+class. <br />
+The configuration file configured in
+htmlCheckerConfig will be applied to the class.</td>
+</tr>
+<tr class="row-even"><td>htmlCheckerConfig</td>
+<td>HTML check tool configuration file path. <br />
+Valid only if htmlChecker is not configured.</td>
+<td>test/resources/httprequesttest/html-check-config.csv</td>
+</tr>
+<tr class="row-odd"><td>ignoreHtmlResourceDirectory</td>
+<td><p class="first">LIST of directory names in the HTML resources that are not to be copied</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If version control directories (.svn or .git) are configured as not to
+be copied, the performance when copying HTML resources will improve.</p>
+</div>
+</td>
+<td>(None)</td>
+</tr>
+<tr class="row-even"><td>tempDirectory</td>
+<td>JSP compilation destination directory</td>
+<td><p class="first">Depends on jetty&#8217;s default behavior</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In the default behavior of jetty, The default
+behavior of jetty is to compile in &#8220;/work&#8221;.
+If there is no &#8221;. When &#8220;/work&#8221; does not exist,
+the Temp folder (in the case of Windown,
+the user&#8217;s Home directory/Local Settings/Temp)
+as the output destination.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>uploadTmpDirectory</td>
+<td><p class="first">The directory where the upload files are temporarily stored.</p>
+<p class="last">The files to be uploaded, which are prepared at the time of testing,
+are processed after being copied to this directory.
+Thus, even if files are moved by an action,
+it is only the files under this directory that are moved,
+and the physical files can be prevented from being moved.</p>
+</td>
+<td>./tmp</td>
+</tr>
+<tr class="row-even"><td>dumpVariableItem</td>
+<td><p class="first">Sets whether or not to output the variable items
+when the HTML dump file is output.
+Here, the variable items are of the following two types:</p>
+<ul class="simple">
+<li>JSESSIONID</li>
+<li>Token for duplicate form submission prevention</li>
+</ul>
+<p>Different values are set for these items for each test execution.</p>
+<p>Set this item to OFF (false) when you want the HTML dump result
+to be the same every time. (If you want to check that the result
+is not different from the result of the previous execution, etc.)</p>
+<p class="last">Set this item to ON (true) when outputting
+a variable item as it is to HTML.</p>
+</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">If there is a common web module in project, configure the directory in this property using a comma separator.
+If more than one directory is specified, the resources are read in order from the first one.</p>
+<p>An example is shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;httpTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.HttpTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webBaseDir&quot;</span> <span class="na">value=</span><span class="s">&quot;/path/to/web-a/,/path/to/web-common&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p class="last">In this case, the resources are searched in the order of web-a and web-common.</p>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>If this item is configured, it will be initialized in the component configuration file specified just before the request is sent.
+Normally, there is no need to configure this item.
+Configure this item only when you need to change the configuration between class unit test and request unit test.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example-of-component-configuration-file-description">
+<h3>3.2.3.3.2. Example of component configuration file description<a class="headerlink" href="#example-of-component-configuration-file-description" title="Permalink to this headline">¶</a></h3>
+<p>Here is a description example of the component configuration file.
+In addition to the default values described above, the following values are set in the session (sessionInfo).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="24%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>commonHeaderLoginUserName</td>
+<td>&#8220;Request unit test user&#8221;</td>
+<td>Login user name to be displayed in the common header area</td>
+</tr>
+<tr class="row-odd"><td>commonHeaderLoginDate</td>
+<td>&#8220;20100914&#8221;</td>
+<td>Login date and time to be displayed in the common header area</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;httpTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.HttpTestConfiguration&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;htmlDumpDir&quot;</span> <span class="na">value=</span><span class="s">&quot;./tmp/http_dump&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webBaseDir&quot;</span> <span class="na">value=</span><span class="s">&quot;../main/web&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;xmlComponentFile&quot;</span> <span class="na">value=</span><span class="s">&quot;http-request-test.xml&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;userIdSessionKey&quot;</span> <span class="na">value=</span><span class="s">&quot;user.id&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;httpHeader&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;map&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">value=</span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;Accept-Language&quot;</span> <span class="na">value=</span><span class="s">&quot;ja JP&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/map&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sessionInfo&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;map&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;commonHeaderLoginUserName&quot;</span> <span class="na">value=</span><span class="s">&quot;Request unit test user&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;commonHeaderLoginDate&quot;</span> <span class="na">value=</span><span class="s">&quot;20100914&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/map&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;htmlResourcesExtensionList&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;value&gt;</span>css<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;value&gt;</span>jpg<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;value&gt;</span>js<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;backup&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;htmlResourcesCharset&quot;</span> <span class="na">value=</span><span class="s">&quot;UTF-8&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;ignoreHtmlResourceDirectory&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;value&gt;</span>.svn<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;tempDirectory&quot;</span> <span class="na">value=</span><span class="s">&quot;webTemp&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;htmlCheckerConfig&quot;</span>
+      <span class="na">value=</span><span class="s">&quot;test/resources/httprequesttest/html-check-config.csv&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-configuration">
+<span id="optional-settings"></span><h3>3.2.3.3.3. Other configuration<a class="headerlink" href="#other-configuration" title="Permalink to this headline">¶</a></h3>
+<p>If you are developing on a PC that does not have high performance and want to improve the execution speed of the request unit test,
+you can improve the execution speed by doing the following configuration.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The configuration is effective for PCs with low performance CPUs such as Pentium4 and Pentinum Dual-Core.
+On the contrary, for machines with newer CPUs, the configuration is not that effective; hence, there is no need to do the configuration unnecessarily.</p>
+</div>
+<div class="section" id="specifying-jvm-options">
+<h4>3.2.3.3.3.1. Specifying JVM options<a class="headerlink" href="#specifying-jvm-options" title="Permalink to this headline">¶</a></h4>
+<p>The overhead of heap size expansion can be avoided by setting the same value
+for maximum and minimum heap size.</p>
+<blockquote>
+<div><strong>-Xms256m -Xmx256m</strong></div></blockquote>
+<p>In addition, the execution speed is improved by omitting the verification of the class file.</p>
+<blockquote>
+<div><strong>-Xverfiy:none</strong></div></blockquote>
+<p>How to configure with Eclipse is as shown below.</p>
+<ul class="simple">
+<li>Select &#8220;Run(実行)&#8221; &gt; &#8220;Run Configuration(実行構成)&#8221; from the menu bar.</li>
+<li>In the &#8220;Run Configuration(実行構成)&#8221; window, click on the &#8220;Arguments(引数)&#8221; tab and specify the above options in the &#8220;VM Arguments(VM引数)&#8221; field.</li>
+</ul>
+<img alt="../../../../../_images/vmoptions.png" src="../../../../../_images/vmoptions.png" />
+<p>Also, you can set the default VM arguments with the following method without changing the execution configuration.</p>
+<ul class="simple">
+<li>Select &#8220;Window(ウィンドウ)&#8221; &gt; &#8220;Settings(設定)&#8221; from the menu bar. In the &#8220;Settings(設定)&#8221; window that is displayed, select &#8220;Installed JREs(インストール済みのJRE)&#8221;.</li>
+<li>Select the JRE you want to use from the list of installed JREs that is displayed, and click the &#8220;Edit(編集)&#8221; button.</li>
+</ul>
+<img alt="../../../../../_images/installed_jre.png" src="../../../../../_images/installed_jre.png" />
+<ul class="simple">
+<li>Specify the above-mentioned option in the &#8220;VM argument(VM引数)&#8221; field.</li>
+</ul>
+<img alt="../../../../../_images/edit_jre.png" src="../../../../../_images/edit_jre.png" />
+</div>
+<div class="section" id="specifying-an-alternate-jre">
+<h4>3.2.3.3.3.2. Specifying an alternate JRE<a class="headerlink" href="#specifying-an-alternate-jre" title="Permalink to this headline">¶</a></h4>
+<p>If you are developing with JavaSE5 JDK, then using JavaSE6 JRE only at the time of test execution will improve
+the execution speed, especially the start-up speed.</p>
+<p>How to configure with Eclipse is as shown below.</p>
+<ul class="simple">
+<li>Select &#8220;Run(実行)&#8221; &gt; &#8220;Run Configuration(実行構成)&#8221; from the menu bar.</li>
+<li>On the &#8220;Execution Configuration(実行構成)&#8221; window that is displayed, click the &#8220;JRE&#8221; tab and select JRE of JavaSE6 in the &#8220;Alternate JRE(代替JRE)&#8221;.</li>
+</ul>
+<img alt="../../../../../_images/alternate_jre.png" src="../../../../../_images/alternate_jre.png" />
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To configure this setting, you need to install the JavaSE6 JDK or JRE in advance and register it as &#8220;Installed JRE(インストール済みのJRE)&#8221; in Eclipse.</p>
+</div>
+</div>
+<div class="section" id="suppression-of-html-resource-copying">
+<h4>3.2.3.3.3.3. Suppression of HTML resource copying<a class="headerlink" href="#suppression-of-html-resource-copying" title="Permalink to this headline">¶</a></h4>
+<p>If the following system properties are specified when executing a request unit, HTML resource copying can be suppressed at the time of <a class="reference internal" href="#dump-dir-label"><span>HTML dump output</span></a>.</p>
+<blockquote>
+<div><strong>-Dnablarch.test.skip-resource-copy=true</strong></div></blockquote>
+<p>If you do not edit static HTML resources such as CSS or image files frequently,
+you can set this system property because you don&#8217;t need to copy
+the HTML resources every time a test is executed.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When this system property is specified, the HTML resources are not copied.
+Therefore, even if HTML resources such as CSS are edited, it is not reflected in the <a class="reference internal" href="#dump-dir-label"><span>HTML dump output</span></a>.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the HTML resource directory does not exist, the HTML resources will be copied
+regardless of whether this system property is set or not.</p>
+</div>
+<p>How to configure with Eclipse is as shown below.</p>
+<ul class="simple">
+<li>Select &#8220;Run(実行)&#8221; &gt; &#8220;Run Configuration(実行構成)&#8221; from the menu bar.</li>
+<li>In the &#8220;Run Configuration(実行構成)&#8221; window, click on the &#8220;Arguments(引数)&#8221; tab and specify the above options in the &#8220;VM Arguments(VM引数)&#8221; field.</li>
+</ul>
+<img alt="../../../../../_images/skip_resource_copy.png" src="../../../../../_images/skip_resource_copy.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

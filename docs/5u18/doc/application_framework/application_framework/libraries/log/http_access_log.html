@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/libraries/log/http_access_log.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/log/http_access_log.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="7.1. ログ出力" href="../log.html"/>
@@ -321,9 +321,12 @@
           <li><a href="../log.html">7.1. ログ出力</a> &raquo;</li>
       
     <li>7.1.1.2.4. HTTPアクセスログの出力</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -446,7 +449,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 <dd><p class="first"></p>
 <dl class="last docutils">
 <dt>httpAccessLogFormatter.className</dt>
-<dd><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/handler/HttpAccessLogFormatter.html" title="nablarch.fw.web.handler.HttpAccessLogFormatter">HttpAccessLogFormatter</a> を実装したクラス。
+<dd><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/HttpAccessLogFormatter.html" title="nablarch.fw.web.handler.HttpAccessLogFormatter">HttpAccessLogFormatter</a> を実装したクラス。
 差し替える場合に指定する。</dd>
 <dt>httpAccessLogFormatter.beginFormat</dt>
 <dd><p class="first">リクエスト処理開始時のログ出力に使用するフォーマット。</p>
@@ -498,15 +501,15 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">リクエストパラメータは、 <a class="reference internal" href="../tag.html#tag-hidden-encryption"><span>hidden暗号化</span></a> の復号前の状態となる。</p>
 </div>
 <div class="last admonition important">
 <p class="first admonition-title">重要</p>
-<p>リクエストIDとユーザIDは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/log/basic/BasicLogFormatter.html" title="nablarch.core.log.basic.BasicLogFormatter">BasicLogFormatter</a>
+<p>リクエストIDとユーザIDは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/log/basic/BasicLogFormatter.html" title="nablarch.core.log.basic.BasicLogFormatter">BasicLogFormatter</a>
 が出力する項目と重複するが、HTTPアクセスログのフォーマットの自由度を高めるために設けている。</p>
 <p class="last">リクエストID、ユーザIDを出力する場合は、
-これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
+これらの取得元が <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html" title="nablarch.core.ThreadContext">ThreadContext</a> なので、
 ハンドラ構成に <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler"><span>スレッドコンテキスト変数管理ハンドラ</span></a> が含まれている必要がある。
 特にユーザIDについては、 <a class="reference internal" href="../../handlers/common/thread_context_handler.html#thread-context-handler-user-id-attribute-setting"><span>ユーザIDを設定する</span></a> を参照して
 アプリケーションでセッションに値を設定する必要がある。</p>
@@ -587,7 +590,7 @@ hiddenパラメータについては、 <a class="reference internal" href="../t
 </dd>
 </dl>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ステータスコード(内部)は、 <a class="reference internal" href="../../handlers/web/http_access_log_handler.html#http-access-log-handler"><span>HTTPアクセスログハンドラ</span></a> の復路時点でのステータスコードのことを指す。
 ステータスコード(クライアント)は、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> で、クライアントに返却するステータスコードのことを指す。</p>
 <p>ステータスコード(クライアント)は、本ログ出力時点では確定していないが、 <a class="reference internal" href="../../handlers/web/http_response_handler.html#http-response-handler"><span>HTTPレスポンスハンドラ</span></a> と同じ機能を使い、

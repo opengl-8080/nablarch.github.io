@@ -1,0 +1,595 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data Formatter Expansion &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/04/0401_ExtendedDataFormatter.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../index.html"/>
+        <link rel="up" title="Extended Formatter Functions" href="index.html"/>
+        <link rel="next" title="Field Type Expansion in the Data Formatter Function" href="0402_ExtendedFieldType.html"/>
+        <link rel="prev" title="Extended Formatter Functions" href="index.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extended Formatter Functions</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+          <li><a href="index.html">Extended Formatter Functions</a> &raquo;</li>
+      
+    <li>Data Formatter Expansion</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-formatter-expansion">
+<h1>Data Formatter Expansion<a class="headerlink" href="#data-formatter-expansion" title="Permalink to this headline">¶</a></h1>
+<p>The specifications of the formatter functions provided in this sample are described.</p>
+<p>For an overview of the formatter functions and more information on basic general data formatting functions, see the description for general data formatting functions in the Nablarch Application Framework manual.</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>To use a different formatter from those provided by Nablarch (ex: Json format or Xml format), add a data formatter.</p>
+<p>In this sample, assume creating a formatter corresponding to the data format (application/x-www-form-urlencoded) that combines Key item=Value item with &amp;, such as a HTTP POST parameter.</p>
+<div class="section" id="delivery-package">
+<h3>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h3>
+<p>The functions are provided in the below package.</p>
+<blockquote>
+<div><p><em>please.change.me.</em> <strong>core.dataformat</strong></p>
+<p><em>please.change.me.</em> <strong>core.dataformat.convertor</strong></p>
+<p><em>please.change.me.</em> <strong>test.core.file</strong></p>
+</div></blockquote>
+</div>
+<div class="section" id="structure-of-the-formurlencoded-data-formatter">
+<span id="extendedformatter-formurlencodedformatter"></span><h3>Structure of the FormUrlEncoded data formatter<a class="headerlink" href="#structure-of-the-formurlencoded-data-formatter" title="Permalink to this headline">¶</a></h3>
+<p>The FormUrlEncoded data formatter handles the data used in application/x-www-form-urlencoded.
+This data is expressed by connecting sets of names and values using the equal to sign and then linking them with the AND symbol (&amp;), such as name1=value1 &amp; name2=value2.
+Multiple values can also be handled with the same key.</p>
+<p>Encode a URL in the value.
+For keys, a URL cannot be encoded according to the format definition of general data formats, and special characters cannot be used for a key string.</p>
+<p>The following is a list of classes used in this function.</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="27%" />
+<col width="31%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package name</th>
+<th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>please.change.me.</em> <strong>core.dataformat</strong></td>
+<td>FormUrlEncodedDataFormatterFactory</td>
+<td><div class="first last line-block">
+<div class="line">Formatter factory class.</div>
+<div class="line">In the sample implementation, the createFormatter (String fileType, String formatFilePath) method is overridden, and an instance of FormUrlEncodedDataRecordFormatter can be created.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><em>please.change.me.</em> <strong>core.dataformat</strong></td>
+<td>FormUrlEncodedDataRecordFormatter</td>
+<td><div class="first last line-block">
+<div class="line">Formatter class.</div>
+<div class="line">Parse and build the data used by application/x-www-form-urlencoded.</div>
+<div class="line">The parameters in the sample implementation are output in the order of format definition during writing and not in the order of appearance during reading.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><em>please.change.me.</em> <strong>core.dataformat.convertor</strong></td>
+<td>FormUrlEncodedDataConvertorFactory</td>
+<td><div class="first last line-block">
+<div class="line">Factory class for the data converter.</div>
+<div class="line">Stores the correspondence table between the default converter name and converter implementation class.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><em>please.change.me.</em> <strong>core.dataformat.convertor</strong></td>
+<td>FormUrlEncodedDataConvertorSetting</td>
+<td><div class="first last line-block">
+<div class="line">Class that stores the configuration information of the converter.</div>
+<div class="line">Configures the correspondence table of the converter name and converter implementation class from the DI container.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><em>please.change.me.</em> <strong>test.core.file</strong></td>
+<td>FormUrlEncodedTestDataConverter</td>
+<td><div class="first last line-block">
+<div class="line">Test data converter class.</div>
+<div class="line">In the sample implementation, data configured with the Key=Value format for each item is analyzed as test data, and URL encoding is performed dynamically for the value in the Value section.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-use-the-formurlencoded-data-formatter">
+<h3>How to Use the FormUrlEncoded data formatter<a class="headerlink" href="#how-to-use-the-formurlencoded-data-formatter" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>When using a formatter factory class created in the business application, the following configuration must be made.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;formatterFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.core.dataformat.FormUrlEncodedDataFormatterFactory&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="description-example-of-format-definition-file">
+<h3>Description example of format definition file<a class="headerlink" href="#description-example-of-format-definition-file" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>An example describing the format definition file corresponding to the sample source code is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Directive definition section</span>
+<span class="c1">#</span>
+file-type:     <span class="s2">&quot;FormUrlEncoded&quot;</span>  <span class="c1"># Form URL encoded format file</span>
+text-encoding: <span class="s2">&quot;UTF-8&quot;</span>  <span class="c1"># Character encoding of the string type field</span>
+
+<span class="c1">#</span>
+<span class="c1"># Data record definition section</span>
+<span class="c1">#</span>
+<span class="o">[</span>data<span class="o">]</span>
+<span class="m">1</span>    key1   X      <span class="c1"># Item 1</span>
+<span class="m">2</span>    key2   X      <span class="c1"># Item 2</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="field-type-and-field-converter-definition-list">
+<h3>Field type and field converter definition list<a class="headerlink" href="#field-type-and-field-converter-definition-list" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>This section describes the field types and field converters used in the FormUrlEncoded data formatter.</p>
+<p><strong>Field type</strong></p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="27%" />
+<col width="31%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type identifier</th>
+<th class="head">Java type</th>
+<th class="head">Details</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>X, N, XN, X9, SX9</td>
+<td>String</td>
+<td><div class="first last line-block">
+<div class="line">The FormUrlEncoded data formatter reads and writes all fields as strings.</div>
+<div class="line">Therefore, the operation does not change no matter what type of identifier is specified.</div>
+<div class="line">Since there is no concept of field length, arguments are not required.</div>
+<div class="line">To read and write Number type data (BigDecimal etc.), use the number/signed_number converter described below.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Arguments are not required as none of the type identifiers have the concept of field length.</p>
+<p><strong>Field convertor</strong></p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Converter name</th>
+<th class="head">Java type (before and after conversion)</th>
+<th class="head">Details</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Literal value</td>
+<td>Object &lt;-&gt; Object</td>
+<td><div class="first last line-block">
+<div class="line"><strong>During input:</strong> (Nothing is to be done)</div>
+<div class="line"><strong>During output:</strong> Outputs the specified literal value if the output value is not set.</div>
+<div class="line"><strong>Default implementation class:</strong> nablarch.core.dataformat.convertor.value.DefaultValue</div>
+<div class="line"><strong>Argument:</strong> No</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>number</td>
+<td>String &lt;-&gt; BigDecimal</td>
+<td><div class="first last line-block">
+<div class="line"><strong>During input:</strong> After checking that the format of the input value is an unsigned number, converts the value to BigDecimal type and returns it.</div>
+<div class="line-block">
+<div class="line">Returns null if the value entered is a null or empty character.</div>
+</div>
+<div class="line"><strong>During output:</strong> Converts the output value to a string, and then outputs after format checking that it is an unsigned numeric value.</div>
+<div class="line-block">
+<div class="line">Outputs an empty character if the output value is null.</div>
+</div>
+<div class="line"><strong>Default implementation class:</strong> nablarch.core.dataformat.convertor.value.NumberString</div>
+<div class="line"><strong>Argument:</strong> No</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>signed_number</td>
+<td>String &lt;-&gt; BigDecimal</td>
+<td><div class="first last line-block">
+<div class="line">Except that signs are allowed, the specification is the same as <strong>number</strong> converter.</div>
+<div class="line"><strong>Default implementation class:</strong> nablarch.core.dataformat.convertor.value.SignedNumberString</div>
+<div class="line"><strong>Argument:</strong> No</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="when-handling-multiple-values-with-the-same-key">
+<h3>When handling multiple values with the same key<a class="headerlink" href="#when-handling-multiple-values-with-the-same-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>When the same key handles multiple values, data is stored in the String array format.
+Multiplicity must be set in the format definition file.
+For the definition method, see the general data formatting functions in the Nablarch Application Framework manual.</div></blockquote>
+</div>
+<div class="section" id="how-to-write-test-data">
+<h3>How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>When using the FormUrlEncoded data formatter, the input data must be URL encoded.
+However, writing URL-encoded data directly into an Excel file is not practical in terms of readability, maintainability and work efficiency.
+Therefore, the test data converter is specified as shown in the following example.</p>
+<p>For test data converters, see How to use the automatic test framework in the Programming/Unit test guide.</p>
+<p><strong>Component configuration file</strong></p>
+<blockquote>
+<div><p>Add the following settings in the component configuration file on the test side.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Test data converter definition --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;TestDataConverter_FormUrlEncoded&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;please.change.me.test.core.file.FormUrlEncodedTestDataConverter&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Excel file</strong></p>
+<blockquote>
+<div><p>&#8220;FormUrlEncoded&#8221; is specified in the file-type as follows, and entered in the Key-Value format for each item as test data.</p>
+<img alt="../../_images/test_data_example.png" src="../../_images/test_data_example.png" />
+<p>In this case, the test framework calls FormUrlEncodedTestDataConverter when the test data is read,
+and the following data is input to the FormUrlEncoded data formatter as a result.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>kanjiName=%E6%BC%A2%E5%AD%97%E6%B0%8F%E5%90%8D&amp;kanaName=%E3%82%AB%E3%83%8A%E3%82%B7%E3%83%A1%E3%82%A4&amp;mailAddr=test%40anydomain.com
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

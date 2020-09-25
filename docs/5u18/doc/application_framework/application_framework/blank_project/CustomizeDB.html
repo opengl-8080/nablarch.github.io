@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="8.6. 初期セットアップ後に必要となる設定変更" href="ModifySettings.html"/>
@@ -321,9 +321,12 @@
           <li><a href="ModifySettings.html">8.6. 初期セットアップ後に必要となる設定変更</a> &raquo;</li>
       
     <li>8.6.1. 使用するRDBMSの変更手順</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -413,7 +416,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ローカルのMavenリポジトリへの登録には、<a class="reference external" href="https://maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html">maven-install-plugin(外部サイト、英語)</a>  を使用している。</p>
 </div>
 </div>
@@ -675,7 +678,7 @@ nablarch.db.schema=SAMPLE
 <span id="customizedbprofiles"></span><h4>8.6.1.3.2.1. (本番環境でJNDIからコネクションを取得するプロジェクトの場合)profiles要素内<a class="headerlink" href="#jndi-profiles" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>profiles要素内で、JDBCドライバの依存関係が記述されている箇所を修正する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>本番環境でJNDIからコネクションを取得するプロジェクトの場合、ローカルでコネクションプールを作るときだけ明示的に依存関係に入れる必要があるので、profiles要素内に記載されている。</p>
 <p class="last">(JNDIからコネクションを取得する場合は、APサーバのクラスローダから、JDBCドライバを取得できるはずである。)</p>
 </div>
@@ -892,7 +895,7 @@ nablarch.db.schema=SAMPLE
 <li>db/ddl/</li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>DB2の場合、create.sqlの先頭に接続先データベースと、使用スキーマが記述されているので書きかえてからDDLを実行する。</p>
 <p>DDLの実行は、「DB2 コマンド・ウィンドウ」上で以下を実行する。</p>
 <div class="last highlight-text"><div class="highlight"><pre><span></span>db2 -tvf &quot;C:\develop\myapp-web\db\ddl\db2\create.sql&quot;
@@ -900,7 +903,7 @@ nablarch.db.schema=SAMPLE
 </div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>gsp-dba-maven-plugin<a class="footnote-reference" href="#gsp" id="id15">[1]</a>使用時は、以下のコマンドでgsp-dba-maven-pluginを実行すればテーブルが作成される。</p>
 <div class="last highlight-bash"><div class="highlight"><pre><span></span>mvn -P gsp clean generate-resources
 </pre></div>
@@ -923,7 +926,7 @@ nablarch.db.schema=SAMPLE
 <li>db/data/</li>
 </ul>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>DB2の場合、data.sqlの先頭に接続先データベースと使用スキーマを記述してから、SQLを実行する。</p>
 <p>以下に接続先データベースと使用スキーマの記述例を示す。</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>CONNECT TO SAMPLE2;

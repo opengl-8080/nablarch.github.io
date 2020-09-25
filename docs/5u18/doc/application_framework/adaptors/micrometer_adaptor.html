@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/adaptors/micrometer_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/micrometer_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
@@ -317,9 +317,12 @@
           <li><a href="index.html">アダプタ</a> &raquo;</li>
       
     <li>Micrometerアダプタ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -357,7 +360,6 @@
 <li><a class="reference internal" href="#statsd" id="id44">StatsD で連携する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#http" id="id45">HTTPリクエストの処理時間を収集する</a></li>
 </ul>
 </div>
 <p><a class="reference external" href="https://micrometer.io/">Micrometer(外部サイト、英語)</a> を使用したメトリクス収集を行うためのアダプタを提供する。</p>
@@ -376,7 +378,7 @@
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Micrometerのバージョン1.5.4を使用してテストを行っている。
 バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
 </div>
@@ -384,10 +386,10 @@
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id26">Micrometerアダプタを使用するための設定を行う</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Micrometerでメトリクスを収集するためには、 <a class="reference external" href="https://micrometer.io/docs/concepts#_registry">レジストリ(外部サイト、英語)</a> と呼ばれるクラスを作成する必要がある。
-本アダプタでは、このレジストリを <a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span>システムリポジトリ</span></a> に登録するための <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を提供している。</p>
-<p>ここでは、 <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/logging/LoggingMeterRegistry.html">LoggingMeterRegistry(外部サイト、英語)</a> をコンポーネントとして登録する <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/logging/LoggingMeterRegistryFactory.html" title="nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory">LoggingMeterRegistryFactory</a> を例にして設定方法について説明する。</p>
+本アダプタでは、このレジストリを <a class="reference internal" href="../application_framework/libraries/repository.html#repository"><span>システムリポジトリ</span></a> に登録するための <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を提供している。</p>
+<p>ここでは、 <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/logging/LoggingMeterRegistry.html">LoggingMeterRegistry(外部サイト、英語)</a> をコンポーネントとして登録する <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/logging/LoggingMeterRegistryFactory.html" title="nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory">LoggingMeterRegistryFactory</a> を例にして設定方法について説明する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/logging/LoggingMeterRegistry.html">LoggingMeterRegistry(外部サイト、英語)</a> は、 SLF4J または Java Util Logging を使ってメトリクスをログに出力する機能を提供する。
 特に設定をしていない場合は、 Java Util Logging を使って標準出力にメトリクスが出力されるため、簡単な動作確認をするのに適している。</p>
 <p class="last">他のレジストリは連携先のサービスの準備や、収集したメトリクスを出力する実装を作りこむなどの手間がかかる。
@@ -399,8 +401,8 @@
 <p>Micrometerには、 <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html">MeterBinder(外部サイト、英語)</a> というインタフェースが存在する。</p>
 <p>JVMのメモリ使用量やCPU使用率など、よく利用するメトリクスの収集は、このインタフェースを実装したクラスとしてあらかじめ用意されている。
 （例：JVMのメモリ使用量は <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/jvm/JvmMemoryMetrics.html">JvmMemoryMetrics(外部サイト、英語)</a> 、CPU使用率は <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/system/ProcessorMetrics.html">ProcessorMetrics(外部サイト、英語)</a> ）</p>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> は、この <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html">MeterBinder(外部サイト、英語)</a> のリストを提供するクラスで、本クラスを使用することでJVMのメモリ使用量やCPU使用率などのメトリクスを収集できるようになる。</p>
-<p>まず <code class="docutils literal"><span class="pre">src/main/resources/web-component-configuration.xml</span></code> に、この <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> の宣言を追加する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> は、この <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html">MeterBinder(外部サイト、英語)</a> のリストを提供するクラスで、本クラスを使用することでJVMのメモリ使用量やCPU使用率などのメトリクスを収集できるようになる。</p>
+<p>まず <code class="docutils literal"><span class="pre">src/main/resources/web-component-configuration.xml</span></code> に、この <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> の宣言を追加する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span>
            <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.DefaultMeterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -409,7 +411,7 @@
 </div>
 <div class="section" id="id6">
 <h3><a class="toc-backref" href="#id28">DefaultMeterBinderListProviderを廃棄処理対象にする</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> は廃棄処理が必要なコンポーネントなので、下記のように廃棄処理対象として宣言する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> は廃棄処理が必要なコンポーネントなので、下記のように廃棄処理対象として宣言する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
     <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
 
@@ -434,7 +436,7 @@
 </div>
 <p>次に、使用するレジストリごとに用意されているファクトリクラスをコンポーネントとして宣言する。</p>
 <p>このとき、 <code class="docutils literal"><span class="pre">meterBinderListProvider</span></code> と <code class="docutils literal"><span class="pre">applicationDisposer</span></code> の２つのプロパティを設定する。
-それぞれのプロパティには、上で宣言した <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> と <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> を設定する。</p>
+それぞれのプロパティには、上で宣言した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> と <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> を設定する。</p>
 <p>なお、本アダプタが提供しているファクトリクラスについては <a class="reference internal" href="#micrometer-registry-factory"><span>レジストリファクトリ</span></a> に一覧を記載している。</p>
 </div>
 <div class="section" id="id8">
@@ -516,23 +518,23 @@
 <td>提供しているアダプタのバージョン</td>
 </tr>
 <tr class="row-even"><td><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/simple/SimpleMeterRegistry.html">SimpleMeterRegistry(外部サイト、英語)</a></td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/simple/SimpleMeterRegistryFactory.html" title="nablarch.integration.micrometer.simple.SimpleMeterRegistryFactory">SimpleMeterRegistryFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/simple/SimpleMeterRegistryFactory.html" title="nablarch.integration.micrometer.simple.SimpleMeterRegistryFactory">SimpleMeterRegistryFactory</a></td>
 <td><code class="docutils literal"><span class="pre">1.0.0</span></code> 以上</td>
 </tr>
 <tr class="row-odd"><td><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/logging/LoggingMeterRegistry.html">LoggingMeterRegistry(外部サイト、英語)</a></td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/logging/LoggingMeterRegistryFactory.html" title="nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory">LoggingMeterRegistryFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/logging/LoggingMeterRegistryFactory.html" title="nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory">LoggingMeterRegistryFactory</a></td>
 <td><code class="docutils literal"><span class="pre">1.0.0</span></code> 以上</td>
 </tr>
 <tr class="row-even"><td><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-registry-cloudwatch2/1.5.4/io/micrometer/cloudwatch2/CloudWatchMeterRegistry.html">CloudWatchMeterRegistry(外部サイト、英語)</a></td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory">CloudWatchMeterRegistryFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory">CloudWatchMeterRegistryFactory</a></td>
 <td><code class="docutils literal"><span class="pre">1.0.0</span></code> 以上</td>
 </tr>
 <tr class="row-odd"><td><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-registry-datadog/1.5.4/io/micrometer/datadog/DatadogMeterRegistry.html">DatadogMeterRegistry(外部サイト、英語)</a></td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/datadog/DatadogMeterRegistryFactory.html" title="nablarch.integration.micrometer.datadog.DatadogMeterRegistryFactory">DatadogMeterRegistryFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/datadog/DatadogMeterRegistryFactory.html" title="nablarch.integration.micrometer.datadog.DatadogMeterRegistryFactory">DatadogMeterRegistryFactory</a></td>
 <td><code class="docutils literal"><span class="pre">1.0.0</span></code> 以上</td>
 </tr>
 <tr class="row-even"><td><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-registry-statsd/1.5.4/io/micrometer/statsd/StatsdMeterRegistry.html">StatsdMeterRegistry(外部サイト、英語)</a></td>
-<td><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/statsd/StatsdMeterRegistryFactory.html" title="nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory">StatsdMeterRegistryFactory</a></td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/statsd/StatsdMeterRegistryFactory.html" title="nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory">StatsdMeterRegistryFactory</a></td>
 <td><code class="docutils literal"><span class="pre">1.0.0</span></code> 以上</td>
 </tr>
 </tbody>
@@ -647,7 +649,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </div>
 <div class="section" id="id15">
 <h3><a class="toc-backref" href="#id37">設定のプレフィックスを変更する</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>設定のプレフィックス (<code class="docutils literal"><span class="pre">nablarch.micrometer.&lt;subPrefix&gt;</span></code>) は、各レジストリファクトリごとに <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setPrefix-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.setPrefix(String)">prefix</a> プロパティを指定することで変更できる。</p>
+<p>設定のプレフィックス (<code class="docutils literal"><span class="pre">nablarch.micrometer.&lt;subPrefix&gt;</span></code>) は、各レジストリファクトリごとに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setPrefix-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.setPrefix(String)">prefix</a> プロパティを指定することで変更できる。</p>
 <p>以下に、プレフィックスを変更する例を記載する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
@@ -666,7 +668,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 <div class="section" id="id16">
 <h3><a class="toc-backref" href="#id38">設定ファイルの場所を変更する</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>設定ファイル（<code class="docutils literal"><span class="pre">micrometer.properties</span></code>）の場所は、以下の方法で変更できる。</p>
-<p>まず、レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#xmlConfigPath-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.xmlConfigPath(String)">xmlConfigPath</a> プロパティに、設定ファイルを読み込むXMLファイルのパスを指定する。</p>
+<p>まず、レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#xmlConfigPath-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.xmlConfigPath(String)">xmlConfigPath</a> プロパティに、設定ファイルを読み込むXMLファイルのパスを指定する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
@@ -691,7 +693,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>このXMLファイルはコンポーネント設定ファイルと同じ書式で記述できる。</p>
 <p class="last">ただし、このファイルでコンポーネントを定義しても、システムリポジトリから参照を取得することはできない。</p>
 </div>
@@ -699,7 +701,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </div>
 <div class="section" id="micrometer-default-metrics">
 <span id="id17"></span><h2><a class="toc-backref" href="#id39">DefaultMeterBinderListProviderで収集されるメトリクス</a><a class="headerlink" href="#micrometer-default-metrics" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> が生成する <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html">MeterBinder(外部サイト、英語)</a> のリストには、以下のクラスが含まれている。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/DefaultMeterBinderListProvider.html" title="nablarch.integration.micrometer.DefaultMeterBinderListProvider">DefaultMeterBinderListProvider</a> が生成する <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html">MeterBinder(外部サイト、英語)</a> のリストには、以下のクラスが含まれている。</p>
 <ul class="simple">
 <li><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/jvm/JvmMemoryMetrics.html">JvmMemoryMetrics(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/jvm/JvmGcMetrics.html">JvmGcMetrics(外部サイト、英語)</a></li>
@@ -708,7 +710,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 <li><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/system/ProcessorMetrics.html">ProcessorMetrics(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/system/FileDescriptorMetrics.html">FileDescriptorMetrics(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/system/UptimeMetrics.html">UptimeMetrics(外部サイト、英語)</a></li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/instrument/binder/jvm/NablarchGcCountMetrics.html" title="nablarch.integration.micrometer.instrument.binder.jvm.NablarchGcCountMetrics">NablarchGcCountMetrics</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/instrument/binder/jvm/NablarchGcCountMetrics.html" title="nablarch.integration.micrometer.instrument.binder.jvm.NablarchGcCountMetrics">NablarchGcCountMetrics</a></li>
 </ul>
 <p>これにより、下記メトリクスが収集されるようになる。</p>
 <table border="1" class="docutils">
@@ -807,8 +809,8 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </div>
 <div class="section" id="id18">
 <h2><a class="toc-backref" href="#id40">共通のタグを設定する</a><a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setTags-Map-" title="nablarch.integration.micrometer.MeterRegistryFactory.setTags(Map)">tags</a> プロパティで、すべてのメトリクスに共通するタグを設定できる。</p>
-<p>この機能は、アプリケーションが稼働しているホスト、インスタンス、リージョンなどを識別できる情報を設定するといった用途として利用できる。</p>
+<p>レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setTags-Map-" title="nablarch.integration.micrometer.MeterRegistryFactory.setTags(Map)">tags</a> プロパティで、すべてのメトリクスに共通するタグを設定できる。</p>
+<p>この機能は、アプリケーションが稼働しているホスト、インスタンス、リージョンなどを識別できる情報を設定するといった用途として使用できる。</p>
 <p>以下に設定方法を記載する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
@@ -857,7 +859,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </pre></div>
 </div>
 </dd>
-<dt>レジストファクトリを宣言する</dt>
+<dt>レジストリファクトリを宣言する</dt>
 <dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.datadog.DatadogMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
@@ -886,8 +888,8 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </pre></div>
 </div>
 </dd>
-<dt>レジストファクトリを宣言する</dt>
-<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
+<dt>レジストリファクトリを宣言する</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/component&gt;</span>
@@ -915,7 +917,7 @@ $ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><s
 <p class="last">その他の設定については <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-registry-cloudwatch2/1.5.4/io/micrometer/cloudwatch2/CloudWatchConfig.html">CloudWatchConfig(外部サイト、英語)</a> を参照。</p>
 </dd>
 <dt>より詳細な設定</dt>
-<dd><p class="first">OS環境変数や設定ファイルでは指定できない、より詳細な設定を行いたい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchAsyncClientProvider.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider">CloudWatchAsyncClientProvider</a> を実装したカスタムプロバイダを作ることで対応できる。</p>
+<dd><p class="first">OS環境変数や設定ファイルでは指定できない、より詳細な設定を行いたい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchAsyncClientProvider.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider">CloudWatchAsyncClientProvider</a> を実装したカスタムプロバイダを作ることで対応できる。</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">example.micrometer.cloudwatch</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider</span><span class="o">;</span>
@@ -932,7 +934,7 @@ $ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><s
 <span class="o">}</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchAsyncClientProvider.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider">CloudWatchAsyncClientProvider</a> は <code class="docutils literal"><span class="pre">CloudWatchAsyncClient</span></code> を提供する <code class="docutils literal"><span class="pre">provide()</span></code> メソッドを持つ。
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchAsyncClientProvider.html" title="nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider">CloudWatchAsyncClientProvider</a> は <code class="docutils literal"><span class="pre">CloudWatchAsyncClient</span></code> を提供する <code class="docutils literal"><span class="pre">provide()</span></code> メソッドを持つ。
 カスタムプロバイダでは、任意の設定を行った <code class="docutils literal"><span class="pre">CloudWatchAsyncClient</span></code> を構築して返すように <code class="docutils literal"><span class="pre">provide()</span></code> メソッドを実装する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
@@ -945,10 +947,10 @@ $ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><s
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>作成したカスタムプロバイダは、 <code class="docutils literal"><span class="pre">CloudWatchMeterRegistryFactory</span></code> の <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html#setCloudWatchAsyncClientProvider-CloudWatchAsyncClientProvider-" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory.setCloudWatchAsyncClientProvider(CloudWatchAsyncClientProvider)">cloudWatchAsyncClientProvider</a> プロパティに設定する。</p>
+<p>作成したカスタムプロバイダは、 <code class="docutils literal"><span class="pre">CloudWatchMeterRegistryFactory</span></code> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html#setCloudWatchAsyncClientProvider-CloudWatchAsyncClientProvider-" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory.setCloudWatchAsyncClientProvider(CloudWatchAsyncClientProvider)">cloudWatchAsyncClientProvider</a> プロパティに設定する。</p>
 <p>これにより、カスタムプロバイダが生成した <code class="docutils literal"><span class="pre">CloudWatchAsyncClient</span></code> がメトリクスの連携で使用されるようになる。</p>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">デフォルトでは、 <a class="reference external" href="https://javadoc.io/static/software.amazon.awssdk/cloudwatch/2.13.4/software/amazon/awssdk/services/cloudwatch/CloudWatchAsyncClient.html#create--">CloudWatchAsyncClient.create() (外部サイト、英語)</a> で作成されたインスタンスが使用される。</p>
 </div>
 </dd>
@@ -970,7 +972,7 @@ $ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><s
 </pre></div>
 </div>
 </dd>
-<dt>レジストファクトリを宣言する</dt>
+<dt>レジストリファクトリを宣言する</dt>
 <dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
@@ -989,72 +991,6 @@ nablarch.micrometer.statsd.port=9999
 </dd>
 </dl>
 </div>
-</div>
-<div class="section" id="http">
-<h2><a class="toc-backref" href="#id45">HTTPリクエストの処理時間を収集する</a><a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/micrometer/instrument/handler/http/HttpRequestMetricsHandler.html" title="nablarch.integration.micrometer.instrument.handler.http.HttpRequestMetricsHandler">HttpRequestMetricsHandler</a> を使用することで、 HTTP リクエストの処理時間をメトリクスとして収集できる。</p>
-<p>このハンドラを使用する場合は、次のようにハンドラキューを構成する。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
-
-<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span>
-           <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;list&gt;</span>
-      <span class="c">&lt;!-- HTTPリクエストのメトリクス収集ハンドラ --&gt;</span>
-      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.instrument.handler.http.HttpRequestMetricsHandler&quot;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!-- レジストリファクトリが生成する MeterRegistry を meterRegistry プロパティに設定する --&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/component&gt;</span>
-
-      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpCharacterEncodingHandler&quot;</span><span class="nt">/&gt;</span>
-
-      <span class="c">&lt;!-- 省略 --&gt;</span>
-   <span class="nt">&lt;/list&gt;</span>
-  <span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;/component&gt;</span>
-</pre></div>
-</div>
-<p>本ハンドラはリクエストの処理時間を計測するため、ハンドラキューの先頭に設定する。</p>
-<p>また <code class="docutils literal"><span class="pre">meterRegistry</span></code> プロパティには、使用しているレジストリファクトリが生成した <a class="reference external" href="https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/MeterRegistry.html">MeterRegistry(外部サイト、英語)</a> を渡すように設定する。</p>
-<p>以上の設定で、次のようなメトリクスが収集されるようになる。</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-09-04 19:16:29.085 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/projectBulk/index,status=200} throughput=0.4/s mean=0.8634947s max=1.6078096s
-2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/project/index,status=200} throughput=0.4/s mean=0.27510795s max=0.4464502s
-2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/projectUpload,status=200} throughput=0.2/s mean=0.4478871s max=0.4478871s
-2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=POST,outcome=REDIRECTION,path=/action/login,status=303} throughput=0.2/s mean=0.4280518s max=0.4280518s
-2020-09-04 19:16:34.084 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/project/index,status=200} throughput=0.2/s mean=0.0953379s max=0.4464502s
-</pre></div>
-</div>
-<p>本ハンドラが収集するメトリクスは、 <code class="docutils literal"><span class="pre">http.server.requests</span></code> という名前で作成される。</p>
-<p>また、メトリクスには以下のタグが付与される。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>タグ名</td>
-<td>説明</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">path</span></code></td>
-<td>リクエストのパス（クエリ文字列を除く）</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">method</span></code></td>
-<td>HTTPメソッド</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
-<td>HTTPステータスコード</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">outcome</span></code></td>
-<td>ステータスコードの種類を表す文字列（1XX: <code class="docutils literal"><span class="pre">INFORMATION</span></code>, 2XX: <code class="docutils literal"><span class="pre">SUCCESS</span></code>, 3XX: <code class="docutils literal"><span class="pre">REDIRECTION</span></code>, 4XX: <code class="docutils literal"><span class="pre">CLIENT_ERROR</span></code>, 5XX: <code class="docutils literal"><span class="pre">SERVER_ERROR</span></code>, その他: <code class="docutils literal"><span class="pre">UNKNOWN</span></code>）</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">exception</span></code></td>
-<td>リクエスト処理中のスローされた例外の単純名（例外スローされていない場合は <code class="docutils literal"><span class="pre">None</span></code>）</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 

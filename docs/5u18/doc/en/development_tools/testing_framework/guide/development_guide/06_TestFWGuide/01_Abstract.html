@@ -1,0 +1,1061 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.1. Automated Testing Framework &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/01_Abstract.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
+        <link rel="next" title="3.2.2. Testing a Class that Uses the Database" href="02_DbAccessTest.html"/>
+        <link rel="prev" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
+      
+    <li>3.2.1. Automated Testing Framework</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="automated-testing-framework">
+<span id="auto-test-framework"></span><h1>3.2.1. Automated Testing Framework<a class="headerlink" href="#automated-testing-framework" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="features">
+<h2>3.2.1.1. Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="junit4-base">
+<h3>3.2.1.1.1. Junit4 base<a class="headerlink" href="#junit4-base" title="Permalink to this headline">¶</a></h3>
+<p>The automated testing framework is based on JUnit4.
+The framework uses the functions provided in JUnit 4, such as various annotations, the assert method, and the Matcher class.</p>
+</div>
+<div class="section" id="externalization-of-test-data">
+<h3>3.2.1.1.2. Externalization of test data<a class="headerlink" href="#externalization-of-test-data" title="Permalink to this headline">¶</a></h3>
+<p>Test data can be written in an Excel file.
+An Excel file containing the data for database preparation and expected test results can be used through the APIs of the automated testing framework.</p>
+</div>
+<div class="section" id="provision-of-test-helper-functions-specific-to-nablarch">
+<h3>3.2.1.1.3. Provision of test helper functions specific to Nablarch<a class="headerlink" href="#provision-of-test-helper-functions-specific-to-nablarch" title="Permalink to this headline">¶</a></h3>
+<p>The framework provides APIs specific to the Nablarch applications, such as transaction control and system date configuration.</p>
+</div>
+</div>
+<div class="section" id="structure-of-the-automated-testing-framework">
+<span id="testing-fw-components"></span><h2>3.2.1.2. Structure of the automated testing framework<a class="headerlink" href="#structure-of-the-automated-testing-framework" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../../../_images/abstract_structure.png"><img alt="../../../../../_images/abstract_structure.png" src="../../../../../_images/abstract_structure.png" /></a>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="32%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component</th>
+<th class="head">Description</th>
+<th class="head">Prepared by</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test class</td>
+<td>Test process is described.</td>
+<td>Application programmer</td>
+</tr>
+<tr class="row-odd"><td>Class to be tested</td>
+<td>Class to be tested.</td>
+<td>Application programmer</td>
+</tr>
+<tr class="row-even"><td>Excel file</td>
+<td>Contains test data.
+The data can be read by using
+the automated test framework.</td>
+<td>Application programmer</td>
+</tr>
+<tr class="row-odd"><td>Component configuration file
+and configuration file</td>
+<td>The various settings at the time
+of executing a test are described.</td>
+<td>Application programmer（if a specific configuration
+is required for individual tests）</td>
+</tr>
+<tr class="row-even"><td>Automated Testing Framework</td>
+<td>Provides the functions necessary
+for testing.</td>
+<td>－</td>
+</tr>
+<tr class="row-odd"><td>Nablarch Application
+Framework</td>
+<td>The main framework
+(out of scope of this function)</td>
+<td>－</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-write-a-test-method">
+<h2>3.2.1.3. How to write a test method<a class="headerlink" href="#how-to-write-a-test-method" title="Permalink to this headline">¶</a></h2>
+<p>Use JUnit4 annotations.
+Assign &#64;Test annotation to the test method.</p>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSomething</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Test process</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Annotations such as &#64;Before and &#64;After can also be used.
+If you want to use these annotations to perform common processes such as resource acquisition and release before and after the test method,
+refer to the next section ( <a class="reference internal" href="03_Tips.html#using-junit-annotation"><span>To perform common processing before and after executing a test.</span></a>).</p>
+</div>
+</div>
+<div class="section" id="test-data-description-using-excel">
+<span id="how-to-write-excel"></span><h2>3.2.1.4. Test data description using Excel<a class="headerlink" href="#test-data-description-using-excel" title="Permalink to this headline">¶</a></h2>
+<p>Spreadsheets have an advantage over Java source code in terms of readability and ease of editing,
+for representing data such as preparation data for database and database search results.
+Excel files can be used to handle such data in a spreadsheet format.</p>
+<div class="section" id="naming-conventions">
+<h3>3.2.1.4.1. Naming conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h3>
+<p>There are recommended conventions for Excel file names and file paths.By following these conventions, you don&#8217;t need to explicitly specify a directory or file name in the test class to read a file, and the test source code can be written concisely.It is also possible to read an Excel file from any location by explicitly specifying the path.</p>
+<div class="section" id="path-and-file-name-conventions">
+<h4>3.2.1.4.1.1. Path and file name conventions<a class="headerlink" href="#path-and-file-name-conventions" title="Permalink to this headline">¶</a></h4>
+<p>The recommended conventions for file names and paths are as follows:</p>
+<ul class="simple">
+<li>The Excel file name should be the same name as the test source code (only the extension is different).</li>
+<li>The Excel file should be placed in the same directory as the test source code.</li>
+</ul>
+<p>An example is shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="31%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">File type</th>
+<th class="head">Deployment directory</th>
+<th class="head">File name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test source file</td>
+<td rowspan="2">&lt;PROJECT_ROOT&gt;/test
+/jp/co/tis/example/db/</td>
+<td>ExampleDbAcessTest.java</td>
+</tr>
+<tr class="row-odd"><td>Excel file</td>
+<td>ExampleDbAcessTest.xlsx <a class="footnote-reference" href="#id2" id="id1">[1]</a></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Excel files are compatible with Excel 2003 and earlier file formats (extension xls format) and Excel 2007 and later file formats (extension xlsx format).</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="excel-sheet-name-conventions">
+<h4>3.2.1.4.1.2. Excel sheet name conventions<a class="headerlink" href="#excel-sheet-name-conventions" title="Permalink to this headline">¶</a></h4>
+<p>The recommended conventions for an Excel sheet are as follows:</p>
+<ul class="simple">
+<li>One sheet should be prepared per test method.</li>
+<li>The sheet name should be the same as the test method name.</li>
+</ul>
+<p>An example is shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Test method</td>
+<td>&#64;Test public void testInsert()</td>
+</tr>
+<tr class="row-even"><td>Excel sheet name</td>
+<td>testInsert</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The conventions for a sheet are not “restrictions”.
+Test method name and Excel sheet name need not be the same for proper functioning.
+In the future, additional functions will be developed using the above conventions as default.
+Therefore, it is recommended to follow the naming conventions.
+Even if the naming conventions are changed, they should be consistent within a project.</p>
+</div>
+</div>
+</div>
+<div class="section" id="structure-in-the-sheet">
+<h3>3.2.1.4.2. Structure in the sheet<a class="headerlink" href="#structure-in-the-sheet" title="Permalink to this headline">¶</a></h3>
+<p>Here is an explanation about the conventions to describe an Excel sheet.
+The following is a description example of a sheet.</p>
+<a class="reference internal image-reference" href="../../../../../_images/sheet_example.JPG"><img alt="../../../../../_images/sheet_example.JPG" src="../../../../../_images/sheet_example.JPG" /></a>
+<p>Various types of data can be written in a sheet, such as data to be stored in a database and database search results.In order to determine the type of test data, it is necessary to assign meta information called &#8220;data type&#8221; to the test data.The &#8220;data type&#8221; indicates what the test data represents.</p>
+<p>Currently, the following data types are available.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="52%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data type name</th>
+<th class="head">Description</th>
+<th class="head">Set value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SETUP_TABLE</td>
+<td>Data to be registered in the database before test execution.</td>
+<td>Table name to be registered</td>
+</tr>
+<tr class="row-odd"><td>EXPECTED_TABLE</td>
+<td>The expected data in the database after the test is executed.</td>
+<td>Table name to be checked</td>
+</tr>
+<tr class="row-even"><td>EXPECTED_COMPLETE_TABLE</td>
+<td>The expected data in the database after the test is executed.
+An omitted column is treated as having been configured to
+<a class="reference internal" href="02_DbAccessTest.html#default-values-when-column-omitted"><span>Default values</span></a>.</td>
+<td>Table name to be checked</td>
+</tr>
+<tr class="row-odd"><td>LIST_MAP</td>
+<td>List&lt;Map&lt;String,String&gt;&gt;</td>
+<td>ID that is unique in the sheet
+ID of expected value (arbitrary string)</td>
+</tr>
+<tr class="row-even"><td>SETUP_FIXED</td>
+<td>Fixed length file for advance preparation</td>
+<td>Location of the preparation file</td>
+</tr>
+<tr class="row-odd"><td>EXPECTED_FIXED</td>
+<td>Fixed length file showing expected values</td>
+<td>Location of the file to be compared</td>
+</tr>
+<tr class="row-even"><td>SETUP_VARIABLE</td>
+<td>Variable length file for advance preparation</td>
+<td>Location of the preparation file</td>
+</tr>
+<tr class="row-odd"><td>EXPECTED_VARIABLE</td>
+<td>Variable length file showing expected values</td>
+<td>Location of the file to be compared</td>
+</tr>
+<tr class="row-even"><td>MESSAGE</td>
+<td>Data to be used in testing of the messaging process</td>
+<td>Fixed value <a class="footnote-reference" href="#id4" id="id3">[2]</a></td>
+</tr>
+<tr class="row-odd"><td>EXPECTED_REQUEST_HEADER_MESSAGES</td>
+<td>Fixed length file showing the expected value of the request message (header)</td>
+<td>Request ID</td>
+</tr>
+<tr class="row-even"><td>EXPECTED_REQUEST_BODY_MESSAGES</td>
+<td>Fixed length file showing the expected value of the request message (body)</td>
+<td>Request ID</td>
+</tr>
+<tr class="row-odd"><td>RESPONSE_HEADER_MESSAGES</td>
+<td>Fixed length file showing the request message (header)</td>
+<td>Request ID</td>
+</tr>
+<tr class="row-even"><td>RESPONSE_BODY_MESSAGES</td>
+<td>Fixed length file showing the request message (body)</td>
+<td>Request ID</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><cite>setUpMessages</cite> or <cite>expectedMessages</cite></td></tr>
+</tbody>
+</table>
+<p>In addition, multiple data can be described.</p>
+<p>The common format, which is not dependent on data type, is as follows.</p>
+<ul class="simple">
+<li>The first row of data should be in the format &#8220;data type = value&#8221; and should contain the data type and value.</li>
+<li>The format from the second row onward varies depending on the data type.</li>
+</ul>
+<p>　The data type is the information that identifies what that data represents.
+For example, if the data has to be submitted to the database, the data type &#8220;SETUP_TABLE&#8221; is used.</p>
+<p>For example, the following data type indicates that the data should be registered as preparation data in the COMPOSER table.</p>
+<p>SETUP_TABLE=COMPOSER</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="39%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NO</th>
+<th class="head">FIRST_NAME</th>
+<th class="head">LAST_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>Steve</td>
+<td>Reich</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>Phillip</td>
+<td>Glass</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comment">
+<h3>3.2.1.4.3. Comment<a class="headerlink" href="#comment" title="Permalink to this headline">¶</a></h3>
+<p>If there is a string starting with &#8220;//&#8221; in a cell, all the cells to the right of that cell will not be read. For additional information that you want to write to improve readability, which you do not want to include in the test data itself, you can use the comment function.</p>
+<p>In the following example, a comment regarding the logical name of the table is written in Row 2, while a comment regarding the expected result is written at the end of Row 4.</p>
+<p>EXPECTED_TABLE=PLAYER</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NO</th>
+<th class="head">FIRST_NAME</th>
+<th class="head">LAST_NAME</th>
+<th class="head">ADDRESS</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// Number</td>
+<td>Name</td>
+<td>Surname</td>
+<td>Address</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>0001</td>
+<td>Andres</td>
+<td>Segovia</td>
+<td>Spain</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>0002</td>
+<td>Julian</td>
+<td>Bream</td>
+<td>England</td>
+<td>// This record is added</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="marker-column">
+<span id="id5"></span><h3>3.2.1.4.4. Marker column<a class="headerlink" href="#marker-column" title="Permalink to this headline">¶</a></h3>
+<p>When writing test data, sometimes you want to write some information on the Excel sheet but do not want to include that information in the actual data. The &#8220;comment&#8221; mentioned above can be used to describe information that is not included in the actual data, however, “comment” has a property due to which the cells to right of that cell are not read, because of which the leftmost (or middle) cell cannot be used for a comment.</p>
+<p>In such cases, &#8220;marker columns&#8221; can be used to describe data that is not included in the actual data,
+but which appears on the Excel sheet.</p>
+<p>In the header row of the test data, if the <strong>column name is enclosed in half-width square brackets, the column is considered to be a &#8220;marker column&#8221;</strong>.
+The column corresponding to the marker column is not read when a test is executed.</p>
+<p>For example, suppose you have test data as follows:</p>
+<p>LIST_MAP=EXAMPLE_MARKER_COLUMN</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="42%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">[no]</th>
+<th class="head">id</th>
+<th class="head">name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>U0001</td>
+<td>Yamada</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>U0002</td>
+<td>Tanaka</td>
+</tr>
+</tbody>
+</table>
+<p>The above test data is equivalent to the following test data at the time of executing a test because the column [no] enclosed in half-width square brackets is ignored.</p>
+<p>LIST_MAP=EXAMPLE_MARKER_COLUMN</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">id</th>
+<th class="head">name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>U0001</td>
+<td>Yamada</td>
+</tr>
+<tr class="row-odd"><td>U0002</td>
+<td>Tanaka</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Though the example of LIST_MAP is given here, other data types can be used in the same way.</p>
+</div>
+<div class="section" id="cell-format">
+<h3>3.2.1.4.5. Cell format<a class="headerlink" href="#cell-format" title="Permalink to this headline">¶</a></h3>
+<p>String is the only format that can be used for cells.
+The format of all cells should be configured to String before test data is created.</p>
+<p>Coloring of borders and cells can be set as per your choice. By setting colors for borders and cells, data readability, review quality and maintainability can be improved.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<div class="last line-block">
+<div class="line">When data is written in a format other than String in an Excel file, the data cannot be read correctly.</div>
+</div>
+</div>
+</div>
+<div class="section" id="special-ways-to-write-in-a-cell">
+<span id="special-notation-in-cell"></span><h3>3.2.1.4.6. Special ways to write in a cell<a class="headerlink" href="#special-ways-to-write-in-a-cell" title="Permalink to this headline">¶</a></h3>
+<p>A number of special notations are provided to improve the convenience of automated testing.
+The following table is written with a special method of writing provided in this framework.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="20%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Description method (value described in cell)</th>
+<th class="head">Value in automated test <a class="footnote-reference" href="#id12" id="id6">[3]</a></th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>null</td>
+<td rowspan="2">null</td>
+<td rowspan="2">If &#8220;null&#8221; <strong>(half-width uppercase and lowercase letters are not distinguished)</strong>  is described in the cell, it is treated as &#8220;null&#8221; value. For example, use when you want to register a null value in the databaseor when you want to set a null value with an expected value.</td>
+</tr>
+<tr class="row-odd"><td>Null</td>
+</tr>
+<tr class="row-even"><td>&#8220;null&#8221;</td>
+<td rowspan="2">null string</td>
+<td rowspan="8"><p class="first">When double quotes (both half-width and full-width) are enclosed before and after the character string,the character string with double quotes removed is used.<a class="footnote-reference" href="#id13" id="id7">[4]</a></p>
+<p>For example, if it is necessary to handle &#8220;null&#8221; or &#8220;NULL&#8221; as a character string, describe as &#8220;&#8221;null&#8221;&#8221; or &#8220;&#8221;NULL&#8221;&#8221; as described in the description method.</p>
+<p class="last">In addition, for the purpose of making it easy to understand that there is a space in the value of the cell,
+&#8220;1?&#8221; or &#8221;?&#8221; can be used as described in the description method.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>&#8220;NULL&#8221;</td>
+</tr>
+<tr class="row-even"><td>&#8220;1(half-width space)&#8221;</td>
+<td>1(half-width space)</td>
+</tr>
+<tr class="row-odd"><td>&#8220;(half-width space)&#8221;</td>
+<td>(half-width space)</td>
+</tr>
+<tr class="row-even"><td>&#8220;１(full-width space)&#8221;</td>
+<td>１(full-width space)</td>
+</tr>
+<tr class="row-odd"><td>&#8220;(full-width space)(full-width space)&#8221;</td>
+<td>(full-width space)(full-width space)</td>
+</tr>
+<tr class="row-even"><td>&#8220;&#8221;&#8220;</td>
+<td>&#8220;</td>
+</tr>
+<tr class="row-odd"><td>&#8220;&#8221; <a class="footnote-reference" href="#id14" id="id8">[5]</a></td>
+<td>Empty string</td>
+</tr>
+<tr class="row-even"><td>${systemTime}</td>
+<td rowspan="2">System date and time <a class="footnote-reference" href="#id15" id="id9">[6]</a></td>
+<td>Use when you want to enter the system date and time.</td>
+</tr>
+<tr class="row-odd"><td>${updateTime}</td>
+<td>An alias for ${systemTime}. Especially, it is used as an expected value when updating the database time stamp.</td>
+</tr>
+<tr class="row-even"><td>${setUpTime}</td>
+<td>Fixed value described in
+the component settings file</td>
+<td>It is used when you want to use a fixed value for the time stamp at database setup.</td>
+</tr>
+<tr class="row-odd"><td>${Character type,word count} <a class="footnote-reference" href="#id16" id="id10">[7]</a></td>
+<td>A value obtained by amplifying
+the specified character type
+up to the specified number
+of characters</td>
+<td><p class="first">The character strings that can be used are as follows.</p>
+<p class="last">半角英字,半角数字,半角記号,半角カナ,全角英字,全角数字,
+全角ひらがな,全角カタカナ,全角漢字,全角記号その他,外字</p>
+</td>
+</tr>
+<tr class="row-even"><td>${binaryFile:File Path}</td>
+<td>Binary data stored in BLOB column</td>
+<td>Used when you want to store file data in BLOB column.
+The file path is described as a relative path from Excel file.</td>
+</tr>
+<tr class="row-odd"><td>\r</td>
+<td><em>CR</em></td>
+<td rowspan="2">It is used to explicitly describe the line feed code. <a class="footnote-reference" href="#id17" id="id11">[8]</a></td>
+</tr>
+<tr class="row-even"><td>\n</td>
+<td><em>LF</em></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p><strong>Legend</strong></p>
+<ul class="last simple">
+<li>(half-width space): stands for half-width space</li>
+<li>(full-width space): stands for full-width space</li>
+<li><em>CR</em>: stands for the carriage return CR(0x0D).</li>
+<li><em>LF</em>: LF stands for the line feed code LF(0x0A).</li>
+</ul>
+</div>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td>Converted by Automated Testing Framework after reading from cell.</td></tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><blockquote class="first">
+<div>Even when this description method is used, it is not necessary to escape the double quotes in the character string.
+An example is shown below.</div></blockquote>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Description example</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;ab&#8221;c&#8221;</td>
+<td>Treated as ab&#8221;c.(Double quotes at the front and back are removed.)</td>
+</tr>
+<tr class="row-odd"><td>&#8220;abc&#8221;&#8220;</td>
+<td>Treated as abc&#8221;(Double quotes at the front and back are removed.)</td>
+</tr>
+<tr class="row-even"><td>ab&#8221;c</td>
+<td>Treated as ab&#8221;c.(Since the front and rear are not double quotes, they are treated as they are.)</td>
+</tr>
+<tr class="row-odd"><td>abc&#8221;</td>
+<td>Treated as abc&#8221;(Since the front and rear are not double quotes, they are treated as they are.)</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td>This notation can be used to represent a blank row.
+For more information, see item &#8220;<a class="reference internal" href="03_Tips.html#how-to-express-empty-line"><span>To write a blank row in test data</span></a>&#8221;.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[6]</a></td><td>It is converted to Timestamp string format acquired from SystemTimeProvider implementation class configured in the component configuration file. Specifically, it is converted to a value such as <cite>2011-04-11 01:23:45.0</cite></td></tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[7]</a></td><td><p class="first">This notation can be used alone or in combination.
+An example is shown below.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="24%" />
+<col width="27%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Description example</th>
+<th class="head">Examples of converted values</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>${半角英字,5}</td>
+<td>geDSfe</td>
+<td>Converted to 5 single-byte alphabetic characters.</td>
+</tr>
+<tr class="row-odd"><td>${全角ひらがな,4}</td>
+<td>ぱさぇん</td>
+<td>Converted to full-width Hiragana 4 characters.</td>
+</tr>
+<tr class="row-even"><td>${半角数字,2}-{半角数字4}</td>
+<td>37-3425</td>
+<td>Anything other than - is converted.</td>
+</tr>
+<tr class="row-odd"><td>${全角漢字,4}123</td>
+<td>山川海森123</td>
+<td>Anything other than the end 123 is converted.</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[8]</a></td><td><p class="first">Line breaks (Alt + Enter) in Excel cells are treated as <em>LF</em>. This is an Excel specification that has nothing to do with this feature.
+If you want to show a line feed code LF, you just need to insert a new line (Alt+Enter) in a cell.</p>
+<p>Examples are shown below.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="21%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Description example</th>
+<th class="head">Examples of converted values</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>こんにちは <br />
+さようなら</td>
+<td>こんにちは<em>LF</em>さようなら</td>
+<td>The line break (Alt+Enter) in the cell
+becomes LF(0x0A).</td>
+</tr>
+<tr class="row-odd"><td>こんにちは\n
+さようなら</td>
+<td>こんにちは<em>LF</em>さようなら</td>
+<td>&#8216;\n&#8217; is converted to LF(0x0A)
+by this function.</td>
+</tr>
+<tr class="row-even"><td>こんにちは\r <br />
+さようなら</td>
+<td>こんにちは<em>CRLF</em>さようなら</td>
+<td>&#8216;\r&#8217; is converted to CR(0x0D)
+by this function. The Carriage return and Line feed (Alt+Enter)
+in the cell（Alt+Enter）becomes LF(0x0A).</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="note">
+<h2>3.2.1.5. Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-tests-that-do-not-depend-on-the-execution-order-of-test-methods">
+<h3>3.2.1.5.1. Creating tests that do not depend on the execution order of test methods<a class="headerlink" href="#creating-tests-that-do-not-depend-on-the-execution-order-of-test-methods" title="Permalink to this headline">¶</a></h3>
+<p>When creating the test source code and test data, take care that the test result does not change depending on the order of execution of the test methods. Not only the order, but also the results must be the same whether the class is tested individually or collectively.</p>
+<p>In particular, since commits are executed in this framework during testing, there is a high possibility that the contents of the database will be changed by a preceding or succeeding test. Therefore, all preconditions required for a self-testing class must be prepared within the self-testing class.</p>
+<p>This is effective from the following perspectives:</p>
+<ul class="simple">
+<li>Prevents accidental failure or accidental success of a test, depending on the order in which the test is executed.</li>
+<li>You can know the preconditions by looking only at the data or source code of the test.</li>
+</ul>
+<p>For the preparation of tables that are basically read-only, such as the master data, a common Excel file must be prepared and the tables should be written in that file. Either execute the test by preparing the tables only once before execution, or execute the test on the assumption that the tables have been prepared in advance prior to execution of the test.</p>
+<p>This method has the following advantages.</p>
+<ul class="simple">
+<li>The master data can be reused in the entire project.</li>
+<li>It is easy to maintain test data.</li>
+<li>Test execution speed increases.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Use <a class="reference internal" href="../08_TestTools/02_MasterDataSetup/01_MasterDataSetupTool.html#master-data-setup-tool"><span>Master Data Input Tool</span></a> to input the master data. In addition, using <a class="reference internal" href="04_MasterDataRestore.html"><em>Master Data Recovery Function</em></a>, the master data changes that occur during a test can be automatically reverted to the original state at the end of the test.
+As a result, even if there are test cases for which master data needs to be changed, they can be executed without affecting other test cases.</p>
+</div>
+</div>
+<div class="section" id="write-all-test-data-to-an-excel-sheet">
+<h3>3.2.1.5.2. Write all test data to an Excel sheet<a class="headerlink" href="#write-all-test-data-to-an-excel-sheet" title="Permalink to this headline">¶</a></h3>
+<p>If test data is described both in Excel and test source code, readability and maintainability will reduce. All test data should be described in an Excel sheet, and not in the test source code.</p>
+<ul class="simple">
+<li>Looking at the Excel sheet, you can figure out the variations in the test case.</li>
+<li>The division of roles is done such that an Excel sheet is used for test data and test source code is used for test logic.</li>
+<li>You can easily add test cases by facilitating reading of the Excel sheet.</li>
+<li>Duplication of test source code can be reduced to a great extent (if you simply describe data using literals in the test source code, duplicate code will be created as data variation increases).</li>
+</ul>
+</div>
+<div class="section" id="describing-data-by-grouping-together-based-on-data-types-when-using-multiple-data-types">
+<span id="auto-test-framework-multi-datatype"></span><h3>3.2.1.5.3. Describing data by grouping together based on data types when using multiple data types<a class="headerlink" href="#describing-data-by-grouping-together-based-on-data-types-when-using-multiple-data-types" title="Permalink to this headline">¶</a></h3>
+<p>When multiple data types are used, the data should be described by grouping together based on the data types used.
+If data of multiple data types is mixed when describing, reading of data is aborted in the middle and the test is not executed correctly.</p>
+<p>For example, if data types are described as follows, then the data only up to  <code class="docutils literal"><span class="pre">TABLE2</span></code> is evaluated and even if there is an error in the data from <code class="docutils literal"><span class="pre">TABLE3</span></code>  onward, the test ends successfully.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>EXPECTED_TABLE=TABLE1
+:
+EXPECTED_COMPLETE_TABLE=TABLE2
+:
+EXPECTED_TABLE=TABLE3
+:
+EXPECTED_COMPLETE_TABLE=TABLE4
+:
+</pre></div>
+</div>
+<p>In order to ensure that all data is properly evaluated,
+the data should be grouped together and described based on data types as follows:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>EXPECTED_TABLE=TABLE1
+:
+EXPECTED_TABLE=TABLE3
+:
+EXPECTED_COMPLETE_TABLE=TABLE2
+:
+EXPECTED_COMPLETE_TABLE=TABLE4
+:
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

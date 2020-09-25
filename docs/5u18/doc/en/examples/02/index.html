@@ -1,0 +1,785 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Extended Validation Functions &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/02/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="Display a List of Search Results" href="../03/index.html"/>
+        <link rel="prev" title="Sample Password Encryption Function Using PBKDF2" href="../01/0101_PBKDF2PasswordEncryptor.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Extended Validation Functions</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="extended-validation-functions">
+<h1>Extended Validation Functions<a class="headerlink" href="#extended-validation-functions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<p>This section describes the specifications of the validation functions provided in this sample.</p>
+<p>For an overview of the validation function and details about the basic validation, refer to the validation description in the Nablarch Application Framework documentation.</p>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+<div class="section" id="delivery-package">
+<h2>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h2>
+<p>The functions are provided in the below package.</p>
+<blockquote>
+<div><em>please.change.me.</em> <strong>core.validation.validator</strong></div></blockquote>
+</div>
+<div class="section" id="email-address-validation">
+<span id="extendedvalidation-mailaddressvalidator"></span><h2>Email address validation<a class="headerlink" href="#email-address-validation" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the validation function for email addresses.</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Validator class name</th>
+<th class="head">Corresponding annotation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MailAddressValidator</td>
+<td>&#64;MailAddress</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The configuration values that can be set in the validator are as follows.</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>messageId (required)</td>
+<td><p class="first">Message ID when there is a validation error in the email address</p>
+<p class="last">Example: &#8220;{0} is not a valid email address.&#8221;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When validation using annotations are not available such as email address input field is divided into local and domain parts,
+the following utility can be used to perform the email address validation.</p>
+<blockquote class="last">
+<div><dl class="class">
+<dt id="VariousValidationUtil">
+<em class="property">class </em><code class="descname">VariousValidationUtil</code><a class="headerlink" href="#VariousValidationUtil" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">boolean isValidMailAddress</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; Email address to be validated</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if it is a valid email address</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="e-mail-address-validation-specification">
+<h3>E-mail address validation specification<a class="headerlink" href="#e-mail-address-validation-specification" title="Permalink to this headline">¶</a></h3>
+<p>Structure of the email address is given below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&quot;Local Part&quot; @ &quot;Domain Part&quot;
+</pre></div>
+</div>
+<p>Characters that can be used in email addresses are specified by RFC 5321 and RFC 5322.</p>
+<p>However, regarding the local part, email addresses that violate the RFC are also used.</p>
+<p>Therefore, if a strict check is performed on the local part, there is a risk that the user cannot register the email address.</p>
+<p>Therefore, validation for the local part is only for the number of digits and character type.</p>
+<p>The validation specifications for email address are as follows.</p>
+<ul>
+<li><p class="first">Validation specifications for the entire email address.</p>
+<ul class="simple">
+<li>Required validations are not performed.</li>
+<li>It must consist of only valid character types for email addresses. Valid character types for email addresses are as follows.<ul>
+<li>UPPER CASE Alphabets:   A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</li>
+<li>Lowercase alphabets:   a b c d e f g h i j k l m n o p q r s t u v w x y z</li>
+<li>Numerals:   0 1 2 3 4 5 6 7 8 9</li>
+<li>Other symbols:   ! # $ % &amp; * + - . / = ? &#64; ^ _ ` { | } ~</li>
+</ul>
+</li>
+<li>Only one &#8216;&#64;&#8217; (an at symbol) must be present.</li>
+<li>When sending an email with JavaMail, the format check should not result in an error.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The invalid ASCII characters for email addresses are as follows.Spaces must also be invalid.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&quot; ( ) , : ; &lt; &gt; [ \ ]
+</pre></div>
+</div>
+<p class="last">These invalid characters can be used by using the notation &#8220;quoted-string&#8221; defined in RFC 5322.
+Since these notations are rarely used for email addresses, they are disabled in this function.</p>
+</div>
+</li>
+<li><p class="first">Validation specifications for local part.</p>
+<ul class="simple">
+<li>Email address must not start with &#8216;&#64;&#8217; (at symbol). (Local part must be present.)</li>
+<li>The local part must be 64 characters or less.</li>
+</ul>
+</li>
+<li><p class="first">Validation specifications for domain part.</p>
+<ul class="simple">
+<li>Email addresses should not end with the &#8216;&#64;&#8217; (at symbol). (Domain part must be present.)</li>
+<li>The domain part must be 255 characters or less.</li>
+<li>The domain part must not end with a &#8216;.&#8217; (dot).</li>
+<li>A &#8216;.&#8217; (dot) must be present in the domain part.</li>
+<li>Domain part must not begin with a &#8216;.&#8217; (dot).</li>
+<li>There must be no consecutive &#8216;.&#8217; (dots) in the domain part.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This function only checks the number of digits in the local and domain parts specified in RFC.
+The total number of email addressees that can be registered is usually decided for each project, and is not validated by the function.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="validation-of-japan-telephone-numbers">
+<span id="extendedvalidation-japanesetelnumbervalidator"></span><h2>Validation of Japan telephone numbers<a class="headerlink" href="#validation-of-japan-telephone-numbers" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the validation of Japan telephone numbers There are two ways for allowing the user to enter a Japan telephone number.</p>
+<ul class="simple">
+<li>When the phone number is not separated into fields such as area code and is entered as a single string.</li>
+<li>When entering the area code, city code, and subscriber number as separate input items.</li>
+</ul>
+<p>Below, the detailed validated methods for both the methods is explained below.</p>
+<div class="section" id="validation-of-a-single-item-phone-number">
+<h3>Validation of a single item phone number<a class="headerlink" href="#validation-of-a-single-item-phone-number" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the validation function when the phone number is not divided into fields such as the area code and is entered as a single string.
+In this case, it is realized by the single item validation function.</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Validator class name</th>
+<th class="head">Corresponding annotation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>JapaneseTelNumberValidator</td>
+<td>&#64;JapaneseTelNumber</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The configuration values that can be set in the validator are as follows.</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>messageId (required)</td>
+<td><p class="first">Message ID when there is a validation error in the telephone number</p>
+<p class="last">Example: &#8220;{0} is not a valid phone number.&#8221;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="section" id="validation-specifications">
+<h4>Validation specifications<a class="headerlink" href="#validation-specifications" title="Permalink to this headline">¶</a></h4>
+<p>The validation specifications are as follows.</p>
+<ul>
+<li><p class="first">Required validations are not performed.</p>
+</li>
+<li><p class="first">The beginning must start with a &#8220;0&#8221;.</p>
+</li>
+<li><p class="first">It must consist of only hyphens and numbers.</p>
+</li>
+<li><p class="first">The digit pattern must be one of the following:</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&#8220;Area code digits&#8221; - &#8220;city code digits&#8221; - &#8220;subscriber number digits&#8221;</th>
+<th class="head">Example:</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;3 digits&#8221; - &#8220;3 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>012-345-6789</td>
+</tr>
+<tr class="row-odd"><td>&#8220;3 digits&#8221; - &#8220;4 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>012-3456-7890</td>
+</tr>
+<tr class="row-even"><td>&#8220;4 digits&#8221; - &#8220;2 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>0123-45-6789</td>
+</tr>
+<tr class="row-odd"><td>&#8220;5 digits&#8221; - &#8220;1 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>01234-5-6789</td>
+</tr>
+<tr class="row-even"><td>&#8220;2 digits&#8221; - &#8220;4 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>01-2345-6789</td>
+</tr>
+<tr class="row-odd"><td>&#8220;11 digits&#8221;</td>
+<td>01234567890</td>
+</tr>
+<tr class="row-even"><td>&#8220;10 digits&#8221;</td>
+<td>0123456789</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="validation-of-a-multiple-item-telephone-number">
+<h3>Validation of a multiple item telephone number<a class="headerlink" href="#validation-of-a-multiple-item-telephone-number" title="Permalink to this headline">¶</a></h3>
+<p>Explain the validation function when entering the area code, city code, and subscriber number as separate input items.
+In this case, Nablarch offers the following validation utilities:</p>
+<blockquote>
+<div><dl class="class">
+<dt>
+<em class="property">class </em><code class="descname">VariousValidationUtil</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">boolean isValidJapaneseTelNum</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>areaCode</strong> &#8211; Area code</li>
+<li><strong>cityCode</strong> &#8211; City code</li>
+<li><strong>subscriberNumber</strong> &#8211; Subscriber number</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if it is a valid Japanese telephone number</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+<div class="section" id="id1">
+<h4>Validation specifications<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>The validation specifications are as follows.</p>
+<ul>
+<li><p class="first">Do not check if all items have been filled in.</p>
+</li>
+<li><p class="first">The beginning must start with a &#8220;0&#8221;.</p>
+</li>
+<li><p class="first">It must consist of only hyphens and numbers.</p>
+</li>
+<li><p class="first">The digit pattern must be one of the following:</p>
+<blockquote>
+<div><table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&#8220;Area code digits&#8221; - &#8220;city code digits&#8221; - &#8220;subscriber number digits&#8221;</th>
+<th class="head">Example:</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;3 digits&#8221; - &#8220;3 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>012-345-6789</td>
+</tr>
+<tr class="row-odd"><td>&#8220;3 digits&#8221; - &#8220;4 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>012-3456-7890</td>
+</tr>
+<tr class="row-even"><td>&#8220;4 digits&#8221; - &#8220;2 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>0123-45-6789</td>
+</tr>
+<tr class="row-odd"><td>&#8220;5 digits&#8221; - &#8220;1 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>01234-5-6789</td>
+</tr>
+<tr class="row-even"><td>&#8220;2 digits&#8221; - &#8220;4 digits&#8221; - &#8220;4 digits&#8221;</td>
+<td>01-2345-6789</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If all the arguments are null or empty strings, true is returned.
+If a case where all three items (area code, city code, and subscriber number) have not been entered is not permitted, then validation is required to be performed at the caller of this validation process. (refer to <a class="reference internal" href="#telnum-fields-code"><span>Implementation examples</span></a> given below.)</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="implementation-examples">
+<span id="telnum-fields-code"></span><h4>Implementation examples<a class="headerlink" href="#implementation-examples" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ValidateFor</span><span class="o">(</span><span class="s">&quot;registerCompany&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">validateForRegisterCompany</span><span class="o">(</span>
+                      <span class="n">ValidationContext</span><span class="o">&lt;</span><span class="n">CompanyEntity</span><span class="o">&gt;</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Single item validation</span>
+    <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">validateWithout</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">REGISTER_COMPANY_SKIP_PROPS</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">context</span><span class="o">.</span><span class="na">isValid</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Validation between items</span>
+    <span class="n">CompanyEntity</span> <span class="n">companyEntity</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">createObject</span><span class="o">();</span>
+    <span class="c1">// Check if all items are input</span>
+    <span class="c1">// This check should be done when necessary.</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtil</span><span class="o">.</span><span class="na">isNullOrEmpty</span><span class="o">(</span><span class="n">companyEntity</span><span class="o">.</span><span class="na">getAreaCode</span><span class="o">,</span>
+                                 <span class="n">companyEntity</span><span class="o">.</span><span class="na">getCityCode</span><span class="o">,</span>
+                                 <span class="n">companyEntity</span><span class="o">.</span><span class="na">getSubscriberNumber</span><span class="o">))</span> <span class="o">{</span>
+        <span class="c1">// Add message to context</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+    <span class="c1">// Telephone number validation</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">VariousValidationUtil</span><span class="o">.</span><span class="na">isValidJapaneseTelNum</span><span class="o">(</span>
+                                 <span class="n">companyEntity</span><span class="o">.</span><span class="na">getAreaCode</span><span class="o">,</span>
+                                 <span class="n">companyEntity</span><span class="o">.</span><span class="na">getCityCode</span><span class="o">,</span>
+                                 <span class="n">companyEntity</span><span class="o">.</span><span class="na">getSubscriberNumber</span><span class="o">))</span> <span class="o">{</span>
+        <span class="c1">// Add message to context</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="code-value-validation">
+<h2>Code value validation<a class="headerlink" href="#code-value-validation" title="Permalink to this headline">¶</a></h2>
+<p>Code value validation is expected to specify different patterns from multiple functions for validation.
+For this reason, this sample provides a utility to perform code value validation by specifying a pattern.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">For more information on code value validation, refer to the Code Management chapter of the Nablarch Application Framework Description.</p>
+</div>
+<div class="section" id="methods-provided-by-the-utility">
+<h3>Methods provided by the utility<a class="headerlink" href="#methods-provided-by-the-utility" title="Permalink to this headline">¶</a></h3>
+<p>Provides the following 2 methods:</p>
+<blockquote>
+<div><dl class="function">
+<dt>
+<code class="descname">void validate()</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> &#8211; Validation context</li>
+<li><strong>codeId</strong> &#8211; Code ID</li>
+<li><strong>pattern</strong> &#8211; Pattern</li>
+<li><strong>propertyName</strong> &#8211; Property to be validated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">void validate()</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> &#8211; Validation context</li>
+<li><strong>codeId</strong> &#8211; Code ID</li>
+<li><strong>pattern</strong> &#8211; Pattern</li>
+<li><strong>propertyName</strong> &#8211; Property to be validated</li>
+<li><strong>messageId</strong> &#8211; Message ID (overrides the default message ID with the specified message ID)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="usage-example-of-utility">
+<h3>Usage example of utility<a class="headerlink" href="#usage-example-of-utility" title="Permalink to this headline">¶</a></h3>
+<p>An usage example of utility is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// [Description] Perform code value validation using CodeValidationUtil#validate method.</span>
+<span class="n">CodeValidationUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;0001&quot;</span><span class="o">,</span> <span class="s">&quot;PATTERN1&quot;</span><span class="o">,</span> <span class="s">&quot;gender&quot;</span><span class="o">);</span>
+
+<span class="c1">// [Description] To overwrite the message ID, specify the message ID in argument 5.</span>
+<span class="n">CodeValidationUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">&quot;0001&quot;</span><span class="o">,</span> <span class="s">&quot;PATTERN1&quot;</span><span class="o">,</span> <span class="s">&quot;gender&quot;</span><span class="o">,</span> <span class="s">&quot;message_id&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

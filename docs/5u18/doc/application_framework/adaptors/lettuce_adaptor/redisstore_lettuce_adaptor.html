@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="Lettuceアダプタ" href="../lettuce_adaptor.html"/>
@@ -319,9 +319,12 @@
           <li><a href="../lettuce_adaptor.html">Lettuceアダプタ</a> &raquo;</li>
       
     <li>Redisストア(Lettuce)アダプタ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -368,7 +371,7 @@
 <span id="id2"></span><h2><a class="toc-backref" href="#id18">最小構成で動かす</a><a class="headerlink" href="#redisstore-minimum-settings" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ここでは、 <code class="docutils literal"><span class="pre">localhost</span></code> の <code class="docutils literal"><span class="pre">6379</span></code> ポートで起動している単一のRedisインスタンスに対して接続する場合を例に、設定方法を説明する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ローカルで試す場合、Dockerを使えば次のようにコマンドを実行することでRedisインスタンスを構築できる。</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>&gt; docker run --name redis -d -p <span class="m">6379</span>:6379 redis:5.0.9
 </pre></div>
@@ -403,7 +406,7 @@
 こうすることで、必要に応じてデフォルトのプレースホルダの値をアプリケーションの環境設定ファイルで上書きできるようになる。</p>
 <p>さらに、 <a class="reference internal" href="../../application_framework/libraries/repository.html#repository-overwrite-environment-configuration-by-os-env-var"><span>OS環境変数を使って環境依存値を上書きする</span></a> で説明している方法を用いることで、実行環境ごとに接続先のRedisを切り替えることができるようになる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">デフォルトでは、 <code class="docutils literal"><span class="pre">localhost</span></code> の <code class="docutils literal"><span class="pre">6379</span></code> ポートで起動している単一のRedisインスタンスに接続するように設定されている。</p>
 </div>
 <p><code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> には、Redisストアを使用するために必要となるコンポーネントが定義されている。</p>
@@ -421,7 +424,7 @@
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>次に、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> のコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> の <code class="docutils literal"><span class="pre">initializeList</span></code> に追加する。</p>
+<p>次に、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> のコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> の <code class="docutils literal"><span class="pre">initializeList</span></code> に追加する。</p>
 <p><code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> のコンポーネントは <code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> に <code class="docutils literal"><span class="pre">lettuceRedisClientProvider</span></code> という名前で定義されているので、名前参照を使って設定できるようになっている。</p>
 <p>この設定の説明については、 <a class="reference internal" href="#redisstore-initialize-client"><span>クライアントクラスの初期化</span></a> を参照。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 廃棄が必要なコンポーネント --&gt;</span>
@@ -436,7 +439,7 @@
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>さらに、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> のコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> の <code class="docutils literal"><span class="pre">disposableList</span></code> に追加する。</p>
+<p>さらに、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> のコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> の <code class="docutils literal"><span class="pre">disposableList</span></code> に追加する。</p>
 <p>この設定の説明については、 <a class="reference internal" href="../../application_framework/libraries/repository.html#repository-dispose-object"><span>オブジェクトの廃棄処理を行う</span></a> を参照。</p>
 </div>
 <div class="section" id="redisstore-minimum-settings-how-modify-env-config">
@@ -448,7 +451,7 @@
 </div>
 <p>プロジェクトの環境設定ファイルで、 <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> という設定項目を定義し、値に <code class="docutils literal"><span class="pre">redis</span></code> と設定する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><a class="reference internal" href="../../application_framework/blank_project/setup_blankProject/setup_Web.html#firststepgeneratewebblankproject"><span>ウェブのアーキタイプ</span></a> でプロジェクトを生成している場合は、 <code class="docutils literal"><span class="pre">src/main/resources/common.config</span></code> に <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> が宣言されている。</p>
 </div>
 <p>以上で、 <code class="docutils literal"><span class="pre">localhost</span></code> の <code class="docutils literal"><span class="pre">6379</span></code> ポートで起動しているRedisをセッションストアとして使用できるようになる。</p>
@@ -466,19 +469,19 @@
 <p>ここでは、接続先のRedisの構成に合わせて、どのように設定を変更すればいいのかについて説明する。</p>
 <div class="section" id="redisstore-redis-client-config-client-classes">
 <span id="id7"></span><h3><a class="toc-backref" href="#id23">構成ごとに用意されたクライアントクラス</a><a class="headerlink" href="#redisstore-redis-client-config-client-classes" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>本アダプタでは、接続先のRedisの構成ごとに専用のクライアントクラス（<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClient">LettuceRedisClient</a> を実装したクラス）を用意している。</p>
+<p>本アダプタでは、接続先のRedisの構成ごとに専用のクライアントクラス（<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClient">LettuceRedisClient</a> を実装したクラス）を用意している。</p>
 <dl class="docutils">
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceSimpleRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceSimpleRedisClient">LettuceSimpleRedisClient</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceSimpleRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceSimpleRedisClient">LettuceSimpleRedisClient</a></dt>
 <dd>単一のRedisインスタンスに直接接続する場合に使用するクラス。</dd>
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceMasterReplicaRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceMasterReplicaRedisClient">LettuceMasterReplicaRedisClient</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceMasterReplicaRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceMasterReplicaRedisClient">LettuceMasterReplicaRedisClient</a></dt>
 <dd>Master-Replica構成のRedisインスタンスに接続する場合に使用するクラス。
 Sentinelを介して接続する場合も、このクラスを使用する。</dd>
-<dt><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceClusterRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceClusterRedisClient">LettuceClusterRedisClient</a></dt>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceClusterRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceClusterRedisClient">LettuceClusterRedisClient</a></dt>
 <dd>Cluster構成のRedisインスタンスに接続する場合に使用するクラス。</dd>
 </dl>
 <p>アプリケーションで使用するRedisの構成に合わせて、これらの中から使用するクライアントクラスを設定する必要がある。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">これらのクライアントクラスのコンポーネントは <code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> で定義されているので、利用者側で定義する必要はない。</p>
 </div>
 </div>
@@ -513,7 +516,7 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><code class="docutils literal"><span class="pre">nablarch.lettuce.clientType</span></code> のデフォルト値は、 <code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> で <code class="docutils literal"><span class="pre">simple</span></code> が設定されている。</p>
 </div>
 </div>
@@ -663,7 +666,7 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 <p>LettuceでClusterのトポロジ更新を監視できるようにするには、必要な設定を行った <a class="reference external" href="https://lettuce.io/core/5.3.0.RELEASE/api/io/lettuce/core/cluster/ClusterTopologyRefreshOptions.html">ClusterTopologyRefreshOptions（外部サイト、英語）</a> を <a class="reference external" href="https://lettuce.io/core/5.3.0.RELEASE/api/io/lettuce/core/cluster/RedisClusterClient.html">RedisClusterClient（外部サイト、英語）</a> に設定する必要がある。</p>
 <p>したがって、 <code class="docutils literal"><span class="pre">CustomClusterRedisClient</span></code> では <code class="docutils literal"><span class="pre">RedisClusterClient</span></code> を生成する <code class="docutils literal"><span class="pre">createClient()</span></code> をオーバーライドして、必要な設定を行った <code class="docutils literal"><span class="pre">RedisClusterClient</span></code> のインスタンスを返すように実装する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Lettuceの設定の詳細については、 <a class="reference external" href="https://lettuce.io/core/5.3.0.RELEASE/reference/index.html#clientoptions.cluster-specific-options">Lettuceのドキュメント（外部サイト、英語）</a> を参照。</p>
 </div>
 <p>次に、このカスタムクライアントクラスをコンポーネント定義する。</p>
@@ -685,7 +688,7 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 <span id="id13"></span><h2><a class="toc-backref" href="#id28">使用するクライアントクラスの決定の仕組み</a><a class="headerlink" href="#redisstore-mechanism-to-decide-client" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference internal" href="#redisstore-redis-client-config-how-select-client"><span>使用するクライアントクラスを設定する</span></a> で、使用するクライアントクラスは環境設定値 <code class="docutils literal"><span class="pre">nablarch.lettuce.clientType</span></code> で設定できることを説明した。
 ここでは、具体的にどのようにしてクライアントクラスが決定されているのか、仕組みを説明する。</p>
-<p>３つのクライアントクラスのコンポーネントのうち、実際にどのコンポーネントを使用するかは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> によって決定される。</p>
+<p>３つのクライアントクラスのコンポーネントのうち、実際にどのコンポーネントを使用するかは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClientProvider.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider">LettuceRedisClientProvider</a> によって決定される。</p>
 <p><code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> は、 <code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> で次のように定義されている。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;lettuceRedisClientProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.redisstore.lettuce.LettuceRedisClientProvider&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;clientType&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.lettuce.clientType}&quot;</span> <span class="nt">/&gt;</span>
@@ -705,13 +708,13 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 <p>各クライアントクラスは <code class="docutils literal"><span class="pre">getType()</span></code> という自身の識別子を返すメソッドを持っている。
 <code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> は <code class="docutils literal"><span class="pre">clientType</span></code> プロパティに設定された値と <code class="docutils literal"><span class="pre">clientList</span></code> プロパティに設定された各コンポーネントが返す <code class="docutils literal"><span class="pre">getType()</span></code> の値を比較する。
 そして、値が一致したものを、実際に使用するコンポーネントとして決定している。</p>
-<p><code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を実装しており、 <code class="docutils literal"><span class="pre">createObject()</span></code> メソッドは、決定されたクライアントクラス（<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClient">LettuceRedisClient</a>）のコンポーネントを返すように実装されている。</p>
+<p><code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentFactory.html" title="nablarch.core.repository.di.ComponentFactory">ComponentFactory</a> を実装しており、 <code class="docutils literal"><span class="pre">createObject()</span></code> メソッドは、決定されたクライアントクラス（<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/redisstore/lettuce/LettuceRedisClient.html" title="nablarch.integration.redisstore.lettuce.LettuceRedisClient">LettuceRedisClient</a>）のコンポーネントを返すように実装されている。</p>
 </div>
 <div class="section" id="redisstore-initialize-client">
 <span id="id14"></span><h2><a class="toc-backref" href="#id29">クライアントクラスの初期化</a><a class="headerlink" href="#redisstore-initialize-client" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本アダプタが提供している３つのクライアントクラスは、いずれもRedisへの接続を確立するために初期化が必要となっている。</p>
-<p>各クライアントクラスは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> を実装しており、 <code class="docutils literal"><span class="pre">initialize()</span></code> メソッドを実行することでRedisへの接続が確立される。
-したがって、使用するクライアントクラスのコンポーネントは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> の <code class="docutils literal"><span class="pre">initializeList</span></code> プロパティに設定しなければならない。</p>
+<p>各クライアントクラスは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> を実装しており、 <code class="docutils literal"><span class="pre">initialize()</span></code> メソッドを実行することでRedisへの接続が確立される。
+したがって、使用するクライアントクラスのコンポーネントは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> の <code class="docutils literal"><span class="pre">initializeList</span></code> プロパティに設定しなければならない。</p>
 <p>実際の <code class="docutils literal"><span class="pre">initializeList</span></code> への設定は、以下のように <a class="reference internal" href="#redisstore-mechanism-to-decide-client"><span>使用するクライアントクラスの決定の仕組み</span></a> で説明した <code class="docutils literal"><span class="pre">LettuceRedisClientProvider</span></code> のコンポーネントを使用する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 初期化が必要なコンポーネント --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
@@ -729,8 +732,8 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 </div>
 <div class="section" id="id15">
 <h2><a class="toc-backref" href="#id30">クライアントクラスの廃棄処理</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>各クライアントクラスは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> を実装しており、 <code class="docutils literal"><span class="pre">dispose()</span></code> メソッドを実行することでRedisへの接続が閉じられる。
-したがって、使用するクライアントクラスのコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> の <code class="docutils literal"><span class="pre">disposableList</span></code> プロパティに設定することで、アプリケーション終了時にRedisとの接続を閉じることができる。</p>
+<p>各クライアントクラスは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> を実装しており、 <code class="docutils literal"><span class="pre">dispose()</span></code> メソッドを実行することでRedisへの接続が閉じられる。
+したがって、使用するクライアントクラスのコンポーネントを <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> の <code class="docutils literal"><span class="pre">disposableList</span></code> プロパティに設定することで、アプリケーション終了時にRedisとの接続を閉じることができる。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 廃棄が必要なコンポーネント --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
            <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
@@ -753,7 +756,7 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
 <span class="m">1</span><span class="o">)</span> <span class="s2">&quot;nablarch.session.8b00bce5-d19f-4f63-b1fe-d14ecca9a4f6&quot;</span>
 </pre></div>
 </div>
-<p>また、セッション情報（<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/session/SessionEntry.html" title="nablarch.common.web.session.SessionEntry">SessionEntry</a> のリスト）は、デフォルトでは <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/session/encoder/JavaSerializeStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeStateEncoder">JavaSerializeStateEncoder</a> でエンコードされたバイナリ形式で保存されている。</p>
+<p>また、セッション情報（<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionEntry.html" title="nablarch.common.web.session.SessionEntry">SessionEntry</a> のリスト）は、デフォルトでは <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/encoder/JavaSerializeStateEncoder.html" title="nablarch.common.web.session.encoder.JavaSerializeStateEncoder">JavaSerializeStateEncoder</a> でエンコードされたバイナリ形式で保存されている。</p>
 <p>使用するエンコーダーは、 <code class="docutils literal"><span class="pre">serializeEncoder</span></code> という名前で別のエンコーダーのコンポーネントを定義することで変更できる。</p>
 </div>
 <div class="section" id="redisstore-expiration">

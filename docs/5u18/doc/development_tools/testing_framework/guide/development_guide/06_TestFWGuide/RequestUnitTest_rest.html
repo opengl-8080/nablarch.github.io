@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_rest.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_rest.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="3.2. 自動テストフレームワークの使用方法" href="index.html"/>
@@ -319,9 +319,12 @@
           <li><a href="index.html">3.2. 自動テストフレームワークの使用方法</a> &raquo;</li>
       
     <li>3.2.4. リクエスト単体テスト（RESTfulウェブサービス）</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -410,7 +413,7 @@ RESTfulウェブサービス用実行基盤のみ、必要なモジュールが�
 上記のモジュールを依存に追加することで <a class="reference internal" href="../05_UnitTestGuide/index.html#unittestguide"><span>テスティングフレームワーク</span></a> のAPIも同時に使用することができる。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Java11を使用している場合は <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Java11.html#setup-java11-jetty9"><span>自動テストで使用するJettyのモジュール変更</span></a> の通り
 内蔵サーバを差し替えること。</p>
 </div>
@@ -425,7 +428,7 @@ RESTfulウェブサービス用実行基盤のみ、必要なモジュールが�
 </div>
 <p>リクエスト単体テストの設定は <a class="reference internal" href="#rest-test-configuration"><span>各種設定値</span></a> を参照。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">Nablarch5u18以降のアーキタイプから <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTfulウェブサービス</em></a> の
 ブランクプロジェクトを作成した場合上記が既に設定されている。
 <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><em>ウェブプロジェクト</em></a> や
@@ -441,7 +444,7 @@ RESTfulウェブサービス用実行基盤のみ、必要なモジュールが�
 データベース関連機能が不要な場合は後述の <code class="docutils literal"><span class="pre">RestTestSupport</span></code> ではなくこちらのクラスを使用する。
 <a class="reference internal" href="#rest-test-helper"><span>事前準備補助機能</span></a> 、 <a class="reference internal" href="#rest-test-execute"><span>実行</span></a> 、 <a class="reference internal" href="#rest-test-assert"><span>結果確認</span></a> については以下の <code class="docutils literal"><span class="pre">RestTestSupport</span></code> と同じ機能を持つ。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">RestTestSupportを使用する場合、<code class="docutils literal"><span class="pre">dbInfo</span></code> または <code class="docutils literal"><span class="pre">testDataParser</span></code> のコンポーネントを準備する必要がある。
 データベースへの依存が不要な場合は、<code class="docutils literal"><span class="pre">SimpleRestTestSupport</span></code> を使用することでコンポーネント定義を簡略化できる。</p>
 </div>
@@ -486,10 +489,10 @@ RESTfulウェブサービス用実行基盤のみ、必要なモジュールが�
 </ul>
 <p>これらのメソッドでは、受け取ったリクエストURIを元に <code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> インスタンスを生成し、メソッド名に応じたHTTPメソッドを設定した上で返却する。リクエストパラメータなどURI以外のデータを設定したい場合は、本メソッド呼び出しにより取得したインスタンスに対してデータの設定を行うとよい。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p><code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> は流れるようなインターフェイスでパラメータなどを設定できるよう
 メソッドをオーバーライドして自身のインスタンスを返すようにしてある。
-使用できるメソッドの詳細は <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/web/RestMockHttpRequest.html" title="nablarch.fw.web.RestMockHttpRequest">Javadoc</a> を参照</p>
+使用できるメソッドの詳細は <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/RestMockHttpRequest.html" title="nablarch.fw.web.RestMockHttpRequest">Javadoc</a> を参照</p>
 <p>リクエストを構築する例</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">RestMockHttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">post</span><span class="o">(</span><span class="s">&quot;/projects&quot;</span><span class="o">)</span>
                                   <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Authorization&quot;</span><span class="o">,</span><span class="s">&quot;Bearer token&quot;</span><span class="o">)</span>
@@ -528,7 +531,7 @@ RESTfulウェブサービス用実行基盤のみ、必要なモジュールが�
 <a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(外部サイト、英語)</a> 、
 <a class="reference external" href="https://github.com/xmlunit/user-guide/wiki">XMLUnit(外部サイト、英語)</a> などのライブラリを使用すること。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTfulウェブサービスのブランクプロジェクト</em></a>を作成した場合
 上記の <a class="reference external" href="http://jsonassert.skyscreamer.org/">JSONAssert(外部サイト、英語)</a> 、
 <a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(外部サイト、英語)</a> 、

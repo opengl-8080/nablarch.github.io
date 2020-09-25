@@ -448,7 +448,7 @@ DefaultMeterBinderListProviderで収集されるメトリクス
 
 レジストリファクトリの :java:extdoc:`tags <nablarch.integration.micrometer.MeterRegistryFactory.setTags(Map)>` プロパティで、すべてのメトリクスに共通するタグを設定できる。
 
-この機能は、アプリケーションが稼働しているホスト、インスタンス、リージョンなどを識別できる情報を設定するといった用途として利用できる。
+この機能は、アプリケーションが稼働しているホスト、インスタンス、リージョンなどを識別できる情報を設定するといった用途として使用できる。
 
 以下に設定方法を記載する。
 
@@ -506,7 +506,7 @@ Datadog と連携する
       <version>1.5.4</version>
     </dependency>
 
-レジストファクトリを宣言する
+レジストリファクトリを宣言する
   .. code-block:: xml
   
     <component name="meterRegistry" class="nablarch.integration.micrometer.datadog.DatadogMeterRegistryFactory">
@@ -536,10 +536,10 @@ CloudWatch と連携する
       <version>1.5.4</version>
     </dependency>
 
-レジストファクトリを宣言する
+レジストリファクトリを宣言する
   .. code-block:: xml
   
-    <component name="meterRegistry" class="nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory">
+    <component name="meterRegistry" class="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory">
       <property name="meterBinderListProvider" ref="meterBinderListProvider" />
       <property name="applicationDisposer" ref="disposer" />
     </component>
@@ -629,7 +629,7 @@ Datadog は `DogStatsD(外部サイト) <https://docs.datadoghq.com/ja/developer
       <version>1.5.4</version>
     </dependency>
 
-レジストファクトリを宣言する
+レジストリファクトリを宣言する
   .. code-block:: xml
   
     <component name="meterRegistry" class="nablarch.integration.micrometer.statsd.StatsdMeterRegistryFactory">
@@ -648,70 +648,6 @@ Datadog は `DogStatsD(外部サイト) <https://docs.datadoghq.com/ja/developer
 
     # ポートを変更
     nablarch.micrometer.statsd.port=9999
-
-HTTPリクエストの処理時間を収集する
---------------------------------------------------
-
-:java:extdoc:`HttpRequestMetricsHandler <nablarch.integration.micrometer.instrument.handler.http.HttpRequestMetricsHandler>` を使用することで、 HTTP リクエストの処理時間をメトリクスとして収集できる。
-
-このハンドラを使用する場合は、次のようにハンドラキューを構成する。
-
-.. code-block:: xml
-
-  <component name="meterRegistry" class="nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory">
-    <property name="meterBinderListProvider" ref="meterBinderListProvider" />
-    <property name="applicationDisposer" ref="disposer" />
-  </component>
-
-  <component name="webFrontController"
-             class="nablarch.fw.web.servlet.WebFrontController">
-    <property name="handlerQueue">
-      <list>
-        <!-- HTTPリクエストのメトリクス収集ハンドラ -->
-        <component class="nablarch.integration.micrometer.instrument.handler.http.HttpRequestMetricsHandler">
-          <!-- レジストリファクトリが生成する MeterRegistry を meterRegistry プロパティに設定する -->
-          <property name="meterRegistry" ref="meterRegistry" />
-        </component>
-
-        <component class="nablarch.fw.web.handler.HttpCharacterEncodingHandler"/>
-
-        <!-- 省略 -->
-     </list>
-    </property>
-  </component>
-
-本ハンドラはリクエストの処理時間を計測するため、ハンドラキューの先頭に設定する。
-
-また ``meterRegistry`` プロパティには、使用しているレジストリファクトリが生成した `MeterRegistry(外部サイト、英語)`_ を渡すように設定する。
-
-以上の設定で、次のようなメトリクスが収集されるようになる。
-
-.. code-block:: text
-
-  2020-09-04 19:16:29.085 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/projectBulk/index,status=200} throughput=0.4/s mean=0.8634947s max=1.6078096s
-  2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/project/index,status=200} throughput=0.4/s mean=0.27510795s max=0.4464502s
-  2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/projectUpload,status=200} throughput=0.2/s mean=0.4478871s max=0.4478871s
-  2020-09-04 19:16:29.086 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=POST,outcome=REDIRECTION,path=/action/login,status=303} throughput=0.2/s mean=0.4280518s max=0.4280518s
-  2020-09-04 19:16:34.084 [INFO ]      i.m.c.i.l.LoggingMeterRegistry: http.server.requests{exception=None,method=GET,outcome=SUCCESS,path=/action/project/index,status=200} throughput=0.2/s mean=0.0953379s max=0.4464502s
-
-本ハンドラが収集するメトリクスは、 ``http.server.requests`` という名前で作成される。
-
-また、メトリクスには以下のタグが付与される。
-
-.. list-table::
-
-  * - タグ名
-    - 説明
-  * - ``path``
-    - リクエストのパス（クエリ文字列を除く）
-  * - ``method``
-    - HTTPメソッド
-  * - ``status``
-    - HTTPステータスコード
-  * - ``outcome``
-    - ステータスコードの種類を表す文字列（1XX: ``INFORMATION``, 2XX: ``SUCCESS``, 3XX: ``REDIRECTION``, 4XX: ``CLIENT_ERROR``, 5XX: ``SERVER_ERROR``, その他: ``UNKNOWN``）
-  * - ``exception``
-    - リクエスト処理中のスローされた例外の単純名（例外スローされていない場合は ``None``）
 
 
 .. _MeterBinder(外部サイト、英語): https://javadoc.io/doc/io.micrometer/micrometer-core/1.5.4/io/micrometer/core/instrument/binder/MeterBinder.html

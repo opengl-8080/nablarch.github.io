@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/messaging/db/getting_started/table_queue.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/getting_started/table_queue.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../index.html"/>
         <link rel="up" title="5.2.3. Getting Started" href="../getting_started.html"/>
@@ -323,9 +323,12 @@
           <li><a href="../getting_started.html">5.2.3. Getting Started</a> &raquo;</li>
       
     <li>5.2.3.1. テーブルキューを監視し未処理データを取り込むアプリケーションの作成</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -424,7 +427,7 @@
 </dl>
 <div class="section" id="db-queue-example-create-action">
 <span id="id2"></span><h2>5.2.3.1.1. アクションクラスを作成する<a class="headerlink" href="#db-queue-example-create-action" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> を継承したアクションクラスを作成する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> を継承したアクションクラスを作成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProjectCreationServiceAction</span> <span class="kd">extends</span> <span class="n">BatchAction</span><span class="o">&lt;</span><span class="n">SqlRow</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -436,7 +439,7 @@
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
 <li>テーブルをキューとして扱うため、入力データはテーブルの検索結果となる。
-このため、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> の型パラメータには <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> を指定する。</li>
+このため、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction</a> の型パラメータには <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> を指定する。</li>
 </ul>
 </dd>
 </dl>
@@ -445,7 +448,7 @@
 <h2>5.2.3.1.2. テーブルを監視するためのリーダを生成する<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><a class="reference internal" href="#db-queue-example-create-action"><span>アクションクラスを作成する</span></a> で作成したアクションクラスに、テーブルを監視するリーダを生成するメソッドを作成する。</p>
 <p><a class="reference internal" href="../architecture.html#db-messaging-architecture-reader"><span>データベースキューで使用するリーダ</span></a> に記載がある通り、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> をリーダとして生成する。</p>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> をリーダとして生成する。</p>
 <dl class="docutils">
 <dt>実装例</dt>
 <dd><dl class="first last docutils">
@@ -503,18 +506,18 @@
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchAction.html#createReader-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.createReader(nablarch.fw.ExecutionContext)">createReader</a> を実装し、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> を生成する。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> には以下を指定する。<ul>
-<li>データベースから検索を行うためのリーダ(<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader</a>)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#createReader-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.createReader(nablarch.fw.ExecutionContext)">createReader</a> を実装し、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> を生成する。</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> には以下を指定する。<ul>
+<li>データベースから検索を行うためのリーダ(<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader</a>)</li>
 <li>未処理データが存在しない場合の待機時間(この例では1秒)</li>
 <li>主キーのカラム名のリスト</li>
 </ul>
 </li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader</a> には以下を指定する。<ul>
-<li>未処理データを検索するための <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">DatabaseRecordReader</a> には以下を指定する。<ul>
+<li>未処理データを検索するための <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a></li>
 <li>未処理データの悲観ロックを行う
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseRecordListener.html" title="nablarch.fw.reader.DatabaseRecordListener">DatabaseRecordListener</a> の実装クラス。
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordListener.html" title="nablarch.fw.reader.DatabaseRecordListener">DatabaseRecordListener</a> の実装クラス。
 詳細は、<a class="reference internal" href="../feature_details/multiple_process.html#db-messaging-multiple-process"><span>マルチプロセス化</span></a> を参照。</li>
 </ul>
 </li>
@@ -558,10 +561,10 @@
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchAction.html#handle-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.handle(D-nablarch.fw.ExecutionContext)">handle</a> メソッドに業務処理を実装する。
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html#handle-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchAction.handle(D-nablarch.fw.ExecutionContext)">handle</a> メソッドに業務処理を実装する。
 (処理内容の詳細な説明は、Example依存のため省略する。)</li>
-<li>正常に処理したことを示す <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却する。
-処理が失敗した場合、例外を送出するため、常に <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却すれば良い。</li>
+<li>正常に処理したことを示す <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却する。
+処理が失敗した場合、例外を送出するため、常に <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Result.Success</a> を返却すれば良い。</li>
 </ul>
 </dd>
 </dl>
@@ -622,9 +625,9 @@
 </dd>
 <dt>ポイント</dt>
 <dd><ul class="first last simple">
-<li>正常に処理できたレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionSuccess</a> に実装する。
+<li>正常に処理できたレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionSuccess</a> に実装する。
 (正常に処理できた場合(例外が送出されなかった場合)、このメソッドがNablarchによりコールバックされる。)</li>
-<li>正常に処理できなかったレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionFailure</a> に実装する。
+<li>正常に処理できなかったレコードの更新処理は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchActionBase.html#transactionSuccess-D-nablarch.fw.ExecutionContext-" title="nablarch.fw.action.BatchActionBase.transactionSuccess(D-nablarch.fw.ExecutionContext)">transactionFailure</a> に実装する。
 (処理中に例外やエラーが送出されたレコードの場合、このメソッドがNablarchによりコールバックされる)</li>
 <li>SQLでは、指定のレコードのステータスを更新する。</li>
 <li>SQLファイルへのSQLの記述ルールは、 <a class="reference internal" href="../../../libraries/database/database.html#database-use-sql-file"><span>SQLをファイルで管理する</span></a> を参照。</li>

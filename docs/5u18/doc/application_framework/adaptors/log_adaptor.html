@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/adaptors/log_adaptor.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/log_adaptor.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../index.html"/>
         <link rel="up" title="アダプタ" href="index.html"/>
@@ -317,9 +317,12 @@
           <li><a href="index.html">アダプタ</a> &raquo;</li>
       
     <li>logアダプタ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -330,7 +333,7 @@
 <span id="log-adaptor"></span><h1>logアダプタ<a class="headerlink" href="#log" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>Nablarchの提供する <a class="reference internal" href="../application_framework/libraries/log.html#log"><span>ログ出力機能</span></a> のログ出力処理を以下のログフレームワークに委譲するアダプタ。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://www.slf4j.org/">SLF4J(外部サイト、英語)</a></li>
+<li><a class="reference external" href="https://www.slf4j.org/">slf4j(外部サイト、英語)</a></li>
 <li><a class="reference external" href="https://github.com/jboss-logging">JBoss Logging(外部サイト、英語)</a></li>
 </ul>
 <p>顧客からの要求や使用する製品などにあわせてロガーを統一したい場合に、アダプタを使用する。
@@ -339,17 +342,17 @@
 <p class="first admonition-title">重要</p>
 <p class="last">Nablarch5u15まで提供されていたlog4jアダプタは、EOLを迎えた <a class="reference external" href="http://logging.apache.org/log4j/1.2/">log4j1.2(外部サイト、英語)</a> を使用しており
 <a class="reference external" href="https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-013606.html">脆弱性</a> への修正が公開されないため廃止します。
-SLF4JまたはJBoss Loggingを使用してください。</p>
+slf4jまたはJBoss Loggingを使用してください。</p>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ロギングフレームワークの設定方法などは、製品のマニュアルなどを参照すること。</p>
 </div>
 <div class="section" id="id2">
 <h2>モジュール一覧<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id3">
-<h3>SLF4J<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- SLF4Jアダプタ --&gt;</span>
+<h3>slf4j<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- slf4jアダプタ --&gt;</span>
 <span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.integration<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-slf4j-adaptor<span class="nt">&lt;/artifactId&gt;</span>
@@ -357,8 +360,8 @@ SLF4JまたはJBoss Loggingを使用してください。</p>
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p class="last">SLF4Jのバージョン1.7.22を使用してテストを行っている。
+<p class="first admonition-title">補足</p>
+<p class="last">slf4jのバージョン1.7.22を使用してテストを行っている。
 バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
 </div>
 </div>
@@ -372,7 +375,7 @@ SLF4JまたはJBoss Loggingを使用してください。</p>
 </pre></div>
 </div>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">JBoss Loggingのバージョン3.3.0.Finalを使用してテストを行っている。
 バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
 </div>
@@ -383,8 +386,8 @@ SLF4JまたはJBoss Loggingを使用してください。</p>
 <p><a class="reference internal" href="../application_framework/libraries/log.html#log"><span>ログ出力機能</span></a> の設定ファイル(<strong>log.properties</strong>)に以下の設定を行う。
 この設定によりログ出力処理が、ロギングフレームワークに委譲される。</p>
 <div class="section" id="id6">
-<h3>SLF4J<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># SLF4Jを使用するためのファクトリの設定</span>
+<h3>slf4j<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># slf4jを使用するためのファクトリの設定</span>
 <span class="na">loggerFactory.className</span><span class="o">=</span><span class="s">nablarch.integration.log.slf4j.Slf4JLoggerFactory</span>
 </pre></div>
 </div>

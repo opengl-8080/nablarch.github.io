@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/extension_components/workflow/doc/index.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/extension_components/workflow/doc/index.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="Nablarch拡張コンポーネント" href="../../index.html"/>
@@ -315,9 +315,12 @@
           <li><a href="../../index.html">Nablarch拡張コンポーネント</a> &raquo;</li>
       
     <li>2. ワークフローライブラリ</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -361,7 +364,7 @@
 <p>申請フローや承認フローの進行状況およびワークフロー内の各タスクに対する担当ユーザの割り当てや、割り当て状態の管理をするために必要なワークフロー機能を提供する。
 また、単純に状態のみを遷移させるステートマシン機能も提供する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ワークフローライブラリを使用したアプリケーションの実例は、 <a class="reference external" href="https://github.com/nablarch/nablarch-example-workflow">Exampleアプリケーション</a> を参照。</p>
 </div>
 <div class="section" id="id3">
@@ -540,7 +543,7 @@
 <p>このため、ワークフローやステートマシンの定義は、BPMNモデリングツールを用いて行い、その内容をテーブルに投入する手順を推奨する。
 なお、 <a class="reference internal" href="../tool/index.html#workflow-tool"><span>ワークフロー定義データ生成ツール</span></a> を使うことでBPMNモデルからテーブルへ投入するデータを作成することができる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>BPMNのモデリングは、以下の製品などで行える。</p>
 <ul class="last simple">
 <li><a class="reference external" href="https://camunda.org/">https://camunda.org/</a></li>
@@ -549,10 +552,10 @@
 </div>
 <div class="section" id="workflow-start">
 <span id="id10"></span><h3><a class="toc-backref" href="#id32">2.3.3. ワークフロー(ステートマシン)を開始する</a><a class="headerlink" href="#workflow-start" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowManager.html#startInstance-java.lang.String-" title="nablarch.integration.workflow.WorkflowManager.startInstance(java.lang.String)">WorkflowManager#startInstance</a> を使用してワークフロー(ステートマシン)を開始する。</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowManager.html#startInstance-java.lang.String-" title="nablarch.integration.workflow.WorkflowManager.startInstance(java.lang.String)">WorkflowManager#startInstance</a> を使用してワークフロー(ステートマシン)を開始する。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
-<p class="last">本APIから戻される、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> からインスタンスIDを取得しアプリケーション側のテーブルなどで保持すること。
+<p class="first admonition-title">補足</p>
+<p class="last">本APIから戻される、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> からインスタンスIDを取得しアプリケーション側のテーブルなどで保持すること。
 インスタンスIDは、ワークフロー(ステートマシン)の状態を遷移させるために必要となるため、必ずアプリケーション側で保持する必要がある。</p>
 </div>
 <dl class="docutils">
@@ -575,8 +578,8 @@
 </div>
 <div class="section" id="workflow-assign">
 <span id="id11"></span><h3><a class="toc-backref" href="#id33">2.3.4. ワークフローのタスクに担当者やグループを割り当てる</a><a class="headerlink" href="#workflow-assign" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignUser-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignUser(java.lang.String-java.lang.String)">WorkflowInstance#assignUser</a> を使用してタスクに対して担当者を割り当てることができる。
-また、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignGroup-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignGroup(java.lang.String-java.lang.String)">WorkflowInstance#assignGroup</a> を使用してタスクにグループを割り当てることができる。
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignUser-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignUser(java.lang.String-java.lang.String)">WorkflowInstance#assignUser</a> を使用してタスクに対して担当者を割り当てることができる。
+また、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#assignGroup-java.lang.String-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.assignGroup(java.lang.String-java.lang.String)">WorkflowInstance#assignGroup</a> を使用してタスクにグループを割り当てることができる。
 既にタスクに担当者（グループ）が割り当て済みの場合は、割り当て済みの情報を削除し再割当てを行う。</p>
 <p>担当者（グループ）の割り当ては任意のタイミングで行える。
 タスク完了時に次のタスクに対して担当者（グループ）を割り当てることもできる。</p>
@@ -631,10 +634,10 @@ Completion Condition(②)には、完了条件を設定する。この例では�
 </div>
 <div class="section" id="workflow-complete-task">
 <span id="id13"></span><h3><a class="toc-backref" href="#id35">2.3.6. ワークフローの状態を遷移(タスクを完了)させる</a><a class="headerlink" href="#workflow-complete-task" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeUserTask--" title="nablarch.integration.workflow.WorkflowInstance.completeUserTask()">WorkflowInstance#completeUserTask</a> や
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeGroupTask-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.completeGroupTask(java.lang.String)">WorkflowInstance#completeGroupTask</a>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeUserTask--" title="nablarch.integration.workflow.WorkflowInstance.completeUserTask()">WorkflowInstance#completeUserTask</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#completeGroupTask-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.completeGroupTask(java.lang.String)">WorkflowInstance#completeGroupTask</a>
 を使用してタスクを完了し、次のタスクに状態を遷移させることができる。
-対象の <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
+対象の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
 <a class="reference internal" href="#workflow-start"><span>ワークフロー開始時</span></a> にアプリケーション側で保持したインスタンスIDを使用して事前に取得する必要がある。</p>
 <p>タスク完了後のワークフローの状態の取得方法は、 <a class="reference internal" href="#workflow-status"><span>ワークフロー（ステートマシン）の現在の状態を取得する</span></a> を参照。</p>
 <dl class="docutils">
@@ -726,7 +729,7 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <span id="id17"></span><h3><a class="toc-backref" href="#id39">2.3.10. ワークフロー申請の取り消しを行う</a><a class="headerlink" href="#workflow-cancel" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>申請者が進行中の申請自体を取り消ししたい場合がある。
 このような場合は、取り消し可能なタスクに対して境界イベントを関連付けることで対応する。</p>
-<p>境界イベントの実行は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a> を使用して行う。</p>
+<p>境界イベントの実行は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a> を使用して行う。</p>
 <dl class="docutils">
 <dt>ワークフロー定義</dt>
 <dd><p class="first">取り消し可能なタスクに対して境界イベント(①)を定義する。
@@ -772,11 +775,11 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <div class="section" id="workflow-statemachine-trigger">
 <span id="id20"></span><h3><a class="toc-backref" href="#id42">2.3.13. ステートマシンの状態を遷移させる</a><a class="headerlink" href="#workflow-statemachine-trigger" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ステートマシンの状態を遷移させる場合は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String)">WorkflowInstance#triggerEvent</a>
 を使用して状態を遷移させることができる。
-対象の <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
+対象の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html" title="nablarch.integration.workflow.WorkflowInstance">WorkflowInstance</a> は、
 ワークフロー開始時 にアプリケーション側で保持したインスタンスIDを使用して事前に取得する必要がある。</p>
-<p>なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-java.util.Map-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String-java.util.Map)">WorkflowInstance#triggerEvent</a>
+<p>なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#triggerEvent-java.lang.String-java.util.Map-" title="nablarch.integration.workflow.WorkflowInstance.triggerEvent(java.lang.String-java.util.Map)">WorkflowInstance#triggerEvent</a>
 にパラメータを指定することで、 <a class="reference internal" href="#workflow-flow-condition"><span>アプリケーションでの処理結果に応じて遷移先のタスクを変更する</span></a> を実現できる。</p>
 <p>タスク完了後のワークフローの状態の取得方法は、 <a class="reference internal" href="#workflow-status"><span>ワークフロー（ステートマシン）の現在の状態を取得する</span></a> を参照。</p>
 <dl class="docutils">
@@ -817,8 +820,8 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <p>ワークフロー（ステートマシン）の状態遷移後の状態を取得できる。
 これにより、 <a class="reference internal" href="#workflow-flow-condition"><span>分岐</span></a> を使用した場合に、どのタスクがアクティブとなったかやワークフロー（ステートマシン）が完了したかを判断できるようになる。</p>
 <p>ワークフロー（ステートマシン）の状態は、
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isActive-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.isActive(java.lang.String)">WorkflowInstance#isActive</a> や
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isCompleted--" title="nablarch.integration.workflow.WorkflowInstance.isCompleted()">WorkflowInstance#isCompleted</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isActive-java.lang.String-" title="nablarch.integration.workflow.WorkflowInstance.isActive(java.lang.String)">WorkflowInstance#isActive</a> や
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/WorkflowInstance.html#isCompleted--" title="nablarch.integration.workflow.WorkflowInstance.isCompleted()">WorkflowInstance#isCompleted</a>
 を使用して問い合わせることができる。</p>
 <dl class="docutils">
 <dt>定義</dt>
@@ -853,7 +856,7 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <p>バージョンは、ワークフロー（ステートマシン）開始時点で有効なものが自動的に適用される。
 ワークフロー定義テーブルの適用日が <a class="reference internal" href="../../../application_framework/application_framework/libraries/date.html#date-system-time-settings"><span>システム日付</span></a> 以前で最もバージョンの大きいものが自動的に適用される。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>ワークフロー（ステートマシン）の定義の変更によっては、アプリケーションのロジックに影響をあたえるものがある。
 そのような場合は、アプリケーション側で進行中のフローのバージョンを取得しロジックを切り替える必要がある。</p>
 <dl class="last docutils">
@@ -877,15 +880,15 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <span id="workflow-xor-flow"></span><h2><a class="toc-backref" href="#id46">2.4. XORゲートウェイの進行先ノードの判定方法</a><a class="headerlink" href="#xor" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>XORゲートウェイの進行先ノードは、シーケンスフローテーブルのフロー進行条件により判定する。
 フロー進行条件には、条件を判定するクラスの完全修飾名を格納する。</p>
-<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html" title="nablarch.integration.workflow.condition.FlowProceedCondition">FlowProceedCondition</a> を実装し作成する。
-本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
+<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html" title="nablarch.integration.workflow.condition.FlowProceedCondition">FlowProceedCondition</a> を実装し作成する。
+本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
 <dl class="docutils">
 <dt>FlowProceedCondition実装クラスの例</dt>
 <dd><ul class="first simple">
 <li>実装クラスはコンストラクタでパラメータを受け取る事ができる。（パラメータはString限定)
 パラメータを受け取るクラスを使用する場合、テーブルのフロー進行条件には <code class="docutils literal"><span class="pre">sample.SampleFlowProceedCondition(&quot;key&quot;,</span> <span class="pre">&quot;value&quot;)</span></code>
 のように引数に設定する値を含めて格納する必要がある。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html#isMatch-java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow-" title="nablarch.integration.workflow.condition.FlowProceedCondition.isMatch(java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow)">isMatch</a>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/FlowProceedCondition.html#isMatch-java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow-" title="nablarch.integration.workflow.condition.FlowProceedCondition.isMatch(java.lang.String-java.util.Map-nablarch.integration.workflow.definition.SequenceFlow)">isMatch</a>
 で指定のシーケンスフローに対して遷移可能かどうかの結果を返す。</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleFlowProceedCondition</span> <span class="kd">implements</span> <span class="n">FlowProceedCondition</span> <span class="o">{</span>
@@ -909,17 +912,17 @@ XORゲートウェイから伸びるシーケンスフローには、このシ�
 <span id="id24"></span><h2><a class="toc-backref" href="#id47">2.5. マルチインスタンスの完了条件の判定方法</a><a class="headerlink" href="#workflow-multi-completion" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>マルチインスタンの完了は、タスクテーブルの完了条件により判定する。
 完了条件には、条件を判定するクラスの完全修飾名を格納する。</p>
-<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html" title="nablarch.integration.workflow.condition.CompletionCondition">CompletionCondition</a> を実装し作成する。
-本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
+<p>条件を判定するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html" title="nablarch.integration.workflow.condition.CompletionCondition">CompletionCondition</a> を実装し作成する。
+本機能で提供するクラスは、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/package-summary.html" title="nablarch.integration.workflow.condition.package-summary">nablarch.integration.workflow.condition</a> パッケージ配下に格納されている。</p>
 <dl class="docutils">
 <dt>CompletionConditionの実装例</dt>
 <dd><ul class="first simple">
 <li>実装クラスはコンストラクタでパラメータを受け取る事ができる。（パラメータはString限定)
 パラメータを受け取るクラスを使用する場合、テーブルのフロー進行条件には <code class="docutils literal"><span class="pre">sample.SampleCompletionCondition(&quot;1&quot;)</span></code>
 のように引数に設定する値を含めて格納する必要がある。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedUserTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedUserTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedUserTask</a>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedUserTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedUserTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedUserTask</a>
 でユーザタスクの完了判定を行う。</li>
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedGroupTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedGroupTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedGroupTask</a>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/workflow/condition/CompletionCondition.html#isCompletedGroupTask-java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task-" title="nablarch.integration.workflow.condition.CompletionCondition.isCompletedGroupTask(java.util.Map-java.lang.String-nablarch.integration.workflow.definition.Task)">isCompletedGroupTask</a>
 でグループタスクの完了判定を行う。</li>
 </ul>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrCompletionCondition</span> <span class="kd">implements</span> <span class="n">CompletionCondition</span> <span class="o">{</span>

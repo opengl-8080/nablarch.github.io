@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/messaging/mom/application_design.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/mom/application_design.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="5.1. MOMによるメッセージング" href="index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="index.html">5.1. MOMによるメッセージング</a> &raquo;</li>
       
     <li>5.1.2. アプリケーションの責務配置</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -338,12 +341,12 @@
 <dl class="docutils">
 <dt>アクションクラス(action class)</dt>
 <dd><p class="first">アクションクラスは、データリーダ(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
 )が読み込んだ要求電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
 )を元に業務ロジックを実行し、応答電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/ResponseMessage.html" title="nablarch.fw.messaging.ResponseMessage">ResponseMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/ResponseMessage.html" title="nablarch.fw.messaging.ResponseMessage">ResponseMessage</a>
 )を返却する。</p>
 <p>例えば、要求電文の取り込みであれば、業務ロジックとして以下の処理を行う。</p>
 <ul class="simple">
@@ -352,22 +355,22 @@
 <li>応答電文を作成して返す。</li>
 </ul>
 <div class="last admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p>応答不要メッセージングでは、以下の点が異なる。</p>
 <ul class="last simple">
 <li>応答不要メッセージングは、データ取り込みが目的で、業務ロジックは後続するバッチが行うため、
 バリデーションを行わない。</li>
 <li>応答不要メッセージングは電文を返さないので、
-処理結果として <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Success</a> を返す。</li>
+処理結果として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/Result.Success.html" title="nablarch.fw.Result.Success">Success</a> を返す。</li>
 </ul>
 </div>
 </dd>
 <dt>フォームクラス(form class)</dt>
 <dd><p class="first">データリーダ(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/reader/FwHeaderReader.html" title="nablarch.fw.messaging.reader.FwHeaderReader">FwHeaderReader</a> /
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/reader/MessageReader.html" title="nablarch.fw.messaging.reader.MessageReader">MessageReader</a>
 )が読み込んだ要求電文(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/messaging/RequestMessage.html" title="nablarch.fw.messaging.RequestMessage">RequestMessage</a>
 )をマッピングするクラス。</p>
 <p>要求電文をバリデーションするためのアノテーションの設定や相関バリデーションのロジックを持つ。</p>
 <dl class="last docutils">

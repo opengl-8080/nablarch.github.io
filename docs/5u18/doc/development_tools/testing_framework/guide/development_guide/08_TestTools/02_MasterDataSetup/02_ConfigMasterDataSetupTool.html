@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/development_tools/testing_framework/guide/development_guide/08_TestTools/02_MasterDataSetup/02_ConfigMasterDataSetupTool.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/08_TestTools/02_MasterDataSetup/02_ConfigMasterDataSetupTool.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.3.2. マスタデータ投入ツール" href="index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="index.html">3.3.2. マスタデータ投入ツール</a> &raquo;</li>
       
     <li>3.3.2.2. マスタデータ投入ツール インストールガイド</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -336,7 +339,12 @@
 <div class="section" id="master-data-setup-prerequisite">
 <span id="id2"></span><h2>3.3.2.2.1. 前提事項<a class="headerlink" href="#master-data-setup-prerequisite" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
-<li>Eclipseがインストール済みであること</li>
+<li>以下のツールがインストール済みであること<ul>
+<li>Eclipse</li>
+<li>Maven</li>
+</ul>
+</li>
+<li><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html#blank-project"><span>Nablarchのアーキタイプ</span></a> から生成されたプロジェクトであること</li>
 <li>テーブルが作成済みであること</li>
 <li>バックアップ用スキーマにテーブルが作成済みであること<a class="footnote-reference" href="#id4" id="id3">[1]</a></li>
 </ul>
@@ -349,11 +357,22 @@
 </div>
 <div class="section" id="id5">
 <h2>3.3.2.2.2. 提供方法<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>本ツールはNablarchのサンプルアプリケーションに同梱して提供する。本ツールのツール構成を下記に示す。</p>
+<p>本ツールはnablarch-testing-XXX.jar にて提供する。</p>
+<p>ツール使用前に、プロジェクトのユニットテストと同じDB設定を使用できるようにするためにプロジェクトのコンパイルと、ツールの実行に必要なjarファイルのダウンロードを行なう。
+以下のコマンドを実行する。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>mvn compile
+mvn dependency:copy-dependencies -DoutputDirectory=lib
+</pre></div>
+</div>
+<p>以下のファイルをダウンロードし、プロジェクトのディレクトリ(pom.xmlが存在するディレクトリ）にディレクトリ付きで展開する。</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../../../../../../_downloads/master-data-setup-tool.zip" download=""><code class="xref download docutils literal"><span class="pre">master-data-setup-tool.zip</span></code></a></li>
+</ul>
+<p>上記ファイルに含まれる設定ファイルを下記に示す。</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="51%" />
-<col width="49%" />
+<col width="52%" />
+<col width="48%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">ファイル名</th>
@@ -361,20 +380,28 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>master_data-build.properties</td>
+<tr class="row-even"><td>tool/db/data/master_data-build.properties</td>
 <td>環境設定用プロパティファイル</td>
 </tr>
-<tr class="row-odd"><td>master_data-build.xml</td>
+<tr class="row-odd"><td>tool/db/data/master_data-build.xml</td>
 <td>Antビルドファイル</td>
 </tr>
-<tr class="row-even"><td>master_data-log.properties</td>
+<tr class="row-even"><td>tool/db/data/master_data-log.properties</td>
 <td>ログ出力プロパティファイル</td>
 </tr>
-<tr class="row-odd"><td>MASTER_DATA.xlsx</td>
+<tr class="row-odd"><td>tool/db/data/master_data-app-log.properties</td>
+<td>ログ出力プロパティファイル</td>
+</tr>
+<tr class="row-even"><td>tool/db/data/MASTER_DATA.xlsx</td>
 <td>マスタデータファイル</td>
 </tr>
 </tbody>
 </table>
+<p>本ツールを実行する前に以下のコマンドを実行する。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>mvn compile
+mvn dependency:copy-dependencies -DoutputDirectory=lib
+</pre></div>
+</div>
 <div class="section" id="id6">
 <h3>3.3.2.2.2.1. プロパティファイルの書き換え<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>マスタデータ自動復旧機能が使用する、バックアップスキーマ名を設定する。</p>
@@ -384,10 +411,6 @@ masterdata.test.backup-schema<span class="o">=</span>nablarch_test_master
 </div>
 <p>その他の設定値については、ディレクトリ構造が変わらない限り修正の必要はない。</p>
 </div>
-<div class="section" id="id7">
-<h3>3.3.2.2.2.2. 配置<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>サンプルアプリケーションと同様に、&lt;mainプロジェクト&gt;/tool/db/data直下に配置する。</p>
-</div>
 </div>
 <div class="section" id="eclipse">
 <span id="how-to-setup-ant-view-in-eclipse"></span><h2>3.3.2.2.3. Eclipseとの連携設定<a class="headerlink" href="#eclipse" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -395,10 +418,10 @@ masterdata.test.backup-schema<span class="o">=</span>nablarch_test_master
 <div class="section" id="ant">
 <h3>3.3.2.2.3.1. Antビュー起動<a class="headerlink" href="#ant" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ツールバーから、ウィンドウ(Window)→設定(Show View)を選択し、Antビューを開く。</p>
-<a class="reference internal image-reference" href="../../../../../../_images/open_ant_view.png"><img alt="../../../../../../_images/open_ant_view.png" src="../../../../../../_images/open_ant_view.png" /></a>
+<a class="reference internal image-reference" href="../../../../../../_images/open_ant_view.png"><img alt="../../../../../../_images/open_ant_view.png" src="../../../../../../_images/open_ant_view.png" style="width: 100%;" /></a>
 </div>
-<div class="section" id="id8">
-<h3>3.3.2.2.3.2. ビルドファイル登録<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3>3.3.2.2.3.2. ビルドファイル登録<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>＋印のアイコンを押下し、ビルドスクリプトを選択する。</p>
 <a class="reference internal image-reference" href="../../../../../../_images/register_build_file.png"><img alt="../../../../../../_images/register_build_file.png" src="../../../../../../_images/register_build_file.png" /></a>
 <p>Antビルドファイル(master_data-build.xml)を選択する。</p>

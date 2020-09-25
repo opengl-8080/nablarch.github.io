@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/messaging/db/architecture.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/messaging/db/architecture.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="5.2. テーブルをキューとして使ったメッセージング" href="index.html"/>
@@ -321,9 +321,12 @@
           <li><a href="index.html">5.2. テーブルをキューとして使ったメッセージング</a> &raquo;</li>
       
     <li>5.2.1. アーキテクチャ概要</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -517,7 +520,7 @@
 <td><a class="reference internal" href="../../handlers/standalone/process_stop_handler.html#process-stop-handler"><span>プロセス停止制御ハンドラ</span></a></td>
 <td>サブ</td>
 <td>リクエストテーブル上の処理停止フラグがオンであった場合は、後続ハンドラの処理は行なわずにプロセス停止例外(
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/ProcessStopHandler.ProcessStop.html" title="nablarch.fw.handler.ProcessStopHandler.ProcessStop">ProcessStop</a>
 )を送出する。</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -544,10 +547,10 @@
 <div class="section" id="db-messaging-architecture-reader">
 <span id="id7"></span><h2><a class="toc-backref" href="#id15">5.2.1.6. 使用するデータリーダ</a><a class="headerlink" href="#db-messaging-architecture-reader" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースをキューとして扱う場合には、以下のデータリーダを使用する。
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">バッチ用のDatabaseRecordReader</a> を使用した場合、
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseRecordReader.html" title="nablarch.fw.reader.DatabaseRecordReader">バッチ用のDatabaseRecordReader</a> を使用した場合、
 繰り返しテーブルを監視することができないので注意すること。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a></li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
@@ -556,7 +559,7 @@
 <li>対象データがなくなった場合でも、継続して対象データを監視できるようにすること</li>
 <li>マルチススレッド環境下で使われる場合に、同一データを複数のスレッドで処理することがないようにすること</li>
 </ul>
-<p>なお、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> は、上記を満たすために以下の実装となっている</p>
+<p>なお、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/reader/DatabaseTableQueueReader.html" title="nablarch.fw.reader.DatabaseTableQueueReader">DatabaseTableQueueReader</a> は、上記を満たすために以下の実装となっている</p>
 <ul class="last simple">
 <li>テーブルに未処理のデータが無くなった場合、再度検索用SQLを実行し未処理データを抽出する</li>
 <li>複数スレッドで同一データを処理することがないように、現在処理中のデータの識別子(主キーの値)を保持し、処理されていないデータを読み込んでいる</li>
@@ -567,7 +570,7 @@
 <h2><a class="toc-backref" href="#id16">5.2.1.7. 使用するアクションのテンプレートクラス</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>データベースをキューとして扱う場合は、以下のテンプレートクラスを使用する。</p>
 <ul class="simple">
-<li><a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction (汎用的なバッチアクション)</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/action/BatchAction.html" title="nablarch.fw.action.BatchAction">BatchAction (汎用的なバッチアクション)</a></li>
 </ul>
 </div>
 </div>

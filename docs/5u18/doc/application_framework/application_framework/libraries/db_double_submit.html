@@ -33,7 +33,7 @@
   
 
   
-  <link rel="canonical" href="https://nablarch.github.io/docs/5u18/doc/application_framework/application_framework/libraries/db_double_submit.html" />
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/db_double_submit.html" />
   
     <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="7. Nablarchが提供するライブラリ" href="index.html"/>
@@ -319,9 +319,12 @@
           <li><a href="index.html">7. Nablarchが提供するライブラリ</a> &raquo;</li>
       
     <li>7.20. データベースを使用した二重サブミット防止</li>
-      <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/nablarch" class="fa fa-github"> Edit on GitHub</a>
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
   </ul>
   <hr/>
 </div>
@@ -344,7 +347,7 @@
 <p>サーバ側のトークンをデータベースに保管する実装を使用することで、特にアプリケーションサーバの設定をしなくても、
 複数のアプリケーションサーバ間でトークンを共有できる。</p>
 <div class="admonition tip">
-<p class="first admonition-title">ちなみに</p>
+<p class="first admonition-title">補足</p>
 <p class="last">ブラウザが閉じられた場合などにテーブル上にトークンが残ってしまうことがある。
 そのため、期限切れのトークンは定期的に削除する必要がある。</p>
 </div>
@@ -395,8 +398,8 @@
 </dd>
 </dl>
 <p>テーブル名およびカラム名は変更可能である。
-変更する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/token/DbTokenManager.html#setDbTokenSchema-nablarch.common.web.token.DbTokenSchema-" title="nablarch.common.web.token.DbTokenManager.setDbTokenSchema(nablarch.common.web.token.DbTokenSchema)">DbTokenManager.dbTokenSchema</a> に
-<a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/token/DbTokenSchema.html" title="nablarch.common.web.token.DbTokenSchema">DbTokenSchema</a> のコンポーネントを定義する。</p>
+変更する場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/DbTokenManager.html#setDbTokenSchema-nablarch.common.web.token.DbTokenSchema-" title="nablarch.common.web.token.DbTokenManager.setDbTokenSchema(nablarch.common.web.token.DbTokenSchema)">DbTokenManager.dbTokenSchema</a> に
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/DbTokenSchema.html" title="nablarch.common.web.token.DbTokenSchema">DbTokenSchema</a> のコンポーネントを定義する。</p>
 <p>2種類のコンポーネント定義を追加する。</p>
 <p><code class="docutils literal"><span class="pre">tokenManager</span></code> という名前でコンポーネント定義を追加する。
 これにより、トークンがデータベースで管理されるようになる。
@@ -436,7 +439,7 @@
 <div class="admonition important">
 <p class="first admonition-title">重要</p>
 <p><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/02_RequestUnitTest.html#how-to-set-token-in-request-unit-test"><span>テスティングフレームワークのトークン発行</span></a> はトークンのDB保存に対応していない。
-そのため、自動テスト実行時には <a class="reference external" href="https://nablarch.github.io/docs/5u18/javadoc/nablarch/common/web/token/HttpSessionTokenManager.html" title="nablarch.common.web.token.HttpSessionTokenManager">HttpSessionTokenManager</a> に差し替えてテストする必要がある。</p>
+そのため、自動テスト実行時には <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/token/HttpSessionTokenManager.html" title="nablarch.common.web.token.HttpSessionTokenManager">HttpSessionTokenManager</a> に差し替えてテストする必要がある。</p>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- トークンをHTTPセッションに保存する --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;tokenManager&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.web.token.HttpSessionTokenManager&quot;</span><span class="nt">/&gt;</span>
 </pre></div>

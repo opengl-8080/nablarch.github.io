@@ -1,0 +1,1076 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.7. Sending Emails &mdash; ∇Nablarch  5u17 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/mail.html" />
+  
+    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+        <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
+        <link rel="next" title="7.8. Transaction Management" href="transaction.html"/>
+        <link rel="prev" title="7.6.2. HTTP Messaging" href="system_messaging/http_system_messaging.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u17</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+    <li>7.7. Sending Emails</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sending-emails">
+<span id="mail"></span><h1>7.7. Sending Emails<a class="headerlink" href="#sending-emails" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id6">Function overview</a><ul>
+<li><a class="reference internal" href="#a-standard-email-can-be-sent-using-a-template" id="id7">A standard email can be sent using a template.</a></li>
+<li><a class="reference internal" href="#sending-of-mass-emails-such-as-campaign-notifications-is-not-supported" id="id8">Sending of mass emails such as campaign notifications is not supported</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id9">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id10">How to use</a><ul>
+<li><a class="reference internal" href="#configure-settings-to-use-email-send" id="id11">Configure settings to use email send</a></li>
+<li><a class="reference internal" href="#register-an-email-send-request" id="id12">Register an email send request</a></li>
+<li><a class="reference internal" href="#send-the-emails-execute-the-email-send-batch" id="id13">Send the emails (execute the email send batch)</a></li>
+<li><a class="reference internal" href="#error-process-while-sending-emails" id="id14">Error process while sending emails</a></li>
+<li><a class="reference internal" href="#multiple-process-email-send" id="id15">Multiple process email send</a></li>
+<li><a class="reference internal" href="#measures-against-email-header-injection-attacks" id="id16">Measures against email header injection attacks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id17">Expansion example</a><ul>
+<li><a class="reference internal" href="#change-the-email-send-process-such-as-add-digital-signature-and-encryption-email-body" id="id18">Change the email send process such as add digital signature and encryption email body</a></li>
+<li><a class="reference internal" href="#change-the-process-when-email-send-fails" id="id19">Change the process when email send fails</a></li>
+<li><a class="reference internal" href="#specify-the-transaction-used-during-email-send-request" id="id20">Specify the transaction used during email send request</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Provides the function to send emails.</p>
+<p>This function uses a architecture called delayed online process,
+wherein instead of sending the emails immediately, the email send requests are briefly stored in the database
+and sent asynchronously using the <a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span>resident batch</span></a>.</p>
+<a class="reference internal image-reference" href="../../../_images/mail_system.png"><img alt="../../../_images/mail_system.png" src="../../../_images/mail_system.png" /></a>
+<p>The reasons for using this architecture are as below.</p>
+<ul class="simple">
+<li>The sending of emails can be included as a business transaction in applications that issue email send requests.</li>
+<li>There will be no effect on the application process, even when there is an email send failure due to email server or network failure.</li>
+</ul>
+<p>This function provides two functions to implement the architecture mentioned above.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#mail-request"><span>A function to register the email send requests in the database</span></a></li>
+<li><a class="reference internal" href="#mail-send"><span>A batch function that sends email based on the email send request</span></a></li>
+</ul>
+<p>Each time the application issues an email send request,
+one email send request is created and one email is sent per request.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This function does not provide an API for sending the emails immediately.
+In this case, use <a href="https://javamail.java.net/nonav/docs/api/" target="_blank">JavaMail API(External site, English)</a> directly.</p>
+</div>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id6">7.7.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-standard-email-can-be-sent-using-a-template">
+<span id="mail-template"></span><h3><a class="toc-backref" href="#id7">7.7.1.1. A standard email can be sent using a template.</a><a class="headerlink" href="#a-standard-email-can-be-sent-using-a-template" title="Permalink to this headline">¶</a></h3>
+<p>The email send of system has to send many emails such as the registration completion notification email with the same wordings with difference in only some items.
+Therefore, this function provides the functionality for creating the subject and body by preparing a template and changing the placeholders.
+For details of the function, see <a class="reference internal" href="#mail-request"><span>Register an email send request</span></a>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>From Nablarch 5u13, standard email which uses the template engine is supported.</p>
+<p>The standard email function up to 5u12 was also a part of the template engine
+and could be used by configuring <code class="docutils literal"><span class="pre">TinyTemplateEngineMailProcessor</span></code>, but the function was limited as given below.</p>
+<ul class="simple">
+<li>Placeholders can only be replaced with simple strings and structured objects are not supported.</li>
+<li>Control syntax such as conditional branching and iterations are not supported.</li>
+</ul>
+<p>Instead of the existing standard email function, the standard email functions using the following template engine that is more advanced is recommended.</p>
+<ul class="last simple">
+<li><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html#mail-sender-freemarker-adaptor"><span>E-mail FreeMarker Adapter</span></a></li>
+<li><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html#mail-sender-thymeleaf-adaptor"><span>E-mail Thymeleaf Adapter</span></a></li>
+<li><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html#mail-sender-velocity-adaptor"><span>E-mail Velocity Adapter</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="sending-of-mass-emails-such-as-campaign-notifications-is-not-supported">
+<h3><a class="toc-backref" href="#id8">7.7.1.2. Sending of mass emails such as campaign notifications is not supported</a><a class="headerlink" href="#sending-of-mass-emails-such-as-campaign-notifications-is-not-supported" title="Permalink to this headline">¶</a></h3>
+<p>This function does not support simultaneous sending of emails such as campaign notifications.
+The use of a specialized products is recommended when the following is applicable.</p>
+<ul class="simple">
+<li>Sending mass emails such as campaign notifications and email newsletters.</li>
+<li>Measure the opening rate of the delivered email and effectiveness of click count.</li>
+<li>The client device (for example, whether it is a feature phone) is identified with the email address and emails sent are switched accordingly.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id9">7.7.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-mail-sender<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- Used for numbering the email send request ID --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-idgenerator<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-idgenerator-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id10">7.7.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-settings-to-use-email-send">
+<span id="mail-settings"></span><h3><a class="toc-backref" href="#id11">7.7.3.1. Configure settings to use email send</a><a class="headerlink" href="#configure-settings-to-use-email-send" title="Permalink to this headline">¶</a></h3>
+<p>This function uses a database to manage the data used for email send.
+The table layout is as follows.</p>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id1">
+<caption><span class="caption-text">Request to send email</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Request to send email ID <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>String type</td>
+<td>ID that uniquely identifies the email send request</td>
+</tr>
+<tr class="row-even"><td>Email send pattern ID (optional item)</td>
+<td>String type</td>
+<td>ID to identify the pattern of email send method. <br /> Define while extracting the unsent data that used the pattern.(Refer to <a class="reference internal" href="#mail-mail-send-pattern"><span>Conditions for extracting unsent data</span></a>）</td>
+</tr>
+<tr class="row-odd"><td>Process ID of email send batch (optional item)</td>
+<td>String type</td>
+<td>Column used for pessimistic locking of records by each process when executing multiple processes. <br /> Define while executing multiple processes.(See  <a class="reference internal" href="#mail-mail-multi-process"><span>Multiple process email send</span></a>)</td>
+</tr>
+<tr class="row-even"><td>Subject line</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Sender email address</td>
+<td>String type</td>
+<td>Email address specified in From header of email</td>
+</tr>
+<tr class="row-even"><td>Default reply email address</td>
+<td>String type</td>
+<td>Email address specified in Reply-To header of the email</td>
+</tr>
+<tr class="row-odd"><td>Return email address</td>
+<td>String type</td>
+<td>Email address specified in the Return-Path header of the email</td>
+</tr>
+<tr class="row-even"><td>Character set</td>
+<td>String type</td>
+<td>Character set specified in the Content-Type header of the email</td>
+</tr>
+<tr class="row-odd"><td>Status</td>
+<td>String type</td>
+<td>Code value that indicates the send status of the email (unsent/sent/failed)</td>
+</tr>
+<tr class="row-even"><td>Request date and time</td>
+<td>Timestamp type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Send date and time</td>
+<td>Timestamp type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Main text</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id2">
+<caption><span class="caption-text">Email send recipient</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Request to send email ID <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Serial number <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>Numeric type</td>
+<td>Serial number of one email send request</td>
+</tr>
+<tr class="row-odd"><td>Destination category</td>
+<td>String type</td>
+<td>Code value indicating the recipient classification (TO/CC/BCC) of the email</td>
+</tr>
+<tr class="row-even"><td>email address</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id3">
+<caption><span class="caption-text">Email attachment files</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Request to send email ID <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Serial number <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>Numeric type</td>
+<td>Serial number of one email send request</td>
+</tr>
+<tr class="row-odd"><td>Name of the attachment file</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Content-Type</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Attachment files</td>
+<td>Byte array type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given white-space-normal docutils" id="id4">
+<caption><span class="caption-text">Email template</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Email template ID <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Language <code class="docutils literal"><span class="pre">PK</span></code></td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Subject line</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Main text</td>
+<td>String type</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Character set</td>
+<td>String type</td>
+<td>Character set specified when sending an email</td>
+</tr>
+</tbody>
+</table>
+<p>Configure the following configuration to use email send</p>
+<ul class="simple">
+<li><a class="reference internal" href="#mail-common-settings"><span>Common configuration for email send request and email send batch</span></a></li>
+<li><a class="reference internal" href="#mail-mail-requester-settings"><span>Configuration of email send request</span></a></li>
+<li><a class="reference internal" href="#mail-mail-sender-settings"><span>Configuration of email send batch</span></a></li>
+</ul>
+<dl class="docutils" id="mail-common-settings">
+<dt>Common configuration for email send request and email send batch</dt>
+<dd><p class="first">In common configuration, configure the following.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#mail-common-settings-table-schema"><span>Table schema</span></a></li>
+<li><a class="reference internal" href="#mail-common-settings-mail-config"><span>Code value and message</span></a></li>
+</ul>
+<dl class="docutils" id="mail-common-settings-table-schema">
+<dt>Table schema</dt>
+<dd><p class="first">Add the following class configuration to the component definition.
+For details of the configuration items, refer to the linked Javadoc.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequestTable.html" title="nablarch.common.mail.MailRequestTable">MailRequestTable</a> (Request to send email table)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRecipientTable.html" title="nablarch.common.mail.MailRecipientTable">MailRecipientTable</a> (Email send recipient table)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailAttachedFileTable.html" title="nablarch.common.mail.MailAttachedFileTable">MailAttachedFileTable</a> (Attachment files table)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailTemplateTable.html" title="nablarch.common.mail.MailTemplateTable">MailTemplateTable</a> (Email template table)</li>
+</ul>
+<p>The configuration example shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Schema of email send request table--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailRequestTable&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the table name and column name. It is omitted here. --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Schema of email send recipient table --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailRecipientTable&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the table name and column name. It is omitted here. --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Schema of attachment file table --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailAttachedFileTable&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the table name and column name. It is omitted here. --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Schema of email template table --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailTemplateTable&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the table name and column name. It is omitted here. --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Initialization configuration --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Other components are omitted --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The mailSendPatternIdColumnName property and sendProcessIdColumnName property of MailRequestTable are optional items and configured to use the function.
+For mailSendPatternIdColumnName property, refer to <a class="reference internal" href="#mail-mail-send-pattern"><span>Conditions for extracting unsent data</span></a>
+and for sendProcessIdColumnName property, refer to <a class="reference internal" href="#mail-mail-multi-process"><span>Multiple process email send</span></a>.</p>
+</div>
+<dl class="last docutils" id="mail-common-settings-mail-config">
+<dt>Code value and message</dt>
+<dd><p class="first">Configure the code value used while sending email, message ID and failure code.
+Add the configuration of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailConfig.html" title="nablarch.common.mail.MailConfig">MailConfig</a> to the component definition.
+For details of the configuration items, refer to  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailConfig.html" title="nablarch.common.mail.MailConfig">Javadoc of MailConfig</a>.</p>
+<p>The configuration example shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailConfig&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Numbering target identification ID of email send request ID --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestSbnId&quot;</span> <span class="na">value=</span><span class="s">&quot;MAIL_REQUEST_ID&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- A code value that indicates the email recipient classification (TO/CC/BCC) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;recipientTypeTO&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;recipientTypeCC&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;recipientTypeBCC&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- A code value that indicates the email status (unsent/sent/failed) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;statusUnsent&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;statusSent&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;statusFailure&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Message ID to output the number of email send requests --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestCountMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;mail.request.count&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Message ID for email sent successfully --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sendSuccessMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;mail.send.success&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Failure code when send fails --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sendFailureCode&quot;</span> <span class="na">value=</span><span class="s">&quot;mail.send.failure&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Exit code when send fails --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;abnormalEndExitCode&quot;</span> <span class="na">value=</span><span class="s">&quot;199&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="docutils" id="mail-mail-requester-settings">
+<dt>Configuration of email send request</dt>
+<dd><p class="first">Add the following class to the component definition.
+For details of the configuration items, refer to the linked Javadoc.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> (component that registers email send requests in the database)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequestConfig.html" title="nablarch.common.mail.MailRequestConfig">MailRequestConfig</a> (class that retains the configuration value during email send request)</li>
+</ul>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> generates
+a email send request ID using index <a class="reference internal" href="database/generator.html#generator"><span>Numbering</span></a>
+when registering the email send request ID in the database.
+Therefore, separate configuration of <a class="reference internal" href="database/generator.html#generator"><span>Numbering</span></a> is required.</p>
+<p>The configuration example shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Since <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> is looked up with name,
+specify <code class="docutils literal"><span class="pre">mailRequester</span></code> component name.</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Email send request component. --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequester&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailRequester&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Configuration value during email send request (refer to the component definition below) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestConfig&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRequestConfig&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- IdGenerator used for numbering the email send request ID --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestIdGenerator&quot;</span> <span class="na">ref=</span><span class="s">&quot;idGenerator&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Table schema --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRequestTable&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailRecipientTable&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailAttachedFileTable&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;templateEngineMailProcessor&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.TinyTemplateEngineMailProcessor&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="na">ref=</span><span class="s">&quot;mailTemplateTable&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Configuration value during email send request --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequestConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailRequestConfig&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Default reply email address --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultReplyTo&quot;</span> <span class="na">value=</span><span class="s">&quot;default.reply.to@nablarch.sample&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Default return email address --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultReturnPath&quot;</span> <span class="na">value=</span><span class="s">&quot;default.return.path@nablarch.sample&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Default character set --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultCharset&quot;</span> <span class="na">value=</span><span class="s">&quot;ISO-2022-JP&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Maximum number of recipients --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxRecipientCount&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Maximum attached file size (bytes) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxAttachedFileSize&quot;</span> <span class="na">value=</span><span class="s">&quot;2097152&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><code class="docutils literal"><span class="pre">TinyTemplateEngineMailProcessor</span></code> is used here only for explanation and it has limited functionality and use template engines such as FreeMarker is recommended.
+For details, see <a class="reference internal" href="#mail-template"><span>A standard email can be sent using a template.</span></a>.</p>
+<dl class="docutils" id="mail-mail-sender-settings">
+<dt>Configuration of email send batch</dt>
+<dd><p class="first">Configure the connection information of the SMTP server used by the email send batch.
+Add the configuration of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSessionConfig.html" title="nablarch.common.mail.MailSessionConfig">MailSessionConfig</a>.
+For details of the configuration items, refer to the linked Javadoc.</p>
+<p>The configuration example shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailSessionConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailSessionConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailSmtpHost&quot;</span> <span class="na">value=</span><span class="s">&quot;localhost&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailHost&quot;</span> <span class="na">value=</span><span class="s">&quot;localhost&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailSmtpPort&quot;</span> <span class="na">value=</span><span class="s">&quot;25&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailSmtpConnectionTimeout&quot;</span> <span class="na">value=</span><span class="s">&quot;100000&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailSmtpTimeout&quot;</span> <span class="na">value=</span><span class="s">&quot;100000&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="register-an-email-send-request">
+<span id="mail-request"></span><h3><a class="toc-backref" href="#id12">7.7.3.2. Register an email send request</a><a class="headerlink" href="#register-an-email-send-request" title="Permalink to this headline">¶</a></h3>
+<p>The following class is used to register the email send request.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a> (register the email send request in the database)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailUtil.html" title="nablarch.common.mail.MailUtil">MailUtil</a> (acquires <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a>)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/FreeTextMailContext.html" title="nablarch.common.mail.FreeTextMailContext">FreeTextMailContext</a> (non-standard email send request)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/TemplateMailContext.html" title="nablarch.common.mail.TemplateMailContext">TemplateMailContext</a> (standard email send request)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/AttachedFile.html" title="nablarch.common.mail.AttachedFile">AttachedFile</a> (Attachment file)</li>
+</ul>
+<p>This function supports free-format non-standard emails,
+and standard emails that use preregistered templates,
+and creates the email send requests by using the corresponding classes.</p>
+<p>An implementation example of a standard email is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create an email send request</span>
+<span class="n">TemplateMailContext</span> <span class="n">mailRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TemplateMailContext</span><span class="o">();</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="s">&quot;from@tis.co.jp&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">addTo</span><span class="o">(</span><span class="s">&quot;to@tis.co.jp&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">addCc</span><span class="o">(</span><span class="s">&quot;cc@tis.co.jp&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">addBcc</span><span class="o">(</span><span class="s">&quot;bcc@tis.co.jp&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="s">&quot;Subject&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setTemplateId</span><span class="o">(</span><span class="s">&quot;Template ID&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setLang</span><span class="o">(</span><span class="s">&quot;ja&quot;</span><span class="o">);</span>
+
+<span class="c1">// Configure the value for the template placeholder.</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">&quot;address&quot;</span><span class="o">,</span> <span class="s">&quot;Mailing address&quot;</span><span class="o">);</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">&quot;tel&quot;</span><span class="o">,</span> <span class="s">&quot;Telephone number&quot;</span><span class="o">);</span>
+<span class="c1">// When null is configured to the value, it is replaced by an empty string as shown below.</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">setVariable</span><span class="o">(</span><span class="s">&quot;option&quot;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+
+<span class="c1">// Configure the attachment file.</span>
+<span class="n">AttachedFile</span> <span class="n">attachedFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AttachedFile</span><span class="o">(</span><span class="s">&quot;text/plain&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;path/to/file&quot;</span><span class="o">));</span>
+<span class="n">mailRequest</span><span class="o">.</span><span class="na">addAttachedFile</span><span class="o">(</span><span class="n">attachedFile</span><span class="o">);</span>
+
+<span class="c1">// Register the email send request.</span>
+<span class="n">MailRequester</span> <span class="n">requester</span> <span class="o">=</span> <span class="n">MailUtil</span><span class="o">.</span><span class="na">getMailRequester</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">mailRequestId</span> <span class="o">=</span> <span class="n">requester</span><span class="o">.</span><span class="na">requestToSend</span><span class="o">(</span><span class="n">mailRequest</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Note the following points when setting the values for the placeholder template in the standard email.</p>
+<ul class="last simple">
+<li>An exception is thrown when <code class="docutils literal"><span class="pre">null</span></code> is specified in the key.</li>
+<li>When <code class="docutils literal"><span class="pre">null</span></code> is specified in the value, replace it with an empty string.</li>
+<li>Consistency between the template placeholder and key/value configured for the placeholder is not checked.
+Therefore, irrespective of whether a placeholder is present in the template, if the value is not set, then the email is sent without changing the placeholder.
+Conversely, values configured without a corresponding placeholder are simply ignored and the email is sent.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="send-the-emails-execute-the-email-send-batch">
+<span id="mail-send"></span><h3><a class="toc-backref" href="#id13">7.7.3.3. Send the emails (execute the email send batch)</a><a class="headerlink" href="#send-the-emails-execute-the-email-send-batch" title="Permalink to this headline">¶</a></h3>
+<p>Email send batch uses <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a>.
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> is created as batch action
+that operates using <a class="reference internal" href="../batch/nablarch_batch/architecture.html#nablarch-batch-resident-batch"><span>resident batch</span></a>.</p>
+<p>To not send the same email multiple times when a failure occurs, the following process is followed in email send process.
+As a result, when an email is sent, the status is updated and sending of the email twice is prevented.</p>
+<dl class="docutils">
+<dt>Email send process flow</dt>
+<dd><a class="first last reference internal image-reference" href="../../../_images/mail_sender_flow.png"><img alt="../../../_images/mail_sender_flow.png" src="../../../_images/mail_sender_flow.png" /></a>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When an exception (for example, exception thrown during database or network failure) occurs while updating the status (change to send failure) during email send failure, the status remains as sent.
+In this case, a patch is required to be attached to the relevant data (change the status to send failure).
+A message is added to the exception to prompt patch application.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">As shown in the above figure, the status update process is executed in another transaction.
+Therefore, the transaction to be used in these processes is required to be configured.
+The component name of this transaction should be registered in the component configuration file as <code class="docutils literal"><span class="pre">statusUpdateTransaction</span></code>.
+For details, see  <a class="reference internal" href="database/database.html#database-new-transaction"><span>Execute SQL in a transaction different from the current transaction</span></a>.</p>
+</div>
+<p>An execution example is shown below.
+Refer to  <a class="reference internal" href="../handlers/standalone/main.html#main-run-application"><span>Launch the application</span></a> for the details on execution.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Specify <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> in the requestPath option.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>java nablarch.fw.launcher.Main <span class="se">\</span>
+  -diConfig file:./mail-batch-config.xml <span class="se">\</span>
+  -requestPath nablarch.common.mail.MailSender/SENDMAIL00 <span class="se">\</span>
+  -userId mailBatchUser
+</pre></div>
+</div>
+<dl class="docutils" id="mail-mail-send-pattern">
+<dt>Conditions for extracting unsent data</dt>
+<dd><p class="first"><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> extracts unsent data
+from the email send request table and sends the email.
+The conditions for extracting unsent data can be selected from the following two options.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Extract unsent data from the entire table</li>
+<li>Extract unsent data from each email send pattern ID</li>
+</ul>
+</div></blockquote>
+<p>To use email send pattern ID,
+for example, a system that can handle high priority emails that require the shortest possible time to send the mail
+and low priority emails which are okay to be sent once every hour can be considered.</p>
+<p>To extract the unsent data from every email send pattern ID,
+start an email send batch process for each email send pattern ID to be monitored.
+Therefore, at process startup, specify the email send pattern ID (mailSendPatternId) to be processed as the startup argument.</p>
+<p>An execution example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Specify the email send pattern ID in the option with the name <code class="docutils literal"><span class="pre">mailSendPatternId</span></code>.</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>java nablarch.fw.launcher.Main <span class="se">\</span>
+  -diConfig file:./mail-batch-config.xml <span class="se">\</span>
+  -requestPath nablarch.common.mail.MailSender/SENDMAIL00 <span class="se">\</span>
+  -userId mailBatchUser
+  -mailSendPatternId <span class="m">02</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="error-process-while-sending-emails">
+<span id="mail-mail-error-process"></span><h3><a class="toc-backref" href="#id14">7.7.3.4. Error process while sending emails</a><a class="headerlink" href="#error-process-while-sending-emails" title="Permalink to this headline">¶</a></h3>
+<p>When an exception caused by external input data (address or header) or an exception of email send failure occurs,
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> sets the target email send request status as send failure and processes the next email send.
+When an exception other than the above occurs, email send request status is set as send failure and retried.</p>
+<p>The following table shows the exception types and their error handling.</p>
+<blockquote>
+<div><table border="1" class="white-space-normal docutils" id="id5">
+<caption><span class="caption-text">Exception and process while sending emails</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Exception</th>
+<th class="head">Processing</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/AddressException.html">AddressException of JavaMail</a> when changing the email address of the send request</td>
+<td>Log output of the address that failed during conversion (log level: ERROR)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/InvalidCharacterException.html" title="nablarch.common.mail.InvalidCharacterException">InvalidCharacterException</a> in <a class="reference internal" href="#mail-mail-header-injection"><span>Measures against email header injection attacks</span></a></td>
+<td>Log output of header string (log level: ERROR).</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://javamail.java.net/nonav/docs/api/javax/mail/SendFailedException.html">SendFailureException of JavaMail</a> when email send fails</td>
+<td>Log output of sent address, unsent address and invalid address (log level: ERROR)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="java.lang.Exception">Exception</a> other than the above during email send</td>
+<td>Wraps the exception and throws retry exception.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>When update to status send failure fails or when the retry limit has reached, the email send batch is abnormally terminated.</p>
+<blockquote>
+<div><div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Send failure detection is required to be supported by checking the log file in another process.</p>
+</div>
+</div></blockquote>
+<p>To change the log output process or retry process, refer <a class="reference internal" href="#mail-mail-extension-sample"><span>Expansion example</span></a>.</p>
+</div>
+<div class="section" id="multiple-process-email-send">
+<span id="mail-mail-multi-process"></span><h3><a class="toc-backref" href="#id15">7.7.3.5. Multiple process email send</a><a class="headerlink" href="#multiple-process-email-send" title="Permalink to this headline">¶</a></h3>
+<p>Perform pessimistic lock using the process ID column of the email send request table
+so that multiple processes do not process the same send request when using multiple process for email send (example, when executing on a redundant server).
+The following configuration is required to use this function.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Define the process ID column of email send batch in email send request table</li>
+<li>Configure the process ID column name of the email send batch in the property value sendProcessIdColumnName of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequestTable.html" title="nablarch.common.mail.MailRequestTable">MailRequestTable</a> and add it to the component definition</li>
+<li>Add the transaction to update the process ID of the email send batch to the component definition with the name <code class="docutils literal"><span class="pre">mailMultiProcessTransaction</span></code> (refer to <a class="reference internal" href="database/database.html#database-new-transaction"><span>Execute SQL in a transaction different from the current transaction</span></a> for the transaction configuration)</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If the configuration mentioned in step 2 is not done, then there is a possibility of multiple processes processing a single email send request as there is no exclusive control.
+However, the email send batch apparently continues to operate, and detecting the omission of this configuration is difficult.
+Configure the above without fail for multiple processing of email send.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="measures-against-email-header-injection-attacks">
+<span id="mail-mail-header-injection"></span><h3><a class="toc-backref" href="#id16">7.7.3.6. Measures against email header injection attacks</a><a class="headerlink" href="#measures-against-email-header-injection-attacks" title="Permalink to this headline">¶</a></h3>
+<p>The following should be implemented as a fundamental measure against email header injection attacks.</p>
+<ul class="simple">
+<li>Use a fixed value for the email header. Do not use the external input values.</li>
+<li>Send email using the standard API of programming language. For Java, use  <a href="https://javamail.java.net/nonav/docs/api/" target="_blank">JavaMail API(External site, English)</a> .</li>
+</ul>
+<dl class="docutils">
+<dt>Use a fixed value for the email header. Do not use the external input values.</dt>
+<dd>This has to be supported in the project.
+When a fixed value cannot be used, change the line feed code or remove from the project.</dd>
+<dt>Send email using the standard API of programming language. For Java, use <a href="https://javamail.java.net/nonav/docs/api/" target="_blank">JavaMail API(External site, English)</a> .</dt>
+<dd><p class="first">This function uses <a href="https://javamail.java.net/nonav/docs/api/" target="_blank">JavaMail API(External site, English)</a> .
+However, even if <a href="https://javamail.java.net/nonav/docs/api/" target="_blank">JavaMail API(External site, English)</a> is used, there are items that can be sent by email even if some of the items in the email header include a line feed code.
+Therefore, as a security measure, a check functionality is provided to prevent an email send when a line feed code is included in these items.
+If line feed code is included,
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/InvalidCharacterException.html" title="nablarch.common.mail.InvalidCharacterException">InvalidCharacterException</a>
+is thrown and log is output (log level: ERROR), and the sending process is handled as a failure for the corresponding email.</p>
+<p>This security measure covers the following items that may be vulnerable.</p>
+<ul class="last simple">
+<li>Subject line</li>
+<li>Return email address</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<span id="mail-mail-extension-sample"></span><h2><a class="toc-backref" href="#id17">7.7.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-the-email-send-process-such-as-add-digital-signature-and-encryption-email-body">
+<h3><a class="toc-backref" href="#id18">7.7.4.1. Change the email send process such as add digital signature and encryption email body</a><a class="headerlink" href="#change-the-email-send-process-such-as-add-digital-signature-and-encryption-email-body" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a>
+sends the contents specified in email send request or template without any change.
+Depending on the application requirements, addition of digital signature or encryption the email body is required.</p>
+<p>For such cases, support by creating an inherited class of
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a> in the project.
+For details, see <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">Javadoc of MailSender</a>.</p>
+</div>
+<div class="section" id="change-the-process-when-email-send-fails">
+<h3><a class="toc-backref" href="#id19">7.7.4.2. Change the process when email send fails</a><a class="headerlink" href="#change-the-process-when-email-send-fails" title="Permalink to this headline">¶</a></h3>
+<p>Error process when an email send fails (for details, refer to <a class="reference internal" href="#mail-mail-error-process"><span>Error process while sending emails</span></a>) may have to be changed
+based on the requirement of the application such as changing the log level and retry exception, etc.</p>
+<p>For such cases, like in the above cases, support by creating an inherited class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailSender.html" title="nablarch.common.mail.MailSender">MailSender</a>.</p>
+</div>
+<div class="section" id="specify-the-transaction-used-during-email-send-request">
+<h3><a class="toc-backref" href="#id20">7.7.4.3. Specify the transaction used during email send request</a><a class="headerlink" href="#specify-the-transaction-used-during-email-send-request" title="Permalink to this headline">¶</a></h3>
+<p>When the email send request is to be performed securely even when a business application fails,
+the transaction executed in the email send request <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/mail/MailRequester.html" title="nablarch.common.mail.MailRequester">MailRequester</a>
+and <a class="reference internal" href="database/generator.html#generator"><span>numbering</span></a> of email send request ID may have to specified independent of the business application transaction.</p>
+<p>A configuration example for this case is shown below.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Use the same transaction name in the numbering of the email send request and the transaction manager.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Email send request component --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequester&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.mail.MailRequester&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the transaction used in email send --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;mailTransactionManager&quot;</span> <span class="na">ref=</span><span class="s">&quot;txManager&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Transaction manager  --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;txManager&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.transaction.SimpleDbTransactionManager&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;mail-transaction&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Email send request ID generator --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;mailRequestIdGenerator&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.TableIdGenerator&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Specify the transaction name specified in the transaction manager  --&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;mail-transaction&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u17',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
