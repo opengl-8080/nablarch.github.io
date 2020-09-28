@@ -649,7 +649,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </div>
 <div class="section" id="id15">
 <h3><a class="toc-backref" href="#id37">設定のプレフィックスを変更する</a><a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>設定のプレフィックス (<code class="docutils literal"><span class="pre">nablarch.micrometer.&lt;subPrefix&gt;</span></code>) は、各レジストリファクトリごとに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setPrefix-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.setPrefix(String)">prefix</a> プロパティを指定することで変更できる。</p>
+<p>設定のプレフィックス (<code class="docutils literal"><span class="pre">nablarch.micrometer.&lt;subPrefix&gt;</span></code>) は、各レジストリファクトリごとに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setPrefix-java.lang.String-" title="nablarch.integration.micrometer.MeterRegistryFactory.setPrefix(java.lang.String)">prefix</a> プロパティを指定することで変更できる。</p>
 <p>以下に、プレフィックスを変更する例を記載する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
@@ -668,7 +668,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 <div class="section" id="id16">
 <h3><a class="toc-backref" href="#id38">設定ファイルの場所を変更する</a><a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>設定ファイル（<code class="docutils literal"><span class="pre">micrometer.properties</span></code>）の場所は、以下の方法で変更できる。</p>
-<p>まず、レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#xmlConfigPath-String-" title="nablarch.integration.micrometer.MeterRegistryFactory.xmlConfigPath(String)">xmlConfigPath</a> プロパティに、設定ファイルを読み込むXMLファイルのパスを指定する。</p>
+<p>まず、レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setXmlConfigPath-java.lang.String-" title="nablarch.integration.micrometer.MeterRegistryFactory.setXmlConfigPath(java.lang.String)">xmlConfigPath</a> プロパティに、設定ファイルを読み込むXMLファイルのパスを指定する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;meterBinderListProvider&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationDisposer&quot;</span> <span class="na">ref=</span><span class="s">&quot;disposer&quot;</span> <span class="nt">/&gt;</span>
@@ -809,7 +809,7 @@ $ export NABLARCH_MICROMETER_EXAMPLE_THREE=OS_ENV
 </div>
 <div class="section" id="id18">
 <h2><a class="toc-backref" href="#id40">共通のタグを設定する</a><a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setTags-Map-" title="nablarch.integration.micrometer.MeterRegistryFactory.setTags(Map)">tags</a> プロパティで、すべてのメトリクスに共通するタグを設定できる。</p>
+<p>レジストリファクトリの <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/MeterRegistryFactory.html#setTags-java.util.Map-" title="nablarch.integration.micrometer.MeterRegistryFactory.setTags(java.util.Map)">tags</a> プロパティで、すべてのメトリクスに共通するタグを設定できる。</p>
 <p>この機能は、アプリケーションが稼働しているホスト、インスタンス、リージョンなどを識別できる情報を設定するといった用途として使用できる。</p>
 <p>以下に設定方法を記載する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;meterRegistry&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.micrometer.logging.LoggingMeterRegistryFactory&quot;</span><span class="nt">&gt;</span>
@@ -947,7 +947,7 @@ $ <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><s
 <span class="nt">&lt;/component&gt;</span>
 </pre></div>
 </div>
-<p>作成したカスタムプロバイダは、 <code class="docutils literal"><span class="pre">CloudWatchMeterRegistryFactory</span></code> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html#setCloudWatchAsyncClientProvider-CloudWatchAsyncClientProvider-" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory.setCloudWatchAsyncClientProvider(CloudWatchAsyncClientProvider)">cloudWatchAsyncClientProvider</a> プロパティに設定する。</p>
+<p>作成したカスタムプロバイダは、 <code class="docutils literal"><span class="pre">CloudWatchMeterRegistryFactory</span></code> の <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/micrometer/cloudwatch/CloudWatchMeterRegistryFactory.html#setCloudWatchAsyncClientProvider-nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider-" title="nablarch.integration.micrometer.cloudwatch.CloudWatchMeterRegistryFactory.setCloudWatchAsyncClientProvider(nablarch.integration.micrometer.cloudwatch.CloudWatchAsyncClientProvider)">cloudWatchAsyncClientProvider</a> プロパティに設定する。</p>
 <p>これにより、カスタムプロバイダが生成した <code class="docutils literal"><span class="pre">CloudWatchAsyncClient</span></code> がメトリクスの連携で使用されるようになる。</p>
 <div class="last admonition tip">
 <p class="first admonition-title">補足</p>
