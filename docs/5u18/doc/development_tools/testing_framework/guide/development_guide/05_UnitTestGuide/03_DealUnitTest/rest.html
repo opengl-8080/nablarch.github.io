@@ -374,6 +374,13 @@
 <p>各アプリケーションの要件に合わせてこのインタフェースの実装クラスを作成する。</p>
 <p>フレームワークではよく使われる実装として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/test/core/http/NablarchSIDManager.html" title="nablarch.test.core.http.NablarchSIDManager">NablarchSIDManager</a> を提供している。
 この実装ではレスポンスの <code class="docutils literal"><span class="pre">Set-Cookie</span></code> ヘッダーからセッションIDを抽出し、リクエストの <code class="docutils literal"><span class="pre">Cookie</span></code> ヘッダーに値を引き継ぐことができる。</p>
+<p><code class="docutils literal"><span class="pre">RequestResponseProcessor</span></code> は1つの取引単体テストケース内で先に受信したレスポンスの値を次のリクエストに受け渡すために利用する。
+この時、レスポンスから抽出した値をリクエストに受け渡すために内部に状態として持つことになる。
+以下の方法でコンポーネント設定した場合、NablarchのDIコンテナではインスタンスはシングルトンとなってしまうため
+明示的に状態を初期化しないと、複数のテストケース間で状態が引き継がれてしまう。
+これを防ぐためにフレームワークではテストケースごとに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/test/core/http/RequestResponseProcessor.html#reset--" title="nablarch.test.core.http.RequestResponseProcessor.reset()">RequestResponseProcessor#reset</a> を呼び出している。
+複数テストケース間で状態を引き継ぎたくない場合は、 <code class="docutils literal"><span class="pre">reset()</span></code> に初期化する処理を実装する必要がある。
+内部状態を持たない場合や、複数のテストケース間で状態を共有したい場合は、 <code class="docutils literal"><span class="pre">reset()</span></code> メソッドを何もしないメソッドとしてもよい。</p>
 </div>
 <div class="section" id="defaultprocessor">
 <h3>3.1.9.2.2. コンポーネント設定ファイルに <code class="docutils literal"><span class="pre">defaultProcessor</span></code> という名前で実装クラスを設定する<a class="headerlink" href="#defaultprocessor" title="このヘッドラインへのパーマリンク">¶</a></h3>
