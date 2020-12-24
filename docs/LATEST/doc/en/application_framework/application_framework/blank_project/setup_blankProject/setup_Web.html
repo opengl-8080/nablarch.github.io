@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.3.1. Initial Setup of Web Project &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>8.3.1. Initial Setup of Web Project &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../index.html"/>
         <link rel="up" title="8.3. Initial Setup Procedure" href="../FirstStep.html"/>
         <link rel="next" title="8.3.2. Initial Setup of RESTful Web Service Project" href="setup_WebService.html"/>
         <link rel="prev" title="8.3. Initial Setup Procedure" href="../FirstStep.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -298,7 +302,7 @@
             
   <div class="section" id="initial-setup-of-web-project">
 <h1>8.3.1. Initial Setup of Web Project<a class="headerlink" href="#initial-setup-of-web-project" title="Permalink to this headline">¶</a></h1>
-<p>The following is configured in the initial setup of the web project:</p>
+<p>The following is procedures of initial setup of the web project:</p>
 <ul class="simple">
 <li>Generate web project</li>
 <li>Confirm communications of the web project</li>
@@ -320,8 +324,8 @@
 <tr class="row-even"><td>Project type</td>
 <td>Maven project</td>
 </tr>
-<tr class="row-odd"><td>Project configuration</td>
-<td>Single project configuration</td>
+<tr class="row-odd"><td>Project composition</td>
+<td>Single project composition</td>
 </tr>
 <tr class="row-even"><td>DB used</td>
 <td>H2 Database Engine (embedded in the application)</td>
@@ -348,12 +352,12 @@
 <div class="section" id="execute-the-mvn-command">
 <h3>8.3.1.2.1. Execute the mvn command<a class="headerlink" href="#execute-the-mvn-command" title="Permalink to this headline">¶</a></h3>
 <p>Use <a class="reference external" href="https://maven.apache.org/archetype/maven-archetype-plugin/usage.html">Maven Archetype Plugin(external site)</a> to generate a blank project.</p>
-<p>Change the current directory to the directory where the blank project (can be any directory) is to be created and place the following file.</p>
+<p>Change the current directory to the directory where the blank project (can be any directory) is to be created, and place the following file.</p>
 <p><a class="reference download internal" href="../../../../_downloads/generateWebProject.bat" download=""><code class="xref download docutils literal"><span class="pre">Batch</span> <span class="pre">file</span></code></a></p>
 <p>After placing the file, specify the necessary parameters in the arguments and execute the bat file.</p>
-<p>generateWebProject.bat 5u17 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(optional)&gt;&gt;</p>
+<p>generateWebProject.bat 5u18 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(optional)&gt;&gt;</p>
 <p>The parameters configured in the above command are as follows.
-To change the version of nablarch, change 5u17.</p>
+To change the version of nablarch, change 5u18.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -539,7 +543,7 @@ JNDI cannot be used even if the element &lt;resource-ref&gt; is defined in web.x
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

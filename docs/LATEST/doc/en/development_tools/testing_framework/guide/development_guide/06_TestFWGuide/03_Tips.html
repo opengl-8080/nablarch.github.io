@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.8. How to Use Purpose-specific APIs &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.2.9. How to Use Purpose-specific APIs &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/03_Tips.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../index.html"/>
         <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
-        <link rel="next" title="3.2.9. Master Data Recovery Function" href="04_MasterDataRestore.html"/>
-        <link rel="prev" title="3.2.7. Request Unit Test (HTTP Sending Synchronous Message Process)" href="RequestUnitTest_http_send_sync.html"/>
+        <link rel="next" title="3.2.10. Master Data Recovery Function" href="04_MasterDataRestore.html"/>
+        <link rel="prev" title="3.2.8. Request Unit Test (HTTP Sending Synchronous Message Process)" href="RequestUnitTest_http_send_sync.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
       
-    <li>3.2.8. How to Use Purpose-specific APIs</li>
+    <li>3.2.9. How to Use Purpose-specific APIs</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -295,7 +299,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-use-purpose-specific-apis">
-<h1>3.2.8. How to Use Purpose-specific APIs<a class="headerlink" href="#how-to-use-purpose-specific-apis" title="Permalink to this headline">¶</a></h1>
+<h1>3.2.9. How to Use Purpose-specific APIs<a class="headerlink" href="#how-to-use-purpose-specific-apis" title="Permalink to this headline">¶</a></h1>
 <p>This section describes how to use purpose-specific APIs.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#how-to-get-data-from-excel"><span>To acquire input parameters and expected values for return values, etc. from an Excel file</span></a></li>
@@ -316,7 +320,7 @@
 <li><a class="reference internal" href="#how-to-convert-test-data"><span>To add a routine conversion process for test data in the messaging process</span></a></li>
 </ul>
 <div class="section" id="to-acquire-input-parameters-and-expected-values-for-return-values-etc-from-an-excel-file">
-<span id="how-to-get-data-from-excel"></span><h2>3.2.8.1. To acquire input parameters and expected values for return values, etc. from an Excel file<a class="headerlink" href="#to-acquire-input-parameters-and-expected-values-for-return-values-etc-from-an-excel-file" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-get-data-from-excel"></span><h2>3.2.9.1. To acquire input parameters and expected values for return values, etc. from an Excel file<a class="headerlink" href="#to-acquire-input-parameters-and-expected-values-for-return-values-etc-from-an-excel-file" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to describe the arguments when you call a method of the class to be tested or return values of the method in an Excel file.
 The described data can be acquired in List-Map format (List&lt;Map&lt;String, String&gt;&gt; format).</p>
 <dl class="docutils">
@@ -334,7 +338,7 @@ Specify sheet name in the first argument, and ID in the second argument.</p>
 </ul>
 </div></blockquote>
 <div class="section" id="example-of-test-source-code-implementation">
-<h3>3.2.8.1.1. Example of test source code implementation<a class="headerlink" href="#example-of-test-source-code-implementation" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.1.1. Example of test source code implementation<a class="headerlink" href="#example-of-test-source-code-implementation" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
 
@@ -362,7 +366,7 @@ Specify sheet name in the first argument, and ID in the second argument.</p>
 </div></blockquote>
 </div>
 <div class="section" id="example-of-excel-file-description">
-<h3>3.2.8.1.2. Example of Excel file description<a class="headerlink" href="#example-of-excel-file-description" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.1.2. Example of Excel file description<a class="headerlink" href="#example-of-excel-file-description" title="Permalink to this headline">¶</a></h3>
 <p>LIST_MAP=parameters</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -400,12 +404,12 @@ Specify sheet name in the first argument, and ID in the second argument.</p>
 </div>
 </div>
 <div class="section" id="to-execute-the-same-test-method-with-different-test-data">
-<span id="how-to-run-the-same-test"></span><h2>3.2.8.2. To execute the same test method with different test data<a class="headerlink" href="#to-execute-the-same-test-method-with-different-test-data" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-run-the-same-test"></span><h2>3.2.9.2. To execute the same test method with different test data<a class="headerlink" href="#to-execute-the-same-test-method-with-different-test-data" title="Permalink to this headline">¶</a></h2>
 <p>If you want to execute the same test method with different test data, use a loop to run the test with the above-mentioned List-Map acquiring method.
 This allows you to increase the data variation simply by adding Excel data.</p>
 <p>In the following example, multiple tests are executed using a single method using the above-mentioned List-Map format.</p>
 <div class="section" id="id1">
-<h3>3.2.8.2.1. Example of test source code implementation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.2.1. Example of test source code implementation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeComponentTest</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
 
@@ -435,7 +439,7 @@ This allows you to increase the data variation simply by adding Excel data.</p>
 </div></blockquote>
 </div>
 <div class="section" id="id2">
-<h3>3.2.8.2.2. Example of Excel file description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.2.2. Example of Excel file description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>// Data to loop</p>
 <p>LIST_MAP=parameters</p>
 <table border="1" class="docutils">
@@ -522,7 +526,7 @@ If this is not done, then the success or failure of the test would depend on the
 </div>
 </div>
 <div class="section" id="to-describe-the-data-of-multiple-test-cases-on-a-single-sheet">
-<span id="tips-groupid"></span><h2>3.2.8.3. To describe the data of multiple test cases on a single sheet<a class="headerlink" href="#to-describe-the-data-of-multiple-test-cases-on-a-single-sheet" title="Permalink to this headline">¶</a></h2>
+<span id="tips-groupid"></span><h2>3.2.9.3. To describe the data of multiple test cases on a single sheet<a class="headerlink" href="#to-describe-the-data-of-multiple-test-cases-on-a-single-sheet" title="Permalink to this headline">¶</a></h2>
 <p>If there are many test cases for a single test method to be tested,
 then there is a concern that writing one test case per sheet will increase the number of sheets, thereby decreasing maintainability.</p>
 <p>Assigning information (Group SETUP_TABLE[case_001]=EMPLOYEE_TABLE) for grouping of table data allows the data of multiple test cases to be included on a single sheet.</p>
@@ -538,7 +542,7 @@ then there is a concern that writing one test case per sheet will increase the n
 <p>In the test class, the argument Group ID is passed to the overload method with the same name as the above-mentioned API.
 This allows only the data of the specified Group ID to be processed.</p>
 <div class="section" id="id3">
-<h3>3.2.8.3.1. Example of test source code implementation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.3.1. Example of test source code implementation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Registering data in DB (only the data with Group ID &quot;case_001&quot; will be registered)</span>
 <span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testUpdate&quot;</span><span class="o">,</span> <span class="s">&quot;case_001&quot;</span><span class="o">);</span>
@@ -551,7 +555,7 @@ This allows only the data of the specified Group ID to be processed.</p>
 </div></blockquote>
 </div>
 <div class="section" id="id4">
-<h3>3.2.8.3.2. Example of Excel file description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.3.2. Example of Excel file description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>// Case 001: Change the department of employees.</p>
 <p>SETUP_TABLE[case_001]=EMPLOYEE_TABLE</p>
 <table border="1" class="docutils">
@@ -678,18 +682,18 @@ This allows only the data of the specified Group ID to be processed.</p>
 </table>
 </div>
 <div class="section" id="note">
-<h3>3.2.8.3.3. Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.3.3. Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h3>
 <p>When describing data with multiple Group IDs, the data should be described in groups based on the Group IDs, same as <a class="reference internal" href="01_Abstract.html#auto-test-framework-multi-datatype"><span>Describing data by grouping together based on data types when using multiple data types</span></a>.
 If the data is not described in groups based on the Group IDs, then reading of the data is aborted in the middle and the test is not executed correctly.</p>
 </div>
 </div>
 <div class="section" id="to-fix-the-system-date-and-time-to-a-value-of-your-choice">
-<span id="how-to-fix-date"></span><h2>3.2.8.4. To fix the system date and time to a value of your choice<a class="headerlink" href="#to-fix-the-system-date-and-time-to-a-value-of-your-choice" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-fix-date"></span><h2>3.2.9.4. To fix the system date and time to a value of your choice<a class="headerlink" href="#to-fix-the-system-date-and-time-to-a-value-of-your-choice" title="Permalink to this headline">¶</a></h2>
 <p>In the case of items such as registration date and time, or update date and time, for which system date is set, it is not possible to check with an automated test that the set value is correct since the expected result changes depending on the date when the test is routinely executed.
 Therefore, this framework provides a function to configure a fixed value for the system date.By using this function, it is possible to check with an automated test that the set value is correct, even for items having system date set.</p>
 <p>In the Nablarch Application Framework, the implementation class of the SystemTimeProvider interface provides the system date and time. By replacing this implementation class with a testing class that returns a fixed value, it is possible to return the system date and time of your choice.</p>
 <div class="section" id="configuration-file-example">
-<h3>3.2.8.4.1. Configuration file example<a class="headerlink" href="#configuration-file-example" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.4.1. Configuration file example<a class="headerlink" href="#configuration-file-example" title="Permalink to this headline">¶</a></h3>
 <p>In the component configuration file, specify FixedSystemTimeProvider at the place where implementation class
 of the SystemTimeProvider interface is specified, and configure the date and time of your choice as its property.
 For example, configure as follows when the system date and time is September 14, 2010 12:34:56.</p>
@@ -731,7 +735,7 @@ For example, configure as follows when the system date and time is September 14,
 </div>
 </div>
 <div class="section" id="to-test-the-numbering-that-uses-sequence-objects">
-<span id="how-to-numbering-sequence"></span><h2>3.2.8.5. To test the numbering that uses sequence objects<a class="headerlink" href="#to-test-the-numbering-that-uses-sequence-objects" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-numbering-sequence"></span><h2>3.2.9.5. To test the numbering that uses sequence objects<a class="headerlink" href="#to-test-the-numbering-that-uses-sequence-objects" title="Permalink to this headline">¶</a></h2>
 <p>When sequence objects are used for numbering values, it is not possible to set an expected value since the value that will be numbered next cannot be predicted in advance.
 Therefore, this framework provides a function to replace the numbering process that uses sequence objects, with table numbering, simply by a change in the configuration file.
 By using this function, it is possible to check that the numbering is done correctly.</p>
@@ -744,7 +748,7 @@ By using this function, it is possible to check that the numbering is done corre
 </div></blockquote>
 <p>Configuration example and use case are shown below.</p>
 <div class="section" id="id5">
-<h3>3.2.8.5.1. Configuration file example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.5.1. Configuration file example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>In this example, it is assumed that the sequence object numbering is defined in the configuration file for production, as follows:</p>
 <blockquote>
 <div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configuration of numbering that uses sequence objects --&gt;</span>
@@ -779,7 +783,7 @@ By using this function, it is possible to check that the numbering is done corre
 </div></blockquote>
 </div>
 <div class="section" id="id6">
-<h3>3.2.8.5.2. Example of Excel file description<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.5.2. Example of Excel file description<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>We will explain based on an example when testing a numbering process where the ID to be numbered is 1101.</p>
 <blockquote>
 <div><div class="line-block">
@@ -862,7 +866,7 @@ Therefore, the expected value is &#8220;the value in the preparation data + 1&#8
 </div>
 </div>
 <div class="section" id="to-configure-user-id-request-id-etc-in-threadcontext">
-<span id="using-threadcontext"></span><h2>3.2.8.6. To configure user ID, request ID, etc. in ThreadContext<a class="headerlink" href="#to-configure-user-id-request-id-etc-in-threadcontext" title="Permalink to this headline">¶</a></h2>
+<span id="using-threadcontext"></span><h2>3.2.9.6. To configure user ID, request ID, etc. in ThreadContext<a class="headerlink" href="#to-configure-user-id-request-id-etc-in-threadcontext" title="Permalink to this headline">¶</a></h2>
 <p>In the Nablarch Application Framework, user IDs and request IDs are usually configured in advance in ThreadContext. In the case of automated testing of database access classes, values are not configured in ThreadContext since the class to be tested is invoked directly from the test class without going through the framework.</p>
 <p>You can configure the values in ThreadContext by describing the values to be configured in an Excel file and calling the following methods:</p>
 <blockquote>
@@ -876,7 +880,7 @@ Therefore, the expected value is &#8220;the value in the preparation data + 1&#8
 <p class="last">In particular, when registering and updating the database using automatically configured items, it is necessary that the request ID and user ID are configured in ThreadContext. These values should be configured to ThreadContext before invoking the class to be tested.</p>
 </div>
 <div class="section" id="id7">
-<h3>3.2.8.6.1. Example of test source code implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.6.1. Example of test source code implementation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DbAccessTestSample</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
     <span class="c1">// ＜Middle is omitted＞</span>
@@ -891,7 +895,7 @@ Therefore, the expected value is &#8220;the value in the preparation data + 1&#8
 </div></blockquote>
 </div>
 <div class="section" id="test-data-description-example">
-<h3>3.2.8.6.2. Test data description example<a class="headerlink" href="#test-data-description-example" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.6.2. Test data description example<a class="headerlink" href="#test-data-description-example" title="Permalink to this headline">¶</a></h3>
 <p>Describe the data as follows in the sheet [testInsert]. (ID is optional)</p>
 <p>LIST_MAP=threadContext</p>
 <table border="1" class="docutils">
@@ -916,13 +920,13 @@ Therefore, the expected value is &#8220;the value in the preparation data + 1&#8
 </div>
 </div>
 <div class="section" id="to-read-an-excel-file-in-any-directory">
-<span id="using-testdataparser"></span><h2>3.2.8.7. To read an Excel file in any directory<a class="headerlink" href="#to-read-an-excel-file-in-any-directory" title="Permalink to this headline">¶</a></h2>
+<span id="using-testdataparser"></span><h2>3.2.9.7. To read an Excel file in any directory<a class="headerlink" href="#to-read-an-excel-file-in-any-directory" title="Permalink to this headline">¶</a></h2>
 <p>If an Excel file exists in the same directory as the test source code,
 it can be read simply by specifying the sheet name, however, if you want to read a file in a different directory,
 and the file can be acquired directly by using the TestDataParser implementation class directly.</p>
 <p>An example of reading data from the file &#8220;Buz.xlsx&#8221;, which exists under &#8220;/foo/bar/&#8221; is shown below.</p>
 <div class="section" id="id8">
-<h3>3.2.8.7.1. Example of test source code implementation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.7.1. Example of test source code implementation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">TestDataParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="o">(</span><span class="n">TestDataParser</span><span class="o">)</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">getObject</span><span class="o">(</span><span class="s">&quot;testDataParser&quot;</span><span class="o">);</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getListMap</span><span class="o">(</span><span class="s">&quot;/foo/bar/Baz.xlsx&quot;</span><span class="o">,</span> <span class="s">&quot;sheet001&quot;</span><span class="o">,</span> <span class="s">&quot;params&quot;</span><span class="o">);</span>
@@ -932,14 +936,14 @@ and the file can be acquired directly by using the TestDataParser implementation
 </div>
 </div>
 <div class="section" id="to-perform-common-processing-before-and-after-executing-a-test">
-<span id="using-junit-annotation"></span><h2>3.2.8.8. To perform common processing before and after executing a test.<a class="headerlink" href="#to-perform-common-processing-before-and-after-executing-a-test" title="Permalink to this headline">¶</a></h2>
+<span id="using-junit-annotation"></span><h2>3.2.9.8. To perform common processing before and after executing a test.<a class="headerlink" href="#to-perform-common-processing-before-and-after-executing-a-test" title="Permalink to this headline">¶</a></h2>
 <p>By using the annotations (&#64;Before, &#64;After, &#64;BeforeClass, and &#64;AfterClass) provided in JUnit4,
 it is possible to execute common processing before and after executing a test.</p>
 <div class="section" id="id9">
-<h3>3.2.8.8.1. Note<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.8.1. Note<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>The following points must be noted when using the above annotations.</p>
 <div class="section" id="points-to-be-noted-when-using-beforeclass-and-afterclass">
-<h4>3.2.8.8.1.1. Points to be noted when using &#64;BeforeClass and &#64;AfterClass<a class="headerlink" href="#points-to-be-noted-when-using-beforeclass-and-afterclass" title="Permalink to this headline">¶</a></h4>
+<h4>3.2.9.8.1.1. Points to be noted when using &#64;BeforeClass and &#64;AfterClass<a class="headerlink" href="#points-to-be-noted-when-using-beforeclass-and-afterclass" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li>A method with the same name and the same annotations as the superclass must not be created in the subclass.
@@ -972,7 +976,7 @@ If methods having the same name are assigned the same type of annotations, then 
 </div>
 </div>
 <div class="section" id="to-use-transactions-other-than-the-default">
-<span id="using-transactions"></span><h2>3.2.8.9. To use transactions other than the default<a class="headerlink" href="#to-use-transactions-other-than-the-default" title="Permalink to this headline">¶</a></h2>
+<span id="using-transactions"></span><h2>3.2.9.9. To use transactions other than the default<a class="headerlink" href="#to-use-transactions-other-than-the-default" title="Permalink to this headline">¶</a></h2>
 <p>When carrying out the unit test of a database access class, invoke the database access class from the test class.
 Normally, since transaction control is not performed in the database access class, it is required to control the transaction in the test class.</p>
 <p>Since transaction control is a routine process, a mechanism for transaction control is provided in the testing framework.If the transaction name is described in the property file, the testing framework will start the transaction before executing the test method and end the transaction after the test method ends.
@@ -989,13 +993,13 @@ This mechanism eliminates the need to explicitly start the transaction before ex
 </dl>
 </div>
 <div class="section" id="to-use-this-framework-without-inheriting-its-class">
-<span id="using-ohter-class"></span><h2>3.2.8.10. To use this framework without inheriting its class<a class="headerlink" href="#to-use-this-framework-without-inheriting-its-class" title="Permalink to this headline">¶</a></h2>
+<span id="using-ohter-class"></span><h2>3.2.9.10. To use this framework without inheriting its class<a class="headerlink" href="#to-use-this-framework-without-inheriting-its-class" title="Permalink to this headline">¶</a></h2>
 <p>Normally, when a test class is created, the superclass provided in this framework can be inherited,
 however, there are cases where the superclass of this framework cannot be inherited as it is necessary to inherit other classes, and so on. In such cases, substitution is possible by instantiating the superclass of this framework and delegating the process.</p>
 <p>If delegation is used, it is necessary to pass a Class instance of the test class itself to the constructor.
 In addition, preprocessing (&#64;Before) and postprocessing (&#64;After) methods need to be called explicitly.</p>
 <div class="section" id="id10">
-<h3>3.2.8.10.1. Example of test source code implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.10.1. Example of test source code implementation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleTest</span> <span class="kd">extends</span> <span class="n">AnotherSuperClass</span> <span class="o">{</span>
 
@@ -1032,7 +1036,7 @@ In addition, preprocessing (&#64;Before) and postprocessing (&#64;After) methods
 </div>
 </div>
 <div class="section" id="to-validate-the-properties-of-a-class">
-<span id="how-to-assert-property-from-excel"></span><h2>3.2.8.11. To validate the properties of a class<a class="headerlink" href="#to-validate-the-properties-of-a-class" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-assert-property-from-excel"></span><h2>3.2.9.11. To validate the properties of a class<a class="headerlink" href="#to-validate-the-properties-of-a-class" title="Permalink to this headline">¶</a></h2>
 <p>Verification of properties of the class to be tested can be implemented easily.</p>
 <p>How to describe test data is described in the same way as <a class="reference internal" href="#how-to-get-data-from-excel"><span>To acquire input parameters and expected values for return values, etc. from an Excel file</span></a>.</p>
 <p>The data implies the property name in the second row and property value to be used at the time of verification from the third row onward.</p>
@@ -1046,7 +1050,7 @@ The first argument is the message to be displayed in case of an error, the secon
 </ul>
 </div></blockquote>
 <div class="section" id="id11">
-<h3>3.2.8.11.1. Example of test source code implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.11.1. Example of test source code implementation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserUpdateActionRequestTest</span> <span class="kd">extends</span> <span class="n">HttpRequestTestSupport</span> <span class="o">{</span>
 
@@ -1072,7 +1076,7 @@ The first argument is the message to be displayed in case of an error, the secon
 </div></blockquote>
 </div>
 <div class="section" id="id12">
-<h3>3.2.8.11.2. Example of Excel file description<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.11.2. Example of Excel file description<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>LIST_MAP=expectedUsers</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1096,13 +1100,13 @@ The first argument is the message to be displayed in case of an error, the secon
 </div>
 </div>
 <div class="section" id="to-enter-whitespaces-line-feeds-and-nulls-in-test-data">
-<span id="tips-test-data"></span><h2>3.2.8.12. To enter whitespaces, line feeds and nulls in test data<a class="headerlink" href="#to-enter-whitespaces-line-feeds-and-nulls-in-test-data" title="Permalink to this headline">¶</a></h2>
+<span id="tips-test-data"></span><h2>3.2.9.12. To enter whitespaces, line feeds and nulls in test data<a class="headerlink" href="#to-enter-whitespaces-line-feeds-and-nulls-in-test-data" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div>For more information, see <a class="reference internal" href="01_Abstract.html#special-notation-in-cell"><span>Special ways to write in a cell</span></a>.</div></blockquote>
 <p></p>
 </div>
 <div class="section" id="to-write-a-blank-row-in-test-data">
-<span id="how-to-express-empty-line"></span><h2>3.2.8.13. To write a blank row in test data<a class="headerlink" href="#to-write-a-blank-row-in-test-data" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-express-empty-line"></span><h2>3.2.9.13. To write a blank row in test data<a class="headerlink" href="#to-write-a-blank-row-in-test-data" title="Permalink to this headline">¶</a></h2>
 <p>You may want to include a blank row in the test data, for example,
 when you handle a file of variable length, etc.
 Since all blank rows are ignored, you can write an empty string like
@@ -1141,12 +1145,12 @@ For readability, it is recommended to enter <code class="docutils literal"><span
 </div>
 </div>
 <div class="section" id="to-conduct-a-test-by-changing-the-master-data">
-<span id="how-to-change-master-data"></span><h2>3.2.8.14. To conduct a test by changing the master data<a class="headerlink" href="#to-conduct-a-test-by-changing-the-master-data" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-change-master-data"></span><h2>3.2.9.14. To conduct a test by changing the master data<a class="headerlink" href="#to-conduct-a-test-by-changing-the-master-data" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div>See <a class="reference internal" href="04_MasterDataRestore.html"><em>Master Data Recovery Function</em></a>.</div></blockquote>
 </div>
 <div class="section" id="to-change-the-directory-from-which-test-data-is-read">
-<span id="how-to-change-test-data-dir"></span><h2>3.2.8.15. To change the directory from which test data is read<a class="headerlink" href="#to-change-the-directory-from-which-test-data-is-read" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-change-test-data-dir"></span><h2>3.2.9.15. To change the directory from which test data is read<a class="headerlink" href="#to-change-the-directory-from-which-test-data-is-read" title="Permalink to this headline">¶</a></h2>
 <p>In the default configuration, test data is read from under <code class="docutils literal"><span class="pre">test/java</span></code>.</p>
 <p>To change the test data directory according to the directory configuration of the project,
 add the following configuration to the component configuration file .<a class="footnote-reference" href="#id15" id="id13">[1]</a></p>
@@ -1198,13 +1202,13 @@ if there is test data with the same name.</td></tr>
 </table>
 </div>
 <div class="section" id="to-add-a-routine-conversion-process-for-test-data-in-the-messaging-process">
-<span id="how-to-convert-test-data"></span><h2>3.2.8.16. To add a routine conversion process for test data in the messaging process<a class="headerlink" href="#to-add-a-routine-conversion-process-for-test-data-in-the-messaging-process" title="Permalink to this headline">¶</a></h2>
+<span id="how-to-convert-test-data"></span><h2>3.2.9.16. To add a routine conversion process for test data in the messaging process<a class="headerlink" href="#to-add-a-routine-conversion-process-for-test-data-in-the-messaging-process" title="Permalink to this headline">¶</a></h2>
 <p>The data written in an Excel file for test data is simply converted to a byte sequence by default using the specified encoding.
 For example, when URL-encoded data is linked from other systems, it is necessary to write the URL-encoded data in an Excel file,
 but it is not practical in terms of readability, maintainability, and work efficiency.</p>
 <p>By implementing the following interface and registering it in the system repository, you can add a routine conversion process such as URL encoding.</p>
 <div class="section" id="interface-to-be-implemented">
-<h3>3.2.8.16.1. Interface to be implemented<a class="headerlink" href="#interface-to-be-implemented" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.16.1. Interface to be implemented<a class="headerlink" href="#interface-to-be-implemented" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">nablarch.test.core.file.TestDataConverter</span></code></li>
@@ -1212,7 +1216,7 @@ but it is not practical in terms of readability, maintainability, and work effic
 </div></blockquote>
 </div>
 <div class="section" id="contents-registered-in-the-system-repository">
-<h3>3.2.8.16.2. Contents registered in the system repository<a class="headerlink" href="#contents-registered-in-the-system-repository" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.16.2. Contents registered in the system repository<a class="headerlink" href="#contents-registered-in-the-system-repository" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -1232,7 +1236,7 @@ Data type is the value specified for file-type of the test data.</td>
 </table>
 </div>
 <div class="section" id="example-of-system-repository-registration">
-<h3>3.2.8.16.3. Example of system repository registration<a class="headerlink" href="#example-of-system-repository-registration" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.16.3. Example of system repository registration<a class="headerlink" href="#example-of-system-repository-registration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Test data converter definition --&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;TestDataConverter_FormUrlEncoded&quot;</span>
            <span class="na">class=</span><span class="s">&quot;please.change.me.test.core.file.FormUrlEncodedTestDataConverter&quot;</span><span class="nt">/&gt;</span>
@@ -1240,7 +1244,7 @@ Data type is the value specified for file-type of the test data.</td>
 </div>
 </div>
 <div class="section" id="id17">
-<h3>3.2.8.16.4. Example of Excel file description<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.9.16.4. Example of Excel file description<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <img alt="../../../../../_images/data_convert_example.png" src="../../../../../_images/data_convert_example.png" />
 <p>When the converter specified above is implemented to perform URL encoding for each data within the cells,
 it is handled in the same way as when the following data is described internally in the test framework.</p>
@@ -1282,7 +1286,7 @@ it is handled in the same way as when the following data is described internally
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

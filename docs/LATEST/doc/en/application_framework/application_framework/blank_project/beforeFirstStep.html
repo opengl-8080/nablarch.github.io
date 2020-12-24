@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.2. Before Initial Setup &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>8.2. Before Initial Setup &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/beforeFirstStep.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
         <link rel="up" title="8. Blank Project" href="index.html"/>
         <link rel="next" title="8.3. Initial Setup Procedure" href="FirstStep.html"/>
         <link rel="prev" title="8.1. Information on Apache Maven" href="maven.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -320,6 +324,8 @@
 <li>RESTful web service project</li>
 <li>JSR352-compliant batch project</li>
 <li>Nablarch batch project</li>
+<li>Web project for container</li>
+<li>RESTful web service project for container</li>
 </ul>
 </div>
 <div class="section" id="blank-project-design-concept-and-points-to-note">
@@ -338,10 +344,24 @@ For example, it is better to consider the necessity of a project for common part
 <div class="section" id="prerequisites-for-initial-setup">
 <span id="firststeppreamble"></span><h2><a class="toc-backref" href="#id4">8.2.2. Prerequisites for initial setup</a><a class="headerlink" href="#prerequisites-for-initial-setup" title="Permalink to this headline">¶</a></h2>
 <p>The following software are assumed to be installed in the execution environment.</p>
-<ul class="simple">
-<li>JDK1.8 or higher</li>
+<dl class="docutils">
+<dt>All projects</dt>
+<dd><ul class="first last simple">
 <li>Maven 3.0.5 or higher</li>
 </ul>
+</dd>
+<dt>Web, RESTful web service, JSR352-compliant batch, Nablarch batch</dt>
+<dd><ul class="first last simple">
+<li>JDK1.8 or higher</li>
+</ul>
+</dd>
+<dt>Web for container, RESTful web service for container</dt>
+<dd><ul class="first last simple">
+<li>JDK11 or higher</li>
+<li>Docker Desktop 2.2.0.0 or higher</li>
+</ul>
+</dd>
+</dl>
 <p>The following do not require advance preparation in the initial setup.</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
@@ -411,10 +431,21 @@ For example, it is better to consider the necessity of a project for common part
 <div class="section" id="common-precautions-for-initial-setup">
 <h2><a class="toc-backref" href="#id7">8.2.5. Common precautions for initial setup</a><a class="headerlink" href="#common-precautions-for-initial-setup" title="Permalink to this headline">¶</a></h2>
 <p>When performing the initial setup, note the following points.</p>
-<ul class="simple">
-<li>Do not include multi-byte characters in the path of the directory where the blank project is created.
-An error may occur as some maven plugins do not work properly if multi-byte characters are included.</li>
-<li>Execute &#8220;mvn archetype:generate&#8221; from the command line. If it is executed from eclipse4.4.2, unintended files are output.</li>
+<ul>
+<li><p class="first">Do not include multi-byte characters in the path of the directory where the blank project is created.
+An error may occur as some maven plugins do not work properly if multi-byte characters are included.</p>
+</li>
+<li><p class="first">Execute &#8220;mvn archetype:generate&#8221; from the command line. If it is executed from eclipse4.4.2, unintended files are output.</p>
+</li>
+<li><p class="first">Sometimes you get an error about Maven&#8217;s life cycle when you open a blank project you created in eclipse.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Example error message: Plugin execution not covered by lifecycle configuration</li>
+<li>If this error occurs, eclipse will suggest the installation of the plugin, and you can resolve it by following the suggestion and installing the plugin.</li>
+<li>If the network environment is unstable, each developer may take time to install the plug-ins, so you should consider measures such as distributing eclipse with the plug-ins installed in advance.</li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 </div>
@@ -452,7 +483,7 @@ An error may occur as some maven plugins do not work properly if multi-byte char
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

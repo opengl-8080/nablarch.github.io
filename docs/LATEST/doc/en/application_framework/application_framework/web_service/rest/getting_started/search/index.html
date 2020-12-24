@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.3.2. Create a Search Function &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.1.3.2. Create a Search Function &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/web_service/rest/getting_started/search/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1.3. Getting Started" href="../index.html"/>
         <link rel="next" title="3.1.3.3. Create Update Function" href="../update/index.html"/>
         <link rel="prev" title="3.1.3.1. Creation of a Registration Function" href="../create/index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -343,25 +347,6 @@ If a search condition is not specified, all project information is returned.</p>
 <div class="section" id="search-the-project-information">
 <h2>3.1.3.2.1. Search the project information<a class="headerlink" href="#search-the-project-information" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt>Define the mapping to the URL</dt>
-<dd><p class="first">Use <a class="reference internal" href="../../../../../adaptors/router_adaptor.html#router-adaptor"><span>Routing Adapter</span></a> to map business actions and URLs.</p>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>routes.xml</dt>
-<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;routes&gt;</span>
-  <span class="nt">&lt;get</span> <span class="na">path=</span><span class="s">&quot;projects&quot;</span> <span class="na">to=</span><span class="s">&quot;Project#find&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/routes&gt;</span>
-</pre></div>
-</div>
-</dd>
-<dt>Key points of this implementation</dt>
-<dd><ul class="first last simple">
-<li>The <code class="docutils literal"><span class="pre">get</span></code> tag is used to define the business action method to be mapped during GET requests.</li>
-</ul>
-</dd>
-</dl>
-</div></blockquote>
-</dd>
 <dt>Create a form</dt>
 <dd><p class="first">Create a form to accept the value submitted by the client.</p>
 <dl class="last docutils">
@@ -471,6 +456,37 @@ conversion process implementation in the business action method is not required.
 </dd>
 </dl>
 </dd>
+<dt>Define the mapping to the URL</dt>
+<dd><p class="first">Use <a class="reference internal" href="../../../../../adaptors/router_adaptor.html#router-adaptor"><span>Routing Adapter</span></a> to map business actions and URLs.
+Use <a class="reference internal" href="../../../../../adaptors/router_adaptor.html#router-adaptor-path-annotation"><span>Path annotation for JAX-RS</span></a> for mapping.</p>
+<dl class="last docutils">
+<dt>ProjectAction.java</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/projects&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProjectAction</span> <span class="o">{</span>
+  <span class="nd">@GET</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Project</span><span class="o">&gt;</span> <span class="nf">find</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
+
+      <span class="c1">// Convert request parameters to beans</span>
+      <span class="n">ProjectSearchForm</span> <span class="n">form</span> <span class="o">=</span>
+              <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">ProjectSearchForm</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">req</span><span class="o">.</span><span class="na">getParamMap</span><span class="o">());</span>
+
+      <span class="c1">// Validate</span>
+      <span class="n">ValidatorUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">form</span><span class="o">);</span>
+
+      <span class="n">ProjectSearchDto</span> <span class="n">searchCondition</span> <span class="o">=</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">ProjectSearchDto</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">form</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">UniversalDao</span><span class="o">.</span><span class="na">findAllBySqlFile</span><span class="o">(</span><span class="n">Project</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">&quot;FIND_PROJECT&quot;</span><span class="o">,</span> <span class="n">searchCondition</span><span class="o">);</span>
+  <span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Key points of this implementation</dt>
+<dd><ul class="first last simple">
+<li>The <code class="docutils literal"><span class="pre">&#64;Path</span></code> and <code class="docutils literal"><span class="pre">&#64;GET</span></code> annotations are used to define the business action methods to be mapped on GET requests.</li>
+</ul>
+</dd>
+</dl>
+</dd>
 </dl>
 </div>
 </div>
@@ -508,7 +524,7 @@ conversion process implementation in the business action method is not required.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

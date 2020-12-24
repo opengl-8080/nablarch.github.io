@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.19. How to Execute a Request Unit Test (Email Send) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.1.21. How to Execute a Request Unit Test (Email Send) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/mail.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
         <link rel="next" title="3.2. How to Use the Automated Test Framework" href="../../06_TestFWGuide/index.html"/>
-        <link rel="prev" title="3.1.18. How to Execute a Request Unit Test (Sending Synchronous Message)" href="http_send_sync.html"/>
+        <link rel="prev" title="3.1.20. How to Execute a Request Unit Test (Sending Synchronous Message)" href="http_send_sync.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
       
-    <li>3.1.19. How to Execute a Request Unit Test (Email Send)</li>
+    <li>3.1.21. How to Execute a Request Unit Test (Email Send)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -296,9 +300,9 @@
             
   <p>ma.. <span class="target" id="mail-request-test">mail_request_test</span>:</p>
 <div class="section" id="how-to-execute-a-request-unit-test-email-send">
-<h1>3.1.19. How to Execute a Request Unit Test (Email Send)<a class="headerlink" href="#how-to-execute-a-request-unit-test-email-send" title="Permalink to this headline">¶</a></h1>
+<h1>3.1.21. How to Execute a Request Unit Test (Email Send)<a class="headerlink" href="#how-to-execute-a-request-unit-test-email-send" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="structure-and-test-scope-of-the-email-send-process">
-<h2>3.1.19.1. Structure and test scope of the email send process<a class="headerlink" href="#structure-and-test-scope-of-the-email-send-process" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.21.1. Structure and test scope of the email send process<a class="headerlink" href="#structure-and-test-scope-of-the-email-send-process" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>To send mail</span></a> using this framework,
 a business application only needs to call the email sending request API provided by this framework.</p>
 <p>Therefore, the scope of the request unit test is up to confirming
@@ -307,7 +311,7 @@ that the email send request is successfully accepted and stored in the database.
 <a class="reference internal image-reference" href="../../../../../../_images/mail_overview.jpg"><img alt="../../../../../../_images/mail_overview.jpg" src="../../../../../../_images/mail_overview.jpg" /></a>
 </div>
 <div class="section" id="how-to-conduct-the-test">
-<h2>3.1.19.2. How to conduct the test<a class="headerlink" href="#how-to-conduct-the-test" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.21.2. How to conduct the test<a class="headerlink" href="#how-to-conduct-the-test" title="Permalink to this headline">¶</a></h2>
 <p>As described above, the only check in the request unit test for sending email
 is that it is stored correctly in <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/mail.html#mail"><span>each table (email send request table, email send recipient table, mail attachment table)</span></a>.</p>
 <p>It is only necessary to describe the expected state of the above three tables in an Excel sheet, as in the other methods of conducting unit tests.</p>
@@ -347,7 +351,7 @@ is that it is stored correctly in <a class="reference internal" href="../../../.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

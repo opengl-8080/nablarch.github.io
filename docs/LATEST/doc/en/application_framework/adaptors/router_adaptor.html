@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Routing Adapter &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>Routing Adapter &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/router_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../index.html"/>
         <link rel="up" title="Adaptor" href="index.html"/>
         <link rel="next" title="IBM WebSphere MQ Adapter" href="webspheremq_adaptor.html"/>
         <link rel="prev" title="log Adapter" href="log_adaptor.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Adaptor</a><ul class="current">
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -304,6 +308,13 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#automatically-map-business-actions-and-urls" id="id5">Automatically map business actions and URLs</a></li>
+<li><a class="reference internal" href="#mapping-in-jax-rs-path-annotation" id="id6">Mapping in JAX-RS Path Annotation</a><ul>
+<li><a class="reference internal" href="#changing-the-dispatch-handlers" id="id7">Changing the dispatch handlers</a></li>
+<li><a class="reference internal" href="#how-to-implement-the-mapping" id="id8">How to implement the mapping</a></li>
+<li><a class="reference internal" href="#definition-of-path-parameters" id="id9">Definition of path parameters</a></li>
+<li><a class="reference internal" href="#see-the-list-of-routing-definitions" id="id10">See the list of routing definitions</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>Adapter that performs mapping between request URL and business action using <a class="reference external" href="https://github.com/kawasima/http-request-router">http-request-router (external site)</a> .
@@ -422,6 +433,289 @@ This is because of the difficultly in reading how the business action and URL ar
 </dd>
 </dl>
 </div>
+<div class="section" id="mapping-in-jax-rs-path-annotation">
+<span id="router-adaptor-path-annotation"></span><h2><a class="toc-backref" href="#id6">Mapping in JAX-RS Path Annotation</a><a class="headerlink" href="#mapping-in-jax-rs-path-annotation" title="Permalink to this headline">¶</a></h2>
+<p>Since version 1.2.0 of this adapter, it is possible to map routing using the <code class="docutils literal"><span class="pre">javax.ws.rs.Path</span></code> annotation (hereafter referred to as <code class="docutils literal"><span class="pre">Path</span></code> annotation) in JAX-RS.</p>
+<p>This section describes how to enable routing with <code class="docutils literal"><span class="pre">Path</span></code> annotations for existing <a class="reference internal" href="../application_framework/web_service/rest/index.html#restful-web-service"><span>RESTful Web Service</span></a> and details of the various configurations.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This feature is not available on some web application servers where resources under the classpath are managed by the web application server&#8217;s unique file system.</p>
+<p>For example, in Jboss and Wildfly, the resources under the classpath are managed by a virtual file system called vfs, which makes it impossible to search for classes annotated with <code class="docutils literal"><span class="pre">Path</span></code> annotations.</p>
+<p class="last">If use such a web application server, use the existing XML-based routing definition.</p>
+</div>
+<div class="section" id="changing-the-dispatch-handlers">
+<h3><a class="toc-backref" href="#id7">Changing the dispatch handlers</a><a class="headerlink" href="#changing-the-dispatch-handlers" title="Permalink to this headline">¶</a></h3>
+<p>When using XML mapping definitions, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/RoutesMapping.html" title="nablarch.integration.router.RoutesMapping">RoutesMapping</a> is used as the dispatcher&#8217;s implementation.
+On the other hand, when using mapping definitions with Path annotations, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> needs to be set up as a dispatcher handler.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configuration example for enabling routing definitions with Path annotation --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.PathOptionsProviderRoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationPath&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.webApi.applicationPath}&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;basePackage&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.commonProperty.basePackage}&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;methodBinderFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsMethodBinderFactory&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerList&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Handler queue configuration --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Omitted --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">To use routing with <code class="docutils literal"><span class="pre">Path</span></code> annotations, configure <code class="docutils literal"><span class="pre">pathOptionsProvider</span></code> property of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> to be <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/jaxrs/JaxRsPathOptionsProvider.html" title="nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider">JaxRsPathOptionsProvider</a> .</div>
+<div class="line">(See <a class="reference internal" href="jaxrs_adaptor.html#jaxrs-adaptor"><span>JAX-RS Adapter</span></a> for information on setting <code class="docutils literal"><span class="pre">methodBinderFactory</span></code> property.</div>
+</div>
+<p>In addition, this <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/jaxrs/JaxRsPathOptionsProvider.html" title="nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider">JaxRsPathOptionsProvider</a>  needs to be set to two properties.</p>
+<p><strong>applicationPath</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Specify a common prefix for the path to be mapped.</div>
+<div class="line">This means the same value as in <code class="docutils literal"><span class="pre">javax.ws.rs.ApplicationPath</span></code> annotation in JAX-RS.</div>
+</div>
+</div></blockquote>
+<p><strong>basePackage</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Specify the name of the package to be the root in searching for classes with the <code class="docutils literal"><span class="pre">Path</span></code> annotation.</div>
+</div>
+</div></blockquote>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> component defined needs to be initialized and added to the list of objects to be initialized.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="nt">/&gt;</span>
+      <span class="c">&lt;!-- Omitted --&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>The above configuration enables the ability to register the routing by <code class="docutils literal"><span class="pre">Path</span></code> annotation.</p>
+</div>
+<div class="section" id="how-to-implement-the-mapping">
+<h3><a class="toc-backref" href="#id8">How to implement the mapping</a><a class="headerlink" href="#how-to-implement-the-mapping" title="Permalink to this headline">¶</a></h3>
+<p>The following is an example implementation that defines the mapping using the <code class="docutils literal"><span class="pre">Path</span></code> annotation.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+
+    <span class="nd">@POST</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">register</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">By annotating the action class with a <code class="docutils literal"><span class="pre">Path</span></code> annotation, we can associate the path set in the <code class="docutils literal"><span class="pre">value</span></code> of the <code class="docutils literal"><span class="pre">Path</span></code> annotation with the action class.</div>
+<div class="line">In addition, can map a HTTP method to methods in the action class by annotating methods in the action class with a corresponding annotation of HTTP method such as <code class="docutils literal"><span class="pre">javax.ws.rs.GET</span></code> .</div>
+</div>
+<p>In the above example implementation, the HTTP request will be dispatched as follows</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="22%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Path</th>
+<th class="head">HTTP method</th>
+<th class="head">Method of dispatching target</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#findAll()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample</span></code></td>
+<td><code class="docutils literal"><span class="pre">POST</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#register(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The following annotations mapping the HTTP method are provided by default.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.DELETE</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.GET</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.HEAD</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.OPTIONS</span></code> (JAX-RS 1.1 or higher)</li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.PATCH</span></code> (JAX-RS 2.1 or higher)</li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.POST</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.PUT</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<p>In addition, you can also define a subpath mapping by annotating the method with a <code class="docutils literal"><span class="pre">Path</span></code> annotation as follows.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/foo&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/bar&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">bar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In this case, the dispatch of the HTTP request would be as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Path</th>
+<th class="head">HTTP method</th>
+<th class="head">Method of dispatching target</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/foo</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#findAll()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/bar</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#register(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="definition-of-path-parameters">
+<h3><a class="toc-backref" href="#id9">Definition of path parameters</a><a class="headerlink" href="#definition-of-path-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Can also include parameters in the path, as follows</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/foo/{param}&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">foo</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">param</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;param&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/bar/{id : \\d+}&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">bar</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="c1">// Omitted</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">The path parameter should be written in accordance with the JAX-RS specification, not in the http-request-router syntax.</div>
+<div class="line">This is because this feature (routing definition with <code class="docutils literal"><span class="pre">Path</span></code> annotations) follows the JAX-RS specification.</div>
+</div>
+<div class="line-block">
+<div class="line">By describing a part of the path as <code class="docutils literal"><span class="pre">{parameter</span> <span class="pre">name}</span></code>, can define that part of the path as a parameter.</div>
+<div class="line">Can get the value of the path parameter by passing the parameter name defined here to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getParam-java.lang.String-" title="nablarch.fw.web.HttpRequest.getParam(java.lang.String)">HttpRequest#getParam(String)</a> .</div>
+</div>
+<div class="line-block">
+<div class="line">In addition, can define the format of the path parameter in a regular expression by describing it as <code class="docutils literal"><span class="pre">{parameter</span> <span class="pre">name:</span> <span class="pre">regular</span> <span class="pre">expression}</span></code>.</div>
+<div class="line">In the example implementation above, set the regular expression to <code class="docutils literal"><span class="pre">\\d+</span></code>, so the method will be dispatched only if the path value is a number.</div>
+</div>
+<p>An example of HTTP request dispatch would be as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="21%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Path</th>
+<th class="head">HTTP method</th>
+<th class="head">Method of dispatching target</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/foo/hello</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#foo(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/foo/world</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#foo(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/bar/123</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#bar(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/bar/987</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#bar(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="see-the-list-of-routing-definitions">
+<h3><a class="toc-backref" href="#id10">See the list of routing definitions</a><a class="headerlink" href="#see-the-list-of-routing-definitions" title="Permalink to this headline">¶</a></h3>
+<p>Routing definitions loaded by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> are logged at the debug level during initialization.</p>
+<p>By default, the routing list is output to the log as follows.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-07-20 13:35:53.092 -DEBUG- nablarch.integration.router.PathOptionsProviderRoutesMapping [null] boot_proc = [] proc_sys = [jaxrs] req_id = [null] usr_id = [null] GET /api/bar =&gt; com.example.BarAction#findAll
+GET /api/bar/fizz =&gt; com.example.BarAction#fizz
+GET /api/foo =&gt; com.example.FooAction#findAll
+POST /api/foo =&gt; com.example.FooAction#register
+DELETE /api/foo/(:id) =&gt; com.example.FooAction#delete
+GET /api/foo/(:id) =&gt; com.example.FooAction#find
+POST /api/foo/(:id) =&gt; com.example.FooAction#update
+</pre></div>
+</div>
+<p>If want to change the format of the log, write a class that implements <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsFormatter.html" title="nablarch.integration.router.PathOptionsFormatter">PathOptionsFormatter</a> and configure the <code class="docutils literal"><span class="pre">PathOptionsFormatter</span></code> property of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> .</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.PathOptionsProviderRoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;methodBinderFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Omitted --&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Omitted --&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsFormatter&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Configure your custom formatting class --&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;com.example.CustomPathOptionsFormatter&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -457,7 +751,7 @@ This is because of the difficultly in reading how the business action and URL ar
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

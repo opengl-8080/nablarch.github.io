@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.10. How to Execute a Request Unit Test (Receiving Synchronous Message Process) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.1.12. How to Execute a Request Unit Test (Receiving Synchronous Message Process) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/real.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
-        <link rel="next" title="3.1.11. How to Execute a Subfunction Unit (Receiving Synchronous Message)" href="../03_DealUnitTest/real.html"/>
-        <link rel="prev" title="3.1.9. How to Perform a Subfunction Unit Test (Batch)" href="../03_DealUnitTest/batch.html"/>
+        <link rel="next" title="3.1.13. How to Execute a Subfunction Unit (Receiving Synchronous Message)" href="../03_DealUnitTest/real.html"/>
+        <link rel="prev" title="3.1.11. How to Perform a Subfunction Unit Test (Batch)" href="../03_DealUnitTest/batch.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
       
-    <li>3.1.10. How to Execute a Request Unit Test (Receiving Synchronous Message Process)</li>
+    <li>3.1.12. How to Execute a Request Unit Test (Receiving Synchronous Message Process)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -295,9 +299,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-execute-a-request-unit-test-receiving-synchronous-message-process">
-<span id="real-request-test"></span><h1>3.1.10. How to Execute a Request Unit Test (Receiving Synchronous Message Process)<a class="headerlink" href="#how-to-execute-a-request-unit-test-receiving-synchronous-message-process" title="Permalink to this headline">¶</a></h1>
+<span id="real-request-test"></span><h1>3.1.12. How to Execute a Request Unit Test (Receiving Synchronous Message Process)<a class="headerlink" href="#how-to-execute-a-request-unit-test-receiving-synchronous-message-process" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-to-write-a-test-class">
-<h2>3.1.10.1. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.1. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
 <p>The test class should be created in such a way that the following conditions are met.</p>
 <ul class="simple">
 <li>The test class package should be the same as the Action class to be tested.</li>
@@ -315,21 +319,21 @@ the test class would be as follows.</p>
 </div>
 </div>
 <div class="section" id="test-method-division">
-<h2>3.1.10.2. Test method division<a class="headerlink" href="#test-method-division" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.2. Test method division<a class="headerlink" href="#test-method-division" title="Permalink to this headline">¶</a></h2>
 <p>In principle, one test method and one test sheet per test class.</p>
 <p>If the case is complex or the data volume is large, the method or sheet can be divided.</p>
 </div>
 <div class="section" id="how-to-write-test-data">
-<h2>3.1.10.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
 <p>The Excel file containing the test data should be stored in the same directory with the same name as the test source code,
 same as in the class unit test (only the extension differs).</p>
 <p>For information on how to write test data, refer to <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Test data description using Excel</span></a>.</p>
 <div class="section" id="common-database-initial-values-for-test-classes">
-<h3>3.1.10.3.1. Common database initial values for test classes<a class="headerlink" href="#common-database-initial-values-for-test-classes" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.3.1. Common database initial values for test classes<a class="headerlink" href="#common-database-initial-values-for-test-classes" title="Permalink to this headline">¶</a></h3>
 <p>The same applies for web applications. See <a class="reference internal" href="index.html#request-test-setup-db"><span>Common database initial values for test classes</span></a>.</p>
 </div>
 <div class="section" id="test-shot-list">
-<h3>3.1.10.3.2. Test shot List<a class="headerlink" href="#test-shot-list" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.3.2. Test shot List<a class="headerlink" href="#test-shot-list" title="Permalink to this headline">¶</a></h3>
 <p>The test shot table for one test method is described in the data type of LIST_MAP. The ID is <strong>testShots</strong>.</p>
 <p>Each case should have the following elements:</p>
 <table border="1" class="docutils">
@@ -407,17 +411,17 @@ When both data are mixed, both data of the default group ID and data of the spec
 </table>
 </div>
 <div class="section" id="various-preparation-data">
-<h3>3.1.10.3.3. Various preparation data<a class="headerlink" href="#various-preparation-data" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.3.3. Various preparation data<a class="headerlink" href="#various-preparation-data" title="Permalink to this headline">¶</a></h3>
 <p>This section explains how to describe the various preparation data required for testing.
 The database and request message are prepared in batches.</p>
 <div class="section" id="database-preparation">
-<h4>3.1.10.3.3.1. Database preparation<a class="headerlink" href="#database-preparation" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.12.3.3.1. Database preparation<a class="headerlink" href="#database-preparation" title="Permalink to this headline">¶</a></h4>
 <p>Map with groupID in the same way as <a class="reference internal" href="index.html#request-test-testcases"><span>online</span></a>.</p>
 <img alt="../../../../../../_images/msg_shot_to_db.png" src="../../../../../../_images/msg_shot_to_db.png" />
 <p>If there is no setUpTable column or it is blank in the <a class="reference internal" href="#test-shot-list">Test shot List</a>, the database is not prepared.</p>
 </div>
 <div class="section" id="request-message">
-<h4>3.1.10.3.3.2. Request message<a class="headerlink" href="#request-message" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.12.3.3.2. Request message<a class="headerlink" href="#request-message" title="Permalink to this headline">¶</a></h4>
 <p>The request statement that is the input data for the test is described. An example is shown below.</p>
 <hr class="docutils" />
 <blockquote>
@@ -567,11 +571,11 @@ In other words, the request message used in the test shot no1 is the data of the
 </div>
 </div>
 <div class="section" id="various-expected-values">
-<h3>3.1.10.3.4. Various expected values<a class="headerlink" href="#various-expected-values" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.3.4. Various expected values<a class="headerlink" href="#various-expected-values" title="Permalink to this headline">¶</a></h3>
 <p>When comparing the search results and database with expected values,
 link each data with the list of test cases using ID.</p>
 <div class="section" id="response-message">
-<h4>3.1.10.3.4.1. Response message<a class="headerlink" href="#response-message" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.12.3.4.1. Response message<a class="headerlink" href="#response-message" title="Permalink to this headline">¶</a></h4>
 <p>Same as <a class="reference internal" href="#request-message">Request message</a>.</p>
 <p>However, the name is <code class="docutils literal"><span class="pre">MESSAGE=expectedMessages</span></code>.</p>
 <p>The assertion method of the response message changes as follows depending on the file-type value configured in the test data directive.</p>
@@ -613,20 +617,20 @@ link each data with the list of test cases using ID.</p>
 </div>
 </div>
 <div class="section" id="expected-database-status">
-<h4>3.1.10.3.4.2. Expected database status<a class="headerlink" href="#expected-database-status" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.12.3.4.2. Expected database status<a class="headerlink" href="#expected-database-status" title="Permalink to this headline">¶</a></h4>
 <p>Link the expected database status with the test case list in the same way as <a class="reference internal" href="#database-preparation">Database preparation</a> .</p>
 </div>
 </div>
 </div>
 <div class="section" id="how-to-write-a-test-method">
-<h2>3.1.10.4. How to write a test method<a class="headerlink" href="#how-to-write-a-test-method" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.4. How to write a test method<a class="headerlink" href="#how-to-write-a-test-method" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="super-class">
-<h3>3.1.10.4.1. Super class<a class="headerlink" href="#super-class" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.4.1. Super class<a class="headerlink" href="#super-class" title="Permalink to this headline">¶</a></h3>
 <p>Inherits <code class="docutils literal"><span class="pre">MessagingRequestTestSupport</span></code>.
 In this class, the request unit test is executed by the following procedure based on the prepared test data.</p>
 </div>
 <div class="section" id="create-a-test-method">
-<h3>3.1.10.4.2. Create a test method<a class="headerlink" href="#create-a-test-method" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.4.2. Create a test method<a class="headerlink" href="#create-a-test-method" title="Permalink to this headline">¶</a></h3>
 <p>Create a method corresponding to the prepared test sheet.</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRegisterUser</span><span class="o">()</span> <span class="o">{</span>
@@ -635,7 +639,7 @@ In this class, the request unit test is executed by the following procedure base
 </div>
 </div>
 <div class="section" id="call-a-superclass-method">
-<h3>3.1.10.4.3. Call a superclass method<a class="headerlink" href="#call-a-superclass-method" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.12.4.3. Call a superclass method<a class="headerlink" href="#call-a-superclass-method" title="Permalink to this headline">¶</a></h3>
 <p>In the test method, call one of the following methods of the superclass.</p>
 <ul class="simple">
 <li>void execute()</li>
@@ -655,11 +659,11 @@ execution method without arguments should be used.</p>
 </div>
 </div>
 <div class="section" id="how-to-launch-the-test">
-<h2>3.1.10.5. How to launch the test<a class="headerlink" href="#how-to-launch-the-test" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.5. How to launch the test<a class="headerlink" href="#how-to-launch-the-test" title="Permalink to this headline">¶</a></h2>
 <p>Same as the class unit test. Execute the test in the same way as a normal JUnit test.</p>
 </div>
 <div class="section" id="test-result-verification">
-<h2>3.1.10.6. Test result verification<a class="headerlink" href="#test-result-verification" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.12.6. Test result verification<a class="headerlink" href="#test-result-verification" title="Permalink to this headline">¶</a></h2>
 <p>The following results are verified by the automated test framework.</p>
 <ul class="simple">
 <li>Result verification of the response message (required)</li>
@@ -703,7 +707,7 @@ execution method without arguments should be used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
