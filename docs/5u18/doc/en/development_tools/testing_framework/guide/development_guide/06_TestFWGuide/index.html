@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2. How to Use the Automated Test Framework &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.2. How to Use the Automated Test Framework &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
-        <link rel="up" title="3. Full-fledged testing framework for large scale development" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3. Testing framework" href="../../../index.html"/>
         <link rel="next" title="3.2.1. Automated Testing Framework" href="01_Abstract.html"/>
-        <link rel="prev" title="3.1.19. How to Execute a Request Unit Test (Email Send)" href="../05_UnitTestGuide/02_RequestUnitTest/mail.html"/>
+        <link rel="prev" title="3.1.21. How to Execute a Request Unit Test (Email Send)" href="../05_UnitTestGuide/02_RequestUnitTest/mail.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,7 +281,7 @@
       
           <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../index.html">3. Testing framework</a> &raquo;</li>
       
     <li>3.2. How to Use the Automated Test Framework</li>
     <li class="wy-breadcrumbs-aside">
@@ -299,12 +303,13 @@
 <li class="toctree-l1"><a class="reference internal" href="01_Abstract.html">3.2.1. Automated Testing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_DbAccessTest.html">3.2.2. Testing a Class that Uses the Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_RequestUnitTest.html">3.2.3. Request Unit Test (Web Applications)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_batch.html">3.2.4. Request Unit Test (Batch Process)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_real.html">3.2.5. Request Unit Test (Receive Messages Process)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_send_sync.html">3.2.6. Request Unit Test (Sending Synchronous Message Process)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_http_send_sync.html">3.2.7. Request Unit Test (HTTP Sending Synchronous Message Process)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_Tips.html">3.2.8. How to Use Purpose-specific APIs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_MasterDataRestore.html">3.2.9. Master Data Recovery Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_rest.html">3.2.4. Request Unit Test (RESTful Web Service)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_batch.html">3.2.5. Request Unit Test (Batch Process)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_real.html">3.2.6. Request Unit Test (Receive Messages Process)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_send_sync.html">3.2.7. Request Unit Test (Sending Synchronous Message Process)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RequestUnitTest_http_send_sync.html">3.2.8. Request Unit Test (HTTP Sending Synchronous Message Process)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_Tips.html">3.2.9. How to Use Purpose-specific APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_MasterDataRestore.html">3.2.10. Master Data Recovery Function</a></li>
 </ul>
 </div>
 </div>
@@ -342,7 +347,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

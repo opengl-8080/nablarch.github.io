@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.2. System Repository &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>7.2. System Repository &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/repository.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
         <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
         <link rel="next" title="7.3. Database Access" href="database_management.html"/>
         <link rel="prev" title="7.1.1.2.5. Output Messaging Log" href="log/messaging_log.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -299,31 +303,38 @@
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title first">Table of contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
-<li><a class="reference internal" href="#objects-can-be-constructed-using-di-containers" id="id2">Objects can be constructed using DI containers</a></li>
-<li><a class="reference internal" href="#objects-can-be-initialized" id="id3">Objects can be initialized</a></li>
+<li><a class="reference internal" href="#function-overview" id="id2">Function overview</a><ul>
+<li><a class="reference internal" href="#objects-can-be-constructed-using-di-containers" id="id3">Objects can be constructed using DI containers</a></li>
+<li><a class="reference internal" href="#objects-can-be-initialized" id="id4">Objects can be initialized</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-list" id="id4">Module list</a></li>
-<li><a class="reference internal" href="#how-to-use" id="id5">How to use</a><ul>
-<li><a class="reference internal" href="#define-root-node-in-xml" id="id6">Define root node in xml</a></li>
-<li><a class="reference internal" href="#configure-java-beans-object" id="id7">Configure Java Beans object</a></li>
-<li><a class="reference internal" href="#overwrite-the-configuration-of-java-beans-object" id="id8">Overwrite the configuration of Java Beans object</a></li>
-<li><a class="reference internal" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" id="id9">Use a string, numeric, or boolean value as the configuration value</a></li>
-<li><a class="reference internal" href="#use-list-or-map-as-the-configuration-value" id="id10">Use list or map as the configuration value</a></li>
-<li><a class="reference internal" href="#inject-components-automatically" id="id11">Inject components automatically</a></li>
-<li><a class="reference internal" href="#split-the-component-configuration-file-xml" id="id12">Split the component configuration file (xml)</a></li>
-<li><a class="reference internal" href="#set-the-dependent-value" id="id13">Set the dependent value</a></li>
-<li><a class="reference internal" href="#reference-environment-dependent-value-from-the-component-configuration-file" id="id14">Reference environment dependent value from the component configuration file</a></li>
-<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-system-properties" id="id15">Overwrite environment dependent values using system properties</a></li>
-<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-os-environment-variables" id="id16">Overwrite environment dependent values using OS environment variables</a></li>
-<li><a class="reference internal" href="#inject-the-object-created-by-the-factory-class" id="id17">Inject the object created by the factory class</a></li>
-<li><a class="reference internal" href="#initialize-the-object" id="id18">Initialize the object</a></li>
-<li><a class="reference internal" href="#configure-the-di-container-information-to-the-system-repository" id="id19">Configure the DI container information to the system repository</a></li>
-<li><a class="reference internal" href="#get-object-from-system-repository" id="id20">Get object from system repository</a></li>
+<li><a class="reference internal" href="#module-list" id="id5">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id6">How to use</a><ul>
+<li><a class="reference internal" href="#define-root-node-in-xml" id="id7">Define root node in xml</a></li>
+<li><a class="reference internal" href="#configure-java-beans-object" id="id8">Configure Java Beans object</a></li>
+<li><a class="reference internal" href="#overwrite-the-configuration-of-java-beans-object" id="id9">Overwrite the configuration of Java Beans object</a></li>
+<li><a class="reference internal" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" id="id10">Use a string, numeric, or boolean value as the configuration value</a></li>
+<li><a class="reference internal" href="#use-list-or-map-as-the-configuration-value" id="id11">Use list or map as the configuration value</a></li>
+<li><a class="reference internal" href="#inject-components-automatically" id="id12">Inject components automatically</a></li>
+<li><a class="reference internal" href="#split-the-component-configuration-file-xml" id="id13">Split the component configuration file (xml)</a></li>
+<li><a class="reference internal" href="#set-the-dependent-value" id="id14">Set the dependent value</a></li>
+<li><a class="reference internal" href="#reference-environment-dependent-value-from-the-component-configuration-file" id="id15">Reference environment dependent value from the component configuration file</a></li>
+<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-system-properties" id="id16">Overwrite environment dependent values using system properties</a></li>
+<li><a class="reference internal" href="#overwrite-environment-dependent-values-using-os-environment-variables" id="id17">Overwrite environment dependent values using OS environment variables</a></li>
+<li><a class="reference internal" href="#inject-the-object-created-by-the-factory-class" id="id18">Inject the object created by the factory class</a></li>
+<li><a class="reference internal" href="#constructing-objects-of-annotated-classes" id="id19">Constructing objects of annotated classes</a><ul>
+<li><a class="reference internal" href="#id1" id="id20">How to use</a></li>
+<li><a class="reference internal" href="#using-the-constructor-injection" id="id21">Using the constructor injection</a></li>
+<li><a class="reference internal" href="#managing-the-action-class-in-a-di-container" id="id22">Managing the Action class in a DI container</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#rules-for-describing-environment-configuration-file" id="id21">Rules for describing environment configuration file</a></li>
+<li><a class="reference internal" href="#initialize-the-object" id="id23">Initialize the object</a></li>
+<li><a class="reference internal" href="#handling-the-disposal-of-objects" id="id24">Handling the disposal of objects</a></li>
+<li><a class="reference internal" href="#configure-the-di-container-information-to-the-system-repository" id="id25">Configure the DI container information to the system repository</a></li>
+<li><a class="reference internal" href="#get-object-from-system-repository" id="id26">Get object from system repository</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rules-for-describing-environment-configuration-file" id="id27">Rules for describing environment configuration file</a></li>
 </ul>
 </div>
 <p>Provides a function to manage objects used in various places and configuration values when implementing an application.</p>
@@ -333,10 +344,11 @@
 <li>Relationships can be built between objects based on the definition of external files. (with DI container function)</li>
 </ul>
 <div class="section" id="function-overview">
-<h2><a class="toc-backref" href="#id1">7.2.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">7.2.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="objects-can-be-constructed-using-di-containers">
-<h3><a class="toc-backref" href="#id2">7.2.1.1. Objects can be constructed using DI containers</a><a class="headerlink" href="#objects-can-be-constructed-using-di-containers" title="Permalink to this headline">¶</a></h3>
-<p>The DI container feature allows objects to be constructed based on the definition of components defined in <a class="reference internal" href="#repository-root-node"><span>xml</span></a>.
+<h3><a class="toc-backref" href="#id3">7.2.1.1. Objects can be constructed using DI containers</a><a class="headerlink" href="#objects-can-be-constructed-using-di-containers" title="Permalink to this headline">¶</a></h3>
+<p>The DI container feature allows objects to be constructed based on the definition of components defined in <a class="reference internal" href="#repository-root-node"><span>xml</span></a>
+or the <a class="reference internal" href="#repository-inject-annotation-component"><span>annotated class</span></a>.
 The constructed object is a <strong>singleton</strong>.</p>
 <p>The DI container function can do the following:</p>
 <ul class="simple">
@@ -345,13 +357,14 @@ The constructed object is a <strong>singleton</strong>.</p>
 <li><a class="reference internal" href="#repository-map-list"><span>Can inject list and map.</span></a></li>
 <li><a class="reference internal" href="#repository-autowired"><span>Allows automatic injection into setters with matching types and names.</span></a></li>
 <li><a class="reference internal" href="#repository-factory-injection"><span>Can inject factory.</span></a></li>
+<li><a class="reference internal" href="#repository-inject-annotation-component"><span>Can construct objects of the annotated classes.</span></a></li>
 <li><a class="reference internal" href="#repository-environment-configuration"><span>Allows management of environment-dependent values.</span></a></li>
 </ul>
 <p>DI container is accessed from the system repository instead of direct access from the application.
 For details, see <a class="reference internal" href="#repository-use-system-repository"><span>Configure the DI container information to the system repository</span></a>.</p>
 </div>
 <div class="section" id="objects-can-be-initialized">
-<h3><a class="toc-backref" href="#id3">7.2.1.2. Objects can be initialized</a><a class="headerlink" href="#objects-can-be-initialized" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">7.2.1.2. Objects can be initialized</a><a class="headerlink" href="#objects-can-be-initialized" title="Permalink to this headline">¶</a></h3>
 <p>Any initialization processing can be executed after object construction.</p>
 <p>Since restrictions may occur in the initialization order based on the dependency of the objects,
 this function allows the initialization order of the objects to be specified.</p>
@@ -359,7 +372,7 @@ this function allows the initialization order of the objects to be specified.</p
 </div>
 </div>
 <div class="section" id="module-list">
-<h2><a class="toc-backref" href="#id4">7.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">7.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-core<span class="nt">&lt;/artifactId&gt;</span>
@@ -372,9 +385,9 @@ this function allows the initialization order of the objects to be specified.</p
 </div>
 </div>
 <div class="section" id="how-to-use">
-<h2><a class="toc-backref" href="#id5">7.2.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">7.2.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="define-root-node-in-xml">
-<span id="repository-root-node"></span><h3><a class="toc-backref" href="#id6">7.2.3.1. Define root node in xml</a><a class="headerlink" href="#define-root-node-in-xml" title="Permalink to this headline">¶</a></h3>
+<span id="repository-root-node"></span><h3><a class="toc-backref" href="#id7">7.2.3.1. Define root node in xml</a><a class="headerlink" href="#define-root-node-in-xml" title="Permalink to this headline">¶</a></h3>
 <p>The root node of the component configuration file (xml) is <cite>component-configuration</cite>.
 If <cite>schemaLocation</cite> is configured correctly, the document of each element and attribute in the IDE can be referred, and the completion functions can be utilized effectively.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
@@ -399,7 +412,7 @@ If <cite>schemaLocation</cite> is configured correctly, the document of each ele
 </ul>
 </div>
 <div class="section" id="configure-java-beans-object">
-<span id="repository-definition-bean"></span><h3><a class="toc-backref" href="#id7">7.2.3.2. Configure Java Beans object</a><a class="headerlink" href="#configure-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<span id="repository-definition-bean"></span><h3><a class="toc-backref" href="#id8">7.2.3.2. Configure Java Beans object</a><a class="headerlink" href="#configure-java-beans-object" title="Permalink to this headline">¶</a></h3>
 <p>Java Beans object is defined using the component element.</p>
 <ul class="simple">
 <li>Configure FQCN of the class managed by DI container in class attribute.</li>
@@ -463,7 +476,7 @@ If the property to be injected is static, an exception will be thrown when build
 </div>
 </div>
 <div class="section" id="overwrite-the-configuration-of-java-beans-object">
-<span id="repository-override-bean"></span><h3><a class="toc-backref" href="#id8">7.2.3.3. Overwrite the configuration of Java Beans object</a><a class="headerlink" href="#overwrite-the-configuration-of-java-beans-object" title="Permalink to this headline">¶</a></h3>
+<span id="repository-override-bean"></span><h3><a class="toc-backref" href="#id9">7.2.3.3. Overwrite the configuration of Java Beans object</a><a class="headerlink" href="#overwrite-the-configuration-of-java-beans-object" title="Permalink to this headline">¶</a></h3>
 <p>The configuration of previously read objects can be overwritten by registering objects with the same name attribute of component tag.
 This function can be used to replace the object for production environment with the object (mock) for testing when testing is conducted.</p>
 <p>When an object is overwritten, simply registering an object with the same name will automatically give priority to the object that is read later.</p>
@@ -497,7 +510,7 @@ but message is configured in prop as the value of prop before overwriting is inh
 </div>
 </div>
 <div class="section" id="use-a-string-numeric-or-boolean-value-as-the-configuration-value">
-<span id="repository-property-type"></span><h3><a class="toc-backref" href="#id9">7.2.3.4. Use a string, numeric, or boolean value as the configuration value</a><a class="headerlink" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
+<span id="repository-property-type"></span><h3><a class="toc-backref" href="#id10">7.2.3.4. Use a string, numeric, or boolean value as the configuration value</a><a class="headerlink" href="#use-a-string-numeric-or-boolean-value-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
 <p>If property type is of the following type, the value can be easily configured using literal notation.</p>
 <ul class="simple">
 <li>java.lang.String</li>
@@ -550,7 +563,7 @@ The value that can be configured is the value that can be converted by <cite>Boo
 </dl>
 </div>
 <div class="section" id="use-list-or-map-as-the-configuration-value">
-<span id="repository-map-list"></span><h3><a class="toc-backref" href="#id10">7.2.3.5. Use list or map as the configuration value</a><a class="headerlink" href="#use-list-or-map-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
+<span id="repository-map-list"></span><h3><a class="toc-backref" href="#id11">7.2.3.5. Use list or map as the configuration value</a><a class="headerlink" href="#use-list-or-map-as-the-configuration-value" title="Permalink to this headline">¶</a></h3>
 <p>By configuring the component using list element and map element, setter can be injected for the property receiving list or map.</p>
 <dl class="docutils">
 <dt>Configuration of the list using the list element</dt>
@@ -645,7 +658,7 @@ Note that this is a different behavior from <a class="reference internal" href="
 </div>
 </div>
 <div class="section" id="inject-components-automatically">
-<span id="repository-autowired"></span><h3><a class="toc-backref" href="#id11">7.2.3.6. Inject components automatically</a><a class="headerlink" href="#inject-components-automatically" title="Permalink to this headline">¶</a></h3>
+<span id="repository-autowired"></span><h3><a class="toc-backref" href="#id12">7.2.3.6. Inject components automatically</a><a class="headerlink" href="#inject-components-automatically" title="Permalink to this headline">¶</a></h3>
 <p>Provide a function to automatically inject a component even if the property tag definition of the component is omitted.
 Automatic injection type can be specified for this function by using autowireType attribute of the component element.</p>
 <div class="admonition important">
@@ -715,7 +728,7 @@ This class receives the above class by setter injection.</p>
 </dl>
 </div>
 <div class="section" id="split-the-component-configuration-file-xml">
-<span id="repository-split-xml"></span><h3><a class="toc-backref" href="#id12">7.2.3.7. Split the component configuration file (xml)</a><a class="headerlink" href="#split-the-component-configuration-file-xml" title="Permalink to this headline">¶</a></h3>
+<span id="repository-split-xml"></span><h3><a class="toc-backref" href="#id13">7.2.3.7. Split the component configuration file (xml)</a><a class="headerlink" href="#split-the-component-configuration-file-xml" title="Permalink to this headline">¶</a></h3>
 <p>The xml file size increases significantly if all the definitions are defined in one component configuration file, which causes the problem of poor maintainability.
 Therefore, a function to split the xml file into multiple files is provided.</p>
 <p>When splitting the xml file, it is better to split the file based on functional units, etc.
@@ -729,7 +742,7 @@ The split xml file can be read using the import element.</p>
 </div>
 </div>
 <div class="section" id="set-the-dependent-value">
-<span id="repository-environment-configuration"></span><h3><a class="toc-backref" href="#id13">7.2.3.8. Set the dependent value</a><a class="headerlink" href="#set-the-dependent-value" title="Permalink to this headline">¶</a></h3>
+<span id="repository-environment-configuration"></span><h3><a class="toc-backref" href="#id14">7.2.3.8. Set the dependent value</a><a class="headerlink" href="#set-the-dependent-value" title="Permalink to this headline">¶</a></h3>
 <p>Values (database connection information, directory path, etc.) that differ between the test and production environments can be managed in the environment configuration file.</p>
 <p>Describe the environment configuration file in the simple key-value format as given below.
 For detailed description rules, see <a class="reference internal" href="#repository-environment-configuration-file-rule"><span>Rules for describing environment configuration file</span></a>.</p>
@@ -754,7 +767,7 @@ database.password <span class="o">=</span> sa
 </dl>
 </div>
 <div class="section" id="reference-environment-dependent-value-from-the-component-configuration-file">
-<span id="repository-user-environment-configuration"></span><h3><a class="toc-backref" href="#id14">7.2.3.9. Reference environment dependent value from the component configuration file</a><a class="headerlink" href="#reference-environment-dependent-value-from-the-component-configuration-file" title="Permalink to this headline">¶</a></h3>
+<span id="repository-user-environment-configuration"></span><h3><a class="toc-backref" href="#id15">7.2.3.9. Reference environment dependent value from the component configuration file</a><a class="headerlink" href="#reference-environment-dependent-value-from-the-component-configuration-file" title="Permalink to this headline">¶</a></h3>
 <p>The environment configuration file can be read from the component configuration file (xml) and used as the configuration value of Java Beans object.</p>
 <p>When configuring (injection) the environment dependent value for the object managed by the DI container,
 describe the key value of the environment dependent value in the component configuration file by enclosing with <code class="docutils literal"><span class="pre">${</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</p>
@@ -788,7 +801,7 @@ Since the config file is an independent specification of Nablarch, the propertie
 </dl>
 </div>
 <div class="section" id="overwrite-environment-dependent-values-using-system-properties">
-<span id="repository-overwrite-environment-configuration"></span><h3><a class="toc-backref" href="#id15">7.2.3.10. Overwrite environment dependent values using system properties</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-system-properties" title="Permalink to this headline">¶</a></h3>
+<span id="repository-overwrite-environment-configuration"></span><h3><a class="toc-backref" href="#id16">7.2.3.10. Overwrite environment dependent values using system properties</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-system-properties" title="Permalink to this headline">¶</a></h3>
 <p>Environment dependent value can be overwritten with the system property (value that can be acquired by <cite>java.lang.System#getProperties()</cite>).
 Since the system property has priority over the value set in the environment configuration file, the configuration value can be easily overwritten with the vm option.</p>
 <p>For example, to change the configuration value only for a specific batch application, the system property can be used to overwrite the environment dependent value.</p>
@@ -808,7 +821,7 @@ In this example, the value of <cite>message</cite> is &#8220;message which will 
 </dl>
 </div>
 <div class="section" id="overwrite-environment-dependent-values-using-os-environment-variables">
-<span id="repository-overwrite-environment-configuration-by-os-env-var"></span><h3><a class="toc-backref" href="#id16">7.2.3.11. Overwrite environment dependent values using OS environment variables</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-os-environment-variables" title="Permalink to this headline">¶</a></h3>
+<span id="repository-overwrite-environment-configuration-by-os-env-var"></span><h3><a class="toc-backref" href="#id17">7.2.3.11. Overwrite environment dependent values using OS environment variables</a><a class="headerlink" href="#overwrite-environment-dependent-values-using-os-environment-variables" title="Permalink to this headline">¶</a></h3>
 <p>With the settings described below, you can override environment dependent values with OS environment variables.</p>
 <dl class="docutils">
 <dt>How to enable overwriting by OS environment variables</dt>
@@ -837,6 +850,8 @@ nablarch.core.repository.di.config.externalize.SystemPropertyExternalizedLoader
 Therefore, when an environment dependent value with the same name is overwritten by each method, the class described at the bottom is finally adopted.
 In the case of the above example, a value set in a system property takes precedence over a value set in an OS environment variable.</p>
 </dd>
+</dl>
+<dl class="docutils" id="repository-overwrite-environment-configuration-by-os-env-var-naming-rule">
 <dt>About the names of OS environment variables</dt>
 <dd><p class="first">On Linux, you cannot use <code class="docutils literal"><span class="pre">.</span></code> or <code class="docutils literal"><span class="pre">-</span></code> in the name of the OS environment variable.
 Therefore, it is not possible to define OS environment variables to override an environment dependent value with a name like <code class="docutils literal"><span class="pre">example.error-message</span></code>.</p>
@@ -852,7 +867,7 @@ Therefore, the OS environment variable to override <code class="docutils literal
 </dl>
 </div>
 <div class="section" id="inject-the-object-created-by-the-factory-class">
-<span id="repository-factory-injection"></span><h3><a class="toc-backref" href="#id17">7.2.3.12. Inject the object created by the factory class</a><a class="headerlink" href="#inject-the-object-created-by-the-factory-class" title="Permalink to this headline">¶</a></h3>
+<span id="repository-factory-injection"></span><h3><a class="toc-backref" href="#id18">7.2.3.12. Inject the object created by the factory class</a><a class="headerlink" href="#inject-the-object-created-by-the-factory-class" title="Permalink to this headline">¶</a></h3>
 <p>If the class is implemented as Java Beans, a value can be configured using setter injection and an object can be generated.
 However, there are cases where objects, which are not implemented as Java Beans such as those provided by the vendor or OSS, have to be managed in the system repository.</p>
 <p>In this case, these classes can be managed in the system repository by creating a factory class and then creating an object through the factory class.</p>
@@ -899,9 +914,162 @@ by configuring the factory class like a normal component.</p>
 </div>
 </dd>
 </dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Nablarch does not support nesting of factory classes.
+That is, the properties of a factory class can not specify other factory classes.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponentFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Nesting of the factory class --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;property&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.OtherSampleComponentFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p class="last">In this case, building objects within one factory class, including objects to be built in nested factory classes,
+or Create a class such as Creator/Builder/Provider to generate objects to be built in the nested factory class,
+and Corresponding to the injection as a component.</p>
+</div>
+</div>
+<div class="section" id="constructing-objects-of-annotated-classes">
+<span id="repository-inject-annotation-component"></span><h3><a class="toc-backref" href="#id19">7.2.3.13. Constructing objects of annotated classes</a><a class="headerlink" href="#constructing-objects-of-annotated-classes" title="Permalink to this headline">¶</a></h3>
+<p>Adding <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a>
+to the class allows it to be managed in DI container without having to write <a class="reference internal" href="#repository-definition-bean"><span>the settings in XML</span></a>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This feature is not available on some web application servers that manage the resources under the classpath in their own file system.</p>
+<p>For example, Jboss and Wildfly cannot search for classes annotated with the <code class="docutils literal"><span class="pre">SystemRepositoryComponent</span></code> annotation
+because the resources under the classpath are managed by a virtual file system called vfs.</p>
+<p class="last">If such a web application server is used, the component definitions should be <a class="reference internal" href="#repository-definition-bean"><span>defined in XML</span></a> as usual.</p>
+</div>
+<div class="section" id="id1">
+<h4><a class="toc-backref" href="#id20">7.2.3.13.1. How to use</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Create a class to identify the packages to be collected.</dt>
+<dd><p class="first">The collection of the class to which <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a>
+is assigned is handled by a class that implements the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/ExternalizedComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader">ExternalizedComponentDefinitionLoader</a>
+interface. This class is an abstract class named <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader">AnnotationComponentDefinitionLoader</a>
+and has an abstract method named <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html#getBasePackage--" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader.getBasePackage()">getBasePackage</a>
+that returns the base package for the collection target.</p>
+<p>Override the above abstract methods so that collection is carried out in accordance with each project&#8217;s package name.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleComponentDefinitionLoader</span> <span class="kd">extends</span> <span class="n">AnnotationComponentDefinitionLoader</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBasePackage</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;com.example&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Set the created class as a service provider.</dt>
+<dd>Create a file named <code class="docutils literal"><span class="pre">nablarch.core.repository.di.config.externalize.ExternalizedComponentDefinitionLoader</span></code>
+as well as <a class="reference internal" href="#repository-overwrite-environment-configuration-by-os-env-var"><span>How to enable overwriting by OS environment variables</span></a>
+to be loaded with <code class="docutils literal"><span class="pre">java.util.ServiceLoader</span></code> and write the fully qualified names of the above classes.</dd>
+<dt>Annotate the classes to be managed in the DI container.</dt>
+<dd><p class="first">By assigning <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a> to be managed in a DI container.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleAction</span> <span class="o">{</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="using-the-constructor-injection">
+<h4><a class="toc-backref" href="#id21">7.2.3.13.2. Using the constructor injection</a><a class="headerlink" href="#using-the-constructor-injection" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/SystemRepositoryComponent.html" title="nablarch.core.repository.di.config.externalize.annotation.SystemRepositoryComponent">SystemRepositoryComponent</a>
+assigned classes are performed with constructor injection if they fulfill the following conditions at the time of construction.</p>
+<ul class="simple">
+<li>Only one constructor is defined</li>
+<li>Constructor with arguments</li>
+</ul>
+<p>If the conditions are fulfilled, it is injected with the following specifications.</p>
+<ul class="simple">
+<li>Arguments assigned with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ConfigValue.html" title="nablarch.core.repository.di.config.externalize.annotation.ConfigValue">ConfigValue</a> are injected with a set value</li>
+<li>The argument given by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ComponentRef.html" title="nablarch.core.repository.di.config.externalize.annotation.ComponentRef">ComponentRef</a> is the component registered in the DI container is injected</li>
+<li>If none of the above annotations are assigned<ul>
+<li>If there is only one component on the DI container that matches the argument type, automatically inject that component</li>
+<li>If no or multiple components matching the argument type exist on the DI container, do not inject anything</li>
+</ul>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Injection of configuration values</dt>
+<dd><p class="first">The value of the annotation <code class="docutils literal"><span class="pre">value</span></code> is injected into the constructor by assigning <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ConfigValue.html" title="nablarch.core.repository.di.config.externalize.annotation.ConfigValue">ConfigValue</a>
+to the constructor argument. The available types of values are the same as <a class="reference internal" href="#repository-property-type"><span>Use a string, numeric, or boolean value as the configuration value</span></a>.</p>
+<p>As in case <a class="reference internal" href="#repository-user-environment-configuration"><span>Reference environment dependent value from the component configuration file</span></a>,
+key values of environment-dependent values can be described by enclosing them in <code class="docutils literal"><span class="pre">${`</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">errorMessageId</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ExampleService</span><span class="o">(</span><span class="nd">@ConfigValue</span><span class="o">(</span><span class="s">&quot;${example.service.errorMessageId}&quot;</span><span class="o">)</span> <span class="n">String</span> <span class="n">errorMessageId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">errorMessageId</span> <span class="o">=</span> <span class="n">errorMessageId</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Injecting components</dt>
+<dd><p class="first">The component with the name of the annotation <code class="docutils literal"><span class="pre">value</span></code> is injected by assigning
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/annotation/ComponentRef.html" title="nablarch.core.repository.di.config.externalize.annotation.ComponentRef">ComponentRef</a> to the constructor argument.</p>
+<p>The following example injects a component named <code class="docutils literal"><span class="pre">lettuceRedisClientProvider</span></code>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@SystemRepositoryComponent</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleService</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="n">LettuceRedisClient</span> <span class="n">client</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">ExampleService</span><span class="o">(</span><span class="nd">@ComponentRef</span><span class="o">(</span><span class="s">&quot;lettuceRedisClientProvider&quot;</span><span class="o">)</span> <span class="n">LettuceRedisClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The constructor injection is handled by class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/ConstructorInjectionComponentCreator.html" title="nablarch.core.repository.di.config.ConstructorInjectionComponentCreator">ConstructorInjectionComponentCreator</a>.
+By overriding <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/config/externalize/AnnotationComponentDefinitionLoader.html#newComponentCreator--" title="nablarch.core.repository.di.config.externalize.AnnotationComponentDefinitionLoader.newComponentCreator()">newComponentCreator</a> in <code class="docutils literal"><span class="pre">AnnotationComponentDefinitionLoader</span></code>,
+it can be replaced with a <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/di/ComponentCreator.html" title="nablarch.core.repository.di.ComponentCreator">ComponentCreator</a>
+implementation that handles any processing at object construction time in the annotated class.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleComponentDefinitionLoader</span> <span class="kd">extends</span> <span class="n">AnnotationComponentDefinitionLoader</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBasePackage</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="s">&quot;com.example&quot;</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">ComponentCreator</span> <span class="nf">newComponentCreator</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Change to any ComponentCreator implementation class.</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ExampleComponentCreator</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="managing-the-action-class-in-a-di-container">
+<h4><a class="toc-backref" href="#id22">7.2.3.13.3. Managing the Action class in a DI container</a><a class="headerlink" href="#managing-the-action-class-in-a-di-container" title="Permalink to this headline">¶</a></h4>
+<p>Annotations can be assigned to the Action class to be managed in a DI container.
+In the dispatch handlers (<a class="reference internal" href="../../adaptors/router_adaptor.html#router-adaptor"><span>Routing Adapter</span></a>, <a class="reference internal" href="../handlers/common/request_path_java_package_mapping.html#request-path-java-package-mapping"><span>Request Dispatch Handler</span></a>, <a class="reference internal" href="../handlers/web/http_request_java_package_mapping.html#http-request-java-package-mapping"><span>HTTP Request Dispatch Handler</span></a>)
+provided by Nablarch, the class to be dispatched is instantiated in the dispatcher.
+Therefore, when registering an Action class to the DI container, it is necessary to replace <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DelegateFactory.html" title="nablarch.fw.handler.DelegateFactory">DelegateFactory</a>
+to obtain the dispatch target class from the system repository.
+The replacement is set up using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/handler/DispatchHandler.html#setDelegateFactory-nablarch.fw.handler.DelegateFactory-" title="nablarch.fw.handler.DispatchHandler.setDelegateFactory(nablarch.fw.handler.DelegateFactory)">DispatchHandler#setDelegateFactory</a> as follows:</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.RoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- DelegateFactory to get the dispatch destination from the system repository --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;delegateFactory&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.SystemRepositoryDelegateFactory&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="c">&lt;!-- Other properties omitted --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="initialize-the-object">
-<span id="repository-initialize-object"></span><h3><a class="toc-backref" href="#id18">7.2.3.13. Initialize the object</a><a class="headerlink" href="#initialize-the-object" title="Permalink to this headline">¶</a></h3>
+<span id="repository-initialize-object"></span><h3><a class="toc-backref" href="#id23">7.2.3.14. Initialize the object</a><a class="headerlink" href="#initialize-the-object" title="Permalink to this headline">¶</a></h3>
 <p>The following steps are required for the initialization process of the object.</p>
 <ol class="arabic simple">
 <li>Implement the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html" title="nablarch.core.repository.initialization.Initializable">Initializable</a> interface.</li>
@@ -910,7 +1078,7 @@ by configuring the factory class like a normal component.</p>
 <p>The detailed procedure is shown below.</p>
 <dl class="docutils">
 <dt>Implement Initializable interface</dt>
-<dd><p class="first">Initialize with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize--" title="nablarch.core.repository.initialization.Initializable.initialize()">initialzie</a>.</p>
+<dd><p class="first">Initialize with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/Initializable.html#initialize--" title="nablarch.core.repository.initialization.Initializable.initialize()">initialize</a>.</p>
 <div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Initializable</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
     <span class="c1">// Initialize based on the value injected into the property</span>
@@ -924,7 +1092,7 @@ by configuring the factory class like a normal component.</p>
 <p>If information of the initialization order of the object to be initialized is required, configure the object that is to be initialized first to a higher order.
 For the configuration example given below, initialization is performed in the following order.</p>
 <ol class="arabic simple">
-<li><cite>sampleObject</cite></li>
+<li><cite>sampleObject1</cite></li>
 <li><cite>sampleObject3</cite></li>
 <li><cite>sampleObject2</cite></li>
 </ol>
@@ -933,7 +1101,7 @@ For the configuration example given below, initialization is performed in the fo
 <p class="last">Set the component name of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/initialization/BasicApplicationInitializer.html" title="nablarch.core.repository.initialization.BasicApplicationInitializer">BasicApplicationInitializer</a> to <strong>initializer</strong>.</p>
 </div>
 <div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configure the object to be initialized --&gt;</span>
-<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent2&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent3&quot;</span> <span class="nt">/&gt;</span>
 
@@ -943,7 +1111,7 @@ For the configuration example given below, initialization is performed in the fo
   <span class="c">&lt;!-- List the objects to be initialized with the list element in the initializeList property--&gt;</span>
   <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;list&gt;</span>
-      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="nt">/&gt;</span>
       <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;/list&gt;</span>
@@ -955,8 +1123,92 @@ For the configuration example given below, initialization is performed in the fo
 </dd>
 </dl>
 </div>
+<div class="section" id="handling-the-disposal-of-objects">
+<span id="repository-dispose-object"></span><h3><a class="toc-backref" href="#id24">7.2.3.15. Handling the disposal of objects</a><a class="headerlink" href="#handling-the-disposal-of-objects" title="Permalink to this headline">¶</a></h3>
+<p>In order to perform the disposal process of an object, the following steps are required.</p>
+<ol class="arabic simple">
+<li>Implement the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> interface.</li>
+<li>Set the list of discarded targets in the component configuration file.</li>
+</ol>
+<p>Detailed steps are shown below.</p>
+<dl class="docutils">
+<dt>Implementing the Disposable Interface</dt>
+<dd><p class="first">Disposal process in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html#dispose--" title="nablarch.core.repository.disposal.Disposable.dispose()">dispose</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleComponent</span> <span class="kd">implements</span> <span class="n">Disposable</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispose</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+    <span class="c1">// Release of resources, etc., for the disposal process</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Set the list of discarded targets in the component configuration file</dt>
+<dd><p class="first">Set the object to be discarded to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a>.</p>
+<p>If the discard order of the objects to be discarded needs to be considered, set the objects which want to be discarded first to <strong>down</strong>.
+In the case of the example configuration below, the disposal process is done in the following order.</p>
+<ol class="arabic simple">
+<li><cite>sampleObject1</cite></li>
+<li><cite>sampleObject2</cite></li>
+<li><cite>sampleObject3</cite></li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The component name of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> must be <strong>disposer</strong>.</p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Setting up the objects to be discarded --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent2&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleComponent3&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Enumerate the objects to be discarded by the list element in the disposableList property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;disposableList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject3&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject2&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;sampleObject1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">BasicApplicationDisposer</span></code> has a method, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html#addDisposable-nablarch.core.repository.disposal.Disposable-" title="nablarch.core.repository.disposal.BasicApplicationDisposer.addDisposable(nablarch.core.repository.disposal.Disposable)">addDisposable</a>,
+to which any <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> can be added after the component is created.</p>
+<div class="line-block">
+<div class="line">The <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/Disposable.html" title="nablarch.core.repository.disposal.Disposable">Disposable</a> added in this <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html#addDisposable-nablarch.core.repository.disposal.Disposable-" title="nablarch.core.repository.disposal.BasicApplicationDisposer.addDisposable(nablarch.core.repository.disposal.Disposable)">addDisposable</a> is expected to be added in the order in which its instance was created.</div>
+<div class="line">In that case, the discard process should be done in the opposite order of instance creation (e.g., JDBC <code class="docutils literal"><span class="pre">Connection</span></code>, <code class="docutils literal"><span class="pre">Statement</span></code>, and <code class="docutils literal"><span class="pre">ResultSet</span></code>).</div>
+</div>
+<p class="last">For this reason, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/BasicApplicationDisposer.html" title="nablarch.core.repository.disposal.BasicApplicationDisposer">BasicApplicationDisposer</a> calls the disposal process in the opposite order to that set in the <code class="docutils literal"><span class="pre">disposableList</span></code>.</p>
+</dd>
+<dt>Set the Closeable object in the list of objects to be discarded</dt>
+<dd><p class="first">If a component implements <code class="docutils literal"><span class="pre">java.io.Closeable</span></code>, it can easily be set up in the list of discarded items by using
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/disposal/DisposableAdaptor.html" title="nablarch.core.repository.disposal.DisposableAdaptor">DisposableAdaptor</a></p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Components that implement java.io.Closeable --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;closeableComponent&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.CloseableComponent&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;disposer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.BasicApplicationDisposer&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;disposableList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.disposal.DisposableAdaptor&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Set the target property of DisposableAdaptor to a component that implements Closeable --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;target&quot;</span> <span class="na">ref=</span><span class="s">&quot;closeableComponent&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
 <div class="section" id="configure-the-di-container-information-to-the-system-repository">
-<span id="repository-use-system-repository"></span><h3><a class="toc-backref" href="#id19">7.2.3.14. Configure the DI container information to the system repository</a><a class="headerlink" href="#configure-the-di-container-information-to-the-system-repository" title="Permalink to this headline">¶</a></h3>
+<span id="repository-use-system-repository"></span><h3><a class="toc-backref" href="#id25">7.2.3.16. Configure the DI container information to the system repository</a><a class="headerlink" href="#configure-the-di-container-information-to-the-system-repository" title="Permalink to this headline">¶</a></h3>
 <p>By loading the information of the DI container into the system repository, the objects in the DI container from all points in the application can be accessed.</p>
 <p>An example of loading and configuring the component configuration file in the system repository is shown below.</p>
 <p>In this example, information of the DI container constructed based on <code class="docutils literal"><span class="pre">web-boot.xml</span></code> is configured in the system repository.</p>
@@ -976,7 +1228,7 @@ Therefore, there is basically no individual implementation.</p>
 </div>
 </div>
 <div class="section" id="get-object-from-system-repository">
-<span id="repository-get-object"></span><h3><a class="toc-backref" href="#id20">7.2.3.15. Get object from system repository</a><a class="headerlink" href="#get-object-from-system-repository" title="Permalink to this headline">¶</a></h3>
+<span id="repository-get-object"></span><h3><a class="toc-backref" href="#id26">7.2.3.17. Get object from system repository</a><a class="headerlink" href="#get-object-from-system-repository" title="Permalink to this headline">¶</a></h3>
 <p>To acquire the object from the system repository, use the class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/repository/SystemRepository.html" title="nablarch.core.repository.SystemRepository">SystemRepository</a>.</p>
 <p>The DI container information must be configured in the system repository in advance.
 For details, see <a class="reference internal" href="#repository-use-system-repository"><span>Configure the DI container information to the system repository</span></a>.</p>
@@ -1006,7 +1258,7 @@ For details, see <a class="reference internal" href="#repository-use-system-repo
 </div>
 </div>
 <div class="section" id="rules-for-describing-environment-configuration-file">
-<span id="repository-environment-configuration-file-rule"></span><h2><a class="toc-backref" href="#id21">7.2.4. Rules for describing environment configuration file</a><a class="headerlink" href="#rules-for-describing-environment-configuration-file" title="Permalink to this headline">¶</a></h2>
+<span id="repository-environment-configuration-file-rule"></span><h2><a class="toc-backref" href="#id27">7.2.4. Rules for describing environment configuration file</a><a class="headerlink" href="#rules-for-describing-environment-configuration-file" title="Permalink to this headline">¶</a></h2>
 <p>There are two types of environment configuration files, config file and properties file. The description rules of each environment configuration file are explained.</p>
 <dl class="docutils">
 <dt>Specifications of properties file</dt>
@@ -1110,7 +1362,7 @@ efg
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

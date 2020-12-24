@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.9. How to Perform a Subfunction Unit Test (Batch) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.1.11. How to Perform a Subfunction Unit Test (Batch) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/03_DealUnitTest/batch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
-        <link rel="next" title="3.1.10. How to Execute a Request Unit Test (Receiving Synchronous Message Process)" href="../02_RequestUnitTest/real.html"/>
-        <link rel="prev" title="3.1.8. How to Execute a Request Unit Test (Batch)" href="../02_RequestUnitTest/batch.html"/>
+        <link rel="next" title="3.1.12. How to Execute a Request Unit Test (Receiving Synchronous Message Process)" href="../02_RequestUnitTest/real.html"/>
+        <link rel="prev" title="3.1.10. How to Execute a Request Unit Test (Batch)" href="../02_RequestUnitTest/batch.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
       
-    <li>3.1.9. How to Perform a Subfunction Unit Test (Batch)</li>
+    <li>3.1.11. How to Perform a Subfunction Unit Test (Batch)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -295,7 +299,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-perform-a-subfunction-unit-test-batch">
-<h1>3.1.9. How to Perform a Subfunction Unit Test (Batch)<a class="headerlink" href="#how-to-perform-a-subfunction-unit-test-batch" title="Permalink to this headline">¶</a></h1>
+<h1>3.1.11. How to Perform a Subfunction Unit Test (Batch)<a class="headerlink" href="#how-to-perform-a-subfunction-unit-test-batch" title="Permalink to this headline">¶</a></h1>
 <p>Subfunction unit tests for batch processing are tested using an automated test framework.
 Tests are performed in subfunction units by continuously executing the request unit tests.</p>
 <p>The test class should be created in such a way that the following conditions are met.</p>
@@ -314,21 +318,21 @@ Tests are performed in subfunction units by continuously executing the request u
 </pre></div>
 </div>
 <div class="section" id="test-case-division-policy">
-<h2>3.1.9.1. Test case division policy<a class="headerlink" href="#test-case-division-policy" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.11.1. Test case division policy<a class="headerlink" href="#test-case-division-policy" title="Permalink to this headline">¶</a></h2>
 <p>Basically, <strong>one test case per sheet</strong>.
 Exceptions are shown below.</p>
 <div class="section" id="for-complex-test-cases">
-<h3>3.1.9.1.1. For complex test cases<a class="headerlink" href="#for-complex-test-cases" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.11.1.1. For complex test cases<a class="headerlink" href="#for-complex-test-cases" title="Permalink to this headline">¶</a></h3>
 <p>When there is a large amount of test data, or when there are many processes included in one sheet, including all the test data into one sheet may result in too much data in the sheet decreasing the readability. Dividing one case into multiple sheets is better.</p>
 </div>
 <div class="section" id="for-very-simple-test-cases">
-<h3>3.1.9.1.2. For very simple test cases<a class="headerlink" href="#for-very-simple-test-cases" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.11.1.2. For very simple test cases<a class="headerlink" href="#for-very-simple-test-cases" title="Permalink to this headline">¶</a></h3>
 <p>If the test case is very simple and the amount of test data is small,
 all test cases may be included in one sheet.</p>
 </div>
 </div>
 <div class="section" id="basic-description-method">
-<h2>3.1.9.2. Basic description method<a class="headerlink" href="#basic-description-method" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.11.2. Basic description method<a class="headerlink" href="#basic-description-method" title="Permalink to this headline">¶</a></h2>
 <p>Basically, one test case is written in a single sheet. When multiple batch executions are written in a single sheet, it is a subfunction unit test.</p>
 <p>In the following example, a subfunction consisting of three batches (file input batch, user deletion batch and file output batch) is executed.</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/** Case that ends normally */</span>
@@ -394,7 +398,7 @@ all test cases may be included in one sheet.</p>
 </table>
 </div>
 <div class="section" id="when-dividing-a-single-test-case-into-multiple-sheets">
-<h2>3.1.9.3. When dividing a single test case into multiple sheets<a class="headerlink" href="#when-dividing-a-single-test-case-into-multiple-sheets" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.11.3. When dividing a single test case into multiple sheets<a class="headerlink" href="#when-dividing-a-single-test-case-into-multiple-sheets" title="Permalink to this headline">¶</a></h2>
 <p>For example, the test case illustrated in the previous section (<a class="reference internal" href="#basic-description-method">Basic description method</a>) can be divided and described as follows.</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.ss21AA01</span>
 
@@ -513,7 +517,7 @@ all test cases may be included in one sheet.</p>
 </table>
 </div>
 <div class="section" id="when-multiple-cases-are-included-in-one-sheet">
-<h2>3.1.9.4. When multiple cases are included in one sheet<a class="headerlink" href="#when-multiple-cases-are-included-in-one-sheet" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.11.4. When multiple cases are included in one sheet<a class="headerlink" href="#when-multiple-cases-are-included-in-one-sheet" title="Permalink to this headline">¶</a></h2>
 <p>In the case of very simple test cases, they may be grouped together.</p>
 <p>In the following example, two test cases (a normal case and a case with 0 records as input data) are described in a single sheet</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/** Case that ends normally */</span>
@@ -628,7 +632,7 @@ For more information, see the &#8220;<a class="reference internal" href="../../0
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

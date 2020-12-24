@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.1.3.2. Create Batch to Derive Data (Chunk Step) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>4.1.3.2. Create Batch to Derive Data (Chunk Step) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/batch/jsr352/getting_started/chunk/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="4.1.3. Getting Started" href="../getting_started.html"/>
         <link rel="next" title="4.1.4. Details of Function" href="../../feature_details.html"/>
         <link rel="prev" title="4.1.3.1. Creating a Batch to Delete the data in the target table(Batchlet Step)" href="../batchlet/index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -346,7 +350,7 @@
 </ol>
 <p>For the process flow, see <a class="reference internal" href="../../architecture.html#jsr352-batch-flow-chunk"><span>process flow of Chunk step batch</span></a>.
 For responsibility assignment, see <a class="reference internal" href="../../application_design.html#jsr352-chunk-design"><span>responsibility assignment of the Chunk step</span></a>.</p>
-<p>Batch process is configured by a listener that provides common processes such as transaction control in addition to the implementation of the interface specified in <a class="reference external" href="https://jcp.org/en/jsr/detail?id=352">JSR352 (external site, English)</a>.
+<p>Batch process is configured by a listener that provides common processes such as transaction control in addition to the implementation of the interface specified in <a class="reference external" href="https://jcp.org/en/jsr/detail?id=352">JSR352 (external site)</a>.
 For details of the listener, see <a class="reference internal" href="../../architecture.html#jsr352-listener"><span>listener used in the batch application</span></a>, and <a class="reference internal" href="../../architecture.html#jsr352-listener"><span>how to specify the listener</span></a>.</p>
 <div class="section" id="reads-data-from-the-input-data-source">
 <span id="getting-started-chunk-read"></span><h3>4.1.3.2.1.1. Reads data from the input data source<a class="headerlink" href="#reads-data-from-the-input-data-source" title="Permalink to this headline">¶</a></h3>
@@ -650,7 +654,7 @@ the <cite>writeItems</cite> method of <a class="reference external" href="http:/
 <li>The job definition file is located under <cite>/src/main/resources/META-INF/batch-jobs/</cite>.</li>
 <li>Specify the <cite>job</cite> name in the <cite>id</cite> attribute of the job element.</li>
 <li>Configure the number of <cite>writeItems</cite> processed each time by the <cite>item-count</cite> attribute of the <cite>chunk</cite> element.</li>
-<li>Refer to <a class="reference external" href="https://jcp.org/en/jsr/detail?id=352">JSR352 specification (external site, English)</a> for detailed description method of the configuration file.</li>
+<li>Refer to <a class="reference external" href="https://jcp.org/en/jsr/detail?id=352">JSR352 specification (external site)</a> for detailed description method of the configuration file.</li>
 </ul>
 </dd>
 </dl>
@@ -692,7 +696,7 @@ the <cite>writeItems</cite> method of <a class="reference external" href="http:/
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

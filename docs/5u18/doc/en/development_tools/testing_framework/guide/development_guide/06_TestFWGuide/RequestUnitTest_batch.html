@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.2.4. Request Unit Test (Batch Process) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.2.5. Request Unit Test (Batch Process) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_batch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../index.html"/>
         <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
-        <link rel="next" title="3.2.5. Request Unit Test (Receive Messages Process)" href="RequestUnitTest_real.html"/>
-        <link rel="prev" title="3.2.3. Request Unit Test (Web Applications)" href="02_RequestUnitTest.html"/>
+        <link rel="next" title="3.2.6. Request Unit Test (Receive Messages Process)" href="RequestUnitTest_real.html"/>
+        <link rel="prev" title="3.2.4. Request Unit Test (RESTful Web Service)" href="RequestUnitTest_rest.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
       
-    <li>3.2.4. Request Unit Test (Batch Process)</li>
+    <li>3.2.5. Request Unit Test (Batch Process)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -295,17 +299,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="request-unit-test-batch-process">
-<span id="request-util-test-batch"></span><h1>3.2.4. Request Unit Test (Batch Process)<a class="headerlink" href="#request-unit-test-batch-process" title="Permalink to this headline">¶</a></h1>
+<span id="request-util-test-batch"></span><h1>3.2.5. Request Unit Test (Batch Process)<a class="headerlink" href="#request-unit-test-batch-process" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="summary">
-<h2>3.2.4.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>3.2.5.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Request unit tests (batch process) simulate and test the behavior of the batch when it is actually launched from the command line.</p>
 <div class="section" id="overall-picture">
-<h3>3.2.4.1.1. Overall picture<a class="headerlink" href="#overall-picture" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.1.1. Overall picture<a class="headerlink" href="#overall-picture" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="../../../../../_images/batch_request_test_class.png"><img alt="../../../../../_images/batch_request_test_class.png" src="../../../../../_images/batch_request_test_class.png" /></a>
 </div>
 </div>
 <div class="section" id="main-classes-resources">
-<h2>3.2.4.2. Main Classes, resources<a class="headerlink" href="#main-classes-resources" title="Permalink to this headline">¶</a></h2>
+<h2>3.2.5.2. Main Classes, resources<a class="headerlink" href="#main-classes-resources" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -355,14 +359,14 @@
 </table>
 </div>
 <div class="section" id="structure">
-<h2>3.2.4.3. Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<h2>3.2.5.3. Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="standalonetestsupporttemplate">
-<h3>3.2.4.3.1. StandaloneTestSupportTemplate<a class="headerlink" href="#standalonetestsupporttemplate" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.3.1. StandaloneTestSupportTemplate<a class="headerlink" href="#standalonetestsupporttemplate" title="Permalink to this headline">¶</a></h3>
 <p>Provides a test execution environment for batch, messaging, and other processes that run outside the container.
 Reads test data and executes all test shots (<a class="reference internal" href="#testshot">TestShot</a> ).</p>
 </div>
 <div class="section" id="testshot">
-<h3>3.2.4.3.2. TestShot<a class="headerlink" href="#testshot" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.3.2. TestShot<a class="headerlink" href="#testshot" title="Permalink to this headline">¶</a></h3>
 <p>Executes by holding information of 1 TestShot. The TestShot consists of the following elements:</p>
 <ul class="simple">
 <li>Preparation of input data</li>
@@ -396,7 +400,7 @@ such as batch and messaging processes.</p>
 <p>Since the input data preparation and result confirmation logic is different for each batch and various messaging processes, it can be customized according to the architecture.</p>
 </div>
 <div class="section" id="batchrequesttestsupport">
-<h3>3.2.4.3.3. BatchRequestTestSupport<a class="headerlink" href="#batchrequesttestsupport" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.3.3. BatchRequestTestSupport<a class="headerlink" href="#batchrequesttestsupport" title="Permalink to this headline">¶</a></h3>
 <p>Superclass for batch process tests. The application programmer creates a test class by inheriting this class.</p>
 <p>This class adds the following functions to the preparation process and result confirmation provided by <a class="reference internal" href="#testshot">TestShot</a> .</p>
 <blockquote>
@@ -421,7 +425,7 @@ such as batch and messaging processes.</p>
 <p>For the specific usage method, refer to <a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html"><em>How to Execute a Request Unit Test (Batch)</em></a>.</p>
 </div>
 <div class="section" id="mainforrequesttesting">
-<h3>3.2.4.3.4. MainForRequestTesting<a class="headerlink" href="#mainforrequesttesting" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.3.4. MainForRequestTesting<a class="headerlink" href="#mainforrequesttesting" title="Permalink to this headline">¶</a></h3>
 <p>Main class for request unit test. The primary differences from the main class for production are as follows.</p>
 <ul class="simple">
 <li>Initialize the system repository from the component configuration file of the test.</li>
@@ -429,7 +433,7 @@ such as batch and messaging processes.</p>
 </ul>
 </div>
 <div class="section" id="filesupport">
-<h3>3.2.4.3.5. FileSupport<a class="headerlink" href="#filesupport" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.3.5. FileSupport<a class="headerlink" href="#filesupport" title="Permalink to this headline">¶</a></h3>
 <p>A class that provides operations related to files.
 Primarily, the following functions are provided.</p>
 <ul class="simple">
@@ -440,21 +444,21 @@ Primarily, the following functions are provided.</p>
 </div>
 </div>
 <div class="section" id="test-data">
-<h2>3.2.4.4. Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h2>
+<h2>3.2.5.4. Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h2>
 <p>The test data specific to the batch process is described.</p>
 <blockquote>
 <div></div></blockquote>
 <div class="section" id="fixed-length-file">
-<span id="about-fixed-length-file"></span><h3>3.2.4.4.1. Fixed-length file<a class="headerlink" href="#fixed-length-file" title="Permalink to this headline">¶</a></h3>
+<span id="about-fixed-length-file"></span><h3>3.2.5.4.1. Fixed-length file<a class="headerlink" href="#fixed-length-file" title="Permalink to this headline">¶</a></h3>
 <p>For the basic description, see <a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html#batch-request-test"><span>How to Execute a Request Unit Test (Batch)</span></a>.</p>
 <div class="section" id="padding">
-<h4>3.2.4.4.1.1. Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h4>
+<h4>3.2.5.4.1.1. Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h4>
 <p>If the byte length of the data is shorter than the specified field length,
 padding is added to the data according to the data type of the field.
 The algorithm used for padding is the same algorithm used for the main body of the Nablarch Application Framework.</p>
 </div>
 <div class="section" id="how-to-write-binary-data">
-<h4>3.2.4.4.1.2. How to write binary data<a class="headerlink" href="#how-to-write-binary-data" title="Permalink to this headline">¶</a></h4>
+<h4>3.2.5.4.1.2. How to write binary data<a class="headerlink" href="#how-to-write-binary-data" title="Permalink to this headline">¶</a></h4>
 <p>To represent binary data, write the test data in hexadecimal format.
 For example, when written as <code class="docutils literal"><span class="pre">0x4AD</span></code>, it is interpreted as a byte array of 2-bytes expressed as <code class="docutils literal"><span class="pre">0000</span> <span class="pre">0100</span> <span class="pre">1010</span> <span class="pre">1101</span></code>(<code class="docutils literal"><span class="pre">0x04AD</span></code>).</p>
 <div class="admonition tip">
@@ -467,14 +471,14 @@ it is converted to a byte array of 3-bytes expressed as <code class="docutils li
 </div>
 </div>
 <div class="section" id="variable-length-file">
-<h3>3.2.4.4.2. Variable length file<a class="headerlink" href="#variable-length-file" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.4.2. Variable length file<a class="headerlink" href="#variable-length-file" title="Permalink to this headline">¶</a></h3>
 <p>For the basic description, see <a class="reference internal" href="../05_UnitTestGuide/02_RequestUnitTest/batch.html#batch-request-test"><span>How to Execute a Request Unit Test (Batch)</span></a>.</p>
 </div>
 </div>
 <div class="section" id="various-configuration-values">
-<h2>3.2.4.5. Various configuration values<a class="headerlink" href="#various-configuration-values" title="Permalink to this headline">¶</a></h2>
+<h2>3.2.5.5. Various configuration values<a class="headerlink" href="#various-configuration-values" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="handler-configuration-of-resident-batch-test">
-<h3>3.2.4.5.1. Handler configuration of resident batch test<a class="headerlink" href="#handler-configuration-of-resident-batch-test" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.5.1. Handler configuration of resident batch test<a class="headerlink" href="#handler-configuration-of-resident-batch-test" title="Permalink to this headline">¶</a></h3>
 <p>When performing a resident batch test, the handler configuration for production has to be changed for the test.
 If the test is performed without making this change, the test will not be implemented successfully because the process of the resident batch application that is being tested will not finish.</p>
 <p><strong>[Handlers that need to be modified]</strong></p>
@@ -522,7 +526,7 @@ after all the request data setup before the test execution is processed.</p>
 </ul>
 </div>
 <div class="section" id="default-value-of-directive">
-<h3>3.2.4.5.2. Default value of directive<a class="headerlink" href="#default-value-of-directive" title="Permalink to this headline">¶</a></h3>
+<h3>3.2.5.5.2. Default value of directive<a class="headerlink" href="#default-value-of-directive" title="Permalink to this headline">¶</a></h3>
 <p>If the file directives are unified to some extent in the system,
 it is redundant to describe the same directive in each test data.</p>
 <p>In such a case, by describing the default directive in the component configuration file,
@@ -605,7 +609,7 @@ the directive description can be omitted for each test data.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

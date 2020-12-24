@@ -1,0 +1,704 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.4. Request Unit Test (RESTful Web Service) &mdash; ∇Nablarch  5u18 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/RequestUnitTest_rest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
+        <link rel="next" title="3.2.5. Request Unit Test (Batch Process)" href="RequestUnitTest_batch.html"/>
+        <link rel="prev" title="3.2.3. Request Unit Test (Web Applications)" href="02_RequestUnitTest.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u18</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Testing framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. Testing framework</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
+      
+    <li>3.2.4. Request Unit Test (RESTful Web Service)</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="request-unit-test-restful-web-service">
+<span id="rest-testing-fw"></span><h1>3.2.4. Request Unit Test (RESTful Web Service)<a class="headerlink" href="#request-unit-test-restful-web-service" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>3.2.4.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Request Unit Test (REST) uses the built-in server for testing in the same way as <a class="reference internal" href="02_RequestUnitTest.html#request-util-test-online"><span>Request Unit Test (web application)</span></a> .
+Only RESTful web services runtime platform requires more modules than the other platforms, so the modules listed in <a class="reference internal" href="#rest-test-modules"><span>Module List</span></a> need to be added to the dependencies.</p>
+<div class="section" id="overall-picture">
+<h3>3.2.4.1.1. Overall picture<a class="headerlink" href="#overall-picture" title="Permalink to this headline">¶</a></h3>
+<img alt="../../../../../_images/rest_request_unit_test_structure.png" src="../../../../../_images/rest_request_unit_test_structure.png" />
+</div>
+<div class="section" id="main-classes-resources">
+<h3>3.2.4.1.2. Main Classes, resources<a class="headerlink" href="#main-classes-resources" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="42%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Role</th>
+<th class="head">Creation unit</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test class</td>
+<td>Implement the test logic.</td>
+<td>Create one per class (Action) to be tested.</td>
+</tr>
+<tr class="row-odd"><td>Test data (Excel file)</td>
+<td>Describe test data such as preparation data,
+expected results, HTTP parameters, etc.
+to be stored in a table.</td>
+<td>Create one per test class</td>
+</tr>
+<tr class="row-even"><td>Class to be tested (Action)</td>
+<td>Class to be tested (includes each class that
+implements business logic after Action)</td>
+<td>Create one class per subfunction</td>
+</tr>
+<tr class="row-odd"><td>DbAccessTestSupport</td>
+<td>Provides the necessary functions for testing using
+the database, such as preparation data input.</td>
+<td>-</td>
+</tr>
+<tr class="row-even"><td>HttpServer</td>
+<td>Built-in server. Operates as a servlet container
+having the function to output HTTP response to a file.</td>
+<td>-</td>
+</tr>
+<tr class="row-odd"><td>RestTestSupport</td>
+<td>Provides various asserts that are required for starting
+the built-in server and for the request unit test.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-list">
+<span id="rest-test-modules"></span><h3>3.2.4.1.3. Module list<a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  Testing Framework Mainframe  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-rest<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!--  Default settings used by the testing framework  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.configuration<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-default-configuration<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!--  Implementation of an built-in server used by the testing framework  --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-testing-jetty6<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><code class="docutils literal"><span class="pre">nablarch-testing-rest</span></code> depends on <code class="docutils literal"><span class="pre">nablarch-testing</span></code> (<a class="reference internal" href="../05_UnitTestGuide/index.html#unittestguide"><span>Testing framework</span></a>) .
+Adding the above module to the dependencies allows you to use <a class="reference internal" href="../05_UnitTestGuide/index.html#unittestguide"><span>Testing framework</span></a>&#8216;s API as well.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you are using Java11 replace the built-in server as described in <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Java11.html#setup-java11-jetty9"><span>Change of Jetty module used in automatic test (only for web projects or RESTful web service projects)</span></a> .</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h3>3.2.4.1.4. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>If you created a blank project from an archetype, the testing framework has been configured in <code class="docutils literal"><span class="pre">src/test/resources/unit-test.xml</span></code> .
+Load the following configuration file provided by default to add the configuration of the testing framework for RESTful web service.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/test/rest-request-test.xml&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#rest-test-configuration"><span>Various configuration values</span></a> for request unit test settings.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The above is already configured if you create a blank project for <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTful web service</em></a> from the Nablarch5u18 and later archetypes.
+For <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_Web.html"><em>web</em></a> and <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_NablarchBatch.html"><em>batch</em></a>  projects, the above must be added.</p>
+</div>
+</div>
+</div>
+<div class="section" id="structure">
+<h2>3.2.4.2. Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simpleresttestsupport">
+<span id="rest-test-superclasses"></span><h3>3.2.4.2.1. SimpleRestTestSupport<a class="headerlink" href="#simpleresttestsupport" title="Permalink to this headline">¶</a></h3>
+<p>Superclass prepared for the request unit test. Provides methods for the request unit test.
+If you don&#8217;t need database related features, use this class instead of <code class="docutils literal"><span class="pre">RestTestSupport</span></code> as described below.
+It has the same features as RestTestSupport below for <a class="reference internal" href="#rest-test-helper"><span>Pre-preparation assistance features</span></a>, <a class="reference internal" href="#rest-test-execute"><span>Execution</span></a>, and <a class="reference internal" href="#rest-test-assert"><span>Results Check</span></a>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In case of using RestTestSupport, you need to prepare a <code class="docutils literal"><span class="pre">dbInfo</span></code> or <code class="docutils literal"><span class="pre">testDataParser</span></code> component.
+If you do not need a database dependency, you can use <code class="docutils literal"><span class="pre">SimpleRestTestSupport</span></code> to simplify component definition.</p>
+</div>
+</div>
+<div class="section" id="resttestsupport">
+<h3>3.2.4.2.2. RestTestSupport<a class="headerlink" href="#resttestsupport" title="Permalink to this headline">¶</a></h3>
+<p>Superclass prepared for the request unit test. It provides methods for request unit testing.
+It inherits from <code class="docutils literal"><span class="pre">SimpleRestTestSupport</span></code> and has database related features.</p>
+</div>
+<div class="section" id="database-related-features">
+<h3>3.2.4.2.3. Database related features<a class="headerlink" href="#database-related-features" title="Permalink to this headline">¶</a></h3>
+<p>Database related features is achieved by delegating processing from the <code class="docutils literal"><span class="pre">RestTestSupport</span></code> class to the <code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> class.
+For more information on the <code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> class, see <a class="reference internal" href="02_DbAccessTest.html"><em>Testing a Class that Uses the Database</em></a>.</p>
+<p>However, the following methods of <code class="docutils literal"><span class="pre">DbAccessTestSupport</span></code> are not needed for Request Unit Testing (REST).
+The following methods in DbAccessTestSupport are not delegated intentionally. Because it avoids misleading application programmers.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">beginTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">commitTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">endTransactions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">setThreadContextValues(String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id)</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">assertSqlResultSetEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">SqlResultSet</span> <span class="pre">actual)</span></code></li>
+<li><code class="docutils literal"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">assertSqlRowEquals(String</span> <span class="pre">message,</span> <span class="pre">String</span> <span class="pre">sheetName,</span> <span class="pre">String</span> <span class="pre">id,</span> <span class="pre">SqlRow</span> <span class="pre">actual)</span></code></li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Database related features are delegated for the convenience of the users. However, in unit testing of RESTful web service, recommend testing that does not rely on the database but checks the data in the system by querying the API exposed as a service,
+rather than testing that checks the database table contents using delegated <code class="docutils literal"><span class="pre">assertTableEquals</span></code> and the like.</p>
+</div>
+</div>
+<div class="section" id="pre-preparation-assistance-features">
+<span id="rest-test-helper"></span><h3>3.2.4.2.4. Pre-preparation assistance features<a class="headerlink" href="#pre-preparation-assistance-features" title="Permalink to this headline">¶</a></h3>
+<p>Sending a request to the built-in server requires an instance of <code class="docutils literal"><span class="pre">HttpRequest</span></code>.
+<code class="docutils literal"><span class="pre">RestTestSupport</span></code> class provides four methods to make it easy to create a <code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> object that extends <code class="docutils literal"><span class="pre">HttpRequest</span></code> for request unit testing.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">RestMockHttpRequest</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">post</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+<span class="n">RestMockHttpRequest</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">uri</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>In the argument, the following values are passed on.</p>
+<ul class="simple">
+<li>Request URI for testing</li>
+</ul>
+<p>These methods create a <code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> instance based on the received request URI and return it with the HTTP method set according to the method name. If you want to set data other than the URI, such as request parameters, set the data for the instance obtained by this method call.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p><code class="docutils literal"><span class="pre">RestMockHttpRequest</span></code> is implemented to override a method and return an instance of itself to allow you to set parameters and more in a fluent interface.
+See <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/RestMockHttpRequest.html" title="nablarch.fw.web.RestMockHttpRequest">Javadoc</a>  for more information on the available methods.</p>
+<p>An example of building a request</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">RestMockHttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">post</span><span class="o">(</span><span class="s">&quot;/projects&quot;</span><span class="o">)</span>
+                                  <span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Authorization&quot;</span><span class="o">,</span><span class="s">&quot;Bearer token&quot;</span><span class="o">)</span>
+                                  <span class="o">.</span><span class="na">setCookie</span><span class="o">(</span><span class="n">cookie</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="execution">
+<span id="rest-test-execute"></span><h3>3.2.4.2.5. Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h3>
+<p>By calling the following method in <code class="docutils literal"><span class="pre">RestTestSupport</span></code>, the built-in server will be started and the request will be sent.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">HttpResponse</span> <span class="nf">sendRequest</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="result-validation">
+<span id="rest-test-assert"></span><h3>3.2.4.2.6. Result validation<a class="headerlink" href="#result-validation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="status-code">
+<h4>3.2.4.2.6.1. Status code<a class="headerlink" href="#status-code" title="Permalink to this headline">¶</a></h4>
+<p>validate that the response HTTP status code is as expected by calling the following method in <code class="docutils literal"><span class="pre">RestTestSupport</span></code>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">assertStatusCode</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="n">HttpResponse</span><span class="o">.</span><span class="na">Status</span> <span class="n">expected</span><span class="o">,</span> <span class="n">HttpResponse</span> <span class="n">response</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>In the argument, the following values are passed on.</p>
+<ul class="simple">
+<li>Assert failure message</li>
+<li>Expected Status (Enum of <code class="docutils literal"><span class="pre">HttpResponse.Status</span></code>)</li>
+<li><code class="docutils literal"><span class="pre">HttpResponse</span></code> instance returned from the built-in server</li>
+</ul>
+<p>Assert failureif the response status code does not match the expected status code.</p>
+</div>
+<div class="section" id="response-body">
+<h4>3.2.4.2.6.2. Response body<a class="headerlink" href="#response-body" title="Permalink to this headline">¶</a></h4>
+<p>The framework does not provide a mechanism for response body validation. Use libraries such as <a class="reference external" href="http://jsonassert.skyscreamer.org/">JSONAssert(external site)</a>,
+<a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(external site)</a>,
+or <a class="reference external" href="https://github.com/xmlunit/user-guide/wiki">XMLUnit(external site)</a> according to the requirements of each project.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you have created a <a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/setup_blankProject/setup_WebService.html"><em>RESTful web service blank project</em></a>,
+the above <a class="reference external" href="http://jsonassert.skyscreamer.org/">JSONAssert (external site)</a>,
+<a class="reference external" href="https://github.com/json-path/JsonPath/tree/master/json-path-assert">json-path-assert(external site)</a>
+and <a class="reference external" href="https://github.com/xmlunit/user-guide/wiki">XMLUnit(external site)</a> are listed in pom.xml.
+Delete or replace libraries as necessary.</p>
+</div>
+<p><strong>Supplementary features of response body validation</strong></p>
+<p>In some case of validating a response body, you may want to prepare the expected body as a JSON or XML file.
+To assist testing when an external library accepts only a <code class="docutils literal"><span class="pre">String</span></code> as an expectation value argument, such as JSONAssert,
+<code class="docutils literal"><span class="pre">RestTestSupport</span></code> has a method to read the file and convert it to a <code class="docutils literal"><span class="pre">String</span></code>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="nf">readTextResource</span><span class="o">(</span><span class="n">String</span> <span class="n">fileName</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>This method reads a file from a resource in a directory with the same name as the test class with the file name specified in the argument,
+and converts it to a <code class="docutils literal"><span class="pre">String</span></code> as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="38%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">File type</th>
+<th class="head">Directory</th>
+<th class="head">File name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test Class Source File</td>
+<td>&lt;PROJECT_ROOT&gt;/test/java/com/example/</td>
+<td>SampleTest.java</td>
+</tr>
+<tr class="row-odd"><td>Response body&#8217;s expected value file</td>
+<td>&lt;PROJECT_ROOT&gt;/test/resources/com/example/SampleTest</td>
+<td>response.json(specified in the argument fileName)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="various-configuration-values">
+<span id="rest-test-configuration"></span><h2>3.2.4.3. Various configuration values<a class="headerlink" href="#various-configuration-values" title="Permalink to this headline">¶</a></h2>
+<p>For preference-dependent configuration values, you can change them in the component configuration file.The configurable items are listed below.</p>
+<div class="section" id="component-configuration-file-list-of-configuration-items">
+<h3>3.2.4.3.1. Component configuration file list of configuration items<a class="headerlink" href="#component-configuration-file-list-of-configuration-items" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="47%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">items</th>
+<th class="head">Description</th>
+<th class="head">Default value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>webBaseDir</td>
+<td>root directory of your web application<a class="footnote-reference" href="#id6" id="id4">[1]</a></td>
+<td>src/main/webapp</td>
+</tr>
+<tr class="row-odd"><td>webFrontControllerKey</td>
+<td>Web front controller repository keys<a class="footnote-reference" href="#id7" id="id5">[2]</a></td>
+<td>webFrontController</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[1]</a></td><td><p class="first">If there is a common web module in the project, specify a comma-separated directory for this property.
+If more than one module is specified, the resources are loaded in order from the head.</p>
+<p>Examples are shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;restTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.RestTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webBaseDir&quot;</span> <span class="na">value=</span><span class="s">&quot;/path/to/web-a/,/path/to/web-common&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p class="last">In this case, the resources are searched for web-a, then web-common, in that order.</p>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[2]</a></td><td><p class="first">May want to register a <a class="reference internal" href="../../../../../application_framework/application_framework/web/feature_details/web_front_controller.html#web-front-controller"><span>web front controller</span></a> as a component with a name other than the default &#8220;webFrontController&#8221;,
+such as when the web application runtime platform
+and the web service runtime platform are executed in a single war.
+In such cases, Can control the handlers executed by the built-in server
+by configuring this property with the repository key of the web front controller used by the web service.</p>
+<p>Examples are shown below.</p>
+<p>A component definition in which the web front controller ( <code class="docutils literal"><span class="pre">webFrontController</span></code> ) for the web application runtime platform
+and the web front controller ( <code class="docutils literal"><span class="pre">jaxrsController</span></code> ) for the web service runtime platform are registered.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Handler queue configuration --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpCharacterEncodingHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.GlobalErrorHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.handler.threadcontext.ThreadContextClearHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpResponseHandler&quot;</span><span class="nt">/&gt;</span>
+      .
+      .
+      .
+      (Omitted)
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;jaxrsController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpCharacterEncodingHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.handler.GlobalErrorHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsResponseHandler&quot;</span><span class="nt">/&gt;</span>
+      .
+      .
+      .
+      (Omitted)
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>Using the testing framework for RESTful web services runtime platform with default settings will use the &#8220;webFrontController&#8221;
+and thus run a web front controller for the web application.
+Can use the web front controller for web services by overriding the settings as follows.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/test/rest-request-test.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="c">&lt;!--  Override the default component definition after import. --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;restTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.http.RestTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;webFrontControllerKey&quot;</span> <span class="na">value=</span><span class="s">&quot;jaxrsController&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2020, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u18',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

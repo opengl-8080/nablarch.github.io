@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.3.4. Initial Setup of the Nablarch Batch Project &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>8.3.4. Initial Setup of the Nablarch Batch Project &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/setup_blankProject/setup_NablarchBatch.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../index.html"/>
         <link rel="up" title="8.3. Initial Setup Procedure" href="../FirstStep.html"/>
         <link rel="next" title="8.3.5. How to Setup When Using With Java11" href="setup_Java11.html"/>
         <link rel="prev" title="8.3.3. Initial Setup of JSR352-compliant Batch Project" href="setup_Jbatch.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -298,7 +302,7 @@
             
   <div class="section" id="initial-setup-of-the-nablarch-batch-project">
 <h1>8.3.4. Initial Setup of the Nablarch Batch Project<a class="headerlink" href="#initial-setup-of-the-nablarch-batch-project" title="Permalink to this headline">¶</a></h1>
-<p>The following is configured in the initial setup of the Nablarch batch project:</p>
+<p>The following is procedures of initial setup of the Nablarch batch project:</p>
 <ul class="simple">
 <li>Generate the Nablarch batch project</li>
 <li>Confirm communications of the Nablarch batch project</li>
@@ -320,8 +324,8 @@
 <tr class="row-even"><td>Project type</td>
 <td>Maven project</td>
 </tr>
-<tr class="row-odd"><td>Project configuration</td>
-<td>Single project configuration</td>
+<tr class="row-odd"><td>Project composition</td>
+<td>Single project composition</td>
 </tr>
 <tr class="row-even"><td>DB used</td>
 <td>H2 Database Engine (embedded in the application)</td>
@@ -354,12 +358,12 @@ Email send batch is not necessary when building the initial environment, but whe
 <p>Generate a blank project using the archetypes provided by Nablarch.</p>
 <div class="section" id="execute-the-mvn-command">
 <h3>8.3.4.2.1. Execute the mvn command<a class="headerlink" href="#execute-the-mvn-command" title="Permalink to this headline">¶</a></h3>
-<p>Change the current directory to the directory where the blank project (can be any directory) is to be created and place the following file.</p>
+<p>Change the current directory to the directory where the blank project (can be any directory) is to be created, and place the following file.</p>
 <p><a class="reference download internal" href="../../../../_downloads/generateNablarchBatchProject.bat" download=""><code class="xref download docutils literal"><span class="pre">Batch</span> <span class="pre">file</span></code></a></p>
 <p>After placing the file, specify the necessary parameters in the arguments and execute the bat file.</p>
-<p>generateNablarchBatchProject.bat 5u17 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(optional)&gt;&gt;</p>
+<p>generateNablarchBatchProject.bat 5u18 &lt;&lt;groupId&gt;&gt; &lt;&lt;artifactId&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;package(optional)&gt;&gt;</p>
 <p>The parameters configured in the above command are as follows.
-If you want to change the version of Nablarch, change 5u17.
+If you want to change the version of Nablarch, change 5u18.
 Change the current directory to the directory where the blank project (can be any directory) is to be created.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -481,14 +485,14 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 </pre></div>
 </div>
 <p>If the launch is successful, the log given below will be output to the console.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:40:40.229 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認を開始します。
-2020-03-25 18:40:40.258 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 取得したコード名称：ロック
-2020-03-25 18:40:40.264 -INFO- com.example.SampleBatch [202003251840402290002] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認が完了しました。
-2020-03-25 18:40:40.273 -INFO- nablarch.fw.handler.MultiThreadExecutionHandler [202003251840402220001] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user]
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 08:56:23.353 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認を開始します。
+2020-04-28 08:56:23.379 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 取得したコード名称：ロック
+2020-04-28 08:56:23.383 -INFO- com.example.SampleBatch [202004280856233530002] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] 疎通確認が完了しました。
+2020-04-28 08:56:23.396 -INFO- nablarch.fw.handler.MultiThreadExecutionHandler [202004280856233470001] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user]
 Thread Status: normal end.
 Thread Result:[200 Success] The request has succeeded.
-2020-03-25 18:40:40.281 -INFO- nablarch.core.log.app.BasicCommitLogger [202003251840402220001] boot_proc = [] proc_sys = [] req_id = [SampleBatch] usr_id = [batch_user] TOTAL COMMIT COUNT = [1]
-2020-03-25 18:40:40.285 -INFO- nablarch.fw.launcher.Main [null] boot_proc = [] proc_sys = [] req_id = [null] usr_id = [null] @@@@ END @@@@ exit code = [0] execute time(ms) = [486]
+2020-04-28 08:56:23.407 -INFO- nablarch.core.log.app.BasicCommitLogger [202004280856233470001] boot_proc = [] proc_sys = [batch] req_id = [SampleBatch] usr_id = [batch_user] TOTAL COMMIT COUNT = [1]
+2020-04-28 08:56:23.413 -INFO- nablarch.fw.launcher.Main [null] boot_proc = [] proc_sys = [batch] req_id = [null] usr_id = [null] @@@@ END @@@@ exit code = [0] execute time(ms) = [559]
 </pre></div>
 </div>
 </div>
@@ -536,12 +540,12 @@ Thread Result:[200 Success] The request has succeeded.
 </ul>
 </div>
 <p>If the launch is successful, the log given below will be output to the console.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>2020-03-25 18:41:20.767 -INFO- nablarch.fw.reader.DatabaseTableQueueReader [202003251841207560001] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] read database record. key info: {USER_INFO_ID=00000000000000000001}
-2020-03-25 18:41:20.774 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] handleが呼ばれました。
-2020-03-25 18:41:20.779 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] USER_INFO_ID:00000000000000000001
-2020-03-25 18:41:20.784 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] LOGIN_ID:TAROU
-2020-03-25 18:41:20.792 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] KANA_NAME:たろう
-2020-03-25 18:41:20.799 -INFO- com.example.SampleResiBatch [202003251841207740002] boot_proc = [] proc_sys = [] req_id = [SampleResiBatch] usr_id = [batch_user] KANJI_NAME:太郎
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-04-28 08:58:15.350 -INFO- nablarch.fw.reader.DatabaseTableQueueReader [202004280858153390001] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] read database record. key info: {USER_INFO_ID=00000000000000000001}
+2020-04-28 08:58:15.356 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] handleが呼ばれました。
+2020-04-28 08:58:15.363 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] USER_INFO_ID:00000000000000000001
+2020-04-28 08:58:15.367 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] LOGIN_ID:TAROU
+2020-04-28 08:58:15.371 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] KANA_NAME:たろう
+2020-04-28 08:58:15.379 -INFO- com.example.SampleResiBatch [202004280858153560002] boot_proc = [] proc_sys = [batch] req_id = [SampleResiBatch] usr_id = [batch_user] KANJI_NAME:太郎
 </pre></div>
 </div>
 <p>Forcibly terminate with ctrl + c.</p>
@@ -597,7 +601,7 @@ Thread Result:[200 Success] The request has succeeded.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

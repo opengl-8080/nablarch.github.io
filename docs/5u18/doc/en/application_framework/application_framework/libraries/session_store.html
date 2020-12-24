@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.17. Session Store &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>7.17. Session Store &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/session_store.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
         <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
         <link rel="next" title="7.17.4.2.1. Implementation Example with Registration Function" href="session_store/create_example.html"/>
         <link rel="prev" title="7.16. Service Availability Check" href="service_availability.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -299,31 +303,31 @@
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title first">Table of contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#function-overview" id="id10">Function overview</a><ul>
-<li><a class="reference internal" href="#save-destination-of-session-variables-can-be-selected" id="id11">Save destination of session variables can be selected</a></li>
-<li><a class="reference internal" href="#serialization-mechanism-for-session-variable-can-be-selected" id="id12">Serialization mechanism for session variable can be selected</a></li>
+<li><a class="reference internal" href="#function-overview" id="id9">Function overview</a><ul>
+<li><a class="reference internal" href="#save-destination-of-session-variables-can-be-selected" id="id10">Save destination of session variables can be selected</a></li>
+<li><a class="reference internal" href="#serialization-mechanism-for-session-variable-can-be-selected" id="id11">Serialization mechanism for session variable can be selected</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-list" id="id13">Module list</a></li>
-<li><a class="reference internal" href="#constraints" id="id14">Constraints</a><ul>
-<li><a class="reference internal" href="#save-target-must-java-beans-object-that-can-be-serialized" id="id15">Save target must Java Beans object that can be serialized</a></li>
+<li><a class="reference internal" href="#module-list" id="id12">Module list</a></li>
+<li><a class="reference internal" href="#constraints" id="id13">Constraints</a><ul>
+<li><a class="reference internal" href="#save-target-must-java-beans-object-that-can-be-serialized" id="id14">Save target must Java Beans object that can be serialized</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#how-to-use" id="id16">How to use</a><ul>
-<li><a class="reference internal" href="#configure-for-using-session-store" id="id17">Configure for using session store</a></li>
-<li><a class="reference internal" href="#hold-the-input-information-between-the-input-confirm-complete-screens" id="id18">Hold the input information between the input-confirm-complete screens</a></li>
-<li><a class="reference internal" href="#holds-credentials" id="id19">Holds credentials</a></li>
-<li><a class="reference internal" href="#refer-to-the-session-variable-value-from-jsp" id="id20">Refer to the session variable value from JSP</a></li>
-<li><a class="reference internal" href="#customize-the-encryption-configuration-of-the-hidden-store" id="id21">Customize the encryption configuration of the HIDDEN store</a></li>
-<li><a class="reference internal" href="#specify-the-transition-destination-screen-when-the-value-does-not-exist-in-the-session-variable" id="id22">Specify the transition destination screen when the value does not exist in the session variable</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id15">How to use</a><ul>
+<li><a class="reference internal" href="#configure-for-using-session-store" id="id16">Configure for using session store</a></li>
+<li><a class="reference internal" href="#hold-the-input-information-between-the-input-confirm-complete-screens" id="id17">Hold the input information between the input-confirm-complete screens</a></li>
+<li><a class="reference internal" href="#holds-credentials" id="id18">Holds credentials</a></li>
+<li><a class="reference internal" href="#refer-to-the-session-variable-value-from-jsp" id="id19">Refer to the session variable value from JSP</a></li>
+<li><a class="reference internal" href="#customize-the-encryption-configuration-of-the-hidden-store" id="id20">Customize the encryption configuration of the HIDDEN store</a></li>
+<li><a class="reference internal" href="#specify-the-transition-destination-screen-when-the-value-does-not-exist-in-the-session-variable" id="id21">Specify the transition destination screen when the value does not exist in the session variable</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#expansion-example" id="id23">Expansion example</a><ul>
-<li><a class="reference internal" href="#add-the-save-destination-of-session-variables" id="id24">Add the save destination of session variables</a></li>
+<li><a class="reference internal" href="#expansion-example" id="id22">Expansion example</a><ul>
+<li><a class="reference internal" href="#add-the-save-destination-of-session-variables" id="id23">Add the save destination of session variables</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#features-and-selection-criteria-of-session-store" id="id25">Features and selection criteria of session store</a></li>
-<li><a class="reference internal" href="#how-to-manage-the-expiration-date" id="id26">How to manage the expiration date</a></li>
+<li><a class="reference internal" href="#features-and-selection-criteria-of-session-store" id="id24">Features and selection criteria of session store</a></li>
+<li><a class="reference internal" href="#how-to-manage-the-expiration-date" id="id25">How to manage the expiration date</a></li>
 </ul>
 </div>
 <p>Provides a function that abstracts the HTTP session.</p>
@@ -361,9 +365,9 @@ It provides a function called a session store for each session ID to read and wr
 <p class="last"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html" title="java.util.UUID">UUID</a> is used for the session ID used in the cookie ( <code class="docutils literal"><span class="pre">NABLARCH_SID</span></code> ).</p>
 </div>
 <div class="section" id="function-overview">
-<h2><a class="toc-backref" href="#id10">7.17.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">7.17.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="save-destination-of-session-variables-can-be-selected">
-<h3><a class="toc-backref" href="#id11">7.17.1.1. Save destination of session variables can be selected</a><a class="headerlink" href="#save-destination-of-session-variables-can-be-selected" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">7.17.1.1. Save destination of session variables can be selected</a><a class="headerlink" href="#save-destination-of-session-variables-can-be-selected" title="Permalink to this headline">¶</a></h3>
 <p>Save destination of the session variable can be selected according to the usage.</p>
 <p>The following three types of stores are provided as standard.</p>
 <ul class="simple">
@@ -372,9 +376,10 @@ It provides a function called a session store for each session ID to read and wr
 <li><a class="reference internal" href="#session-store-http-session-store"><span>HTTP session store</span></a></li>
 </ul>
 <p>For the features and selection criteria of the session store, see <a class="reference internal" href="#session-store-future-of-store"><span>Features and selection criteria of session store</span></a>.</p>
+<p>Also, Redis can be used as a store destination by using <a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redis Store (Lettus) Adapter</span></a>.</p>
 </div>
 <div class="section" id="serialization-mechanism-for-session-variable-can-be-selected">
-<span id="session-store-serialize"></span><h3><a class="toc-backref" href="#id12">7.17.1.2. Serialization mechanism for session variable can be selected</a><a class="headerlink" href="#serialization-mechanism-for-session-variable-can-be-selected" title="Permalink to this headline">¶</a></h3>
+<span id="session-store-serialize"></span><h3><a class="toc-backref" href="#id11">7.17.1.2. Serialization mechanism for session variable can be selected</a><a class="headerlink" href="#serialization-mechanism-for-session-variable-can-be-selected" title="Permalink to this headline">¶</a></h3>
 <p>The serialization mechanism when saving session variables in session store can be selected from the following.
 For details of each function, refer to the linked Javadoc.</p>
 <ul class="simple">
@@ -385,7 +390,7 @@ For details of each function, refer to the linked Javadoc.</p>
 </div>
 </div>
 <div class="section" id="module-list">
-<h2><a class="toc-backref" href="#id13">7.17.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">7.17.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
@@ -400,18 +405,18 @@ For details of each function, refer to the linked Javadoc.</p>
 </div>
 </div>
 <div class="section" id="constraints">
-<span id="session-store-constraint"></span><h2><a class="toc-backref" href="#id14">7.17.3. Constraints</a><a class="headerlink" href="#constraints" title="Permalink to this headline">¶</a></h2>
+<span id="session-store-constraint"></span><h2><a class="toc-backref" href="#id13">7.17.3. Constraints</a><a class="headerlink" href="#constraints" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="save-target-must-java-beans-object-that-can-be-serialized">
-<h3><a class="toc-backref" href="#id15">7.17.3.1. Save target must Java Beans object that can be serialized</a><a class="headerlink" href="#save-target-must-java-beans-object-that-can-be-serialized" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">7.17.3.1. Save target must Java Beans object that can be serialized</a><a class="headerlink" href="#save-target-must-java-beans-object-that-can-be-serialized" title="Permalink to this headline">¶</a></h3>
 <p>Object to be saved in the session store must be a serializable Java Beans object.</p>
 <p>The property type of the object must be a Java basic type or a Java Beans object that can be serialized.
 Arrays and collections can also be used for properties.</p>
 </div>
 </div>
 <div class="section" id="how-to-use">
-<h2><a class="toc-backref" href="#id16">7.17.4. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">7.17.4. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="configure-for-using-session-store">
-<span id="session-store-use-config"></span><h3><a class="toc-backref" href="#id17">7.17.4.1. Configure for using session store</a><a class="headerlink" href="#configure-for-using-session-store" title="Permalink to this headline">¶</a></h3>
+<span id="session-store-use-config"></span><h3><a class="toc-backref" href="#id16">7.17.4.1. Configure for using session store</a><a class="headerlink" href="#configure-for-using-session-store" title="Permalink to this headline">¶</a></h3>
 <p>To use session store, configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionManager.html" title="nablarch.common.web.session.SessionManager">SessionManager</a> in the component
 definition in addition to configuring <a class="reference internal" href="../handlers/web/SessionStoreHandler.html#session-store-handler"><span>Session Variable Store Handler</span></a>.</p>
 <p>The following is a configuration example when all the save destinations provided as standard are used.</p>
@@ -504,7 +509,7 @@ Therefore, expired session information must be deleted regularly.</p>
 </div>
 </div>
 <div class="section" id="hold-the-input-information-between-the-input-confirm-complete-screens">
-<span id="session-store-input-data"></span><h3><a class="toc-backref" href="#id18">7.17.4.2. Hold the input information between the input-confirm-complete screens</a><a class="headerlink" href="#hold-the-input-information-between-the-input-confirm-complete-screens" title="Permalink to this headline">¶</a></h3>
+<span id="session-store-input-data"></span><h3><a class="toc-backref" href="#id17">7.17.4.2. Hold the input information between the input-confirm-complete screens</a><a class="headerlink" href="#hold-the-input-information-between-the-input-confirm-complete-screens" title="Permalink to this headline">¶</a></h3>
 <p>To retain the input information between the input-confirm-complete screen,
 use the session store depending on whether screen operations on multiple tabs are allowed.</p>
 <dl class="docutils">
@@ -561,7 +566,7 @@ the goal is also to retain the safest data possible and reduce the risk of embed
 </div>
 </div>
 <div class="section" id="holds-credentials">
-<span id="session-store-authentication-data"></span><h3><a class="toc-backref" href="#id19">7.17.4.3. Holds credentials</a><a class="headerlink" href="#holds-credentials" title="Permalink to this headline">¶</a></h3>
+<span id="session-store-authentication-data"></span><h3><a class="toc-backref" href="#id18">7.17.4.3. Holds credentials</a><a class="headerlink" href="#holds-credentials" title="Permalink to this headline">¶</a></h3>
 <p>Use DB store to retain credentials.</p>
 <p>Implementation example of session store during login/logout is shown below.</p>
 <dl class="docutils">
@@ -583,7 +588,7 @@ the goal is also to retain the safest data possible and reduce the risk of embed
 </dl>
 </div>
 <div class="section" id="refer-to-the-session-variable-value-from-jsp">
-<h3><a class="toc-backref" href="#id20">7.17.4.4. Refer to the session variable value from JSP</a><a class="headerlink" href="#refer-to-the-session-variable-value-from-jsp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">7.17.4.4. Refer to the session variable value from JSP</a><a class="headerlink" href="#refer-to-the-session-variable-value-from-jsp" title="Permalink to this headline">¶</a></h3>
 <p>The value of session variable held in the session store can be referenced
 from JSP using the same procedure as the normal request scope and session scope.</p>
 <div class="admonition important">
@@ -593,7 +598,7 @@ Therefore, configure a name that does not overlap with the request scope in sess
 </div>
 </div>
 <div class="section" id="customize-the-encryption-configuration-of-the-hidden-store">
-<h3><a class="toc-backref" href="#id21">7.17.4.5. Customize the encryption configuration of the HIDDEN store</a><a class="headerlink" href="#customize-the-encryption-configuration-of-the-hidden-store" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">7.17.4.5. Customize the encryption configuration of the HIDDEN store</a><a class="headerlink" href="#customize-the-encryption-configuration-of-the-hidden-store" title="Permalink to this headline">¶</a></h3>
 <p>The default encryption/decryption configuration of the <a class="reference internal" href="#session-store-hidden-store"><span>HIDDEN store</span></a> is as follows.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -646,7 +651,7 @@ which is added in Java 8, is better for base64 encoding.</p>
 </dl>
 </div>
 <div class="section" id="specify-the-transition-destination-screen-when-the-value-does-not-exist-in-the-session-variable">
-<h3><a class="toc-backref" href="#id22">7.17.4.6. Specify the transition destination screen when the value does not exist in the session variable</a><a class="headerlink" href="#specify-the-transition-destination-screen-when-the-value-does-not-exist-in-the-session-variable" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">7.17.4.6. Specify the transition destination screen when the value does not exist in the session variable</a><a class="headerlink" href="#specify-the-transition-destination-screen-when-the-value-does-not-exist-in-the-session-variable" title="Permalink to this headline">¶</a></h3>
 <p>Session variables always exist in normal screen transitions, but in some cases,
 session variables that originally existed may not be accessible due to incorrect screen transitions being performed using the back button of the browser.
 Since an exception indicating that the session variable does not exist ( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionKeyNotFoundException.html" title="nablarch.common.web.session.SessionKeyNotFoundException">SessionKeyNotFoundException</a> ) is thrown,
@@ -699,9 +704,9 @@ Note that the transition destination can be changed for only some of the request
 </div>
 </div>
 <div class="section" id="expansion-example">
-<h2><a class="toc-backref" href="#id23">7.17.5. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id22">7.17.5. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="add-the-save-destination-of-session-variables">
-<h3><a class="toc-backref" href="#id24">7.17.5.1. Add the save destination of session variables</a><a class="headerlink" href="#add-the-save-destination-of-session-variables" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">7.17.5.1. Add the save destination of session variables</a><a class="headerlink" href="#add-the-save-destination-of-session-variables" title="Permalink to this headline">¶</a></h3>
 <p>The following steps are required to add the save destination for session variables.</p>
 <ol class="arabic simple">
 <li>Create a class by inheriting <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/session/SessionStore.html" title="nablarch.common.web.session.SessionStore">SessionStore</a> for supporting the save destination to be added.</li>
@@ -710,7 +715,7 @@ Note that the transition destination can be changed for only some of the request
 </div>
 </div>
 <div class="section" id="features-and-selection-criteria-of-session-store">
-<span id="session-store-future-of-store"></span><h2><a class="toc-backref" href="#id25">7.17.6. Features and selection criteria of session store</a><a class="headerlink" href="#features-and-selection-criteria-of-session-store" title="Permalink to this headline">¶</a></h2>
+<span id="session-store-future-of-store"></span><h2><a class="toc-backref" href="#id24">7.17.6. Features and selection criteria of session store</a><a class="headerlink" href="#features-and-selection-criteria-of-session-store" title="Permalink to this headline">¶</a></h2>
 <p>The save destination of session variables that can be used by default is as follows.</p>
 <dl class="docutils" id="session-store-db-store">
 <dt>DB store</dt>
@@ -815,7 +820,7 @@ Note that the transition destination can be changed for only some of the request
 <td>Not used <a class="footnote-reference" href="#id8" id="id4">[3]</a></td>
 </tr>
 <tr class="row-even"><td>Hold error message</td>
-<td>Not used <a class="footnote-reference" href="#id9" id="id5">[4]</a></td>
+<td>Not used <a class="footnote-reference" href="#id8" id="id5">[3]</a></td>
 </tr>
 </tbody>
 </table>
@@ -835,21 +840,20 @@ Design and implement the session store according to the requirements of the appl
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Values used for screen display can be transferred using the request scope.</td></tr>
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> Values used for screen display can be transferred using the request scope.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>Values used for screen display can be transferred using the request scope.</td></tr>
-</tbody>
-</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">As for <a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redis Store (Lettus) Adapter</span></a>, its features are the same as the DB store, only the destination is different.</p>
+</div>
 </div>
 <div class="section" id="how-to-manage-the-expiration-date">
-<span id="session-store-expiration"></span><h2><a class="toc-backref" href="#id26">7.17.7. How to manage the expiration date</a><a class="headerlink" href="#how-to-manage-the-expiration-date" title="Permalink to this headline">¶</a></h2>
+<span id="session-store-expiration"></span><h2><a class="toc-backref" href="#id25">7.17.7. How to manage the expiration date</a><a class="headerlink" href="#how-to-manage-the-expiration-date" title="Permalink to this headline">¶</a></h2>
 <p>Session expiration date is stored in an HTTP session by default.
 You can store the session expiration date in the database by changing the setting.</p>
 <p>See <a class="reference internal" href="../handlers/web/SessionStoreHandler.html#db-managed-expiration"><span>Save the expiration date in the database</span></a> for details.</p>
+<p>Also, the expiration date can be stored in Redis if using <a class="reference internal" href="../../adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html#redisstore-lettuce-adaptor"><span>Redis Store (Lettus) Adapter</span></a>.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">See <a class="reference internal" href="stateless_web_app.html#stateless-web-app"><span>Making Web Applications Stateless</span></a> for the significance of storing the expiration date in the database.</p>
@@ -890,7 +894,7 @@ You can store the session expiration date in the database by changing the settin
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

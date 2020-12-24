@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.16. How to Conduct a Request Unit Test (Sending Asynchronous Message Process) &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process) &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_send.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
-        <link rel="next" title="3.1.17. How to Conduct a Subfunction Unit Test (Sending Asynchronous Message Process)" href="../03_DealUnitTest/delayed_send.html"/>
-        <link rel="prev" title="3.1.15. How to Execute a Request Unit Test (Sending Synchronous Message Process)" href="send_sync.html"/>
+        <link rel="next" title="3.1.19. How to Conduct a Subfunction Unit Test (Sending Asynchronous Message Process)" href="../03_DealUnitTest/delayed_send.html"/>
+        <link rel="prev" title="3.1.17. How to Execute a Request Unit Test (Sending Synchronous Message Process)" href="send_sync.html"/>
  
 
   
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Full-fledged testing framework for large scale development</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -277,11 +281,11 @@
       
           <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
       
-          <li><a href="../../../../index.html">3. Full-fledged testing framework for large scale development</a> &raquo;</li>
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
       
           <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
       
-    <li>3.1.16. How to Conduct a Request Unit Test (Sending Asynchronous Message Process)</li>
+    <li>3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process)</li>
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
     </li>
@@ -295,14 +299,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-conduct-a-request-unit-test-sending-asynchronous-message-process">
-<h1>3.1.16. How to Conduct a Request Unit Test (Sending Asynchronous Message Process)<a class="headerlink" href="#how-to-conduct-a-request-unit-test-sending-asynchronous-message-process" title="Permalink to this headline">¶</a></h1>
+<h1>3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process)<a class="headerlink" href="#how-to-conduct-a-request-unit-test-sending-asynchronous-message-process" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="summary">
-<h2>3.1.16.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.18.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Action classes for processing sending asynchronous messages are provided as part of Nablarch.
 For this reason, the request unit test uses this action class to check the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a> given below.</p>
 <p><strong>* Unlike other processes, it is not necessary to cover the conditions for action classes or perform limit value tests.</strong></p>
 <div class="section" id="deliverables-to-be-tested">
-<h3>3.1.16.1.1. Deliverables to be tested<a class="headerlink" href="#deliverables-to-be-tested" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.18.1.1. Deliverables to be tested<a class="headerlink" href="#deliverables-to-be-tested" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Format definition file that defines the message layout</li>
 <li>Three types of SQL statements<ul>
@@ -315,7 +319,7 @@ For this reason, the request unit test uses this action class to check the <a cl
 </div>
 </div>
 <div class="section" id="how-to-write-a-test-class">
-<h2>3.1.16.2. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.18.2. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
 <p>The test class should be created in such a way that the following conditions are met.</p>
 <ul class="simple">
 <li>The package of the test class is the package of the function to be tested.</li>
@@ -332,12 +336,12 @@ For this reason, the request unit test uses this action class to check the <a cl
 </div>
 </div>
 <div class="section" id="how-to-write-a-datasheet">
-<h2>3.1.16.3. How to write a datasheet<a class="headerlink" href="#how-to-write-a-datasheet" title="Permalink to this headline">¶</a></h2>
+<h2>3.1.18.3. How to write a datasheet<a class="headerlink" href="#how-to-write-a-datasheet" title="Permalink to this headline">¶</a></h2>
 <p>This section explains how to describe the data sheets required to test the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a>.</p>
 <p>Refer to <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a> for details on how to write a datasheet.
 In this section, the differences in the description method with <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a> are explained.</p>
 <div class="section" id="preparing-a-normal-pattern-case">
-<h3>3.1.16.3.1. Preparing a normal pattern case<a class="headerlink" href="#preparing-a-normal-pattern-case" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.18.3.1. Preparing a normal pattern case<a class="headerlink" href="#preparing-a-normal-pattern-case" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Check of case in which the message is sent correctly.</div>
@@ -365,7 +369,7 @@ In this section, the differences in the description method with <a class="refere
 </div></blockquote>
 </div>
 <div class="section" id="preparing-an-abnormal-pattern-case">
-<h3>3.1.16.3.2. Preparing an abnormal pattern case<a class="headerlink" href="#preparing-an-abnormal-pattern-case" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.18.3.2. Preparing an abnormal pattern case<a class="headerlink" href="#preparing-an-abnormal-pattern-case" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Abnormal pattern testing is necessary to check UPDATE statements that update the status of the relevant data to an error when message sending fails.</div>
@@ -438,7 +442,7 @@ A configuration example is shown below.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

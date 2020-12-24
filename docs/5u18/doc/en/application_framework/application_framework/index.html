@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Application Framework &mdash; ∇Nablarch  5u17 documentation</title>
+  <title>Application Framework &mdash; ∇Nablarch  5u18 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u17 documentation" href="../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../index.html"/>
         <link rel="up" title="Nablarch Application Framework" href="../index.html"/>
         <link rel="next" title="1. What is Nablarch Application Framework?" href="nablarch/index.html"/>
         <link rel="prev" title="Nablarch Application Framework" href="../index.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u17</div>
+    <div id="sidebar-version">Version: 5u18</div>
   </a>
 
   <div role="search">
@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="blank_project/index.html">8. Blank Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../adaptors/index.html">Adaptor</a><ul>
@@ -116,6 +117,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../example/index.html">Example</a><ul>
@@ -141,7 +145,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Full-fledged testing framework for large scale development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
@@ -364,8 +368,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blank_project/maven.html">8.1. Information on Apache Maven</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blank_project/beforeFirstStep.html">8.2. Before Initial Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blank_project/FirstStep.html">8.3. Initial Setup Procedure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blank_project/MavenModuleStructures/index.html">8.4. Maven Archetype Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blank_project/ModifySettings.html">8.5. Configuration Changes Required After Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blank_project/FirstStepContainer.html">8.4. Initial Setup Procedure(container)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blank_project/MavenModuleStructures/index.html">8.5. Maven Archetype Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blank_project/ModifySettings.html">8.6. Configuration Changes Required After Initial Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a><ul>
@@ -374,6 +379,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud_native/index.html">11. Nablarch Cloud Native Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloud_native/containerize/index.html">11.1. Docker Containerization</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -411,7 +420,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'5u17',
+            VERSION:'5u18',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
