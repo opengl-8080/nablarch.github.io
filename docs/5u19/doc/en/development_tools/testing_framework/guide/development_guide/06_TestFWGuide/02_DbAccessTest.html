@@ -1,0 +1,1098 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.2. Testing a Class that Uses the Database &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/06_TestFWGuide/02_DbAccessTest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3.2. How to Use the Automated Test Framework" href="index.html"/>
+        <link rel="next" title="3.2.3. Request Unit Test (Web Applications)" href="02_RequestUnitTest.html"/>
+        <link rel="prev" title="3.2.1. Automated Testing Framework" href="01_Abstract.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">3. Testing framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">3. Testing framework</a> &raquo;</li>
+      
+          <li><a href="index.html">3.2. How to Use the Automated Test Framework</a> &raquo;</li>
+      
+    <li>3.2.2. Testing a Class that Uses the Database</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="testing-a-class-that-uses-the-database">
+<h1>3.2.2. Testing a Class that Uses the Database<a class="headerlink" href="#testing-a-class-that-uses-the-database" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>3.2.2.1. Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We will describe how to test classes that use the database, such as database access class.</p>
+<p>When testing the classes that use the database, operations related to database (test data input, data verification) can be performed by using the classes provided by this framework.</p>
+<div class="section" id="overall-picture">
+<h3>3.2.2.1.1. Overall picture<a class="headerlink" href="#overall-picture" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../../../../_images/class_structure.png"><img alt="../../../../../_images/class_structure.png" src="../../../../../_images/class_structure.png" style="width: 100%;" /></a>
+<div class="section" id="main-classes-resources">
+<h4>3.2.2.1.1.1. Main Classes, resources<a class="headerlink" href="#main-classes-resources" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="47%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Role</th>
+<th class="head">Creation unit</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Test class</td>
+<td>Implement the test logic.
+Inherit DbAccessTestSupport.</td>
+<td>Creating one per class to be tested</td>
+</tr>
+<tr class="row-odd"><td>Test data (Excel file)</td>
+<td>Describe the test data, such as preliminary
+data stored in a table and expected results.</td>
+<td>Create one per test class</td>
+</tr>
+<tr class="row-even"><td>Class to be tested</td>
+<td>The class to be tested.</td>
+<td>－</td>
+</tr>
+<tr class="row-odd"><td>DbAccessTestSupport</td>
+<td>Provides the necessary functions for testing using
+the database, such as preparation data input. Also,
+starts and ends a database transaction before and after
+the execution of a test(<a class="reference internal" href="03_Tips.html#using-transactions"><span>To use transactions other than the default</span></a>)</td>
+<td>－</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="basic-test-methods">
+<h2>3.2.2.2. Basic test methods<a class="headerlink" href="#basic-test-methods" title="Permalink to this headline">¶</a></h2>
+<p>How to use APIs of this framework in accordance with the purpose, is described below.</p>
+<div class="section" id="testing-read-process-pattern">
+<h3>3.2.2.2.1. Testing read process pattern<a class="headerlink" href="#testing-read-process-pattern" title="Permalink to this headline">¶</a></h3>
+<p>During read process testing, to check that the class to be tested fetches the data as expected, you can check the lookup result from the database by the following procedure:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Registers the preparation data to the database.</li>
+<li>Invoke the method of the class to be tested.</li>
+<li>Check whether the search result received as a return value is the expected value.</li>
+</ol>
+</div></blockquote>
+<div class="section" id="sequence">
+<h4>3.2.2.2.1.1. Sequence<a class="headerlink" href="#sequence" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../../../../_images/select_sequence.png"><img alt="../../../../../_images/select_sequence.png" src="../../../../../_images/select_sequence.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="example-of-test-source-code-implementation">
+<h4>3.2.2.2.1.2. Example of test source code implementation<a class="headerlink" href="#example-of-test-source-code-implementation" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DbAccessTestSample</span> <span class="kd">extends</span> <span class="n">DbAccessTestSupport</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Test all searches. &lt;br/&gt;</span>
+<span class="cm">     * Check that all the * records registered in</span>
+<span class="cm">     * Employee table can be acquired.</span>
+<span class="cm">     */</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectAll</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// Register preparation data in the database</span>
+        <span class="c1">// Write sheet name in the argument.</span>
+        <span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testSelectAll&quot;</span><span class="o">);</span>
+
+        <span class="c1">// Invoke the method to be tested.</span>
+        <span class="n">EmployeeDbAcess</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EmployeeDbAccess</span><span class="o">();</span>
+        <span class="n">SqlResultSet</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">selectAll</span><span class="o">();</span>
+
+        <span class="c1">// Confirmation of results</span>
+        <span class="c1">// Confirm that the expected value described in Excel is equal to the actual value</span>
+        <span class="c1">// In the argument, specify the name of the sheet containing the expected value, ID of the expected value, and the actual value</span>
+        <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="s">&quot;testSelectAll&quot;</span><span class="o">,</span> <span class="s">&quot;expected&quot;</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="test-data-description-example">
+<h4>3.2.2.2.1.3. Test data description example<a class="headerlink" href="#test-data-description-example" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="preparation-data-to-be-pre-registered-in-the-database">
+<span id="how-to-write-setup-table"></span><h5>3.2.2.2.1.3.1. Preparation data to be pre-registered in the database<a class="headerlink" href="#preparation-data-to-be-pre-registered-in-the-database" title="Permalink to this headline">¶</a></h5>
+<p>Enter the data as follows.</p>
+<ul class="simple">
+<li>Line 1: SETUP_TABLE=&lt;Name of table to be registered&gt;</li>
+<li>Line 2: Column name of the table</li>
+<li>Line 3 ~ : Records to be registered (corresponding to the column name of the second row)</li>
+</ul>
+<p>SETUP_TABLE=EMPLOYEE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="41%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_CODE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>Yamada Taro</td>
+<td>0001</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>Tanaka Ichiro</td>
+<td>0002</td>
+</tr>
+</tbody>
+</table>
+<p>SETUP_TABLE=DEPT</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">DEPT_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0001</td>
+<td>Human Resources Department</td>
+</tr>
+<tr class="row-odd"><td>0002</td>
+<td>Administration Department</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="expected-value-after-test-execution">
+<h5>3.2.2.2.1.3.2. Expected value after test execution<a class="headerlink" href="#expected-value-after-test-execution" title="Permalink to this headline">¶</a></h5>
+<p>Enter the data as follows.</p>
+<ul class="simple">
+<li>Row 1: LIST_MAP=&lt; ID of the expected value, which is unique in the sheet (arbitrary string)</li>
+<li>Row 2: Column name or alias specified in the SELECT statement</li>
+<li>Row 3 ~ : Search results (corresponding to the column name of Row 2)</li>
+</ul>
+<p>LIST_MAP=expected</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="27%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">DEPT_NAME</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>Yamada Taro</td>
+<td>Human Resources Department</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>Tanaka Ichiro</td>
+<td>Administration Department</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="testing-update-process">
+<span id="how-to-test-update-method"></span><h3>3.2.2.2.2. Testing update process<a class="headerlink" href="#testing-update-process" title="Permalink to this headline">¶</a></h3>
+<p>When checking that the class to be tested updates the data as expected, you can check the update result of the database by the following procedure:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Registers the preparation data to the database.</li>
+<li>Invoke the method of the class to be tested.</li>
+<li>Commits the transaction.</li>
+<li>Check that the database values are updated as expected.</li>
+</ol>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">In the Nablarch Application Framework, it is assumed that multiple types of transactions will be used together.
+Therefore, when checking the database contents after executing the class to be tested,
+you must commit the transaction. If the transaction is not committed,
+the test result is not checked normally.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You need not commit when testing the read process.</p>
+</div>
+<div class="section" id="id1">
+<h4>3.2.2.2.2.1. Sequence<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../../../../_images/update_sequence.png"><img alt="../../../../../_images/update_sequence.png" src="../../../../../_images/update_sequence.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="id2">
+<h4>3.2.2.2.2.2. Example of test source code implementation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DbAccessTestSample</span> <span class="kd">extends</span> <span class="n">DbAccsessTestSupport</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDeleteExpired</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">// Register preparation data in the database</span>
+        <span class="c1">// Specify the sheet name in the argument.</span>
+        <span class="n">setUpDb</span><span class="o">(</span><span class="s">&quot;testDeleteExpired&quot;</span><span class="o">);</span>
+
+        <span class="c1">// Invoke the method to be tested.</span>
+        <span class="n">EmployeeDbAcess</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EmployeeDbAccess</span><span class="o">();</span>
+        <span class="n">SqlResultSet</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">deleteExpired</span><span class="o">();</span>  <span class="c1">// Delete the expired data</span>
+
+        <span class="c1">// Commit the transaction</span>
+        <span class="n">commitTransactions</span><span class="o">();</span>
+
+        <span class="c1">// Confirmation of results</span>
+        <span class="c1">// Confirm that the expected value described in Excel is equal to the actual value</span>
+        <span class="c1">// In the argument, specify the name of the sheet containing the expected value, and the actual value</span>
+        <span class="n">assertTableEquals</span><span class="o">(</span><span class="s">&quot;testDeleteExpired&quot;</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h4>3.2.2.2.2.3. Test data description example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h5>3.2.2.2.2.3.1. Preparation data to be pre-registered in the database<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
+<p>Enter the data as follows.</p>
+<ul class="simple">
+<li>Line 1: SETUP_TABLE=&lt;Name of the table to be registered&gt;</li>
+<li>Line 2: Column name of the table</li>
+<li>Line 3 ~ : Records to be registered (corresponding to the column name of the second row)</li>
+</ul>
+<p>SETUP_TABLE=EMPLOYEE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">EXPIRED</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>00001</td>
+<td>Yamada Taro</td>
+<td>TRUE</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>Tanaka Ichiro</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h5>3.2.2.2.2.3.2. Expected value after test execution<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<p>Enter the data as follows.</p>
+<ul class="simple">
+<li>Line 1: EXPECTED_TABLE=&lt;Name of the table to be checked&gt;</li>
+<li>Line 2: Column name of the table to be checked</li>
+<li>Line 3 ~: Expected value</li>
+</ul>
+<p>EXPECTED_TABLE=EMPLOYEE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">EMP_NAME</th>
+<th class="head">EXPIRED</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>// CHAR(5)</td>
+<td>VARCHAR(64)</td>
+<td>BOOLEAN</td>
+</tr>
+<tr class="row-odd"><td>00002</td>
+<td>Tanaka Ichiro</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-omit-description-of-database-test-data">
+<h2>3.2.2.3. How to omit description of database test data<a class="headerlink" href="#how-to-omit-description-of-database-test-data" title="Permalink to this headline">¶</a></h2>
+<p>When describing the preparation data of the database and the expected values,
+description in columns not relevant to the test can be omitted.
+<a class="reference internal" href="#default-values-when-column-omitted"><span>Default values</span></a> configured for the omitted columns by the automated testing framework.
+By using this function, readability of the test data improves.
+Also, even if the table definition is changed, data modification work is saved for columns that are not relevant,
+thereby improving maintainability.</p>
+<p>This function is especially useful for test cases related to the update process.
+When only one out of the many columns is updated, there is no need to describe the unnecessary columns.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When describing the expected values of database <strong>search results</strong>,
+one must describe all the columns to be searched
+(it is not possible to check only the primary key of a record).</p>
+<p class="last">Even when testing the <strong>registration process</strong>, since all the columns of the newly registered records need to be checked,
+it is not possible to omit columns using this function.</p>
+</div>
+<div class="section" id="when-omitting-a-column-of-db-preparation-data">
+<h3>3.2.2.3.1. When omitting a column of DB preparation data<a class="headerlink" href="#when-omitting-a-column-of-db-preparation-data" title="Permalink to this headline">¶</a></h3>
+<p>If you omit a column when writing the data for database preparation,
+the omitted column is treated as having <a class="reference internal" href="#default-values-when-column-omitted"><span>Default values</span></a> configured.</p>
+<p>However, <strong>the column of the primary key cannot be omitted</strong>.</p>
+</div>
+<div class="section" id="when-omitting-a-column-of-db-expected-values">
+<h3>3.2.2.3.2. When omitting a column of DB expected values<a class="headerlink" href="#when-omitting-a-column-of-db-expected-values" title="Permalink to this headline">¶</a></h3>
+<p>If you simply omit a column that is not relevant from the DB expected values, the omitted column is excluded from comparison.
+When testing the update process, “checking that an irrelevant column is not updated” is also a necessary perspective.
+In this case, use <cite>EXPECTED_COMPLETE_TABLE</cite> for data type, instead of <cite>EXPECTED_TABLE</cite>.
+If <cite>EXPECTED_TABLE</cite> is used, the omitted column is excluded from comparison,
+whereas if <cite>EXPECTED_COMPLETE_TABLE</cite> is used, comparison is carried out assuming
+that the omitted column contains the <a class="reference internal" href="#default-values-when-column-omitted"><span>Default values</span></a>.</p>
+</div>
+<div class="section" id="specific-examples">
+<h3>3.2.2.3.3. Specific examples<a class="headerlink" href="#specific-examples" title="Permalink to this headline">¶</a></h3>
+<p>Examples when all the columns are described and when only the relevant columns are described, are shown below.</p>
+<div class="section" id="test-case-example">
+<h4>3.2.2.3.3.1. Test case example<a class="headerlink" href="#test-case-example" title="Permalink to this headline">¶</a></h4>
+<p>The following test cases are used as examples:</p>
+<p><strong>For records that have passed the “expiration date”, the “Delete flag” should be updated to 1.</strong><a class="footnote-reference" href="#id7" id="id6">[1]</a></p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td>The date on which this test is executed is January 1, 2011.</td></tr>
+</tbody>
+</table>
+<p>The table to be used (SAMPLE_TABLE) has the following columns:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PK1</td>
+<td>Primary key</td>
+</tr>
+<tr class="row-odd"><td>PK2</td>
+<td>Primary key</td>
+</tr>
+<tr class="row-even"><td>COL_A</td>
+<td>Columns that are not used by the function under test</td>
+</tr>
+<tr class="row-odd"><td>COL_B</td>
+<td>Columns that are not used by the function under test</td>
+</tr>
+<tr class="row-even"><td>COL_C</td>
+<td>Columns that are not used by the function under test</td>
+</tr>
+<tr class="row-odd"><td>COL_D</td>
+<td>Columns that are not used by the function under test</td>
+</tr>
+<tr class="row-even"><td>Expiration date</td>
+<td>Data that has passed the expiration data will be processed</td>
+</tr>
+<tr class="row-odd"><td>Delete flag</td>
+<td>The value of records that have passed the expiration date, will be updated to “1”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="when-all-the-columns-are-described-without-omission-bad-example">
+<h4>3.2.2.3.3.2. When all the columns are described without omission (bad example)<a class="headerlink" href="#when-all-the-columns-are-described-without-omission-bad-example" title="Permalink to this headline">¶</a></h4>
+<p>Readability decreases as all the columns are described.<a class="footnote-reference" href="#id9" id="id8">[2]</a>Also, if there is a change in the table definition, even a column that is not relevant must be modified.</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[2]</a></td><td>The columns COL_A, COL_B, COL_C and COL_D are not relevant to this test case.</td></tr>
+</tbody>
+</table>
+<p><strong>Preparation data</strong></p>
+<p>SETUP_TABLE=SAMPLE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="28%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PK_1</th>
+<th class="head">PK_2</th>
+<th class="head">COL_A</th>
+<th class="head">COL_B</th>
+<th class="head">COL_C</th>
+<th class="head">COL_D</th>
+<th class="head">Expiration date</th>
+<th class="head">Delete flag</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>01</td>
+<td>0001</td>
+<td>1a</td>
+<td>1b</td>
+<td>1c</td>
+<td>1d</td>
+<td>20101231</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>02</td>
+<td>0002</td>
+<td>2a</td>
+<td>2b</td>
+<td>2c</td>
+<td>2d</td>
+<td>20110101</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected value</strong></p>
+<p>EXPECTED_TABLE=SAMPLE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="28%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PK_1</th>
+<th class="head">PK_2</th>
+<th class="head">COL_A</th>
+<th class="head">COL_B</th>
+<th class="head">COL_C</th>
+<th class="head">COL_D</th>
+<th class="head">Expiration date</th>
+<th class="head">Delete flag</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>01</td>
+<td>0001</td>
+<td>1a</td>
+<td>1b</td>
+<td>1c</td>
+<td>1d</td>
+<td>20101231</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>02</td>
+<td>0002</td>
+<td>2a</td>
+<td>2b</td>
+<td>2c</td>
+<td>2d</td>
+<td>20110101</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="when-only-the-relevant-columns-are-described-good-example">
+<h4>3.2.2.3.3.3. When only the relevant columns are described (good example)<a class="headerlink" href="#when-only-the-relevant-columns-are-described-good-example" title="Permalink to this headline">¶</a></h4>
+<p>By describing only the relevant columns, readability and maintainability improve.
+The columns relevant to this test case are as follows:</p>
+<ul class="simple">
+<li>Primary key column to uniquely identify a record (PK_1, PK_2)</li>
+<li>“Expiration date” column, which is a condition for extracting records to be updated</li>
+<li>“Delete flag” column to be updated</li>
+</ul>
+<p>In addition, even if there is a change in the table definition, there is no impact on columns that are not relevant.</p>
+<p><strong>Preparation data</strong></p>
+<p>Only the columns relevant to the test to be executed are described.</p>
+<p>SETUP_TABLE=SAMPLE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="43%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PK_1</th>
+<th class="head">PK_2</th>
+<th class="head">Expiration date</th>
+<th class="head">Delete flag</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>01</td>
+<td>0001</td>
+<td>20101231</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>02</td>
+<td>0002</td>
+<td>20110101</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected value</strong></p>
+<p>When describing expected value, use <cite>EXPECTED_COMPLETE_TABLE</cite> instead of  <cite>EXPECTED_TABLE</cite>.</p>
+<p>EXPECTED_COMPLETE_TABLE=SAMPLE_TABLE</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="43%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PK_1</th>
+<th class="head">PK_2</th>
+<th class="head">Expiration date</th>
+<th class="head">Delete flag</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>01</td>
+<td>0001</td>
+<td>20101231</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>02</td>
+<td>0002</td>
+<td>20110101</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="default-values">
+<span id="default-values-when-column-omitted"></span><h3>3.2.2.3.4. Default values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h3>
+<p>The following values are used as default values unless explicitly specified
+in the component configuration file of the automated testing framework.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column</th>
+<th class="head">Default values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Numeric type</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>String type</td>
+<td>Half width spaces</td>
+</tr>
+<tr class="row-even"><td>Date type</td>
+<td>1/1/1970 00:00:00.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-change-the-default-values">
+<h3>3.2.2.3.5. How to change the default values<a class="headerlink" href="#how-to-change-the-default-values" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="settings-items-list">
+<h4>3.2.2.3.5.1. Settings items list<a class="headerlink" href="#settings-items-list" title="Permalink to this headline">¶</a></h4>
+<p>You can configure the following values in the component configuration file using
+nablarch.test.core.db.BasicDefaultValues</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="24%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration item name</th>
+<th class="head">Description</th>
+<th class="head">Configuration value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>charValue</td>
+<td>Default value for string type</td>
+<td>A single ASCII character</td>
+</tr>
+<tr class="row-odd"><td>numberValue</td>
+<td>Default value for numeric type</td>
+<td>0 or a positive integer</td>
+</tr>
+<tr class="row-even"><td>dateValue</td>
+<td>Default value for date type</td>
+<td>JDBC time stamp escape format (yyyy-mm-dd hh:mm:ss.fffffffff)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example-of-component-configuration-file-description">
+<h4>3.2.2.3.5.2. Example of component configuration file description<a class="headerlink" href="#example-of-component-configuration-file-description" title="Permalink to this headline">¶</a></h4>
+<p>An example of a component configuration file description when the following setting values are used is shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration item name</th>
+<th class="head">Configuration value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>charValue</td>
+<td>a</td>
+</tr>
+<tr class="row-odd"><td>numberValue</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>dateValue</td>
+<td>1/1/2000 12:34:56.123456789</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- TestDataParser --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;testDataParser&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.reader.BasicTestDataParser&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Database default values --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultValues&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.db.BasicDefaultValues&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;charValue&quot;</span> <span class="na">value=</span><span class="s">&quot;a&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dateValue&quot;</span> <span class="na">value=</span><span class="s">&quot;1/1/2000 12:34:56.123456789&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;numberValue&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="c">&lt;!-- Middle is omitted --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="important-points">
+<h2>3.2.2.4. Important points<a class="headerlink" href="#important-points" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="points-to-be-noted-related-to-setupdb-method">
+<h3>3.2.2.4.1. Points to be noted related to setUpDb method<a class="headerlink" href="#points-to-be-noted-related-to-setupdb-method" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>It is not necessary to describe all the columns in the Excel file.
+Default values are set for omitted columns.</li>
+<li>Multiple tables can be described on a single sheet of the Excel file.
+When setUpDb (String sheetName) is executed, all the records with the data type &#8220;SETUP_TABLE&#8221; in the specified sheet are registered.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="points-to-be-noted-related-to-asserttableequals-method">
+<h3>3.2.2.4.2. Points to be noted related to assertTableEquals method<a class="headerlink" href="#points-to-be-noted-related-to-asserttableequals-method" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Columns omitted in the description of expected values, are excluded from comparison.</li>
+<li>Even if the order of records is different when carrying out comparison, records can be compared correctly by checking against the primary key.
+There is no need to create expected data with the order of the records in mind.</li>
+<li>Multiple tables can be described on a single sheet. When assertTableEquals(String sheetName) is executed, all the data with the data type &#8220;EXPECTED_TABLE&#8221; in the specified sheet are compared.</li>
+<li>The Java.sql.Timestamp type format, such as date of update, is &#8220;yyyy-mm-dd hh:mm:ss.fffffffff&#8221;(fffffffff&#8221; is nano seconds). Even if the nanosecond is not configured, it is displayed as 0 nanosecond in the format. For example, if the time is exactly 12 hours 34 minutes 56 seconds on January 1, 2010, it would be displayed as 2010-01-01 12:34:56.0. When you describe an expected value in an Excel sheet, it is necessary to add a decimal point + Zero at the end.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="points-to-be-noted-related-to-assertsqlresultsetequals">
+<h3>3.2.2.4.3. Points to be noted related to assertSqlResultSetEquals<a class="headerlink" href="#points-to-be-noted-related-to-assertsqlresultsetequals" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>All column names (alias) specified in the SELECT statement are compared. No particular column can be excluded from comparison.</li>
+<li>If the records are in a different order, they are considered not equivalent (assert failure).
+This is due to the following reasons:<ul>
+<li>The columns specified in the SELECT do not always contain the primary key.</li>
+<li>In most cases, ORDER BY is specified when SELECT is executed, and the order also needs to be compared strictly.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="points-to-be-noted-related-to-registration-and-update-process-tests-in-the-class-unit-test">
+<h3>3.2.2.4.4. Points to be noted related to registration and update process tests in the class unit test<a class="headerlink" href="#points-to-be-noted-related-to-registration-and-update-process-tests-in-the-class-unit-test" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Request ID and user ID must be configured in ThreadContext when registering or updating the database using the automatically configured items. These values should be configured to ThreadContext before invoking the class to be tested.
+Refer to the next section for information on how to configure ThreadContext.（  <a class="reference internal" href="03_Tips.html#using-threadcontext"><span>To configure user ID, request ID, etc. in ThreadContext</span></a>  ）</li>
+<li>If a transaction other than the default is used, it is necessary to allow this framework to control the transaction. Refer to the next section for information on how configure transaction control.（  <a class="reference internal" href="03_Tips.html#using-transactions"><span>To use transactions other than the default</span></a>  ）</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="to-set-up-data-in-a-table-with-a-foreign-key">
+<h3>3.2.2.4.5. To set up data in a table with a foreign key<a class="headerlink" href="#to-set-up-data-in-a-table-with-a-foreign-key" title="Permalink to this headline">¶</a></h3>
+<p>Delete and register data by determining the parent-child relationship of a table using the same function as <a class="reference internal" href="04_MasterDataRestore.html#master-data-backup"><span>Master Data Recovery Function</span></a>.
+For more information, see <a class="reference internal" href="04_MasterDataRestore.html#masterdatarestore-fk-key"><span>When using a table with a foreign key</span></a>.</p>
+</div>
+<div class="section" id="points-to-be-noted-related-to-data-types-of-columns-that-can-be-described-in-an-excel-file">
+<h3>3.2.2.4.6. Points to be noted related to data types of columns that can be described in an Excel file<a class="headerlink" href="#points-to-be-noted-related-to-data-types-of-columns-that-can-be-described-in-an-excel-file" title="Permalink to this headline">¶</a></h3>
+<p>In an Excel file, only the columns with types supported by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a>
+can be described as test data.</p>
+<p>Therefore, it must be noted that columns with other data types (for example, ROWID of Oracle and OID of PostgreSQL, etc.) cannot be described as test data.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

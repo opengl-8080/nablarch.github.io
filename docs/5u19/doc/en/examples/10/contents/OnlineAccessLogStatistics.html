@@ -1,0 +1,796 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Online Access Log Aggregation Function &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/10/contents/OnlineAccessLogStatistics.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
+        <link rel="up" title="How to Use the Log Aggregation Sample" href="../index.html"/>
+        <link rel="next" title="Messaging Platform Test Simulator Sample" href="../../11/index.html"/>
+        <link rel="prev" title="How to Use the Log Aggregation Sample" href="../index.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">How to Use the Log Aggregation Sample</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+          <li><a href="../index.html">How to Use the Log Aggregation Sample</a> &raquo;</li>
+      
+    <li>Online Access Log Aggregation Function</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="online-access-log-aggregation-function">
+<h1>Online Access Log Aggregation Function<a class="headerlink" href="#online-access-log-aggregation-function" title="Permalink to this headline">¶</a></h1>
+<p>The Online Access Log Aggregation Function aggregates the following information into one request ID <a class="footnote-reference" href="#r1" id="id1">[1]</a> , based on the access log output from the screen function.</p>
+<ul class="simple">
+<li>Number of requests</li>
+<li>Number of requests with processing time exceeding the threshold</li>
+<li>Processing time (average)</li>
+<li>Processing time (median)</li>
+<li>processing time（maximum value）</li>
+</ul>
+<table class="docutils footnote" frame="void" id="r1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">By specifying the request ID in the configuration file, the function to be aggregated can be narrowed down.</p>
+<p class="last">See <a class="reference internal" href="#online-access-log-analysis-and-configuration-of-aggregation">Online access log analysis and configuration of aggregation</a> sample for configuration examples.</p>
+</td></tr>
+</tbody>
+</table>
+<div class="section" id="sample-structure">
+<h2>Sample structure<a class="headerlink" href="#sample-structure" title="Permalink to this headline">¶</a></h2>
+<p>This sample consists of the following three types.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Sample name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="#online-access-log-analysis-batch">Online access log analysis batch</a></td>
+<td>Batch processing that analyzes the online access log and outputs only the information needed for aggregation to a CSV file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#online-access-log-analysis-result-aggregation-batch">Online access log analysis result aggregation batch</a></td>
+<td><p class="first">Batch processing to perform aggregate processing based on the CSV file output by <a class="reference internal" href="#online-access-log-analysis-batch">Online access log analysis batch</a>.</p>
+<p class="last">The aggregation period will be for the number of days specified in the configuration file.</p>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#online-access-log-aggregation-result-reporting-sample">Online access log aggregation result reporting sample</a></td>
+<td>Excel marco that outputs a report (table of aggregate results) to Excel based on the aggregate results output
+by the <a class="reference internal" href="#online-access-log-analysis-result-aggregation-batch">Online access log analysis result aggregation batch</a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="process-flow">
+<h3>Process flow<a class="headerlink" href="#process-flow" title="Permalink to this headline">¶</a></h3>
+<p>The following is a flow of processing until the online access log using the above sample and outputting the report information to Excel</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/OnlineLogStatistics.png"><img alt="../../../_images/OnlineLogStatistics.png" src="../../../_images/OnlineLogStatistics.png" style="width: 100%;" /></a>
+</div></blockquote>
+<p></p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>In the above diagram, the online log deployment server and the terminal in charge of operations are explicitly described separately.
+This is because the online access log may contain personal information and it is recommended to do it in a secure environment.</p>
+<p class="last">Since the request information aggregation result does not include items such as personal information, although it may be run in a non-secure environment,
+there is no particular problem in running the log analysis and aggregation process in the environment in which it was executed.</p>
+</div>
+</div>
+</div>
+<div class="section" id="specifications-and-execution-procedures-for-each-sample">
+<h2>Specifications and execution procedures for each sample<a class="headerlink" href="#specifications-and-execution-procedures-for-each-sample" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="online-access-log-analysis-batch">
+<h3>Online access log analysis batch<a class="headerlink" href="#online-access-log-analysis-batch" title="Permalink to this headline">¶</a></h3>
+<p>Batch processing that analyzes the online access log and outputs only the information needed for aggregate processing to a CSV file.</p>
+<p>This sample is assumed to be executed on a daily basis.
+In addition, CSV files of analysis results should be stored as analysis results without deleting them.By collecting the analysis results CSV for the past,
+it is possible to perform accurate aggregation processing in the subsequent <a class="reference internal" href="#online-access-log-analysis-result-aggregation-batch">Online access log analysis result aggregation batch</a>processing.</p>
+<p>The CSV file name is &#8220;REQUEST_INFO_ + &#8220;system date (8 digits)&#8221; + .csv&#8221;.</p>
+<p>The following information is output to the CSV file after executing this batch.</p>
+<p><strong>Output contents to a CSV file</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item name</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Years</td>
+<td>End of request (END) Year of log output date and time</td>
+</tr>
+<tr class="row-odd"><td>Month</td>
+<td>End of request (END) date and time of log output</td>
+</tr>
+<tr class="row-even"><td>Day</td>
+<td>End of request (END) date and time of log output</td>
+</tr>
+<tr class="row-odd"><td>Process name</td>
+<td><p class="first">Process name</p>
+<p class="last">?Blank if no process name is output to the log</p>
+</td>
+</tr>
+<tr class="row-even"><td>Request ID</td>
+<td>Request ID</td>
+</tr>
+<tr class="row-odd"><td>processing time</td>
+<td>Request processing time</td>
+</tr>
+<tr class="row-even"><td>Status code</td>
+<td>Process status code</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="configuration-information-for-executing-this-sample">
+<h4>Configuration information for executing this sample<a class="headerlink" href="#configuration-information-for-executing-this-sample" title="Permalink to this headline">¶</a></h4>
+<p>See <a class="reference internal" href="#online-access-log-analysis-and-configuration-of-aggregation">Online access log analysis and configuration of aggregation</a> sample.</p>
+</div>
+<div class="section" id="execution">
+<h4>Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h4>
+<p>This batch is implemented using the Nablarch batch architecture. Therefore, <strong>Nablarch.jar</strong>is required to run this batch.
+Since the Nablarch batch requires a connection to the database, <strong>database connection configuration</strong> is also required.</p>
+<p>The following parameters are required when running this sample:</p>
+<ul>
+<li><p class="first">diConfig</p>
+<p>You can specify &#8220;main/resources/statistics-batch.xml&#8221; in the log aggregation function project.
+When the classpath is configured to the resources directory, the specified value is &#8220;statistics-batch.xml&#8221;.</p>
+</li>
+<li><p class="first">requestPath</p>
+<p>Specify the class name (OnlineAccessLogParseAction) of this batch action class.</p>
+<p>If you change the configuration value of the log aggregation project, it is necessary to include the package name in the class name, so you should review the configuration value.</p>
+</li>
+<li><p class="first">Request ID</p>
+<p>If the functions that require a request ID (such as prevention of double start, batch stop control, etc.) are not used, it is possible to execute this batch without granting a request ID.
+When using a function that requires a request ID, the request ID should be given according to the project numbering system.</p>
+</li>
+<li><p class="first">userId</p>
+<p>Configure the batch user ID.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="online-access-log-analysis-result-aggregation-batch">
+<h3>Online access log analysis result aggregation batch<a class="headerlink" href="#online-access-log-analysis-result-aggregation-batch" title="Permalink to this headline">¶</a></h3>
+<p>Batch processing to perform aggregate processing based on the CSV file output by <a class="reference internal" href="#online-access-log-analysis-batch">Online access log analysis batch</a>. The aggregation period will be for the number of days specified in the configuration file.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The number of target days is determined by using the date included in the file name of the analysis result.</p>
+<p>An example is shown below.</p>
+<ul class="last">
+<li><p class="first">When analysis processing is executed daily.</p>
+<p>When the analysis results of the following four files are used as inputs for tabulation, and the batch execution date is October 10, 2012 and the tabulation period is set to two days in the past,
+the CSV files from October 8 to October 10, 2012 are the tabulation targets.</p>
+<p>The content of each CSV file contains only one day&#8217;s analysis results, so the range of calculation is basically the same as the past two days specified.</p>
+<div class="line-block">
+<div class="line">REQUEST_INFO_20121007.csv     (Analysis of the online logs for seventh)</div>
+<div class="line">REQUEST_INFO_20121008.csv     (Analysis of the online logs for eighth)</div>
+<div class="line">REQUEST_INFO_20121009.csv     (Analysis of the online logs for ninth)</div>
+<div class="line">REQUEST_INFO_20121010.csv     (Analysis of the online logs for tenth)</div>
+</div>
+</li>
+<li><p class="first">When the analysis process is not executed daily (for example, when it is executed once every two days)</p>
+<p>When the analysis results of the following four files are used as inputs for tabulation, and the batch execution date is October 10, 2012 and the tabulation period is set to two days in the past,
+the CSV files from October 8 to October 10, 2012 are the tabulation targets.</p>
+<p>In this case, because the CSV file of 20121008 contains analysis results for two days (7 and 8),
+the logs for the previous two days in the aggregation range (7 days) are also output as aggregation results.</p>
+<div class="line-block">
+<div class="line">REQUEST_INFO_20121008.csv     (Analysis of the online logs for the seventh and eighth)</div>
+<div class="line">REQUEST_INFO_20121010.csv     (Analysis of the online logs for the ninth and tenth)</div>
+</div>
+</li>
+</ul>
+</div>
+<p>The following three CSV files are output as the aggregation result.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">File name</th>
+<th class="head">Output contents</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Aggregate results by time</td>
+<td>Outputs hourly aggregate processing.</td>
+</tr>
+<tr class="row-odd"><td>Aggregate results by year and month</td>
+<td>Outputs aggregate results on a daily basis.</td>
+</tr>
+<tr class="row-even"><td>Daily aggregation result</td>
+<td><blockquote class="first">
+<div>Outputs aggregate results for each year and month.</div></blockquote>
+<p>Note that the year-month-by-year tabulation results only include data for the system monthly date. For this reason,
+the aggregate results of the past years should be accumulated without deleting them.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the range is less than one month, such as 10 days, the value output in the month/year summary results will be 10 days only.
+If the aggregation process is executed on 30th and the range of aggregation is 10 days, the range from 20th to 30th is the target of aggregation.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output contents to a CSV file</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item name</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Request ID</td>
+<td>Request ID</td>
+</tr>
+<tr class="row-odd"><td>Period for aggregation</td>
+<td><p class="first">The following values are output for each file. :</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>By time: 0 - 23
+By day1 - 31
+By month and year: Month and year of system date
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Process name</td>
+<td>Process name</td>
+</tr>
+<tr class="row-odd"><td>Number of requests</td>
+<td>Number of requests in the period under review</td>
+</tr>
+<tr class="row-even"><td>Number of requests for which the processing time exceeds the threshold.</td>
+<td>The number of requests whose processing time exceeds the threshold time specified in the configuration file.</td>
+</tr>
+<tr class="row-odd"><td>Processing time (average)</td>
+<td>Average value within the aggregation period</td>
+</tr>
+<tr class="row-even"><td>Processing time (median)</td>
+<td>Median value within the aggregation period</td>
+</tr>
+<tr class="row-odd"><td>Processing time (maximum processing time within the aggregation target period)</td>
+<td>Maximum processing time within the aggregation target period</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h4>Configuration information for executing this sample<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>See <a class="reference internal" href="#online-access-log-analysis-and-configuration-of-aggregation">Online access log analysis and configuration of aggregation</a> sample.</p>
+</div>
+<div class="section" id="id3">
+<h4>Execution<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>This batch is implemented using the Nablarch batch architecture. Therefore, <strong>Nablarch.jar</strong>is required to run this batch.
+Since the Nablarch batch requires a connection to the database, <strong>database connection configuration</strong> is also required.</p>
+<p>The following parameters are required when running this sample:</p>
+<ul>
+<li><p class="first">diConfig</p>
+<p>You can specify &#8220;main/resources/statistics-batch.xml&#8221; in the log aggregation function project.
+When the classpath is configured to the resources directory, the specified value is &#8220;statistics-batch.xml&#8221;.</p>
+</li>
+<li><p class="first">requestPath</p>
+<p>Specify the class name (RequestInfoAggregateAction) of this batch action class.</p>
+<p>If you change the configuration value of the log aggregation project, it is necessary to include the package name in the class name, so you should review the configuration value.</p>
+</li>
+<li><p class="first">Request ID</p>
+<p>If the functions that require a request ID (such as prevention of double start, batch stop control, etc.) are not used, it is possible to execute this batch without granting a request ID.
+When using a function that requires a request ID, the request ID should be given according to the project numbering system.</p>
+</li>
+<li><p class="first">userId</p>
+<p>Configure the batch user ID.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="online-access-log-aggregation-result-reporting-sample">
+<h3>Online access log aggregation result reporting sample<a class="headerlink" href="#online-access-log-aggregation-result-reporting-sample" title="Permalink to this headline">¶</a></h3>
+<p>This sample outputs a report (table of aggregate results) to Excel based on the aggregate results output by the online access log analysis result aggregation batch.</p>
+<p>This sample is a sample to create a table of aggregate results. When creating a graph based on a table, use the Excel function to create a graph.</p>
+<div class="section" id="id4">
+<h4>Execution<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>For details on how to use, refer to the following files under the log aggregation project.</p>
+<ul class="simple">
+<li>/tool/WebApplicationRequestReportingTool.xls</li>
+</ul>
+</div>
+</div>
+<div class="section" id="online-access-log-analysis-and-configuration-of-aggregation">
+<h3>Online access log analysis and configuration of aggregation<a class="headerlink" href="#online-access-log-analysis-and-configuration-of-aggregation" title="Permalink to this headline">¶</a></h3>
+<p>Describes the configuration values for executing <a class="reference internal" href="#online-access-log-analysis-batch">Online access log analysis batch</a>and <a class="reference internal" href="#online-access-log-analysis-result-aggregation-batch">Online access log analysis result aggregation batch</a>.</p>
+<p>The configuration value must be set in the <strong>please.change.me.statistics.action.settings.OnlineStatisticsDefinition</strong> property and all are required items.</p>
+<p>However, since the configuration values of the standard configuration are prepared in the following files of the operational information statistical function project,
+only the items that need to be changed depending on the environment of the project that uses this sample need to be modified.</p>
+<ul class="simple">
+<li>main/resources/statistics/onlineStatisticsDefinition.xml</li>
+<li>main/resources/statistics/statistics.config</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>accessLogDir</td>
+<td><p class="first">The path of the directory where the online access log to be analyzed is stored.</p>
+<p class="last">Specify with absolute path or relative path.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>accessLogFileNamePattern</td>
+<td><p class="first">File name pattern of online access log to be analyzed</p>
+<p>Use &#8220;*&#8221; to specify any value. (Note that this is different from regular expressions.)</p>
+<dl class="last docutils">
+<dt>Example:</dt>
+<dd>If the file name always starts with &#8220;access&#8221;, specify &#8220;access*&#8221;.</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>accessLogParseDir</td>
+<td><p class="first">Path to the temporary directory used to analyze the access log</p>
+<p>The access log to be analyzed is copied to this directory and analyzed.</p>
+<p class="last">Specify with absolute path or relative path.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>endLogPattern</td>
+<td>Regular expression pattern to identify the access log termination log</td>
+</tr>
+<tr class="row-even"><td>includeRequestIdList</td>
+<td><p class="first">Set the request ID list to be analyzed.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the request ID has increased or decreased, add (delete) the request ID to be analyzed.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>findRequestIdPattern</td>
+<td><p class="first">Regular expression for extracting request ID from end log</p>
+<p class="last">Set a regular expression so that the part where the request ID is output is grouped.</p>
+</td>
+</tr>
+<tr class="row-even"><td>findProcessNamePattern</td>
+<td><p class="first">Regular expression for extracting the process name from the end log</p>
+<p class="last">Set a regular expression so that the part where the process name is output is grouped.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>findStatusCodePattern</td>
+<td><p class="first">Regular expression for extracting status code from end log</p>
+<p class="last">Set the regular expression so that the part where the status code is output is grouped.</p>
+</td>
+</tr>
+<tr class="row-even"><td>logOutputDateTimeStartPosition</td>
+<td><p class="first">Start position of the area where the log output date and time is output</p>
+<p class="last">Set the number of characters starting from 0. (Same specification as String#substring)</p>
+</td>
+</tr>
+<tr class="row-odd"><td>logOutputDateTimeEndPosition</td>
+<td><p class="first">End position of the area where the log output date and time is output</p>
+<p class="last">Set the number of characters starting from 0. (Same specification as String#substring)</p>
+</td>
+</tr>
+<tr class="row-even"><td>logOutputDateTimeFormat</td>
+<td><p class="first">Format of log output date and time</p>
+<p class="last">It is set by the type which can be specified in SimpleDateFormat.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>findExecutionTimePattern</td>
+<td><p class="first">Regular expression for extracting the processing time of a request</p>
+<p class="last">Set the regular expression so that the part where the processing time is output is grouped.</p>
+</td>
+</tr>
+<tr class="row-even"><td>requestInfoFormatName</td>
+<td><p class="first">File name of the format definition file of the analysis result CSV</p>
+<p>The definition file uses the following files under the log aggregation project.</p>
+<p>This format file is also used when reading the analysis results in <a class="reference internal" href="#online-access-log-analysis-result-aggregation-batch">Online access log analysis result aggregation batch</a>.</p>
+<ul class="simple">
+<li>main/format/requestInfo.fmt</li>
+</ul>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Basically, it is not necessary to specify any other format definition file than the one mentioned above.
+However, when the analysis and aggregation batches are extended and the items output to the format definition file are added (deleted),
+it is necessary to create the format definition file corresponding to the extended batch.
+In such a case, it is necessary to set the name of the newly created format definition file.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>requestInfo.dir</td>
+<td><p class="first">Logical name of the output destination directory of the analysis result CSV</p>
+<p>Refer to the following files under the log aggregation project for mapping with the actual directory.</p>
+<ul class="last simple">
+<li>main/resources/statistics/file.xml</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>requestInfoSummaryBaseName</td>
+<td><p class="first">Logical name of the output destination directory for the aggregation result CSV</p>
+<p>Refer to the following files under the log aggregation project for mapping with the actual directory.</p>
+<ul class="last simple">
+<li>main/resources/statistics/file.xml</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>requestInfoSummaryFormatName</td>
+<td><p class="first">Format definition file name of the aggregation result CSV file</p>
+<p>The definition file uses the following files under the log aggregation project.</p>
+<ul class="simple">
+<li>main/format/requestInfoAggregate.fmt</li>
+</ul>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Basically, it is not necessary to specify any other format definition file than the one mentioned above.
+However, when the item output to the format definition file is added (deleted) by extending the aggregation batch,
+it is necessary to create the format definition file corresponding to the extended batch.
+In such a case, it is necessary to set the name of the newly created format definition file.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>thresholdExecutionTime</td>
+<td><p class="first">Threshold of the processing time for one request (milliseconds)</p>
+<p class="last">This is used to obtain the number of requests whose processing time exceeds the threshold.
+For example, if it is set to 3000, the number of requests exceeding 3 seconds can be calculated.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>aggregatePeriod</td>
+<td><p class="first">Configure the aggregation period.</p>
+<p class="last">It is recommended to set a minimum of 30 to ensure that the year and month are aggregated without fail.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

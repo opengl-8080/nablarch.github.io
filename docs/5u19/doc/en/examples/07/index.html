@@ -1,0 +1,865 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sample UserAgent Information Acquisition Function &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/07/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="Configuration Sample of UserAgent Information Acquisition Function" href="useragent_sample.html"/>
+        <link rel="prev" title="How to Incorporate the CAPTCHA Function" href="../06/06_Captcha_guide.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Sample UserAgent Information Acquisition Function</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sample-useragent-information-acquisition-function">
+<h1>Sample UserAgent Information Acquisition Function<a class="headerlink" href="#sample-useragent-information-acquisition-function" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>The UserAgent information acquisition function analyzes the value obtained from the HTTP header (User-Agent) according to the contents described in the configuration file,
+and obtains the following information.</p>
+<ul class="simple">
+<li>OS type</li>
+<li>OS name</li>
+<li>OS version</li>
+<li>Browser type</li>
+<li>Browser name</li>
+<li>Browser version</li>
+</ul>
+<p>It can be obtained from the application with <code class="docutils literal"><span class="pre">HttpRequest#getUserAgent()</span></code>.</p>
+<div class="toctree-wrapper compound">
+</div>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="class-diagram">
+<h3>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<img alt="../../_images/UserAgent_ClassDiagram.png" src="../../_images/UserAgent_ClassDiagram.png" />
+</div>
+<div class="section" id="responsibilities-of-each-class">
+<h3>Responsibilities of each class<a class="headerlink" href="#responsibilities-of-each-class" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="interface-definition">
+<h4>Interface definition<a class="headerlink" href="#interface-definition" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentValueConvertor</td>
+<td><div class="first last line-block">
+<div class="line">An interface that converts acquired values (browser name, version number, etc.).</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-definition">
+<h4>Class definition<a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h4>
+<p>a) Implementation class for nablarch.fw.web.UserAgentParser</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.RegexUserAgentParser</td>
+<td><div class="first last line-block">
+<div class="line">UserAgent analysis class that obtains various information on the OS and browser using regular expressions.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>b) Implementation class of nablarch.fw.web.useragent.UserAgentValueConvertor</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentNameConvertor</td>
+<td><div class="first last line-block">
+<div class="line">Converter that formats name items.</div>
+<div class="line">It has a function that replaces any strings.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.fw.web.useragent.UserAgentVersionConvertor</td>
+<td><div class="first last line-block">
+<div class="line">Converter that formats version items.</div>
+<div class="line">It has a function that divides version items and pads each item with an any string.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>c) Other classes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nablarch.fw.web.HttpRequest</td>
+<td><div class="first last line-block">
+<div class="line">Data object that stores the request message in the HTTP protocol.</div>
+<div class="line">The application obtains the UserAgent class from the <code class="docutils literal"><span class="pre">getUserAgent</span></code> method of this class.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>nablarch.fw.web.useragent.UserAgent</td>
+<td><div class="first last line-block">
+<div class="line">Class that stores the results analyzed by the UserAgent analysis class.</div>
+<div class="line">Extend this class to customize the UserAgent analysis class and obtain any items.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>please.change.me.fw.web.useragent.UserAgentPatternSetting</td>
+<td><div class="first last line-block">
+<div class="line">Class that stores configuration items such as the list of analysis patterns and default values.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>please.change.me.fw.web.useragent.TypePattern</td>
+<td><div class="first last line-block">
+<div class="line">Class that stores the regular expressions of parsing patterns to determine the type (OS/browser).</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>please.change.me.fw.web.useragent.ItemPattern</td>
+<td><div class="first last line-block">
+<div class="line">Class that stores the regular expressions of analysis patterns and converters to determine items (such as specific browser names).</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p><strong>Additional information on the UserAgentVersionConvertor</strong></p>
+<p>This section describes the usage of the <code class="docutils literal"><span class="pre">UserAgentValueConvertor</span></code> class provided in the sample.
+In this class, strings are divided by &#8220;D (non-numeric)&#8221;, each element is padded and the values that are separated by a space are used as the converted values.
+(Example: &#8220;34.0.1847.116&#8221; → &#8220;_34 __0 ___1847&#8221;)</p>
+<p>The reason for this conversion is to use the browser version number after conversion as the CSS class name.</p>
+<p>There are various ways to perform this control, although special display control may be required only for certain browsers and terminals.
+If this control method is not standardized for all applications,
+ad hoc judgment processes and control processes will be scattered, and maintainability will be impaired.</p>
+<p class="last">To standardize this control method, a method for &#8220;using the browser version number obtained from the user agent value as the CSS class name
+and controlling the specific browser or terminal by this CSS designation&#8221; has been provided.
+This class is intended to be used for display control applications.</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="description-of-configuration">
+<h2>Description of configuration<a class="headerlink" href="#description-of-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The UserAgent information acquisition function can be configured using the system repository function.</div>
+</div>
+<div class="section" id="configuration-of-the-useragent-analysis-class">
+<h3>Configuration of the UserAgent analysis class<a class="headerlink" href="#configuration-of-the-useragent-analysis-class" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="details-of-configuration-contents">
+<h4>Details of configuration contents<a class="headerlink" href="#details-of-configuration-contents" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="configuration-of-please-change-me-fw-web-useragent-regexuseragentparser">
+<h5>Configuration of please.change.me.fw.web.useragent.RegexUserAgentParser<a class="headerlink" href="#configuration-of-please-change-me-fw-web-useragent-regexuseragentparser" title="Permalink to this headline">¶</a></h5>
+<div class="toctree-wrapper compound">
+</div>
+<p>Configuration examples and more information on the configuration items of RegexUserAgentParser are shown below. Also, more specific configuration and usage examples are shown in <a class="reference internal" href="useragent_sample.html"><em>Configuration Sample of UserAgent Information Acquisition Function</em></a>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;component-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
+                         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- OS pattern mapping configuration --&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;userAgentParser&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.RegexUserAgentParser&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;osSetting&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.UserAgentPatternSetting&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Pattern configuration for obtaining the OS type --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typePatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.TypePattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;desktop&quot;</span> <span class="nt">/&gt;</span>
+              <span class="c">&lt;!-- OS type extraction pattern (regular expression) --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(windows|mac os x).*&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="c">&lt;!-- Pattern configuration for acquiring OS information --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;itemPatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.ItemPattern&quot;</span><span class="nt">&gt;</span>
+              <span class="c">&lt;!-- OS information extraction pattern (regular expression) --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(windows|mac os x)[\D+]*([\d\._]*).*&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;nameIndex&quot;</span>        <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>  <span class="c">&lt;!-- Configure the first capture group to the OS name --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionIndex&quot;</span>     <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>  <span class="c">&lt;!-- Configure the second capture group to the OS name --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;nameConvertor&quot;</span>    <span class="na">ref=</span><span class="s">&quot;osNameConvertor&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionConvertor&quot;</span> <span class="na">ref=</span><span class="s">&quot;deviceVersionConvertor&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;browserSetting&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.UserAgentPatternSetting&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typePatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.TypePattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;Gecko&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;.*Gecko.*&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;itemPatternList&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;list&gt;</span>
+            <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;please.change.me.fw.web.useragent.ItemPattern&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span>          <span class="na">value=</span><span class="s">&quot;(?i).*(msie\s|trident.+rv:)([\d\.]*).*&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span>             <span class="na">value=</span><span class="s">&quot;ie&quot;</span> <span class="nt">/&gt;</span> <span class="c">&lt;!-- Browser name to use when the group index is not specified --&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionIndex&quot;</span>     <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+              <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;versionConvertor&quot;</span> <span class="na">ref=</span><span class="s">&quot;browserVersionConvertor&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/component&gt;</span>
+          <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;/component-configuration&gt;</span>
+</pre></div>
+</div>
+<p>The property values of RegexUserAgentParser are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>osSetting</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern configuration for OS information.</div>
+<div class="line">The value that can be configured is UserAgentPatternSetting.</div>
+<div class="line">If not specified, all OS information will be null.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>browserSetting</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern configuration for browser information.</div>
+<div class="line">The value that can be configured is UserAgentPatternSetting.</div>
+<div class="line">If not specified, all browser information will be null.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The property values of UserAgentPatternSetting are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>defaultType</td>
+<td><div class="first last line-block">
+<div class="line">Defines the default item type.</div>
+<div class="line">Used when the UserAgent does not match any of the patterns, or when an error occurs during determination.</div>
+<div class="line">If not specified, the item type will be &#8220;UnknownType&#8221;.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>defaultName</td>
+<td><div class="first last line-block">
+<div class="line">Defines the default item name.</div>
+<div class="line">Used when the UserAgent does not match any of the patterns, or when an error occurs during determination.</div>
+<div class="line">If not specified, the item name will be &#8220;UnknownName&#8221;.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>defaultVersion</td>
+<td><div class="first last line-block">
+<div class="line">Defines the default version.</div>
+<div class="line">Used when the UserAgent does not match any of the patterns, or when an error occurs during determination.</div>
+<div class="line">If not specified, the version will be &#8220;UnknownVersion&#8221;.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>typePatternList</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern in List to acquire item types from UserAgent.</div>
+<div class="line">UserAgentPattern is used as the element of the list.</div>
+<div class="line">Parsing of pattern is performed in the order in which the list is defined and parsing of the corresponding group is terminated when a match is made.</div>
+<div class="line">If not specified, parsing will be not performed.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>itemPatternList</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern with List to get the item name and version from UserAgent.</div>
+<div class="line">UserAgentPattern is used as the element of the list.</div>
+<div class="line">Parsing of pattern is performed in the order in which the list is defined and parsing of the corresponding group is terminated when a match is made.</div>
+<div class="line">If not specified, parsing will be not performed.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The property values of TypePattern are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>name</td>
+<td><div class="first last line-block">
+<div class="line">Defines the item name of this pattern.</div>
+<div class="line">This value may be set to the same value as other patterns.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>pattern</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern as a regular expression.</div>
+<div class="line">If an invalid pattern is specified, IllegalArgumentException will be thrown during initialization.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The property values of ItemPattern are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>name</td>
+<td><div class="first last line-block">
+<div class="line">Defines the item name of this pattern.</div>
+<div class="line">This value may be set to the same value as other patterns.</div>
+<div class="line">This value is used when the group number to be captured with nameIndex is not specified.</div>
+<div class="line">If not specified, the item type will be the value specified by defaultType.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>pattern</td>
+<td><div class="first last line-block">
+<div class="line">Defines the parsing pattern as a regular expression.</div>
+<div class="line">The group must be configured to capture the value with the group number specified in nameIndex and versionIndex.</div>
+<div class="line">If an invalid pattern is specified, IllegalArgumentException will be thrown during initialization.</div>
+<div class="line">If not specified, parsing will be not performed.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>nameIndex</td>
+<td><div class="first last line-block">
+<div class="line">Defines a group number to be captured as an item name from the parsing pattern.</div>
+<div class="line">If an invalid index is specified, IllegalArgumentException will be thrown during initialization.</div>
+<div class="line">If not specified, the item name will have the same value as the item type.</div>
+<div class="line">If the item type is not specified, it will be the value specified by defaultName.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>versionIndex</td>
+<td><div class="first last line-block">
+<div class="line">Defines a group number to be captured as a version from the parsing pattern.</div>
+<div class="line">If an invalid index is specified, IllegalArgumentException will be thrown during initialization.</div>
+<div class="line">If not specified, the version will be the value specified by defaultVersion.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>nameConvertor</td>
+<td><div class="first last line-block">
+<div class="line">Defines an implementation class for UserAgentValueConvertor that performs string conversion after item name extraction.</div>
+<div class="line">UserAgentNameConvertor is provided as a standard implementation.</div>
+<div class="line">UserAgentNameConvertor simply replaces the specified string before replacement with the string after replacement .</div>
+<div class="line">Also, if the toLowerCase property is set, the string is converted to lower case before replacement.</div>
+<div class="line">Example: &#8220;mac os x&#8221; → &#8220;mac_os_x&#8221;</div>
+<div class="line">If not specified, conversion will be not performed.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>versionConvertor</td>
+<td><div class="first last line-block">
+<div class="line">Defines an implementation class for UserAgentValueConvertor that performs string conversion after version extraction.</div>
+<div class="line">UserAgentVersionConvertor is provided as a standard implementation.</div>
+<div class="line">UserAgentVersionConvertor divides the string by &#8220;D (non-numeric)&#8221; into three elements.
+Each element is padded and the values that are separated by a space are used as the converted values.</div>
+<div class="line">Example: &#8220;34.0.1847.116&#8221; → &#8220;_34 __0 ___1847&#8221;</div>
+<div class="line">If not specified, conversion will be not performed.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The property values of UserAgentNameConvertor are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>toLowerCase</td>
+<td><div class="first last line-block">
+<div class="line">Defines the lowercase flag for string.</div>
+<div class="line">If not specified, lower case will be used.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>replaceFrom</td>
+<td><div class="first last line-block">
+<div class="line">Defines the string before replacement.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>replaceTo</td>
+<td><div class="first last line-block">
+<div class="line">Defines the string after replacement.</div>
+<div class="line">If both replaceFrom and replaceTo are not specified, conversion will not be performed.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The property values of UserAgentVersionConvertor are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>padding</td>
+<td><div class="first last line-block">
+<div class="line">Define the padding string.</div>
+<div class="line">If not specified, conversion will be not performed.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="use-case">
+<h2>Use case<a class="headerlink" href="#use-case" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doUserAgentJudgment</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">UserAgent</span> <span class="n">userAgent</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getUserAgent</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">userAgent</span><span class="o">.</span><span class="na">getOsType</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;android&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">...</span> <span class="c1">// Processing when the client is android</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">userAgent</span><span class="o">.</span><span class="na">getBrowserName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;chrome&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">...</span> <span class="c1">// Processing when the browser is chrome</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

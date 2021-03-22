@@ -1,0 +1,824 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ルーティングアダプタ &mdash; ∇Nablarch  5u19 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/router_adaptor.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="アダプタ" href="index.html"/>
+        <link rel="next" title="IBM WebSphere MQアダプタ" href="webspheremq_adaptor.html"/>
+        <link rel="prev" title="logアダプタ" href="log_adaptor.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">Nablarchについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarchのコンセプト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Nablarch のモジュール一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Nablarchのライセンスについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarchアプリケーションフレームワーク</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../application_framework/index.html">アプリケーションフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/nablarch/index.html">1. Nablarchアプリケーションフレームワークとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/web/index.html">2. ウェブアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/web_service/index.html">3. ウェブサービス編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/batch/index.html">4. バッチアプリケーション編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/messaging/index.html">5. メッセージング編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/handlers/index.html">6. Nablarchの提供する標準ハンドラ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/libraries/index.html">7. Nablarchが提供するライブラリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/blank_project/index.html">8. ブランクプロジェクト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/setting_guide/index.html">9. Nablarchアプリケーションフレームワーク設定ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/configuration/index.html">10. デフォルト設定一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../application_framework/cloud_native/index.html">11. Nablarchクラウドネイティブ対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">アダプタ</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="log_adaptor.html">logアダプタ</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">ルーティングアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webspheremq_adaptor.html">IBM WebSphere MQアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jaxrs_adaptor.html">JAX-RSアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doma_adaptor.html">Domaアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jsr310_adaptor.html">JSR310(Date and Time API)アダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail_sender_freemarker_adaptor.html">E-mail FreeMarkerアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail_sender_thymeleaf_adaptor.html">E-mail Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail_sender_velocity_adaptor.html">E-mail Velocityアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="web_thymeleaf_adaptor.html">ウェブアプリケーション Thymeleafアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lettuce_adaptor.html">Lettuceアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slf4j_adaptor.html">SLF4Jアダプタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micrometer_adaptor.html">Micrometerアダプタ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../example/index.html#id1">環境構築手順について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../example/index.html#id2">アプリケーションの実行手順について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch拡張コンポーネント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. 帳票ライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id2">1.1. 概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id3">1.2. 要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#id7">1.3. 構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/report/index.html#report-template">1.4. 実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. ワークフローライブラリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id3">2.1. 機能概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id6">2.2. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#id7">2.3. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#xor">2.4. XORゲートウェイの進行先ノードの判定方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/doc/index.html#workflow-multi-completion">2.5. マルチインスタンスの完了条件の判定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. ワークフロー定義データ生成ツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/index.html#id3">3.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/workflow/tool/index.html#id4">3.2. 使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id3">4.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#etl-phase">4.2. ETLの各フェーズの仕様</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id5">4.3. ETLを使用するバッチの設計ポイント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id9">4.4. 使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/index.html#id18">4.5. 拡張例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Mavenプラグイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id2">5.1. モジュール一覧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html#id3">5.2. 使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch開発ツール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. 効率的なJava静的チェック</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-analysis">1.1. 構文チェックを行う</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#code-format">1.2. フォーマットを統一する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#api">1.3. 許可していないAPIが使用されていないかチェックする</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. フロントエンド上級者向けのUI開発基盤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/doc/index.html">2.1. Nablarch UI開発基盤 解説書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/index.html">2.2. JSP/HTML作成ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/ui_dev/guide/widget_usage/widget_list.html">2.3. UI部品の実装サンプルで提供しているウィジェットの一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. テスティングフレームワーク</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. 単体テスト実施方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. 自動テストフレームワークの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. プログラミング工程で使用するツール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. アプリケーション開発時に使える便利なツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP静的解析ツール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. 業務画面JSP検証ツール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Nablarch実装例集</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/01/index.html">データベースを用いたパスワード認証機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/0101_PBKDF2PasswordEncryptor.html">PBKDF2を用いたパスワード暗号化機能サンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/01/index.html#id12">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/02/index.html">バリデーション機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#extendedvalidation-mailaddressvalidator">メールアドレスバリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#extendedvalidation-japanesetelnumbervalidator">日本電話番号バリデーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/02/index.html#id12">コード値精査</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/03/index.html">検索結果の一覧表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id5">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#id8">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchinfo">ListSearchInfoクラス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult">listSearchResultタグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-sort">検索結果の並び替え</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-nopaging">1画面にすべての検索結果を一覧表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-defaultcondition">デフォルトの検索条件で検索した結果を初期表示する場合の実装方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-setting">検索結果の一覧表示機能のデフォルト値設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-customize">業務アプリケーションへのサンプル実装(タグファイル)の取り込み方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/03/index.html#listsearchresult-tagreference">タグリファレンス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/04/index.html">フォーマッタ機能の拡張</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/04/0401_ExtendedDataFormatter.html">データフォーマッタの拡張</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/04/0402_ExtendedFieldType.html">データフォーマッタ機能におけるフィールドタイプの拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/05/index.html">データベースを用いたファイル管理機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id6">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id7">機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id10">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/05/index.html#id15">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/06/index.html">CAPTCHA機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/06_Captcha_guide.html">CAPTCHA機能の組み込み手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id3">提供パッケージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id4">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/06/index.html#id21">使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/07/index.html">UserAgent情報取得機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id3">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id8">設定の記述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/07/index.html#id11">使用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/08/index.html">HTMLメール送信機能サンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id1">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id3">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id6">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/08/index.html#id14">実装例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/09/index.html">bouncycastleを使用した電子署名つきメールの送信サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id3">環境準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id4">電子署名付きメール送信機能の構造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id5">設定ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/09/index.html#id7">実行方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/10/index.html">ログ集計サンプルの使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/10/index.html#id3">提供サンプル一覧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/11/index.html">メッセージング基盤テストシミュレータサンプル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id4">用途</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id8">特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id12">要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id15">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/11/index.html#id18">拡張例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarchアプリケーションフレームワーク</a> &raquo;</li>
+      
+          <li><a href="index.html">アダプタ</a> &raquo;</li>
+      
+    <li>ルーティングアダプタ</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/en/index.html" class="en">English</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="router-adaptor">
+<span id="id1"></span><h1>ルーティングアダプタ<a class="headerlink" href="#router-adaptor" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">目次</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id11">モジュール一覧</a></li>
+<li><a class="reference internal" href="#id4" id="id12">ルーティングアダプタを使用するための設定を行う</a><ul>
+<li><a class="reference internal" href="#id5" id="id13">ディスパッチハンドラを設定する</a></li>
+<li><a class="reference internal" href="#id6" id="id14">ルート定義ファイルを作成する</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#url" id="id15">業務アクションとURLを自動的にマッピングする</a></li>
+<li><a class="reference internal" href="#jax-rspath" id="id16">JAX-RSのPathアノテーションでマッピングする</a><ul>
+<li><a class="reference internal" href="#id7" id="id17">ディスパッチハンドラを変更する</a></li>
+<li><a class="reference internal" href="#id8" id="id18">マッピングの実装方法</a></li>
+<li><a class="reference internal" href="#id9" id="id19">パスパラメータの定義</a></li>
+<li><a class="reference internal" href="#id10" id="id20">ルーティング定義を一覧で確認する</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><a class="reference external" href="https://github.com/kawasima/http-request-router">http-request-router(外部サイト)</a> を使用して、
+リクエストURLと業務アクションのマッピングを行うアダプタ。</p>
+<p>本アダプタを使用することで、 <a class="reference internal" href="../application_framework/web/index.html#web-application"><span>ウェブアプリケーション</span></a> や <a class="reference internal" href="../application_framework/web_service/rest/index.html#restful-web-service"><span>RESTfulウェブサービス</span></a> を
+構築する際に、URLと業務アクションのマッピングを容易に定義できる。</p>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id11">モジュール一覧</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- ルーティングアダプタ --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.integration<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-router-adaptor<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p class="last">http-request-routerのバージョン0.1.1を使用してテストを行っている。
+バージョンを変更する場合は、プロジェクト側でテストを行い問題ないことを確認すること。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id12">ルーティングアダプタを使用するための設定を行う</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本アダプタを使用するための手順を以下に示す。</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id13">ディスパッチハンドラを設定する</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ディスパッチハンドラとして、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/RoutesMapping.html" title="nablarch.integration.router.RoutesMapping">RoutesMapping</a> をハンドラキューの最後に設定する。</p>
+<p>設定例を以下に示す。</p>
+<dl class="docutils">
+<dt>ポイント</dt>
+<dd><ul class="first last simple">
+<li>コンポーネント名は <strong>packageMapping</strong> とする。</li>
+<li>basePackage属性には、アクションクラスが格納されているパッケージを設定する。
+(アクションクラスが複数のパッケージに格納されている場合は、共通となる親パッケージを設定する。)</li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/RoutesMapping.html" title="nablarch.integration.router.RoutesMapping">RoutesMapping</a> を初期化対象のリストに設定する。</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.RoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;basePackage&quot;</span> <span class="na">value=</span><span class="s">&quot;sample.web.action&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- その他のハンドラは省略 --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- その他の初期化処理は省略 --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id14">ルート定義ファイルを作成する</a><a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クラスパス直下に <cite>routes.xml</cite> を作成し、
+指定したURLと業務アクションをマッピングする設定を行う。</p>
+<p>ルート定義ファイルへの設定方法は、<a class="reference external" href="https://github.com/kawasima/http-request-router/blob/master/README.ja.md">ライブラリのREADMEドキュメント(外部サイト)</a> を参照。</p>
+</div>
+</div>
+<div class="section" id="url">
+<h2><a class="toc-backref" href="#id15">業務アクションとURLを自動的にマッピングする</a><a class="headerlink" href="#url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ルート定義ファイルにて、 <cite>match</cite> タグのpath属性に <code class="docutils literal"><span class="pre">:controller</span></code> や <code class="docutils literal"><span class="pre">:action</span></code>
+といったパラメータを使用することで業務アクションとURLの自動マッピングを行うことができる。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">アプリケーションサーバに <cite>JBoss</cite> や <cite>WildFly</cite> を使用している場合、この機能は使用できない。
+<cite>get</cite> タグ等を使用して個別に業務アクションとURLのマッピングを定義すること。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><cite>get</cite> タグ等を使用したマッピングの個別定義とこの機能の併用は推奨しない。
+併用した場合に、業務アクションとURLがどのようにマッピングされるかが、ルート定義ファイル上から読み取りづらくなる問題があるため。</p>
+</div>
+<p>この機能を有効にするには、クラスパス直下に作成した <cite>net/unit8/http/router</cite> ディレクトリに
+<cite>routes.properties</cite> を作成し、以下のとおり値を設定する。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>router.controllerDetector<span class="o">=</span>nablarch.integration.router.NablarchControllerDetector
+</pre></div>
+</div>
+<p>ルート定義ファイルへの設定とマッピングの例を以下に示す。</p>
+<dl class="docutils">
+<dt>ルート定義ファイル</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;routes&gt;</span>
+  <span class="nt">&lt;match</span> <span class="na">path=</span><span class="s">&quot;/action/:controller/:action&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/routes&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>業務アクションとマッピングするURLの例</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">業務アクション</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PersonAction#index</td>
+<td>/action/person/index</td>
+</tr>
+<tr class="row-odd"><td>PersonAction#search</td>
+<td>/action/person/search</td>
+</tr>
+<tr class="row-even"><td>LoginAction#index</td>
+<td>/action/login/index</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="jax-rspath">
+<span id="router-adaptor-path-annotation"></span><h2><a class="toc-backref" href="#id16">JAX-RSのPathアノテーションでマッピングする</a><a class="headerlink" href="#jax-rspath" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本アダプタのバージョン1.2.0から、JAX-RSの <code class="docutils literal"><span class="pre">javax.ws.rs.Path</span></code> アノテーション（以下 <code class="docutils literal"><span class="pre">Path</span></code> アノテーションと表記）を使ったルーティングのマッピングができるようになった。</p>
+<p>ここでは、既存の <a class="reference internal" href="../application_framework/web_service/rest/index.html#restful-web-service"><span>RESTfulウェブサービス</span></a> に対して <code class="docutils literal"><span class="pre">Path</span></code> アノテーションを使ったルーティングを有効にする方法と、各種設定の詳細について説明する。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>本機能は、クラスパス配下のリソースを独自のファイルシステムで管理している一部のウェブアプリケーションサーバーでは使用できない。</p>
+<p>例えば、JbossやWildflyでは、vfsと呼ばれるバーチャルファイルシステムで
+クラスパス配下のリソースが管理されるため、 <code class="docutils literal"><span class="pre">Path</span></code> アノテーションで注釈されたクラスの検索ができない。</p>
+<p class="last">そのようなウェブアプリケーションサーバーを使用する場合は、従来通りXMLを用いたルーティングの定義を使用すること。</p>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id17">ディスパッチハンドラを変更する</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>XMLのマッピング定義を使用する場合は、ディスパッチハンドラの実装として <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/RoutesMapping.html" title="nablarch.integration.router.RoutesMapping">RoutesMapping</a> を使用していた。
+一方、 <code class="docutils literal"><span class="pre">Path</span></code> アノテーションによるマッピング定義を用いる場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> をディスパッチハンドラとして設定する必要がある。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Pathアノテーションによるルーティング定義を有効にする場合の設定例 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.PathOptionsProviderRoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;applicationPath&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.webApi.applicationPath}&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;basePackage&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.commonProperty.basePackage}&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;methodBinderFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.jaxrs.JaxRsMethodBinderFactory&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerList&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.jaxrs.jersey.JerseyJaxRsHandlerListFactory&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- ハンドラキュー構成 --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- 省略 --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">Path</span></code> アノテーションによるルーティングを使用するには、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> の <code class="docutils literal"><span class="pre">pathOptionsProvider</span></code> プロパティに <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/jaxrs/JaxRsPathOptionsProvider.html" title="nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider">JaxRsPathOptionsProvider</a> を設定する。</div>
+<div class="line">（<code class="docutils literal"><span class="pre">methodBinderFactory</span></code> プロパティの設定については <a class="reference internal" href="jaxrs_adaptor.html#jaxrs-adaptor"><span>JAX-RSアダプタ</span></a> を参照）</div>
+</div>
+<p>さらに、この <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/jaxrs/JaxRsPathOptionsProvider.html" title="nablarch.integration.router.jaxrs.JaxRsPathOptionsProvider">JaxRsPathOptionsProvider</a> には、次の２つのプロパティを設定する必要がある。</p>
+<p><strong>applicationPath</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">マッピングするパスに共通するプレフィックスを設定する。</div>
+<div class="line">JAX-RS の <code class="docutils literal"><span class="pre">javax.ws.rs.ApplicationPath</span></code> アノテーションで設定する値と同じものを意味する。</div>
+</div>
+</div></blockquote>
+<p><strong>basePackage</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">Path</span></code> アノテーションが設定されたクラスを検索する、ルートとなるパッケージ名を設定する。</div>
+</div>
+</div></blockquote>
+<p>定義した <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> のコンポーネントは初期化が必要なので、初期化対象のリストに追加する。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="nt">/&gt;</span>
+      <span class="c">&lt;!-- 省略 --&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>以上の設定により、 <code class="docutils literal"><span class="pre">Path</span></code> アノテーションによるルーティングの登録機能が使用できるようになる。</p>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id18">マッピングの実装方法</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Path</span></code> アノテーションを使ってマッピングを定義した実装例を以下に示す。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+
+    <span class="nd">@POST</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">register</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">アクションクラスを <code class="docutils literal"><span class="pre">Path</span></code> アノテーションで注釈することで、 <code class="docutils literal"><span class="pre">Path</span></code> アノテーションの <code class="docutils literal"><span class="pre">value</span></code> で設定したパスとアクションクラスを紐づけることができる。</div>
+<div class="line">さらに、 <code class="docutils literal"><span class="pre">javax.ws.rs.GET</span></code> などのHTTPメソッドを表すアノテーションでアクションクラスのメソッドを注釈することで、HTTPメソッドとアクションクラスのメソッドを紐づけることができる。</div>
+</div>
+<p>上記の実装例では、次のように HTTP リクエストがディスパッチされる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="22%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パス</th>
+<th class="head">HTTPメソッド</th>
+<th class="head">ディスパッチされるメソッド</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#findAll()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample</span></code></td>
+<td><code class="docutils literal"><span class="pre">POST</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#register(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">補足</p>
+<p>HTTPメソッドを紐づけるアノテーションは、標準で以下のものが用意されている。</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.DELETE</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.GET</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.HEAD</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.OPTIONS</span></code> (JAX-RS 1.1 以上)</li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.PATCH</span></code> (JAX-RS 2.1 以上)</li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.POST</span></code></li>
+<li><code class="docutils literal"><span class="pre">javax.ws.rs.PUT</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<p>さらに、以下のようにメソッドを <code class="docutils literal"><span class="pre">Path</span></code> アノテーションで注釈することで、サブパスのマッピングを定義することもできる。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/foo&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/bar&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">bar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>この場合、HTTPリクエストのディスパッチは次のようになる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パス</th>
+<th class="head">HTTPメソッド</th>
+<th class="head">ディスパッチされるメソッド</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/foo</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#findAll()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/bar</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#register(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id19">パスパラメータの定義</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次のように、パスにパラメータを含めることもできる。</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/sample&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAction</span> <span class="o">{</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/foo/{param}&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">foo</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">param</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;param&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">];</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/bar/{id : \\d+}&quot;</span><span class="o">)</span>
+    <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">bar</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="c1">// 省略</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">パスパラメータはhttp-request-routerの記法ではなく、JAX-RSの仕様に従った形で記述する。</div>
+<div class="line">これは、本機能（<code class="docutils literal"><span class="pre">Path</span></code> アノテーションによるルーティング定義）がJAX-RSの仕様に準拠しているためである。</div>
+</div>
+<div class="line-block">
+<div class="line">パスの一部を <code class="docutils literal"><span class="pre">{パラメータ名}</span></code> と記述することで、その部分をパラメータとして定義できる。</div>
+<div class="line">ここで定義したパラメータ名を <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getParam-java.lang.String-" title="nablarch.fw.web.HttpRequest.getParam(java.lang.String)">HttpRequest#getParam(String)</a> に渡すことで、パスパラメータの値を取得できる。</div>
+</div>
+<div class="line-block">
+<div class="line">さらに、 <code class="docutils literal"><span class="pre">{パラメータ名</span> <span class="pre">:</span> <span class="pre">正規表現}</span></code> と記述することで、そのパスパラメータの書式を正規表現で定義できる。</div>
+<div class="line">上記実装例では <code class="docutils literal"><span class="pre">\\d+</span></code> と正規表現を指定しているので、パスの値が数値のときのみメソッドがディスパッチされるようになる。</div>
+</div>
+<p>HTTPリクエストのディスパッチの例は次のようになる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="21%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パス</th>
+<th class="head">HTTPメソッド</th>
+<th class="head">ディスパッチされるメソッド</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/foo/hello</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#foo(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/foo/world</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#foo(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/sample/bar/123</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#bar(HttpRequest)</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/sample/bar/987</span></code></td>
+<td><code class="docutils literal"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal"><span class="pre">SampleAction#bar(HttpRequest)</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id20">ルーティング定義を一覧で確認する</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> によって読み込まれたルーティング定義は、初期化時にデバッグレベルでログに出力される。</p>
+<p>デフォルトでは、次のようにしてルーティングの一覧がログに出力される。</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>2020-07-20 13:35:53.092 -DEBUG- nablarch.integration.router.PathOptionsProviderRoutesMapping [null] boot_proc = [] proc_sys = [jaxrs] req_id = [null] usr_id = [null] GET /api/bar =&gt; com.example.BarAction#findAll
+GET /api/bar/fizz =&gt; com.example.BarAction#fizz
+GET /api/foo =&gt; com.example.FooAction#findAll
+POST /api/foo =&gt; com.example.FooAction#register
+DELETE /api/foo/(:id) =&gt; com.example.FooAction#delete
+GET /api/foo/(:id) =&gt; com.example.FooAction#find
+POST /api/foo/(:id) =&gt; com.example.FooAction#update
+</pre></div>
+</div>
+<p>ログのフォーマットを変更したい場合は、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsFormatter.html" title="nablarch.integration.router.PathOptionsFormatter">PathOptionsFormatter</a> を実装したクラスを作り、 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/integration/router/PathOptionsProviderRoutesMapping.html" title="nablarch.integration.router.PathOptionsProviderRoutesMapping">PathOptionsProviderRoutesMapping</a> の <code class="docutils literal"><span class="pre">pathOptionsFormatter</span></code> プロパティに設定する。</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;packageMapping&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.integration.router.PathOptionsProviderRoutesMapping&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;methodBinderFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 省略 --&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsProvider&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 省略 --&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;pathOptionsFormatter&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 自作のフォーマットクラスを設定する --&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;com.example.CustomPathOptionsFormatter&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

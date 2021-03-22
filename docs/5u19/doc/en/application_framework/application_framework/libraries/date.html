@@ -1,0 +1,528 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.14. Date Management &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/date.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
+        <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
+        <link rel="next" title="7.15. Permission Check" href="permission_check.html"/>
+        <link rel="prev" title="7.13. Code Management" href="code.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+    <li>7.14. Date Management</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="date-management">
+<h1>7.14. Date Management<a class="headerlink" href="#date-management" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
+<li><a class="reference internal" href="#system-date-and-time-os-date-and-time-and-business-date-can-be-switched" id="id2">System date and time (OS date and time) and business date can be switched</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id3">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id4">How to use</a><ul>
+<li><a class="reference internal" href="#configure-settings-to-use-the-system-date-and-time-management-function" id="id5">Configure settings to use the system date and time management function</a></li>
+<li><a class="reference internal" href="#acquire-system-date-and-time" id="id6">Acquire system date and time</a></li>
+<li><a class="reference internal" href="#configure-settings-to-use-the-business-date-management-function" id="id7">Configure settings to use the business date management function</a></li>
+<li><a class="reference internal" href="#acquire-business-date" id="id8">Acquire business date</a></li>
+<li><a class="reference internal" href="#overwrite-business-date-to-an-arbitrary-date" id="id9">Overwrite business date to an arbitrary date</a></li>
+<li><a class="reference internal" href="#update-business-date" id="id10">Update business date</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id11">Expansion example</a><ul>
+<li><a class="reference internal" href="#switch-system-date-and-time" id="id12">Switch system date and time</a></li>
+<li><a class="reference internal" href="#switch-business-date" id="id13">Switch business date</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Provides a function to centrally manage the system date and time (OS date and time) and business date used in applications.</p>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id1">7.14.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="system-date-and-time-os-date-and-time-and-business-date-can-be-switched">
+<h3><a class="toc-backref" href="#id2">7.14.1.1. System date and time (OS date and time) and business date can be switched</a><a class="headerlink" href="#system-date-and-time-os-date-and-time-and-business-date-can-be-switched" title="Permalink to this headline">¶</a></h3>
+<p>With this function, the system date and time (OS date and time) and business date are acquired using the class specified in the component definition.
+Therefore, the acquisition method of system date and time (OS date and time) and business date used by the application can be switched simply by replacing the class specified in the component definition.
+This switching can be used to temporarily switch the system date/time (OS date/time) or business date in a test, etc.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#date-system-time-change"><span>Switch system date and time</span></a></li>
+<li><a class="reference internal" href="#date-business-date-change"><span>Switch business date</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id3">7.14.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- Only when using business date management function--&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id4">7.14.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-settings-to-use-the-system-date-and-time-management-function">
+<span id="date-system-time-settings"></span><h3><a class="toc-backref" href="#id5">7.14.3.1. Configure settings to use the system date and time management function</a><a class="headerlink" href="#configure-settings-to-use-the-system-date-and-time-management-function" title="Permalink to this headline">¶</a></h3>
+<p>To use the system date and time management function,
+add <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/BasicSystemTimeProvider.html" title="nablarch.core.date.BasicSystemTimeProvider">BasicSystemTimeProvider</a> configuration to the component definition.
+Specify the component name as  <strong>systemTimeProvider</strong> .</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.date.BasicSystemTimeProvider&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acquire-system-date-and-time">
+<h3><a class="toc-backref" href="#id6">7.14.3.2. Acquire system date and time</a><a class="headerlink" href="#acquire-system-date-and-time" title="Permalink to this headline">¶</a></h3>
+<p>Use  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/SystemTimeUtil.html" title="nablarch.core.date.SystemTimeUtil">SystemTimeUtil</a>  to acquire the system date and time.</p>
+</div>
+<div class="section" id="configure-settings-to-use-the-business-date-management-function">
+<span id="date-business-date-settings"></span><h3><a class="toc-backref" href="#id7">7.14.3.3. Configure settings to use the business date management function</a><a class="headerlink" href="#configure-settings-to-use-the-business-date-management-function" title="Permalink to this headline">¶</a></h3>
+<p>The business date management function uses a database to manage multiple business dates.
+The table layout is as follows.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Category (PK)</td>
+<td>A value for identifying the business date. String type</td>
+</tr>
+<tr class="row-even"><td>Date</td>
+<td>Business date. String type and value in yyyyMMdd format</td>
+</tr>
+</tbody>
+</table>
+<p>To use the business date management function,
+add <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/BasicBusinessDateProvider.html" title="nablarch.core.date.BasicBusinessDateProvider">BasicBusinessDateProvider</a> configuration to the component definition.
+Specify the component name as  <strong>businessDateProvider</strong>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;businessDateProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.date.BasicBusinessDateProvider&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Table name --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;tableName&quot;</span> <span class="na">value=</span><span class="s">&quot;BUSINESS_DATE&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Column name of category --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;segmentColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;SEGMENT&quot;</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Column name of date --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dateColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;BIZ_DATE&quot;</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Category used when business date is obtained by omitting the category --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultSegment&quot;</span> <span class="na">value=</span><span class="s">&quot;00&quot;</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Transaction manager used for database access --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionManager&quot;</span> <span class="na">ref=</span><span class="s">&quot;transactionManager&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acquire-business-date">
+<h3><a class="toc-backref" href="#id8">7.14.3.4. Acquire business date</a><a class="headerlink" href="#acquire-business-date" title="Permalink to this headline">¶</a></h3>
+<p>Use  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/BusinessDateUtil.html" title="nablarch.core.date.BusinessDateUtil">BusinessDateUtil</a>  to acquire the business date.</p>
+</div>
+<div class="section" id="overwrite-business-date-to-an-arbitrary-date">
+<h3><a class="toc-backref" href="#id9">7.14.3.5. Overwrite business date to an arbitrary date</a><a class="headerlink" href="#overwrite-business-date-to-an-arbitrary-date" title="Permalink to this headline">¶</a></h3>
+<p>When re-executed during failure in batch process, using the past date as the business date during batch execution may be preferred in some cases.
+In such a case, only the re-execution process can execute with an arbitrary date as the business date.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If all functions are executed in one process like a web application,
+simply change the date managed in the database.</p>
+</div>
+<p>Business date is overwritten by using  <a class="reference internal" href="repository.html#repository-overwrite-environment-configuration"><span>Overwrite environment dependent values using system properties</span></a> .
+Specify as a system property in the following format.</p>
+<dl class="docutils">
+<dt>Format of system property</dt>
+<dd><p class="first">BasicBusinessDateProvider. &lt;Category&gt; = date</p>
+<p class="last">*Date is in yyyyMMdd format</p>
+</dd>
+<dt>Example of system property file</dt>
+<dd><p class="first">When overwriting the date of category &#8220;batch&#8221; to &#8220;2016/03/17&#8221;</p>
+<p class="last">-DBasicBusinessDateProvider.batch=20160317</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="update-business-date">
+<h3><a class="toc-backref" href="#id10">7.14.3.6. Update business date</a><a class="headerlink" href="#update-business-date" title="Permalink to this headline">¶</a></h3>
+<p>Business date is updated by using  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/BasicBusinessDateProvider.html" title="nablarch.core.date.BasicBusinessDateProvider">BasicBusinessDateProvider</a> .</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Acquire BasicBusinessDateProvider from the system repository</span>
+<span class="n">BusinessDateProvider</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;businessDateProvider&quot;</span><span class="o">);</span>
+
+<span class="c1">// Call setDate method and update</span>
+<span class="n">provider</span><span class="o">.</span><span class="na">setDate</span><span class="o">(</span><span class="n">segment</span><span class="o">,</span> <span class="n">date</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id11">7.14.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="switch-system-date-and-time">
+<span id="date-system-time-change"></span><h3><a class="toc-backref" href="#id12">7.14.4.1. Switch system date and time</a><a class="headerlink" href="#switch-system-date-and-time" title="Permalink to this headline">¶</a></h3>
+<p>To switch the system date and time when executing a unit test, perform the following procedure.</p>
+<ol class="arabic simple">
+<li>Create a class that implements  <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/SystemTimeProvider.html" title="nablarch.core.date.SystemTimeProvider">SystemTimeProvider</a> .</li>
+<li>Configure in accordance with <a class="reference internal" href="#date-system-time-settings"><span>Configure settings to use the system date and time management function</span></a> .</li>
+</ol>
+</div>
+<div class="section" id="switch-business-date">
+<span id="date-business-date-change"></span><h3><a class="toc-backref" href="#id13">7.14.4.2. Switch business date</a><a class="headerlink" href="#switch-business-date" title="Permalink to this headline">¶</a></h3>
+<p>To switch the business date when executing a unit test, perform the following procedure.</p>
+<ol class="arabic simple">
+<li>Create a class that implements <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/date/BusinessDateProvider.html" title="nablarch.core.date.BusinessDateProvider">BusinessDateProvider</a> .</li>
+<li>Configure in accordance with <a class="reference internal" href="#date-business-date-settings"><span>Configure settings to use the business date management function</span></a> .</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

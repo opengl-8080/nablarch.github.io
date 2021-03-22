@@ -1,0 +1,579 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Messaging Platform Test Simulator Sample &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/11/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="Nablarch API" href="../../nablarch_api/index.html"/>
+        <link rel="prev" title="Online Access Log Aggregation Function" href="../10/contents/OnlineAccessLogStatistics.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Messaging Platform Test Simulator Sample</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="messaging-platform-test-simulator-sample">
+<h1>Messaging Platform Test Simulator Sample<a class="headerlink" href="#messaging-platform-test-simulator-sample" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#uses" id="id1">Uses</a><ul>
+<li><a class="reference internal" href="#communication-confirmation-test" id="id2">Communication confirmation test</a></li>
+<li><a class="reference internal" href="#combined-test" id="id3">Combined test</a></li>
+<li><a class="reference internal" href="#load-test" id="id4">Load test</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#features" id="id5">Features</a><ul>
+<li><a class="reference internal" href="#test-data-can-be-created-in-the-same-way-as-subfunction-unit-testing" id="id6">Test data can be created in the same way as subfunction unit testing</a></li>
+<li><a class="reference internal" href="#supports-special-and-complex-test-cases-by-customizing-message-reception" id="id7">Supports special and complex test cases by customizing (message reception)</a></li>
+<li><a class="reference internal" href="#capable-of-sending-request-messages-in-multiple-threads-message-sending" id="id8">Capable of sending request messages in multiple threads (message sending)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#request" id="id9">Request</a><ul>
+<li><a class="reference internal" href="#when-the-simulator-receives-a-message" id="id10">When the simulator receives a message</a></li>
+<li><a class="reference internal" href="#when-the-simulator-sends-a-message" id="id11">When the simulator sends a message</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-to-use" id="id12">How to use</a><ul>
+<li><a class="reference internal" href="#create-a-simulator-execution-module" id="id13">Create a simulator execution module</a></li>
+<li><a class="reference internal" href="#start-the-simulator" id="id14">Start the simulator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id15">Expansion example</a><ul>
+<li><a class="reference internal" href="#specify-the-number-of-times-to-send-a-request-when-sending-a-message" id="id16">Specify the number of times to send a request when sending a message</a></li>
+<li><a class="reference internal" href="#switch-the-response-according-to-the-type-of-request-when-receiving-a-message" id="id17">Switch the response according to the type of request when receiving a message</a></li>
+<li><a class="reference internal" href="#intentionally-delay-the-response-when-receiving-a-message" id="id18">Intentionally delay the response when receiving a message</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-messaging-simulator">Source code</a></p>
+<p>This sample provides a sample implementation to simulate a destination system for testing applications using the Nablarch application framework  <a class="reference internal" href="../../application_framework/application_framework/libraries/system_messaging/mom_system_messaging.html#mom-system-messaging"><span>MOM Messaging</span></a> and <a class="reference internal" href="../../application_framework/application_framework/libraries/system_messaging/http_system_messaging.html#http-system-messaging"><span>HTTP Messaging</span></a>.</p>
+<p>It is assumed to be used as a connection destination for applications in communication confirmation and application coupling tests after a test environment is built.</p>
+<p>The operation image of the simulator is shown below.</p>
+<dl class="docutils">
+<dt>When the simulator receives a message</dt>
+<dd><a class="first last reference internal image-reference" href="../../_images/behavior_illustration01.png"><img alt="../../_images/behavior_illustration01.png" src="../../_images/behavior_illustration01.png" /></a>
+</dd>
+<dt>When the simulator sends a message</dt>
+<dd><a class="first last reference internal image-reference" href="../../_images/behavior_illustration02.png"><img alt="../../_images/behavior_illustration02.png" src="../../_images/behavior_illustration02.png" /></a>
+</dd>
+</dl>
+<div class="section" id="uses">
+<h2><a class="toc-backref" href="#id1">Uses</a><a class="headerlink" href="#uses" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="communication-confirmation-test">
+<h3><a class="toc-backref" href="#id2">Communication confirmation test</a><a class="headerlink" href="#communication-confirmation-test" title="Permalink to this headline">¶</a></h3>
+<p>It can be used as a destination system for simple communication in the communication test to confirm the configuration of Nablarch application framework, middleware, hardware, etc. after building the test environment.</p>
+</div>
+<div class="section" id="combined-test">
+<h3><a class="toc-backref" href="#id3">Combined test</a><a class="headerlink" href="#combined-test" title="Permalink to this headline">¶</a></h3>
+<p>It can be used as a pseudo counterpart system for inter-system communication confirmation during application integration test.
+By using the simulator to set the data to be used as the request message/response message, the test using the scenario can be performed.</p>
+<p>While testing using scenarios is possible in a subfunction unit test,
+testing using a simulator is different in that it is possible to confirm the operation of the OS and middleware.</p>
+</div>
+<div class="section" id="load-test">
+<h3><a class="toc-backref" href="#id4">Load test</a><a class="headerlink" href="#load-test" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to send and receive a large number of messages to apply a load when performing an application load test.</p>
+</div>
+</div>
+<div class="section" id="features">
+<h2><a class="toc-backref" href="#id5">Features</a><a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-data-can-be-created-in-the-same-way-as-subfunction-unit-testing">
+<h3><a class="toc-backref" href="#id6">Test data can be created in the same way as subfunction unit testing</a><a class="headerlink" href="#test-data-can-be-created-in-the-same-way-as-subfunction-unit-testing" title="Permalink to this headline">¶</a></h3>
+<p>The test data used in this simulator can be created in the same way as the subfunction unit test.
+Therefore, no extra learning cost is incurred when using this simulator.</p>
+</div>
+<div class="section" id="supports-special-and-complex-test-cases-by-customizing-message-reception">
+<h3><a class="toc-backref" href="#id7">Supports special and complex test cases by customizing (message reception)</a><a class="headerlink" href="#supports-special-and-complex-test-cases-by-customizing-message-reception" title="Permalink to this headline">¶</a></h3>
+<p>By modifying the source code of the provided simulator,
+the following tests can be performed for special and complex test cases.</p>
+<ul class="simple">
+<li>Perform a test that needs to dynamically change the content of the response message according to the content of the request message.</li>
+<li>Perform an abnormal pattern test by intentionally delaying the response time to cause a timeout.</li>
+</ul>
+</div>
+<div class="section" id="capable-of-sending-request-messages-in-multiple-threads-message-sending">
+<h3><a class="toc-backref" href="#id8">Capable of sending request messages in multiple threads (message sending)</a><a class="headerlink" href="#capable-of-sending-request-messages-in-multiple-threads-message-sending" title="Permalink to this headline">¶</a></h3>
+<p>The multi-thread execution control handler of Nablarch application framework is used inside the simulator.
+By sending a request message with multi-thread, it is possible to perform a load test that sends a large number of messages.</p>
+</div>
+</div>
+<div class="section" id="request">
+<h2><a class="toc-backref" href="#id9">Request</a><a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="when-the-simulator-receives-a-message">
+<h3><a class="toc-backref" href="#id10">When the simulator receives a message</a><a class="headerlink" href="#when-the-simulator-receives-a-message" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>It is possible to send response messages on receiving HTTP messages and MOM receiving synchronous message.</li>
+<li>It is possible to output a log of the request message.</li>
+<li>Can return any HTTP status code.</li>
+<li>It is possible to send response messages according to the order of requests to the simulator (similarly to the unit test, the contents described in the Excel file are returned in order from the top).</li>
+</ul>
+</div>
+<div class="section" id="when-the-simulator-sends-a-message">
+<h3><a class="toc-backref" href="#id11">When the simulator sends a message</a><a class="headerlink" href="#when-the-simulator-sends-a-message" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Request messages for sending HTTP messages, MOM sending synchronous message, and MOM sending asynchronous message can be sent.</li>
+<li>Send the same message a specified number of times.</li>
+<li>The response message log can be output.</li>
+<li>The contents described in the Excel file can be sent sequentially.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id12">How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-simulator-execution-module">
+<h3><a class="toc-backref" href="#id13">Create a simulator execution module</a><a class="headerlink" href="#create-a-simulator-execution-module" title="Permalink to this headline">¶</a></h3>
+<p>In this sample, it is assumed that the user will customize the Java file etc.
+in order to carry out the intended test, so the source code and configuration file are provided as samples.</p>
+<p>Therefore, in order to use the simulator, it is necessary to execute a build and create an execution module according to the following procedure.</p>
+<dl class="docutils">
+<dt>Getting a simulator</dt>
+<dd><p class="first">Execute the following command to get the source code of the simulator.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/nablarch/nablarch-messaging-simulator.git
+</pre></div>
+</div>
+<p>The following libraries must be installed in the local repository to run the simulator.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Jar file provided with WebSphere MQ</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Creating an execution module</dt>
+<dd><p class="first">Execute the following command to create an execution module under <code class="docutils literal"><span class="pre">src/main/build</span></code>.</p>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>gradlew setupBuild
+</pre></div>
+</div>
+<p class="last">The created execution module is placed in the environment where the simulator is to be executed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="start-the-simulator">
+<h3><a class="toc-backref" href="#id14">Start the simulator</a><a class="headerlink" href="#start-the-simulator" title="Permalink to this headline">¶</a></h3>
+<p>The simulator is started by executing the following bat file included in the execution module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">HTTP receive messages:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">http-incoming-startup.bat</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Send HTTP message:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">http-outgoing-startup.bat</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">MOM receive messages:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">mom-incoming-startup.bat</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Send MOM message:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">mom-outgoing-startup.bat</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id15">Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="specify-the-number-of-times-to-send-a-request-when-sending-a-message">
+<h3><a class="toc-backref" href="#id16">Specify the number of times to send a request when sending a message</a><a class="headerlink" href="#specify-the-number-of-times-to-send-a-request-when-sending-a-message" title="Permalink to this headline">¶</a></h3>
+<p>By default, the requests for the line count described in the send list file (CSV) are sent,
+and the request send count can be specified with the <code class="docutils literal"><span class="pre">sendCount</span></code> option to send the same data repeatedly.</p>
+<p>An example for specifying options is shown below.</p>
+<div class="highlight-bat"><div class="highlight"><pre><span></span>java <span class="p">&lt;</span>omitted<span class="p">&gt;</span> nablarch.fw.launcher.Main <span class="p">&lt;</span>omitted<span class="p">&gt;</span> -sendCount 10000
+</pre></div>
+</div>
+</div>
+<div class="section" id="switch-the-response-according-to-the-type-of-request-when-receiving-a-message">
+<h3><a class="toc-backref" href="#id17">Switch the response according to the type of request when receiving a message</a><a class="headerlink" href="#switch-the-response-according-to-the-type-of-request-when-receiving-a-message" title="Permalink to this headline">¶</a></h3>
+<p>To switch responses based on the request type, modify the <code class="docutils literal"><span class="pre">getRequestId</span></code> method of the action class.</p>
+<p>Implementation example when switching the response by request URI when receiving HTTP message is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HttpIncomingSimulateAction</span> <span class="kd">implements</span> <span class="n">Handler</span><span class="o">&lt;</span><span class="n">HttpRequest</span><span class="o">,</span> <span class="n">HttpResponse</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="c1">// Omitted</span>
+
+    <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getRequestId</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Switch the request ID of the response based on the request URI.</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestUri</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&quot;RM11AC0101&quot;</span><span class="o">)</span> <span class="o">?</span> <span class="s">&quot;RM11AC0201&quot;</span> <span class="o">:</span> <span class="s">&quot;RM11AC0202&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To switch responses when receiving an MOM message, modify the <code class="docutils literal"><span class="pre">getRequestId</span></code> method of the action class in the same way as when receiving an HTTP message.</p>
+</div>
+</div>
+<div class="section" id="intentionally-delay-the-response-when-receiving-a-message">
+<h3><a class="toc-backref" href="#id18">Intentionally delay the response when receiving a message</a><a class="headerlink" href="#intentionally-delay-the-response-when-receiving-a-message" title="Permalink to this headline">¶</a></h3>
+<p>To delay the response intentionally when receiving a message,
+implement the delay process directly in the <code class="docutils literal"><span class="pre">handle</span></code> method of action class as follows.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HttpIncomingSimulateAction</span> <span class="kd">implements</span> <span class="n">Handler</span><span class="o">&lt;</span><span class="n">HttpRequest</span><span class="o">,</span> <span class="n">HttpResponse</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">handle</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+      <span class="k">try</span> <span class="o">{</span>
+          <span class="c1">// Delay for 10 seconds</span>
+          <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+          <span class="c1">// Exception handling</span>
+      <span class="o">}</span>
+
+      <span class="c1">// Omitted</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

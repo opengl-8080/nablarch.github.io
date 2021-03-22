@@ -1,0 +1,617 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.2.2. HTTP Response Handler &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/handlers/web/http_response_handler.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../index.html"/>
+        <link rel="up" title="6.2. Web Application Dedicated Handler" href="index.html"/>
+        <link rel="next" title="6.2.3. Secure Handler" href="secure_handler.html"/>
+        <link rel="prev" title="6.2.1. HTTP Character Encoding Control Handler" href="http_character_encoding_handler.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">6. Standard Handler Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="index.html">6.2. Web Application Dedicated Handler</a> &raquo;</li>
+      
+    <li>6.2.2. HTTP Response Handler</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-response-handler">
+<span id="id1"></span><h1>6.2.2. HTTP Response Handler<a class="headerlink" href="#http-response-handler" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#handler-class-name" id="id5">Handler class name</a></li>
+<li><a class="reference internal" href="#module-list" id="id6">Module list</a></li>
+<li><a class="reference internal" href="#constraints" id="id7">Constraints</a></li>
+<li><a class="reference internal" href="#how-to-convert-the-response" id="id8">How to convert the response</a></li>
+<li><a class="reference internal" href="#custom-response-writer" id="id9">Custom response writer</a></li>
+<li><a class="reference internal" href="#change-the-http-status-code" id="id10">Change the HTTP status code</a></li>
+<li><a class="reference internal" href="#switching-the-content-path-for-each-language" id="id11">Switching the content path for each language</a></li>
+<li><a class="reference internal" href="#how-to-handle-fatal-errors-that-occur-in-this-handler" id="id12">How to handle fatal errors that occur in this handler</a></li>
+</ul>
+</div>
+<p>This handler calls the servlet API and sends a response to the client according to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a>
+returned by the subsequent handler.
+There are four response methods.</p>
+<dl class="docutils">
+<dt>Servlet forward</dt>
+<dd>Forward to the servlet and draw the response. Mainly used for response using JSP.</dd>
+<dt>Custom response writer</dt>
+<dd>The <a class="reference internal" href="#custom-response-writer">custom response writer</a>(described later) is used to perform arbitrary response output processing.Mainly used for response using external library such as template engine.</dd>
+<dt>Redirect</dt>
+<dd>Returns a response to redirect to the client.</dd>
+<dt>Direct response</dt>
+<dd>Direct response using <cite>getOutputStream</cite> method of <a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/servlet/ServletResponse.html" title="javax.servlet.ServletResponse">ServletResponse</a>.</dd>
+</dl>
+<p>The process flow is as follows.</p>
+<img alt="../../../../_images/flow33.png" src="../../../../_images/flow33.png" />
+<div class="section" id="handler-class-name">
+<h2><a class="toc-backref" href="#id5">6.2.2.1. Handler class name</a><a class="headerlink" href="#handler-class-name" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/HttpResponseHandler.html" title="nablarch.fw.web.handler.HttpResponseHandler">nablarch.fw.web.handler.HttpResponseHandler</a></li>
+</ul>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id6">6.2.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="constraints">
+<h2><a class="toc-backref" href="#id7">6.2.2.3. Constraints</a><a class="headerlink" href="#constraints" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="how-to-convert-the-response">
+<h2><a class="toc-backref" href="#id8">6.2.2.4. How to convert the response</a><a class="headerlink" href="#how-to-convert-the-response" title="Permalink to this headline">¶</a></h2>
+<p>This handler changes the method of response to the client based on the scheme <a class="footnote-reference" href="#scheme" id="id2">[1]</a> returned from the subsequent handler and status code <a class="footnote-reference" href="#statuscode" id="id3">[2]</a>.</p>
+<p>The conversion conditions and response method are as shown in the table below.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Conversion condition</th>
+<th class="head">Response method</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>When the scheme is a
+<code class="docutils literal"><span class="pre">servlet</span></code></td>
+<td>When the custom response writer determines that the process is to be processed, it is transferred to the custom response writer. In other cases, the process is forwarded to the servlet by content path.</td>
+</tr>
+<tr class="row-odd"><td>When the scheme is a
+<code class="docutils literal"><span class="pre">redirect</span></code></td>
+<td>Redirects to specified URL</td>
+</tr>
+<tr class="row-even"><td>When the scheme is a
+<code class="docutils literal"><span class="pre">http</span></code> or <code class="docutils literal"><span class="pre">https</span></code></td>
+<td>Redirects to specified URL</td>
+</tr>
+<tr class="row-odd"><td>If scheme is other than the above
+and status code is 400 or more</td>
+<td>Displays an error screen that matches the status code.</td>
+</tr>
+<tr class="row-even"><td>Other than the above</td>
+<td>Responds with the result HttpResponse#getBodyStream().</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="scheme" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>The &#8220;scheme&#8221; here refers to the return value of
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html#getScheme--" title="nablarch.fw.web.ResourceLocator.getScheme()">getScheme() method</a>
+of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/ResourceLocator.html" title="nablarch.fw.web.ResourceLocator">ResourceLocator</a> acquired with
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html#getContentPath--" title="nablarch.fw.web.HttpResponse.getContentPath()">HttpResponse#getContentPath()</a> returned by the subsequent handler.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="statuscode" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>The &#8220;status code&#8221; here refers to the return value of
+the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html#getStatusCode--" title="nablarch.fw.web.HttpResponse.getStatusCode()">getStatusCode()</a> method of
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpResponse.html" title="nablarch.fw.web.HttpResponse">HttpResponse</a> class returned by the subsequent handler.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="custom-response-writer">
+<span id="http-response-handler-convert-status-code"></span><h2><a class="toc-backref" href="#id9">6.2.2.5. Custom response writer</a><a class="headerlink" href="#custom-response-writer" title="Permalink to this headline">¶</a></h2>
+<p>By configuring the implementation class of
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/handler/responsewriter/CustomResponseWriter.html" title="nablarch.fw.web.handler.responsewriter.CustomResponseWriter">CustomResponseWriter</a> to the <code class="docutils literal"><span class="pre">customResponseWriter</span></code> property of this handler,
+an any response output process <a class="footnote-reference" href="#resp" id="id4">[3]</a>  can be  executed.</p>
+<table class="docutils footnote" frame="void" id="resp" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>A specific example is the case where a response is output using the template engine instead of JSP.
+<a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html#web-thymeleaf-adaptor"><span>Web Application Thymeleaf Adapter</span></a> is an implementation provided by Nablarch.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="change-the-http-status-code">
+<h2><a class="toc-backref" href="#id10">6.2.2.6. Change the HTTP status code</a><a class="headerlink" href="#change-the-http-status-code" title="Permalink to this headline">¶</a></h2>
+<p>This handler changes part of the status code and configures in the response to the client.</p>
+<p>The conversion condition that determine the HTTP status code and error code of the response are as shown in the table below.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Conversion condition</th>
+<th class="head">Error code</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>For Ajax requests</td>
+<td>Returns the original status code without change</td>
+</tr>
+<tr class="row-odd"><td>When the original status code is 400</td>
+<td>Returns status code 200</td>
+</tr>
+<tr class="row-even"><td>Other than the above</td>
+<td>Returns the status code result without change</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="switching-the-content-path-for-each-language">
+<span id="http-response-handler-change-content-path"></span><h2><a class="toc-backref" href="#id11">6.2.2.7. Switching the content path for each language</a><a class="headerlink" href="#switching-the-content-path-for-each-language" title="Permalink to this headline">¶</a></h2>
+<p>This handler has a function to dynamically switch the forwarding destination based on the language configuration included in the HTTP request.
+By using this function, the function to switch the JSP to be forwarded according to the language selected by the user can be realized.</p>
+<p>When using this function, configure one of the following classes in <code class="docutils literal"><span class="pre">contentPathRule</span></code> property of this handler.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/i18n/DirectoryBasedResourcePathRule.html" title="nablarch.fw.web.i18n.DirectoryBasedResourcePathRule">DirectoryBasedResourcePathRule</a></td>
+<td><p class="first">A class that
+<br />
+uses the directory directly under the context root for switching the language.</p>
+<blockquote class="last">
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Placement example when supporting /management/user/search.jsp</span>
+<span class="c1"># with Japanese (ja) and English (en)</span>
+<span class="c1"># Create a directory for each language directly under the context root.</span>
+<span class="c1"># The directory name is the language name.</span>
+Context root
+├─en
+│  └─management
+│      └─user
+│           search.jsp
+└─ja
+    └─management
+        └─user
+             search.jsp
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/i18n/FilenameBasedResourcePathRule.html" title="nablarch.fw.web.i18n.FilenameBasedResourcePathRule">FilenameBasedResourcePathRule</a></td>
+<td><p class="first">A class that uses file names to switch the languages.</p>
+<blockquote class="last">
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Placement example when supporting /management/user/search.jsp</span>
+<span class="c1"># with Japanese (ja) and English (en)</span>
+<span class="c1"># Create a file for each language.</span>
+<span class="c1"># Add the suffix &quot;&#39;_&#39; + language name&quot; to the file name.</span>
+Context root
+└─management
+        └─user
+             search_en.jsp
+             search_ja.jsp
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The configuration example for this is as follows.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Resource path rules --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;resourcePathRule&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.i18n.DirectoryBasedResourcePathRule&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="c">&lt;!-- HTTP response handler--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.handler.HttpResponseHandler&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contentPathRule&quot;</span> <span class="na">ref=</span><span class="s">&quot;resourcePathRule&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>To switch contents by a method other than the above, create a class that inherits <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/i18n/ResourcePathRule.html" title="nablarch.fw.web.i18n.ResourcePathRule">ResourcePathRule</a>
+class and configure the created class in the <code class="docutils literal"><span class="pre">resourcePathRule</span></code> property as above.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This function cannot be used when the response is output by the <a class="reference internal" href="#custom-response-writer">custom response writer</a>.
+This is to ensure that it is not mixed with the multilingual function of the template engine.</p>
+</div>
+</div>
+<div class="section" id="how-to-handle-fatal-errors-that-occur-in-this-handler">
+<h2><a class="toc-backref" href="#id12">6.2.2.8. How to handle fatal errors that occur in this handler</a><a class="headerlink" href="#how-to-handle-fatal-errors-that-occur-in-this-handler" title="Permalink to this headline">¶</a></h2>
+<p>When the following events occur in the processing in this handler,
+it is determined that a normal response cannot be returned and a fixed response with status code 500 is returned to the client.</p>
+<ul class="simple">
+<li>When a ServletException occurs during servlet forward</li>
+<li>When an exception of RuntimeException and its subclass occurs</li>
+<li>When an exception of Error and its subclass occurs</li>
+</ul>
+<p>The response for these cases is the following HTML.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>A system error occurred.<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+      We are sorry not to be able to proceed your request.<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+      Please contact the system administrator of our system.
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The above HTML response is fixed and cannot be changed with configuration.</p>
+<p class="last">This response is used only in rare cases where an exception occurs in this handler.
+This specification does not usually cause a problem, but for systems where this response should not be issued under any circumstances,
+consider preparing handlers with reference to this handler.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

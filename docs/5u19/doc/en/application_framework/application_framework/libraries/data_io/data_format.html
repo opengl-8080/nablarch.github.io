@@ -1,0 +1,1175 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.4.2. General Data Format &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_format.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../index.html"/>
+        <link rel="up" title="7.4. Access to Data in Various Formats" href="../data_converter.html"/>
+        <link rel="next" title="7.4.2.3.1.1. Description Rules for Format Definition File" href="data_format/format_definition.html"/>
+        <link rel="prev" title="7.4.1. Data Bind" href="data_bind.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../data_converter.html">7.4. Access to Data in Various Formats</a> &raquo;</li>
+      
+    <li>7.4.2. General Data Format</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="general-data-format">
+<span id="data-format"></span><h1>7.4.2. General Data Format<a class="headerlink" href="#general-data-format" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
+<li><a class="reference internal" href="#several-formats-are-supported-as-standard" id="id2">Several formats are supported as standard</a></li>
+<li><a class="reference internal" href="#supports-various-character-sets-character-types-and-data-formats" id="id3">Supports various character sets, character types and data formats</a></li>
+<li><a class="reference internal" href="#supports-conversion-processes-such-as-padding-and-trimming" id="id4">Supports conversion processes such as padding and trimming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id5">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id6">How to use</a><ul>
+<li><a class="reference internal" href="#define-the-format-of-input-output-data" id="id7">Define the format of input/output data</a></li>
+<li><a class="reference internal" href="#output-data-to-file" id="id8">Output data to file</a></li>
+<li><a class="reference internal" href="#used-for-file-download" id="id9">Used for file download</a></li>
+<li><a class="reference internal" href="#read-the-upload-file" id="id10">Read the upload file</a></li>
+<li><a class="reference internal" href="#read-and-write-the-data-of-json-and-xml-hierarchical-structure" id="id11">Read and write the data of JSON and XML hierarchical structure</a><ul>
+<li><a class="reference internal" href="#use-dtd-with-xml" id="id12">Use DTD with XML</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-namespaces-in-xml" id="id13">Using namespaces in XML</a></li>
+<li><a class="reference internal" href="#define-the-content-for-an-element-with-xml-attributes" id="id14">Define the content for an element with XML attributes</a></li>
+<li><a class="reference internal" href="#replace-collate-the-characters" id="id15">Replace (collate) the characters</a></li>
+<li><a class="reference internal" href="#format-the-display-format-of-the-output-data" id="id16">Format the display format of the output data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id17">Expansion example</a><ul>
+<li><a class="reference internal" href="#add-a-field-type" id="id18">Add a field type</a></li>
+<li><a class="reference internal" href="#change-the-content-name-of-an-element-with-xml-attributes" id="id19">Change the content name of an element with XML attributes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Provides a general-purpose input/output library function that supports various data formats handled by the system.</p>
+<p>The general configuration of this function is as follows.</p>
+<img alt="../../../../_images/structure.png" src="../../../../_images/structure.png" />
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id1">7.4.2.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="several-formats-are-supported-as-standard">
+<span id="data-format-support-type"></span><h3><a class="toc-backref" href="#id2">7.4.2.1.1. Several formats are supported as standard</a><a class="headerlink" href="#several-formats-are-supported-as-standard" title="Permalink to this headline">¶</a></h3>
+<p>The following formats are supported as standard.</p>
+<p>The fixed-length and variable-length data formats are compatible even with multi-layout data having a different layout for each record. (XML and JSON do not have the concept of a record.)</p>
+<ul class="simple">
+<li>fixed-length</li>
+<li>Variable length (csv, tsv, etc.)</li>
+<li>JSON</li>
+<li>XML</li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The following are the disadvantages of this function.</p>
+<ul>
+<li><p class="first">A complex <a class="reference internal" href="#data-format-format-definition-file"><span>Format definition file</span></a> needs to be created.</p>
+</li>
+<li><p class="first">Implementation errors are likely to occur with input/output being limited to <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> .</p>
+<ul class="simple">
+<li>The field name is required to be specified as a string, and errors during implementation are likely to occur as IDE support cannot be used.</li>
+<li>It is necessary to downcast the value fetched from Map on the application side. (If a mistake is made, an exception is thrown during runtime.)</li>
+</ul>
+</li>
+<li><p class="first">Since <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> is not used for mapping the data and Java object, the mapping method is different from other functions.</p>
+</li>
+<li><p class="first">Method of handling the output target of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> depends on the format. For this reason, if the function is used to make the same data correspond to multiple formats, normal operation may not be performed such as an exception thrown depending on the format.</p>
+<p>For example, some problem cases are given below.</p>
+<dl class="docutils">
+<dt>When null is specified for required items in XML and JSON:</dt>
+<dd><ul class="first last simple">
+<li>XML: Value is output as an empty character</li>
+<li>JSON: Throws a required exception</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Depending on the output target data, JSON specifications may not be satisfied.</p>
+<p>For example, if <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonNumber.html" title="nablarch.core.dataformat.convertor.datatype.JsonNumber">numeric type</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/JsonBoolean.html" title="nablarch.core.dataformat.convertor.datatype.JsonBoolean">boolean type</a> is used and the output target data type does not correspond to these types, then an invalid JSON is output.</p>
+<p>Example: When a numeric format is specified and the output target &#8220;data&#8221; is a string, invalid JSON such as {&#8220;number&#8221;: data} is output.</p>
+</li>
+<li><p class="first">It is difficult to extend because the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">data type</a> that can be used depends on the data format. Also, errors in this configuration cannot be detected until run time.</p>
+</li>
+</ul>
+<p>Therefore, as a principle, this function is deprecated except when it is inevitable. Since <a class="reference internal" href="../../messaging/index.html#messaging"><span>Messaging</span></a> uses this function internally, the use of alternative functions is not possible.</p>
+<dl class="last docutils">
+<dt>Alternative to this function</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">fixed-length:</th><td class="field-body">Use <a class="reference internal" href="data_bind.html#data-bind"><span>Data Bind</span></a> .</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Variable length:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Use  <a class="reference internal" href="data_bind.html#data-bind"><span>Data Bind</span></a> .</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">XML:</th><td class="field-body"><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/package-summary.html" title="javax.xml.bind.package-summary">JAXB</a> is recommended.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">JSON:</th><td class="field-body">Use of OSS is recommended. For example, <a class="reference external" href="https://github.com/FasterXML/jackson">Jackson (external site)</a> is widely used.</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="supports-various-character-sets-character-types-and-data-formats">
+<h3><a class="toc-backref" href="#id3">7.4.2.1.2. Supports various character sets, character types and data formats</a><a class="headerlink" href="#supports-various-character-sets-character-types-and-data-formats" title="Permalink to this headline">¶</a></h3>
+<p>It supports not only string and decimal number formats, but also packed decimal and zoned decimal that are often handled by hosts. In addition to character sets such as UTF-8 and Shift_JIS, EBCDIC are also supported.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Character set supported by the JVM of the execution environment can be used.</p>
+</div>
+</div>
+<div class="section" id="supports-conversion-processes-such-as-padding-and-trimming">
+<span id="data-format-value-convertor"></span><h3><a class="toc-backref" href="#id4">7.4.2.1.3. Supports conversion processes such as padding and trimming</a><a class="headerlink" href="#supports-conversion-processes-such-as-padding-and-trimming" title="Permalink to this headline">¶</a></h3>
+<p>Spaces, zero (0) padding and trimming that are often used in fixed-length files are supported. Therefore, there is no need for the application to perform padding or trimming.</p>
+<p>For more information on padding and trimming, see <a class="reference internal" href="data_format/format_definition.html#data-format-field-convertor-list"><span>Field converter list</span></a> .</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id5">7.4.2.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To use <a class="reference internal" href="#data-format-upload-helper"><span>upload helper</span></a> , add <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> .</li>
+<li>To use <a class="reference internal" href="#data-format-file-download"><span>file download</span></a> , add <code class="docutils literal"><span class="pre">nablarch-fw-web-extension</span></code> .</li>
+</ul>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- General data format --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-dataformat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">Add the following when using the upload helper and download</span>
+<span class="c"> --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-fw-web-extension<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id6">7.4.2.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="define-the-format-of-input-output-data">
+<span id="data-format-format-definition-file"></span><h3><a class="toc-backref" href="#id7">7.4.2.3.1. Define the format of input/output data</a><a class="headerlink" href="#define-the-format-of-input-output-data" title="Permalink to this headline">¶</a></h3>
+<p>The format of input/output data is defined in the format definition file.</p>
+<p>The format definition file is created in a text file format as below. For detailed specifications, see <a class="reference internal" href="data_format/format_definition.html"><em>Description Rules for Format Definition File</em></a> .</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;Variable&quot;</span> <span class="c1"># Variable length</span>
+text-encoding:    <span class="s2">&quot;MS932&quot;</span>    <span class="c1"># Character encoding of the string type field</span>
+record-separator: <span class="s2">&quot;\r\n&quot;</span>     <span class="c1"># Carriage return and Line feed (crlf)</span>
+field-separator:  <span class="s2">&quot;,&quot;</span>        <span class="c1"># csv</span>
+
+<span class="c1"># Define record identification field</span>
+<span class="o">[</span>Classifier<span class="o">]</span>
+<span class="m">1</span> dataKbn X     <span class="c1"># First field</span>
+<span class="m">3</span> <span class="nb">type</span>    X     <span class="c1"># Third field</span>
+
+<span class="o">[</span>parentData<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nb">type</span>    <span class="o">=</span> <span class="s2">&quot;01&quot;</span>
+<span class="m">1</span> dataKbn X
+<span class="m">2</span> ?filler X
+<span class="m">3</span> <span class="nb">type</span>    X
+<span class="m">4</span> data    X
+
+<span class="o">[</span>childData<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="nb">type</span>    <span class="o">=</span> <span class="s2">&quot;02&quot;</span>
+<span class="m">1</span> dataKbn X
+<span class="m">2</span> ?filler X
+<span class="m">3</span> <span class="nb">type</span>    X
+<span class="m">4</span> data    X
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="output-data-to-file">
+<h3><a class="toc-backref" href="#id8">7.4.2.3.2. Output data to file</a><a class="headerlink" href="#output-data-to-file" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to output the data record contents to a file.</p>
+<p>Data output to a file can be realized by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> .</p>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Prepare data to be written to the file as <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> .</li>
+<li>The key value of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> is configured as the field name defined in <a class="reference internal" href="#data-format-format-definition-file"><span>Define the format of input/output data</span></a> . (It is not case-sensitive)</li>
+<li>Call the <cite>open</cite> method of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> and make the file source writable.</li>
+<li>Call the write method of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> and <cite>write</cite> the data to the file.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Data to be written</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">);</span>
+<span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
+
+<span class="c1">// Open the file to be written</span>
+<span class="n">FileRecordWriterHolder</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="s">&quot;users.csv&quot;</span><span class="o">,</span> <span class="s">&quot;user_csv_format&quot;</span><span class="o">);</span>
+
+<span class="c1">// Write the data</span>
+<span class="n">FileRecordWriterHolder</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">user</span><span class="o">,</span> <span class="s">&quot;user.csv&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>To use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> , it is necessary to configure the deployment directory of the format definition file <a class="reference internal" href="#data-format-format-definition-file"><span>Format definition file</span></a> , output destination directory, etc. to <a class="reference internal" href="../file_path_management.html#file-path-management"><span>File path management</span></a> .</p>
+<p class="last">For the necessary directory configuration, see <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> .</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The file resource opened by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> is automatically released by <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>Output File Release Handler</span></a> . Therefore, when using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a> , it is necessary to configure <a class="reference internal" href="../../handlers/common/file_record_writer_dispose_handler.html#file-record-writer-dispose-handler"><span>Output File Release Handler</span></a> to the handler queue.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If an invalid value is configured in the output data, it may not be processed correctly, therefore check in advance for invalid values in the application.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The default behavior is to write to the file for each record.
+When outputting a large amount of data, writing each record to a file may not meet the performance requirements.
+In such a case, the default behavior should be changed to write in the specified buffer size instead of per record.</p>
+<p>By adding the following component definition, it can be made to write in the specified buffer size instead of each record.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- The component name should be dataFormatConfig. --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;dataFormatConfig&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.DataFormatConfig&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;flushEachRecordInWriting&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p class="last">The buffer size used for output can be specified with the <cite>open</cite> method of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/io/FileRecordWriterHolder.html" title="nablarch.common.io.FileRecordWriterHolder">FileRecordWriterHolder</a>.</p>
+</div>
+</div>
+<div class="section" id="used-for-file-download">
+<span id="data-format-file-download"></span><h3><a class="toc-backref" href="#id9">7.4.2.3.3. Used for file download</a><a class="headerlink" href="#used-for-file-download" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to respond to the client with the data record contents in file download format.</p>
+<p>Response of file download format can be realized by using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> .</p>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>When generating <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> , specify the logical path name where the format definition file is stored and the format definition file name.</li>
+<li>Use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html#write-java.util.Map-" title="nablarch.common.web.download.DataRecordResponse.write(java.util.Map)">DataRecordResponse#write</a> to output the data. (When downloading multiple records, output is repeated)</li>
+<li>Configure <cite>Content-Type</cite> and <cite>Content-Disposition</cite> .</li>
+<li>Returns <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/download/DataRecordResponse.html" title="nablarch.common.web.download.DataRecordResponse">DataRecordResponse</a> from the business action.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">download</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="c1">// Business process</span>
+
+  <span class="c1">// Create Map that stores the download data.</span>
+  <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">hashMap</span><span class="o">&lt;&gt;()</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">);</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+
+  <span class="c1">// Generate DataRecordResponse by specifying the logical path name where the</span>
+  <span class="c1">// format definition file is stored and name of the format definition file.</span>
+  <span class="n">DataRecordResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataRecordResponse</span><span class="o">(</span><span class="s">&quot;format&quot;</span><span class="o">,</span> <span class="s">&quot;users_csv&quot;</span><span class="o">);</span>
+
+  <span class="c1">// Output downloaded data.</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+  <span class="c1">// Configure Content-Type header and Content-Disposition header</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/csv; charset=Shift_JIS&quot;</span><span class="o">);</span>
+  <span class="n">response</span><span class="o">.</span><span class="na">setContentDisposition</span><span class="o">(</span><span class="s">&quot;Message list.csv&quot;</span><span class="o">);</span>
+
+  <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The storage path of the format definition file should be configured in <a class="reference internal" href="../file_path_management.html#file-path-management"><span>File path management</span></a> .</p>
+</div>
+</div>
+<div class="section" id="read-the-upload-file">
+<span id="data-format-load-upload-file"></span><h3><a class="toc-backref" href="#id10">7.4.2.3.4. Read the upload file</a><a class="headerlink" href="#read-the-upload-file" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to read the upload file.</p>
+<p>Upload files can be read by the following two methods with this function. As described in <a class="reference internal" href="#data-format-upload-helper"><span>reading using upload helper</span></a> , reading using only <a class="reference internal" href="#data-format-native-upload-file-load"><span>the general data format (this function)</span></a> is recommended.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#data-format-native-upload-file-load"><span>Reading using only the general data format (this function)</span></a></li>
+<li><a class="reference internal" href="#data-format-upload-helper"><span>Reading using upload helper</span></a></li>
+</ul>
+<dl class="docutils" id="data-format-native-upload-file-load">
+<dt>Reading of upload file using only the general data format (this function)</dt>
+<dd><p class="first">This section explains the loading process of upload file using the API of this function without using the upload helper that is described later.</p>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>The upload file is acquired by calling <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> .</li>
+<li>The parameter name is specified in the argument of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> .</li>
+<li>The object <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html" title="java.io.File">File</a> of the format definition file is obtained from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/util/FilePathSetting.html" title="nablarch.core.util.FilePathSetting">FilePathSetting</a> .</li>
+<li>Create <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/FormatterFactory.html" title="nablarch.core.dataformat.FormatterFactory">FormatterFactory</a> by specifying the format definition file.</li>
+<li>Configure <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> to read the upload file. Implementation class of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> that is configured must be supported by <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#mark-int-" title="java.io.InputStream.mark(int)">mark</a>/<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html#reset--" title="java.io.InputStream.reset()">reset</a>.</li>
+<li>Call the API of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/DataRecordFormatter.html" title="nablarch.core.dataformat.DataRecordFormatter">DataRecordFormatter</a> and read the record of the upload file.</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">upload</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="c1">// Get information of the upload file</span>
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">PartInfo</span><span class="o">&gt;</span> <span class="n">partInfoList</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">);</span>
+
+  <span class="c1">// Get file object of the format definition file</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">format</span> <span class="o">=</span> <span class="n">FilePathSetting</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+                                     <span class="o">.</span><span class="na">getFile</span><span class="o">(</span><span class="s">&quot;format&quot;</span><span class="o">,</span> <span class="s">&quot;users-layout&quot;</span><span class="o">);</span>
+
+  <span class="c1">// Get format definition file and generate the formatter to read the upload file.</span>
+  <span class="k">try</span> <span class="o">(</span><span class="kd">final</span> <span class="n">DataRecordFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">FormatterFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">()</span>
+                                                             <span class="o">.</span><span class="na">createFormatter</span><span class="o">(</span><span class="n">format</span><span class="o">))</span> <span class="o">{</span>
+
+    <span class="c1">// Configure InputStream to read the upload file in formatter and initialize.</span>
+    <span class="c1">// Wrapped in BufferedInputStream as mark/reset is required to be supported.</span>
+    <span class="n">formatter</span><span class="o">.</span><span class="na">setInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="n">partInfoList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getInputStream</span><span class="o">()))</span>
+             <span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+
+    <span class="c1">// Repeat the process until there are no more records.</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">formatter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+      <span class="c1">// Read the records.</span>
+      <span class="kd">final</span> <span class="n">DataRecord</span> <span class="n">record</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">readRecord</span><span class="o">();</span>
+
+      <span class="c1">// Process the records</span>
+      <span class="kd">final</span> <span class="n">Users</span> <span class="n">users</span> <span class="o">=</span> <span class="n">BeanUtil</span><span class="o">.</span><span class="na">createAndCopy</span><span class="o">(</span><span class="n">Users</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">record</span><span class="o">);</span>
+
+      <span class="c1">// Rest is omitted</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="data-format-upload-helper">
+<dt>Loading an upload file using the upload helper</dt>
+<dd><p class="first">If an upload helper ( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> ) is used, reading of files, validation and saving files to a database can be executed easily.</p>
+<p>However, since this function has the following restrictions (disadvantages), use of <a class="reference internal" href="#data-format-native-upload-file-load"><span>Reading of upload file using only the general data format (this function)</span></a> is recommended.</p>
+<ul class="simple">
+<li>The check of input values is limited to <a class="reference internal" href="../validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a> . ( <a class="reference internal" href="../validation/bean_validation.html#bean-validation"><span>Bean Validation</span></a> , which is recommended cannot be used.)</li>
+<li>Although expansion is possible, the degree of difficulty is high and cannot be easily implemented to meet the requirements.</li>
+</ul>
+<p>Below is an example of checking the input and registration to the database for a single layout upload file.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>The upload file is acquired by calling <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> .</li>
+<li>The parameter name is specified in the argument of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/HttpRequest.html#getPart-java.lang.String-" title="nablarch.fw.web.HttpRequest.getPart(java.lang.String)">HttpRequest#getPart</a> .</li>
+<li>Generate <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html" title="nablarch.fw.web.upload.util.UploadHelper">UploadHelper</a> based on the upload file acquired.</li>
+<li>Configure the format definition file using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/UploadHelper.html#applyFormat-java.lang.String-" title="nablarch.fw.web.upload.util.UploadHelper.applyFormat(java.lang.String)">UploadHelper#applyFormat</a> .</li>
+<li>Configure the message ID for validation error using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidator.html#setUpMessageIdOnError-java.lang.String-java.lang.String-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.setUpMessageIdOnError(java.lang.String-java.lang.String-java.lang.String)">setUpMessageIdOnError</a> .</li>
+<li>Configure the Java Beans class that executes validation and the validation method using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidator.ErrorHandlingBulkValidator.html#validateWith-java.lang.Class-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidator.ErrorHandlingBulkValidator.validateWith(java.lang.Class-java.lang.String)">validateWith</a> .</li>
+<li>Register the validated Javabeans object in DB using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/BulkValidationResult.html#importWith-nablarch.core.db.support.DbAccessSupport-java.lang.String-" title="nablarch.fw.web.upload.util.BulkValidationResult.importWith(nablarch.core.db.support.DbAccessSupport-java.lang.String)">importWith</a> .</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">upload</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="n">PartInfo</span> <span class="n">partInfo</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;fileToSave&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+  <span class="c1">// Register all records at once</span>
+  <span class="n">UploadHelper</span> <span class="n">helper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UploadHelper</span><span class="o">(</span><span class="n">partInfo</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">helper</span>
+      <span class="o">.</span><span class="na">applyFormat</span><span class="o">(</span><span class="s">&quot;N11AC002&quot;</span><span class="o">)</span>                     <span class="c1">// Apply the format</span>
+      <span class="o">.</span><span class="na">setUpMessageIdOnError</span><span class="o">(</span><span class="s">&quot;format.error&quot;</span><span class="o">,</span>       <span class="c1">// Specify the message ID for format error</span>
+                             <span class="s">&quot;validation.error&quot;</span><span class="o">,</span>   <span class="c1">// Specify the message ID for validation error</span>
+                             <span class="s">&quot;file.empty.error&quot;</span><span class="o">)</span>   <span class="c1">// Specify the message ID when the file is empty</span>
+      <span class="o">.</span><span class="na">validateWith</span><span class="o">(</span><span class="n">UserInfoTempEntity</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>      <span class="c1">// Specify the validation method</span>
+                    <span class="s">&quot;validateRegister&quot;</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">importWith</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">&quot;INSERT_SQL&quot;</span><span class="o">);</span>             <span class="c1">//  Specify the SQL ID of INSERT statement</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Also see the documentation of the classes in the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/fw/web/upload/util/package-summary.html" title="nablarch.fw.web.upload.util.package-summary">nablarch.fw.web.upload.util</a> package.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="read-and-write-the-data-of-json-and-xml-hierarchical-structure">
+<span id="data-format-structured-data"></span><h3><a class="toc-backref" href="#id11">7.4.2.3.5. Read and write the data of JSON and XML hierarchical structure</a><a class="headerlink" href="#read-and-write-the-data-of-json-and-xml-hierarchical-structure" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the Map structure when reading/writing the hierarchical structure data of JSON and XML.</p>
+<p>When hierarchical data such as JSON or XML is read, the key value of Map is the value of the element name of each hierarchy that is enclosed by dots ( <code class="docutils literal"><span class="pre">.</span></code> ).</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Format definition file</dt>
+<dd><p class="first">In the case of JSON, replace the <cite>file-type</cite> with <code class="docutils literal"><span class="pre">JSON</span></code> . For the method of defining the format definition file that represents the hierarchical structure, refer to the <a class="reference internal" href="data_format/format_definition.html#data-format-nest-object"><span>definition of hierarchical structure</span></a> .</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>users<span class="o">]</span>              <span class="c1"># Root element</span>
+<span class="m">1</span> user    <span class="o">[</span><span class="m">0</span>..*<span class="o">]</span> OB
+
+<span class="o">[</span>user<span class="o">]</span>               <span class="c1"># Nested element</span>
+<span class="m">1</span> name    <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> N   <span class="c1"># Bottom layer element</span>
+<span class="m">2</span> age     <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> X9
+<span class="m">3</span> address <span class="o">[</span><span class="m">0</span>..1<span class="o">]</span> N
+</pre></div>
+</div>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The parent element is arbitrary, it does not support the configuration of the child element being required only if parent element exists. Therefore, when defining hierarchical structure data in the format definition file, it is recommended to define all items as optional.</p>
+</div>
+</dd>
+<dt>Map structure</dt>
+<dd><p class="first">The structure of map that outputs data to XML and JSON using the above format definition file is as follows.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>In the case of hierarchical structure, configure the value in Map with the &#8221; <cite>parent element name</cite> + <code class="docutils literal"><span class="pre">.</span></code> + <cite>child element name</cite> &#8221; format.</li>
+<li>In the case of deep hierarchical structure, element names are further concatenated with <code class="docutils literal"><span class="pre">.</span></code> .</li>
+<li>The top-level element names are not required to be included in the key</li>
+<li>For array elements, configure the subscript (starting from 0).</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+
+<span class="c1">// First element of the user array element</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].name&quot;</span><span class="o">,</span> <span class="s">&quot;Name1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].address&quot;</span><span class="o">,</span> <span class="s">&quot;Mailing address1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[0].age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+
+<span class="c1">// Second element of the user array element</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].name&quot;</span><span class="o">,</span> <span class="s">&quot;Name2&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].address&quot;</span><span class="o">,</span> <span class="s">&quot;Mailing address2&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user[1].age&quot;</span><span class="o">,</span> <span class="mi">31</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>XML and JSON structure</dt>
+<dd><p class="first">The structure of XML and JSON corresponding to the above format definition file is as given below.</p>
+<dl class="last docutils">
+<dt>XML</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;users&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Name1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;address&gt;</span>Mailing address1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;age&gt;</span>30<span class="nt">&lt;/age&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Name2<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;address&gt;</span>Mailing address2<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;age&gt;</span>31<span class="nt">&lt;/age&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+<span class="nt">&lt;/users&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>JSON</dt>
+<dd><div class="first last highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Name1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Mailing address1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Name2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Mailing address2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">31</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="section" id="use-dtd-with-xml">
+<h4><a class="toc-backref" href="#id12">7.4.2.3.5.1. Use DTD with XML</a><a class="headerlink" href="#use-dtd-with-xml" title="Permalink to this headline">¶</a></h4>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When XML is input with this function, DTD cannot be used by default. Exceptions occur when trying to read XML that has used DTD. This is a measure to prevent <a class="reference external" href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing">XML external entity reference (XXE)</a> .</p>
+</div>
+<p>If the target XML to be read is reliable, use of DTD can be allowed using the <code class="docutils literal"><span class="pre">allowDTD</span></code> property of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> . How to use is given below.</p>
+<p>Configure by explicitly mentioning the name <code class="docutils literal"><span class="pre">XmlDataParser</span></code> in the configuration of the component configuration file and permit the use of DTD.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+  <span class="nt">&lt;component-configuration</span>
+      <span class="na">xmlns=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration&quot;</span>
+      <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+      <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://tis.co.jp/nablarch/component-configuration component-configuration.xsd&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;XmlDataParser&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.XmlDataParser&quot;</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!--</span>
+<span class="c">          Allow the use of DTD.</span>
+<span class="c">          As there is risk of XXE attacks, only reliable XML must be used.</span>
+<span class="c">       --&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;allowDTD&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/component-configuration&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The API of the below versions of JDK has a bug, and a <code class="docutils literal"><span class="pre">NullPointerException</span></code> occurs when this function is used. To avoid this bug, update the version of JDK.</p>
+<ul class="simple">
+<li>JDK6 6u65 or below</li>
+<li>JDK7 7u6 b15 or below</li>
+</ul>
+<p class="last">For details of the failure, see <a class="reference external" href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=7157610">JDK-7157610 : NullPointerException occurs when parsing XML doc</a> .</p>
+</div>
+</div>
+</div>
+<div class="section" id="using-namespaces-in-xml">
+<h3><a class="toc-backref" href="#id13">7.4.2.3.6. Using namespaces in XML</a><a class="headerlink" href="#using-namespaces-in-xml" title="Permalink to this headline">¶</a></h3>
+<p>Namespaces may have to be used for the connection requirements with the connection destination system. Such cases are managed by defining the namespace in the format definition file.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>A namespace is defined as &#8221; <cite>?&#64;Xmlns:</cite> + namespace&#8221; in the element using the namespace. <code class="docutils literal"><span class="pre">X</span></code> is the type and the URI is specified in the field converter section.</li>
+<li>A namespace is expressed in the format of &#8220;namespace + <code class="docutils literal"><span class="pre">:</span></code> + element name&#8221;.</li>
+<li>The key value of Map of input/output target data is &#8220;namespace + element name (first letter uppercase)&#8221;.</li>
+</ul>
+</dd>
+<dt>Format definition file</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>testns:data<span class="o">]</span>
+<span class="c1"># Namespace definition</span>
+<span class="m">1</span> ?@xmlns:testns X <span class="s2">&quot;http://testns.hoge.jp/apply&quot;</span>
+<span class="m">2</span> testns:key1 X
+</pre></div>
+</div>
+</dd>
+<dt>XML data</dt>
+<dd><p class="first">The XML corresponding to the above format definition file is as given below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;testns:data</span> <span class="na">xmlns:testns=</span><span class="s">&quot;http://testns.hoge.jp/apply&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;testns:key1&gt;</span>value1<span class="nt">&lt;/testns:key1&gt;</span>
+<span class="nt">&lt;/testns:data&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Map data</dt>
+<dd><p class="first">The map structure for input and output is as follows.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;testnsKey1&quot;</span><span class="o">,</span> <span class="s">&quot;value1&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="define-the-content-for-an-element-with-xml-attributes">
+<h3><a class="toc-backref" href="#id14">7.4.2.3.7. Define the content for an element with XML attributes</a><a class="headerlink" href="#define-the-content-for-an-element-with-xml-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Define the content of an element with attributes in XML by defining the fields that represent the content in the format definition file.</p>
+<p>The configuration example shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Specify <code class="docutils literal"><span class="pre">body</span></code> in the field name that represents the content. To change the default field name that represents the context, see <a class="reference internal" href="#data-format-xml-content-name-change"><span>Change the content name of an element with XML attributes</span></a></li>
+</ul>
+</dd>
+<dt>Format definition file</dt>
+<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;XML&quot;</span>
+text-encoding:    <span class="s2">&quot;UTF-8&quot;</span>
+
+<span class="o">[</span>parent<span class="o">]</span>
+<span class="m">1</span> child   OB
+
+<span class="o">[</span>child<span class="o">]</span>
+<span class="m">1</span> @attr   X
+<span class="m">2</span> body    X
+</pre></div>
+</div>
+</dd>
+<dt>XML data</dt>
+<dd><p class="first">The XML corresponding to the above format definition file is as given below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;parent&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">attr=</span><span class="s">&quot;value1&quot;</span><span class="nt">&gt;</span>value2<span class="nt">&lt;/child&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Map data</dt>
+<dd><p class="first">The map structure for input and output is as follows.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;child.attr&quot;</span><span class="o">,</span> <span class="s">&quot;value1&quot;</span><span class="o">);</span>
+<span class="n">data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;child.body&quot;</span><span class="o">,</span> <span class="s">&quot;value2&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="replace-collate-the-characters">
+<span id="data-format-replacement"></span><h3><a class="toc-backref" href="#id15">7.4.2.3.8. Replace (collate) the characters</a><a class="headerlink" href="#replace-collate-the-characters" title="Permalink to this headline">¶</a></h3>
+<p>The collate function is used to replace with any character available in the system when reading external data.</p>
+<p>The usage method is shown below.</p>
+<dl class="docutils">
+<dt>Create a property to define the replacement rules.</dt>
+<dd><p class="first">In the properties file, define the replacement rule in the &#8220;Character before replacement = Character after replacement&#8221; format.</p>
+<p>Only one character can be defined as the value for the character before and after replacement. Also, surrogate pairs are not supported.</p>
+<p>For description rules on comments, see <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html" title="java.util.Properties">java.util.Properties</a> .</p>
+<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">髙</span><span class="o">=</span><span class="s">高</span>
+<span class="na">﨑</span><span class="o">=</span><span class="s">崎</span>
+<span class="na">唖</span><span class="o">=</span><span class="s">■</span>
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To define the replacement rules for each connection destination, create multiple properties files.</p>
+</div>
+</dd>
+<dt>Add the replacement rule configuration to the component configuration file</dt>
+<dd><dl class="first docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html" title="nablarch.core.dataformat.CharacterReplacementManager">CharacterReplacementManager</a> with component name <code class="docutils literal"><span class="pre">characterReplacementManager</span></code> .</li>
+<li>Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html" title="nablarch.core.dataformat.CharacterReplacementConfig">CharacterReplacementConfig</a> in list format to the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementManager.html#setConfigList-java.util.List-" title="nablarch.core.dataformat.CharacterReplacementManager.setConfigList(java.util.List)">configList</a> property.</li>
+<li>To define multiple properties files, configure different names for the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/CharacterReplacementConfig.html#setTypeName-java.lang.String-" title="nablarch.core.dataformat.CharacterReplacementConfig.setTypeName(java.lang.String)">typeName</a> property.</li>
+</ul>
+</dd>
+</dl>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;characterReplacementManager&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementManager&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;configList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Collation rules for system A --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementConfig&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typeName&quot;</span> <span class="na">value=</span><span class="s">&quot;a_system&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;filePath&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:a-system.properties&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+      <span class="c">&lt;!-- Collation rules for system B --&gt;</span>
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.CharacterReplacementConfig&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;typeName&quot;</span> <span class="na">value=</span><span class="s">&quot;b_system&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;filePath&quot;</span> <span class="na">value=</span><span class="s">&quot;classpath:b-system.properties&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;encoding&quot;</span> <span class="na">value=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Define which replacement rule to use in the format definition file</dt>
+<dd><p class="first">To replace characters during input/output, use <a class="reference internal" href="data_format/format_definition.html#data-format-replacement-convertor"><span>replacement</span></a> .</p>
+<p>For <cite>replacement</cite> arguments, configure the <cite>typeName</cite> of the replacement rules configured above.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Apply the replacement rules for system A</span>
+<span class="m">1</span> name N<span class="o">(</span><span class="m">100</span><span class="o">)</span> replacement<span class="o">(</span><span class="s2">&quot;a_system&quot;</span><span class="o">)</span>
+
+<span class="c1"># Apply the replacement rules for system B</span>
+<span class="m">1</span> name N<span class="o">(</span><span class="m">100</span><span class="o">)</span> replacement<span class="o">(</span><span class="s2">&quot;b_system&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="format-the-display-format-of-the-output-data">
+<span id="data-format-formatter"></span><h3><a class="toc-backref" href="#id16">7.4.2.3.9. Format the display format of the output data</a><a class="headerlink" href="#format-the-display-format-of-the-output-data" title="Permalink to this headline">¶</a></h3>
+<p>When the data is output, display format of the data such as date and numbers can be formatted by using <a class="reference internal" href="../format.html#format"><span>Formatter</span></a> .</p>
+<p>For details, see <a class="reference internal" href="../format.html#format"><span>Formatter</span></a> .</p>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id17">7.4.2.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-a-field-type">
+<span id="data-format-field-type-add"></span><h3><a class="toc-backref" href="#id18">7.4.2.4.1. Add a field type</a><a class="headerlink" href="#add-a-field-type" title="Permalink to this headline">¶</a></h3>
+<p>In some cases, the requirements cannot be met with <a class="reference internal" href="data_format/format_definition.html#data-format-field-type-list"><span>standard data types provided by Nablarch</span></a> . For example, cases where the padding character of string type is binary.</p>
+<p>In such cases, the requirements are supported by defining project-specific field types.</p>
+<p>The procedure is shown below.</p>
+<ol class="arabic simple">
+<li>Create the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> implementation class to handle field types.</li>
+<li>Create a factory inheritance class according to the format to enable the field type that is added.</li>
+<li>Configure the created factory class in the property of the configuration class according to the format.</li>
+</ol>
+<p>The detailed procedure is as follows.</p>
+<dl class="docutils">
+<dt>Add data type implementation corresponding to the field type</dt>
+<dd><p class="first">Create a class that implements <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/DataType.html" title="nablarch.core.dataformat.convertor.datatype.DataType">DataType</a> .</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The standard field type implementation is placed under the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/package-summary.html" title="nablarch.core.dataformat.convertor.datatype.package-summary">nablarch.core.dataformat.convertor.datatype</a> package. Referring to these classes when adding implementation is recommended.</p>
+</div>
+</dd>
+<dt>Create factory inheritance class according to the format</dt>
+<dd><p class="first">Create a factory inheritance class according to the format to enable the field type that is added.</p>
+<p>The factory class for each format is shown below</p>
+<table border="1" class="white-space-normal docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Format</th>
+<th class="head">Factory class name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fixed (fixed-length)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorFactory">FixedLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>Variable (variable length)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorFactory.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorFactory">VariableLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-even"><td>JSON</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorFactory">JsonDataConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>XML</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorFactory.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorFactory">XmlDataConvertorFactory</a></td>
+</tr>
+</tbody>
+</table>
+<p>Implementation example for fixed (fixed-length) is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomFixedLengthConvertorFactory</span> <span class="kd">extends</span> <span class="n">FixedLengthConvertorFactory</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">getDefaultConvertorTable</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">defaultConvertorTable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CaseInsensitiveMap</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;&gt;(</span>
+                <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;&gt;(</span><span class="kd">super</span><span class="o">.</span><span class="na">getDefaultConvertorTable</span><span class="o">()));</span>
+        <span class="n">defaultConvertorTable</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;custom&quot;</span><span class="o">,</span> <span class="n">CustomType</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">unmodifiableMap</span><span class="o">(</span><span class="n">defaultConvertorTable</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Configure in the property of the configuration class according to the format</dt>
+<dd><p class="first">Configure the factory class created earlier in the property of the configuration class according to the format.</p>
+<p>The configuration classes and properties for each format are shown below.</p>
+<table border="1" class="white-space-normal docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Format</th>
+<th class="head">Configuration class name (component name)</th>
+<th class="head">Property name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fixed (fixed-length)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting">FixedLengthConvertorSetting</a>
+(fixedLengthConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html#setFixedLengthConvertorFactory-nablarch.core.dataformat.convertor.FixedLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting.setFixedLengthConvertorFactory(nablarch.core.dataformat.convertor.FixedLengthConvertorFactory)">fixedLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>Variable (variable length)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting">VariableLengthConvertorSetting</a>
+(variableLengthConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html#setVariableLengthConvertorFactory-nablarch.core.dataformat.convertor.VariableLengthConvertorFactory-" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting.setVariableLengthConvertorFactory(nablarch.core.dataformat.convertor.VariableLengthConvertorFactory)">variableLengthConvertorFactory</a></td>
+</tr>
+<tr class="row-even"><td>JSON</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting">JsonDataConvertorSetting</a>
+(jsonDataConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/JsonDataConvertorSetting.html#setJsonDataConvertorFactory-nablarch.core.dataformat.convertor.JsonDataConvertorFactory-" title="nablarch.core.dataformat.convertor.JsonDataConvertorSetting.setJsonDataConvertorFactory(nablarch.core.dataformat.convertor.JsonDataConvertorFactory)">jsonDataConvertorFactory</a></td>
+</tr>
+<tr class="row-odd"><td>XML</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting">XmlDataConvertorSetting</a>
+(xmlDataConvertorSetting)</td>
+<td><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/XmlDataConvertorSetting.html#setXmlDataConvertorFactory-nablarch.core.dataformat.convertor.XmlDataConvertorFactory-" title="nablarch.core.dataformat.convertor.XmlDataConvertorSetting.setXmlDataConvertorFactory(nablarch.core.dataformat.convertor.XmlDataConvertorFactory)">xmlDataConvertorFactory</a></td>
+</tr>
+</tbody>
+</table>
+<p>A configuration example for Fixed (fixed-length) is shown below.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;fixedLengthConvertorSetting&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.convertor.FixedLengthConvertorSetting&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fixedLengthConvertorFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;com.sample.CustomFixedLengthConvertorFactory&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Though the field type can be added using the <cite>convertorTable</cite> property of configuration class according to the format, its use is not recommended for the following reasons.</p>
+<ul class="last simple">
+<li>In addition to the field type to be added, all field types originally defined by default have to be configured. Therefore, if the default field type changes due to the version upgrade, the change is not automatically applied and the configuration must be manually corrected, which requires more effort.</li>
+<li>The default definition is implemented in the factory class, and it is easy to make a configuration error as the definition has to be added to the component configuration file based on the source code.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="change-the-content-name-of-an-element-with-xml-attributes">
+<span id="data-format-xml-content-name-change"></span><h3><a class="toc-backref" href="#id19">7.4.2.4.2. Change the content name of an element with XML attributes</a><a class="headerlink" href="#change-the-content-name-of-an-element-with-xml-attributes" title="Permalink to this headline">¶</a></h3>
+<p>To change the content name of an element with attributes, configure the following class in the component configuration file, and configure the changed content name in the <code class="docutils literal"><span class="pre">contentName</span></code> property.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a></li>
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a></li>
+</ul>
+<p>The configuration example of the component configuration file is shown below.</p>
+<dl class="docutils">
+<dt>Point</dt>
+<dd><ul class="first last simple">
+<li>Configure the component name of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataParser.html" title="nablarch.core.dataformat.XmlDataParser">XmlDataParser</a> to <code class="docutils literal"><span class="pre">XmlDataParser</span></code> .</li>
+<li>Configure the component name of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/XmlDataBuilder.html" title="nablarch.core.dataformat.XmlDataBuilder">XmlDataBuilder</a> to <code class="docutils literal"><span class="pre">XmlDataBuilder</span></code> .</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;XmlDataParser&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.XmlDataParser&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contentName&quot;</span> <span class="na">value=</span><span class="s">&quot;change&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;XmlDataBuilder&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.dataformat.XmlDataBuilder&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;contentName&quot;</span> <span class="na">value=</span><span class="s">&quot;change&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

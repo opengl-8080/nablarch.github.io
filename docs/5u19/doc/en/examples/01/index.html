@@ -1,0 +1,789 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sample Password Encryption Function Using Database &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/01/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="Sample Password Encryption Function Using PBKDF2" href="0101_PBKDF2PasswordEncryptor.html"/>
+        <link rel="prev" title="Nablarch Implementation Examples" href="../index.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Sample Password Encryption Function Using Database</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sample-password-encryption-function-using-database">
+<span id="authentication"></span><h1>Sample Password Encryption Function Using Database<a class="headerlink" href="#sample-password-encryption-function-using-database" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<p>This is an implementation sample that performs authentication process using account information (user ID, password) stored in the database.</p>
+<div class="toctree-wrapper compound">
+</div>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+<div class="section" id="delivery-package">
+<h2>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h2>
+<p>The sample is provided in the following package.</p>
+<blockquote>
+<div><em>please.change.me.</em><strong>common.authentication</strong></div></blockquote>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Provide an implementation sample of the function to perform user authentication (authentication by user ID and password) in web application.</p>
+<p>This sample is intended to be used in a business process <a class="footnote-reference" href="#auth-action" id="id1">[1]</a>  that executes login process.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The Nablarch implementation project should modify and use this sample implementation to meet the requirements.</p>
+</div>
+<table class="docutils footnote" frame="void" id="auth-action" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This function does not provide the business process that executes the login process.
+Create a login process according to the requirements in the Nablarch implementation project.</td></tr>
+</tbody>
+</table>
+<p>Since this function uses <a class="reference external" href="http://www.ietf.org/rfc/rfc2898.txt">PBKDF2</a>  by default to encrypt passwords,
+it is necessary to set the number of stretches and salts for password encryption in each project.</p>
+<p>For more information on configuration, see <a class="reference internal" href="0101_PBKDF2PasswordEncryptor.html"><em>Sample Password Encryption Function Using PBKDF2</em></a> .</p>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>Shows the sample structure.</p>
+<div class="section" id="class-diagram">
+<h3>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/Authentication_ClassDiagram.jpg"><img alt="../../_images/Authentication_ClassDiagram.jpg" src="../../_images/Authentication_ClassDiagram.jpg" /></a>
+<div class="section" id="responsibilities-of-each-class">
+<h4>Responsibilities of each class<a class="headerlink" href="#responsibilities-of-each-class" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="interface-definition">
+<h5>Interface definition<a class="headerlink" href="#interface-definition" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Interface Name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Authenticator</td>
+<td>An interface that authenticates users.</td>
+</tr>
+<tr class="row-odd"><td>PasswordEncryptor</td>
+<td>An interface that encrypts a password.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-definition">
+<h5>Class definition<a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h5>
+<p>a) Implementation class of Authenticator</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PasswordAuthenticator</td>
+<td>Class that performs password authentication for the account information stored in the database.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>b) PasswordEncryptor implementation class</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PBKDF2PasswordEncryptor</td>
+<td>Class that performs password encryption using PBKDF2.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>c) Utility class</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AuthenticationUtil</td>
+<td>Utility to get Authenticator and PasswordEncryptor
+from system repository and perform user authentication and password encryption.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>d) Other classes</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SystemAccount</td>
+<td>Class that retains user account information.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>e) Exception class</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AuthenticationException</td>
+<td><p class="first">Exception that occurs when user authentication fails.</p>
+<p class="last">Base class of exception related to authentication process.
+Create an exception class that inherits from this class according to the authentication architecture.
+This class and its subclasses retain information necessary for the creation of
+a message to be presented to a user, but do not create a message.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>AuthenticationFailedException</td>
+<td><p class="first">Exception that occurs when authentication fails due to mismatch of account information.</p>
+<p class="last">This function memorizes the user ID of the target user.</p>
+</td>
+</tr>
+<tr class="row-even"><td>PasswordExpiredException</td>
+<td><p class="first">Exception that occurs when password has expired while authenticating user.</p>
+<p class="last">Retains the user ID, password expiration date, and business date used for checking of the target user.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>UserIdLockedException</td>
+<td><p class="first">Exception that occurs when user ID is locked during user authentication.</p>
+<p class="last">Stores the user ID of the target user and the number of authentication failures that lock the user ID.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="table-definition">
+<h5>Table definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">¶</a></h5>
+<p>The definition of the account table used in this sample is shown below.
+When importing this sample into the implementation project, modify the SQL file and source code according to the table definition of the implementation project.</p>
+<p><strong>SYSTEM_ACCOUNT</strong></p>
+<p>The system account table stores the account information.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="23%" />
+<col width="18%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Logical name</th>
+<th class="head">Physical name</th>
+<th class="head">Java type</th>
+<th class="head">Limitations</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>User ID</td>
+<td>USER_ID</td>
+<td>java.lang.String</td>
+<td>Primary key</td>
+</tr>
+<tr class="row-odd"><td>Password</td>
+<td>PASSWORD</td>
+<td>java.lang.String</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>User ID lock</td>
+<td>USER_ID_LOCKED</td>
+<td>java.lang.String</td>
+<td>&#8220;0&#8221; when not locked, &#8220;1&#8221; when locked</td>
+</tr>
+<tr class="row-odd"><td>Password expiration date</td>
+<td>PASSWORD_EXPIRATION_DATE</td>
+<td>java.lang.String</td>
+<td><p class="first">Format yyyyMMdd</p>
+<p class="last">When not specified &#8220;99991231&#8221;</p>
+</td>
+</tr>
+<tr class="row-even"><td>Authentication failed count</td>
+<td>FAILED_COUNT</td>
+<td>int</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Effective date (From)</td>
+<td>EFFECTIVE_DATE_FROM</td>
+<td>java.lang.String</td>
+<td><p class="first">Format yyyyMMdd</p>
+<p class="last">When not specified &#8220;19000101&#8221;</p>
+</td>
+</tr>
+<tr class="row-even"><td>Effective date (To)</td>
+<td>EFFECTIVE_DATE_TO</td>
+<td>java.lang.String</td>
+<td><p class="first">Format yyyyMMdd</p>
+<p class="last">When not specified &#8220;99991231&#8221;</p>
+</td>
+</tr>
+<tr class="row-odd"><td>Last login date and time</td>
+<td>LAST_LOGIN_DATE_TIME</td>
+<td>java.sql.Timestamp</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Only the attributes required for this sample are listed in the above table definition.
+In the Nablarch implementation project, the table design should be done to meet the requirements by adding necessary user attributes to this table and creating user information tables, etc. that are tied to this table on a one-to-one basis.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to use password authentication using the account information stored in the database.</p>
+<p>The features of password authentication are shown below.</p>
+<ul class="simple">
+<li>Check the effective date (From/To) of account information during authentication.</li>
+<li>Check the expiration date of the password during authentication.</li>
+<li>Lock the user ID when the specified number of authentications fail consecutively. If the authentication succeeds before the specified number of times is reached, the number of failures is reset.</li>
+<li>Authenticate using an encrypted password. This feature provides password encryption using PBKDF2 by default.</li>
+<li>Record the date and time of the last login. The system date and time is used to update the last login date and time only if the authentication is successful.</li>
+</ul>
+<p>In addition, Authenticator and PasswordEncryptor are supposed to be obtained from Nablarch system repository and used.
+Because components from the system repository should not be retrieved and used at each point in the business function, this function provides AuthenticationUtil,
+which wraps the retrieval of components from the system repository and the password authentication and password encryption processes.</p>
+<p>AuthenticationUtil should be used for the login and user registration functions implemented in the project.</p>
+<div class="section" id="how-to-use-passwordauthenticator">
+<span id="passwordauth-settings-label"></span><h3>How to Use PasswordAuthenticator<a class="headerlink" href="#how-to-use-passwordauthenticator" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to use the PasswordAuthenticator.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;authenticator&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.authentication.PasswordAuthenticator&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Number of authentication failures to lock user IDs --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;failedCountToLock&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- PasswordEncryptor to encrypt passwords --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;passwordEncryptor&quot;</span> <span class="na">ref=</span><span class="s">&quot;passwordEncryptor&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Class that provides transaction control to database --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbManager&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.transaction.SimpleDbTransactionManager&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;authenticator&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connectionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;connectionFactory&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;transactionFactory&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+
+  <span class="c">&lt;!-- System date --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Business date --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;businessDateProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;businessDateProvider&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.date.BasicSystemTimeProvider&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;businessDateProvider&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.date.BasicBusinessDateProvider&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>A description of the property is given below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>failedCountToLock</td>
+<td><p class="first">Number of authentication failures to lock the user ID.</p>
+<p class="last">If this is not specified, it is set to 0 and the user ID lock function is not used.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>passwordEncryptor (required)</td>
+<td><p class="first">A PasswordEncryptor used to encrypt the password.</p>
+<p class="last">Specify the component name, which was configured by referring to <a class="reference internal" href="0101_PBKDF2PasswordEncryptor.html"><em>Sample Password Encryption Function Using PBKDF2</em></a> , to ref.</p>
+</td>
+</tr>
+<tr class="row-even"><td>dbManager (required)</td>
+<td><p class="first">SimpleDbTransactionManager, which provides transaction control to the database.</p>
+<p>Specify an instance of nablarch.core.db.transaction.SimpleDbTransactionManager class.</p>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">PasswordAuthenticator transaction control shall be configured to use a separate transaction from the individual application so that the transaction control of the PasswordAuthenticator does not affect the processing of the individual application.
+In the configuration example, since the name &#8220;authenticator&#8221; is specified for dbTransactionName, configure the transaction settings such that the same name is not used in individual applications.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>systemTimeProvider (required)</td>
+<td><p class="first">SystemTimeProvider, which is used to get the system date and time.</p>
+<p class="last">Specify instance of the class that implements the nablarch.core.date.SystemTimeProvider interface.
+The system date and time is used to update the last login date and time.</p>
+</td>
+</tr>
+<tr class="row-even"><td>businessDateProvider (required)</td>
+<td><p class="first">BusinessDateProvider used to get the business date.</p>
+<p class="last">Specify instance of the class that implements the nablarch.core.date.BusinessDateProvider interface.
+The business date is used to check the effective date (From/To) and password expiration date.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-use-authenticaionutil">
+<h3>How to Use AuthenticaionUtil<a class="headerlink" href="#how-to-use-authenticaionutil" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to use AuthenticaionUtil.</p>
+<p>AuthenticationUtil implements the following utility methods.
+Since the component name to acquire a component from the system repository needs to be combined with the component name registered in <a class="reference internal" href="#passwordauth-settings-label"><span>How to Use PasswordAuthenticator</span></a> , modify the source code if the component name is different from the above configuration example.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>encryptPassword</td>
+<td>Obtain PasswordEncryptor from the system repository with the component name passwordEncryptor
+and call PasswordEncryptor#encrypt(String, String).</td>
+</tr>
+<tr class="row-odd"><td>authenticate</td>
+<td>Obtain the Authenticator from the system repository with the component name authenticator
+and call Authenticator#authenticate(String, String).</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="usage-example-of-authenticaionutil">
+<h4>Usage example of AuthenticaionUtil<a class="headerlink" href="#usage-example-of-authenticaionutil" title="Permalink to this headline">¶</a></h4>
+<p>The following is an example of the implementation of the authentication process using this sample.</p>
+<p>In the implementation project, implement the authentication process that meets the requirements by referring to this implementation example.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Obtain the user ID and password to authenticate in advance.</span>
+<span class="c1">// String userId = ・・・;</span>
+<span class="c1">// Strign password = ・・・;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+
+    <span class="n">AuthenticationUtil</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">AuthenticationFailedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Process when authentication fails</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UserIdLockedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Process when a user ID is locked</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PasswordExpiredException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Process when password has expired</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<blockquote>
+<div>In the above example, the processing is divided finely according to the status of the authentication error.
+However, if it is not necessary to divide the processing finely, the processing may be performed by supplementing the upper exception class as follows.</div></blockquote>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+
+    <span class="n">AuthenticationUtil</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">AuthenticationException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Exception handling</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
