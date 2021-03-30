@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.14. How to Conduct a Request Unit Test (Receiving Asynchronous Message Process) &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>3.1.14. How to Conduct a Request Unit Test (Receiving Asynchronous Message Process) &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_receive.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
         <link rel="next" title="3.1.15. How to Conduct a Subfunction Unit Test (Receiving Asynchronous Message Process)" href="../03_DealUnitTest/delayed_receive.html"/>
         <link rel="prev" title="3.1.13. How to Execute a Subfunction Unit (Receiving Synchronous Message)" href="../03_DealUnitTest/real.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -331,27 +331,18 @@ For this reason, the request unit test uses this action class to check the <a cl
 </pre></div>
 </div>
 </div>
-<div class="section" id="how-to-write-a-datasheet">
-<h2>3.1.14.3. How to write a datasheet<a class="headerlink" href="#how-to-write-a-datasheet" title="Permalink to this headline">¶</a></h2>
-<p>This section explains how to describe the data sheets required to test the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a>.</p>
-<p>Refer to <a class="reference internal" href="real.html#real-request-test"><span>How to Execute a Request Unit Test (Receiving Synchronous Message Process)</span></a> for details on how to write a datasheet.
+<div class="section" id="how-to-write-test-data">
+<h2>3.1.14.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
+<p>This section explains how to describe the test data required to test the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a>.</p>
+<p>Refer to <a class="reference internal" href="real.html#real-request-test"><span>How to Execute a Request Unit Test (Receiving Synchronous Message Process)</span></a> for details on how to write test data.
 In this section, the differences in the description method with <a class="reference internal" href="real.html#real-request-test"><span>How to Execute a Request Unit Test (Receiving Synchronous Message Process)</span></a> are explained.</p>
-<div class="section" id="case-of-a-normal-pattern">
-<h3>3.1.14.3.1. Case of a normal pattern<a class="headerlink" href="#case-of-a-normal-pattern" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>In this case, make sure that the messages are correctly imported into the database.</p>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p>In the process of receiving asynchronous message, there is no need to confirm that the response message meets the expected value as there is no response message.
-For this reason, the following statements are not required in the datasheet.</p>
-<ul class="last simple">
-<li>Definition of expected value and preparation data<ul>
-<li>&#8220;MESSAGE=expectedMessages&#8221; is not required to be defined</li>
-</ul>
-</li>
-</ul>
+<div class="section" id="various-expected-values">
+<h3>3.1.14.3.1. Various expected values<a class="headerlink" href="#various-expected-values" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="response-message">
+<h4>3.1.14.3.1.1. Response message<a class="headerlink" href="#response-message" title="Permalink to this headline">¶</a></h4>
+<p>In the process of receiving asynchronous message, there is no need to confirm that the response message meets the expected value as there is no response message. Only the status of the expected database is to be verified.</p>
+<p>For this reason, &#8220;MESSAGE=expectedMessages&#8221; is not required to be defined.</p>
 </div>
-</div></blockquote>
 </div>
 </div>
 </div>
@@ -389,7 +380,7 @@ For this reason, the following statements are not required in the datasheet.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

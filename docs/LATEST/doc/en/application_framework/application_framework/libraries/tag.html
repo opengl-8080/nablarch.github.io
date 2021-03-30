@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.19. JSP Custom Tags &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>7.19. JSP Custom Tags &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/tag.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
         <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
         <link rel="next" title="7.19.1. Tag Reference" href="tag/tag_reference.html"/>
         <link rel="prev" title="7.18. Making Web Applications Stateless" href="stateless_web_app.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -341,23 +341,27 @@
 <li><a class="reference internal" href="#switch-resource-path-for-each-language" id="id32">Switch resource path for each language</a></li>
 <li><a class="reference internal" href="#prevent-browser-caching" id="id33">Prevent browser caching</a></li>
 <li><a class="reference internal" href="#not-allowing-the-cache-in-the-client-to-be-referenced-when-static-content-is-changed" id="id34">Not allowing the cache in the client to be referenced when static content is changed</a></li>
+<li><a class="reference internal" href="#specify-any-attribute" id="id35">Specify any attribute</a><ul>
+<li><a class="reference internal" href="#handling-of-boolean-attributes" id="id36">Handling of Boolean attributes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#expansion-example" id="id35">Expansion example</a><ul>
-<li><a class="reference internal" href="#adding-formatter" id="id36">Adding formatter</a></li>
-<li><a class="reference internal" href="#change-the-judgment-process-used-for-button-link-display-control" id="id37">Change the judgment process used for button/link display control</a></li>
-<li><a class="reference internal" href="#add-a-behavior-when-double-submission-occurs-with-a-double-submission-prevention-in-the-client" id="id38">Add a behavior when double submission occurs, with a double submission prevention in the client</a></li>
-<li><a class="reference internal" href="#change-the-token-issuing-process-using-double-submission-prevention-in-the-server" id="id39">Change the token issuing process using double submission prevention in the server</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#custom-tag-rules" id="id40">Custom tag rules</a><ul>
-<li><a class="reference internal" href="#naming-rules" id="id41">Naming rules</a></li>
-<li><a class="reference internal" href="#rules-to-access-input-output-data" id="id42">Rules to access input/output data</a></li>
-<li><a class="reference internal" href="#uri-specification-method" id="id43">URI specification method</a></li>
-<li><a class="reference internal" href="#html-escape-line-feed-and-half-width-space-conversion" id="id44">HTML escape, line feed and half width space conversion</a></li>
+<li><a class="reference internal" href="#expansion-example" id="id37">Expansion example</a><ul>
+<li><a class="reference internal" href="#adding-formatter" id="id38">Adding formatter</a></li>
+<li><a class="reference internal" href="#change-the-judgment-process-used-for-button-link-display-control" id="id39">Change the judgment process used for button/link display control</a></li>
+<li><a class="reference internal" href="#add-a-behavior-when-double-submission-occurs-with-a-double-submission-prevention-in-the-client" id="id40">Add a behavior when double submission occurs, with a double submission prevention in the client</a></li>
+<li><a class="reference internal" href="#change-the-token-issuing-process-using-double-submission-prevention-in-the-server" id="id41">Change the token issuing process using double submission prevention in the server</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tag-reference" id="id45"><a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>Tag Reference</span></a></a></li>
+<li><a class="reference internal" href="#custom-tag-rules" id="id42">Custom tag rules</a><ul>
+<li><a class="reference internal" href="#naming-rules" id="id43">Naming rules</a></li>
+<li><a class="reference internal" href="#rules-to-access-input-output-data" id="id44">Rules to access input/output data</a></li>
+<li><a class="reference internal" href="#uri-specification-method" id="id45">URI specification method</a></li>
+<li><a class="reference internal" href="#html-escape-line-feed-and-half-width-space-conversion" id="id46">HTML escape, line feed and half width space conversion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tag-reference" id="id47"><a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>Tag Reference</span></a></a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -367,23 +371,47 @@
 <ul class="simple">
 <li>They function in web containers supporting JSP 2.1 and above.</li>
 <li>They use JSTL for controlling conditional branches and loops etc.</li>
-<li>They support attributes compatible with XHTML 1.0 Transitional. (HTML5 attributes are not supported)</li>
+<li>They support attributes compatible with XHTML 1.0 Transitional.</li>
 <li>It is required to have JavaScript in the client. (See <a class="reference internal" href="#tag-onclick-override"><span>Adding a process before submission</span></a>)</li>
 <li>Some custom tags cannot be used with GET request. (See <a class="reference internal" href="#tag-using-get"><span>Using GET request</span></a>)</li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p>Custom tags are not compatible with HTML5.
-However, among the attributes of HTML5, only the following attributes that are likely to be used frequently are incorporated on priority basis.
-Write the HTML tag name with the attribute added in the parentheses.</p>
+<p>Attributes added in HTML5 can be described using <a class="reference internal" href="#dynamic-attribute"><span>dynamic attribute</span></a> .
+However, the following attributes that are likely to be used frequently are defined as custom tag attributes in advance.
+In addition, each input element added in HTML5 has the following tags added based on <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>text tag</span></a> .
+Since the attributes specific to each input element are not defined individually in the custom tag, they need to be specified by dynamic attributes.</p>
 <ul class="simple">
+<li>added attributes (Write the HTML tag name with the attribute added in the parentheses.)</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
 <li>autocomplete(input、password、form)</li>
 <li>autofocus(input、textarea、select、button)</li>
 <li>placeholder(text、password、textarea)</li>
 <li>maxlength(textarea)</li>
 <li>multiple(input)</li>
 </ul>
-<p class="last">Since HTML5 attributes other than the above cannot be used, if it becomes necessary to use other attributes, then extend the custom tags in each project.</p>
+</div></blockquote>
+<ul class="simple">
+<li>added input elements</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li><a class="reference internal" href="tag/tag_reference.html#tag-search-tag"><span>search tag</span></a> (search)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-tel-tag"><span>tel tag</span></a> (tel)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-url-tag"><span>url tag</span></a> (URL)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-email-tag"><span>email tag</span></a> (email)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-date-tag"><span>date tag</span></a> (date)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-month-tag"><span>month tag</span></a> (month)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-week-tag"><span>week tag</span></a> (week)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-time-tag"><span>time tag</span></a> (time)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-datetimelocal-tag"><span>datetimeLocal tag</span></a> (datetimeLocal)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-number-tag"><span>number tag</span></a> (number)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-range-tag"><span>range tag</span></a> (range)</li>
+<li><a class="reference internal" href="tag/tag_reference.html#tag-color-tag"><span>color tag</span></a> (color)</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
@@ -3045,7 +3073,7 @@ the cached old content may be displayed in the client instead of the latest cont
 <li><a class="reference internal" href="tag/tag_reference.html#tag-download-submit-tag"><span>downloadSubmit tag</span></a></li>
 </ul>
 <p>As a result, the latest static content can be referenced instead of the cache in the client when the static content is replaced.</p>
-<p>The version of the static content that is added using parameters is configured in the <a class="reference internal" href="repository.html#repository-environment-configuration"><span>configuration file (config file)</span></a>.
+<p>The version of the static content that is added using parameters is configured in the <a class="reference internal" href="repository.html#repository-environment-configuration"><span>configuration file (properties file)</span></a>.
 This function is disabled if the version of the static content is not configured in the configuration file.</p>
 <p>The version of the static content is specified with the key name <code class="docutils literal"><span class="pre">static_content_version</span></code>.</p>
 <dl class="docutils">
@@ -3068,11 +3096,70 @@ in the application references the latest static content instead of the cache.</l
 so that the cache is not referenced when the static content is changed.</p>
 </div>
 </div>
+<div class="section" id="specify-any-attribute">
+<span id="dynamic-attribute"></span><h3><a class="toc-backref" href="#id35">7.19.4.29. Specify any attribute</a><a class="headerlink" href="#specify-any-attribute" title="Permalink to this headline">¶</a></h3>
+<p>Dynamic attributes are handled in custom tags using the <code class="docutils literal"><span class="pre">javax.servlet.jsp.tagext.DynamicAttributes</span></code> interface.
+This makes it possible to output arbitrary attributes including attributes added in HTML5 with custom tags.
+For tags that output HTML, dynamic attributes can be used.</p>
+<div class="section" id="handling-of-boolean-attributes">
+<h4><a class="toc-backref" href="#id36">7.19.4.29.1. Handling of Boolean attributes</a><a class="headerlink" href="#handling-of-boolean-attributes" title="Permalink to this headline">¶</a></h4>
+<p>As with the existing custom tags, the Boolean attributes of dynamic attributes can be controlled by specifying <cite>true</cite> / <cite>false</cite> for the value to output or not.
+By default, the following attributes are regarded as logical attributes.</p>
+<ul class="simple">
+<li>async</li>
+<li>autofocus</li>
+<li>checked</li>
+<li>disabled</li>
+<li>formnovalidate</li>
+<li>hidden</li>
+<li>ismap</li>
+<li>itemscope</li>
+<li>multiple</li>
+<li>nomodule</li>
+<li>novalidate</li>
+<li>readonly</li>
+<li>required</li>
+<li>reversed</li>
+<li>selected</li>
+</ul>
+<p>An example implementation of async is shown below.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>JSP</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Specify true for Boolean attribute --&gt;</span>
+<span class="nt">&lt;n:script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;/javascripts/lib/jquery-ui.min.js&quot;</span> <span class="na">async=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Output HTML</dt>
+<dd><div class="first last highlight-html"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Boolean attributes will be output --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/javascripts/lib/jquery-ui.min.js&quot;</span> <span class="na">async</span><span class="o">=</span><span class="s">&quot;async&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>JSP</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Specify false for Boolean attribute --&gt;</span>
+<span class="nt">&lt;n:script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;/javascripts/lib/jquery-ui.min.js&quot;</span> <span class="na">async=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Output HTML</dt>
+<dd><div class="first last highlight-html"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Boolean attributes will not be output --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/javascripts/lib/jquery-ui.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<p>Attributes that are regarded as Boolean attributes can be modified.
+To do so, configure the list of Boolean attributes to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/tag/CustomTagConfig.html#setDynamicBooleanAttributes-java.util.List-" title="nablarch.common.web.tag.CustomTagConfig.setDynamicBooleanAttributes(java.util.List)">dynamicBooleanAttributes property</a> of <code class="docutils literal"><span class="pre">CustomTagConfig</span></code> .</p>
+</div>
+</div>
 </div>
 <div class="section" id="expansion-example">
-<h2><a class="toc-backref" href="#id35">7.19.5. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id37">7.19.5. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="adding-formatter">
-<h3><a class="toc-backref" href="#id36">7.19.5.1. Adding formatter</a><a class="headerlink" href="#adding-formatter" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id38">7.19.5.1. Adding formatter</a><a class="headerlink" href="#adding-formatter" title="Permalink to this headline">¶</a></h3>
 <p>For the method of adding a formatter when using <a class="reference internal" href="format.html#format"><span>Formatter</span></a>,
 refer to the section on adding a formatter of <a class="reference internal" href="format.html#format"><span>Formatter</span></a>.</p>
 <p>When using the valueFormat attribute,
@@ -3103,7 +3190,7 @@ as the value, and the data type name as the key in the Map type.</p>
 </div>
 </div>
 <div class="section" id="change-the-judgment-process-used-for-button-link-display-control">
-<span id="tag-submit-display-control-change"></span><h3><a class="toc-backref" href="#id37">7.19.5.2. Change the judgment process used for button/link display control</a><a class="headerlink" href="#change-the-judgment-process-used-for-button-link-display-control" title="Permalink to this headline">¶</a></h3>
+<span id="tag-submit-display-control-change"></span><h3><a class="toc-backref" href="#id39">7.19.5.2. Change the judgment process used for button/link display control</a><a class="headerlink" href="#change-the-judgment-process-used-for-button-link-display-control" title="Permalink to this headline">¶</a></h3>
 <p>The judgment process used in the <a class="reference internal" href="#tag-submit-display-control"><span>Switching between display/no display of the button/link depending on permission check/service availability</span></a> can be changed by implementing the
 <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/tag/DisplayControlChecker.html" title="nablarch.common.web.tag.DisplayControlChecker">DisplayControlChecker</a>
 interface.
@@ -3130,7 +3217,7 @@ in the <a class="reference internal" href="#tag-setting"><span>Configure custom 
 </dl>
 </div>
 <div class="section" id="add-a-behavior-when-double-submission-occurs-with-a-double-submission-prevention-in-the-client">
-<span id="tag-double-submission-client-side-change"></span><h3><a class="toc-backref" href="#id38">7.19.5.3. Add a behavior when double submission occurs, with a double submission prevention in the client</a><a class="headerlink" href="#add-a-behavior-when-double-submission-occurs-with-a-double-submission-prevention-in-the-client" title="Permalink to this headline">¶</a></h3>
+<span id="tag-double-submission-client-side-change"></span><h3><a class="toc-backref" href="#id40">7.19.5.3. Add a behavior when double submission occurs, with a double submission prevention in the client</a><a class="headerlink" href="#add-a-behavior-when-double-submission-occurs-with-a-double-submission-prevention-in-the-client" title="Permalink to this headline">¶</a></h3>
 <p>For adding a behavior during occurrence of double submission in the application,
 using <a class="reference internal" href="#tag-double-submission-client-side"><span>double submission prevention on the client side</span></a>, implement the callback function in JavaScript.</p>
 <p>The JavaScript function of the framework calls a callback function
@@ -3146,7 +3233,7 @@ The signature of the callback function is shown below:</p>
 </div>
 </div>
 <div class="section" id="change-the-token-issuing-process-using-double-submission-prevention-in-the-server">
-<span id="tag-double-submission-server-side-change"></span><h3><a class="toc-backref" href="#id39">7.19.5.4. Change the token issuing process using double submission prevention in the server</a><a class="headerlink" href="#change-the-token-issuing-process-using-double-submission-prevention-in-the-server" title="Permalink to this headline">¶</a></h3>
+<span id="tag-double-submission-server-side-change"></span><h3><a class="toc-backref" href="#id41">7.19.5.4. Change the token issuing process using double submission prevention in the server</a><a class="headerlink" href="#change-the-token-issuing-process-using-double-submission-prevention-in-the-server" title="Permalink to this headline">¶</a></h3>
 <p>To change the token issuing process using
 <a class="reference internal" href="#tag-double-submission-server-side"><span>double submission prevention in the server</span></a>,
 implement the
@@ -3155,9 +3242,9 @@ Add the implementation class to the component definition with the name <code cla
 </div>
 </div>
 <div class="section" id="custom-tag-rules">
-<h2><a class="toc-backref" href="#id40">7.19.6. Custom tag rules</a><a class="headerlink" href="#custom-tag-rules" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id42">7.19.6. Custom tag rules</a><a class="headerlink" href="#custom-tag-rules" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="naming-rules">
-<span id="tag-naming-rule"></span><h3><a class="toc-backref" href="#id41">7.19.6.1. Naming rules</a><a class="headerlink" href="#naming-rules" title="Permalink to this headline">¶</a></h3>
+<span id="tag-naming-rule"></span><h3><a class="toc-backref" href="#id43">7.19.6.1. Naming rules</a><a class="headerlink" href="#naming-rules" title="Permalink to this headline">¶</a></h3>
 <p>In the custom tags, the prefix <code class="docutils literal"><span class="pre">nablarch_</span></code> is used for the names prescribed by the custom tags,
 such as CSS class name and JavaScript function name, to avoid duplication with individual applications.
 Therefore, names starting with <code class="docutils literal"><span class="pre">nablarch_</span></code> should not be used in individual applications.</p>
@@ -3170,7 +3257,7 @@ Therefore, names starting with <code class="docutils literal"><span class="pre">
 </ul>
 </div>
 <div class="section" id="rules-to-access-input-output-data">
-<span id="tag-access-rule"></span><h3><a class="toc-backref" href="#id42">7.19.6.2. Rules to access input/output data</a><a class="headerlink" href="#rules-to-access-input-output-data" title="Permalink to this headline">¶</a></h3>
+<span id="tag-access-rule"></span><h3><a class="toc-backref" href="#id44">7.19.6.2. Rules to access input/output data</a><a class="headerlink" href="#rules-to-access-input-output-data" title="Permalink to this headline">¶</a></h3>
 <p>The custom tags (such as <a class="reference internal" href="tag/tag_reference.html#tag-text-tag"><span>text tag</span></a> and <a class="reference internal" href="tag/tag_reference.html#tag-write-tag"><span>write tag</span></a>) that output the input items and output items,
 access the data to be output based on the value of the name attribute.</p>
 <p>Specify the following for the name attribute according to the type of object:</p>
@@ -3252,7 +3339,7 @@ the radio button can be returned to the unselected state.</p>
 </div>
 </div>
 <div class="section" id="uri-specification-method">
-<span id="tag-specify-uri"></span><h3><a class="toc-backref" href="#id43">7.19.6.3. URI specification method</a><a class="headerlink" href="#uri-specification-method" title="Permalink to this headline">¶</a></h3>
+<span id="tag-specify-uri"></span><h3><a class="toc-backref" href="#id45">7.19.6.3. URI specification method</a><a class="headerlink" href="#uri-specification-method" title="Permalink to this headline">¶</a></h3>
 <p>In the custom tags, use one of the following methods to specify the URI</p>
 <blockquote>
 <div><dl class="docutils">
@@ -3353,7 +3440,7 @@ https://sample.co.jp/&lt;Context&gt;/action/logout
 </dl>
 </div>
 <div class="section" id="html-escape-line-feed-and-half-width-space-conversion">
-<span id="tag-html-escape"></span><h3><a class="toc-backref" href="#id44">7.19.6.4. HTML escape, line feed and half width space conversion</a><a class="headerlink" href="#html-escape-line-feed-and-half-width-space-conversion" title="Permalink to this headline">¶</a></h3>
+<span id="tag-html-escape"></span><h3><a class="toc-backref" href="#id46">7.19.6.4. HTML escape, line feed and half width space conversion</a><a class="headerlink" href="#html-escape-line-feed-and-half-width-space-conversion" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>HTML escape</dt>
 <dd><p class="first">In the custom tags, as a general rule, HTML escape is performed for all HTML attributes during output.
@@ -3393,7 +3480,7 @@ The content that is converted is shown below:</p>
 </div>
 </div>
 <div class="section" id="tag-reference">
-<h2><a class="toc-backref" href="#id45">7.19.7. <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>Tag Reference</span></a></a><a class="headerlink" href="#tag-reference" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id47">7.19.7. <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>Tag Reference</span></a></a><a class="headerlink" href="#tag-reference" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="tag/tag_reference.html#tag-reference"><span>Tag Reference</span></a>.</p>
 </div>
 </div>
@@ -3431,7 +3518,7 @@ The content that is converted is shown below:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

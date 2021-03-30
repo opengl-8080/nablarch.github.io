@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.14. リクエスト単体テストの実施方法（応答不要メッセージ受信処理） &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>3.1.14. リクエスト単体テストの実施方法（応答不要メッセージ受信処理） &mdash; ∇Nablarch  5u19 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_receive.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.15. 取引単体テストの実施方法（応答不要メッセージ受信処理）" href="../03_DealUnitTest/delayed_receive.html"/>
         <link rel="prev" title="3.1.13. 取引単体テストの実施方法（同期応答メッセージ受信処理)" href="../03_DealUnitTest/real.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -365,26 +365,17 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h2>3.1.14.3. データシートの書き方<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#id3">テスト対象の成果物</a> のテストを行うために必要なデータシートの記述方法を説明する。</p>
-<p>データシートの記述方法は、<a class="reference internal" href="real.html#real-request-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a>を参照すること。
+<h2>3.1.14.3. テストデータの書き方<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference internal" href="#id3">テスト対象の成果物</a> のテストを行うために必要なテストデータの記述方法を説明する。</p>
+<p>テストデータの記述方法は、<a class="reference internal" href="real.html#real-request-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a>を参照すること。
 本項では、<a class="reference internal" href="real.html#real-request-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ受信処理)</span></a>と記述方法が異なる箇所の解説を行う。</p>
 <div class="section" id="id6">
-<h3>3.1.14.3.1. 正常系のケース<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><p>このケースでは、電文が正しくデータベースに取り込まれることを確認する。</p>
-<div class="admonition tip">
-<p class="first admonition-title">補足</p>
-<p>応答不要メッセージ受信処理では、応答電文は存在しないため応答電文が期待値通りであることの確認を行う必要はない。
-このため、データシートには、下記の記述は不要である。</p>
-<ul class="last simple">
-<li>期待値及び準備データの定義<ul>
-<li>「MESSAGE=expectedMessages」の定義は不要</li>
-</ul>
-</li>
-</ul>
+<h3>3.1.14.3.1. 各種期待値<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h4>3.1.14.3.1.1. レスポンスメッセージ<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>応答不要メッセージ受信処理では、応答電文は存在しないため応答電文が期待値通りであることの確認を行う必要はない。期待するデータベースの状態のみ確認を行う。</p>
+<p>このため、レスポンスメッセージ(「MESSAGE=expectedMessages」)の記述は不要である。</p>
 </div>
-</div></blockquote>
 </div>
 </div>
 </div>
@@ -422,7 +413,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

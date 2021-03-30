@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Redis Store (Lettus) Adapter &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>Redis Store (Lettus) Adapter &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
         <link rel="up" title="Lettuce Adapter" href="../lettuce_adaptor.html"/>
         <link rel="next" title="Redis Health Checker (Lettus) adapter" href="redishealthchecker_lettuce_adaptor.html"/>
         <link rel="prev" title="Lettuce Adapter" href="../lettuce_adaptor.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -356,8 +356,8 @@
 <p>Describes how to modify the component definition file.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Omitted --&gt;</span>
 <span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;nablarch/webui/redisstore-lettuce.config&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;common.config&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;env.config&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;common.properties&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;env.properties&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="c">&lt;!-- Omitted --&gt;</span>
 <span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/webui/redisstore-lettuce.xml&quot;</span> <span class="nt">/&gt;</span>
@@ -369,7 +369,7 @@
 <li><code class="docutils literal"><span class="pre">nablarch/webui/redisstore-lettuce.xml</span></code></li>
 </ul>
 <p><code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> has already declared the default values for the placeholders used in <code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> .</p>
-<p>If your application has a configuration file (such as <code class="docutils literal"><span class="pre">env.config</span></code> ), <code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> should be loaded before it.
+<p>If your application has a configuration file (such as <code class="docutils literal"><span class="pre">env.properties</span></code> ), <code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> should be loaded before it.
 This way, can override the default placeholder values with the application&#8217;s configuration file, if necessary.</p>
 <p>In addition, by using the methods described in Overriding Environment Dependencies with <a class="reference internal" href="../../application_framework/libraries/repository.html#repository-overwrite-environment-configuration-by-os-env-var"><span>Overwrite environment dependent values using OS environment variables</span></a> , it is possible to switch the destination Redis for each execution environment.</p>
 <div class="admonition tip">
@@ -419,7 +419,7 @@ If you are generating a project with <a class="reference internal" href="../../a
 <p>In the project&#8217;s configuration file, define a configuration item named <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> and set the value to <code class="docutils literal"><span class="pre">redis</span></code> .</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">If you are creating a project with <a class="reference internal" href="../../application_framework/blank_project/setup_blankProject/setup_Web.html#firststepgeneratewebblankproject"><span>web archetype</span></a> , <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> is declared in <code class="docutils literal"><span class="pre">src/main/resources/common.config</span></code> .</p>
+<p class="last">If you are creating a project with <a class="reference internal" href="../../application_framework/blank_project/setup_blankProject/setup_Web.html#firststepgeneratewebblankproject"><span>web archetype</span></a> , <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> is declared in <code class="docutils literal"><span class="pre">src/main/resources/common.properties</span></code> .</p>
 </div>
 <p>Now can use Redis running on port <code class="docutils literal"><span class="pre">6379</span></code> of the <code class="docutils literal"><span class="pre">localhost</span></code> as a session store.</p>
 </div>
@@ -774,7 +774,7 @@ Therefore, since expired session information is automatically deleted, there is 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

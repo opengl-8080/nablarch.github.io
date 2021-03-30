@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.18. リクエスト単体テストの実施方法（応答不要メッセージ送信処理） &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>3.1.18. リクエスト単体テストの実施方法（応答不要メッセージ送信処理） &mdash; ∇Nablarch  5u19 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_send.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 ドキュメント" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. 単体テスト実施方法" href="../index.html"/>
         <link rel="next" title="3.1.19. 取引単体テストの実施方法（応答不要メッセージ送信処理）" href="../03_DealUnitTest/delayed_send.html"/>
         <link rel="prev" title="3.1.17. リクエスト単体テストの実施方法(同期応答メッセージ送信処理)" href="send_sync.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -369,25 +369,15 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h2>3.1.18.3. データシートの書き方<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="#id3">テスト対象の成果物</a> のテストを行うために必要なデータシートの記述方法を説明する。</p>
-<p>データシートの記述方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。
+<h2>3.1.18.3. テストデータの書き方<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference internal" href="#id3">テスト対象の成果物</a> のテストを行うために必要なテストデータの記述方法を説明する。</p>
+<p>テストデータの記述方法は、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>を参照すること。
 本項では、<a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>リクエスト単体テストの実施方法(同期応答メッセージ送信処理)</span></a>と記述方法が異なる箇所の解説を行う。</p>
 <div class="section" id="id6">
-<h3>3.1.18.3.1. 正常系ケースの準備<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<blockquote>
-<div><div class="line-block">
-<div class="line">電文が正しく送信されるケースの確認を実施する。</div>
-<div class="line">このケースでは、送信された電文の確認及び該当データのステータス更新の確認を行う。</div>
-<div class="line"><br /></div>
-<div class="line">応答不要メッセージ送信処理用のアクションクラスは、起動パラメータとしてメッセージのリクエストIDを要求する。</div>
-<div class="line">このため、「testShots」の定義に下記画像のように「KEY=messageRequestId」、「VALUE=メッセージのリクエストID」を追加する必要がある。</div>
-</div>
-<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" /></a>
-<div class="admonition tip">
-<p class="first admonition-title">補足</p>
-<p>データシートには、下記設定が不要となる。</p>
-<ul class="last simple">
+<h3>3.1.18.3.1. 要求電文の期待値および、返却する応答電文（レスポンスメッセージ）の準備<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>応答不要メッセージ送信処理では、応答電文は存在しないため応答電文が期待値通りであることの確認を行う必要はない。</p>
+<p>このため、下記設定が不要となる。</p>
+<ul class="simple">
 <li>testShotsの定義<ul>
 <li>responseMessage</li>
 </ul>
@@ -398,11 +388,21 @@
 </ul>
 </li>
 </ul>
+<div class="section" id="id7">
+<h4>3.1.18.3.1.1. 正常系のテスト<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><div class="line-block">
+<div class="line">電文が正しく送信されるケースの確認を実施する。</div>
+<div class="line">このケースでは、送信された電文の確認及び該当データのステータス更新の確認を行う。</div>
+<div class="line"><br /></div>
+<div class="line">応答不要メッセージ送信処理用のアクションクラスは、起動パラメータとしてメッセージのリクエストIDを要求する。</div>
+<div class="line">このため、「testShots」の定義に下記画像のように「KEY=messageRequestId」、「VALUE=メッセージのリクエストID」を追加する必要がある。</div>
 </div>
+<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" /></a>
 </div></blockquote>
 </div>
-<div class="section" id="id7">
-<h3>3.1.18.3.2. 異常系ケースの準備<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id8">
+<h4>3.1.18.3.1.2. 異常系のテスト(障害系のテスト)<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <blockquote>
 <div><div class="line-block">
 <div class="line">異常系のテストは、メッセージの送信に失敗した場合に該当データのステータスをエラーに更新するUPDATE文を確認するために必要である。</div>
@@ -441,6 +441,7 @@
 </div>
 </div>
 </div>
+</div>
 
 
            </div>
@@ -475,7 +476,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

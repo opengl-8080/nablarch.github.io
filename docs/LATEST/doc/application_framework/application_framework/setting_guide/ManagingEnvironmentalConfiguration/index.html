@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>9.2. 処理方式、環境に依存する設定の管理方法 &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>9.2. 処理方式、環境に依存する設定の管理方法 &mdash; ∇Nablarch  5u19 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/setting_guide/ManagingEnvironmentalConfiguration/index.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 ドキュメント" href="../../../../index.html"/>
         <link rel="up" title="9. Nablarchアプリケーションフレームワーク設定ガイド" href="../index.html"/>
         <link rel="next" title="10. デフォルト設定一覧" href="../../configuration/index.html"/>
         <link rel="prev" title="9.1.4.3. Nablarchフレームワークが使用するテーブル名の変更手順" href="../CustomizingConfigurations/CustomizeSystemTableName.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -408,20 +408,20 @@
 |
 \---src
     +---env
-    |   +---dev                … 開発環境
+    |   +---dev                    … 開発環境
     |   |   |
-    |   |   \---env.config     … 開発環境用の環境設定ファイル(config)
+    |   |   \---env.properties     … 開発環境用の環境設定ファイル(properties)
     |   |
-    |   \---prod               … 本番環境
+    |   \---prod                   … 本番環境
     |       |
-    |       \---env.config     … 本番環境用の環境設定ファイル(config)
+    |       \---env.properties     … 本番環境用の環境設定ファイル(properties)
     |
     +---main
     |   +---java
     |   |
-    |   +---resources          … 環境毎に差異が存在しないリソース
+    |   +---resources              … 環境毎に差異が存在しないリソース
     |       |
-    |       \---common.config  … 環境非依存の環境設定ファイル(config)
+    |       \---common.properties  … 環境非依存の環境設定ファイル(properties)
     |
     \---test
         +---java
@@ -432,7 +432,7 @@
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
 <ul class="last simple">
-<li>環境非依存の環境設定ファイル(config)は、全ての環境で使用する。</li>
+<li>環境非依存の環境設定ファイル(properties)は、全ての環境で使用する。</li>
 <li>環境が不足している場合は、後述の <a class="reference internal" href="#how-to-add-profile"><span>定義されている環境を増やす方法</span></a> を参照して環境を追加する。</li>
 <li>実行基盤のプロジェクト(ウェブアプリケーション、バッチアプリケーション等)から参照される共通プロジェクトを使用している場合、共通プロジェクト単体の環境毎のアプリケーション設定ファイルは不要である。</li>
 </ul>
@@ -472,7 +472,7 @@ Apache Maven(以下Maven)のプロファイル<a class="footnote-reference" href
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
-<p class="last">上図には、「コンポーネント設定ファイル(xml)」と「環境設定値の定義ファイル(configファイル)」しか記載していないが、resources以下のファイルは全てコピーされる。</p>
+<p class="last">上図には、「コンポーネント設定ファイル(xml)」と「環境設定値の定義ファイル(propertiesファイル)」しか記載していないが、resources以下のファイルは全てコピーされる。</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
@@ -512,12 +512,12 @@ Archiver-Version: Plexus Archiver
 </div>
 <div class="section" id="how-to-switch-env-values">
 <span id="id12"></span><h2><a class="toc-backref" href="#id25">9.2.5. 環境ごとに環境設定値を切り替える方法</a><a class="headerlink" href="#how-to-switch-env-values" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>環境毎に配置した環境設定ファイル(env.config)を切り替えることによって実現する。</p>
+<p>環境毎に配置した環境設定ファイル(env.properties)を切り替えることによって実現する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
 <ul class="last simple">
-<li>アーキタイプから生成した直後は、環境毎に変更する可能性が低い設定項目については、common.configに記載されている。<br />
-common.configに記載されている値を環境毎に変えたい場合は、項目をenv.configに移動(カット＆ペースト)する。</li>
+<li>アーキタイプから生成した直後は、環境毎に変更する可能性が低い設定項目については、common.propertiesに記載されている。<br />
+common.propertiesに記載されている値を環境毎に変えたい場合は、項目をenv.propertiesに移動(カット＆ペースト)する。</li>
 </ul>
 </div>
 </div>
@@ -625,7 +625,7 @@ JNDIの設定はweb.xmlにも記載する必要がある。そのため、環境
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

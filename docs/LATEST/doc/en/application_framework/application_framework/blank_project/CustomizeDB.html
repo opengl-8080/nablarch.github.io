@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.6.1. Procedure for Changing the RDBMS used &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>8.6.1. Procedure for Changing the RDBMS used &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/blank_project/CustomizeDB.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
         <link rel="up" title="8.6. Configuration Changes Required After Initial Setup" href="ModifySettings.html"/>
         <link rel="next" title="8.6.2. Initial Configuration Method of gsp-dba-maven-plugin (DBA Work Support Tool)" href="addin_gsp.html"/>
         <link rel="prev" title="8.6. Configuration Changes Required After Initial Setup" href="ModifySettings.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -311,7 +311,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#file-modification" id="id9">File modification</a><ul>
-<li><a class="reference internal" href="#modification-of-the-config-file" id="id10">Modification of the config file</a></li>
+<li><a class="reference internal" href="#modification-of-the-properties-file" id="id10">Modification of the properties file</a></li>
 <li><a class="reference internal" href="#modification-of-the-pom-xml-file" id="id11">Modification of the pom.xml file</a></li>
 <li><a class="reference internal" href="#for-projects-that-acquire-a-connection-from-jndi-in-the-production-environment-component-configuration-file-src-main-resources" id="id12">(for projects that acquire a connection from JNDI in the production environment) component configuration file (src/main/resources/)</a></li>
 <li><a class="reference internal" href="#for-projects-that-create-a-local-connection-pool-in-the-production-environment-data-source-xml-src-main-resources" id="id13">(for projects that create a local connection pool in the production environment) data-source.xml (src/main/resources/)</a></li>
@@ -425,9 +425,9 @@ and Downloads - Japan</td>
 </div>
 <div class="section" id="file-modification">
 <span id="customizedbnotexistpjrepo"></span><h2><a class="toc-backref" href="#id9">8.6.1.3. File modification</a><a class="headerlink" href="#file-modification" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="modification-of-the-config-file">
-<h3><a class="toc-backref" href="#id10">8.6.1.3.1. Modification of the config file</a><a class="headerlink" href="#modification-of-the-config-file" title="Permalink to this headline">¶</a></h3>
-<p>Modify the following location in env.config.</p>
+<div class="section" id="modification-of-the-properties-file">
+<h3><a class="toc-backref" href="#id10">8.6.1.3.1. Modification of the properties file</a><a class="headerlink" href="#modification-of-the-properties-file" title="Permalink to this headline">¶</a></h3>
+<p>Modify the following location in env.properties.</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="26%" />
@@ -446,7 +446,7 @@ jndiResourceName</td>
 <td>Resource name when acquiring the DataSource with JNDI</td>
 <td><ul class="first last simple">
 <li>Projects generated from each archetype
-(configure in the config file (described below) of environment that acquires connections from JNDI)</li>
+(configure in the properties file (described below) of environment that acquires connections from JNDI)</li>
 </ul>
 </td>
 </tr>
@@ -454,7 +454,7 @@ jndiResourceName</td>
 <td>JDBC driver class name</td>
 <td><ul class="first last simple">
 <li>Projects generated from each archetype
-(configure in the config file (described below) of environments that create local connection pools)</li>
+(configure in the properties file (described below) of environments that create local connection pools)</li>
 </ul>
 </td>
 </tr>
@@ -462,7 +462,7 @@ jndiResourceName</td>
 <td>Database connection URL</td>
 <td><ul class="first last simple">
 <li>Projects generated from each archetype
-(configure in the config file (described below) of environments that create local connection pools)</li>
+(configure in the properties file (described below) of environments that create local connection pools)</li>
 </ul>
 </td>
 </tr>
@@ -470,7 +470,7 @@ jndiResourceName</td>
 <td>Database access user name</td>
 <td><ul class="first last simple">
 <li>Projects generated from each archetype
-(configure in the config file (described below) of environments that create local connection pools)</li>
+(configure in the properties file (described below) of environments that create local connection pools)</li>
 </ul>
 </td>
 </tr>
@@ -478,7 +478,7 @@ jndiResourceName</td>
 <td>Database access user password</td>
 <td><ul class="first last simple">
 <li>Projects generated from each archetype
-(configure in the config file (described below) of environments that create local connection pools)</li>
+(configure in the properties file (described below) of environments that create local connection pools)</li>
 </ul>
 </td>
 </tr>
@@ -491,7 +491,7 @@ jndiResourceName</td>
 </tr>
 </tbody>
 </table>
-<p>Immediately after a project is generated from an archetype, the following applies to the &#8220;config file of the environment that acquires connections from JNDI&#8221;.</p>
+<p>Immediately after a project is generated from an archetype, the following applies to the &#8220;properties file of the environment that acquires connections from JNDI&#8221;.</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="40%" />
@@ -509,7 +509,7 @@ jndiResourceName</td>
 </ul>
 </td>
 <td><ul class="first last simple">
-<li>Production environment config(src/env/prod/resources/env.config)</li>
+<li>Production environment properties(src/env/prod/resources/env.properties)</li>
 </ul>
 </td>
 </tr>
@@ -524,7 +524,7 @@ jndiResourceName</td>
 </tr>
 </tbody>
 </table>
-<p>Immediately after creating a project from an archetype, the following applies to the &#8220;config file of environments that create local connection pools&#8221;.</p>
+<p>Immediately after creating a project from an archetype, the following applies to the &#8220;properties file of environments that create local connection pools&#8221;.</p>
 <table border="1" class="colwidths-given white-space-normal docutils">
 <colgroup>
 <col width="40%" />
@@ -532,7 +532,7 @@ jndiResourceName</td>
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Project type</th>
-<th class="head">config file of environments that create local connection pools</th>
+<th class="head">properties file of environments that create local connection pools</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -542,7 +542,7 @@ jndiResourceName</td>
 </ul>
 </td>
 <td><ul class="first last simple">
-<li>Unit test environment (manual test) config (src/env/dev/resources/env.config)</li>
+<li>Unit test environment (manual test) properties (src/env/dev/resources/env.properties)</li>
 </ul>
 </td>
 </tr>
@@ -552,8 +552,8 @@ jndiResourceName</td>
 </ul>
 </td>
 <td><ul class="first last simple">
-<li>Unit test environment (manual test) config (src/env/dev/resources/env.config)</li>
-<li>Production environment config(src/env/prod/resources/env.config)</li>
+<li>Unit test environment (manual test) properties (src/env/dev/resources/env.properties)</li>
+<li>Production environment properties(src/env/prod/resources/env.properties)</li>
 </ul>
 </td>
 </tr>
@@ -563,13 +563,13 @@ jndiResourceName</td>
 </ul>
 </td>
 <td><ul class="first last simple">
-<li>src/main/resources/env.config - <a class="reference internal" href="#container-production-config"><span>commentary</span></a></li>
+<li>src/main/resources/env.properties - <a class="reference internal" href="#container-production-config"><span>commentary</span></a></li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>The configuration example for a config file of the environment that creates local connection pools is shown below.</p>
+<p>The configuration example for a properties file of the environment that creates local connection pools is shown below.</p>
 <div class="section" id="h2-configuration-example-default">
 <h4>8.6.1.3.1.1. H2 configuration example (default)<a class="headerlink" href="#h2-configuration-example-default" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-text"><div class="highlight"><pre><span></span>nablarch.db.jdbcDriver=org.h2.Driver
@@ -626,14 +626,14 @@ nablarch.db.schema=SAMPLE
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p>Depending on the DB, user names, passwords and schemas are case-sensitive.</p>
-<p class="last">Should be configured even in the config file as configured in the DB.</p>
+<p class="last">Should be configured even in the properties file as configured in the DB.</p>
 </div>
 </div>
 <div class="section" id="production-configuration-of-containers">
 <span id="container-production-config"></span><h4>8.6.1.3.1.6. Production configuration of containers<a class="headerlink" href="#production-configuration-of-containers" title="Permalink to this headline">¶</a></h4>
 <p>In projects for containers, do not switch the preferences by profile.
-Instead, it uses the OS environment variable of the environment in which the application will run to override the configuration values declared in <code class="docutils literal"><span class="pre">env.config</span></code>.</p>
-<p>Thus, the configuration in <code class="docutils literal"><span class="pre">src/main/resources/env.config</span></code> is used in the environment where OS environment variables are not set.
+Instead, it uses the OS environment variable of the environment in which the application will run to override the configuration values declared in <code class="docutils literal"><span class="pre">env.properties</span></code>.</p>
+<p>Thus, the configuration in <code class="docutils literal"><span class="pre">src/main/resources/env.properties</span></code> is used in the environment where OS environment variables are not set.
 When running in a production container environment, the OS environment variables must be used to properly override environment-dependent values such as <code class="docutils literal"><span class="pre">nablarch.db.url</span></code>.</p>
 <p>See <a class="reference internal" href="../libraries/repository.html#repository-overwrite-environment-configuration"><span>Overwrite environment dependent values using system properties</span></a> for how to overwrite the configuration in OS environment variables.</p>
 <p>See <a class="reference external" href="https://12factor.net/ja/config">The Twelve-Factor App&#8217;s III. Configuration</a> (external site) for the reason why it switches settings by OS environment variables instead of profiles.</p>
@@ -955,7 +955,7 @@ SET SCHEMA sample;
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

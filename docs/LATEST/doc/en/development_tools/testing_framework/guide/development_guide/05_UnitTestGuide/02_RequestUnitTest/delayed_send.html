@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process) &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process) &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/delayed_send.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
         <link rel="next" title="3.1.19. How to Conduct a Subfunction Unit Test (Sending Asynchronous Message Process)" href="../03_DealUnitTest/delayed_send.html"/>
         <link rel="prev" title="3.1.17. How to Execute a Request Unit Test (Sending Synchronous Message Process)" href="send_sync.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -335,26 +335,16 @@ For this reason, the request unit test uses this action class to check the <a cl
 </pre></div>
 </div>
 </div>
-<div class="section" id="how-to-write-a-datasheet">
-<h2>3.1.18.3. How to write a datasheet<a class="headerlink" href="#how-to-write-a-datasheet" title="Permalink to this headline">¶</a></h2>
-<p>This section explains how to describe the data sheets required to test the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a>.</p>
-<p>Refer to <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a> for details on how to write a datasheet.
+<div class="section" id="how-to-write-test-data">
+<h2>3.1.18.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
+<p>This section explains how to describe the test data required to test the <a class="reference internal" href="#deliverables-to-be-tested">Deliverables to be tested</a>.</p>
+<p>Refer to <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a> for details on how to write test data.
 In this section, the differences in the description method with <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a> are explained.</p>
-<div class="section" id="preparing-a-normal-pattern-case">
-<h3>3.1.18.3.1. Preparing a normal pattern case<a class="headerlink" href="#preparing-a-normal-pattern-case" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><div class="line-block">
-<div class="line">Check of case in which the message is sent correctly.</div>
-<div class="line">This case checks that the message is sent and confirms the status update of the relevant data.</div>
-<div class="line"><br /></div>
-<div class="line">The action class for processing sending asynchronous message requests the request ID of the message as a startup parameter.</div>
-<div class="line">&#8220;KEY = messageRequestId&#8221; and &#8220;VALUE = message request ID&#8221; are required to be added to the definition of &#8220;testShots&#8221; as shown in the following image.</div>
-</div>
-<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" /></a>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p>The following settings are not required for the data sheet.</p>
-<ul class="last simple">
+<div class="section" id="the-expected-value-of-the-request-message-and-the-preparation-of-the-response-message-to-be-returned">
+<h3>3.1.18.3.1. The expected value of the request message and the preparation of the response message to be returned<a class="headerlink" href="#the-expected-value-of-the-request-message-and-the-preparation-of-the-response-message-to-be-returned" title="Permalink to this headline">¶</a></h3>
+<p>In the process of sending Asynchronous a message that does not require a response, there is no need to confirm that the response message is as expected because there is no response message.</p>
+<p>For this reason, The following settings are not required.</p>
+<ul class="simple">
 <li>testShots definition<ul>
 <li>responseMessage</li>
 </ul>
@@ -365,11 +355,21 @@ In this section, the differences in the description method with <a class="refere
 </ul>
 </li>
 </ul>
+<div class="section" id="normal-pattern-test">
+<h4>3.1.18.3.1.1. Normal pattern test<a class="headerlink" href="#normal-pattern-test" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Check of case in which the message is sent correctly.</div>
+<div class="line">This case checks that the message is sent and confirms the status update of the relevant data.</div>
+<div class="line"><br /></div>
+<div class="line">The action class for processing sending asynchronous message requests the request ID of the message as a startup parameter.</div>
+<div class="line">&#8220;KEY = messageRequestId&#8221; and &#8220;VALUE = message request ID&#8221; are required to be added to the definition of &#8220;testShots&#8221; as shown in the following image.</div>
 </div>
+<a class="reference internal image-reference" href="../../../../../../_images/delayed_send.png"><img alt="../../../../../../_images/delayed_send.png" src="../../../../../../_images/delayed_send.png" /></a>
 </div></blockquote>
 </div>
-<div class="section" id="preparing-an-abnormal-pattern-case">
-<h3>3.1.18.3.2. Preparing an abnormal pattern case<a class="headerlink" href="#preparing-an-abnormal-pattern-case" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="abnormal-pattern-test-failure-pattern-test">
+<h4>3.1.18.3.1.2. Abnormal pattern test(Failure pattern test)<a class="headerlink" href="#abnormal-pattern-test-failure-pattern-test" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Abnormal pattern testing is necessary to check UPDATE statements that update the status of the relevant data to an error when message sending fails.</div>
@@ -408,6 +408,7 @@ A configuration example is shown below.</p>
 </div>
 </div>
 </div>
+</div>
 
 
            </div>
@@ -442,7 +443,7 @@ A configuration example is shown below.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

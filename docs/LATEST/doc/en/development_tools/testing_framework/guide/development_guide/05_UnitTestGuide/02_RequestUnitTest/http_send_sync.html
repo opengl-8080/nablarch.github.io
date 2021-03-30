@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3.1.20. How to Execute a Request Unit Test (Sending Synchronous Message) &mdash; ∇Nablarch  5u18 documentation</title>
+  <title>3.1.20. How to Execute a Request Unit Test (Sending Synchronous Message) &mdash; ∇Nablarch  5u19 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/http_send_sync.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
         <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
         <link rel="next" title="3.1.21. How to Execute a Request Unit Test (Email Send)" href="mail.html"/>
         <link rel="prev" title="3.1.19. How to Conduct a Subfunction Unit Test (Sending Asynchronous Message Process)" href="../03_DealUnitTest/delayed_send.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -339,6 +339,51 @@
 <p class="first admonition-title">Tip</p>
 <p class="last">If there are multiple request IDs to be sent, testing the order is not possible. In the above example, the test is successful even if <code class="docutils literal"><span class="pre">ProjectSaveMessage2</span></code> is sent before <code class="docutils literal"><span class="pre">ProjectSaveMessage</span></code>.</p>
 </div>
+<div class="section" id="failure-pattern-test">
+<h4>3.1.20.1.2.1. Failure pattern test<a class="headerlink" href="#failure-pattern-test" title="Permalink to this headline">¶</a></h4>
+<p>The failure pattern can be tested by configuring a specific value starting with &#8220;errorMode:&#8221; in the table of the response message.<a class="footnote-reference" href="#http-send-sync-abnormal-test" id="id1">[1]</a></p>
+<p>The correspondence between the configuration values and failure pattern tests is shown below.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="33%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value to be configured for the first field</th>
+<th class="head">Failure description</th>
+<th class="head">Operation of the automated test framework</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">errorMode:timeout</span></code></td>
+<td>Test if timeout error occurs while sending the message</td>
+<td>Throws <strong>HttpMessagingTimeoutException</strong>
+(subclass of <strong>MessagingException</strong>) <a class="footnote-reference" href="#http-send-sync-abnormal-test-behavior" id="id2">[2]</a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">errorMode:msgException</span></code></td>
+<td>Test when a message send and receive error occurs</td>
+<td>Throws <strong>MessagingException</strong></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>This value should be in the <strong>first field, excluding &#8220;no&#8221;, in both the header and the body</strong> of the table in the response message.</p>
+<table class="docutils footnote" frame="void" id="http-send-sync-abnormal-test" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>If the business action does not explicitly control <strong>MessagingException</strong>,
+there is no need to perform fault testing in individual request unit tests.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="http-send-sync-abnormal-test-behavior" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>It throws out a different class than <a class="reference internal" href="send_sync.html#message-sendsyncmessage-test"><span>How to Execute a Request Unit Test (Sending Synchronous Message Process)</span></a>.</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="description-for-using-the-mockup">
 <h3>3.1.20.1.3. Description for using the mockup<a class="headerlink" href="#description-for-using-the-mockup" title="Permalink to this headline">¶</a></h3>
@@ -418,7 +463,7 @@ Normally character code is optional, and UTF-8 will be used if omitted.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

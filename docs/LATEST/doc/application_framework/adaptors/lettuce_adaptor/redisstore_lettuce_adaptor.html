@@ -9,7 +9,7 @@
   <meta http-equiv='content-language' content='ja'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Redisストア(Lettuce)アダプタ &mdash; ∇Nablarch  5u18 ドキュメント</title>
+  <title>Redisストア(Lettuce)アダプタ &mdash; ∇Nablarch  5u19 ドキュメント</title>
   
 
   
@@ -35,7 +35,7 @@
   
   <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/adaptors/lettuce_adaptor/redisstore_lettuce_adaptor.html" />
   
-    <link rel="top" title="∇Nablarch  5u18 ドキュメント" href="../../../index.html"/>
+    <link rel="top" title="∇Nablarch  5u19 ドキュメント" href="../../../index.html"/>
         <link rel="up" title="Lettuceアダプタ" href="../lettuce_adaptor.html"/>
         <link rel="next" title="Redisヘルスチェッカ(Lettuce)アダプタ" href="redishealthchecker_lettuce_adaptor.html"/>
         <link rel="prev" title="Lettuceアダプタ" href="../lettuce_adaptor.html"/>
@@ -61,7 +61,7 @@
   
 
   
-    <div id="sidebar-version">Version: 5u18</div>
+    <div id="sidebar-version">Version: 5u19</div>
   </a>
 
   <div role="search">
@@ -389,8 +389,8 @@
 <p>最初に、コンポーネントの定義ファイルを修正する方法について説明する。</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- 省略 --&gt;</span>
 <span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;nablarch/webui/redisstore-lettuce.config&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;common.config&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;env.config&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;common.properties&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;config-file</span> <span class="na">file=</span><span class="s">&quot;env.properties&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="c">&lt;!-- 省略 --&gt;</span>
 <span class="nt">&lt;import</span> <span class="na">file=</span><span class="s">&quot;nablarch/webui/redisstore-lettuce.xml&quot;</span> <span class="nt">/&gt;</span>
@@ -402,7 +402,7 @@
 <li><code class="docutils literal"><span class="pre">nablarch/webui/redisstore-lettuce.xml</span></code></li>
 </ul>
 <p><code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> には、 <code class="docutils literal"><span class="pre">redisstore-lettuce.xml</span></code> で使用しているプレースホルダのデフォルト値が宣言されている。</p>
-<p>アプリケーションで用意している環境設定ファイル（<code class="docutils literal"><span class="pre">env.config</span></code> など）がある場合、 <code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> はそれよりも前に読み込むようにする。
+<p>アプリケーションで用意している環境設定ファイル（<code class="docutils literal"><span class="pre">env.properties</span></code> など）がある場合、 <code class="docutils literal"><span class="pre">redisstore-lettuce.config</span></code> はそれよりも前に読み込むようにする。
 こうすることで、必要に応じてデフォルトのプレースホルダの値をアプリケーションの環境設定ファイルで上書きできるようになる。</p>
 <p>さらに、 <a class="reference internal" href="../../application_framework/libraries/repository.html#repository-overwrite-environment-configuration-by-os-env-var"><span>OS環境変数を使って環境依存値を上書きする</span></a> で説明している方法を用いることで、実行環境ごとに接続先のRedisを切り替えることができるようになる。</p>
 <div class="admonition tip">
@@ -452,7 +452,7 @@
 <p>プロジェクトの環境設定ファイルで、 <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> という設定項目を定義し、値に <code class="docutils literal"><span class="pre">redis</span></code> と設定する。</p>
 <div class="admonition tip">
 <p class="first admonition-title">補足</p>
-<p class="last"><a class="reference internal" href="../../application_framework/blank_project/setup_blankProject/setup_Web.html#firststepgeneratewebblankproject"><span>ウェブのアーキタイプ</span></a> でプロジェクトを生成している場合は、 <code class="docutils literal"><span class="pre">src/main/resources/common.config</span></code> に <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> が宣言されている。</p>
+<p class="last"><a class="reference internal" href="../../application_framework/blank_project/setup_blankProject/setup_Web.html#firststepgeneratewebblankproject"><span>ウェブのアーキタイプ</span></a> でプロジェクトを生成している場合は、 <code class="docutils literal"><span class="pre">src/main/resources/common.properties</span></code> に <code class="docutils literal"><span class="pre">nablarch.sessionManager.defaultStoreName</span></code> が宣言されている。</p>
 </div>
 <p>以上で、 <code class="docutils literal"><span class="pre">localhost</span></code> の <code class="docutils literal"><span class="pre">6379</span></code> ポートで起動しているRedisをセッションストアとして使用できるようになる。</p>
 </div>
@@ -806,7 +806,7 @@ Sentinelを介して接続する場合も、このクラスを使用する。</d
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'5u18',
+            VERSION:'5u19',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
