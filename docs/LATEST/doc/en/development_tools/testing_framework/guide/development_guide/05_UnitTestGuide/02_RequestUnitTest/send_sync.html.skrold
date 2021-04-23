@@ -1,0 +1,707 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.17. How to Execute a Request Unit Test (Sending Synchronous Message Process) &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/send_sync.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
+        <link rel="next" title="3.1.18. How to Conduct a Request Unit Test (Sending Asynchronous Message Process)" href="delayed_send.html"/>
+        <link rel="prev" title="3.1.16. How to Execute a Request Unit Test (HTTP Receiving Synchronous Message Process)" href="http_real.html"/>
+ 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
+      
+    <li>3.1.17. How to Execute a Request Unit Test (Sending Synchronous Message Process)</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-execute-a-request-unit-test-sending-synchronous-message-process">
+<span id="message-sendsyncmessage-test"></span><h1>3.1.17. How to Execute a Request Unit Test (Sending Synchronous Message Process)<a class="headerlink" href="#how-to-execute-a-request-unit-test-sending-synchronous-message-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="structure-and-test-scope-of-the-output-library-sending-synchronous-message-process">
+<h2>3.1.17.1. Structure and test scope of the output library (sending synchronous message process)<a class="headerlink" href="#structure-and-test-scope-of-the-output-library-sending-synchronous-message-process" title="Permalink to this headline">¶</a></h2>
+<p>The request unit test for the sending synchronous message process is done in the request ID <a class="footnote-reference" href="#id2" id="id1">[1]</a>unit granted to the process.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Note that the request ID used here refers to an ID that is defined to uniquely identify the function of the destination system to which a message is sent,
+and has a different meaning from the request ID used in web applications and batch processes.
+The format, format of the request and response messages, send queue name, and receive queue name are determined based on this request ID.</td></tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>In this section, a message sent by action to a queue is referred as a &#8220;request message&#8221; and a message received from the queue by an action is referred a &#8220;response message&#8221;.</li>
+</ul>
+<p>The following is an image of a request unit test</p>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_base.png"><img alt="../../../../../../_images/send_sync_base.png" src="../../../../../../_images/send_sync_base.png" style="width: 100%;" /></a>
+<img alt="../../../../../../_images/hanrei.png" src="../../../../../../_images/hanrei.png" />
+<div class="line-block">
+<div class="line">(1) The automated test framework starts the Nablarch Application Framework.</div>
+<div class="line">(2) The Nablarch Application Framework reads the parameter (request in the case of screen, file or DB in the case of batch) that is the input for the action and starts the action.</div>
+<div class="line">(3) Action executes the message synchronous send process of the Nablarch Application Framework. Nablarch Application Framework converts the parameters received from the action into a request message.</div>
+<div class="line">(4) The automated test framework asserts the request statement based on the test data. (request message is not put into the queue)</div>
+<div class="line">(5) The automated test framework generates a response message based on the test data and returns it to the action. (response message is not got from the queue)</div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The automated test framework does not use &#8220;send queue&#8221; or &#8220;receive queue&#8221; but asserts the request message and generates the response message before the queue.
+Therefore, no special middleware installation or configuration is required.</p>
+</div>
+<p>The features and advantages of the request unit test of the sending synchronous message process executed using the automated test framework are listed below.</p>
+<ol class="arabic simple">
+<li>Easy-to-write test data</li>
+</ol>
+<blockquote>
+<div><p>In most cases, the field length of the message layout is fixed,
+and it is difficult to describe it as test data like a fixed-length file.
+However, the automated test framework can describe test data according to the format definition
+of the external interface design document by using the Excel file.</p>
+<p>In addition, a test data format for sending synchronous message processes is provided.
+By conforming to this, test data can be easily created.
+These features make it easy to create and maintain test data.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>No need to write test code for sending synchronous messages</li>
+</ol>
+<blockquote>
+<div><p>Test data (expected value of request message and response message) can be described in Excel, and the automated test framework automatically asserts request message and returns response message based on the test data.</p>
+<p>A super class that implements such a typical routine is provided, and by using it, test preparation, test target execution, and confirmation of test result are possible.
+As a result, the test can be executed with almost no coding using only the test data.</p>
+</div></blockquote>
+</div>
+<div class="section" id="how-to-conduct-the-test">
+<h2>3.1.17.2. How to conduct the test<a class="headerlink" href="#how-to-conduct-the-test" title="Permalink to this headline">¶</a></h2>
+<p>The testing of sending synchronous message process follows the testing architectures of web applications and batch processing.
+For information on how to write test classes and prepare various preparatory data, refer to How to conduct these tests. </p>
+<p>This section describes only how to execute the sending synchronous message process.</p>
+<div class="section" id="how-to-write-test-data">
+<span id="send-sync-request-write-test-data"></span><h3>3.1.17.2.1. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h3>
+<p>The Excel file containing the test data should be stored in the same directory
+with the same name as the test source code, same as in the class unit test (only the extension differs).</p>
+<p>For information on how to write test data, refer to <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Test data description using Excel</span></a>.</p>
+<div class="section" id="the-expected-value-of-the-request-message-and-the-preparation-of-the-response-message-to-be-returned">
+<h4>3.1.17.2.1.1. The expected value of the request message and the preparation of the response message to be returned<a class="headerlink" href="#the-expected-value-of-the-request-message-and-the-preparation-of-the-response-message-to-be-returned" title="Permalink to this headline">¶</a></h4>
+<p>When sending a sending synchronous message, the formats and data of the header and body parts of the request and response messages are defined for each request ID.</p>
+<p>The test case, the expected value of the request message, and the response message are associated with the group ID.
+Specifically, the group IDs listed in the expectedMessage and responseMessage fields
+of the test case correspond to a table with the corresponding identifier.</p>
+<p>If the expectedMessage and responseMessage fields are not found in the list of test cases, no verification is performed.
+If this field is blank and sending of the synchronous message process is performed, the test will fail.
+When sending of the synchronous message process is performed, expectedMessage and responseMessage must be included.</p>
+<p>If more than one message with the same group ID and the same request ID is sent in a single test case, the data lines for the number of request and response messages should be described. The order of the no columns (sequential number) matches the order in which they are sent.</p>
+<dl class="docutils">
+<dt>See below for more information on how to write a test case.</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="index.html#request-test-testcases"><span>List of web application test cases</span></a></li>
+<li><a class="reference internal" href="batch.html#batch-test-testcases"><span>List of test cases for batch processing</span></a></li>
+</ul>
+</dd>
+</dl>
+<p>The following is the test data written in Excel. (Group ID association is also shown)</p>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync.png"><img alt="../../../../../../_images/send_sync.png" src="../../../../../../_images/send_sync.png" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In the sending synchronous message function provided as standard by Nablarch, the header part of the request message and response message uses a common format,
+so the format definition of the header part of the test data should also be unified for each request.
+Regarding the body part, different formats can be defined in the request message and the response message.</p>
+</div>
+<hr class="docutils" />
+<p>The table of expected value of the request message and response message to be returned are described in the following format.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="36%" />
+<col width="22%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Identifier</td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Directive line</td>
+<td>Directive configuration value</td>
+<td colspan="2">&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>...  <a class="footnote-reference" href="#id6" id="id3">[2]</a></td>
+<td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td rowspan="6">no</td>
+<td>Field name(1)</td>
+<td>Field name(2)</td>
+<td>...  <a class="footnote-reference" href="#id7" id="id4">[3]</a></td>
+</tr>
+<tr class="row-odd"><td>Data type(1)</td>
+<td>Data type(2)</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>Field length(1)</td>
+<td>Field length(2)</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>Data(1-1)</td>
+<td>Data(2-1)</td>
+<td>...</td>
+</tr>
+<tr class="row-even"><td>Data(1-2)</td>
+<td>Data(2-2)</td>
+<td>...</td>
+</tr>
+<tr class="row-odd"><td>... <a class="footnote-reference" href="#id8" id="id5">[4]</a></td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Below this, the number of directives continues in the same way.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>On the right side, the number of fields continues in the same way.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>Below this, the number of data continues in the same way.</td></tr>
+</tbody>
+</table>
+<p></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Identifier</td>
+<td><p class="first">Specifies an ID that indicates the message type. This item is associated with the group ID described in expectedMessage and responseMessage in the test case list.</p>
+<p>The format of the identifier is shown below.</p>
+<ul class="last simple">
+<li>Header of the expected value of a request message … EXPECTED_REQUEST_HEADER_MESSAGES[Group ID]=Request ID</li>
+<li>Body of the expected value of a request message … EXPECTED_REQUEST_BODY_MESSAGES[Group ID]=Request ID</li>
+<li>Response message header … RESPONSE_HEADER_MESSAGES[Group ID]=Request ID</li>
+<li>Response message body … RESPONSE_BODY_MESSAGES[Group ID]=Request ID</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Directive line <a class="footnote-reference" href="#id10" id="id9">[5]</a></td>
+<td>Describes the directive. The cell to the right of the directive name cell contains the configuration value (multiple lines are allowed).</td>
+</tr>
+<tr class="row-even"><td>no</td>
+<td>Write &#8220;no&#8221; in the line below the directive line.</td>
+</tr>
+<tr class="row-odd"><td>Field name</td>
+<td>Describes the field name. Describes only the number of fields.</td>
+</tr>
+<tr class="row-even"><td>Data type</td>
+<td><p class="first">Describes the data type of the field. Describes only the number of fields.</p>
+<p>The data type is described with a Japanese name such as &#8220;half-width alphabets(半角英字)&#8221;.</p>
+<p class="last">Refer to the member variable DEFAULT_TABLE of <a class="reference external" href="https://github.com/nablarch/nablarch-testing/blob/master/src/main/java/nablarch/test/core/file/BasicDataTypeMapping.java">BasicDataTypeMapping</a> for the mapping between data types in the format definition file and data types with Japanese names.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>Field length</td>
+<td>Describes the field type of the field. Describes only the number of fields.</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td>Describe the data stored in that field.If multiple records exist, the entry of data should be continued in the next line.
+Describe the data stored in that field.When the same request ID is sent synchronously multiple times in the same test case, the data is described following the next line.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><p class="first">When writing a directive, the contents corresponding to the following in the format definition file need not be described.</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Items</th>
+<th class="head">Reason</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file-type</td>
+<td>Because the testing framework only supports fixed length.</td>
+</tr>
+<tr class="row-odd"><td>record-length</td>
+<td>For padding with the size specified in the field length.</td>
+</tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><strong>Duplicate names are not allowed</strong> for field names. For example, there should be not more than 1 field named as &#8220;Name&#8221;.
+(Usually, in such cases, a unique field name is assigned, such as &#8220;member name&#8221; and &#8220;family member name&#8221;)</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Field names, data types and field lengths can be efficiently created by copying and pasting them from the external interface design document.
+(Check the &#8220;<strong>transpose matrix</strong>&#8221; option when pasting)</p>
+</div>
+<hr class="docutils" />
+<p>The following is an example of a description of the expected value in the body of a specific request message.</p>
+<p>The expected value of the header of a request message and the body and header of a response message are described in the same way as the expected value of the body of a request message, except for the identifier, which is described here.</p>
+<p>In this example, it is expected that a request message that satisfies the following specifications will be sent.</p>
+<ul class="simple">
+<li>Request ID is <code class="docutils literal"><span class="pre">RM21AA0104</span></code></li>
+<li>Character code is <code class="docutils literal"><span class="pre">Windows-31J</span></code></li>
+<li>Record delimiting character is CRLF <code class="docutils literal"><span class="pre">CRLF</span></code></li>
+<li>Record classification is <code class="docutils literal"><span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">User</span> <span class="pre">ID</span> <span class="pre">is</span> <span class="pre">0000000001</span></code>, <code class="docutils literal"><span class="pre">Login</span> <span class="pre">ID</span> <span class="pre">is</span> <span class="pre">nabura</span></code></li>
+</ul>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_example.png"><img alt="../../../../../../_images/send_sync_example.png" src="../../../../../../_images/send_sync_example.png" /></a>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When there are multiple records in a request message, you may want to describe multiple business data in a single header as follows.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Header</li>
+<li>Business data (first record)</li>
+<li>Business data (second record)</li>
+<li>Business data (third record)</li>
+</ul>
+</div></blockquote>
+<p>However, in the automated test framework, it is necessary to describe the header and the record alternately as follows.
+If the header is not defined in duplicate, an assertion error occurs because the number of business data and the header does not match.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Header</li>
+<li>Business data (first record)</li>
+<li>Header</li>
+<li>Business data (second record)</li>
+<li>Header</li>
+<li>Business data (third record)</li>
+</ul>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<p>When sending a message multiple times, the test should be written with attention to the following specifications of the testing framework.</p>
+<ul class="simple">
+<li>The same data types (<code class="docutils literal"><span class="pre">RESPONSE_HEADER_MESSAGES</span></code> and <code class="docutils literal"><span class="pre">RESPONSE_BODY_MESSAGES</span></code> in the following example) are described together, respectively. For more information, see <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>To describe the data of multiple test cases on a single sheet</span></a> and <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#auto-test-framework-multi-datatype"><span>Describing data by grouping together based on data types when using multiple data types</span></a>.</li>
+<li>For messages with the same request ID, the value of no is changed and the messages are described together.</li>
+</ul>
+<p>The following is a description example of the expected value of the request message body when a message is sent multiple times.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/send_sync_ok_pattern_expected.png"><img alt="../../../../../../_images/send_sync_ok_pattern_expected.png" src="../../../../../../_images/send_sync_ok_pattern_expected.png" style="width: 100%;" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If there are multiple request IDs to be sent, testing the order is not possible. In the above example, the test is successful even if <code class="docutils literal"><span class="pre">ProjectInsert2Messag</span></code> is sent before <code class="docutils literal"><span class="pre">ProjectInsertMessage</span></code>.</p>
+</div>
+</div>
+<div class="section" id="failure-pattern-test">
+<span id="send-sync-failure-test"></span><h4>3.1.17.2.1.2. Failure pattern test<a class="headerlink" href="#failure-pattern-test" title="Permalink to this headline">¶</a></h4>
+<p>The failure pattern can be tested by configuring a specific value starting with &#8220;errorMode:&#8221; in the table of the response message.<a class="footnote-reference" href="#id12" id="id11">[6]</a></p>
+<p>The correspondence between the configuration values and failure pattern tests is shown below.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="40%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value to be configured for the first field</th>
+<th class="head">Failure description</th>
+<th class="head">Operation of the automated test framework</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">errorMode:timeout</span></code></td>
+<td>Test if timeout error occurs while sending the message</td>
+<td>Throws <strong>MessageSendSyncTimeoutException</strong>
+(subclass of <strong>MessagingException</strong>)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">errorMode:msgException</span></code></td>
+<td>Test when a message send and receive error occurs</td>
+<td>Throws <strong>MessagingException</strong></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>This value should be in the <strong>first field, excluding &#8220;no&#8221;, in both the header and the body</strong> of the table in the response message.</p>
+<p>The following is an image of the setting in Excel.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../../_images/send_sync_error.png"><img alt="../../../../../../_images/send_sync_error.png" src="../../../../../../_images/send_sync_error.png" style="width: 100%;" /></a>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td>If the business action does not explicitly control <strong>MessagingException</strong>,
+there is no need to perform fault testing in individual request unit tests.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="test-result-verification">
+<h3>3.1.17.2.2. Test result verification<a class="headerlink" href="#test-result-verification" title="Permalink to this headline">¶</a></h3>
+<p>When the expected value of the request message is defined, the following verification is performed in the automated test framework.</p>
+<ul class="simple">
+<li>Verification of the request message contents</li>
+<li>Verification of the number of send request messages</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

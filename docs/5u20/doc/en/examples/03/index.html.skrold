@@ -1,0 +1,1883 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Display a List of Search Results &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/03/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="Extended Formatter Functions" href="../04/index.html"/>
+        <link rel="prev" title="Extended Validation Functions" href="../02/index.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Display a List of Search Results</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="display-a-list-of-search-results">
+<span id="list-search-result"></span><h1>Display a List of Search Results<a class="headerlink" href="#display-a-list-of-search-results" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<p>This sample is an implementation sample of the tag file that displays a list of search results.</p>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+<div class="section" id="delivery-package">
+<h2>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h2>
+<p>The sample is provided in the following package.</p>
+<blockquote>
+<div><em>resources/META-INF/tags/</em><strong>listSearchResult</strong></div></blockquote>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>An implementation sample of the tag file that displays a list of search results is provided in this section.
+The tag file provides the following functions together with the search function for the list search provided by the framework.</p>
+<ul class="simple">
+<li>Function for displaying the number of search results</li>
+<li>Function for displaying the list of all search results on one screen</li>
+<li>Function for displaying the search results by the specified number of results (hereinafter referred to as paging)</li>
+<li>Sort search resultsFunction</li>
+</ul>
+<p>An example of the output on the list screen is shown below.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_Example.jpg"><img alt="../../_images/ListSearchResult_Example.jpg" src="../../_images/ListSearchResult_Example.jpg" /></a>
+<div class="line-block" id="listsearchresult-structure">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>Shows the sample structure.</p>
+<div class="section" id="class-diagram">
+<h3>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<p>To clarify the placement of the classes and tag files provided by the framework,
+the classes and JSP of the business application that performs user search are included in the structure.</p>
+<p>The application programmer can implement paging without implementing the details since the classes provided
+by the framework and the tag files provided by the sample perform the processing required for paging.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_Structure.jpg"><img alt="../../_images/ListSearchResult_Structure.jpg" src="../../_images/ListSearchResult_Structure.jpg" /></a>
+<div class="section" id="responsibilities-of-the-classes-and-tag-files-provided-by-the-framework">
+<h4>Responsibilities of the classes and tag files provided by the framework<a class="headerlink" href="#responsibilities-of-the-classes-and-tag-files-provided-by-the-framework" title="Permalink to this headline">¶</a></h4>
+<p>a) Framework</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>DBAccessSupport</td>
+<td>Provides a search method that performs a search for list search.</td>
+</tr>
+<tr class="row-odd"><td>ListSearchInfo</td>
+<td>Class that retains the information for list search.</td>
+</tr>
+<tr class="row-even"><td>TooManyResultException</td>
+<td>Exception that occurs when the number of search results in a list search exceeds the maximum number (upper limit) of search results.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>b) Tag file</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Tag name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>listSearchResult</td>
+<td>Tag that displays the list of search results.</td>
+</tr>
+<tr class="row-odd"><td>listSearchPaging</td>
+<td>Tag that outputs paging.</td>
+</tr>
+<tr class="row-even"><td>listSearchSubmit</td>
+<td>Tag that outputs the paging submit element.</td>
+</tr>
+<tr class="row-odd"><td>listSearchParams</td>
+<td>Tag that outputs the changed parameters for the paging submit elements.</td>
+</tr>
+<tr class="row-even"><td>table</td>
+<td>Tag that outputs a table.</td>
+</tr>
+<tr class="row-odd"><td>listSearchSortSubmit</td>
+<td>Tag that outputs the submit elements for sorting.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to use the sample, assuming that paging is used.
+A business application that performs user search is described as an implementation example below.</p>
+<div class="section" id="dbaccesssupport-class">
+<span id="listsearchresult-dbaccesssupport"></span><h3>DbAccessSupport class<a class="headerlink" href="#dbaccesssupport-class" title="Permalink to this headline">¶</a></h3>
+<p>The DbAccessSupport class is a support class that simply implements the database access process provided by the database access function.</p>
+<p>DbAccessSupport provides a search method that executes a search for a list search.
+The search method receives the SQL_ID and ListSearchInfo, and performs the following processes.</p>
+<ul class="simple">
+<li>Obtains the number of search results from the specified SQL_ID and ListSearchInfo.</li>
+<li>Throws TooManyResultException when the number of search results exceeds the maximum number.</li>
+<li>Executes the search and returns the search results when the number of search results does not exceed the maximum number. Sets the number of search results in ListSearchInfo that is specified by the argument.</li>
+</ul>
+<p>The SQL statement specified by the SQL_ID specifies the SQL statement (i.e. the SELECT statement) that performs the search based on the search conditions required for business.
+The framework acquires the number of search results based on the SQL statement that executes the search, and to execute the search by specifying the start position of the search results and the number of results obtained.</p>
+<p>TooManyResultException retains the maximum number of search results (upper limit) and the (actual) number of search results obtained.
+To configure the upper limit for the number of search results, see <a class="reference internal" href="#listsearchresult-setting"><span>Default settings for the search result list display function</span></a>.</p>
+<p>An implementation example for the search process using the search method is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Acquire the validated search conditions</span>
+<span class="n">W11AC01SearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="c1">// Execute search</span>
+<span class="n">SqlResultSet</span> <span class="n">searchResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+
+    <span class="c1">// Search process with paging.</span>
+    <span class="c1">// &quot;SELECT_USER_BY_CONDITION&quot; is the SQL_ID for the SELECT statement that performs user search.</span>
+    <span class="n">searchResult</span> <span class="o">=</span> <span class="n">search</span><span class="o">(</span><span class="s">&quot;SELECT_USER_BY_CONDITION&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TooManyResultException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Error handling when the number of search results exceeds the maximum number.</span>
+    <span class="c1">// TooManyResultException provides the maximum number of search results (upper limit) and the actual number of search results.</span>
+    <span class="c1">// &quot;MSG00024&quot; is the message ID for the message &quot;Search results has exceeded the maximum number of ({0} records)&quot;.</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
+        <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">&quot;MSG00024&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMaxResultCount</span><span class="o">()));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="listsearchinfo-class">
+<span id="listsearchresult-listsearcinfo"></span><h2>ListSearchInfo class<a class="headerlink" href="#listsearchinfo-class" title="Permalink to this headline">¶</a></h2>
+<p>The ListSearchInfo class is a class that retains information for list search.
+Create a class that retains the search conditions in a business application by inheriting from ListSearchInfo.</p>
+<p>The classes that inherit from ListSearchInfo must implement the following.</p>
+<ul class="simple">
+<li>The following properties required in the search process for paging are included in the input validation, similar to other search condition.</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>pageNumber (Page number of the acquisition target)</li>
+</ul>
+</div></blockquote>
+<p>In addition, the following implementation is required for actions.</p>
+<ul class="simple">
+<li>When displaying the search results, set the object of the class that inherits from ListSearchInfo in the request scope.</li>
+</ul>
+<p>An implementation example of the class (W11AC01SearchForm) and action (W11AC01Action) that inherit from ListSearchInfo is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Class that inherits from ListSearchInfo.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01SearchForm</span> <span class="kd">extends</span> <span class="n">ListSearchInfo</span> <span class="o">{</span>
+
+    <span class="c1">// Property definition of the search condition is omitted.</span>
+
+    <span class="c1">// Constructors corresponding to the validation function.</span>
+    <span class="kd">public</span> <span class="nf">W11AC01SearchForm</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+
+       <span class="c1">// Property configuration of the search condition is omitted.</span>
+
+       <span class="c1">// Configure the properties of ListSearchInfo.</span>
+       <span class="n">setPageNumber</span><span class="o">((</span><span class="n">Integer</span><span class="o">)</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;pageNumber&quot;</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Override and add an annotation for input validation.</span>
+    <span class="c1">// When the maximum number of search results (upper limit) is: 200 results, and the number of results displayed per page is: 20 results.</span>
+    <span class="nd">@PropertyName</span><span class="o">(</span><span class="s">&quot;Page number&quot;</span><span class="o">)</span>
+    <span class="nd">@Required</span>
+    <span class="nd">@NumberRange</span><span class="o">(</span><span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">,</span> <span class="n">min</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+    <span class="nd">@Digits</span><span class="o">(</span><span class="n">integer</span> <span class="o">=</span> <span class="mi">2</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPageNumber</span><span class="o">(</span><span class="n">Integer</span> <span class="n">pageNumber</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">setPageNumber</span><span class="o">(</span><span class="n">pageNumber</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/** Properties to be validated (search condition properties are omitted) */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">SEARCH_COND_PROPS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="o">...,</span> <span class="s">&quot;pageNumber&quot;</span><span class="o">};</span>
+
+    <span class="c1">// Override and return the property name of the search condition.</span>
+    <span class="c1">// Usually the same as the property under validation.</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getSearchConditionProps</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">SEARCH_COND_PROPS</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Search screen action.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01Action</span> <span class="kd">extends</span> <span class="n">DbAccessSupport</span> <span class="o">{</span>
+
+    <span class="c1">// Initial display</span>
+    <span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doRW11AC0101</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Initial display is omitted because it is only for the business process.</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Search</span>
+    <span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/ss11AC/W11AC0101.jsp&quot;</span><span class="o">)</span>
+   <span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doRW11AC0102</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// Business process is omitted.</span>
+
+        <span class="c1">// Input validation</span>
+        <span class="n">ValidationContext</span><span class="o">&lt;</span><span class="n">W11AC01SearchForm</span><span class="o">&gt;</span> <span class="n">searchConditionCtx</span> <span class="o">=</span> <span class="o">...;</span>
+        <span class="n">searchConditionCtx</span><span class="o">.</span><span class="na">abortIfInvalid</span><span class="o">();</span>
+
+        <span class="c1">// Set the class (UserSearchCondition) that has inherited ListSearchInfo to the request scope.</span>
+        <span class="n">UserSearchCondition</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">searchConditionCtx</span><span class="o">.</span><span class="na">createObject</span><span class="o">();</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;11AC_W11AC01&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+        <span class="c1">// Execute search</span>
+        <span class="n">SqlResultSet</span> <span class="n">searchResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">searchResult</span> <span class="o">=</span> <span class="n">search</span><span class="o">(</span><span class="s">&quot;SELECT_USER_BY_CONDITION&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TooManyResultException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span>
+                <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">&quot;MSG00024&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMaxResultCount</span><span class="o">()));</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Set the search results to the request scope</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;searchResult&quot;</span><span class="o">,</span> <span class="n">searchResult</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/ss11AC/W11AC0101.jsp&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="listsearchresult-tag">
+<span id="listsearchresult-listsearchresulttag"></span><h2>listSearchResult tag<a class="headerlink" href="#listsearchresult-tag" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#id1"><span>listSearchResult tag</span></a> tag displays the list of search results.
+The screen elements output by the listSearchResult tag are shown below.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
+<div class="section" id="main-attributes-of-the-listsearchresult-tag">
+<h3>Main attributes of the listSearchResult tag<a class="headerlink" href="#main-attributes-of-the-listsearchresult-tag" title="Permalink to this headline">¶</a></h3>
+<p>The main attributes of the listSearchResult tag are shown below. For more information on all the attributes, see <a class="reference internal" href="#id1"><span>listSearchResult tag</span></a>.</p>
+<p>If the search result specified by the resultSetName attribute does not exist in the request scope, the listSearchResult tag will not output anything.
+This corresponds to the case where the initial display of the search screen does not output anything.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2">Overall</td>
+</tr>
+<tr class="row-odd"><td>listSearchInfoName</td>
+<td>Name used to acquire ListSearchInfo from the Request scope.  <br />
+If not specified, &#8220;Number of search results&#8221; and &#8220;Paging&#8221; are not displayed.  <br />
+Do not specify when displaying only a list such as batch deletion confirmation screen.</td>
+</tr>
+<tr class="row-even"><td colspan="2">Search result list</td>
+</tr>
+<tr class="row-odd"><td>useResultCount</td>
+<td>Whether to display the number of search results.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-even"><td colspan="2">Paging</td>
+</tr>
+<tr class="row-odd"><td>usePaging</td>
+<td>Whether to display paging.  <br />
+Default is true.  <br /></td>
+</tr>
+<tr class="row-even"><td>searchUri</td>
+<td>URI to use for the paging submit element.  <br />
+Must be specified when paging is displayed.</td>
+</tr>
+<tr class="row-odd"><td colspan="2">Search result</td>
+</tr>
+<tr class="row-even"><td>resultSetName (required)</td>
+<td>Name used to acquire the search results from the request scope.  <br /></td>
+</tr>
+<tr class="row-odd"><td>headerRowFragment (required)</td>
+<td>JSP fragment of the header row. For more information on the header row, see <a class="reference internal" href="#listsearchresult-tableelement"><span>Search result</span></a>  <br /></td>
+</tr>
+<tr class="row-even"><td>bodyRowFragment (required)</td>
+<td>JSP fragment for the body row. For information on the body row, see <a class="reference internal" href="#listsearchresult-tableelement"><span>Search result</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="search-result-list">
+<span id="listsearchresult-resultcountelement"></span><h3>Search result list<a class="headerlink" href="#search-result-list" title="Permalink to this headline">¶</a></h3>
+<p>The number of search results is displayed when true (default is true) is specified in the useResultCount attribute and the search results exist in the request scope.
+By default, the number of search results is output in the following format.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>Search results <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">resultCount</span> <span class="n">property</span> <span class="n">of</span> <span class="n">ListSearchInfo</span> <span class="o">--</span><span class="k">%&gt;</span>Record
+</pre></div>
+</div>
+<p>To change the default format, specify the JSP fragment in the resultCountFragment attribute.
+An example of specifying the resultCountFragment attribute is shown below.
+Since the JSP fragment is called from a custom tag for evaluation, the ListSearchInfo object can be accessed
+using the name specified in the listSearchInfoName attribute.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;nbs:listSearchResult</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span>
+                   <span class="na">searchUri=</span><span class="s">&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;</span>
+                   <span class="na">resultSetName=</span><span class="s">&quot;searchResult&quot;</span><span class="nt">&gt;</span>
+
+   <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specify</span> <span class="n">the</span> <span class="n">JSP</span> <span class="n">fragment</span> <span class="n">in</span> <span class="n">the</span> <span class="n">resultCountFragment</span> <span class="n">attribute</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+   <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;resultCountFragment&quot;</span><span class="nt">&gt;</span>
+   [Search results <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;searchCondition.resultCount&quot;</span> <span class="nt">/&gt;</span>page]
+   <span class="nt">&lt;/jsp:attribute&gt;</span>
+
+   <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Other</span> <span class="n">attributes</span> <span class="n">are</span> <span class="n">omitted</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+<span class="nt">&lt;/nbs:listSearchResult&gt;</span>
+</pre></div>
+</div>
+<p>The format for the number of search results after the specification mentioned above is as follows.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span>[Search results <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">resultCount</span> <span class="n">property</span> <span class="n">of</span> <span class="n">ListSearchInfo</span> <span class="o">--</span><span class="k">%&gt;</span> page]
+</pre></div>
+</div>
+</div>
+<div class="section" id="paging">
+<span id="listsearchresult-pagingelement"></span><h3>Paging<a class="headerlink" href="#paging" title="Permalink to this headline">¶</a></h3>
+<p>Paging is displayed when the usePaging attribute is specified as true (the default is true).
+The paging screen elements are shown below.
+Paging consists of the current page number and the submit elements for moving the page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingFull.jpg"><img alt="../../_images/ListSearchResult_PagingFull.jpg" src="../../_images/ListSearchResult_PagingFull.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The entire paging is displayed when the number of search results is 1 or more.
+Assuming that the entire paging is displayed, the paging screen elements are as shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Paging screen element</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Current page number</td>
+<td>The current page number is always displayed.</td>
+</tr>
+<tr class="row-odd"><td>First, Previous, Next, Last</td>
+<td>If moving from the current page number to a page indicated by each screen element is possible, it is displayed as submittable.
+When it is not possible to move, a link is displayed as a label and a button is displayed as disabled.</td>
+</tr>
+<tr class="row-even"><td>Page number</td>
+<td>All page numbers (1..n) are displayed only when the total number of pages is 2 or more.
+As in the case of “First” or “Previous” mentioned above, each page number is displayed according to whether moving is possible or not.</td>
+</tr>
+</tbody>
+</table>
+<p>The typical attributes that can be specified by the paging screen elements are as follows.
+For more information on all the attributes, see <a class="reference internal" href="#id1"><span>listSearchResult tag</span></a>.</p>
+<ul class="simple">
+<li>Whether or not each screen element can be used</li>
+<li>Label for each screen element (such as first, previous, next, last)</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Current page number that is changed by the JSP fragment</li>
+<li>Page numbers that cannot be changed because they use the page number for the label</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>Tags used for each submit element (either n:submitLink, n:submit, n:button)</li>
+</ul>
+<p><strong>Search conditions when paging</strong></p>
+<p>The search conditions when paging uses conditions from the previous search (the conditions from the time when the currently displayed search results were obtained).
+This means that when paging is performed after changing the search conditions, the changed values of the search condition are discarded.</p>
+<p>The search conditions can be maintained using a windowscope, similar to when input values are carried between screens.
+Therefore, when search conditions and a list of search results are arranged on a single screen, it is necessary to implement the forms for search conditions and list of search results separately.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_FormDivide.jpg"><img alt="../../_images/ListSearchResult_FormDivide.jpg" src="../../_images/ListSearchResult_FormDivide.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>What to do when search results are reduced when using paging</strong></p>
+<p>This section describes what to do when the search results are reduced due to other user operations
+while switching the search result page with each paging submit element.</p>
+<p>This framework performs a search based on the specified page number and displays each paging screen element.
+The following is an example of the paging operation when the number of search results is reduced.</p>
+<p>As a prerequisite, the number of acquired search results (number displayed per page) is 20 results.</p>
+<p>First, assume that a search is performed and the search results are 44 results. Below is the paging display after the third page is selected.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingBefore.jpg"><img alt="../../_images/ListSearchResult_PagingBefore.jpg" src="../../_images/ListSearchResult_PagingBefore.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The paging display and description of the contents displayed when the second page (or the previous page) is selected and the number of search results is reduced to 10 is described next.
+Each paging screen element is displayed as a search result for the second page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter.jpg"><img alt="../../_images/ListSearchResult_PagingAfter.jpg" src="../../_images/ListSearchResult_PagingAfter.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Paging screen element</th>
+<th class="head">Description of the contents displayed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Current page number</td>
+<td>Since the second page has been specified and the search results are 20 results or less, it becomes page 2/1 (2 of 1).</td>
+</tr>
+<tr class="row-odd"><td>First, Previous</td>
+<td>Since there are currently 10 search results on the second page, it is possible to move to the previous page which is displayed as a link.</td>
+</tr>
+<tr class="row-even"><td>Next, Last</td>
+<td>Since there are currently 10 search results on the second page, it is not possible to move to the next page which is displayed as a label</td>
+</tr>
+<tr class="row-odd"><td>Page number</td>
+<td>The page number is not displayed since there are 10 search results and the total number of pages is 1.</td>
+</tr>
+</tbody>
+</table>
+<p>Since the current page number and the submit element correspond to each other, it is possible to move to the search results page
+by selecting the submit element without it becoming inoperable.
+(Of course, if you perform a search again from the search form, the search results will be from the first page.)</p>
+<p>The paging display after selecting &#8220;Previous&#8221; is shown next. The correspondence between the current page number and the total number of pages returns to normal.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingAfter2.jpg"><img alt="../../_images/ListSearchResult_PagingAfter2.jpg" src="../../_images/ListSearchResult_PagingAfter2.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="search-result">
+<span id="listsearchresult-tableelement"></span><h3>Search result<a class="headerlink" href="#search-result" title="Permalink to this headline">¶</a></h3>
+<p>The screen elements of the search result are shown below.
+The search result consists of a header row that displays column headings, and a body row that displays row data.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableFull.jpg"><img alt="../../_images/ListSearchResult_TableFull.jpg" src="../../_images/ListSearchResult_TableFull.jpg" /></a>
+<p>The search results are always displayed when they are in the request scope.
+When the search result is 0, only the header row is displayed.</p>
+<p>The header row and body row are specified in the headerRowFragment attribute and bodyRowFragment attributes in the JSP fragment.
+The JSP fragment in the body row is called and evaluated in the search result loop (c:forEach tag of JSTL).
+Hence, the following attributes are provided to access the row data (var attribute of the c:forEach tag) and status (status attribute of the c:forEach tag)
+in the JSP fragment of the body row.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>varRowName</td>
+<td>Variable name used when referring to row data (var attribute of the c:forEach tag) in the body row fragment.  <br />
+Default is &#8220;row&#8221;.  <br /></td>
+</tr>
+<tr class="row-odd"><td>varStatusName</td>
+<td><p class="first">Variable name used when referring to the status (status attribute of the c:forEach tag) in the body row fragment.  <br />
+Default is &#8220;status&#8221;.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When accessing the status using the n:write tag, an error occurs and the value cannot be obtained
+since the access method differs between the n:write tag and the EL expression.
+This error can be avoided by using the n:set tag to access the status.An example of its use is shown below.</p>
+<div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;rowCount&quot;</span> <span class="na">value=</span><span class="s">&quot;${status.count}&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;rowCount&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>varCountName</td>
+<td>Variable name used when referring to the count property of the status (status attribute of the c:forEach tag).  <br />
+Default is &#8220;count&#8221;.  <br /></td>
+</tr>
+<tr class="row-odd"><td>varRowCountName</td>
+<td>Variable name used when referring to the search result count (start position of search result acquisition + status count).  <br />
+Default is &#8220;rowCount&#8221;.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the following attributes are provided in the body row that specify the class attribute for changing the background color of every other row.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>varOddEvenName</td>
+<td>Variable name used when referring to the class attribute of the body row.  <br />
+This variable name is used to change the value of the class attribute every other row.  <br />
+Default is &#8220;oddEvenCss&#8221;.  <br /></td>
+</tr>
+<tr class="row-odd"><td>oddValue</td>
+<td>The class attribute to use for odd lines of body.  <br />
+Default is &#8220;nablarch_odd&#8221;.  <br /></td>
+</tr>
+<tr class="row-even"><td>evenValue</td>
+<td>The class attribute to use for even lines of body.  <br />
+Default is &#8220;nablarch_even&#8221;.</td>
+</tr>
+</tbody>
+</table>
+<p>An example of user search specifications is shown below. The tag file prefix should be nbs.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;nbs:listSearchResult</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span>
+                   <span class="na">searchUri=</span><span class="s">&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;</span>
+                   <span class="na">resultSetName=</span><span class="s">&quot;searchResult&quot;</span><span class="nt">&gt;</span>
+
+   <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specification</span> <span class="n">of</span> <span class="n">JSP</span> <span class="n">fragment</span> <span class="k">for</span> <span class="n">the</span> <span class="n">header</span> <span class="n">row</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+   <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;headerRowFragment&quot;</span><span class="nt">&gt;</span>
+
+       <span class="nt">&lt;tr&gt;</span>
+
+           <span class="nt">&lt;th&gt;</span>Login ID<span class="nt">&lt;/th&gt;</span>
+           <span class="nt">&lt;th&gt;</span> Kanji name<span class="nt">&lt;/th&gt;</span>
+           <span class="nt">&lt;th&gt;</span> Kana name<span class="nt">&lt;/th&gt;</span>
+           <span class="nt">&lt;th&gt;</span>Group <span class="nt">&lt;/th&gt;</span>
+           <span class="nt">&lt;th&gt;</span>Extension number <span class="nt">&lt;/th&gt;</span>
+           <span class="nt">&lt;th&gt;</span>Email address<span class="nt">&lt;/th&gt;</span>
+
+       <span class="nt">&lt;/tr&gt;</span>
+
+   <span class="nt">&lt;/jsp:attribute&gt;</span>
+
+   <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specify</span> <span class="n">the</span> <span class="n">JSP</span> <span class="n">fragment</span> <span class="k">for</span> <span class="n">the</span> <span class="n">body</span> <span class="n">row</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+   <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;bodyRowFragment&quot;</span><span class="nt">&gt;</span>
+
+       <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Access</span> <span class="n">the</span> <span class="kd">class</span> <span class="nc">attribute</span> <span class="n">using</span> <span class="n">the</span> <span class="k">default</span> <span class="n">variable</span> <span class="n">name</span> <span class="s">&quot;oddEvenCss&quot;</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+       <span class="nt">&lt;tr</span> <span class="na">class=</span><span class="s">&quot;&lt;n:write name=&#39;oddEvenCss&#39; /&gt;&quot;</span><span class="nt">&gt;</span>
+
+           <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Access</span> <span class="n">the</span> <span class="n">row</span> <span class="n">data</span> <span class="n">using</span> <span class="n">the</span> <span class="k">default</span> <span class="n">variable</span> <span class="n">name</span> <span class="s">&quot;row&quot;</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+           <span class="nt">&lt;td&gt;</span>[<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;count&quot;</span> <span class="nt">/&gt;</span>]<span class="nt">&lt;br/&gt;</span>[<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;rowCount&quot;</span> <span class="nt">/&gt;</span>]<span class="nt">&lt;br/&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.loginId&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+           <span class="nt">&lt;td&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.kanjiName&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+           <span class="nt">&lt;td&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.kanaName&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+           <span class="nt">&lt;td&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.ugroupId&quot;</span> <span class="nt">/&gt;</span>:<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.ugroupName&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+           <span class="nt">&lt;td&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.extensionNumberBuilding&quot;</span> <span class="nt">/&gt;</span>-<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.extensionNumberPersonal&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+           <span class="nt">&lt;td&gt;&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;row.mailAddress&quot;</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+
+       <span class="nt">&lt;/tr&gt;</span>
+
+   <span class="nt">&lt;/jsp:attribute&gt;</span>
+
+<span class="nt">&lt;/nbs:listSearchResult&gt;</span>
+</pre></div>
+</div>
+<p>The search results after the above specifications are shown below.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_TableStatus.jpg"><img alt="../../_images/ListSearchResult_TableStatus.jpg" src="../../_images/ListSearchResult_TableStatus.jpg" /></a>
+</div>
+</div>
+<div class="section" id="sort-search-results">
+<span id="listsearchresult-sort"></span><h2>Sort search results<a class="headerlink" href="#sort-search-results" title="Permalink to this headline">¶</a></h2>
+<p>You may want to sort data in the list display of search results according to the selected column data by selecting the column heading.
+The search results can be sorted through the search process using the <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmit tag</span></a>,
+which outputs the column headings for reordering, and the variable ORDER BY syntax (the syntax to change the ORDER BY clause dynamically) provided by the database access function.
+For more information about the variable ORDER BY syntax, see the framework documentation.</p>
+<p>The screen image when sorting is applied to the user search is shown below.
+The user search provides sorting by kanji name and kana name.</p>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_SortSubmitTag.jpg"><img alt="../../_images/ListSearchResult_SortSubmitTag.jpg" src="../../_images/ListSearchResult_SortSubmitTag.jpg" /></a>
+<p>This section describes an implementation example in which sorting is applied to user search.</p>
+<div class="section" id="how-to-implement-the-search-process">
+<h3>How to implement the search process<a class="headerlink" href="#how-to-implement-the-search-process" title="Permalink to this headline">¶</a></h3>
+<p>To sort the search results, define an SQL statement using the variable ORDER BY syntax.
+The following is an example of an SQL statement using variable ORDER BY syntax.</p>
+<p>In the SQL statement below, the variable ORDER BY clause is used to sort kanji names and kana names.
+To determine which ORDER BY to use, the value obtained from the sortId field of the search condition object is used, as described in $sort (sortId).For example, if the sortId field of the search condition object is kanaName_asc, the ORDER BY clause is converted to &#8220;ORDER BY USR.KANA_NAME, SA.LOGIN_ID&#8221;.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>-- SQL statement using variable ORDER BY syntax
+SELECT
+
+   -- Omitted
+
+FROM
+
+   -- Omitted
+
+WHERE
+
+   -- Omitted
+
+$sort (sortId) {
+   (kanjiName_asc  USR.KANJI_NAME, SA.LOGIN_ID)
+   (kanjiName_desc USR.KANJI_NAME DESC, SA.LOGIN_ID)
+   (kanaName_asc   USR.KANA_NAME, SA.LOGIN_ID)
+   (kanaName_desc  USR.KANA_NAME DESC, SA.LOGIN_ID) }
+</pre></div>
+</div>
+<p>The ListSearchInfo class defines sortId property to support sorting.
+The sortId property is included in the input validation when sorting the search results.
+An implementation example of a class (W11AC01SearchForm) that inherits from ListSearchInfo is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Class that inherits from ListSearchInfo.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01SearchForm</span> <span class="kd">extends</span> <span class="n">ListSearchInfo</span> <span class="o">{</span>
+
+    <span class="c1">// Property definition of the search condition is omitted.</span>
+
+    <span class="c1">// Constructors corresponding to the validation function.</span>
+    <span class="kd">public</span> <span class="nf">W11AC01SearchForm</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+
+       <span class="c1">// Property configuration of the search condition is omitted.</span>
+
+       <span class="c1">// Sets the sortId property of ListSearchInfo.</span>
+       <span class="n">setSortId</span><span class="o">((</span><span class="n">String</span><span class="o">)</span> <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;sortId&quot;</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Override and add an annotation for input validation.</span>
+    <span class="nd">@PropertyName</span><span class="o">(</span><span class="s">&quot;Sort ID&quot;</span><span class="o">)</span>
+    <span class="nd">@Required</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSortId</span><span class="o">(</span><span class="n">String</span> <span class="n">sortId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">setSortId</span><span class="o">(</span><span class="n">sortId</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/** Properties to be validated (search condition properties are omitted) */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">SEARCH_COND_PROPS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="o">...,</span> <span class="s">&quot;sortId&quot;</span><span class="o">};</span>
+
+    <span class="c1">// Override and return the property name of the search condition.</span>
+    <span class="c1">// Usually the same as the property under validation.</span>
+    <span class="c1">// Used by each paging submit element when submitting search conditions.</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getSearchConditionProps</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">SEARCH_COND_PROPS</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="listsearchsortsubmit-tag">
+<h3>listSearchSortSubmit tag<a class="headerlink" href="#listsearchsortsubmit-tag" title="Permalink to this headline">¶</a></h3>
+<p>The listSearchSortSubmit tag outputs submit elements for sorting.</p>
+<p>The required attributes and typical attributes of the listSearchSortSubmit tag are shown below.
+For a list of all the attributes that can be specified with the listSearchSortSubmit tag, see <a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmit tag</span></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sortCss</td>
+<td>Class attribute of the submit to sort.  <br />
+It is always output in the submit class attribute.  <br />
+Default is &#8220;nablarch_sort&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>ascCss</td>
+<td>Submit class attribute specified when sorting in the ascending order.  <br />
+It is output by adding to the sortCss attribute.  <br />
+Default is &#8220;nablarch_asc&#8221;.(Output example: class=&#8221;nablarch_sort nablarch_asc&#8221;)</td>
+</tr>
+<tr class="row-even"><td>descCss</td>
+<td>Submit class attribute specified when sorting in the descending order.  <br />
+It is output by adding to the sortCss attribute.  <br />
+Default is &#8220;nablarch_desc&#8221;.(Output example: class=&#8221;nablarch_sort nablarch_desc&#8221;)</td>
+</tr>
+<tr class="row-odd"><td>ascSortId (required)</td>
+<td>Sort ID when sorting in ascending order.</td>
+</tr>
+<tr class="row-even"><td>descSortId (required)</td>
+<td>Sort ID when sorting in descending order.</td>
+</tr>
+<tr class="row-odd"><td>defaultSort</td>
+<td>Default sort ID.  <br />
+Specify one of the following.  <br />
+asc(ascending)  <br />
+desc(descending)  <br />
+default is&#8221;asc&#8221;.</td>
+</tr>
+<tr class="row-even"><td>label (required)</td>
+<td>Label to use for the submit to sort.</td>
+</tr>
+<tr class="row-odd"><td>name (required)</td>
+<td>Name attribute of the tag used to submit the sort.  <br />
+The name attribute should be unique in the screen.</td>
+</tr>
+<tr class="row-even"><td>listSearchInfoName (required)</td>
+<td>Name used to acquire ListSearchInfo from the Request scope.</td>
+</tr>
+</tbody>
+</table>
+<p>An implementation example of JSP using the listSearchSortSubmit tag is shown below. The tag file prefix should be nbs.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;nbs:listSearchResult</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span>
+                   <span class="na">searchUri=</span><span class="s">&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;</span>
+                   <span class="na">resultSetName=</span><span class="s">&quot;searchResult&quot;</span>
+                   <span class="na">usePageNumberSubmit=</span><span class="s">&quot;true&quot;</span>
+                   <span class="na">useLastSubmit=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+
+   <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;headerRowFragment&quot;</span><span class="nt">&gt;</span>
+
+       <span class="nt">&lt;tr&gt;</span>
+
+           <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Columns</span> <span class="n">except</span> <span class="k">for</span> <span class="n">Kanji</span> <span class="n">name</span> <span class="n">are</span> <span class="n">omitted</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+           <span class="nt">&lt;th&gt;</span>
+
+               <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Set</span> <span class="n">Kanji</span> <span class="n">name</span> <span class="n">as</span> <span class="n">a</span> <span class="n">link</span> <span class="k">for</span> <span class="n">sorting</span><span class="o">.--</span><span class="k">%&gt;</span>
+               <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specify</span> <span class="n">sort</span> <span class="n">ID</span> <span class="k">for</span> <span class="nf">ascending</span> <span class="o">(</span><span class="n">kanjiName_asc</span><span class="o">)</span> <span class="n">and</span> <span class="nf">descending</span> <span class="o">(</span><span class="n">kanjiName_desc</span><span class="o">)</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">SQL</span> <span class="n">statement</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+               <span class="nt">&lt;nbs:listSearchSortSubmit</span> <span class="na">ascSortId=</span><span class="s">&quot;kanjiName_asc&quot;</span> <span class="na">descSortId=</span><span class="s">&quot;kanjiName_desc&quot;</span>
+                                       <span class="na">label=</span><span class="s">&quot;Kanji name&quot;</span> <span class="na">uri=</span><span class="s">&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;</span>
+                                       <span class="na">name=</span><span class="s">&quot;kanjiNameSort&quot;</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span> <span class="nt">/&gt;</span>
+
+           <span class="nt">&lt;/th&gt;</span>
+
+       <span class="nt">&lt;/tr&gt;</span>
+
+   <span class="nt">&lt;/jsp:attribute&gt;</span>
+
+   <span class="nt">&lt;jsp:attribute</span> <span class="na">name=</span><span class="s">&quot;bodyRowFragment&quot;</span><span class="nt">&gt;</span>
+
+       <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Omitted</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+   <span class="nt">&lt;/jsp:attribute&gt;</span>
+
+<span class="nt">&lt;/nbs:listSearchResult&gt;</span>
+</pre></div>
+</div>
+<p>The sort submit elements executes the search using the search conditions when searching from the search form.
+Similar to search conditions when using paging, use a window scope to maintain the search conditions.</p>
+<p>The sort submit elements alway search the first page (page number: 1).
+This is because if the sorting is changed, the page number before the search becomes a relative position
+to the different order and not a meaningful page position after the search.</p>
+<p><strong>How the listSearchSortSubmit tag functions according to the current sort status</strong></p>
+<p>The listSearchSortSubmit tag determines the following values according to the current sort status.
+The current sort status is the sort ID used for the search.</p>
+<ul class="simple">
+<li>Sort ID to be sent as a request when a submit element is selected</li>
+<li>CSS class specified in the submit element according to ascending or descending order</li>
+</ul>
+<p>This section describes the operation of the listSearchSortSubmit tag on the basis of the following implementation example.</p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Set</span> <span class="n">Kanji</span> <span class="n">name</span> <span class="n">as</span> <span class="n">a</span> <span class="n">link</span> <span class="k">for</span> <span class="n">sorting</span><span class="o">.--</span><span class="k">%&gt;</span>
+<span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specify</span> <span class="n">sort</span> <span class="n">ID</span> <span class="k">for</span> <span class="nf">ascending</span> <span class="o">(</span><span class="n">kanjiName_asc</span><span class="o">)</span> <span class="n">and</span> <span class="nf">descending</span> <span class="o">(</span><span class="n">kanjiName_desc</span><span class="o">)</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">SQL</span> <span class="n">statement</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+<span class="nt">&lt;nbs:listSearchSortSubmit</span> <span class="na">ascSortId=</span><span class="s">&quot;kanjiName_asc&quot;</span> <span class="na">descSortId=</span><span class="s">&quot;kanjiName_desc&quot;</span>
+                         <span class="na">label=</span><span class="s">&quot;Kanji name&quot;</span> <span class="na">uri=</span><span class="s">&quot;/action/ss11AC/W11AC01Action/RW11AC0102&quot;</span>
+                         <span class="na">name=</span><span class="s">&quot;kanjiNameSort&quot;</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="40%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Sort ID used for the search</th>
+<th class="head">Sort ID to send a request                                                                         CSS class used</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>kanjiName_asc</td>
+<td>The value of the descSortId attribute (=kanjiName_desc) is used since it is equal to the ascSortId attribute (=kanjiName_asc).</td>
+<td>The value of the ascCss attribute (nablarch_asc) is used since it is equal to the ascSortId attribute (=kanjiName_asc).</td>
+</tr>
+<tr class="row-odd"><td>kanjiName_desc</td>
+<td>The value of the ascSortId attribute (=kanjiName_asc) is used since it is equal to the descSortId attribute (=kanjiName_desc).</td>
+<td>The value of the descCss attribute (nablarch_desc) is used since it is equal to the descSortId attribute (=kanjiName_desc).</td>
+</tr>
+<tr class="row-even"><td>Sort ID of the column different from the kanji name</td>
+<td>Since it is not equal to the ascSortId attribute (=kanjiName_asc) and descSortId attribute (=kanjiName_desc),
+the value of the ascSortId attribute (=kanjiName_asc) is used according to the value of the defaultSortId attribute (=asc).</td>
+<td>No value to be specified since it is not equal to the ascSortId attribute (=kanjiName_asc) and descSortId attribute (=kanjiName_desc).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Implementation example of CSS according to ascending or descending order</strong></p>
+<p>CSS is used to display an image that clearly indicates the ascending or descending order of the links for sorting,
+such as a screen image. An implementation example of CSS is shown below.
+It is assumed that the image file is placed in a location that can be referenced from the CSS file, and the CSS class name is defined with the default name.</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="c">/*</span>
+<span class="c"> * Configuration for sortCss attribute.</span>
+<span class="c"> * CSS class name of the sortCss attribute is always output.</span>
+<span class="c"> */</span>
+<span class="nt">a</span><span class="p">.</span><span class="nc">nablarch_sort</span> <span class="p">{</span>
+    <span class="k">padding-right</span><span class="p">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">background-position</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">0</span><span class="kt">%</span><span class="p">;</span>
+    <span class="k">background-repeat</span><span class="p">:</span> <span class="kc">no-repeat</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*</span>
+<span class="c"> * Configuration for ascCss attribute.</span>
+<span class="c"> * CSS class name of the ascCss attribute is output only when the submit elements are selected and are in ascending order.</span>
+<span class="c"> */</span>
+<span class="nt">a</span><span class="p">.</span><span class="nc">nablarch_asc</span> <span class="p">{</span>
+    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s2">&quot;../img/asc.jpg&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c">/*</span>
+<span class="c"> * Configuration for descCss attribute.</span>
+<span class="c"> * CSS class name of the descCss attribute is output only when the submit elements are selected and are in descending order.</span>
+<span class="c"> */</span>
+<span class="nt">a</span><span class="p">.</span><span class="nc">nablarch_desc</span> <span class="p">{</span>
+    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s2">&quot;../img/desc.jpg&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">
+<span id="listsearchresult-nopaging"></span><h2>How to implement displaying a list of all search results on a single screen<a class="headerlink" href="#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen" title="Permalink to this headline">¶</a></h2>
+<p>Up to now, we have described how to implement on the basis of paging, but the method of implementation where all search results are listed on a single screen is described below.</p>
+<p>When listing all search results on a single screen, the basic implementation method is the same as with paging.
+In addition, the search and sorting processes are implemented in the same way as with paging.</p>
+<p>The implementation method is described below.
+As with paging, the business application class and JSP that perform user search are used in the implementation example.</p>
+<p><strong>Implementation example of a class (W11AC01SearchForm) that inherits from ListSearchInfo</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Class that inherits from ListSearchInfo.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01SearchForm</span> <span class="kd">extends</span> <span class="n">ListSearchInfo</span> <span class="o">{</span>
+
+    <span class="c1">// Property definition of the search condition is omitted.</span>
+
+    <span class="c1">// Constructors corresponding to the validation function.</span>
+    <span class="kd">public</span> <span class="nf">W11AC01SearchForm</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+
+       <span class="c1">// Property configuration of the search condition is omitted.</span>
+
+       <span class="c1">// Unlike with paging, it is not necessary to configure pageNumber property of ListSearchInfo.</span>
+       <span class="c1">// The initial value of the pageNumber property is 1, so it is always the first page.</span>
+
+    <span class="o">}</span>
+
+    <span class="cm">/** Properties to be validated (Only properties of search condition) */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">SEARCH_COND_PROPS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="o">...</span> <span class="o">};</span>
+
+    <span class="c1">// Override and return the property name of the search condition.</span>
+    <span class="c1">// Usually the same as the property under validation.</span>
+    <span class="c1">// Used when each sort submit element submits a search condition</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getSearchConditionProps</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">SEARCH_COND_PROPS</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Action class that moves to JSP (user search)</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01Action</span> <span class="kd">extends</span> <span class="n">DbAccessSupport</span> <span class="o">{</span>
+
+    <span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/ss11AC/W11AC0101.jsp&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doRW11AC0102</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// Business process is omitted.</span>
+        <span class="c1">// Input validation is omitted</span>
+
+        <span class="c1">// ListSearchInfo inherited class is created.</span>
+        <span class="n">W11AC01SearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">searchConditionCtx</span><span class="o">.</span><span class="na">createObject</span><span class="o">();</span>
+
+        <span class="c1">// Configure the maximum number of search results (upper limit) to the number search results to be acquired (number of results displayed on one page).</span>
+        <span class="c1">// Since paging is not used, the following configuration is required.</span>
+        <span class="n">condition</span><span class="o">.</span><span class="na">setMax</span><span class="o">(</span><span class="n">condition</span><span class="o">.</span><span class="na">getMaxResultCount</span><span class="o">());</span>
+
+
+        <span class="c1">// Search process is omitted</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Implementation example of JSP (user search)</strong></p>
+<div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Specify</span> <span class="kc">false</span> <span class="n">in</span> <span class="n">the</span> <span class="n">usePaging</span> <span class="n">attribute</span> <span class="n">since</span> <span class="n">paging</span> <span class="n">is</span> <span class="n">not</span> <span class="n">used</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span> --%&gt;
+<span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Since</span> <span class="n">paging</span> <span class="n">is</span> <span class="n">not</span> <span class="n">used</span><span class="o">,</span> <span class="n">the</span> <span class="n">searchUri</span> <span class="n">attribute</span> <span class="n">need</span> <span class="n">not</span> <span class="n">be</span> <span class="n">specified</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+<span class="nt">&lt;nbs:listSearchResult</span> <span class="na">listSearchInfoName=</span><span class="s">&quot;11AC_W11AC01&quot;</span>
+                     <span class="na">usePaging=</span><span class="s">&quot;false&quot;</span>
+                     <span class="na">resultSetName=</span><span class="s">&quot;searchResult&quot;</span><span class="nt">&gt;</span>
+
+   <span class="k">&lt;%-</span><span class="o">-</span> <span class="n">Other</span> <span class="n">attributes</span> <span class="n">are</span> <span class="n">omitted</span><span class="o">.</span> <span class="o">--</span><span class="k">%&gt;</span>
+
+<span class="nt">&lt;/nbs:listSearchResult&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">
+<span id="listsearchresult-defaultcondition"></span><h2>How to implement the initial display of search results with the default search conditions<a class="headerlink" href="#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Up to now, this has been described on the premise that the initial display of the search screen simply displays the search conditions form.
+However, there may be a requirement to display the search results using the default search conditions in the initial display of the search screen.</p>
+<p>In this case, the search conditions are not sent as a request parameter and the default search conditions are assembled on the server side and searched.
+Hence, the search conditions used for paging do not exist in the window scope.
+Therefore, it is essential to set the default search conditions in the window scope in the initial display process of the action.
+The implementation method is the same as with normal paging, except for the initial display of actions such as JSP.</p>
+<p>Since the process of setting the default search conditions in a window scope is common,
+it has been provided as a utility (ListSearchInfoUtil) in the sample implementation.</p>
+<p>The implementation method is described below.
+As with paging, the business application class and JSP that perform user search are used in the implementation example.</p>
+<p><strong>Initial display process of the Action class</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doRW11AC0101</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Business process is omitted.</span>
+
+    <span class="c1">// Generate form and configure the default search conditions</span>
+    <span class="n">W11AC01SearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">W11AC01SearchForm</span><span class="o">();</span>
+    <span class="n">condition</span><span class="o">.</span><span class="na">setUserIdLocked</span><span class="o">(</span><span class="s">&quot;0&quot;</span><span class="o">);</span>
+    <span class="n">condition</span><span class="o">.</span><span class="na">setSortId</span><span class="o">(</span><span class="s">&quot;kanjiName_asc&quot;</span><span class="o">);</span>
+    <span class="n">condition</span><span class="o">.</span><span class="na">setDate</span><span class="o">(</span><span class="s">&quot;20130703&quot;</span><span class="o">);</span>
+    <span class="n">condition</span><span class="o">.</span><span class="na">setMoney</span><span class="o">(</span><span class="n">BigDecimal</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="mf">123456789.12d</span><span class="o">));</span>
+
+    <span class="c1">// To display the default search conditions in the input form,</span>
+    <span class="c1">// configure the default search conditions in the request scope</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;11AC_W11AC01&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+    <span class="c1">// Since paging uses the default search conditions,</span>
+    <span class="c1">// configure the default search conditions in the window scope.</span>
+    <span class="c1">// Since this configuration process is common, use the utility.</span>
+    <span class="n">ListSearchInfoUtil</span><span class="o">.</span><span class="na">setDefaultCondition</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="s">&quot;11AC_W11AC01&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+    <span class="c1">// Execute search</span>
+    <span class="n">SqlResultSet</span> <span class="n">searchResult</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">searchResult</span> <span class="o">=</span> <span class="n">selectByCondition</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TooManyResultException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span><span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">&quot;MSG00035&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMaxResultCount</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Set the search results to the request scope</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;searchResult&quot;</span><span class="o">,</span> <span class="n">searchResult</span><span class="o">);</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;resultCount&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">.</span><span class="na">getResultCount</span><span class="o">());</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/ss11AC/W11AC0101.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-settings-for-the-search-result-list-display-function">
+<span id="listsearchresult-setting"></span><h2>Default settings for the search result list display function<a class="headerlink" href="#default-settings-for-the-search-result-list-display-function" title="Permalink to this headline">¶</a></h2>
+<p>The default settings for the search result list display function are broadly divided into the screen display settings and the settings for the search process for list search.</p>
+<p>The default values for the screen display settings are specified directly in the tag file.
+For more information on the screen display configuration, see <a class="reference internal" href="#listsearchresult-tagreference"><span>Tag Reference</span></a>.</p>
+<p>The settings for the search process for list search are described below.</p>
+<p>The following settings can be made for the search process.</p>
+<ul class="simple">
+<li>Maximum number of search results (upper limit)</li>
+<li>Number of acquired search results (number of results displayed on one page)</li>
+</ul>
+<p>The configuration values are specified in the environment configuration file of the system repository function.
+The property names and settings are shown below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>nablarch.listSearch.maxResultCount</td>
+<td>Maximum number of search results (upper limit)</td>
+</tr>
+<tr class="row-odd"><td>nablarch.listSearch.max</td>
+<td>Maximum number of acquired search results (number of results displayed on one page)</td>
+</tr>
+</tbody>
+</table>
+<p>The above settings are obtained from the system repository when ListSearchInfo is created and set in the properties of ListSearchInfo itself.
+If the the system repository settings do not exist, the following default values are set.</p>
+<ul class="simple">
+<li>Maximum number of search results (upper limit): 200</li>
+<li>Maximum number of acquired search results (number of results displayed on one page): 20</li>
+</ul>
+<p>To individually change the settings for only some functions, implement the individual functions as follows.</p>
+<ul class="simple">
+<li>Specify the <a class="reference internal" href="#id1"><span>listSearchResult tag</span></a> attribute in JSP for the screen display configuration.</li>
+<li>For settings concerned with the search process for paging, set the values in the class that inherits from ListSearchInfo in the Action method that displays the corresponding list display screen.</li>
+</ul>
+<p>An implementation example for changing the maximum number of search results (upper limit) to 50 and the number of results displayed to 10 is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">W11AC01Action</span> <span class="kd">extends</span> <span class="n">DbAccessSupport</span> <span class="o">{</span>
+
+    <span class="c1">// Maximum number of records to be displayed in the list</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_ROWS</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+
+    <span class="c1">// Number of search results to be displayed on the list (upper limit)</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_RESULT_COUNT</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+
+
+    <span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/ss11AC/W11AC0101.jsp&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doRW11AC0102</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// Business process is omitted.</span>
+
+        <span class="c1">// Input validation is omitted.</span>
+
+        <span class="n">W11AC01SearchForm</span> <span class="n">condition</span> <span class="o">=</span> <span class="o">...</span> <span class="o">;</span>
+
+        <span class="c1">// Configure the maximum number to be displayed.</span>
+        <span class="n">condition</span><span class="o">.</span><span class="na">setMax</span><span class="o">(</span><span class="n">MAX_ROWS</span><span class="o">);</span>
+
+        <span class="c1">// Configure the maximum number of search results (upper limit).</span>
+        <span class="n">condition</span><span class="o">.</span><span class="na">setMaxResultCount</span><span class="o">(</span><span class="n">MAX_RESULT_COUNT</span><span class="o">);</span>
+
+        <span class="c1">// Search process is omitted.</span>
+
+        <span class="c1">// Subsequent processes are omitted.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-import-a-sample-implementation-tag-file-into-the-business-application">
+<span id="listsearchresult-customize"></span><h2>How to import a sample implementation (tag file) into the business application<a class="headerlink" href="#how-to-import-a-sample-implementation-tag-file-into-the-business-application" title="Permalink to this headline">¶</a></h2>
+<p>To import a sample implementation (tag file) into the business application, follow the procedure below.</p>
+<ul class="simple">
+<li>Place the tag file in the business application</li>
+<li>Revise the prefix in the tag file</li>
+</ul>
+<div class="section" id="place-the-tag-file-in-the-business-application">
+<h3>Place the tag file in the business application<a class="headerlink" href="#place-the-tag-file-in-the-business-application" title="Permalink to this headline">¶</a></h3>
+<p>Place the listSearchResult package in the business application as follows.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Copy from</dt>
+<dd><em>META-INF/tags/</em><strong>listSearchResult</strong></dd>
+<dt>Copy to</dt>
+<dd>/WEB-INF/tags directory of the business application</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="revise-the-prefix-in-the-tag-file">
+<h3>Revise the prefix in the tag file<a class="headerlink" href="#revise-the-prefix-in-the-tag-file" title="Permalink to this headline">¶</a></h3>
+<p>In the sample implementation, &#8220;nbs&#8221; is added to the prefix in the tag file.Revise the prefix definition and prefix according to the location of the business application.
+The contents before and after the revision are displayed on the assumption that the file is placed in /WEB-INF/tags/listSearchResult.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Before revision</dt>
+<dd><p class="first">Prefix definition:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;nbs&quot; uri=&quot;http://tis.co.jp/nablarch-biz-sample&quot; %&gt;
+</pre></div>
+</div>
+<p>Prefix:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">nbs</span>
+</pre></div>
+</div>
+</dd>
+<dt>After revision</dt>
+<dd><p class="first">Prefix definition:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;%@ taglib prefix=&quot;listSearchResult&quot; tagdir=&quot;/WEB-INF/tags/listSearchResult&quot; %&gt;
+</pre></div>
+</div>
+<p>Prefix:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">listSearchResult</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="tag-reference">
+<span id="listsearchresult-tagreference"></span><h2>Tag Reference<a class="headerlink" href="#tag-reference" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Tag</th>
+<th class="head">Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="#id1"><span>listSearchResult tag</span></a></td>
+<td>Displays a list of the search results.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#listsearchresult-listsearchsortsubmittag"><span>listSearchSortSubmit tag</span></a></td>
+<td>Outputs the column headings that handle sorting in the list of search results.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<span id="id2"></span><h3>listSearchResult tag<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The listSearchResult tag dsiplays attributes for each screen element.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2">Overall</td>
+</tr>
+<tr class="row-odd"><td>listSearchInfoName</td>
+<td>Name used to acquire ListSearchInfo from the Request scope. <br />
+If not specified, &#8220;Number of search results&#8221; and &#8220;Paging&#8221; are not displayed. <br />
+Do not specify when displaying only a list such as batch deletion confirmation screen.</td>
+</tr>
+<tr class="row-even"><td>listSearchResultWrapperCss</td>
+<td>Class attribute of the div tag that wraps the entire table with paging (number of search results, paging, search results). <br />
+Default is &#8220;nablarch_listSearchResultWrapper&#8221;.</td>
+</tr>
+<tr class="row-odd"><td colspan="2">Search result list</td>
+</tr>
+<tr class="row-even"><td>useResultCount</td>
+<td>Whether to display the number of search results.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-odd"><td>resultCountCss</td>
+<td>Class attribute of the div tag that wraps the number of search results.  <br />
+Default is &#8220;nablarch_resultCount&#8221;.</td>
+</tr>
+<tr class="row-even"><td>resultCountFragment</td>
+<td>JSP fragment that outputs the number of search results.  <br />
+Default is &#8220;search results &lt;resultCount property of PagingInfo&gt; record&#8221;.</td>
+</tr>
+<tr class="row-odd"><td colspan="2">Paging</td>
+</tr>
+<tr class="row-even"><td>usePaging</td>
+<td>Whether to display paging.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-odd"><td>searchUri</td>
+<td>URI to use for the paging submit element.  <br />
+Must be specified when paging is displayed.</td>
+</tr>
+<tr class="row-even"><td>pagingPosition</td>
+<td>The display position of paging. <br />
+Specify one of the following. <br />
+top(top only)  <br />
+bottom(bottom only)  <br />
+both(both)  <br />
+none(no display)  <br />
+Default is top.</td>
+</tr>
+<tr class="row-odd"><td>pagingCss</td>
+<td>Class attribute of the div tag that wraps the entire paging submit elements (previous, next, etc.).   <br />
+Default is &#8220;nablarch_paging&#8221;</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2">Current page number</td>
+</tr>
+<tr class="row-odd"><td>useCurrentPageNumber</td>
+<td>Whether to use the current page number.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-even"><td>currentPageNumberCss</td>
+<td>Class attribute of the div tag that wraps the current page number.  <br />
+Default is &#8220;nablarch_currentPageNumber&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>currentPageNumberFragment</td>
+<td>JSP fragment that outputs the current page number.  <br />
+Default is &#8220;[&lt;currentPageNumber property of PagingInfo&gt;/&lt;pageCount property of PagingInfo&gt;page]&#8221;.</td>
+</tr>
+<tr class="row-even"><td colspan="2">First</td>
+</tr>
+<tr class="row-odd"><td>useFirstSubmit</td>
+<td>Whether to use the submit to move to the first page.  <br />
+Default is false.</td>
+</tr>
+<tr class="row-even"><td>firstSubmitTag</td>
+<td>Nablarch tag used by the submit for moving to the first page. <br />
+Specify one of the following. <br />
+submitLink(a Tag)  <br />
+submit(input Tag)  <br />
+button(button Tag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>firstSubmitType</td>
+<td>Type attribute of the tag used by the submit for moving to the first page. <br />
+Only the following is supported. <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-even"><td>firstSubmitCss</td>
+<td>Class attribute of the div tag that wraps the submit for moving to the first page.  <br />
+Default is &#8220;nablarch_firstSubmit&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>firstSubmitLabel</td>
+<td>Label used by the submit for moving to the first page.  <br />
+Default is &#8220;First&#8221;.</td>
+</tr>
+<tr class="row-even"><td>firstSubmitName</td>
+<td>Name attribute of the tag used by the submit for moving to the first page. <br />
+Default is &#8220;firstSubmit&#8221;. <br />
+Outputs by adding the suffix (upper side is &#8220;_top&#8221; and lower side is &#8220;_bottom&#8221;) indicating the display position of paging. <br />
+For example, if the default and display position is upper, it will be &#8220;firstSubmit_top&#8221;.</td>
+</tr>
+<tr class="row-odd"><td colspan="2">Previous</td>
+</tr>
+<tr class="row-even"><td>usePrevSubmit</td>
+<td>Whether to use the submit to move to the previous page.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-odd"><td>prevSubmitTag</td>
+<td>Nablarch tag used by the submit for moving to the previous page. <br />
+Specify one of the following. <br />
+submitLink(aTag)  <br />
+submit(inputTag)  <br />
+button(buttonTag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-even"><td>prevSubmitType</td>
+<td>Type attribute of the tag used by the submit for moving to the previous page. <br />
+Only the following is supported. <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>prevSubmitCss</td>
+<td>Class attribute of the div tag that wraps the submit for moving to the previous page.  <br />
+Default is &#8220;nablarch_prevSubmit&#8221;.</td>
+</tr>
+<tr class="row-even"><td>prevSubmitLabel</td>
+<td>Label used by the submit for moving to the previous page.  <br />
+Default is &#8220;Previous&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>prevSubmitName</td>
+<td>Name attribute of the tag used by the submit for moving to the previous page. <br />
+Default is &#8220;prevSubmit&#8221;. <br />
+Outputs by adding the suffix (upper side is &#8220;_top&#8221; and lower side is &#8220;_bottom&#8221;) indicating the display position of paging. <br />
+For example, if the default and display position is upper, it will be &#8220;firstSubmit_top&#8221;.</td>
+</tr>
+<tr class="row-even"><td colspan="2">Page number (label is not specified since the page number is used as a label)</td>
+</tr>
+<tr class="row-odd"><td>usePageNumberSubmit</td>
+<td>Whether to use the submit to moves to the page specified by the page number.  <br />
+Default is false.</td>
+</tr>
+<tr class="row-even"><td>pageNumberSubmitTag</td>
+<td>Nablarch tag used by the submit for moving to the page specified by the page number. <br />
+Specify one of the following. <br />
+submitLink(aTag)  <br />
+submit(inputTag)  <br />
+button(buttonTag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>pageNumberSubmitType</td>
+<td>Type attribute of the tag used by the submit for moving to the page specified by the page number. <br />
+Only the following is supported.  <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-even"><td>pageNumberSubmitCss</td>
+<td>Class attribute of the div tag that wraps the submit for moving to the page specified by the page number.  <br />
+Default is &#8220;nablarch_pageNumberSubmit&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>pageNumberSubmitName</td>
+<td>Name attribute of the tag used by the submit for moving to the page specified by the page number. <br />
+Default is &#8220;pageNumberSubmit&#8221;. <br />
+Outputs by adding the page number and suffix (upper side is &#8220;_top&#8221; and lower side is &#8220;_bottom&#8221;) indicating the display position of paging. <br />
+For example, if the default and display position is upper and the page number is 3, it will be &#8221; pageNumberSubmit3_top&#8221;.</td>
+</tr>
+<tr class="row-even"><td colspan="2">Next</td>
+</tr>
+<tr class="row-odd"><td>useNextSubmit</td>
+<td>Whether to use the submit to move to the next page.  <br />
+Default is true.</td>
+</tr>
+<tr class="row-even"><td>nextSubmitTag</td>
+<td>Nablarch tag used by the submit for moving to the next page. <br />
+Specify one of the following. <br />
+submitLink(aTag)  <br />
+submit(inputTag)  <br />
+button(buttonTag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>nextSubmitType</td>
+<td>Type attribute of the tag used by the submit for moving to the next page. <br />
+Only the following is supported. <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-even"><td>nextSubmitCss</td>
+<td>Class attribute of the div tag that wraps the submit for moving to the next page. <br />
+Default is &#8220;nablarch_nextSubmit&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>nextSubmitLabel</td>
+<td>Label used by the submit for moving to the next page. <br />
+Default is &#8220;Next&#8221;.</td>
+</tr>
+<tr class="row-even"><td>nextSubmitName</td>
+<td>Name attribute of the tag used by the submit for moving to the next page. <br />
+Default is &#8220;nextSubmit&#8221;. <br />
+Outputs by adding the suffix (upper side is &#8220;_top&#8221; and lower side is &#8220;_bottom&#8221;) indicating the display position of paging. <br />
+For example, if the default and display position is upper, it will be &#8220;nextSubmit_top&#8221;.</td>
+</tr>
+<tr class="row-odd"><td colspan="2">List</td>
+</tr>
+<tr class="row-even"><td>useLastSubmit</td>
+<td>Whether to use the submit to move to the last page.  <br />
+Default is false.</td>
+</tr>
+<tr class="row-odd"><td>lastSubmitTag</td>
+<td>Nablarch tag used by the submit for moving to the last page. <br />
+Specify one of the following. <br />
+submitLink(aTag)  <br />
+submit(inputTag)  <br />
+button(buttonTag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-even"><td>lastSubmitType</td>
+<td>Type attribute of the tag used by the submit for moving to the last page. <br />
+Only the following is supported. <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>lastSubmitCss</td>
+<td>Class attribute of the div tag that wraps the submit for moving to the last page. <br />
+Default is &#8220;nablarch_lastSubmit&#8221;.</td>
+</tr>
+<tr class="row-even"><td>lastSubmitLabel</td>
+<td>Label used by the submit for moving to the last page. <br />
+Default is &#8220;List&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>lastSubmitName</td>
+<td>Name attribute of the tag used by the submit for moving to the last page. <br />
+Default is &#8220;lastSubmit&#8221;.  <br />
+Outputs by adding the suffix (upper side is &#8220;_top&#8221; and lower side is &#8220;_bottom&#8221;) indicating the display position of paging. <br />
+For example, if the default and display position is upper, it will be &#8220;lastSubmit_top&#8221;.</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ListSearchResult_PagingTableFull.jpg"><img alt="../../_images/ListSearchResult_PagingTableFull.jpg" src="../../_images/ListSearchResult_PagingTableFull.jpg" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2">Search result</td>
+</tr>
+<tr class="row-odd"><td>resultSetName (required)</td>
+<td>Name used to acquire the search results from the request scope.</td>
+</tr>
+<tr class="row-even"><td>resultSetCss</td>
+<td>Class attribute of the search result table. <br />
+Default is &#8220;nablarch_resultSet&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>headerRowFragment (required)</td>
+<td>JSP fragment of the header row.</td>
+</tr>
+<tr class="row-even"><td>bodyRowFragment (required)</td>
+<td>JSP fragment for the body row.</td>
+</tr>
+<tr class="row-odd"><td>varRowName</td>
+<td>Variable name used when referring to row data (var attribute of the c:forEach tag) in the body row fragment. <br />
+Default is&#8221;row&#8221;.</td>
+</tr>
+<tr class="row-even"><td>varStatusName</td>
+<td><p class="first">Variable name used when referring to the status (status attribute of the c:forEach tag) in the body row fragment.  <br />
+Default is &#8220;status&#8221;.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When accessing the status using the n:write tag, an error occurs and the value cannot be obtained
+since the access method differs between the n:write tag and the EL expression.
+This error can be avoided by using the n:set tag to access the status.An example of its use is shown below.</p>
+<div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:set</span> <span class="na">var=</span><span class="s">&quot;rowCount&quot;</span> <span class="na">value=</span><span class="s">&quot;${status.count}&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;rowCount&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>varCountName</td>
+<td>Variable name used when referring to the count property of the status (status attribute of the c:forEach tag).  <br />
+Default is &#8220;count&#8221;.</td>
+</tr>
+<tr class="row-even"><td>varRowCountName</td>
+<td>Variable name used when referring to the search result count (start position of search result acquisition + status count).  <br />
+Default is &#8220;rowCount&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>varOddEvenName</td>
+<td>Variable name used when referring to the class attribute of the body row. <br />
+This variable name is used to change the value of the class attribute every other row. <br />
+Default is &#8220;oddEvenCss&#8221;.</td>
+</tr>
+<tr class="row-even"><td>oddValue</td>
+<td>The class attribute to use for odd lines of body. <br />
+Default is &#8220;nablarch_odd&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>evenValue</td>
+<td>The class attribute to use for even lines of body.  <br />
+Default is &#8220;nablarch_even&#8221;.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="listsearchresult-listsearchsortsubmittag">
+<span id="id3"></span><h3>listSearchSortSubmit tag<a class="headerlink" href="#listsearchresult-listsearchsortsubmittag" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tag</td>
+<td>Nablarch tag used to submit the sort. <br />
+Specify one of the following. <br />
+submitLink(aTag)  <br />
+submit(inputTag)  <br />
+button(buttonTag)  <br />
+Default is submitLink.</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>Type attribute of the tag used to submit the sort. <br />
+Only the following is supported. <br />
+submit  <br />
+button  <br />
+Not used if the Nablarch tag used for the submit button submit is submitLink.</td>
+</tr>
+<tr class="row-even"><td>sortCss</td>
+<td>Class attribute of the submit to sort. <br />
+It is always output in the submit class attribute. <br />
+Default is &#8220;nablarch_sort&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>ascCss</td>
+<td>Submit class attribute specified when sorting in the ascending order. <br />
+It is output by adding to the sortCss attribute.  <br />
+Default is &#8220;nablarch_asc&#8221;.(Output example: class=&#8221;nablarch_sort nablarch_asc&#8221;)</td>
+</tr>
+<tr class="row-even"><td>descCss</td>
+<td>Submit class attribute specified when sorting in the descending order.  <br />
+It is output by adding to the sortCss attribute. <br />
+Default is &#8220;nablarch_desc&#8221;.(Output example: class=&#8221;nablarch_sort nablarch_desc&#8221;)</td>
+</tr>
+<tr class="row-odd"><td>ascSortId (required)</td>
+<td>Sort ID when sorting in ascending order.</td>
+</tr>
+<tr class="row-even"><td>descSortId (required)</td>
+<td>Sort ID when sorting in descending order.</td>
+</tr>
+<tr class="row-odd"><td>defaultSort</td>
+<td>Default sort. <br />
+Specify one of the following. <br />
+asc(ascending)  <br />
+desc(descending)  <br />
+Default is &#8220;asc&#8221;.</td>
+</tr>
+<tr class="row-even"><td>label (required)</td>
+<td>Label to use for the submit to sort.</td>
+</tr>
+<tr class="row-odd"><td>name (required)</td>
+<td>Name attribute of the tag used to submit the sort. <br />
+The name attribute should be unique in the screen.</td>
+</tr>
+<tr class="row-even"><td>listSearchInfoName (required)</td>
+<td>Name used to acquire ListSearchInfo from the Request scope.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

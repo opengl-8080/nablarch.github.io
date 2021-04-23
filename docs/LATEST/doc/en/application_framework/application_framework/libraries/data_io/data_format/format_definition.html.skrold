@@ -1,0 +1,1455 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.4.2.3.1.1. Description Rules for Format Definition File &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/data_io/data_format/format_definition.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="7.4.2. General Data Format" href="../data_format.html"/>
+        <link rel="next" title="7.4.2.3.1.1.4.2.1. Sample Collection of Fixed (Fixed-Length) Multi Format Definition" href="multi_format_example.html"/>
+        <link rel="prev" title="7.4.2. General Data Format" href="../data_format.html"/>
+ 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../../data_converter.html">7.4. Access to Data in Various Formats</a> &raquo;</li>
+      
+          <li><a href="../data_format.html">7.4.2. General Data Format</a> &raquo;</li>
+      
+    <li>7.4.2.3.1.1. Description Rules for Format Definition File</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="description-rules-for-format-definition-file">
+<span id="data-format-definition"></span><h1>7.4.2.3.1.1. Description Rules for Format Definition File<a class="headerlink" href="#description-rules-for-format-definition-file" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#common-notation-for-format-definition-files" id="id1">Common notation for format definition files</a><ul>
+<li><a class="reference internal" href="#character-code" id="id2">Character code</a></li>
+<li><a class="reference internal" href="#literal-notation" id="id3">Literal notation</a></li>
+<li><a class="reference internal" href="#comment" id="id4">Comment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#structure-of-the-format-definition-file" id="id5">Structure of the format definition file</a></li>
+<li><a class="reference internal" href="#definition-of-the-directive-declaration-section" id="id6">Definition of the directive declaration section</a><ul>
+<li><a class="reference internal" href="#directive-list-that-can-be-used-in-common" id="id7">Directive list that can be used in common</a></li>
+<li><a class="reference internal" href="#list-of-directives-that-can-be-specified-in-fixed-fixed-length-format" id="id8">List of directives that can be specified in fixed (fixed-length) format</a></li>
+<li><a class="reference internal" href="#list-of-directives-that-can-be-specified-in-variable-variable-length-format" id="id9">List of directives that can be specified in variable (variable length) format</a></li>
+<li><a class="reference internal" href="#directive-list-that-can-be-specified-in-json-format" id="id10">Directive list that can be specified in JSON format</a></li>
+<li><a class="reference internal" href="#directive-list-that-can-be-specified-in-xml-format" id="id11">Directive list that can be specified in XML format</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#record-format-definition-section" id="id12">Record format definition section</a><ul>
+<li><a class="reference internal" href="#field-definition" id="id13">Field definition</a></li>
+<li><a class="reference internal" href="#define-a-multiformat-record" id="id14">Define a multiformat record</a></li>
+<li><a class="reference internal" href="#field-type-list" id="id15">Field type list</a></li>
+<li><a class="reference internal" href="#field-converter-list" id="id16">Field converter list</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#omitting-item-definitions" id="id17">Omitting item definitions</a></li>
+</ul>
+</div>
+<div class="section" id="common-notation-for-format-definition-files">
+<h2><a class="toc-backref" href="#id1">7.4.2.3.1.1.1. Common notation for format definition files</a><a class="headerlink" href="#common-notation-for-format-definition-files" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the common description rules for format definition.</p>
+<div class="section" id="character-code">
+<h3><a class="toc-backref" href="#id2">7.4.2.3.1.1.1.1. Character code</a><a class="headerlink" href="#character-code" title="Permalink to this headline">¶</a></h3>
+<p>The character code of the format definition file is <code class="docutils literal"><span class="pre">UTF-8</span></code>.</p>
+</div>
+<div class="section" id="literal-notation">
+<h3><a class="toc-backref" href="#id3">7.4.2.3.1.1.1.2. Literal notation</a><a class="headerlink" href="#literal-notation" title="Permalink to this headline">¶</a></h3>
+<p>When a literal is configured in the configuration value, follow the rules below.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Literal type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>String</td>
+<td><p class="first">Enclose the value with <code class="docutils literal"><span class="pre">&quot;</span></code> just like the Java character literal.</p>
+<p>Note that Unicode escapes or octal escapes are not supported.</p>
+<dl class="last docutils">
+<dt>Example of the description</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8220;Nablarch&#8221;</div>
+<div class="line">&#8220;\r\n&#8221;</div>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td>Decimal integer</td>
+<td><p class="first">Described in the same way as a Java numeric literal.</p>
+<p>Note that decimals are not supported.</p>
+<dl class="last docutils">
+<dt>Example of the description</dt>
+<dd><div class="first last line-block">
+<div class="line">123</div>
+<div class="line">-123</div>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>Boolean</td>
+<td>Configure as <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code>. (Uppercase letters are allowed)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comment">
+<h3><a class="toc-backref" href="#id4">7.4.2.3.1.1.1.3. Comment</a><a class="headerlink" href="#comment" title="Permalink to this headline">¶</a></h3>
+<p>Content following <code class="docutils literal"><span class="pre">#</span></code> in a line is treated as a comment.</p>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Sample file</span>
+<span class="c1">#</span>
+file-type:     <span class="s2">&quot;Fixed&quot;</span>  <span class="c1"># Fixed-length</span>
+text-encoding: <span class="s2">&quot;ms932&quot;</span>  <span class="c1"># Character code is ms932</span>
+record-length:  <span class="m">120</span>     <span class="c1"># The length of each line is 120 bytes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="structure-of-the-format-definition-file">
+<h2><a class="toc-backref" href="#id5">7.4.2.3.1.1.2. Structure of the format definition file</a><a class="headerlink" href="#structure-of-the-format-definition-file" title="Permalink to this headline">¶</a></h2>
+<p>The format definition file is mainly composed of the following two sections.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Directive declaration section:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">This section defines common configuration such as the data format (fixed-length or JSON etc.) used and encoding.</p>
+<p>For details, see <a class="reference internal" href="#data-format-definition-directive"><span>Definition of the directive declaration section</span></a>.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Record format definition section:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first">Defines contents of the record.</p>
+<p>Specifically, the field definition in record, data type and data conversion rule for each field are defined.</p>
+<p class="last">For details, see <a class="reference internal" href="#data-format-definition-record"><span>Record format definition section</span></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="definition-of-the-directive-declaration-section">
+<span id="data-format-definition-directive"></span><h2><a class="toc-backref" href="#id6">7.4.2.3.1.1.3. Definition of the directive declaration section</a><a class="headerlink" href="#definition-of-the-directive-declaration-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="directive-list-that-can-be-used-in-common">
+<h3><a class="toc-backref" href="#id7">7.4.2.3.1.1.3.1. Directive list that can be used in common</a><a class="headerlink" href="#directive-list-that-can-be-used-in-common" title="Permalink to this headline">¶</a></h3>
+<p>Directive definitions used in all data formats are as follows.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Directive</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file-type <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first">Specify the data format</p>
+<p>The following data formats can be specified as standard.</p>
+<ul class="last simple">
+<li>Fixed (fixed-length)</li>
+<li>Variable(variable length such as CSV and TSV)</li>
+<li>JSON</li>
+<li>XML</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>text-encoding <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first" id="data-format-directive-text-encoding">Specify the encoding to use when reading and writing string fields.</p>
+<p>Only character encodings that are available to JVM used can be specified. For example, specify <code class="docutils literal"><span class="pre">UTF-8</span></code> and <code class="docutils literal"><span class="pre">SJIS</span></code>.</p>
+<p>If JSON is specified for <cite>file-type</cite>, only the following encodings can be specified</p>
+<ul class="simple">
+<li>UTF-8</li>
+<li>UTF-16(BE or LE)</li>
+<li>UTF-32(BE or LE)</li>
+</ul>
+<p class="last">If XML is specified for <cite>file-type</cite>, the encoding specified in the XML declaration section
+takes precedence over this configured value.</p>
+</td>
+</tr>
+<tr class="row-even"><td>record-separator <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specify the record end character (Carriage return and Line feed).</p>
+<p>This is <code class="docutils literal"><span class="pre">required</span></code> if Variable (variable length) is specified for <cite>file-type</cite>.</p>
+<p class="last">This configuration value is not used when the <cite>file-type</cite> is JSON or XML.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="list-of-directives-that-can-be-specified-in-fixed-fixed-length-format">
+<h3><a class="toc-backref" href="#id8">7.4.2.3.1.1.3.2. List of directives that can be specified in fixed (fixed-length) format</a><a class="headerlink" href="#list-of-directives-that-can-be-specified-in-fixed-fixed-length-format" title="Permalink to this headline">¶</a></h3>
+<p>The directives used for data in the fixed (fixed-length) format are as follows.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Directive</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>record-length <code class="docutils literal"><span class="pre">required</span></code></td>
+<td>Specify the byte length of one record.</td>
+</tr>
+<tr class="row-odd"><td>positive-zone-sign-nibble <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-positive-zone-sign-nibble">Specify the plus sign to be configured in the zone section of the signed zoned decimal as a string in hexadecimal notation.</p>
+<p>By default, the following values are used depending on the value of <a class="reference internal" href="#data-format-directive-text-encoding"><span>text-encoding</span></a>.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">For ASCII-compatible:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">0x3</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">For EBCDIC-compatible:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">0xC</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td>negative-zone-sign-nibble <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-negative-zone-sign-nibble">Specify the minus sign to be configured in the zone section of the signed zone numeric as a string in hexadecimal notation.</p>
+<p>By default, the following values are used depending on the value of <a class="reference internal" href="#data-format-directive-text-encoding"><span>text-encoding</span></a>.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">For ASCII-compatible:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">0x7</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">For EBCDIC-compatible:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">0xD</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td>positive-pack-sign-nibble <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-positive-pack-sign-nibble">Specify the plus sign to be configured in the sign bit of the signed pack numeric as a string in hexadecimal notation.</p>
+<p>By default, the following values are used depending on the value of <a class="reference internal" href="#data-format-directive-text-encoding"><span>text-encoding</span></a>.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">For ASCII-compatible:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">0x3</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">For EBCDIC-compatible:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">0xC</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td>negative-pack-sign-nibble <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-negative-pack-sign-nibble">Specify the minus sign to be configured in the sign bit of the signed packed decimal as a string in hexadecimal notation.</p>
+<p>By default, the following values are used depending on the value of <a class="reference internal" href="#data-format-directive-text-encoding"><span>text-encoding</span></a>.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">For ASCII-compatible:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">0x7</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">For EBCDIC-compatible:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">0xD</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td>required-decimal-point <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies if a decimal point is required for unsigned and signed numeric.</p>
+<p>If <code class="docutils literal"><span class="pre">true</span></code> is specified, a decimal point will be added to the data to be written.</p>
+<p>If <code class="docutils literal"><span class="pre">false</span></code> is specified, a decimal point will not be added to the data to be written. (The decimal place will be fixed)</p>
+<p class="last">The default option is to add a decimal point ( <code class="docutils literal"><span class="pre">true</span></code> ).</p>
+</td>
+</tr>
+<tr class="row-even"><td>fixed-sign-position <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies if the sign position of a signed numeric is to be fixed.</p>
+<p>If the sign position is fixed ( <code class="docutils literal"><span class="pre">true</span></code> ), the sign position is fixed to the beginning of the item.
+If the sign position is not fixed ( <code class="docutils literal"><span class="pre">false</span></code> ), the sign position is added to the beginning of the numeric before padding.</p>
+<p>The default option is fixed ( <code class="docutils literal"><span class="pre">true</span></code> ).</p>
+<dl class="last docutils">
+<dt>Example</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Sign position fixed:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">-000123456</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Sign position not fixed:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">000-123456</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td>required-plus-sign <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies if a plus sign is required for the signed numeric.</p>
+<p>When <code class="docutils literal"><span class="pre">true</span></code> is specified, the data to be read must have a plus sign ( <code class="docutils literal"><span class="pre">+</span></code> ),
+and a plus sign ( <code class="docutils literal"><span class="pre">+</span></code> ) is added to the written data.</p>
+<p class="last">The default option is not added ( <code class="docutils literal"><span class="pre">false</span></code> ).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Directive definition section</span>
+<span class="c1">#</span>
+file-type:                      <span class="s2">&quot;Fixed&quot;</span>  <span class="c1"># Fixed-length file</span>
+text-encoding:                  <span class="s2">&quot;ms932&quot;</span>  <span class="c1"># Character encoding of the string type field</span>
+record-length:                  <span class="m">120</span>      <span class="c1"># Byte length of each record</span>
+positive-zone-sign-nibble:      <span class="s2">&quot;C&quot;</span>      <span class="c1"># Plus sign of zone numeric</span>
+negative-zone-sign-nibble:      <span class="s2">&quot;D&quot;</span>      <span class="c1"># Minus sign of zone numeric</span>
+positive-pack-sign-nibble:      <span class="s2">&quot;C&quot;</span>      <span class="c1"># Plus sign of pack numeric</span>
+negative-pack-sign-nibbleL      <span class="s2">&quot;D&quot;</span>      <span class="c1"># Minus sign of pack numeric</span>
+required-decimal-point:         <span class="nb">true</span>     <span class="c1"># With decimal point</span>
+fixed-sign-position:            <span class="nb">true</span>     <span class="c1"># Sign at the beginning</span>
+required-plus-sign:             <span class="nb">false</span>    <span class="c1"># Plus sign is not added</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-of-directives-that-can-be-specified-in-variable-variable-length-format">
+<span id="data-format-variable-data-directive"></span><h3><a class="toc-backref" href="#id9">7.4.2.3.1.1.3.3. List of directives that can be specified in variable (variable length) format</a><a class="headerlink" href="#list-of-directives-that-can-be-specified-in-variable-variable-length-format" title="Permalink to this headline">¶</a></h3>
+<p>The directives used for data in variable (variable length) format are as follows.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Directive</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>field-separator <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first">Specifies a separator character for the field (item).</p>
+<p class="last">For example, specify <code class="docutils literal"><span class="pre">,</span></code> for CSV and specify <code class="docutils literal"><span class="pre">\t</span></code> for TSV.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>quoting-delimiter <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies the character used to quote field (item) values.</p>
+<p>For example, use <code class="docutils literal"><span class="pre">&quot;</span></code> to configure double quotes,
+and use <code class="docutils literal"><span class="pre">'</span></code> for single quotes.</p>
+<p>When the value is configured, all fields (items) are quoted during output.
+By default, quotes are not used.</p>
+<p class="last">If the value is configured, the quote characters before and after the field is removed during input.
+For handling Carriage return and Line feed and quote characters in the fields, see RFC4180.</p>
+</td>
+</tr>
+<tr class="row-even"><td>ignore-blank-lines <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Configures if blank lines should be ignored when reading the data.</p>
+<p>When configured to <code class="docutils literal"><span class="pre">true</span></code>, records on blank lines (only Carriage return and Line feed) are ignored.</p>
+<p class="last">By default, blank lines are ignored.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>requires-title <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-requires-title">Configures if the first record should be read or written as a title.</p>
+<p>When configured to <code class="docutils literal"><span class="pre">true</span></code>, the first record is treated as the title.</p>
+<p>By default, the first record is not treated as a title.</p>
+<p class="last">For the layout definition of the title record, see <a class="reference internal" href="#data-format-title-type-name"><span>title-record-type-name directive</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td>title-record-type-name <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first" id="data-format-title-type-name">Configures the record type name of the title.</p>
+<p>If not specified, the record type name of the title will be <code class="docutils literal"><span class="pre">Title</span></code>.</p>
+<p>The title record is edited according to the record format definition associated with the record type name specified in this directive.</p>
+<p>For the sample format definition file using the title record type,
+see <a class="reference internal" href="multi_format_example.html#data-format-variable-title-sample"><span>title record format definition example</span></a>.</p>
+<p class="last">For details of record types and record definitions, see <a class="reference internal" href="#data-format-definition-record"><span>Record format definition section</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>max-record-length <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies the number of characters in a record that can be read.</p>
+<p>When data that does not have a record separator character (corrupted data) is read,
+if all records are expanded on the heap, the process may terminate abnormally due to insufficient heap.</p>
+<p>Therefore, if the record separator character does not exist even after reading the number of characters configured in this directive,
+the reading process is aborted, and an exception is thrown as invalid data.</p>
+<p class="last">By default, configured to 1,000,000 characters.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Directive definition section</span>
+<span class="c1">#</span>
+file-type:                  <span class="s2">&quot;Variable&quot;</span>  <span class="c1"># Variable length file</span>
+text-encoding:              <span class="s2">&quot;utf-8&quot;</span>     <span class="c1"># Character encoding of the string type field</span>
+record-separator:           <span class="s2">&quot;\\r\\n&quot;</span>    <span class="c1"># Carriage return and Line feed</span>
+
+field-separator:            <span class="s2">&quot;,&quot;</span>         <span class="c1"># CSV</span>
+quoting-delimiter:          <span class="s2">&quot;\&quot;&quot;</span>        <span class="c1"># Enclose items in double quotes</span>
+ignore-blank-lines:         <span class="nb">true</span>        <span class="c1"># Ignore blank lines</span>
+requires-title:             <span class="nb">false</span>       <span class="c1"># No title record</span>
+max-record-length:          <span class="m">1000</span>        <span class="c1"># Maximum 1000 characters for this csv record</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="directive-list-that-can-be-specified-in-json-format">
+<h3><a class="toc-backref" href="#id10">7.4.2.3.1.1.3.4. Directive list that can be specified in JSON format</a><a class="headerlink" href="#directive-list-that-can-be-specified-in-json-format" title="Permalink to this headline">¶</a></h3>
+<p>There are no directives specific to the JSON data format.</p>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:      <span class="s2">&quot;JSON&quot;</span>      <span class="c1"># json format</span>
+text-encoding:  <span class="s2">&quot;utf-8&quot;</span>     <span class="c1"># Character encoding of the string type field</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="directive-list-that-can-be-specified-in-xml-format">
+<h3><a class="toc-backref" href="#id11">7.4.2.3.1.1.3.5. Directive list that can be specified in XML format</a><a class="headerlink" href="#directive-list-that-can-be-specified-in-xml-format" title="Permalink to this headline">¶</a></h3>
+<p>There are no directives specific to the XML data format.</p>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:      <span class="s2">&quot;XML&quot;</span>       <span class="c1"># xml format</span>
+text-encoding:  <span class="s2">&quot;utf-8&quot;</span>     <span class="c1"># Character encoding of the string type field</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="record-format-definition-section">
+<span id="data-format-definition-record"></span><h2><a class="toc-backref" href="#id12">7.4.2.3.1.1.4. Record format definition section</a><a class="headerlink" href="#record-format-definition-section" title="Permalink to this headline">¶</a></h2>
+<p>The record format definition section configures the definition information of the fields (items) that make up the record (such as position and data type in the record).</p>
+<p>An example of record format definition is shown below.</p>
+<dl class="docutils">
+<dt>Points</dt>
+<dd><ul class="first last simple">
+<li>A record type name, to identify the record, is defined by enclosing with <code class="docutils literal"><span class="pre">[</span></code>, <code class="docutils literal"><span class="pre">]</span></code> brackets.</li>
+<li>Record type name must be unique in the format definition file.</li>
+<li>The record type name defines an optional value.</li>
+<li>The fields (items) in the record are defined from the next line of the record type.</li>
+<li>The field (item) definition are repeated for the number of fields.</li>
+<li>For field definition format, see <a class="reference internal" href="#data-format-field-definition"><span>field definition format</span></a>.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>data<span class="o">]</span>              <span class="c1"># Record type name:data</span>
+<span class="m">1</span> name  N<span class="o">(</span><span class="m">100</span><span class="o">)</span>      <span class="c1"># Name</span>
+<span class="m">2</span> age   X9<span class="o">(</span><span class="m">3</span><span class="o">)</span>       <span class="c1"># Age</span>
+</pre></div>
+</div>
+<div class="section" id="field-definition">
+<span id="data-format-field-definition"></span><h3><a class="toc-backref" href="#id13">7.4.2.3.1.1.4.1. Field definition</a><a class="headerlink" href="#field-definition" title="Permalink to this headline">¶</a></h3>
+<p>Field definition is defined with the following format.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>&lt;Field start position&gt; &lt;Field name&gt; &lt;Multiplicity&gt; &lt;Field type&gt; &lt;Field converter&gt;
+</pre></div>
+</div>
+<p>Details of each element of the field definition are as given below.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Field start position <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first">Define the field start position according to the following rules for each data format.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Fixed (fixed-length):</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Configure the number of starting bytes (count from 1) of the field.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Variable (variable length):</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Configure the item serial number of the field.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">JSON:</th><td class="field-body">Element serial number of the field</td>
+</tr>
+<tr class="field-even field"><th class="field-name">XML:</th><td class="field-body">Element serial number of the field</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td>Field name <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first">Configure the name to identify the field.</p>
+<p>The field name is the key of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">java.util.Map</a> used for input/output by this function.</p>
+<p>If <code class="docutils literal"><span class="pre">?</span></code> is added to the beginning of the field name, that item will not be read into <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">java.util.Map</a> during input.
+For example, any extra items can be excluded by using <code class="docutils literal"><span class="pre">?</span></code> for filler items of a fixed-length file that is often handled by the host.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that a field name cannot be defined with only numbers.</p>
+</div>
+<p>In the case of XML data format, items are treated as an attribute value by adding <code class="docutils literal"><span class="pre">&#64;</span></code> the beginning of the field name.</p>
+<p>An example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>tagName<span class="o">]</span>
+@attr
+</pre></div>
+</div>
+<p>The XML corresponding to the above is as follows.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;tagName</span> <span class="na">attr=</span><span class="s">&quot;val&quot;</span><span class="nt">&gt;</span>
+・・・
+<span class="nt">&lt;/tagName&gt;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>Multiplicity <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Specifies the number of fields that can be defined.</p>
+<p>This value can be specified only for JSON and XML data formats.</p>
+<dl class="docutils">
+<dt>The description rules are as follows.</dt>
+<dd><ul class="first last simple">
+<li>The number that can be defined is described by enclosing with <code class="docutils literal"><span class="pre">[</span></code>, <code class="docutils literal"><span class="pre">]</span></code>.</li>
+<li>When there is a lower limit and an upper limit, write <code class="docutils literal"><span class="pre">..</span></code> between the lower limit and the upper limit.</li>
+<li>If there is no upper limit, write <code class="docutils literal"><span class="pre">*</span></code>.</li>
+<li>If omitted, it becomes <code class="docutils literal"><span class="pre">[1]</span></code>.</li>
+</ul>
+</dd>
+</dl>
+<p>A specification example is shown below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>address <span class="o">[</span><span class="m">1</span>..3<span class="o">]</span>    <span class="c1"># 1 to 3 can be defined</span>
+address           <span class="c1"># Only one is possible as it is omitted</span>
+address <span class="o">[</span><span class="m">0</span>..*<span class="o">]</span>    <span class="c1"># No condition (0 to unlimited)</span>
+address <span class="o">[</span>*<span class="o">]</span>       <span class="c1"># No condition (0 to unlimited)</span>
+address <span class="o">[</span><span class="m">1</span>..*<span class="o">]</span>    <span class="c1"># 1 or more</span>
+</pre></div>
+</div>
+<p>In the case of the following xml, the number of definitions in the <code class="docutils literal"><span class="pre">address</span></code> field is <code class="docutils literal"><span class="pre">2</span></code>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;person&gt;</span>
+  <span class="nt">&lt;address&gt;</span>Home address<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address&gt;</span>Work address<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/person&gt;</span>
+</pre></div>
+</div>
+<p>In the case of the following JSON, the number of elements in the <code class="docutils literal"><span class="pre">address</span></code> field is <code class="docutils literal"><span class="pre">3</span></code>.</p>
+<div class="last highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;address&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Home address&quot;</span><span class="p">,</span> <span class="s2">&quot;Work address&quot;</span><span class="p">,</span> <span class="s2">&quot;Delivery address&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Field Type <code class="docutils literal"><span class="pre">required</span></code></td>
+<td><p class="first">Defines the data type of the field.</p>
+<p class="last">For field types that can be specified by default, see <a class="reference internal" href="#data-format-field-type-list"><span>Field type list</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>Field convertor <code class="docutils literal"><span class="pre">optional</span></code></td>
+<td><p class="first">Defines the contents of input/output pre-processing, such as specifying options for field types or data conversion.</p>
+<p>For field types that can be specified by default, see <a class="reference internal" href="#data-format-field-convertor-list"><span>Field converter list</span></a>.</p>
+<p class="last">Multiple field converters can be configured.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-a-multiformat-record">
+<span id="data-format-multi-layout-data"></span><h3><a class="toc-backref" href="#id14">7.4.2.3.1.1.4.2. Define a multiformat record</a><a class="headerlink" href="#define-a-multiformat-record" title="Permalink to this headline">¶</a></h3>
+<p>For multi-format data, define multiple record formats in the format definition file.</p>
+<p>The record format of the input /output data is automatically determined by the value of a specific field.
+If the input /output target data does not match any record type, it is treated as invalid data and the process is terminated abnormally.</p>
+<p>Example of format definition for multi-format is shown below.</p>
+<dl class="docutils">
+<dt>Points</dt>
+<dd><ul class="first last simple">
+<li>Defines the record identification field. The record type name is <code class="docutils literal"><span class="pre">Classifier</span></code>.</li>
+<li>The condition to determine a record is defined directly below the record type name of each record definition.</li>
+<li>The field defined in record identification (Classifier) must exist in the record definition.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>file-type:        <span class="s2">&quot;Fixed&quot;</span> <span class="c1"># Fixed-length</span>
+text-encoding:    <span class="s2">&quot;MS932&quot;</span> <span class="c1"># Character encoding of the string type field</span>
+record-length:    <span class="m">40</span>      <span class="c1"># Length of each record</span>
+record-separator: <span class="s2">&quot;\r\n&quot;</span>  <span class="c1"># Carriage return and Line feed (crlf)</span>
+
+<span class="c1"># Define the record identification condition</span>
+<span class="o">[</span>Classifier<span class="o">]</span>
+<span class="m">1</span> dataKbn X<span class="o">(</span><span class="m">1</span><span class="o">)</span>      <span class="c1"># Determine the record type by using the field of the first byte</span>
+
+<span class="c1"># Define the header record</span>
+<span class="o">[</span>header<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>         <span class="c1"># Header record if dataKbn is &quot;1&quot;</span>
+<span class="m">1</span> dataKbn X<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<span class="m">2</span> data    X<span class="o">(</span><span class="m">39</span><span class="o">)</span>
+
+<span class="c1"># Define the data record</span>
+<span class="o">[</span>data<span class="o">]</span>
+<span class="nv">dataKbn</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>        <span class="c1"># Data record if dataKbn is &quot;2&quot;</span>
+<span class="m">1</span> dataKbn X<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<span class="m">2</span> data    X<span class="o">(</span><span class="m">39</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>For a sample of the multi-format definition, refer to the following link.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="multi_format_example.html">7.4.2.3.1.1.4.2.1. Sample Collection of Fixed (Fixed-Length) Multi Format Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_format_example.html#sample-collection-of-variable-variable-length-multi-format-definition">7.4.2.3.1.1.4.2.2. Sample Collection of Variable (Variable Length) Multi Format Definition</a></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since JSON and XML data formats do not have the concept of a record,
+format definition for multiformat is not supported.</p>
+</div>
+</div>
+<div class="section" id="field-type-list">
+<span id="data-format-field-type-list"></span><h3><a class="toc-backref" href="#id15">7.4.2.3.1.1.4.3. Field type list</a><a class="headerlink" href="#field-type-list" title="Permalink to this headline">¶</a></h3>
+<p>The data type definition list provided as standard is shown below.</p>
+<dl class="docutils">
+<dt>List of available field types for Fixed (fixed-length) data format</dt>
+<dd><table border="1" class="colwidths-given white-space-normal first last docutils">
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Java data types</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="data-format-field-type-single-byte-character-string">X</p>
+</td>
+<td>String</td>
+<td><p class="first">Single byte character string (byte length = character string length)</p>
+<p>By default, right trim/padding is performed using half-width space.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>If the output target value is <code class="docutils literal"><span class="pre">null</span></code>, the value is converted to an empty character before processing.</p>
+<p class="last">If the read value is an empty string, it is converted to <code class="docutils literal"><span class="pre">null</span></code>.
+Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html#setConvertEmptyToNull-boolean-" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting.setConvertEmptyToNull(boolean)">convertEmptyToNull</a> to <code class="docutils literal"><span class="pre">false</span></code>
+if conversion of empty string to <code class="docutils literal"><span class="pre">null</span></code> is not required.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>N</td>
+<td>String</td>
+<td><p class="first">Double-byte character string (byte length = number of characters/2)</p>
+<p>By default, right trim/padding is performed with full-width space.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>If the byte length is not a multiple of 2, a syntax error will occur.</li>
+</ul>
+<p class="last">If the output target value is <code class="docutils literal"><span class="pre">null</span></code> or the read value is an empty string,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-single-byte-character-string"><span>single byte string field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td>XN</td>
+<td>String</td>
+<td><p class="first">Multibyte string</p>
+<p>Specify this field type when handling a field where characters of different byte lengths are mixed, such as UTF-8.</p>
+<p>This field type is also used when the padding for the full-width string (double-byte string) uses a half-width space.</p>
+<p>By default, right trim/padding is performed with half-width space.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="last">If the output target value is <code class="docutils literal"><span class="pre">null</span></code> or the read value is an empty string,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-single-byte-character-string"><span>single byte string field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="data-format-field-type-zoned-decimal">Z</p>
+</td>
+<td>BigDecimal</td>
+<td><p class="first">Zone numeric (byte length = number of digits)</p>
+<p>By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after decimal point (numeric) <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>If the output target value is <code class="docutils literal"><span class="pre">null</span></code>, the value is converted to <code class="docutils literal"><span class="pre">0</span></code> before processing.</p>
+<p class="last">If the number of bytes in the read value is <code class="docutils literal"><span class="pre">0</span></code>, it is converted to <code class="docutils literal"><span class="pre">null</span></code>.
+Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/FixedLengthConvertorSetting.html#setConvertEmptyToNull-boolean-" title="nablarch.core.dataformat.convertor.FixedLengthConvertorSetting.setConvertEmptyToNull(boolean)">convertEmptyToNull</a> to <code class="docutils literal"><span class="pre">false</span></code>,
+when the number of bytes is <code class="docutils literal"><span class="pre">0</span></code> and conversion to <code class="docutils literal"><span class="pre">null</span></code> is not required.</p>
+</td>
+</tr>
+<tr class="row-even"><td>SZ</td>
+<td>BigDecimal</td>
+<td><p class="first">Signed zone numeric (byte length = number of digits)</p>
+<p>By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after the decimal point (numeric) <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Argument 3:</th><td class="field-body">Plus sign to be configured in the zone section (hexadecimal string) <code class="docutils literal"><span class="pre">optional</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 4:</th><td class="field-body">Minus sign to be configured in the zone section (hexadecimal string) <code class="docutils literal"><span class="pre">optional</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Argument 3 and argument 4 are configured when overwriting the <a class="reference internal" href="#data-format-positive-zone-sign-nibble"><span>plus sign of the signed zone numeric</span></a>
+and minus sign of the <a class="reference internal" href="#data-format-negative-zone-sign-nibble"><span>signed zone numeric</span></a>.</p>
+<p class="last">When the output target value is <code class="docutils literal"><span class="pre">null</span></code> or the number of bytes of the read value is <code class="docutils literal"><span class="pre">0</span></code>,
+then the handling is the same as <a class="reference internal" href="#data-format-field-type-zoned-decimal"><span>zone numeric field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>P</td>
+<td>BigDecimal</td>
+<td><p class="first">Pack numeric (byte length = number of digits/2 [rounded up])</p>
+<p>By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after the decimal point (numeric) <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="last">When the output target value is <code class="docutils literal"><span class="pre">null</span></code> or the number of bytes of the read value is <code class="docutils literal"><span class="pre">0</span></code>,
+then the handling is the same as <a class="reference internal" href="#data-format-field-type-zoned-decimal"><span>zone numeric field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td>SP</td>
+<td>BigDecimal</td>
+<td><p class="first">Signed pack numeric (byte length = (number of digits + 1)/2 [rounded up])</p>
+<p>By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after the decimal point (numeric) <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Argument 3:</th><td class="field-body">Plus sign to be configured in the zone section (hexadecimal string) <code class="docutils literal"><span class="pre">optional</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 4:</th><td class="field-body">Minus sign to be configured in the zone section (hexadecimal string) <code class="docutils literal"><span class="pre">optional</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Argument 3 and argument 4 are configured when overwriting the <a class="reference internal" href="#data-format-positive-pack-sign-nibble"><span>plus sign of the signed pack numeric</span></a>
+and minus sign of the <a class="reference internal" href="#data-format-negative-pack-sign-nibble"><span>signed pack numeric</span></a>.</p>
+<p class="last">When the output target value is <code class="docutils literal"><span class="pre">null</span></code> or the number of bytes of the read value is <code class="docutils literal"><span class="pre">0</span></code>,
+then the handling is the same as <a class="reference internal" href="#data-format-field-type-zoned-decimal"><span>zone numeric field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>byte[]</td>
+<td><p class="first">Binary string</p>
+<p>Padding and trimming are not performed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>The conversion specifications for each application are different when the output value is <code class="docutils literal"><span class="pre">null</span></code>.
+Therefore, the value is not converted for this field type even in such a case and
+<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/InvalidDataFormatException.html" title="nablarch.core.dataformat.InvalidDataFormatException">InvalidDataFormatException</a>
+is thrown.</p>
+<p class="last">When using this field type, configure the value explicitly in the application according to the requirements.</p>
+</td>
+</tr>
+<tr class="row-even"><td>X9</td>
+<td>BigDecimal</td>
+<td><p class="first">Unsigned numeric string (byte length = number of characters)</p>
+<p>Treat single-byte strings (X) in the field as numeric.</p>
+<p>By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.
+Decimal point sign ( <code class="docutils literal"><span class="pre">.</span></code> ) can be included in the string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after the decimal point (numeric) for fixed decimal point <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>When the output value is <code class="docutils literal"><span class="pre">null</span></code>,
+then the handling is the same as <a class="reference internal" href="#data-format-field-type-zoned-decimal"><span>zone numeric field type</span></a>.</p>
+<p class="last">If the read value is an empty string,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-single-byte-character-string"><span>single byte string field type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>SX9</td>
+<td>BigDecimal</td>
+<td><p class="first">Signed numeric string (byte length = number of characters)</p>
+<p>Single byte string (X) in the field is treated as a signed numeric.
+By default, left trim/padding is performed with <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument 1:</th><td class="field-body">Byte length (numeric) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Argument 2:</th><td class="field-body">Number of digits after the decimal point (numeric) for fixed decimal point <code class="docutils literal"><span class="pre">optional</span></code> Default: <code class="docutils literal"><span class="pre">0</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>When the output value is <code class="docutils literal"><span class="pre">null</span></code>,
+then the handling is the same as <a class="reference internal" href="#data-format-field-type-zoned-decimal"><span>zone numeric field type</span></a>.</p>
+<p>If the read value is an empty string,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-single-byte-character-string"><span>single byte string field type</span></a>.</p>
+<p>To change the sign character (<code class="docutils literal"><span class="pre">+</span></code> 、<code class="docutils literal"><span class="pre">-</span></code>), a project-specific field type can be created to support the implementation of the following classes.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/datatype/SignedNumberStringDecimal.html" title="nablarch.core.dataformat.convertor.datatype.SignedNumberStringDecimal">SignedNumberStringDecimal</a></li>
+</ul>
+<p class="last">For additional field types, see <a class="reference internal" href="../data_format.html#data-format-field-type-add"><span>Add a field type</span></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>List of available field types for Variable (Variable length) data format</dt>
+<dd><table border="1" class="colwidths-given white-space-normal first last docutils">
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Java data types</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>X <br/>
+N <br/>
+XN <br/>
+X9 <br/>
+SX9</td>
+<td>String</td>
+<td><p class="first">All fields are read and written as strings for variable-length data formats.</p>
+<p>The operation does not change no matter what type of identifier is specified.
+Since there is no concept of field length, arguments are not required.</p>
+<p>To read and write as numeric format of character string (BigDecimal),
+use <a class="reference internal" href="#data-format-number-convertor"><span>number converter</span></a>
+or <a class="reference internal" href="#data-format-signed-number-convertor"><span>signed_number converter</span></a>.</p>
+<p>If the output target value is <code class="docutils literal"><span class="pre">null</span></code>, the value is converted to a empty character before processing.</p>
+<p class="last">If the read value is an empty string, it is converted to <code class="docutils literal"><span class="pre">null</span></code>.
+Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/dataformat/convertor/VariableLengthConvertorSetting.html#setConvertEmptyToNull-boolean-" title="nablarch.core.dataformat.convertor.VariableLengthConvertorSetting.setConvertEmptyToNull(boolean)">convertEmptyToNull</a> to <code class="docutils literal"><span class="pre">false</span></code> if conversion of empty string to null is not required.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>List of available field types for JSON and XML data formats</dt>
+<dd><table border="1" class="colwidths-given white-space-normal first last docutils">
+<colgroup>
+<col width="13%" />
+<col width="15%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Java data types</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="data-format-field-type-nullable-string">X <br/>
+N <br/>
+XN</p>
+</td>
+<td>String</td>
+<td><p class="first">String data type</p>
+<p>Editing such as padding is not performed.</p>
+<p>The value is enclosed in double quotes <code class="docutils literal"><span class="pre">&quot;</span></code> during output for JSON.</p>
+<p class="last">If the output value is <code class="docutils literal"><span class="pre">null</span></code>, the value is not converted in JSON,
+and is converted to an empty string in XML.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>X9 <br/>
+SX9 <br/></td>
+<td>String</td>
+<td><p class="first">Numeric string type</p>
+<p>Data editing such as padding is not performed. During output, the value is output without change.</p>
+<p>To read and write as numeric format of character string (BigDecimal),
+use <a class="reference internal" href="#data-format-number-convertor"><span>number converter</span></a>
+or <a class="reference internal" href="#data-format-signed-number-convertor"><span>signed_number converter</span></a>.</p>
+<p class="last">When the output value is <code class="docutils literal"><span class="pre">null</span></code>,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-nullable-string"><span>field type for string data type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td>BL</td>
+<td>String</td>
+<td><p class="first">String（ <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code> expressed as a string）</p>
+<p>Data editing such as padding is not performed. During output, the value is output without change.</p>
+<p class="last">When the output value is <code class="docutils literal"><span class="pre">null</span></code>,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-nullable-string"><span>field type for string data type</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="data-format-nest-object">OB</p>
+</td>
+<td>-</td>
+<td><p class="first">Used to specify nested record types.</p>
+<p>The record type corresponding to the field name is input/output as a nested element.</p>
+<p>When the output value is <code class="docutils literal"><span class="pre">null</span></code>,
+the handling is the same as <a class="reference internal" href="#data-format-field-type-nullable-string"><span>field type for string data type</span></a>.</p>
+<p>An usage example is shown below.</p>
+<dl class="docutils">
+<dt>json</dt>
+<dd><div class="first last highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span>    <span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span>     <span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span> <span class="p">:</span> <span class="s2">&quot;Address&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span>    <span class="p">:</span> <span class="s2">&quot;Name 1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;age&quot;</span>     <span class="p">:</span> <span class="mi">31</span><span class="p">,</span>
+      <span class="nt">&quot;address&quot;</span> <span class="p">:</span> <span class="s2">&quot;Address 1&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>xml</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;users&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span> Name <span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;age&gt;</span>30<span class="nt">&lt;/age&gt;</span>
+    <span class="nt">&lt;address&gt;</span> Address <span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+    <span class="nt">&lt;name&gt;</span> Name 1<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;age&gt;</span>31<span class="nt">&lt;/age&gt;</span>
+    <span class="nt">&lt;address&gt;</span> Address 1<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+<span class="nt">&lt;/users&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>The format definition file for JSON and xml above are as follows:</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>users<span class="o">]</span>       <span class="c1"># Root element</span>
+<span class="m">1</span> user <span class="o">[</span><span class="m">1</span>..*<span class="o">]</span> OB
+
+<span class="o">[</span>user<span class="o">]</span>        <span class="c1"># Nested element</span>
+<span class="m">1</span> name    N   <span class="c1"># Bottom layer element</span>
+<span class="m">2</span> age     X9
+<span class="m">3</span> address N
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="field-converter-list">
+<span id="data-format-field-convertor-list"></span><h3><a class="toc-backref" href="#id16">7.4.2.3.1.1.4.4. Field converter list</a><a class="headerlink" href="#field-converter-list" title="Permalink to this headline">¶</a></h3>
+<p>The data converter list provided as standard is shown below.</p>
+<table border="1" class="colwidths-given white-space-normal docutils">
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Converter name</th>
+<th class="head">Type conversion specification</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>pad</td>
+<td>No type conversion</td>
+<td><p class="first">Configure the characters to pad and trim.</p>
+<p>Padding and trim positions operate as follows for each field type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">X:</th><td class="field-body">Right trim, right padding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">N:</th><td class="field-body">Right trim, right padding</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">XN:</th><td class="field-body">Right trim, right padding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Z:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">SZ:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">P:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">SP:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">X9:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">SX9:</th><td class="field-body">Left trim, left padding</td>
+</tr>
+</tbody>
+</table>
+<p>For more information on field types, see <a class="reference internal" href="#data-format-field-type-list"><span>Field type list</span></a>.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Value for padding/trim <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td>encoding</td>
+<td>No type conversion</td>
+<td><p class="first">Configure the character encoding for string type field</p>
+<p>Configure when overwriting the common configuration (<a class="reference internal" href="#data-format-directive-text-encoding"><span>text-encoding</span></a>) for only specific fields.</p>
+<p>Can be used only for <code class="docutils literal"><span class="pre">X</span></code>, <code class="docutils literal"><span class="pre">N</span></code> and <code class="docutils literal"><span class="pre">XN</span></code> fields.
+Ignored if it is configured to any other field type.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Encoding name (string) <code class="docutils literal"><span class="pre">required</span></code></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td>Literal value</td>
+<td>No type conversion</td>
+<td><p class="first">Configure the default value for output.</p>
+<p>Outputs the specified literal value if the value was not configured during output.</p>
+<p class="last">This configuration value is not used during input.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="data-format-number-convertor">number</p>
+</td>
+<td>String &lt;-&gt; BigDecimal</td>
+<td><p class="first">Configure when conversion of numeric string to numeric (BigDecimal) is required.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">During input:</th><td class="field-body">Checks that the input numeric string is in the unsigned numeric format and converts it to BigDecimal type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">During output:</th><td class="field-body">Converts the output value to a string, and then outputs after checking that it is in the unsigned numeric value format.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="data-format-signed-number-convertor">signed_number</p>
+</td>
+<td>String &lt;-&gt; BigDecimal</td>
+<td><p class="first">Configure when conversion of signed numeric string to numeric (BigDecimal) is required.</p>
+<p class="last">Expect that signs are allowed, the specification is the same as <a class="reference internal" href="#data-format-number-convertor"><span>number converter</span></a>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="data-format-replacement-convertor">replacement</p>
+</td>
+<td>No type conversion</td>
+<td><p class="first">The character is converted to the conversion destination character and returned for both input and output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Argument:</th><td class="field-body">Replacement type name <code class="docutils literal"><span class="pre">optional</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="last">For details, see <a class="reference internal" href="../data_format.html#data-format-replacement"><span>Replace (collate) the characters</span></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="omitting-item-definitions">
+<h2><a class="toc-backref" href="#id17">7.4.2.3.1.1.5. Omitting item definitions</a><a class="headerlink" href="#omitting-item-definitions" title="Permalink to this headline">¶</a></h2>
+<p>Describes the behavior when the item definition of the format definition file does not match the item definition of the data.</p>
+<dl class="docutils">
+<dt>For fixed-length and variable length data</dt>
+<dd>For fixed-length and variable length data, the field definition of the data and the format definition must match exactly.
+For this reason, an item must be defined in the format definition file even if there are items that are not required by the application.</dd>
+<dt>For JSON and XML data</dt>
+<dd>In the case of JSON and XML, items that are not defined in the format definition file will not be read.
+Therefore, item definition is not required for items that are present in the data but are not required by the application.</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

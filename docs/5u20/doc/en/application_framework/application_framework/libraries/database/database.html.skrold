@@ -1,0 +1,1587 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.3.1. Database Access (JDBC Wrapper) &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/database/database.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../index.html"/>
+        <link rel="up" title="7.3. Database Access" href="../database_management.html"/>
+        <link rel="next" title="7.3.2. Universal DAO" href="universal_dao.html"/>
+        <link rel="prev" title="7.3. Database Access" href="../database_management.html"/>
+ 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+          <li><a href="../database_management.html">7.3. Database Access</a> &raquo;</li>
+      
+    <li>7.3.1. Database Access (JDBC Wrapper)</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="database-access-jdbc-wrapper">
+<span id="database"></span><h1>7.3.1. Database Access (JDBC Wrapper)<a class="headerlink" href="#database-access-jdbc-wrapper" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id3">Function overview</a><ul>
+<li><a class="reference internal" href="#can-be-used-without-sensing-the-database-dialect" id="id4">Can be used without sensing the database dialect</a></li>
+<li><a class="reference internal" href="#write-sql-in-sql-file-not-logic" id="id5">Write SQL in SQL file, not logic</a></li>
+<li><a class="reference internal" href="#bean-property-values-can-be-embedded-in-sql-bind-variables" id="id6">Bean property values can be embedded in SQL bind variables</a></li>
+<li><a class="reference internal" href="#like-search-can-be-easily-implemented" id="id7">like search can be easily implemented</a></li>
+<li><a class="reference internal" href="#sql-statements-can-be-dynamically-constructed-based-on-the-state-of-the-bean-object-during-execution" id="id8">SQL statements can be dynamically constructed based on the state of the Bean object during execution</a></li>
+<li><a class="reference internal" href="#sql-query-results-can-be-cached" id="id9">SQL query results can be cached</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id10">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id11">How to use</a><ul>
+<li><a class="reference internal" href="#connection-configuration-for-the-database" id="id12">Connection configuration for the database</a></li>
+<li><a class="reference internal" href="#use-dialects-for-database-products" id="id13">Use dialects for database products</a></li>
+<li><a class="reference internal" href="#manage-sql-in-files" id="id14">Manage SQL in files</a></li>
+<li><a class="reference internal" href="#execute-sql-by-specifying-sqlid" id="id15">Execute SQL by specifying SQLID</a></li>
+<li><a class="reference internal" href="#execute-a-stored-procedure" id="id16">Execute a stored procedure</a></li>
+<li><a class="reference internal" href="#execute-the-sql-by-specifying-the-search-scope" id="id17">Execute the SQL by specifying the search scope</a></li>
+<li><a class="reference internal" href="#execute-sql-with-bean-object-as-input" id="id18">Execute SQL with Bean object as input</a></li>
+<li><a class="reference internal" href="#convert-type" id="id19">Convert type</a></li>
+<li><a class="reference internal" href="#automatically-configure-a-common-value-when-executing-sql" id="id20">Automatically configure a common value when executing SQL</a></li>
+<li><a class="reference internal" href="#perform-a-like-search" id="id21">Perform a like search</a></li>
+<li><a class="reference internal" href="#define-escape-character-and-escape-target-characters-during-like-search" id="id22">Define escape character and escape target characters during like search</a></li>
+<li><a class="reference internal" href="#execute-sql-with-variable-conditions" id="id23">Execute SQL with variable conditions</a></li>
+<li><a class="reference internal" href="#executing-sql-with-variable-number-of-conditions-for-in-clause" id="id24">Executing SQL with variable number of conditions for in clause</a></li>
+<li><a class="reference internal" href="#execute-sql-by-dynamically-switching-sort-items-of-order-by-during-runtime" id="id25">Execute SQL by dynamically switching sort items of order by during runtime</a></li>
+<li><a class="reference internal" href="#accessing-columns-of-binary-type" id="id26">Accessing columns of binary type</a></li>
+<li><a class="reference internal" href="#access-columns-of-string-type-with-a-large-number-of-digits-e-g-clob" id="id27">Access columns of string type with a large number of digits (e.g. CLOB)</a></li>
+<li><a class="reference internal" href="#exception-types-that-occur-when-accessing-the-database" id="id28">Exception types that occur when accessing the database</a></li>
+<li><a class="reference internal" href="#process-by-handling-unique-constraint-violation" id="id29">Process by handling unique constraint violation</a></li>
+<li><a class="reference internal" href="#processing-of-long-running-transactions-is-aborted-as-errors" id="id30">Processing of long-running transactions is aborted as errors</a></li>
+<li><a class="reference internal" href="#execute-sql-in-a-transaction-different-from-the-current-transaction" id="id31">Execute SQL in a transaction different from the current transaction</a></li>
+<li><a class="reference internal" href="#cache-search-results-handle-cached-data-for-the-same-sql-under-the-same-condition" id="id32">Cache search results (handle cached data for the same SQL under the same condition)</a></li>
+<li><a class="reference internal" href="#process-using-the-java-sql-connection" id="id33">Process using the <cite>java.sql.Connection</cite></a></li>
+<li><a class="reference internal" href="#switch-the-schema-in-sql-statement-for-each-environment" id="id34">Switch the schema in SQL statement for each environment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id35">Expansion example</a><ul>
+<li><a class="reference internal" href="#add-a-connection-method-to-the-database" id="id36">Add a connection method to the database</a></li>
+<li><a class="reference internal" href="#add-dialects" id="id37">Add dialects</a></li>
+<li><a class="reference internal" href="#switching-the-exception-class-when-accessing-the-database" id="id38">Switching the exception class when accessing the database</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Provides a function to execute the SQL statement for the database using JDBC.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>As described in <a class="reference internal" href="../database_management.html#database-management"><span>Database Access</span></a> , the use of <a class="reference internal" href="universal_dao.html#universal-dao"><span>Universal DAO</span></a> is recommended for executing SQL.</p>
+<p class="last">Since <a class="reference internal" href="universal_dao.html#universal-dao"><span>Universal DAO</span></a> internally uses the API of this function to access the database, the configuration to use this function is always required.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Since this function depends on JDBC 3.0, the JDBC driver used must implement JDBC 3.0 or higher.</p>
+</div>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id3">7.3.1.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-be-used-without-sensing-the-database-dialect">
+<span id="database-dialect"></span><h3><a class="toc-backref" href="#id4">7.3.1.1.1. Can be used without sensing the database dialect</a><a class="headerlink" href="#can-be-used-without-sensing-the-database-dialect" title="Permalink to this headline">¶</a></h3>
+<p>By configuring <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> corresponding to the database product used, the application can be implemented without sensing the dialect.</p>
+<p><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> provides the following functions:</p>
+<ul class="simple">
+<li>A method that returns whether the identity column can be used (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentity--" title="nablarch.core.db.dialect.Dialect.supportsIdentity()">supportsIdentity</a> )</li>
+<li>A method that returns whether batch insert can be performed on a table that has an identity (automatic numbered) column (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsIdentityWithBatchInsert--" title="nablarch.core.db.dialect.Dialect.supportsIdentityWithBatchInsert()">supportsIdentityWithBatchInsert</a>)</li>
+<li>A method that returns whether the sequence object can be used (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsSequence--" title="nablarch.core.db.dialect.Dialect.supportsSequence()">supportsSequence</a> )</li>
+<li>A method that returns whether offset (or a function equivalent to offset) can be used in the specified range of search query (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#supportsOffset--" title="nablarch.core.db.dialect.Dialect.supportsOffset()">supportsOffset</a> )</li>
+<li>A method to determine whether <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> that indicates a unique constraint violation has occurred (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#isDuplicateException-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isDuplicateException(java.sql.SQLException)">isDuplicateException</a> )</li>
+<li>A method to determine whether <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> of transaction timeout target has occurred (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#isTransactionTimeoutError-java.sql.SQLException-" title="nablarch.core.db.dialect.Dialect.isTransactionTimeoutError(java.sql.SQLException)">isTransactionTimeoutError</a> )</li>
+<li>A method for generating SQL statement to acquire the next value from the sequence object (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#buildSequenceGeneratorSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.buildSequenceGeneratorSql(java.lang.String)">buildSequenceGeneratorSql</a> )</li>
+<li>A method that returns <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ResultSetConvertor.html" title="nablarch.core.db.statement.ResultSetConvertor">ResultSetConvertor</a> , which acquires value from <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html" title="java.sql.ResultSet">ResultSet</a> (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#getResultSetConvertor--" title="nablarch.core.db.dialect.Dialect.getResultSetConvertor()">getResultSetConvertor</a> )</li>
+<li>A method to convert search query to range specification (for paging) SQL (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertPaginationSql-java.lang.String-nablarch.core.db.statement.SelectOption-" title="nablarch.core.db.dialect.Dialect.convertPaginationSql(java.lang.String-nablarch.core.db.statement.SelectOption)">convertPaginationSql</a> )</li>
+<li>A method for converting search query to the number acquisition SQL (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#convertCountSql-java.lang.String-" title="nablarch.core.db.dialect.Dialect.convertCountSql(java.lang.String)">convertCountSql</a> )</li>
+<li>A method that returns SQL to check if <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">Connection</a> is connected to the database (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html#getPingSql--" title="nablarch.core.db.dialect.Dialect.getPingSql()">getPingSql</a> )</li>
+</ul>
+<p>See <a class="reference internal" href="#database-use-dialect"><span>Use dialects for database products</span></a> for how to configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/Dialect.html" title="nablarch.core.db.dialect.Dialect">Dialect</a> .</p>
+</div>
+<div class="section" id="write-sql-in-sql-file-not-logic">
+<span id="database-sql-file"></span><h3><a class="toc-backref" href="#id5">7.3.1.1.2. Write SQL in SQL file, not logic</a><a class="headerlink" href="#write-sql-in-sql-file-not-logic" title="Permalink to this headline">¶</a></h3>
+<p>SQL is defined in the SQL file and not in the principle logic.</p>
+<p>SQL is not required to be assembled by logic by describing in the SQL file, and since <cite>PreparedStatement</cite> is always used, the vulnerability of SQL injection can be eliminated.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If defining in the SQL file is not possible, use the provided API, which specifies and executes the SQL directly.
+However, be careful, there is a possibility that SQL injection vulnerability may be embedded.
+It is also assumed testing and review guarantees that there is no SQL injection vulnerability.</p>
+</div>
+<p>For details, see <a class="reference internal" href="#database-use-sql-file"><span>Manage SQL in files</span></a> .</p>
+</div>
+<div class="section" id="bean-property-values-can-be-embedded-in-sql-bind-variables">
+<span id="database-bean"></span><h3><a class="toc-backref" href="#id6">7.3.1.1.3. Bean property values can be embedded in SQL bind variables</a><a class="headerlink" href="#bean-property-values-can-be-embedded-in-sql-bind-variables" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function to automatically bind the value configured in Bean property to IN parameter of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/PreparedStatement.html" title="java.sql.PreparedStatement">java.sql.PreparedStatement</a> .</p>
+<p>By using this function, it is not necessary to call the method for configuring the value of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/PreparedStatement.html" title="java.sql.PreparedStatement">java.sql.PreparedStatement</a> multiple times, and it is not necessary to modify the index when the number of IN parameters increases or decreases.</p>
+<p>For details, see <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> .</p>
+</div>
+<div class="section" id="like-search-can-be-easily-implemented">
+<h3><a class="toc-backref" href="#id7">7.3.1.1.4. like search can be easily implemented</a><a class="headerlink" href="#like-search-can-be-easily-implemented" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function to automatically insert an escape clause and escape processing of wildcard characters in like search.</p>
+<p>For details, see <a class="reference internal" href="#database-like-condition"><span>Perform a like search</span></a> .</p>
+</div>
+<div class="section" id="sql-statements-can-be-dynamically-constructed-based-on-the-state-of-the-bean-object-during-execution">
+<span id="database-variable-condition"></span><h3><a class="toc-backref" href="#id8">7.3.1.1.5. SQL statements can be dynamically constructed based on the state of the Bean object during execution</a><a class="headerlink" href="#sql-statements-can-be-dynamically-constructed-based-on-the-state-of-the-bean-object-during-execution" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function to dynamically assemble the SQL statement to be executed based on the state of the Bean object.</p>
+<p>For example, dynamic construction of conditions and IN clauses can be performed.</p>
+<p>See below for details.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#database-use-variable-condition"><span>Execute SQL with variable conditions</span></a></li>
+<li><a class="reference internal" href="#database-in-condition"><span>Executing SQL with variable number of conditions for in clause</span></a></li>
+<li><a class="reference internal" href="#database-make-order-by"><span>Execute SQL by dynamically switching sort items of order by during runtime</span></a></li>
+</ul>
+</div>
+<div class="section" id="sql-query-results-can-be-cached">
+<h3><a class="toc-backref" href="#id9">7.3.1.1.6. SQL query results can be cached</a><a class="headerlink" href="#sql-query-results-can-be-cached" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function to return search results from the cache without accessing the database when the executed SQL and conditions acquired from an external source (value configured in the bind variable) are equivalent.</p>
+<p>For details, see <a class="reference internal" href="#database-use-cache"><span>Cache search results (handle cached data for the same SQL under the same condition)</span></a> .</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id10">7.3.1.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id11">7.3.1.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connection-configuration-for-the-database">
+<span id="database-connect"></span><h3><a class="toc-backref" href="#id12">7.3.1.3.1. Connection configuration for the database</a><a class="headerlink" href="#connection-configuration-for-the-database" title="Permalink to this headline">¶</a></h3>
+<p>The connection configuration for the database can be selected from the following two types.</p>
+<ul class="simple">
+<li>Creating a database connection using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource">javax.sql.DataSource</a></li>
+<li>Creating a database connection using a data source registered on an application server.</li>
+</ul>
+<p>To use a connection method other than the above (for example, to use the OSS connection pooling library), refer to <a class="reference internal" href="#database-add-connection-factory"><span>Add a connection method to the database</span></a> and add an implementation that connects to the database.</p>
+<dl class="docutils">
+<dt>Connection configuration example</dt>
+<dd><dl class="first docutils">
+<dt>Generate database connection using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource">javax.sql.DataSource</a></dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- See Javadoc for details of the configuration values --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Generating a database connection from an application server data source</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.connection.BasicDbConnectionFactoryForJndi&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- See Javadoc for details of the configuration values --&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p class="last">Refer to Javadoc of each class for the configuration values of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForDataSource.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource">BasicDbConnectionFactoryForDataSource</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> .</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Basically, the class configured above is not used directly. If database access is required, use <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>Database Connection Management Handler</span></a> .</p>
+<p class="last">When using a database, transaction management is also required. For transaction management, see <a class="reference internal" href="../transaction.html#transaction"><span>Transaction Management</span></a> .</p>
+</div>
+</div>
+<div class="section" id="use-dialects-for-database-products">
+<span id="database-use-dialect"></span><h3><a class="toc-backref" href="#id13">7.3.1.3.2. Use dialects for database products</a><a class="headerlink" href="#use-dialects-for-database-products" title="Permalink to this headline">¶</a></h3>
+<p>The dialect function is enabled by configuring the dialect corresponding to the database product in the component configuration file.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If it is not configured, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> is used. In principle, all functions of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> are disabled, be sure to configure the dialect corresponding to the database product.</p>
+<p class="last">If a dialect that corresponds to the database product is not available, or to use the new functions of the new version, create a new dialect by referring to <a class="reference internal" href="#database-add-dialect"><span>Add dialects</span></a> .</p>
+</div>
+<dl class="docutils">
+<dt>Component configuration example</dt>
+<dd><p class="first">This is a configuration example for the component that acquires the database connection from <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource">javax.sql.DataSource</a> . Even in the case of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/BasicDbConnectionFactoryForJndi.html" title="nablarch.core.db.connection.BasicDbConnectionFactoryForJndi">BasicDbConnectionFactoryForJndi</a> , configure dialect to the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html#setDialect-nablarch.core.db.dialect.Dialect-" title="nablarch.core.db.connection.ConnectionFactorySupport.setDialect(nablarch.core.db.dialect.Dialect)">dialect</a> property as shown in the following example.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.connection.BasicDbConnectionFactoryForDataSource&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Properties that are not related to dialect are omitted --&gt;</span>
+
+  <span class="c">&lt;!--</span>
+<span class="c">  Dialect is configured in the dialect property.</span>
+<span class="c">  In this example, the dialect for the Oracle database has been configured.</span>
+<span class="c">  --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dialect&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.dialect.OracleDialect&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="manage-sql-in-files">
+<span id="database-use-sql-file"></span><h3><a class="toc-backref" href="#id14">7.3.1.3.3. Manage SQL in files</a><a class="headerlink" href="#manage-sql-in-files" title="Permalink to this headline">¶</a></h3>
+<p>In this function, SQL is managed in the SQL file as described in <a class="reference internal" href="#database-sql-file"><span>Write SQL in SQL file, not logic</span></a> . To handle SQL files, it is necessary to configure the component configuration file. For details, see <a class="reference internal" href="#database-load-sql"><span>Configuration for loading SQL from SQL files</span></a> .</p>
+<p>Create an SQL file according to the following rules.</p>
+<ul class="simple">
+<li>Create the SQL under the class path.</li>
+<li>Multiple SQL statements can be described in one SQL file, but SQLID must be unique within the file.</li>
+<li>Insert a blank line between SQLIDs. (Lines with spaces are not considered blank lines)</li>
+<li>Insert <code class="docutils literal"><span class="pre">=</span></code> between SQLID and SQL.</li>
+<li>Describe comments with <code class="docutils literal"><span class="pre">--</span></code> . (Block comments are not supported)</li>
+<li>SQL may be formatted using line breaks and spaces (tabs).</li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Make sure to create separate SQLs for each function without using same SQL for multiple functions.</p>
+<p class="last">If an SQL is used in multiple functions, unexpected bugs may occur due to unintended usage or changes in SQL. For example, when <code class="docutils literal"><span class="pre">for</span> <span class="pre">update</span></code> of exclusive lock is added to the SQL statement used in multiple functions, lock is acquired by a function that does not require exclusive lock causing processing delay.</p>
+</div>
+<p>An example of a SQL file is shown below.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="c1">-- ＸＸＸＸＸ acquisition SQL</span>
+<span class="c1">-- SQL_ID:GET_XXXX_INFO</span>
+<span class="n">GET_XXXX_INFO</span> <span class="o">=</span>
+<span class="k">select</span>
+   <span class="n">col1</span><span class="p">,</span>
+   <span class="n">col2</span>
+<span class="k">from</span>
+   <span class="n">test_table</span>
+<span class="k">where</span>
+   <span class="n">col1</span> <span class="o">=</span> <span class="p">:</span><span class="n">col1</span>
+
+
+<span class="c1">-- ＸＸＸＸＸ update SQL</span>
+<span class="c1">-- SQL_ID:UPDATE_XXXX</span>
+<span class="n">update_xxxx</span> <span class="o">=</span>
+<span class="k">update</span>
+    <span class="n">test_table</span>
+<span class="k">set</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="p">:</span><span class="n">col2</span>
+<span class="k">where</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="p">:</span><span class="n">col1</span>
+</pre></div>
+</div>
+<dl class="docutils" id="database-load-sql">
+<dt>Configuration for loading SQL from SQL files</dt>
+<dd><p class="first">This section describes the configuration required to load SQL from an SQL file.</p>
+<p>To load SQL, configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setSqlLoader-nablarch.core.cache.StaticDataLoader-" title="nablarch.core.db.statement.BasicStatementFactory.setSqlLoader(nablarch.core.cache.StaticDataLoader)">BasicStatementFactory#sqlLoader</a> .</p>
+<p>In this example, file encoding and extension are configured. When the configuration is omitted, the following values are used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">File encoding:</th><td class="field-body">utf-8</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extension:</th><td class="field-body">sql</td>
+</tr>
+</tbody>
+</table>
+<p>The component <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> defined here must be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<dl class="last docutils">
+<dt>Configuration example</dt>
+<dd><div class="first last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlLoader&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicSqlLoader&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fileEncoding&quot;</span> <span class="na">value=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;extension&quot;</span> <span class="na">value=</span><span class="s">&quot;sql&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="execute-sql-by-specifying-sqlid">
+<span id="database-execute-sqlid"></span><h3><a class="toc-backref" href="#id15">7.3.1.3.4. Execute SQL by specifying SQLID</a><a class="headerlink" href="#execute-sql-by-specifying-sqlid" title="Permalink to this headline">¶</a></h3>
+<p>To execute SQL based on SQLID, use the database connection obtained from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> . A database connection has to be registered in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a> using <a class="reference internal" href="../../handlers/common/database_connection_management_handler.html#database-connection-management-handler"><span>Database Connection Management Handler</span></a> .</p>
+<p>The mapping rules between the SQLID and the executed SQL are as follows.</p>
+<ul class="simple">
+<li>Up to <code class="docutils literal"><span class="pre">#</span></code> of SQLID is the SQL file name.</li>
+<li>After <code class="docutils literal"><span class="pre">#</span></code> of SQLID is the SQLID in the SQL file</li>
+</ul>
+<dl class="docutils">
+<dt>Implementation examples</dt>
+<dd><p class="first">In this example, since <code class="docutils literal"><span class="pre">jp.co.tis.sample.action.SampleAction#findUser</span></code> is specified in SQLID, the SQL file is <code class="docutils literal"><span class="pre">jp.co.tis.sample.action.SampleAction.sql</span></code> below the class path. SQLID in the SQL file is <code class="docutils literal"><span class="pre">findUser</span></code> .</p>
+<ul class="simple">
+<li>See Javadoc for how to use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html" title="nablarch.core.db.statement.SqlPStatement">SqlPStatement</a> .</li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Get database connection from DbConnectionContext.</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate the statement based on SQLID.</span>
+<span class="n">SqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#findUser&quot;</span><span class="o">);</span>
+
+<span class="c1">// Configure the condition.</span>
+<span class="n">statement</span><span class="o">.</span><span class="na">setLong</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span>
+
+<span class="c1">// Execute the search process.</span>
+<span class="n">SqlResultSet</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="execute-a-stored-procedure">
+<h3><a class="toc-backref" href="#id16">7.3.1.3.5. Execute a stored procedure</a><a class="headerlink" href="#execute-a-stored-procedure" title="Permalink to this headline">¶</a></h3>
+<p>Even when executing a stored procedure, basically implement it in the same way as executing a SQL.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p><a class="reference internal" href="#database-bean"><span>Bean property values can be embedded in SQL bind variables</span></a> is not supported in the execution of stored procedure. The logic will be scattered between Java and stored procedures and maintainability will be significantly reduced if stored procedures are used. Therefore stored procedures should not be used in principle.</p>
+<p class="last">However, since it is assumed that sometimes stored procedures must be used for existing assets, this function provides a very basic API for executing the stored procedure.</p>
+</div>
+<p>An example is shown below.</p>
+<ul class="simple">
+<li>For details on how to use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlCStatement.html" title="nablarch.core.db.statement.SqlCStatement">SqlCStatement</a> , refer to the Javadoc.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Generate an execution statement for the stored procedure based on SQLID.</span>
+<span class="n">SqlCStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareCallBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#execute_sp&quot;</span><span class="o">);</span>
+
+<span class="c1">// Configure the IN and OUT parameters.</span>
+<span class="n">statement</span><span class="o">.</span><span class="na">registerOutParameter</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">Types</span><span class="o">.</span><span class="na">CHAR</span><span class="o">);</span>
+
+<span class="c1">// Execute.</span>
+<span class="n">statement</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+
+<span class="c1">// Acquire OUT parameter.</span>
+<span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="execute-the-sql-by-specifying-the-search-scope">
+<span id="database-paging"></span><h3><a class="toc-backref" href="#id17">7.3.1.3.6. Execute the SQL by specifying the search scope</a><a class="headerlink" href="#execute-the-sql-by-specifying-the-search-scope" title="Permalink to this headline">¶</a></h3>
+<p>A specific range of results may be displayed by using a paging function on the search result list screen of a web system. This function provides a function that can specify the range of search results for such applications.</p>
+<dl class="docutils">
+<dt>Implementation examples</dt>
+<dd><p class="first">When generating a statement from a database connection( <cite>connection</cite> ), specify the search target range. In this example, since the following values are specified, up to 10 records are fetched from the 11th record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Start position:</th><td class="field-body">11</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Number of records fetched:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">10</td>
+</tr>
+</tbody>
+</table>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate the statement object by specifying the SQLID and search range.</span>
+<span class="n">SqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#findUser&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">SelectOption</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+
+<span class="c1">// Execute the search process</span>
+<span class="n">SqlResultSet</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">When the search range is specified, rewrite the search SQL with the SQL specifying the acquisition range and then execute. SQL for specifying the acquisition range is performed by <a class="reference internal" href="#database-dialect"><span>dialect</span></a> .</p>
+</div>
+</div>
+<div class="section" id="execute-sql-with-bean-object-as-input">
+<span id="database-input-bean"></span><h3><a class="toc-backref" href="#id18">7.3.1.3.7. Execute SQL with Bean object as input</a><a class="headerlink" href="#execute-sql-with-bean-object-as-input" title="Permalink to this headline">¶</a></h3>
+<p>As described in <a class="reference internal" href="#database-bean"><span>Bean property values can be embedded in SQL bind variables</span></a> , SQL can be executed using the Bean object as an input.</p>
+<p>When executing SQL using the Bean object as an input, use a named bind variable for the IN parameter of SQL. In the named parameter, describe the property name of Bean that is received as input after <code class="docutils literal"><span class="pre">:</span></code> .</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that if the IN parameter is described in JDBC standard <code class="docutils literal"><span class="pre">?</span></code> , execution of the SQL with Bean object as an input will not work.</p>
+</div>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>SQL example</dt>
+<dd><p class="first">Use named parameters for IN parameters.</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="k">user</span>
+  <span class="p">(</span>
+  <span class="n">id</span><span class="p">,</span>
+  <span class="n">name</span>
+  <span class="p">)</span> <span class="k">values</span> <span class="p">(</span>
+  <span class="p">:</span><span class="n">id</span><span class="p">,</span>
+  <span class="p">:</span><span class="n">userName</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Set the required value in the Bean object and call the function to execute SQL using the Bean object as an input.</p>
+<ul class="simple">
+<li>See Javadoc for how to use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> .</li>
+<li>For the relationship between SQLID and the executed SQL, see <a class="reference internal" href="#database-execute-sqlid"><span>Execute SQL by specifying SQLID</span></a> .</li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
+<span class="n">entity</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>              <span class="c1">// Configure a value to id property</span>
+<span class="n">entity</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;Name&quot;</span><span class="o">);</span> <span class="c1">// Configure a value to userName property</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#insertUser&quot;</span><span class="o">);</span>
+
+<span class="c1">// Configure the value of bean property to bind variable and execute the SQL</span>
+<span class="c1">// Value of id property of bean is configured in :id of the SQL.</span>
+<span class="c1">// Value of userName property of bean is configured in :userName of SQL.</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">executeUpdateByObject</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>An implementation class of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">java.util.Map</a> can be specified instead of Bean. When Map is specified, Map value is configured for IN parameter that matches the key value of Map.</p>
+<p>When Bean is specified, processed after conversion to Map using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> . If a type not supported by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> is present in the Bean property, the property cannot be used with this function.</p>
+<p class="last">To increase the types that can be copied to Map with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> , prepare referring to <a class="reference internal" href="../bean_util.html#utility-conversion"><span>Type conversion rules of BeanUtil</span></a> .</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Access method to Bean can be changed from property to field. For changing to field access method, add the following configuration to the properties file.</p>
+<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="na">nablarch.dbAccess.isFieldAccess</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Field access is not recommended for the following reasons.</p>
+<p class="last">In other functions of this framework (for example, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a>), the method of acquiring values from Bean is unified by property access. If only the database function is changed to field access, the programmer needs to be aware of both field access and property access, which may decrease productivity and cause bugs.</p>
+</div>
+</div>
+<div class="section" id="convert-type">
+<h3><a class="toc-backref" href="#id19">7.3.1.3.8. Convert type</a><a class="headerlink" href="#convert-type" title="Permalink to this headline">¶</a></h3>
+<p>Database access (JDBC wrapper) delegates the type conversion of variables used for input to/output from the database to the JDBC driver. Therefore, it is necessary to define the types of variables used for input and output according to the database type and specifications of the JDBC driver that is used.</p>
+<p>If an arbitrary type conversion is necessary, the application performs type conversion on the variables used for input to/output from the database.</p>
+<ul class="simple">
+<li>When using Bean for input, perform type conversion when setting the value to Bean property. when using a Bean for output, perform type conversion after extracting the value from the property.</li>
+<li>When using Map for input, type conversion is performed when setting the value in Map. When using Map for output, perform type conversion after extracting the value.</li>
+<li>When configuring a bind variable by specifying an index, convert the object to be configured to the bind variable to an appropriate type. When acquiring a value from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> , perform type conversion after the value has been acquired.</li>
+</ul>
+</div>
+<div class="section" id="automatically-configure-a-common-value-when-executing-sql">
+<span id="database-common-bean"></span><h3><a class="toc-backref" href="#id20">7.3.1.3.9. Automatically configure a common value when executing SQL</a><a class="headerlink" href="#automatically-configure-a-common-value-when-executing-sql" title="Permalink to this headline">¶</a></h3>
+<p>Provides a function to automatically configure the value to be configured each time when registering or updating data, immediately before executing the SQL. For example, this function can be used for items such as registration date and time and update date and time.</p>
+<p>This function is enabled only when <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> is used to automatically configure the value based on the annotation configured in the property.</p>
+<p>A usage example is shown below.</p>
+<dl class="docutils">
+<dt>Component configuration file</dt>
+<dd><p class="first">To use this function, configure a class that performs automatic value configuration in the component configuration file.</p>
+<p>As shown in the following example. configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/AutoPropertyHandler.html" title="nablarch.core.db.statement.AutoPropertyHandler">AutoPropertyHandler</a> implementation class in a list with respect to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html#setUpdatePreHookObjectHandlerList-java.util.List-" title="nablarch.core.db.statement.BasicStatementFactory.setUpdatePreHookObjectHandlerList(java.util.List)">BasicStatementFactory#updatePreHookObjectHandlerList</a> . The implementation class provided as standard is placed under the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> package.</p>
+<p>The component <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> defined here should be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span>
+    <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;updatePreHookObjectHandlerList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Configure the implementation class nablarch.core.db.statement.AutoPropertyHandler in a list--&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Bean object (Entity)</dt>
+<dd><p class="first">Configure the annotation to the property for which the value has to be configured automatically. The annotation provided as standard is placed under the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/autoproperty/package-summary.html" title="nablarch.core.db.statement.autoproperty.package-summary">nablarch.core.db.statement.autoproperty</a> package.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserEntity</span> <span class="o">{</span>
+  <span class="c1">// User ID</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+
+  <span class="c1">// Registration date and time</span>
+  <span class="c1">// Automatically configured when registering</span>
+  <span class="nd">@CurrentDateTime</span>
+  <span class="kd">private</span> <span class="n">Timestamp</span> <span class="n">createdAt</span><span class="o">;</span>
+
+  <span class="c1">// Update date and time</span>
+  <span class="c1">// Automatically configured during registration/update</span>
+  <span class="nd">@CurrentDateTime</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">updatedAt</span><span class="o">;</span>
+
+  <span class="c1">// Access method, etc. are omitted</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>SQL</dt>
+<dd><p class="first">SQL is created in the same way as <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> .</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="k">user</span> <span class="p">(</span>
+  <span class="n">id</span><span class="p">,</span>
+  <span class="n">createdAt</span><span class="p">,</span>
+  <span class="n">updatedAt</span>
+<span class="p">)</span> <span class="k">values</span> <span class="p">(</span>
+  <span class="p">:</span><span class="n">id</span><span class="p">,</span>
+  <span class="p">:</span><span class="n">createdAt</span><span class="p">,</span>
+  <span class="p">:</span><span class="n">updatedAt</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Implementation is the same as <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> . For items whose values are automatically configured, there is no need to configure values for Beans with logic. Even if the value is explicitly configured, it is overwritten by the automatic value configuration function immediately before the SQL is executed.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="c1">// Values are not required to be configured for createdAt and updatedAt which are automatically configured</span>
+<span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
+<span class="n">entity</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#insertUser&quot;</span><span class="o">);</span>
+
+<span class="c1">// Call without configuring the value for the automatically configured items.</span>
+<span class="c1">// The database function automatically configures the values.</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">executeUpdateByObject</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="perform-a-like-search">
+<span id="database-like-condition"></span><h3><a class="toc-backref" href="#id21">7.3.1.3.10. Perform a like search</a><a class="headerlink" href="#perform-a-like-search" title="Permalink to this headline">¶</a></h3>
+<p>Like search uses <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> , and conditions for like search are described in the SQL according to the following rules.</p>
+<dl class="docutils">
+<dt>In the case of prefix match</dt>
+<dd><p class="first">Enter <code class="docutils literal"><span class="pre">%</span></code> at the end of the named parameter.</p>
+<p class="last">Example: <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">:userName%</span></code></p>
+</dd>
+<dt>In the case of suffix match</dt>
+<dd><p class="first">Enter <code class="docutils literal"><span class="pre">%</span></code> at the beginning of the named parameter.</p>
+<p class="last">Example:  <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">:%userName</span></code></p>
+</dd>
+<dt>In the case of middle match</dt>
+<dd><p class="first">Enter <code class="docutils literal"><span class="pre">%</span></code> before and after the named parameter.</p>
+<p class="last">Example: <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">:%userName%</span></code></p>
+</dd>
+</dl>
+<p>See <a class="reference internal" href="#database-def-escape-char"><span>Define escape character and escape target characters during like search</span></a> for the definition of escape character and escape target character.</p>
+<p>An implementation example is shown below.</p>
+<dl class="docutils">
+<dt>SQL</dt>
+<dd><p class="first">Define SQL according to the above rules.</p>
+<div class="last highlight-sql"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span>
+  <span class="k">from</span> <span class="k">user</span>
+ <span class="k">where</span> <span class="n">name</span> <span class="k">like</span> <span class="p">:</span><span class="n">userName</span><span class="o">%</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Just by executing the SQL in the same way as <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> , value rewriting and escape processing are performed for like conditions. In this case, the actual condition is <code class="docutils literal"><span class="pre">name</span> <span class="pre">like</span> <span class="pre">'Na%'</span> <span class="pre">escape'\'</span></code> .</p>
+<ul class="simple">
+<li>See Javadoc for how to use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/AppDbConnection.html" title="nablarch.core.db.connection.AppDbConnection">AppDbConnection</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/ParameterizedSqlPStatement.html" title="nablarch.core.db.statement.ParameterizedSqlPStatement">ParameterizedSqlPStatement</a> .</li>
+<li>For the relationship between SQLID and the executed SQL, see <a class="reference internal" href="#database-execute-sqlid"><span>Execute SQL by specifying SQLID</span></a></li>
+</ul>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
+<span class="n">entity</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;Na&quot;</span><span class="o">);</span> <span class="c1">// Configure a value to userName property</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#findUserByName&quot;</span><span class="o">);</span>
+
+<span class="c1">// Configure bean property value to bind variable and execute the SQL</span>
+<span class="c1">// In this example, name like &#39;Na%&#39; is executed</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">bean</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="define-escape-character-and-escape-target-characters-during-like-search">
+<span id="database-def-escape-char"></span><h3><a class="toc-backref" href="#id22">7.3.1.3.11. Define escape character and escape target characters during like search</a><a class="headerlink" href="#define-escape-character-and-escape-target-characters-during-like-search" title="Permalink to this headline">¶</a></h3>
+<p>Escape character and escape target characters are defined in the component configuration file. Since the escape character is automatically configured, it is not necessary to explicitly configure the escape characters.</p>
+<p>When the configuration is omitted, the following values are used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Escape character:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><code class="docutils literal"><span class="pre">\</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Escape target characters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><code class="docutils literal"><span class="pre">%</span></code> 、 <code class="docutils literal"><span class="pre">_</span></code></td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Component configuration example</dt>
+<dd><p class="first">In this example, <code class="docutils literal"><span class="pre">\</span></code> is configured as the escape character, and 4 characters <code class="docutils literal"><span class="pre">%</span></code> , <code class="docutils literal"><span class="pre">％</span></code> , <code class="docutils literal"><span class="pre">_</span></code> , <code class="docutils literal"><span class="pre">＿</span></code> are configured as the escape target characters.</p>
+<p>The component <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> defined here should be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Escape character definition --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;likeEscapeChar&quot;</span> <span class="na">value=</span><span class="s">&quot;\&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Escape target character definition (configured separated with commas) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;likeEscapeTargetCharList&quot;</span> <span class="na">value=</span><span class="s">&quot;%,％,_,＿&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="execute-sql-with-variable-conditions">
+<span id="database-use-variable-condition"></span><h3><a class="toc-backref" href="#id23">7.3.1.3.12. Execute SQL with variable conditions</a><a class="headerlink" href="#execute-sql-with-variable-conditions" title="Permalink to this headline">¶</a></h3>
+<p>To execute SQL with variable conditions, use <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> and describe the conditions using the following notation.</p>
+<dl class="docutils">
+<dt>Description rules for variable conditions</dt>
+<dd><p class="first">Variable condition is described with <code class="docutils literal"><span class="pre">$if(property</span> <span class="pre">name){SQL</span> <span class="pre">statement</span> <span class="pre">condition}</span></code> The condition is excluded by the value of Bean object corresponding to the property name after <code class="docutils literal"><span class="pre">$if</span></code> . Excluded conditions are as follows.</p>
+<ul class="simple">
+<li>For an array or <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> , if the property value is null or size is 0</li>
+<li>For types other than the above, the property value is null or empty string (in case of string object)</li>
+</ul>
+<p>The <code class="docutils literal"><span class="pre">$if</span></code> special syntax has the following restrictions.</p>
+<ul class="simple">
+<li>Only the where clause can be used</li>
+<li><code class="docutils literal"><span class="pre">$if</span></code> cannot be used within <code class="docutils literal"><span class="pre">$if</span></code></li>
+</ul>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This function is used when the search conditions change depending on the input contents of the user, such as the search screen of a web application.
+It is not used to standardize multiple SQLs that differ only in conditions.
+If standardized, since the function may cause unexpected bugs when SQL is changed, be sure to define multiple SQL.</p>
+</div>
+</dd>
+</dl>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>SQL</dt>
+<dd><p class="first">For this SQL, <code class="docutils literal"><span class="pre">user_name</span></code> and <code class="docutils literal"><span class="pre">user_kbn</span></code> conditions are variables.</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>select
+  user_id,
+  user_name,
+  user_kbn
+from
+  user
+where
+  $if (userName) {user_name like :user_name%}
+  and $if (userKbn) {user_kbn in (&#39;1&#39;, &#39;2&#39;)}
+  and birthday = :birthday
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Since the value is set only for <cite>userName</cite> property, <code class="docutils literal"><span class="pre">user_kbn</span></code> defined in the variable condition is excluded from the condition during execution.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="n">UserEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserEntity</span><span class="o">();</span>
+<span class="n">entity</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;Name&quot;</span><span class="o">);</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="c1">// Specify a Bean object with a condition in the second argument.</span>
+<span class="c1">// SQL variable conditions are assembled based on the state of this Bean object.</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#insertUser&quot;</span><span class="o">,</span> <span class="n">entity</span><span class="o">);</span>
+
+<span class="c1">// SQL is executed by configuring the value of the entity property to the bind variable</span>
+<span class="n">SqlResultSet</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="executing-sql-with-variable-number-of-conditions-for-in-clause">
+<span id="database-in-condition"></span><h3><a class="toc-backref" href="#id24">7.3.1.3.13. Executing SQL with variable number of conditions for in clause</a><a class="headerlink" href="#executing-sql-with-variable-number-of-conditions-for-in-clause" title="Permalink to this headline">¶</a></h3>
+<p>To execute SQL with condition count of the in clause as variable, use <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> and describe the conditions using the following notation.</p>
+<dl class="docutils">
+<dt>Description rules of in clause</dt>
+<dd><p class="first">Add <code class="docutils literal"><span class="pre">[]</span></code> at the end of the named parameter of the condition. The property type of Bean object corresponding to the named parameter must be an array or <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="java.util.Collection">java.util.Collection</a> (including subtype) <a class="footnote-reference" href="#collection" id="id1">[1]</a> .</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If the property value, that is the condition of the IN clause, is null or size 0, be sure to define the corresponding condition as a variable condition. If the property value is null when the condition is not configured as a variable condition, since the condition will be <code class="docutils literal"><span class="pre">xxxx</span> <span class="pre">in</span> <span class="pre">(null)</span></code> , the search result may not be acquired correctly.</p>
+<p class="last">* In the in clause, since the conditional expression (in parentheses) cannot be empty, the conditional expression is specified as <code class="docutils literal"><span class="pre">in</span> <span class="pre">(null)</span></code> if an array of size 0 or null is specified.</p>
+</div>
+</dd>
+</dl>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>SQL</dt>
+<dd><p class="first">In this SQL, the in condition of <code class="docutils literal"><span class="pre">user_kbn</span></code> is dynamically constructed. Since it is used together with <code class="docutils literal"><span class="pre">$if</span></code>, if the <cite>userKbn</cite> property is null or the size is 0, it is excluded from the condition.</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>select
+  user_id,
+  user_name,
+  user_kbn
+from
+  user
+where
+  $if (userKbn) {user_kbn in (:userKbn[])}
+</pre></div>
+</div>
+</dd>
+<dt>Execution example</dt>
+<dd><p class="first">In this example, since two elements are configured in <cite>userKbn</cite> property, the condition of the executed SQL is <code class="docutils literal"><span class="pre">userKbn</span> <span class="pre">in</span> <span class="pre">(?,</span> <span class="pre">?)</span></code> .</p>
+<p>Only records with <cite>userKbn</cite> <code class="docutils literal"><span class="pre">1</span></code> and <code class="docutils literal"><span class="pre">3</span></code> are acquired from the database.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="n">UserSearchCondition</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserSearchCondition</span><span class="o">();</span>
+<span class="n">condition</span><span class="o">.</span><span class="na">setUserKbn</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;3&quot;</span><span class="o">));</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="c1">// Specify a Bean object with a condition in the second argument.</span>
+<span class="c1">// in clause of SQL is assembled based on the state of this Bean object.</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#searchUser&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+<span class="c1">// SQL is executed by configuring the value of the condition property to the bind variable</span>
+<span class="n">SqlResultSet</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="collection" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">As described in <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> , use the property value after converting it to map with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> . Therefore, note that if a property is declared with a type that is not supported by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> , the condition cannot be configured in the in clause.</p>
+<p class="last">For the method of adding the conversion target type with <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/beans/BeanUtil.html" title="nablarch.core.beans.BeanUtil">BeanUtil</a> , <a class="reference internal" href="../bean_util.html#utility-conversion-add-rule"><span>Add type conversion rules</span></a> .</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="execute-sql-by-dynamically-switching-sort-items-of-order-by-during-runtime">
+<span id="database-make-order-by"></span><h3><a class="toc-backref" href="#id25">7.3.1.3.14. Execute SQL by dynamically switching sort items of order by during runtime</a><a class="headerlink" href="#execute-sql-by-dynamically-switching-sort-items-of-order-by-during-runtime" title="Permalink to this headline">¶</a></h3>
+<p>To execute SQL with sort item of order by as variable, use <a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a> and describe the conditions using the following notation.</p>
+<dl class="docutils">
+<dt>Description rules of order by clause</dt>
+<dd><p class="first">To make the sort item a variable, use <code class="docutils literal"><span class="pre">$sort</span></code> instead of order by clause and describe as follows.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$sort (property name) {(case 1) (case 2) ・ ・ ・ (case n)}
+
+Property name: Property name that holds the sort ID of Bean object
+Case: Represents the switching candidate for the order by clause.
+        Describe the sort ID that uniquely identifies the candidate and string specified in the order by clause (hereinafter referred to as the case body).
+        Specify &quot;default&quot; as the sort ID for the default case when no match is found to any candidate.
+</pre></div>
+</div>
+<ul class="last simple">
+<li>Each case is represented by enclosing the sort ID and case body in single-byte parentheses.</li>
+<li>Sort ID and case body are separated by a half-width space.</li>
+<li>Half-width spaces cannot be used for the sort ID.</li>
+<li>A half-width space can be used for the case body.</li>
+<li>The first string that appears after the opening parentheses is the sort ID.</li>
+<li>After the sort ID and before the closing parentheses is the case body.</li>
+<li>The sort ID and case body are trimmed.</li>
+</ul>
+</dd>
+</dl>
+<p>A usage example is shown below.</p>
+<dl class="docutils">
+<dt>SQL</dt>
+<dd><div class="first last highlight-none"><div class="highlight"><pre><span></span>select
+  user_id,
+  user_name
+from
+  user
+where
+  user_name = :user_name
+$sort(sortId) {
+  (user_id_asc  user_id asc)
+  (user_id_desc user_id desc)
+  (name_asc     user_name asc)
+  (name_desc    user_name desc)
+  (default      user_id)
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">In this example, since <code class="docutils literal"><span class="pre">name_asc</span></code> is configured in the sort ID, the order by clause becomes <code class="docutils literal"><span class="pre">order</span> <span class="pre">by</span> <span class="pre">user_name</span> <span class="pre">asc</span></code> .</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Create a bean and configure a value for the property</span>
+<span class="n">UserSearchCondition</span> <span class="n">condition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserSearchCondition</span><span class="o">();</span>
+<span class="n">condition</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;Name&quot;</span><span class="o">);</span>
+<span class="n">condition</span><span class="o">.</span><span class="na">setSortId</span><span class="o">(</span><span class="s">&quot;name_asc&quot;</span><span class="o">);</span>      <span class="c1">// Configure the sort ID</span>
+
+<span class="c1">// Acquire database connection from DbConnectionContext</span>
+<span class="n">AppDbConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+
+<span class="c1">// Generate a statement based on SQLID</span>
+<span class="c1">// Specify a Bean object with a condition in the second argument.</span>
+<span class="c1">// order by clause of SQL is assembled based on the state of this Bean object.</span>
+<span class="n">ParameterizedSqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareParameterizedSqlStatementBySqlId</span><span class="o">(</span>
+    <span class="s">&quot;jp.co.tis.sample.action.SampleAction#searchUser&quot;</span><span class="o">,</span> <span class="n">condition</span><span class="o">);</span>
+
+<span class="c1">// SQL is executed by configuring the value of the condition property to the bind variable</span>
+<span class="n">SqlResultSet</span> <span class="n">result</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="accessing-columns-of-binary-type">
+<span id="database-binary-column"></span><h3><a class="toc-backref" href="#id26">7.3.1.3.15. Accessing columns of binary type</a><a class="headerlink" href="#accessing-columns-of-binary-type" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to access binary type columns such as blob (binary type differs depending on the database product).</p>
+<dl class="docutils">
+<dt>Obtain the value of binary type</dt>
+<dd><p class="first">When acquiring a binary value, acquire the value as <cite>byte[]</cite> from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">SqlRow</a> of the search result object.</p>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="n">SqlRow</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// Acquire the value of the encrypted column in binary using getBytes</span>
+<span class="kt">byte</span><span class="o">[]</span> <span class="n">encryptedPassword</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&quot;password&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p>In the case of the above implementation example, all the contents of the column are deployed on the Java heap. Therefore, when data of a very large size is read, it squeezes the heap area, causing failures such as system down.</p>
+<p>Therefore, when reading a large amount of data, use the <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Blob.html" title="java.sql.Blob">Blob</a> object as shown below to avoid consuming a large amount of heap.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="c1">// Acquire the data as Blob</span>
+<span class="n">Blob</span> <span class="n">pdf</span> <span class="o">=</span> <span class="o">(</span><span class="n">Blob</span><span class="o">)</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;PDF&quot;</span><span class="o">);</span>
+
+<span class="k">try</span> <span class="o">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="na">getBinaryStream</span><span class="o">())</span> <span class="o">{</span>
+  <span class="c1">// Read the data sequentially from InputStream.</span>
+  <span class="c1">// Note that if read all at once, everything will be loaded into the heap</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt>Register/update binary value</dt>
+<dd><blockquote class="first">
+<div><p>To register/update a small binary value, use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBytes-int-byte:A-" title="nablarch.core.db.statement.SqlPStatement.setBytes(int-byte:A)">SqlPStatement#setByte</a> .</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">getSqlPStatement</span><span class="o">(</span><span class="s">&quot;UPDATE_PASSWORD&quot;</span><span class="o">);</span>
+
+<span class="n">statement</span><span class="o">.</span><span class="na">setBytes</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[]</span> <span class="o">{</span><span class="mh">0x30</span><span class="o">,</span> <span class="mh">0x31</span><span class="o">,</span> <span class="mh">0x32</span><span class="o">});</span>
+<span class="kt">int</span> <span class="n">updateCount</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>When registering and updating a large binary value, use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setBinaryStream-int-java.io.InputStream-int-" title="nablarch.core.db.statement.SqlPStatement.setBinaryStream(int-java.io.InputStream-int)">SqlPStatement#setBinaryStream</a> , and send values directly to the database from  <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a> which represents a file, etc.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">Path</span> <span class="n">pdf</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;input.pdf&quot;</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newInputStream</span><span class="o">(</span><span class="n">pdf</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">statement</span><span class="o">.</span><span class="na">setBinaryStream</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">input</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Files</span><span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="n">pdf</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="access-columns-of-string-type-with-a-large-number-of-digits-e-g-clob">
+<span id="database-clob-column"></span><h3><a class="toc-backref" href="#id27">7.3.1.3.16. Access columns of string type with a large number of digits (e.g. CLOB)</a><a class="headerlink" href="#access-columns-of-string-type-with-a-large-number-of-digits-e-g-clob" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to access a large string type column such as CLOB.</p>
+<dl class="docutils">
+<dt>Acquire the value of CLOB type</dt>
+<dd><p class="first">When acquiring CLOB type values, acquire the value as string type from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlRow.html" title="nablarch.core.db.statement.SqlRow">search result object</a> .</p>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+<span class="n">SqlRow</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// Acquire CLOB value as a string.</span>
+<span class="n">String</span> <span class="n">mailBody</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;mailBody&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p>In the case of the above implementation example, all the contents of the column are deployed on the Java heap. Therefore, when data of a very large size is read, it squeezes the heap area, causing failures such as system down.</p>
+<p>Therefore, when reading a large amount of data, use the <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Clob.html" title="java.sql.Clob">Clob</a> object as shown below to avoid consuming a large amount of heap.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">SqlResultSet</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="c1">// Acquire the data as Clob</span>
+<span class="n">Clob</span> <span class="n">mailBody</span> <span class="o">=</span> <span class="o">(</span><span class="n">Clob</span><span class="o">)</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;mailBody&quot;</span><span class="o">);</span>
+
+<span class="k">try</span> <span class="o">(</span><span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">mailBody</span><span class="o">.</span><span class="na">getCharacterStream</span><span class="o">())</span> <span class="o">{</span>
+  <span class="c1">// Read data sequentially from the Reader.</span>
+  <span class="c1">// If all the read data is held in the heap, note that the heap will be squeezed.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt>Register (update) the value in CLOB type</dt>
+<dd><p class="first">When registering and updating a value with a small size, configure a string type value using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setString-int-java.lang.String-" title="nablarch.core.db.statement.SqlPStatement.setString(int-java.lang.String)">SqlPStatement#setString</a> .</p>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">statement</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;Value&quot;</span><span class="o">);</span>
+<span class="n">statement</span><span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>When registering or updating a large value, use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlPStatement.html#setCharacterStream-int-java.io.Reader-int-" title="nablarch.core.db.statement.SqlPStatement.setCharacterStream(int-java.io.Reader-int)">SqlPStatement#setCharacterStream</a> , and send values to the database through <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html" title="java.io.Reader">Reader</a> that represents a text file, etc.</p>
+<p>An example is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">filePath</span><span class="o">);</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedReader</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">))</span> <span class="o">{</span>
+  <span class="c1">// Register the Reader value using setCharacterStream.</span>
+  <span class="n">statement</span><span class="o">.</span><span class="na">setCharacterStream</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">reader</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Files</span><span class="o">.</span><span class="na">size</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="exception-types-that-occur-when-accessing-the-database">
+<h3><a class="toc-backref" href="#id28">7.3.1.3.17. Exception types that occur when accessing the database</a><a class="headerlink" href="#exception-types-that-occur-when-accessing-the-database" title="Permalink to this headline">¶</a></h3>
+<p>Exceptions when accessing the database access are broadly divided into the following four types.</p>
+<p>Since these exceptions are all unchecked exceptions, there is no need to catch them with <code class="docutils literal"><span class="pre">try-catch</span></code> such as <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">SQLException</a> .</p>
+<dl class="docutils">
+<dt>Exception when there is a database access error</dt>
+<dd>The exception that occurs when accessing the database, and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> is thrown.</dd>
+<dt>Exception when there is a database connection error</dt>
+<dd><p class="first">If the exception during database access indicates a database connection error, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/exception/DbConnectionException.html" title="nablarch.core.db.connection.exception.DbConnectionException">DbConnectionException</a> is thrown. This exception is handled by the <a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>Retry Handler</span></a>. (If <a class="reference internal" href="../../handlers/standalone/retry_handler.html#retry-handler"><span>Retry Handler</span></a> is not applied, it is handled as a runtime exception.)</p>
+<p class="last"><a class="reference internal" href="#database-dialect"><span>Dialect</span></a> is used when determining a database connection error.</p>
+</dd>
+<dt>SQL execution exception</dt>
+<dd>Exception which occurs when SQL execution fails, and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> is thrown.</dd>
+<dt>Exception when the SQL execution is a violation of unique constraint</dt>
+<dd><p class="first">If the exception during SQL execution is an exception indicating a unique constraint violation, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> is thrown.</p>
+<p>To handle a unique constraint violation, refer <a class="reference internal" href="#database-duplicated-error"><span>Process by handling unique constraint violation</span></a> .</p>
+<p class="last"><a class="reference internal" href="#database-dialect"><span>Dialect</span></a> is used to determine a unique constraint violation.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Refer to <a class="reference internal" href="#database-change-exception"><span>Switching the exception class when accessing the database</span></a> to change the exception when a database access error occurs ( to divide the exception further).</p>
+</div>
+</div>
+<div class="section" id="process-by-handling-unique-constraint-violation">
+<span id="database-duplicated-error"></span><h3><a class="toc-backref" href="#id29">7.3.1.3.18. Process by handling unique constraint violation</a><a class="headerlink" href="#process-by-handling-unique-constraint-violation" title="Permalink to this headline">¶</a></h3>
+<p>If a process has to be performed when a unique constraint is violated, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/DuplicateStatementException.html" title="nablarch.core.db.statement.exception.DuplicateStatementException">DuplicateStatementException</a> is caught with <code class="docutils literal"><span class="pre">try-catch</span></code> and processed.</p>
+<p><a class="reference internal" href="#database-dialect"><span>Dialect</span></a> is used to determine a unique constraint violation.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Note that depending on the database product, if an exception occurs during SQL execution, SQL will no longer be accepted until rollback is performed. In the case of such a product, consider whether it can be substituted by other means.</p>
+<p class="last">For example, to perform the update process when a unique constraint violation occurs during the registration process, this problem can be avoided by using a merge statement instead of performing exception handling.</p>
+</div>
+</div>
+<div class="section" id="processing-of-long-running-transactions-is-aborted-as-errors">
+<h3><a class="toc-backref" href="#id30">7.3.1.3.19. Processing of long-running transactions is aborted as errors</a><a class="headerlink" href="#processing-of-long-running-transactions-is-aborted-as-errors" title="Permalink to this headline">¶</a></h3>
+<p>Implemented by transaction management. For details, see <a class="reference internal" href="../transaction.html#transaction-timeout"><span>Apply transaction timeout for the database</span></a> .</p>
+</div>
+<div class="section" id="execute-sql-in-a-transaction-different-from-the-current-transaction">
+<span id="database-new-transaction"></span><h3><a class="toc-backref" href="#id31">7.3.1.3.20. Execute SQL in a transaction different from the current transaction</a><a class="headerlink" href="#execute-sql-in-a-transaction-different-from-the-current-transaction" title="Permalink to this headline">¶</a></h3>
+<p>There may be cases database has to be accessed using an individual transaction instead of a transaction started by the database connection management handler and transaction control handler.</p>
+<p>For example, to confirm changes to the database even when business processing fails, define a transaction different from the current transaction and access the database.</p>
+<p>The following procedures are required to use individual transactions.</p>
+<ol class="arabic simple">
+<li>Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> in the component configuration file.</li>
+<li>Acquire <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> from the system repository and execute SQL in a new transaction. (Instead of acquiring from the system repository, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> can be used)</li>
+</ol>
+<p>A usage example is shown below.</p>
+<dl class="docutils">
+<dt>Component configuration file</dt>
+<dd><p class="first">Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> in the component configuration file.</p>
+<ul class="simple">
+<li>Configure implementation class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a> to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setConnectionFactory-nablarch.core.db.connection.ConnectionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setConnectionFactory(nablarch.core.db.connection.ConnectionFactory)">connectionFactory</a> property.
+For details of implementation class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactory.html" title="nablarch.core.db.connection.ConnectionFactory">ConnectionFactory</a>, see <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a>.</li>
+<li>Configure implementation class <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html#setTransactionFactory-nablarch.core.transaction.TransactionFactory-" title="nablarch.core.db.transaction.SimpleDbTransactionManager.setTransactionFactory(nablarch.core.transaction.TransactionFactory)">transactionFactory</a> property.
+For details of implementation <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/transaction/TransactionFactory.html" title="nablarch.core.transaction.TransactionFactory">TransactionFactory</a> , see <a class="reference internal" href="../transaction.html#transaction-database"><span>Perform transaction control for the database</span></a> .</li>
+</ul>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.transaction.SimpleDbTransactionManager&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Configure ConnectionFactory implementation class in connectionFactory property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connectionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;connectionFactory&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Configure TransactionFactory implementation class in transactionFactory property --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="na">ref=</span><span class="s">&quot;transactionFactory&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Configure a name to identify the transaction --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbTransactionName&quot;</span> <span class="na">value=</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> to execute SQL. In addition, instead of using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionManager.html" title="nablarch.core.db.transaction.SimpleDbTransactionManager">SimpleDbTransactionManager</a> directly, use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/transaction/SimpleDbTransactionExecutor.html" title="nablarch.core.db.transaction.SimpleDbTransactionExecutor">SimpleDbTransactionExecutor</a> to perform transaction control.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Acquire SimpleDbTransactionManager from the system repository</span>
+<span class="n">SimpleDbTransactionManager</span> <span class="n">dbTransactionManager</span> <span class="o">=</span>
+    <span class="n">SystemRepository</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;update-login-failed-count-transaction&quot;</span><span class="o">);</span>
+
+<span class="c1">// Execute by specifying SimpleDbTransactionManager in the constructor</span>
+<span class="n">SqlResultSet</span> <span class="n">resultSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDbTransactionExecutor</span><span class="o">&lt;</span><span class="n">SqlResultSet</span><span class="o">&gt;(</span><span class="n">dbTransactionManager</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">SqlResultSet</span> <span class="nf">execute</span><span class="o">(</span><span class="n">AppDbConnection</span> <span class="n">connection</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">SqlPStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">prepareStatementBySqlId</span><span class="o">(</span>
+        <span class="s">&quot;jp.co.tis.sample.action.SampleAction#findUser&quot;</span><span class="o">);</span>
+    <span class="n">statement</span><span class="o">.</span><span class="na">setLong</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">statement</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}.</span><span class="na">doTransaction</span><span class="o">();</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="cache-search-results-handle-cached-data-for-the-same-sql-under-the-same-condition">
+<span id="database-use-cache"></span><h3><a class="toc-backref" href="#id32">7.3.1.3.21. Cache search results (handle cached data for the same SQL under the same condition)</a><a class="headerlink" href="#cache-search-results-handle-cached-data-for-the-same-sql-under-the-same-condition" title="Permalink to this headline">¶</a></h3>
+<p>If the update time is fixed or the data is accessed frequently but the latest data is not required to be returned, the search results can be cached to reduce the load on the database.</p>
+<p>This function can be used effectively with the following functions.</p>
+<ul class="simple">
+<li>Data that is referenced in large quantities without the need for strict up-to-date results such as sales rankings</li>
+<li>Data that is updated only at night and not updated during the day</li>
+</ul>
+<dl class="docutils">
+<dt>Constraints</dt>
+<dd><dl class="first last docutils">
+<dt>LOB type</dt>
+<dd><p class="first">When LOB (BLOB type or CLOB type) column is acquired, LOB locator is acquired instead of acquiring the data stored in DB. To acquire the actual value, acquire the value through this LOB locator.</p>
+<p class="last">The expiry interval of the LOB locator depends on the implementation of each RDBMS. Normally, the locator cannot be accessed when <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html" title="java.sql.ResultSet">java.sql.ResultSet</a> or <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> is closed. For this reason, BLOB and CLOB types cannot be included in a cache that has a longer lifetime than <cite>ResultSet</cite> or <cite>Connection</cite> .</p>
+</dd>
+<dt>Application redundancy</dt>
+<dd><p class="first">The component maintaining the cache provided by default retains the cache in the JVM heap. For this reason, when applications have a redundant configuration, the search results are cached for each application.</p>
+<p>For this reason, since the cache timing is different, each application may hold a different cache.</p>
+<p class="last">When application servers are redundant and a round-robin load balancer is used, a different server may be accessed each time. Note that if different caches are maintained for each server, different results may be displayed on the screen for each request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This function is intended to reduce the system load by omitting database access in the reference system when it is possible and not to speed up the database access (SQL). For this reason, it should not be used to increase the speed of SQL. Perform tuning to increase the SQL speed.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This function does not update the cache by monitoring update of the database value. For this reason, do not use the function where the latest data is always required to be displayed.</p>
+</div>
+<p>A usage example is shown below.</p>
+<dl class="docutils">
+<dt>Component configuration file</dt>
+<dd><p class="first">Follow the procedure below to configure for enabling the cache of search results.</p>
+<ol class="arabic simple">
+<li>Defining the components to cache query results</li>
+<li>Search result cache configuration for each SQLID</li>
+<li>Definition of SQL execution component that caches the search results</li>
+</ol>
+<dl class="last docutils">
+<dt>Defining the components of the query result cache class</dt>
+<dd><p class="first">Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/InMemoryResultSetCache.html" title="nablarch.core.db.cache.InMemoryResultSetCache">InMemoryResultSetCache</a> of the class that caches the query results provided by default.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;resultSetCache&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.cache.InMemoryResultSetCache&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;cacheSize&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;systemTimeProvider&quot;</span> <span class="na">ref=</span><span class="s">&quot;systemTimeProvider&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Cache configuration for each SQL ID</dt>
+<dd><p class="first">Configure the cache for each SQL ID. The cache expiration date can be configured for each SQLID using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/cache/expirable/BasicExpirationSetting.html" title="nablarch.core.cache.expirable.BasicExpirationSetting">BasicExpirationSetting</a> provided by default.</p>
+<p>The following units can be used for the expiration date.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">ms:</th><td class="field-body">millisecond</td>
+</tr>
+<tr class="field-even field"><th class="field-name">sec:</th><td class="field-body">Sec</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">min:</th><td class="field-body">Minutes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">h:</th><td class="field-body">Hours</td>
+</tr>
+</tbody>
+</table>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Cache expiration configuration--&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;expirationSetting&quot;</span>
+      <span class="na">class=</span><span class="s">&quot;nablarch.core.cache.expirable.BasicExpirationSetting&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;expiration&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;map&gt;</span>
+        <span class="c">&lt;!-- Configure SQLID in key and expiration date in value--&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;please.change.me.tutorial.ss11AA.W11AA01Action#SELECT&quot;</span> <span class="na">value=</span><span class="s">&quot;100ms&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;please.change.me.tutorial.ss11AA.W11AA02Action#SELECT&quot;</span> <span class="na">value=</span><span class="s">&quot;30sec&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/map&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+
+  <span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Definition of SQL execution component that caches the search results</dt>
+<dd><p class="first">To cache search results, configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> in the generation class of the SQL execution component. Since <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> inherits <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> provided by default, the basic settings are the same as <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> .</p>
+<p>For the <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setExpirationSetting-nablarch.core.cache.expirable.ExpirationSetting-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setExpirationSetting(nablarch.core.cache.expirable.ExpirationSetting)">expirationSetting</a> and <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html#setResultSetCache-nablarch.core.db.cache.ResultSetCache-" title="nablarch.core.db.cache.statement.CacheableStatementFactory.setResultSetCache(nablarch.core.db.cache.ResultSetCache)">resultSetCache</a> property, configure the cache component of the query result configured above and the cache configuration component for each SQLID.</p>
+<p>The component <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/cache/statement/CacheableStatementFactory.html" title="nablarch.core.db.cache.statement.CacheableStatementFactory">CacheableStatementFactory</a> defined here should be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Configure cacheableStatementFactory to generate cacheable statements--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;cacheableStatementFactory&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;nablarch.core.db.cache.CacheableStatementFactory&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Expiration date setting --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;expirationSetting&quot;</span> <span class="na">ref=</span><span class="s">&quot;expirationSetting&quot;</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Cache implementation --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;resultSetCache&quot;</span> <span class="na">ref=</span><span class="s">&quot;resultSetCache&quot;</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Database access using SQL does not change depending on the presence of cache. It is implemented as follows.</p>
+<ul class="last simple">
+<li><a class="reference internal" href="#database-execute-sqlid"><span>Execute SQL by specifying SQLID</span></a></li>
+<li><a class="reference internal" href="#database-input-bean"><span>Execute SQL with Bean object as input</span></a></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="process-using-the-java-sql-connection">
+<h3><a class="toc-backref" href="#id33">7.3.1.3.22. Process using the <cite>java.sql.Connection</cite></a><a class="headerlink" href="#process-using-the-java-sql-connection" title="Permalink to this headline">¶</a></h3>
+<p>Handling of JDBC native database connection ( <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> ) may be required. For example, when <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html" title="java.sql.DatabaseMetaData">java.sql.DatabaseMetaData</a> is required to be used.</p>
+<p>This can be supported by acquiring <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> obtained from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/TransactionManagerConnection.html" title="nablarch.core.db.connection.TransactionManagerConnection">TransactionManagerConnection</a> which has been obtained from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbConnectionContext.html" title="nablarch.core.db.connection.DbConnectionContext">DbConnectionContext</a>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> is used, exception control needs to be performed by handling <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html" title="java.sql.SQLException">java.sql.SQLException</a> , which is a check exception. If this exception control is implemented incorrectly, problems may occur such as failure not detected or investigation not performed when a failure occurs. For this reason, this feature should not be used unless there is a requirement that cannot be satisfied using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html" title="java.sql.Connection">java.sql.Connection</a> .</p>
+</div>
+<p>An example is shown below.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">TransactionManagerConnection</span> <span class="n">managerConnection</span> <span class="o">=</span> <span class="n">DbConnectionContext</span><span class="o">.</span><span class="na">getTransactionManagerConnection</span><span class="o">();</span>
+<span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">managerConnection</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+<span class="k">return</span> <span class="n">connection</span><span class="o">.</span><span class="na">getMetaData</span><span class="o">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="switch-the-schema-in-sql-statement-for-each-environment">
+<span id="database-replace-schema"></span><h3><a class="toc-backref" href="#id34">7.3.1.3.23. Switch the schema in SQL statement for each environment</a><a class="headerlink" href="#switch-the-schema-in-sql-statement-for-each-environment" title="Permalink to this headline">¶</a></h3>
+<p>If a different schema has to be referenced only for a specific SQL (table), the schema is explicitly specified in the SQL statement (for example: <code class="docutils literal"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">A_SCHEMA.TABLE1</span></code> ), but there are cases where the schema name to be referred differs depending on the environment (see the example below).</p>
+<p><strong>Reference schema of TABLE1</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="69%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Working environment</th>
+<th class="head">Schema</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Production environment</td>
+<td>A_SCHEMA</td>
+</tr>
+<tr class="row-odd"><td>Test environment</td>
+<td>B_SCHEMA</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, the method of explicitly describing the schema name in the SQL statement cannot be used.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="c1">-- SELECT by specifying the schema name</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A_SCHEMA</span><span class="p">.</span><span class="n">TABLE1</span>  <span class="c1">-- Works in production environment but not in the test environment</span>
+</pre></div>
+</div>
+<p>For such a case, provide a function to switch the schema in the SQL statement for each environment.</p>
+<p>First, describe a placeholder <code class="docutils literal"><span class="pre">#SCHEMA#</span></code> <a class="footnote-reference" href="#schema" id="id2">[2]</a>for replacing the schema in the SQL statement.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="c1">-- SELECT by specifying the schema name</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">#</span><span class="k">SCHEMA</span><span class="o">#</span><span class="p">.</span><span class="n">TABLE1</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="schema" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The text of this placeholder is fixed.</td></tr>
+</tbody>
+</table>
+<p>Configure <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicSqlLoader.html" title="nablarch.core.db.statement.BasicSqlLoader">BasicSqlLoader</a> to replace the placeholders, as shown in the following example:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;sqlLoader&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicSqlLoader&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlLoaderCallback&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;list&gt;</span>
+        <span class="c">&lt;!-- Replace #SCHEMA# in SQL statement with specified value --&gt;</span>
+        <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.sqlloader.SchemaReplacer&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;schemaName&quot;</span> <span class="na">value=</span><span class="s">&quot;${nablarch.schemaReplacer.schemaName}&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/component&gt;</span>
+      <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+  <span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+<p>Configure the value to replace the placeholder in <code class="docutils literal"><span class="pre">schemaName</span></code> of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/sqlloader/SchemaReplacer.html" title="nablarch.core.db.statement.sqlloader.SchemaReplacer">SchemaReplacer</a> . In the above example, the value after replacement is configured in the environment-dependent value <code class="docutils literal"><span class="pre">nablarch.schemaReplacer.schemaName</span></code> . By switching this value for each environment, the schema in the SQL statement can be replaced with the one corresponding to the environment (see <a class="reference internal" href="../../setting_guide/ManagingEnvironmentalConfiguration/index.html#how-to-switch-env-values"><span>How to switch the environment configuration value for each environment</span></a> for details of the switching method).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The schema replacement in the SQL statement by this function is a simple string replacement, and it does not check whether the schema exists or the SQL after the schema replacement is valid (an error occurs when executing the SQL statement).</p>
+</div>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id35">7.3.1.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-a-connection-method-to-the-database">
+<span id="database-add-connection-factory"></span><h3><a class="toc-backref" href="#id36">7.3.1.4.1. Add a connection method to the database</a><a class="headerlink" href="#add-a-connection-method-to-the-database" title="Permalink to this headline">¶</a></h3>
+<p>The procedure for adding a database connection method will be described. For example, this procedure should be followed when using the OSS connection pool library.</p>
+<ol class="arabic simple">
+<li>Inherit <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/ConnectionFactorySupport.html" title="nablarch.core.db.connection.ConnectionFactorySupport">ConnectionFactorySupport</a> and create a class that generates a database connection.</li>
+<li>Configure the class that is created in the component configuration file. ( see <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> )</li>
+</ol>
+</div>
+<div class="section" id="add-dialects">
+<span id="database-add-dialect"></span><h3><a class="toc-backref" href="#id37">7.3.1.4.2. Add dialects</a><a class="headerlink" href="#add-dialects" title="Permalink to this headline">¶</a></h3>
+<p>The procedure to add a dialect will be described.</p>
+<p>For example, dialects have to be added when there is no dialect corresponding to the database product to be used, or to switch the availability of a specific function, it is necessary to add a dialect.</p>
+<ol class="arabic simple">
+<li>Inherit <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/dialect/DefaultDialect.html" title="nablarch.core.db.dialect.DefaultDialect">DefaultDialect</a> and create a dialect corresponding to the database product.</li>
+<li>Configure the created dialect in the component configuration file (see <a class="reference internal" href="#database-use-dialect"><span>Use dialects for database products</span></a> )</li>
+</ol>
+</div>
+<div class="section" id="switching-the-exception-class-when-accessing-the-database">
+<span id="database-change-exception"></span><h3><a class="toc-backref" href="#id38">7.3.1.4.3. Switching the exception class when accessing the database</a><a class="headerlink" href="#switching-the-exception-class-when-accessing-the-database" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the procedure to switch the exception class during database access.</p>
+<p>For example, to change the exception class of deadlock error, work according to this procedure.</p>
+<ol class="arabic simple">
+<li>Create the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> that generates database access error.</li>
+<li>Create the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> that generates SQL run-time error.</li>
+<li>Define the class that is created in the component configuration file.</li>
+</ol>
+<p>The detailed procedure is shown below.</p>
+<dl class="docutils">
+<dt>Create the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a></dt>
+<dd>Create an implementation class of this interface to change <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/DbAccessException.html" title="nablarch.core.db.DbAccessException">DbAccessException</a> that is generated during database connection acquisition and transaction control (commit and rollback).</dd>
+<dt>Create the implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a></dt>
+<dd>Create an implementation class of this interface to change <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/exception/SqlStatementException.html" title="nablarch.core.db.statement.exception.SqlStatementException">SqlStatementException</a> that occurs when SQL is executed.</dd>
+<dt>Define in the component configuration file</dt>
+<dd><p class="first">Implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/connection/DbAccessExceptionFactory.html" title="nablarch.core.db.connection.DbAccessExceptionFactory">DbAccessExceptionFactory</a> must be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleDbAccessExceptionFactory&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>The implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/SqlStatementExceptionFactory.html" title="nablarch.core.db.statement.SqlStatementExceptionFactory">SqlStatementExceptionFactory</a> is configured for <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> . <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/db/statement/BasicStatementFactory.html" title="nablarch.core.db.statement.BasicStatementFactory">BasicStatementFactory</a> must be configured in the component that acquires the database connection defined in <a class="reference internal" href="#database-connect"><span>Connection configuration for the database</span></a> .</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;statementFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.db.statement.BasicStatementFactory&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;sqlStatementExceptionFactory&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;sample.SampleStatementExceptionFactory&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

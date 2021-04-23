@@ -1,0 +1,1232 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.1.1. Class Unit Testing of Form/Entity &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/01_ClassUnitTest/01_entityUnitTest.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1.1. How to conduct a Class Unit Test" href="index.html"/>
+        <link rel="next" title="3.1.1.2. Class Unit Test of Action/Component" href="02_componentUnitTest.html"/>
+        <link rel="prev" title="3.1.1. How to conduct a Class Unit Test" href="index.html"/>
+ 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
+      
+          <li><a href="index.html">3.1.1. How to conduct a Class Unit Test</a> &raquo;</li>
+      
+    <li>3.1.1.1. Class Unit Testing of Form/Entity</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-unit-testing-of-form-entity">
+<span id="entityunittest"></span><h1>3.1.1.1. Class Unit Testing of Form/Entity<a class="headerlink" href="#class-unit-testing-of-form-entity" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the class unit test for Form and Entity, which is a type of Form (hereinafter referred to as Form unit test or Entity unit test).
+Since both can perform unit tests in almost the same way, common content shall be described based on the Entity unit test, and the specific processing shall be described separately.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Entity is a Form that has properties that correspond one-to-one with the columns of a table.</p>
+</div>
+<div class="section" id="how-to-write-a-form-entity-unit-test">
+<h2>3.1.1.1.1. How to write a Form/Entity unit test<a class="headerlink" href="#how-to-write-a-form-entity-unit-test" title="Permalink to this headline">¶</a></h2>
+<p>The test class and test data used as examples in this chapter are as follows (right click -&gt; Download and Save).</p>
+<ul class="simple">
+<li><a class="reference download internal" href="../../../../../../_downloads/SystemAccountEntityTest.java" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">class(SystemAccountEntityTest.java)</span></code></a></li>
+<li><a class="reference download internal" href="../../../../../../_downloads/SystemAccountEntityTest.xlsx" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">data(SystemAccountEntityTest.xlsx)</span></code></a></li>
+<li><a class="reference download internal" href="../../../../../../_downloads/SystemAccountEntity.java" download=""><code class="xref download docutils literal"><span class="pre">Test</span> <span class="pre">target</span> <span class="pre">class(SystemAccountEntity.java)</span></code></a></li>
+</ul>
+<div class="section" id="create-test-data">
+<h3>3.1.1.1.1.1. Create test data<a class="headerlink" href="#create-test-data" title="Permalink to this headline">¶</a></h3>
+<p>Describes how to create the Excel file that contains the test data itself. The Excel file containing the test data is stored with the same name in the same directory as the test source code (only the extension is different).It is a prerequisite that the
+<a class="reference internal" href="#entityunittest-validationcase"><span>test cases for validation</span></a>,
+<a class="reference internal" href="#entityunittest-constructorcase"><span>test cases for constructors</span></a>, and
+<a class="reference internal" href="#entityunittest-settergettercase"><span>test cases for setters and getters</span></a>
+will be used one sheet at a time respectively.</p>
+<p>For details on how to describe the test data, see <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html"><em>Automated Testing Framework</em></a>, <a class="reference internal" href="../../06_TestFWGuide/02_DbAccessTest.html"><em>Testing a Class that Uses the Database</em></a>.</p>
+<p>It is a prerequisite that the static master data stored in the database, such as message data and code master,
+has been input with data managed by the project in advance (these data are not created as individual test data).</p>
+</div>
+<div class="section" id="create-a-test-class">
+<h3>3.1.1.1.1.2. Create a test class<a class="headerlink" href="#create-a-test-class" title="Permalink to this headline">¶</a></h3>
+<p>The test class of form/entity unit test should be created to satisfy the following conditions.</p>
+<ul class="simple">
+<li>The package of the test class is the same as the Form/Entity to be tested.</li>
+<li>Create a test class with the class name &lt;Form/Entity class name&gt; Test.</li>
+<li>Inherit nablarch.test.core.db.EntityTestSupport.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.management.user</span><span class="o">;</span> <span class="c1">// [Description] Package is the same as SystemAccountEntity</span>
+
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">nablarch.test.core.db.EntityTestSupport</span><span class="o">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.assertArrayEquals</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.assertEquals</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Class that executes tests for the SystemAccountEntity class. &lt;br/&gt;</span>
+<span class="cm"> * Refer to the Excel sheet for test content.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @author Miki Habu</span>
+<span class="cm"> * @since 1.0</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemAccountEntityTest</span> <span class="kd">extends</span> <span class="n">EntityTestSupport</span> <span class="o">{</span>
+<span class="c1">// [Description] Class name is SystemAccountEntityTest and it inherits from EntityTestSupport</span>
+
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+<p>For details on how to describe the test method, see the code examples described below.</p>
+</div>
+<div class="section" id="single-item-validation-test-case-of-character-type-and-string-length">
+<span id="entityunittest-validationcase"></span><h3>3.1.1.1.1.3. Single item validation test case of character type and string length<a class="headerlink" href="#single-item-validation-test-case-of-character-type-and-string-length" title="Permalink to this headline">¶</a></h3>
+<p>Most of the test cases for single item validation are related to the input character type and string length. For example, assume the following the property.</p>
+<ul class="simple">
+<li>Property name &#8220;Furigana&#8221;</li>
+<li>Maximum string length is 50 characters</li>
+<li>Required items</li>
+<li>Only full-width katakana is allowed</li>
+</ul>
+<p>In this case, the following test case should be created.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="62%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Case</th>
+<th class="head">Perspective</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Validation should be successful when full-width Katakana 50 characters are entered.</td>
+<td>Check maximum string length and character type</td>
+</tr>
+<tr class="row-odd"><td>Validation should fail when full-width Katakana 51 characters are entered.</td>
+<td>Check of maximum string length</td>
+</tr>
+<tr class="row-even"><td>Validation should be successful when 1 full-width Katakana character is entered.</td>
+<td>Check of minimum string length and character type</td>
+</tr>
+<tr class="row-odd"><td>Validation should fail when empty string is entered.</td>
+<td>Check of required validation</td>
+</tr>
+<tr class="row-even"><td>Validation should fail when Half-width Katakana is entered.</td>
+<td>Check character type<a class="footnote-reference" href="#id2" id="id1">[1]</a></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Similarly, there is a need for cases in which Half-width alphabetic characters, Full-width Hiragana, Kanji ..., etc. are input and the detailed examination fails.</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>There are a large number of test cases for single item validation, and data creation requires time and labor.Therefore, a test method is provided exclusively for single item validation test.As a result, the following effects are expected.</p>
+<ul class="simple">
+<li>Facilitates the creation of test cases for single item validation.</li>
+<li>Creates test data with high maintainability, making it easier to review and maintain.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>This test method cannot be used for a form that holds another form as a property. In that case, implement your own validation processing test.
+A form that holds another form as a property is the parent form that accesses the property in the following format:</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>&lt;Parent Form&gt;.&lt;child Form&gt;.&lt;child form property name&gt;.
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-create-a-test-case-table">
+<h4>3.1.1.1.1.3.1. How to create a test case table<a class="headerlink" href="#how-to-create-a-test-case-table" title="Permalink to this headline">¶</a></h4>
+<p>Prepare the following columns.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Contents to be mentioned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>propertyName</td>
+<td>The property name to be tested.</td>
+</tr>
+<tr class="row-odd"><td>allowEmpty</td>
+<td>Whether the property allows for no input</td>
+</tr>
+<tr class="row-even"><td>min</td>
+<td>Minimum string length allowed by the property
+as input value (optional)</td>
+</tr>
+<tr class="row-odd"><td>max</td>
+<td>Maximum string length allowed by the property as input value</td>
+</tr>
+<tr class="row-even"><td>messageIdWhenNotApplicable</td>
+<td>Message ID to expect when character type is incompatible</td>
+</tr>
+<tr class="row-odd"><td>Half-width alphabetic characters (半角英字)</td>
+<td>Whether half-width alphabetic characters are allowed?</td>
+</tr>
+<tr class="row-even"><td>Half-width numbers (半角数字)</td>
+<td>Whether half-width numbers are allowed?</td>
+</tr>
+<tr class="row-odd"><td>Half-width symbols (半角記号)</td>
+<td>Whether half-width symbols are allowed?</td>
+</tr>
+<tr class="row-even"><td>Half-width kana (半角カナ)</td>
+<td>Whether half-width kana are allowed?</td>
+</tr>
+<tr class="row-odd"><td>Full-width alphabets (全角英字)</td>
+<td>Whether full-width alphabets are allowed?</td>
+</tr>
+<tr class="row-even"><td>Full-width numbers (全角数字)</td>
+<td>Whether full-width numbers are allowed?</td>
+</tr>
+<tr class="row-odd"><td>Full-width Hiragana (全角ひらがな)</td>
+<td>Whether full-width Hiragana are allowed?</td>
+</tr>
+<tr class="row-even"><td>Full-width Katakana (全角カタカナ)</td>
+<td>Whether full-width Katakana are allowed?</td>
+</tr>
+<tr class="row-odd"><td>Full-width Kanji (全角漢字)</td>
+<td>Whether full-width Kanji are allowed?</td>
+</tr>
+<tr class="row-even"><td>Full-width symbols and others (全角記号その他)</td>
+<td>Whether full-width symbols and others are allowed?</td>
+</tr>
+<tr class="row-odd"><td>External characters (外字)</td>
+<td>Whether external characters are allowed?</td>
+</tr>
+</tbody>
+</table>
+<p>Configure the following values in the column to indicate the permission.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="29%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration details</th>
+<th class="head">Configuration value</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>allowed</td>
+<td>o</td>
+<td>Half-width lower-case O</td>
+</tr>
+<tr class="row-odd"><td>Not allowed</td>
+<td>x</td>
+<td>lower-case alphabet X</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>A specific example is shown below.</p>
+<img alt="../../../../../../_images/entityUnitTest_CharsetAndLengthExample.png" src="../../../../../../_images/entityUnitTest_CharsetAndLengthExample.png" />
+</div>
+<div class="section" id="how-to-create-a-test-method">
+<h4>3.1.1.1.1.3.2. How to create a test method<a class="headerlink" href="#how-to-create-a-test-method" title="Permalink to this headline">¶</a></h4>
+<p>Invoke the following methods of the superclass:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">testValidateCharsetAndLength</span><span class="o">(</span><span class="n">Class</span> <span class="n">entityClass</span><span class="o">,</span> <span class="n">String</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">String</span> <span class="n">id</span><span class="o">)</span>
+</pre></div>
+</div>
+<p></p>
+<div class="highlight-java"><div class="highlight"><pre><span></span> <span class="c1">// [Description] ~ Previous is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemAccountEntityTest</span> <span class="kd">extends</span> <span class="n">EntityTestSupport</span> <span class="o">{</span>
+
+     <span class="cm">/** Entity class to be tested*/</span>
+     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">SystemAccountEntity</span><span class="o">&gt;</span> <span class="n">ENTITY_CLASS</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+
+
+     <span class="cm">/**</span>
+<span class="cm">      * Test cases for character type and string length</span>
+<span class="cm">      */</span>
+     <span class="nd">@Test</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCharsetAndLength</span><span class="o">()</span> <span class="o">{</span>
+          <span class="c1">// [Description] Sheet name containing the test data</span>
+          <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testCharsetAndLength&quot;</span><span class="o">;</span>
+
+          <span class="c1">// [Description] ID of test data</span>
+          <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;charsetAndLength&quot;</span><span class="o">;</span>
+
+          <span class="c1">// [Description] Test execution</span>
+          <span class="n">testValidateCharsetAndLength</span><span class="o">(</span><span class="n">ENTITY_CLASS</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+     <span class="o">}</span>
+
+
+     <span class="c1">// [Description] ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+<p>When this method is executed, the test is executed for each row of test data from the following perspectives.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="28%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Perspective</th>
+<th class="head">Input value</th>
+<th class="head">Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Character type</td>
+<td>Half-width alphabetic characters</td>
+<td rowspan="12">Consists of a string of length described
+in the character type max (maximum string length) field</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>Half-width numbers</td>
+</tr>
+<tr class="row-even"><td>Character type</td>
+<td>Half-width numbers</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>Half-width symbols</td>
+</tr>
+<tr class="row-even"><td>Character type</td>
+<td>Half-width kana</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>Full-width alphabets</td>
+</tr>
+<tr class="row-even"><td>Character type</td>
+<td>Full-width numbers</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>Full-width Hiragana</td>
+</tr>
+<tr class="row-even"><td>Character type</td>
+<td>Full-width Katakana</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>Full-width Kanji</td>
+</tr>
+<tr class="row-even"><td>Character type</td>
+<td>Full-width symbols and others</td>
+</tr>
+<tr class="row-odd"><td>Character type</td>
+<td>External characters</td>
+</tr>
+<tr class="row-even"><td>Not entered</td>
+<td>Empty character</td>
+<td>Zero-length string</td>
+</tr>
+<tr class="row-odd"><td>Minimum string</td>
+<td>Minimum string-length string</td>
+<td rowspan="4">The minimum character string input value
+consists of the character type marked with 0</td>
+</tr>
+<tr class="row-even"><td>Maximum string</td>
+<td>Maximum string length string</td>
+</tr>
+<tr class="row-odd"><td>String length insufficient</td>
+<td>Minimum string length -1 string</td>
+</tr>
+<tr class="row-even"><td>String length exceeded</td>
+<td>Maximum string length +1 string</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="other-single-item-validation-test-cases">
+<h3>3.1.1.1.1.4. Other single item validation test cases<a class="headerlink" href="#other-single-item-validation-test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Most of the single item validation can be tested using the single item validation test cases for character type and string length mentioned above, but some validation is not covered.
+For example, the range validation for numerical input items is possible.</p>
+<p>A simple test system has also been prepared for such single item validation.
+By describing a pair of one input value and expected message ID for each property,
+it is possible to test the single item validation using any value.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>This test method cannot be used for a form that holds another form as a property.In that case, implement your own validation processing test.
+A form that holds another form as a property is the parent form that accesses the property in the following format:</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>&lt;Parent Form&gt;.&lt;child Form&gt;.&lt;child form property name&gt;.
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>3.1.1.1.1.4.1. How to create a test case table<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Prepare the following columns.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Contents to be mentioned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>propertyName</td>
+<td>The property name to be tested.</td>
+</tr>
+<tr class="row-odd"><td>case</td>
+<td>Brief description of the test case</td>
+</tr>
+<tr class="row-even"><td>input1<a class="footnote-reference" href="#id6" id="id4">[2]</a></td>
+<td>Input value <a class="footnote-reference" href="#id7" id="id5">[3]</a></td>
+</tr>
+<tr class="row-odd"><td>messageId</td>
+<td>Message ID that is expected to be generated when the
+above input value is used for single item validation
+(blank space if no validation error is expected).</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>When specifying multiple parameters for a single key, add columns such as input2 and input3.</td></tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>Input values can be created efficiently using the <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span>Special ways to write in a cell</span></a> notation.</td></tr>
+</tbody>
+</table>
+<p>A specific example is shown below.</p>
+<img alt="../../../../../../_images/entityUnitTest_singleValidationDataExample.png" src="../../../../../../_images/entityUnitTest_singleValidationDataExample.png" />
+</div>
+<div class="section" id="id8">
+<h4>3.1.1.1.1.4.2. How to create a test method<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>Invoke the following methods of the superclass:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">testSingleValidation</span><span class="o">(</span><span class="n">Class</span> <span class="n">entityClass</span><span class="o">,</span> <span class="n">String</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">String</span> <span class="n">id</span><span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// [Description] ~ Previous is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemAccountEntityTest</span> <span class="kd">extends</span> <span class="n">EntityTestSupport</span> <span class="o">{</span>
+
+     <span class="cm">/** Entity class to be tested*/</span>
+     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">SystemAccountEntity</span><span class="o">&gt;</span> <span class="n">ENTITY_CLASS</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+
+     <span class="cm">/**</span>
+<span class="cm">      * Single item validation test case of character type and string length</span>
+<span class="cm">      */</span>
+     <span class="c1">// [Description] ~ Middle is omitted ~</span>
+
+     <span class="cm">/**</span>
+<span class="cm">      * Test cases for single item validation (not listed above)</span>
+<span class="cm">      */</span>
+     <span class="nd">@Test</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSingleValidation</span><span class="o">()</span> <span class="o">{</span>
+         <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testSingleValidation&quot;</span><span class="o">;</span>
+         <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;singleValidation&quot;</span><span class="o">;</span>
+         <span class="n">testSingleValidation</span><span class="o">(</span><span class="n">ENTITY_CLASS</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+     <span class="o">}</span>
+
+
+      <span class="c1">// [Description] ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-case-for-validation-method">
+<h3>3.1.1.1.1.5. Test case for validation method<a class="headerlink" href="#test-case-for-validation-method" title="Permalink to this headline">¶</a></h3>
+<p>In the single item validation test mentioned above, the annotation given to the setter method of the entity is tested for correctness, and the validation method <a class="footnote-reference" href="#id10" id="id9">[4]</a>implemented in the entity is not executed.</p>
+<p>Therefore, a separate test must be created
+if you implement your own validation method in the entity.</p>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[4]</a></td><td>Static method with <code class="docutils literal"><span class="pre">&#64;ValidateFor</span></code> annotation.</td></tr>
+</tbody>
+</table>
+<div class="section" id="create-a-test-case-table">
+<h4>3.1.1.1.1.5.1. Create a test case table<a class="headerlink" href="#create-a-test-case-table" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>ID is fixed to &#8220;testShots&#8221;.</li>
+<li>Prepare the following columns.</li>
+</ul>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Contents to be mentioned</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>title</td>
+<td>Title of the test case</td>
+</tr>
+<tr class="row-odd"><td>description</td>
+<td>Brief description of the test case</td>
+</tr>
+<tr class="row-even"><td>expectedMessageId<em>ｎ</em></td>
+<td>Expected message (<em>ｎ</em>is a sequential number from 1)</td>
+</tr>
+<tr class="row-odd"><td>propertyName<em>ｎ</em></td>
+<td>Expected property (<em>ｎ</em>is a sequential number from 1)</td>
+</tr>
+</tbody>
+</table>
+<p>When multiple messages are expected, add more numerical values such as expectedMessageId2 and propertyName2 on the right.</p>
+</div></blockquote>
+<ul class="simple">
+<li>Create an input parameter table<ul>
+<li>ID is fixed to &#8220;params&#8221;.</li>
+<li>Enter the input parameters<a class="footnote-reference" href="#id12" id="id11">[5]</a> corresponding to the above test case table, one row at a time.</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<blockquote>
+<div><table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[5]</a></td><td>Using the notation <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#special-notation-in-cell"><span>Special ways to write in a cell</span></a>, input values can be created efficiently.</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+<p></p>
+<blockquote>
+<div><p>A specific example is shown below.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_validationTestData.png"><img alt="../../../../../../_images/entityUnitTest_validationTestData.png" src="../../../../../../_images/entityUnitTest_validationTestData.png" /></a>
+<ul class="simple">
+<li>For the procedure to describe the property name of Entity to Excel, see <a class="reference internal" href="#property-name-copy-label"><span>Procedure for easily acquiring a list of property names</span></a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="create-test-cases-and-test-data">
+<h4>3.1.1.1.1.5.2. Create test cases and test data<a class="headerlink" href="#create-test-cases-and-test-data" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="check-for-validation-target">
+<span id="entityunittest-validationmethodspecifynormal"></span><h5>3.1.1.1.1.5.2.1. Check for validation target<a class="headerlink" href="#check-for-validation-target" title="Permalink to this headline">¶</a></h5>
+<p>When the properties to be validated are specified (see <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/validation/nablarch_validation.html#nablarch-validation"><span>Nablarch Validation</span></a>), create a case to check whether they are correctly specified.</p>
+<p>Prepare data that will cause an error in each single item validation for all properties.If the specification of the properties to be validated are correct, only the properties to be validated should undergo single item validation.Therefore, the names of all properties to be validated, and the message ID when a single item validation error occurs for each property are entered as expected values.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If a property for validation is accidentally omitted from the validation target, the message ID assertion will fail since the expected message is not output. Also, if a property that is not a target for validation accidentally becomes a target for validation, single item validation will fail due to invalid input value and an unexpected message is output. As a result, validation target errors can be detected.</p>
+</div>
+<p>The property name of all properties for validation and the single item validation error message ID of those properties are listed in the test case table.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" src="../../../../../../_images/entityUnitTest_ValidationPropTestCases.png" /></a>
+<p>The values that result in single item validation errors for all the properties are listed in the input parameters table.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ValidationPropParams.png"><img alt="../../../../../../_images/entityUnitTest_ValidationPropParams.png" src="../../../../../../_images/entityUnitTest_ValidationPropParams.png" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When creating a test case or test data for the Form unit test, specifying another <strong>property of another Form that is held in the property</strong> may be required. In this case, it can be specified as follows.</p>
+<ul class="simple">
+<li>Example code for Form</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleForm</span> <span class="o">{</span>
+
+    <span class="cm">/** System user */</span>
+    <span class="kd">private</span> <span class="n">SystemUserEntity</span> <span class="n">systemUser</span><span class="o">;</span>
+
+    <span class="cm">/** Telephone number array */</span>
+    <span class="kd">private</span> <span class="n">UserTelEntity</span><span class="o">[]</span> <span class="n">userTelArray</span><span class="o">;</span>
+
+    <span class="c1">// [Description] Omitted except for properties</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>How to specify the Form property being held (when specifying SystemUserEntity.userId)</li>
+</ul>
+<div class="highlight-none"><div class="highlight"><pre><span></span>sampleForm.systemUser.userId
+</pre></div>
+</div>
+<ul class="simple">
+<li>How to specify the property of the Form array element (when specifying the property of the first UserTelEntity array element)</li>
+</ul>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>sampleForm.userTelArray[0].telNoArea
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="validation-between-items">
+<h5>3.1.1.1.1.5.2.2. Validation between items<a class="headerlink" href="#validation-between-items" title="Permalink to this headline">¶</a></h5>
+<p>Create a case to confirm communications other than the validation target specification that is performed by the <a class="reference internal" href="#entityunittest-validationmethodspecifynormal"><span>Check for validation target</span></a>
+validation method, such as validation between items.</p>
+<p>In the figure below, a normal case is created for the validation method &#8220;newPassword and confirmPassword are the same&#8221;.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_RelationalValidation.png"><img alt="../../../../../../_images/entityUnitTest_RelationalValidation.png" src="../../../../../../_images/entityUnitTest_RelationalValidation.png" /></a>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>3.1.1.1.1.5.3. How to create a test method<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p>The test cases created so far and the test methods that use the data are shown below. Validation tests can be performed for different Entities simply by changing the variable contents of the following code.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span> <span class="c1">// ~ Previous is omitted ~</span>
+
+ <span class="cm">/** Entity class to be tested*/</span>
+ <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">SystemAccountEntity</span><span class="o">&gt;</span> <span class="n">ENTITY_CLASS</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+
+ <span class="c1">// ~ Middle is omitted ~</span>
+ <span class="cm">/**</span>
+<span class="cm">  * {@link SystemAccountEntity#validateForRegisterUser(nablarch.core.validation.ValidationContext)} test.</span>
+<span class="cm">  */</span>
+ <span class="nd">@Test</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testValidateForRegisterUser</span><span class="o">()</span> <span class="o">{</span>
+     <span class="c1">// Execution of validation</span>
+     <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testValidateForRegisterUser&quot;</span><span class="o">;</span>
+     <span class="n">String</span> <span class="n">validateFor</span> <span class="o">=</span> <span class="s">&quot;registerUser&quot;</span><span class="o">;</span>
+     <span class="n">testValidateAndConvert</span><span class="o">(</span><span class="n">ENTITY_CLASS</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">validateFor</span><span class="o">);</span>
+ <span class="o">}</span>
+
+<span class="c1">// ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-case-for-constructor">
+<span id="entityunittest-constructorcase"></span><h3>3.1.1.1.1.6. Test case for constructor<a class="headerlink" href="#test-case-for-constructor" title="Permalink to this headline">¶</a></h3>
+<p>In the test for constructors, create a case to check whether the value specified in the argument is set correctly in the property.At this time, the target properties are all the properties defined in Entity.For the test data, prepare the property name, the data to be set for it, and the expected value (data to be compared with the value obtained by the getter).</p>
+<p>In the figure below, values have been specified for each property as follows.
+When the constructor is given a combination of these values, the test checks whether each property is configured to the specified value (Can the expected value be obtained by calling the getter).</p>
+<p>In the actual test code, setting of value to the constructor and checking of the value are performed in the method provided by the automated test framework.
+For more information, see <a class="reference internal" href="#test-constructor-java-label"><span>test code</span></a>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Since the Entity is automatically generated, a constructor that is not used in the application may be generated. In that case, make sure to test the constructor with the Entity unit test since it cannot be tested with the request unit test.</p>
+<p class="last">On the other hand, only a constructor used in the application is created in the case of a general Form.Therefore, the constructor can be tested with the request unit test.Thus, for a general Form, the constructor need not be tested with the class unit test.</p>
+</div>
+<div class="section" id="definition-to-excel">
+<h4>3.1.1.1.1.6.1. Definition to Excel<a class="headerlink" href="#definition-to-excel" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_Constructor.png"><img alt="../../../../../../_images/entityUnitTest_Constructor.png" src="../../../../../../_images/entityUnitTest_Constructor.png" /></a>
+<ul class="simple">
+<li>For the procedure to describe the property name of Entity to Excel, see <a class="reference internal" href="#property-name-copy-label"><span>Procedure for easily acquiring a list of property names</span></a>.</li>
+</ul>
+<p>Test contents of the above configuration values (excerpt)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="32%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Value set to the constructor</th>
+<th class="head">Expected value (value obtained from the getter)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>userId</td>
+<td>userid</td>
+<td>userid</td>
+</tr>
+<tr class="row-odd"><td>loginId</td>
+<td>loginid</td>
+<td>loginid</td>
+</tr>
+<tr class="row-even"><td>password</td>
+<td>password</td>
+<td>password</td>
+</tr>
+</tbody>
+</table>
+<p id="test-constructor-java-label">The following test methods use this data:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// [Description] ~ Previous is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemAccountEntityTest</span> <span class="kd">extends</span> <span class="n">EntityTestSupport</span> <span class="o">{</span>
+
+     <span class="cm">/** Constructor test */</span>
+     <span class="nd">@Test</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testConstructor</span><span class="o">()</span> <span class="o">{</span>
+         <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">entityClass</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+         <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testAccessor&quot;</span><span class="o">;</span>
+         <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;testConstructor&quot;</span><span class="o">;</span>
+         <span class="n">testConstructorAndGetter</span><span class="o">(</span><span class="n">entityClass</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+     <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip" id="testconstructorandgetter-note-label">
+<p class="first admonition-title">Tip</p>
+<p>There are restrictions on the type (class) of properties that can be tested with testConstructorAndGetter.
+If the property does not correspond to the following types (class), the constructor and getter in each test class must be explicitly called to test it.</p>
+<ul class="simple">
+<li>String and String array</li>
+<li>BigDecimal and BigDecimal array</li>
+<li>java.util.Date and java.util.Date array (write in yyyy-MM-dd format or yyyy-MM-dd HH:mm:ss format to excel)</li>
+<li>Class with valueOf(String) method and its array class (ex: Integer or Long, java.sql.Date or java.sql.Timestamp etc.)</li>
+</ul>
+<p>Examples of individual test execution methods are given below.</p>
+<blockquote class="last">
+<div><ul>
+<li><p class="first">Example of data description to Excel</p>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_ConstructorOther.png"><img alt="../../../../../../_images/entityUnitTest_ConstructorOther.png" src="../../../../../../_images/entityUnitTest_ConstructorOther.png" /></a>
+</li>
+<li><p class="first">Test code example</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/** Constructor test */</span>
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testConstructor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// [Description]</span>
+    <span class="c1">// The items that can be commonly tested are tested by using testConstructorAndGetter.</span>
+    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">entityClass</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testAccessor&quot;</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;testConstructor&quot;</span><span class="o">;</span>
+    <span class="n">testConstructorAndGetter</span><span class="o">(</span><span class="n">entityClass</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="c1">// [Description]</span>
+    <span class="c1">// The items that cannot be tested commonly are tested individually.</span>
+
+    <span class="c1">// [Description]</span>
+    <span class="c1">// getParamMap is called to acquire the test data of properties to be tested individually.</span>
+    <span class="c1">// (If there are multiple properties for testing, getListParamMapis used.)</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">[]&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">getParamMap</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;testConstructorOther&quot;</span><span class="o">);</span>
+
+    <span class="c1">// [Description] Convert Map&lt;String, String[]&gt; to Map&lt;String, Object&gt;, which is the argument of the Entity&#39;s constructor</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;set&quot;</span><span class="o">)));</span>
+
+    <span class="c1">// [Description] Generate Entity with Map&lt;String, Object&gt; generated above as the argument.</span>
+    <span class="n">SystemAccountEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SystemAccountEntity</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+
+    <span class="c1">// [Description] Call getter and confirm that the expected value is returned.</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">entity</span><span class="o">.</span><span class="na">getUsers</span><span class="o">(),</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;get&quot;</span><span class="o">)));</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="test-cases-for-setters-and-getters">
+<span id="entityunittest-settergettercase"></span><h3>3.1.1.1.1.7. Test cases for setters and getters<a class="headerlink" href="#test-cases-for-setters-and-getters" title="Permalink to this headline">¶</a></h3>
+<p>In the test for setters and getters, a case to check whether the value set by the setter and the value obtained by the getter are as expected is created. At this time, the target properties are all the properties defined in Entity.</p>
+<p>For each property, prepare the data to be transferred to the setter and the expected value (data to be compared with the value obtained by the getter).
+In the test method, the setter is called with the data to be transferred to the aforementioned setter as an argument and whether the value obtainedby the getter and the expected value are equal is checked immediately.</p>
+<p>In the actual test code, setting of value to the setter and checking of the value (comparing it with the expected value)
+are performed in the method provided by the automated test framework. For more information, see the test code.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Since the Entity is automatically generated, setters/ getters that are not used in the application may be generated. In that case, make sure to test the setter/ getter with the Entity unit test since they cannot be tested with the request unit test.</p>
+<p class="last">On the other hand, only the setter/ getter used in the application are created in the case of a general Form.Therefore, the setter/ getter can be tested with the request unit test.Thus, for a general Form, the setter/ getter need not be tested with the class unit test.</p>
+</div>
+<div class="section" id="id14">
+<h4>3.1.1.1.1.7.1. Definition to Excel<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter.png" /></a>
+<ul class="simple">
+<li>For the procedure to describe the property name of Entity to Excel, see <a class="reference internal" href="#property-name-copy-label"><span>Procedure for easily acquiring a list of property names</span></a>.</li>
+</ul>
+<p>The following test methods use this data:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// [Description] ~ Previous is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SystemAccountEntityTest</span> <span class="kd">extends</span> <span class="n">EntityTestSupport</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Setter, getter test</span>
+<span class="cm">     */</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSetterAndGetter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">entityClass</span> <span class="o">=</span> <span class="n">SystemAccountEntity</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="s">&quot;testAccessor&quot;</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">&quot;testGetterAndSetter&quot;</span><span class="o">;</span>
+        <span class="n">testSetterAndGetter</span><span class="o">(</span><span class="n">entityClass</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// [Description] ~ Rest is omitted ~</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">There are restrictions on the type (class) of properties that can be tested with testGetterAndSetter.
+For information on the restrictions, see <a class="reference internal" href="#entityunittest-constructorcase"><span>Test case for constructor</span></a>.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>When describing logic in a setter or getter (for example, when a setter is divided into the first 3 digits and last 4 digits of a zip code, but a getter acquires 7 digits altogether),
+create a test case to check the logic.</p>
+<p>When defining the above test in Excel, define it as shown in the image below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Example for checking that a 7-digit zip code (0010001) is acquired correctly when the following is set for the zip code
+  First 3 digits of the zip code: 001
+  Last 4 digits of postal code: 0001
+</pre></div>
+</div>
+<a class="last reference internal image-reference" href="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png"><img alt="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" src="../../../../../../_images/entityUnitTest_SetterAndGetter_PostNo.png" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="procedure-for-easily-acquiring-a-list-of-property-names">
+<span id="property-name-copy-label"></span><h3>3.1.1.1.1.8. Procedure for easily acquiring a list of property names<a class="headerlink" href="#procedure-for-easily-acquiring-a-list-of-property-names" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Open the Entity class to be tested in Eclipse, and display the Outline.</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../../../../_images/entityUnitTest_PropertyWrite1.png"><img alt="../../../../../../_images/entityUnitTest_PropertyWrite1.png" src="../../../../../../_images/entityUnitTest_PropertyWrite1.png" /></a>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Select the property you want to copy.</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../../_images/entityUnitTest_PropertyWrite2.png" src="../../../../../../_images/entityUnitTest_PropertyWrite2.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Select Copy Qualified Name from the menu that is displayed when you right-click the mouse.</li>
+</ol>
+<blockquote>
+<div><img alt="../../../../../../_images/entityUnitTest_PropertyWrite3.png" src="../../../../../../_images/entityUnitTest_PropertyWrite3.png" />
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Paste the copied list of property names into Excel.</li>
+</ol>
+<blockquote>
+<div><p>The pasted value is in the form of fully qualified name &#8220;class name + property name&#8221;, as shown in the image below.
+Use the Replace function of Excel to delete unnecessary class names.</p>
+<p>Replacement example when the Entity class is &#8220;nablarch.sample.management.user.SystemAccountEntity&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Search string: nablarch.sample.management.user.SystemAccountEntity.
+Replaced string: (blank)
+</pre></div>
+</div>
+<img alt="../../../../../../_images/entityUnitTest_PropertyWrite4.png" src="../../../../../../_images/entityUnitTest_PropertyWrite4.png" />
+</div></blockquote>
+<p></p>
+</div>
+<div class="section" id="automated-test-framework-configuration-values">
+<h3>3.1.1.1.1.9. Automated test framework configuration values<a class="headerlink" href="#automated-test-framework-configuration-values" title="Permalink to this headline">¶</a></h3>
+<p>Describes the initial value configuration required when executing <a class="reference internal" href="#entityunittest-validationcase"><span>Single item validation test case of character type and string length</span></a>.</p>
+<div class="section" id="configuration-items-list">
+<h4>3.1.1.1.1.9.1. Configuration items list<a class="headerlink" href="#configuration-items-list" title="Permalink to this headline">¶</a></h4>
+<p>Use <code class="docutils literal"><span class="pre">nablarch.test.core.entity.EntityTestConfiguration</span></code>, and configure the following values in the component configuration file (all items required).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration item name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>maxMessageId</td>
+<td>Message ID when the maximum string length is exceeded</td>
+</tr>
+<tr class="row-odd"><td>maxAndMinMessageId</td>
+<td>Message ID outside the range of the maximum and minimum string length (variable length)</td>
+</tr>
+<tr class="row-even"><td>fixLengthMessageId</td>
+<td>Message ID outside the range of the maximum and minimum string length (fixed length)</td>
+</tr>
+<tr class="row-odd"><td>underLimitMessageId</td>
+<td>Message ID when the string length is insufficient</td>
+</tr>
+<tr class="row-even"><td>emptyInputMessageId</td>
+<td>Message ID when there is no input</td>
+</tr>
+<tr class="row-odd"><td>characterGenerator</td>
+<td>String generation class <a class="footnote-reference" href="#id16" id="id15">[6]</a></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id15">[6]</a></td><td>Specify the implementation class of <code class="docutils literal"><span class="pre">nablarch.test.core.util.generator.CharacterGenerator</span></code>.
+This class generates input values for the test.
+Normally, you can use<code class="docutils literal"><span class="pre">nablarch.test.core.util.generator.BasicJapaneseCharacterGenerator</span></code>.</td></tr>
+</tbody>
+</table>
+<p>The set message ID matches the value set in the validator.</p>
+<p>(See the example described below)</p>
+</div>
+<div class="section" id="example-of-component-configuration-file-description">
+<h4>3.1.1.1.1.9.2. Example of component configuration file description<a class="headerlink" href="#example-of-component-configuration-file-description" title="Permalink to this headline">¶</a></h4>
+<p>An example of a component configuration file description when the following setting values are used is shown below.</p>
+<p><strong>[Component configuration file of the validation class]</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;validators&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;list&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.RequiredValidator&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;messageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00010&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.validation.validator.LengthValidator&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00011&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxAndMinMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00011&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fixLengthMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00023&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="c">&lt;!-- Omitted --&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</pre></div>
+</div>
+<p><strong>[Component configuration file of the test]</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Entity test configuration --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;entityTestConfiguration&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.test.core.entity.EntityTestConfiguration&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxMessageId&quot;</span>        <span class="na">value=</span><span class="s">&quot;MSG00011&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxAndMinMessageId&quot;</span>  <span class="na">value=</span><span class="s">&quot;MSG00011&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fixLengthMessageId&quot;</span>  <span class="na">value=</span><span class="s">&quot;MSG00023&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;underLimitMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00011&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;emptyInputMessageId&quot;</span> <span class="na">value=</span><span class="s">&quot;MSG00010&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;characterGenerator&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;characterGenerator&quot;</span>
+               <span class="na">class=</span><span class="s">&quot;nablarch.test.core.util.generator.BasicJapaneseCharacterGenerator&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

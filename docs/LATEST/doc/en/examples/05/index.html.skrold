@@ -1,0 +1,633 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sample File Management Function Using Database &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/05/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="CAPTCHA Function Sample" href="../06/index.html"/>
+        <link rel="prev" title="Field Type Expansion in the Data Formatter Function" href="../04/0402_ExtendedFieldType.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>Sample File Management Function Using Database</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sample-file-management-function-using-database">
+<span id="dbfilemanagement-result"></span><h1>Sample File Management Function Using Database<a class="headerlink" href="#sample-file-management-function-using-database" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 series, customize as necessary.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Provides an implementation sample of the function to centrally manage the files used in business applications with DB.</p>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+<p>The sample is intended for the following applications:</p>
+<ul class="simple">
+<li>File upload and download from the screen.</li>
+<li>Send and receive file transfers that handle a relatively small number of files. For example, dozens of files can be sent/received at a time.</li>
+<li>Assumed that relatively small files are managed. For example, a small image such as an ID photo.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This sample uses Oracle as a DB. If the DB is not Oracle, use by modifying the implementation to match the DB used.</p>
+</div>
+<p>The following is an example of the processing image during file upload and download.</p>
+<div class="section" id="when-uploading-files">
+<h3>When uploading files<a class="headerlink" href="#when-uploading-files" title="Permalink to this headline">¶</a></h3>
+<p>When the browser sends the file, the multipart request handler of Nablarch analyses the content and stores it in a temporary file.</p>
+<p>This sample stores that file to the DB in a binary format.</p>
+<a class="reference internal image-reference" href="../../_images/DbFileManagement_outline01.png"><img alt="../../_images/DbFileManagement_outline01.png" src="../../_images/DbFileManagement_outline01.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="when-downloading-files">
+<h3>When downloading files<a class="headerlink" href="#when-downloading-files" title="Permalink to this headline">¶</a></h3>
+<p>If a file is requested but clicking on the download tag, the business class action must set Stream to StreamResponse.</p>
+<p>This sample gets the Stream from the DB.</p>
+<a class="reference internal image-reference" href="../../_images/DbFileManagement_outline02.png"><img alt="../../_images/DbFileManagement_outline02.png" src="../../_images/DbFileManagement_outline02.png" style="width: 100%;" /></a>
+</div>
+</div>
+<div class="section" id="delivery-package">
+<h2>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h2>
+<p>The sample is provided in the following package.</p>
+<blockquote>
+<div><em>please.change.me.</em> <strong>common.file.management</strong></div></blockquote>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="implemented">
+<h3>Implemented<a class="headerlink" href="#implemented" title="Permalink to this headline">¶</a></h3>
+<p>It has the following functions:</p>
+<ul class="simple">
+<li>File registration function<ul>
+<li>The file is stored in binary column based on the file’s Stream. When storing, a unique file management ID is assigned (using Nablarch indexing function), and the file management ID is returned to the caller.</li>
+<li>Check that the file size does not exceed the column size.</li>
+</ul>
+</li>
+<li>Function to delete files<ul>
+<li>Perform logical delete by rewriting the delete sign of records based on file management ID.</li>
+</ul>
+</li>
+<li>Function to retrieve files<ul>
+<li>Retrieve and return the file from the file management table based on the file management ID.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="prerequisite-specifications">
+<h3>Prerequisite specifications<a class="headerlink" href="#prerequisite-specifications" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Delete is a specification to perform logical delete. At the time of operation, it is necessary to consider the clean up of records in logical delete status separately.</li>
+<li>There are only minimal columns in the table definition. When other information is required, it is presumed that separate tables be created for each job.</li>
+<li>To check contents of the file, only check that the file size does not exceed the column size. If there are other items to be checked, it is presumed that the checks shall be made by the caller.</li>
+<li>There is no file update process. If a process equivalent to the file update process is to be performed, it is assumed that the file delete process and file record process are executed in order.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>Shows the sample structure.</p>
+<div class="section" id="class-diagram">
+<h3>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/DbFileManagement_classdiagram.png"><img alt="../../_images/DbFileManagement_classdiagram.png" src="../../_images/DbFileManagement_classdiagram.png" style="width: 100%;" /></a>
+<div class="section" id="responsibilities-of-each-class">
+<h4>Responsibilities of each class<a class="headerlink" href="#responsibilities-of-each-class" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="class-definition">
+<h5>Class definition<a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h5>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FileManagementUtil</td>
+<td>Utility class that manages files stored in DB. The process is delegated to the class that implements FileManagement.</td>
+</tr>
+<tr class="row-odd"><td>FileManagement</td>
+<td>Interface implementing the class that performs file management.</td>
+</tr>
+<tr class="row-even"><td>DbFileManagement</td>
+<td>Main part of the class that manages the files stored in the DB.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="table-definition">
+<h5>Table definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">¶</a></h5>
+<p><strong>File management table (FILE_CONTROL)</strong></p>
+<p>The file management ID is stored along with the file in the file management table.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="13%" />
+<col width="9%" />
+<col width="11%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Logical name</th>
+<th class="head">Physical name</th>
+<th class="head">Definition</th>
+<th class="head">Limitations</th>
+<th class="head">Supplementary notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File management ID</td>
+<td>FILE_CONTROL_ID</td>
+<td>String</td>
+<td>Primary key</td>
+<td>Unique ID assigned by the system (Indexed by Nablarch’s index function)</td>
+</tr>
+<tr class="row-odd"><td>File contents</td>
+<td>FILE_OBJECT</td>
+<td>Binary</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Delete sign</td>
+<td>SAKUJO_SGN</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td><p class="first">Sign to denote if the file has been deleted or not.</p>
+<p>0: Not deleted</p>
+<p class="last">1: Deleted</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In addition to the table above, Oracle sequence is used in this sample when assigning the file management ID with the Nablarch index function.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-use-filemanagementutil">
+<h3>How to use FileManagementUtil<a class="headerlink" href="#how-to-use-filemanagementutil" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to use the FileManagementUtil.</p>
+<div class="section" id="usage-example-of-filemanagementutil-component-configuration-file">
+<span id="filemanagementutil-settings-label"></span><h4>Usage example of FileManagementUtil (component configuration file)<a class="headerlink" href="#usage-example-of-filemanagementutil-component-configuration-file" title="Permalink to this headline">¶</a></h4>
+<p>When using FileManagementUtil, define each component’s property in the component configuration file when needed.</p>
+<p>The components to be configured are shown below.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component to be configured</th>
+<th class="head">Logical name used in configuration example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File management function body</td>
+<td>fileManagement</td>
+</tr>
+<tr class="row-odd"><td>Numbering function</td>
+<td>oracleSequenceIdGenerator</td>
+</tr>
+<tr class="row-even"><td>The formatter used for numbering</td>
+<td>dbFileManagementFormatter</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The configuration example shown below.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- File management function (the component of logical name dbFileManagement is used by FileManagementUtil class) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;fileManagement&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.file.management.fileManagement&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Maximum length of storage file (unit: bytes) --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;maxFileSize&quot;</span> <span class="na">value=</span><span class="s">&quot;10000000&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Key to identify if the numbering function is used for numbering bFileManagement --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;fileIdKey&quot;</span> <span class="na">value=</span><span class="s">&quot;1103&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Numbering function --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idGenerator&quot;</span> <span class="na">ref=</span><span class="s">&quot;oracleSequenceIdGenerator&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--  Formatter used for numbering --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idFormatter&quot;</span> <span class="na">ref=</span><span class="s">&quot;dbFileManagementFormatter&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+
+<span class="c">&lt;!-- Numbering function (used from the file management function) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;oracleSequenceIdGenerator&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.OracleSequenceIdGenerator&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idTable&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;map&gt;</span>
+      <span class="c">&lt;!-- Mapping key to the sequence name --&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;1103&quot;</span> <span class="na">value=</span><span class="s">&quot;FILE_ID_SEQ&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/map&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+
+<span class="c">&lt;!-- Formatter used for numbering (used from the file management function) --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;dbFileManagementFormatter&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.common.idgenerator.formatter.LpadFormatter&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Number of digits --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;length&quot;</span> <span class="na">value=</span><span class="s">&quot;18&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Characters to fill in the missing digits --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;paddingChar&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example-of-filemanagementutil-when-uploading-files">
+<h4>Usage example of FileManagementUtil (When uploading files)<a class="headerlink" href="#usage-example-of-filemanagementutil-when-uploading-files" title="Permalink to this headline">¶</a></h4>
+<p>The usage of this sample is described assuming that file uploaded from the browser is stored in the DB.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSaveFile</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Acquire the part to be saved</span>
+    <span class="n">PartInfo</span> <span class="n">part</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">getPart</span><span class="o">(</span><span class="s">&quot;fileToSave&quot;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+    <span class="c1">// If needed, file is validated for each job at this timing.</span>
+
+    <span class="c1">// Register file to the DB</span>
+    <span class="n">String</span> <span class="n">fileId</span> <span class="o">=</span> <span class="n">FileManagementUtil</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">part</span><span class="o">);</span>
+
+    <span class="c1">// The process using fileId is performed next if necessary.</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example-of-filemanagementutil-when-downloading-files">
+<h4>Usage example of FileManagementUtil (When downloading files)<a class="headerlink" href="#usage-example-of-filemanagementutil-when-downloading-files" title="Permalink to this headline">¶</a></h4>
+<p>The usage of this sample is described assuming that the file is fetched from the DB and downloaded to the browser.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">doTempFile</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">//File ID used for download</span>
+    <span class="n">String</span> <span class="n">fileId</span> <span class="o">=</span> <span class="s">&quot;000000000000000001&quot;</span><span class="o">;</span>
+
+    <span class="c1">// Acquire a file from DB</span>
+    <span class="n">Blob</span> <span class="n">blob</span> <span class="o">=</span> <span class="n">FileManagementUtil</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">fileId</span><span class="o">);</span>
+
+
+    <span class="c1">// Configure the response information</span>
+    <span class="n">StreamResponse</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StreamResponse</span><span class="o">(</span><span class="n">blob</span><span class="o">);</span>
+    <span class="n">res</span><span class="o">.</span><span class="na">setContentDisposition</span><span class="o">(</span><span class="s">&quot;temp.png&quot;</span><span class="o">);</span>
+    <span class="n">res</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;image/png&quot;</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

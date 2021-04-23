@@ -1,0 +1,1057 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.2. How to Execute a Request Unit Test &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/02_RequestUnitTest/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="3.1. How to Execute Unit Tests" href="../index.html"/>
+        <link rel="next" title="3.1.3. How to Perform a Request Unit Test (File Upload)" href="fileupload.html"/>
+        <link rel="prev" title="3.1.1.2. Class Unit Test of Action/Component" href="../01_ClassUnitTest/02_componentUnitTest.html"/>
+ 
+
+  
+  <script src="../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Nablarch development tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">3. Testing framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../index.html">Nablarch development tools</a> &raquo;</li>
+      
+          <li><a href="../../../../index.html">3. Testing framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">3.1. How to Execute Unit Tests</a> &raquo;</li>
+      
+    <li>3.1.2. How to Execute a Request Unit Test</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-execute-a-request-unit-test">
+<span id="requestunittest"></span><h1>3.1.2. How to Execute a Request Unit Test<a class="headerlink" href="#how-to-execute-a-request-unit-test" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-write-a-test-class">
+<h2>3.1.2.1. How to write a test class<a class="headerlink" href="#how-to-write-a-test-class" title="Permalink to this headline">¶</a></h2>
+<p>The test class should be created in such a way that the following conditions are met.</p>
+<ul class="simple">
+<li>The test class package should be the same as the Action class to be tested.</li>
+<li>The test class should be created with the class name &lt;Action class name&gt;RequestTest.</li>
+<li>Inherit nablarch.test.core.http.BasicHttpRequestTestTemplate.
+(This is not applicable if there is an extended Template implementation in the project)</li>
+</ul>
+<p>For example, if the Action class to be tested is nablarch.sample.management.user.UserSearchAction,
+then the test class would be as follows:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">nablarch.sample.management.user</span><span class="o">;</span>
+
+<span class="c1">// ~ Middle is omitted ~</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserSearchActionRequestTest</span> <span class="kd">extends</span> <span class="n">BasicHttpRequestTestTemplate</span> <span class="o">{</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The superclass BasicHttpRequestTestTemplate provides various methods necessary for request unit test.
+As the DbAccessTestSupport functionality is also provided, you can configure the database
+in the same way as the class unit test.</p>
+</div>
+</div>
+<div class="section" id="test-method-division">
+<h2>3.1.2.2. Test method division<a class="headerlink" href="#test-method-division" title="Permalink to this headline">¶</a></h2>
+<p>The test method to be created is determined by the following procedure:</p>
+<ul class="simple">
+<li>For each request ID (each Action method), classify test cases into normal pattern and abnormal pattern, and create a test method for each.<ul>
+<li>If there are no cases of abnormal pattern, such as during simple screen transition from the menu, create a test method only for the normal pattern.</li>
+</ul>
+</li>
+<li>For screen display verification items, examine whether the items can be included in the method for normal pattern or abnormal pattern.<ul>
+<li>Create a test method separately for screen display verification if conditional branching on the same sheet is complicated.</li>
+<li>If this is not the case, then instead of creating a method for screen verification, include screen verification in the test method for normal pattern or abnormal pattern.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example of dividing a method (when dividing into normal pattern, abnormal pattern and screen display verification)</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="22%" />
+<col width="22%" />
+<col width="24%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">Request ID</th>
+<th class="head" rowspan="2">Action Method Name</th>
+<th class="head" colspan="3">Test data sheet name</th>
+</tr>
+<tr class="row-even"><th class="head">Normal pattern</th>
+<th class="head">Abnormal pattern</th>
+<th class="head">Screen verification</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>USERS00101</td>
+<td>doUsers00101</td>
+<td>testUsers00101Normal</td>
+<td>testUsers00101Abnormal</td>
+<td>testUsers00101View</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Dividing a method as shown above is to avoid decrease in readability due to complex test data sheet.
+Even if this is not the case, test data sheet is split if readability decreases when various test cases are packed into one test data sheet.</p>
+</div>
+</div>
+<div class="section" id="how-to-write-test-data">
+<h2>3.1.2.3. How to write test data<a class="headerlink" href="#how-to-write-test-data" title="Permalink to this headline">¶</a></h2>
+<p>The Excel file containing the test data should be stored in the same directory with the same name as the test source code,
+same as in the class unit test (only the extension differs).</p>
+<p>For information on how to write test data, refer to <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#how-to-write-excel"><span>Test data description using Excel</span></a>.</p>
+<div class="section" id="common-database-initial-values-for-test-classes">
+<span id="request-test-setup-db"></span><h3>3.1.2.3.1. Common database initial values for test classes<a class="headerlink" href="#common-database-initial-values-for-test-classes" title="Permalink to this headline">¶</a></h3>
+<p>In the Excel file containing test data, a sheet with the name <strong>setUpDb</strong> is provided,
+on which the common database default values are written.
+The data written here is submitted when the test method is executed by the automated test framework.</p>
+<img alt="../../../../../../_images/setupdb.png" src="../../../../../../_images/setupdb.png" />
+</div>
+<div class="section" id="list-of-test-cases">
+<span id="request-test-testcases"></span><h3>3.1.2.3.2. List of test cases<a class="headerlink" href="#list-of-test-cases" title="Permalink to this headline">¶</a></h3>
+<p>Case table for a single test method is described in the data type of LIST_MAP. The ID is <strong>testShots</strong>.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/testShots.png"><img alt="../../../../../../_images/testShots.png" src="../../../../../../_images/testShots.png" /></a>
+<p>Each case should have the following elements:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="75%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column name</th>
+<th class="head">Description</th>
+<th class="head">Required</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>no</td>
+<td>Write the test case numbers sequentially from 1.</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>description</td>
+<td>Write an explanation of the test case.
+Used for the filename of the HTML dump file output in the request unit test of
+the web application. <a class="footnote-reference" href="#id3" id="id1">[1]</a></td>
+<td>Required</td>
+</tr>
+<tr class="row-even"><td>context</td>
+<td>Describe which request ID to send a request to, by which user in the test case.
+For more information, see <a class="reference internal" href="#request-test-user-info"><span>User information</span></a>.</td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>cookie</td>
+<td>Describe the cookie information required for that test case.
+For more information, see <a class="reference internal" href="#request-test-cookie-info"><span>Cookie information</span></a>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>isValidToken</td>
+<td>Set to true when configuring a token. For more information on tokens, refer to
+<a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/tag.html#tag-double-submission-server-side"><span>server-side double submission prevention</span></a>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>setUpTable</td>
+<td>Describe the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of data written within the same sheet, when
+registering the data in the database before executing each test case.
+Data submission is carried out by the automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedStatusCode</td>
+<td>Describe the expected HTTP status code.  <a class="footnote-reference" href="#id4" id="id2">[2]</a></td>
+<td>Required</td>
+</tr>
+<tr class="row-odd"><td>expectedMessageId</td>
+<td>When a message is expected to be output, describe the <strong>message ID</strong> of that message.
+If more than one message is output, the messages are enumerated by a comma. Leave blank
+when a message is not expected. After leaving this field blank, if in reality,
+a message is output, then the test fails.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedSearch</td>
+<td>When database search result is expected to be set in the request scope, describe
+the <strong>expected search result</strong>. Specify the search result with the LIST_MAP data type
+ID within the same sheet. The key for fetching the result from
+the request scope is <strong>searchResult</strong>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedTable</td>
+<td>Describe the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of the expected table
+when comparing the contents of the database.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>forwardUri</td>
+<td>Describe the expected forward destination URI. Describe the URI to the forward
+destination JSP specified in the Action class. When left blank, the field is asserted
+as a field for which no forwarding to JSP will be performed.In a test case where
+transition to the system error screen or the authentication error screen is assumed,
+describe the URI to the JSP rendering that screen. For example, in the case of
+transition to the system error screen, <cite>/jsp/systemError.jsp</cite> is the expected forward
+destination URI (in the case of default value).</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedContentLength</td>
+<td>Describe the expected value of the content length header.
+Specify in this column when testing a file download.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedContentType</td>
+<td>Describe the expected value of the content type header.
+Specify in this column when testing a file download.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>expectedContentFileName</td>
+<td>Describe the expected value of the filename specified in the content disposition header.
+Specify in this column when testing a file download.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedMessage</td>
+<td>Describe the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of the expected request messages when performing
+synchronous transmission of messages. Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>responseMessage</td>
+<td>If sending synchronous message, the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of the response message
+to be returned is described. Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>expectedMessageByClient</td>
+<td>Describe the <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of the expected request messages when performing
+synchronous transmission of HTTP messages. Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>responseMessageByClient</td>
+<td>If sending synchronous HTTP message, the  <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#tips-groupid"><span>group ID</span></a> of the response
+message to be returned is described. Messages are created by an automated test framework.</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Describe the HTTP <a class="reference internal" href="#request-parameter">Request parameter</a> to be sent in the test case in a separate table instead of this table（ <a class="reference internal" href="#request-test-req-params"><span>described later</span></a> ）.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Since the content of the description is used for the file name, IOException is raised if characters other than those specified as usable for the file name in the OS are used,
+or if the length limit for the file name is exceeded. Hence, the content allowed as the file name should be entered.
+For example, if a line feed code is included in the description, an error will occur when the test is executed since line feed code is invalid as a file name.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">In the request unit test of a web application, when asserting the HTTP status code, the status codes 302 and 303, which have the same redirection behavior in a normal browser,
+are asserted identically. In other words, not only when the expected result and the executed result have exactly the same HTTP status code,
+but also when the expected result code is 303 and the executed result code is 302, and when the expected result code is 302 and the executed result code is 303, the assertion result shows successful completion.</p>
+<p class="last">&lt;Reason&gt; As per the RFC regulation, for browsers that understand HTTP 1.1, it is better to return 303 for redirect,
+however, currently the major web containers use the 302 response code taking into account the legacy browsers.</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="user-information">
+<span id="request-test-user-info"></span><h3>3.1.2.3.3. User information<a class="headerlink" href="#user-information" title="Permalink to this headline">¶</a></h3>
+<p>In the test case, describe with the data type of LIST_MAP to which request ID and by which user to send the request.
+By using information of multiple users,
+it is possible to test functions that are processed differently depending on the user permissions.</p>
+<p>For example, when the accessible data differs depending on the permissions, user information is used differently as follows:</p>
+<img alt="../../../../../../_images/testcase-user.png" src="../../../../../../_images/testcase-user.png" />
+</div>
+<div class="section" id="cookie-information">
+<span id="request-test-cookie-info"></span><h3>3.1.2.3.4. Cookie information<a class="headerlink" href="#cookie-information" title="Permalink to this headline">¶</a></h3>
+<p>Describe the cookie information required for that test case with the data type of LIST_MAP.
+This makes it possible to perform the test by sending different cookie information for each case.</p>
+<p>There is no need to describe cookie information for cases not requiring cookies for optional items.</p>
+<p>For example, when it is required to change the value of the cookie depending on the case, configure the cookie information as follows:
+For cases not requiring cookies, cookie information should be left blank without describing the value as in Case 8 of the example below.</p>
+<img alt="../../../../../../_images/requestCookie.png" src="../../../../../../_images/requestCookie.png" />
+</div>
+<div class="section" id="request-parameter">
+<span id="request-test-req-params"></span><h3>3.1.2.3.5. Request parameter<a class="headerlink" href="#request-parameter" title="Permalink to this headline">¶</a></h3>
+<p>The HTTP parameters sent in each test case are described with the data type of LIST_MAP.</p>
+<p>Create data for request parameters using <a class="reference internal" href="../../08_TestTools/01_HttpDumpTool/01_HttpDumpTool.html#http-dump-tool"><span>Request Unit Data Creation Tool</span></a>.
+Use this tool to create data for request parameters except for initial screen display request (e.g. transition from the menu screen).</p>
+<p>The HTTP request parameter is described in the data type of LIST_MAP. ID is <strong>requestParams</strong>.
+This data is associated with <a class="reference internal" href="#request-test-testcases"><span>List of test cases</span></a> on a per-row basis.
+For example, the topmost data in the request parameter table is used in the topmost test case in the list of test cases (same thereafter).</p>
+<p>To make it easy to understand the test case linking, test case number should be written in the <a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#marker-column"><span>Marker column</span></a>.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/testcase_and_request.png"><img alt="../../../../../../_images/testcase_and_request.png" src="../../../../../../_images/testcase_and_request.png" /></a>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Request parameter must be written without fail.</p>
+<p>For example, even in the case of initial screen display request, where request parameter does not exist, the column must be defined in LIST_MAP=requestParams.</p>
+<p>When request parameter is not required, describe only the column for the test case number as described below:
+Define as many rows of data as the number of test cases. (Define 3 rows for 3 cases, 10 rows for 10 cases )</p>
+<ul class="last">
+<li><p class="first">The [no] column is not included in the request parameter as the column is a visual representation of the test case number (<a class="reference internal" href="../../06_TestFWGuide/01_Abstract.html#marker-column"><span>Marker column</span></a>).</p>
+<a class="reference internal image-reference" href="../../../../../../_images/dummy_request_param.png"><img alt="../../../../../../_images/dummy_request_param.png" src="../../../../../../_images/dummy_request_param.png" /></a>
+</li>
+</ul>
+</div>
+<div class="section" id="when-configuring-multiple-values-for-a-single-key">
+<h4>3.1.2.3.5.1. When configuring multiple values for a single key<a class="headerlink" href="#when-configuring-multiple-values-for-a-single-key" title="Permalink to this headline">¶</a></h4>
+<p>For HTTP request parameters, multiple values can be set for a single key.
+In the request unit test, <strong>multiple values can be expressed by delimiting the values with commas</strong>.</p>
+<p>In the following example, multiple values, namely, one and two, are set for the key foo.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">foo</th>
+<th class="head">bar</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>one,two</td>
+<td>three</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>To include a comma itself in the value, perform escape using <cite>\</cite>mark.
+To include \ mark itself in the value, prefix it with another <cite>\\</cite>mark.</p>
+<p>For example, to represent the value 1000, write as follows:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">foo</th>
+<th class="head">bar</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>\\1\,000</td>
+<td>three</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="various-expected-values">
+<h3>3.1.2.3.6. Various expected values<a class="headerlink" href="#various-expected-values" title="Permalink to this headline">¶</a></h3>
+<p>When comparing the search results and database with expected values,
+link each data with the list of test cases using ID.</p>
+<div class="section" id="expected-search-result">
+<h4>3.1.2.3.6.1. Expected search result<a class="headerlink" href="#expected-search-result" title="Permalink to this headline">¶</a></h4>
+<p>Link the expected search result with the list of test cases.</p>
+<img alt="../../../../../../_images/expected_search_result.png" src="../../../../../../_images/expected_search_result.png" />
+</div>
+<div class="section" id="expected-database-status">
+<span id="request-test-expected-tables"></span><h4>3.1.2.3.6.2. Expected database status<a class="headerlink" href="#expected-database-status" title="Permalink to this headline">¶</a></h4>
+<p>In the test cases for the update, in order to check the expected status of the database,
+the expected status is linked with the list of test cases.</p>
+<a class="reference internal image-reference" href="../../../../../../_images/expected_table.png"><img alt="../../../../../../_images/expected_table.png" src="../../../../../../_images/expected_table.png" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-write-a-test-method">
+<span id="howtocodingtestmethod"></span><h2>3.1.2.4. How to write a test method<a class="headerlink" href="#how-to-write-a-test-method" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="super-class">
+<h3>3.1.2.4.1. Super class<a class="headerlink" href="#super-class" title="Permalink to this headline">¶</a></h3>
+<p>Superclass inherits the BasicHttpRequestTestTemplate class.
+In this class, the request unit test is executed by the following procedure based on the prepared test data.</p>
+<ul>
+<li><p class="first">Fetching test case list (testShots LIST_MAP) from the data sheet</p>
+</li>
+<li><p class="first">For the fetched test cases, the following are executed in a loop</p>
+<ul class="simple">
+<li>Database Initialization</li>
+<li>ExecutionContext, generating HTTP request</li>
+<li>Extension point call for operation test code (beforeExecuteRequest method)</li>
+<li>Setting a token if a token is required</li>
+<li>Execution of the request to be tested</li>
+<li>Verification of the execution result</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>HTTP status code and message ID</li>
+<li>HTTP response value (request scope value)</li>
+<li>Search result</li>
+<li>Table update result</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>Extension point call for operation test code (afterExecuteRequest method)</li>
+</ul>
+</li>
+</ul>
+<p>The following methods are overridden as they are defined as abstract methods in the superclass.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserSearchActionRequestTest</span> <span class="kd">extends</span> <span class="n">BasicHttpRequestTestTemplate</span> <span class="o">{</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * {@inheritDoc}</span>
+<span class="cm">    * [Description] This function returns the common part of a URI.</span>
+<span class="cm">    */</span>
+   <span class="nd">@Override</span>
+   <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getBaseUri</span><span class="o">()</span> <span class="o">{</span>
+       <span class="k">return</span> <span class="s">&quot;/action/management/user/UserSearchAction/&quot;</span><span class="o">;</span>
+   <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-test-method">
+<h3>3.1.2.4.2. Create a test method<a class="headerlink" href="#create-a-test-method" title="Permalink to this headline">¶</a></h3>
+<p>Create a method corresponding to the prepared test sheet.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00101</span><span class="o">()</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="call-a-superclass-method">
+<h3>3.1.2.4.3. Call a superclass method<a class="headerlink" href="#call-a-superclass-method" title="Permalink to this headline">¶</a></h3>
+<p>In the test method, call one of the following methods of the superclass.</p>
+<ul class="simple">
+<li>void execute()</li>
+<li>void execute(Advice advice)</li>
+</ul>
+<p>Normally, execute() is used.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00101Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="when-adding-specific-processes">
+<h4>3.1.2.4.3.1. When adding specific processes<a class="headerlink" href="#when-adding-specific-processes" title="Permalink to this headline">¶</a></h4>
+<p>Though processes that are required in all the test cases are standardized in the superclass,
+sometimes some test cases require specific processes.
+(For example, to check the contents of an entity stored in the request scope)</p>
+<p>When sheet specific preparation process and result check process are required,
+you can insert the processes before and after sending a request, using execute(Advice advice).
+The following methods are provided in the BasicAdvice class, which are called back before and after sending a request.</p>
+<ul class="simple">
+<li>void beforeExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
+<li>void afterExecute(TestCaseInfo testCaseInfo, ExecutionContext context)</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">There is no need to override both of these methods.Override only the method you need to.
+Also, it is not required to write all the processes within these methods
+If the description is too long, or if there is a common process between test methods, the processes should be extracted to a private method.</p>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00102Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// [Description] This method is called before sending a request.</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// [Description] The preparation process is described here.</span>
+        <span class="o">}</span>
+
+        <span class="c1">// [Description] This method is called after sending a request.</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// [Description] The confirmation process of the result is described here.</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="example-of-a-request-scope-in-which-multiple-types-of-search-results-are-stored">
+<h5>3.1.2.4.3.1.1. Example of a request scope in which multiple types of search results are stored<a class="headerlink" href="#example-of-a-request-scope-in-which-multiple-types-of-search-results-are-stored" title="Permalink to this headline">¶</a></h5>
+<p>In the following example, the request scope contains two types of search results,
+&#8220;user group&#8221; and &#8220;use case&#8221;, and verify that each of the search results is as expected.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMenus00103</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>   <span class="c1">// [Description] Message when the comparison fails</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>    <span class="c1">// [Description] Sheet name</span>
+            <span class="n">String</span> <span class="n">no</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>          <span class="c1">// [Description] Test case number</span>
+
+            <span class="c1">// Verification of group search result</span>
+            <span class="n">SqlResultSet</span> <span class="n">actualGroup</span> <span class="o">=(</span><span class="n">SqlResultSet</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;allGroup&quot;</span><span class="o">);</span>
+            <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUgroup&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actualGroup</span><span class="o">);</span>
+
+            <span class="c1">// Verification of use case search result</span>
+            <span class="n">SqlResultSet</span> <span class="n">actualUseCase</span> <span class="o">=(</span><span class="n">SqlResultSet</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;allUseCase&quot;</span><span class="o">);</span>
+            <span class="n">assertSqlResultSetEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUseCase&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actualUseCase</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-a-request-scope-that-contains-form-or-entity-instead-of-a-search-result-sqlresultset">
+<h5>3.1.2.4.3.1.2. Example of a request scope that contains form or entity instead of a search result (SqlResultSet)<a class="headerlink" href="#example-of-a-request-scope-that-contains-form-or-entity-instead-of-a-search-result-sqlresultset" title="Permalink to this headline">¶</a></h5>
+<p>In the following example, an entity is stored in the request scope
+and we are verifying that each of the search results is as expected.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>
+            <span class="c1">// Comparison of system account</span>
+            <span class="c1">// [Description] ID of the expected value (Prefix “systemAccount” + Case number)</span>
+            <span class="n">String</span> <span class="n">expectedSystemAccountId</span> <span class="o">=</span> <span class="s">&quot;systemAccount&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="c1">// [Description] Retrieve the actual value from the request scope</span>
+            <span class="n">Object</span> <span class="n">actualSystemAccount</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;systemAccount&quot;</span><span class="o">);</span>
+            <span class="c1">// [Description] Calling a method to compare entities.</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedSystemAccountId</span><span class="o">,</span> <span class="n">actualSystemAccount</span><span class="o">);</span>
+
+            <span class="c1">// Compare users</span>
+            <span class="n">String</span> <span class="n">expectedUsersId</span> <span class="o">=</span> <span class="s">&quot;users&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="n">Object</span> <span class="n">actualUsers</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">);</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedUsersId</span><span class="o">,</span> <span class="n">actualUsers</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Write the expected value in the same format as the entity&#8217;s class unit test (<a class="reference internal" href="../01_ClassUnitTest/01_entityUnitTest.html#entityunittest-settergettercase"><span>Test cases for setters and getters</span></a>).
+However, in this case the “setter” filed is not necessary.</p>
+<img alt="../../../../../../_images/assert_entity.png" src="../../../../../../_images/assert_entity.png" />
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If a form is stored in the request scope, it can be tested in the same way as an entity if a different form is not set in the property.</p>
+<p>If a different form is set in the property, you can fetch that form and test it in the same way as an entity. An example is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSampleNormal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span>
+                <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>
+            <span class="c1">// Comparison of system account</span>
+            <span class="c1">// [Description] ID of the expected value (Prefix “systemAccount” + Case number)</span>
+            <span class="n">String</span> <span class="n">expectedSystemAccountId</span> <span class="o">=</span> <span class="s">&quot;systemAccount&quot;</span> <span class="o">+</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>
+            <span class="c1">// [Description] Retrieve the form from the request scope</span>
+            <span class="n">Object</span> <span class="n">actualForm</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">);</span>
+            <span class="c1">// [Description] Acquire a different form that is configured in the property of the form</span>
+            <span class="n">Object</span> <span class="n">actualSystemAccount</span> <span class="o">=</span> <span class="n">actualForm</span><span class="o">.</span><span class="na">getSystemAccount</span><span class="o">();</span>
+            <span class="c1">// [Description] Calling a method to compare entities.</span>
+            <span class="n">assertEntity</span><span class="o">(</span><span class="n">sheetName</span><span class="o">,</span> <span class="n">expectedSystemAccountId</span><span class="o">,</span> <span class="n">actualSystemAccount</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-of-a-request-scope-in-which-sqlrow-is-stored-instead-of-sqlresultset">
+<h5>3.1.2.4.3.1.3. Example of a request scope in which SqlRow is stored instead of SqlResultSet<a class="headerlink" href="#example-of-a-request-scope-in-which-sqlrow-is-stored-instead-of-sqlresultset" title="Permalink to this headline">¶</a></h5>
+<p>The following example verifies that a single search result (SqlRow) is stored
+in the request scope instead of a list of search results (SqlResultSet),
+and that search result is as expected.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseName</span><span class="o">();</span>   <span class="c1">// [Description] Message when the comparison fails</span>
+            <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getSheetName</span><span class="o">();</span>    <span class="c1">// [Description] Sheet name</span>
+            <span class="n">String</span> <span class="n">no</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getTestCaseNo</span><span class="o">();</span>          <span class="c1">// [Description] Test case number</span>
+
+            <span class="c1">// Verification of group search result</span>
+            <span class="n">SqlRow</span> <span class="n">actual</span> <span class="o">=(</span><span class="n">SqlRow</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;user&quot;</span><span class="o">);</span>
+            <span class="c1">// [Description] Call a method to compare SqlRow.</span>
+            <span class="n">assertSqlRowEquals</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">sheetName</span><span class="o">,</span> <span class="s">&quot;expectedUser&quot;</span> <span class="o">+</span> <span class="n">no</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="when-you-want-to-verify-the-value-of-a-request-parameter">
+<h5>3.1.2.4.3.1.4. When you want to verify the value of a request parameter<a class="headerlink" href="#when-you-want-to-verify-the-value-of-a-request-parameter" title="Permalink to this headline">¶</a></h5>
+<p>The request parameter may be overwritten in the function to be tested
+so as to reset the value of <a class="reference internal" href="../../../../../../application_framework/application_framework/libraries/tag.html#tag-window-scope"><span>window scope</span></a>.</p>
+<p>The following example verifies that the request parameter after execution of the test is as expected.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00302Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="n">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">testCaseInfo</span><span class="o">.</span><span class="na">getHttpRequest</span><span class="o">();</span>   <span class="c1">// [Description] HttpRequest after execution of the test</span>
+            <span class="c1">// Request parameter should be reset</span>
+            <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="n">request</span><span class="o">.</span><span class="na">getParam</span><span class="o">(</span><span class="s">&quot;resetparameter&quot;</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="in-other-cases">
+<h5>3.1.2.4.3.1.5. In other cases<a class="headerlink" href="#in-other-cases" title="Permalink to this headline">¶</a></h5>
+<p>As mentioned above, for frequently used objects such as SqlResultSet and SqlRow,
+methods for direct comparison with the expected values written in Excel are provided,
+however, if a method is not provided, then it is necessary to write a process for reading the expected value.</p>
+<p>Specifically, the following procedure is used for verification:</p>
+<ul class="simple">
+<li>Fetch the test data from the Excel file</li>
+<li>Fetch the actual value from the request scope</li>
+<li>Perform result verification with the automated test framework or using JUnit API</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUsers00303Normal</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// [Description] Acquire the expected value from the Excel file</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">getListMap</span><span class="o">(</span><span class="s">&quot;doRW25AA0303NormalEnd&quot;</span><span class="o">,</span> <span class="s">&quot;result_1&quot;</span><span class="o">);</span>
+            <span class="c1">// [Description] Acquire the actual value from the request scope after execution of the test</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getRequestScopedVar</span><span class="o">(</span><span class="s">&quot;pageData&quot;</span><span class="o">);</span>
+            <span class="c1">// [Description] Result verification</span>
+            <span class="n">assertListMapEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p></p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<dl class="last docutils">
+<dt>Click on the link below for how to fetch the test data.</dt>
+<dd><ul class="first last simple">
+<li>&#8221; <a class="reference internal" href="../../06_TestFWGuide/03_Tips.html#how-to-get-data-from-excel"><span>To acquire input parameters and expected values for return values, etc. from an Excel file</span></a> &#8220;</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-downloaded-file">
+<h3>3.1.2.4.4. Testing downloaded file<a class="headerlink" href="#testing-downloaded-file" title="Permalink to this headline">¶</a></h3>
+<p>When testing a downloaded file,
+write the expected value of the file using the same method as <a class="reference internal" href="batch.html#batch-request-test"><span>How to Execute a Request Unit Test (Batch)</span></a> and perform the test.
+The following is a test example when downloading a CSV file.</p>
+<p><strong>Definition example of expected file</strong></p>
+<blockquote>
+<div><p>Specify a dump file in the file path.
+In the case of the download process, the downloaded file is dumped
+and the dump file is output with the naming conventions described below.
+For more information on the directory in which dump output result is stored, refer to <a class="reference internal" href="#html-dump-dir"><span>HTML output results</span></a>.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>Naming conventions of the dump file:
+  Excel file sheet name ＋<span class="s2">&quot;_&quot;</span> ＋ Test <span class="k">case</span> name ＋<span class="s2">&quot;_&quot;</span> ＋ Downloaded file name
+</pre></div>
+</div>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../../../../_images/expected_download_csv.png"><img alt="../../../../../../_images/expected_download_csv.png" src="../../../../../../_images/expected_download_csv.png" /></a>
+</div></blockquote>
+<p><strong>Test method implementation example</strong></p>
+<blockquote>
+<div><p>Assert the downloaded file using assertFile method of the FileSupport class.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">FileSupport</span> <span class="n">fileSupport</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSupport</span><span class="o">(</span><span class="n">getClass</span><span class="o">());</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testRW11AC0104Download</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">BasicAdvice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterExecute</span><span class="o">(</span><span class="n">TestCaseInfo</span> <span class="n">testCaseInfo</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">msgOnFail</span> <span class="o">=</span> <span class="s">&quot;Failed to assert the CSV file of the downloaded user list inquiry result.&quot;</span><span class="o">;</span>
+            <span class="n">fileSupport</span><span class="o">.</span><span class="na">assertFile</span><span class="o">(</span><span class="n">msgOnFail</span><span class="o">,</span> <span class="s">&quot;testRW11AC0104Download&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="how-to-launch-the-test">
+<h2>3.1.2.5. How to launch the test<a class="headerlink" href="#how-to-launch-the-test" title="Permalink to this headline">¶</a></h2>
+<p>Same as the class unit test. Execute the test in the same way as a normal JUnit test.</p>
+</div>
+<div class="section" id="confirmation-of-test-result-visual">
+<h2>3.1.2.6. Confirmation of test result (visual)<a class="headerlink" href="#confirmation-of-test-result-visual" title="Permalink to this headline">¶</a></h2>
+<p>An HTML dump file is output for each request. Open the file in your browser and check visually.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">HTML files generated in the request unit test are automatically checked by the automated test framework.
+The automated test framework checks the generated HTML files using <a class="reference internal" href="../../08_TestTools/03_HtmlCheckTool/index.html"><em>HTML Check Tool</em></a>.
+If there is a violation such as a syntax error in the HTML file, then an exception is raised according to the violation content, and the test case fails.</p>
+</div>
+<div class="section" id="html-output-results">
+<span id="html-dump-dir"></span><h3>3.1.2.6.1. HTML output results<a class="headerlink" href="#html-output-results" title="Permalink to this headline">¶</a></h3>
+<p>When the test is executed, tmp/html_dump directory is created under the root directory of the project for testing,
+and the HTML dump file is output under that directory.
+Refer to the section <a class="reference internal" href="../../06_TestFWGuide/02_RequestUnitTest.html#dump-dir-label"><span>HTML dump output directory</span></a> for more information on the directory where the HTML dump output result is stored.</p>
+<blockquote>
+<div><img alt="../../../../../../_images/htmlDumpDir.png" src="../../../../../../_images/htmlDumpDir.png" />
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">For HTML dump file name, the content described in the <a class="reference internal" href="#list-of-test-cases">List of test cases</a> test case description (description field of testShots)
+of the test case list, is used.</p>
+</div>
+</div>
+</div>
+<div class="section" id="points-to-be-noted-when-creating-request-unit-test-classes">
+<h2>3.1.2.7. Points to be noted when creating request unit test classes<a class="headerlink" href="#points-to-be-noted-when-creating-request-unit-test-classes" title="Permalink to this headline">¶</a></h2>
+<p>The request unit test is different from the class unit test in that it is called via the Web Framework handler.
+Owing to this difference, there are some points that should be noted, which are described below.</p>
+<div class="section" id="no-need-to-set-a-value-for-threadcontext">
+<h3>3.1.2.7.1. No need to set a value for ThreadContext<a class="headerlink" href="#no-need-to-set-a-value-for-threadcontext" title="Permalink to this headline">¶</a></h3>
+<p>In the request unit test, since the Web Framework handler is used,
+the value setting for ThreadContext is performed by the handler.
+Therefore, <strong>configuring a value for ThreadContext from the test class is not required</strong>.</p>
+<p>Refer to <a class="reference internal" href="#request-test-user-info"><span>User information</span></a> described above for how to configure the user ID in the request unit test.</p>
+</div>
+<div class="section" id="no-transaction-control-in-the-test-class-is-required">
+<h3>3.1.2.7.2. No transaction control in the test class is required<a class="headerlink" href="#no-transaction-control-in-the-test-class-is-required" title="Permalink to this headline">¶</a></h3>
+<p>In the class unit test, since the Web Framework handler is not used,
+commit the transaction explicitly within the test class.
+In the request unit test, since transaction control is done by the handler,
+<strong>explicitly performing a transaction commit within the test class is not necessary.</strong></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

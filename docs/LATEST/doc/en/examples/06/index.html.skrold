@@ -1,0 +1,799 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CAPTCHA Function Sample &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/examples/06/index.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../index.html"/>
+        <link rel="up" title="Nablarch Implementation Examples" href="../index.html"/>
+        <link rel="next" title="How to Incorporate the CAPTCHA Function" href="06_Captcha_guide.html"/>
+        <link rel="prev" title="Sample File Management Function Using Database" href="../05/index.html"/>
+ 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../application_framework/index.html">Nablarch Application Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/application_framework/index.html">Application Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/libraries/index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/application_framework/cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../application_framework/example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../application_framework/example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Nablarch Implementation Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Nablarch Implementation Examples</a> &raquo;</li>
+      
+    <li>CAPTCHA Function Sample</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="captcha-function-sample">
+<span id="captcha"></span><h1>CAPTCHA Function Sample<a class="headerlink" href="#captcha-function-sample" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This sample uses a Nablarch 1.4 compliant API.</p>
+<p class="last">When combining with versions later than Nablarch 1.4 serie, customize as necessary.</p>
+</div>
+<p>This sample is an implementation sample of the authentication function by CAPTCHA, which is one of the security measures in web applications.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The CAPTCHA used in this feature is known to be vulnerable and should not be used (possibility of image authentication being breached in a short period of time).
+Examine implementing a robust image authentication product (for example, <a class="reference external" href="https://www.google.com/recaptcha/intro/">Google reCAPTCHA (external site))</a>  if image authentication is required.</p>
+</div>
+<p><a class="reference external" href="https://github.com/nablarch/nablarch-biz-sample-all">Source code</a></p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="delivery-package">
+<h2>Delivery package<a class="headerlink" href="#delivery-package" title="Permalink to this headline">¶</a></h2>
+<p>The sample is provided in the following package.</p>
+<blockquote>
+<div><em>please.change.me.</em><strong>common.captcha</strong></div></blockquote>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>CAPTCHA authentication is an authentication architecture used to verify that the responder is not a computer.</p>
+<p>In this sample, an authentication image is generated in the business process, the user inputs the string drawn on the image, and authentication is performed by comparing the input string with the string in the image.</p>
+<p>In general, CAPTCHA authentication process is often used prior to logging in.CAPTCHA implementation libraries often store the generated string in the session information and compare them with the input string.However, in Nablarch, as a general rule session information is generated after logging in, so it cannot be used.Therefore, in this sample, the management table on the database is used as a architecture of linking the input and generated strings.</p>
+<p>Every time the CAPTCHA information is generated, the generated information is accumulated in the management table, so it becomes enlarged.Therefore, it is necessary to consider creating a batch that performs maintenance of the management table separately.</p>
+<p>The following is a sample of the CAPTCHA information that is output using the sample.</p>
+<blockquote>
+<div><img alt="../../_images/Captcha_Sample.png" src="../../_images/Captcha_Sample.png" />
+</div></blockquote>
+<p>In this sample, &#8220;kaptcha<a class="footnote-reference" href="#kaptcha" id="id1">[1]</a>&#8221; of the open source library is used for generating the CAPTCHA image.</p>
+<table class="docutils footnote" frame="void" id="kaptcha" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> To learn more about kaptcha, visit the kaptcha site (<a class="reference external" href="https://code.google.com/p/kaptcha/">https://code.google.com/p/kaptcha/</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>Shows the sample structure.</p>
+<p>Acquisition and authentication of the CAPTCHA information is performed in the following procedure.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Captcha_Process.png"><img alt="../../_images/Captcha_Process.png" src="../../_images/Captcha_Process.png" style="width: 100%;" /></a>
+</div></blockquote>
+<p>The procedure for incorporating the Captcha function into the application is written in the <a class="reference external" href="06_Captcha_guide.html">link</a> .</p>
+<p>In the following, the processing performed on the business screen side (outside this sample) and the processing performed by this sample are explained.</p>
+<div class="section" id="process-performed-on-the-business-screen">
+<h3>Process performed on the business screen<a class="headerlink" href="#process-performed-on-the-business-screen" title="Permalink to this headline">¶</a></h3>
+<p>When performing CAPTCHA authentication, the necessary processing on the business screen side is shown below.</p>
+<div class="section" id="when-the-authentication-page-is-displayed">
+<h4>When the authentication page is displayed<a class="headerlink" href="#when-the-authentication-page-is-displayed" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Use the CaptchaUtil#generateKey in the authentication page display to acquire the Identification key.</li>
+</ul>
+</div>
+<div class="section" id="when-acquiring-an-authentication-image">
+<h4>When acquiring an authentication image<a class="headerlink" href="#when-acquiring-an-authentication-image" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">In the authentication page, issue an HTTP request (GET) to CaptchaGenerateHandler and acquire the image for authentication.</p>
+<p>At this time, it is necessary to specify the identification key that was acquired during the authentication page display as a request parameter.The request parameter name is fixed with <code class="docutils literal"><span class="pre">captchaKey</span></code>.Modify the source code to change the request parameter name.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="when-the-authentication-action-is-executed">
+<h4>When the authentication action is executed<a class="headerlink" href="#when-the-authentication-action-is-executed" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>On the authentication page, send (POST) the identification key acquired at the time of display together with the input string.</li>
+<li>Use the CaptchaUtil#authenticate to authenticate within a business action.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="processing-performed-by-this-sample">
+<h3>Processing performed by this sample<a class="headerlink" href="#processing-performed-by-this-sample" title="Permalink to this headline">¶</a></h3>
+<p>The process performed by this sample when performing CAPTCHA authentication is shown below.</p>
+<div class="section" id="id2">
+<h4>When the authentication page is displayed<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Generates the identification key of the CAPTCHA information and creates a record in the database.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h4>When acquiring an authentication image<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Generates the CAPTCHA information from the identification key (image and string described in the image) and updates the records on the database.</p>
+</li>
+<li><p class="first">Returns the authentication image to the caller out of the generated CAPTCHA information.</p>
+<p>At this time, the identification key acquired at the time of the authentication page display as the request parameter must be specified.The request parameter name is fixed with <code class="docutils literal"><span class="pre">captchaKey</span></code>.Modify the source code to change the request parameter name.</p>
+<p>If image generation fails due to the specification of an invalid identification key,
+the response with the HTTP status 400 and an empty body is returned.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h4>When the authentication action is executed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Acquire the CAPTCHA information from the database using the identification key passed from the business action.</li>
+<li>Compare the retrieved information with the entered string and return the result to the caller.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-diagram">
+<h3>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/Captcha_ClassDiagram.png"><img alt="../../_images/Captcha_ClassDiagram.png" src="../../_images/Captcha_ClassDiagram.png" /></a>
+</div></blockquote>
+<div class="section" id="responsibilities-of-each-class">
+<h4>Responsibilities of each class<a class="headerlink" href="#responsibilities-of-each-class" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="class-definition">
+<h5>Class definition<a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h5>
+<p>a) Utility class</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CaptchaGenerator</td>
+<td>A class that uses &#8220;kaptcha<a class="footnote-reference" href="#kaptcha" id="id5">[1]</a>&#8221; to generate the CAPTCHA information.</td>
+</tr>
+<tr class="row-odd"><td>CaptchaUtil</td>
+<td><p class="first">Generates the identification key of the CAPTCHA information called from the business action.</p>
+<p>Generate the CAPTCHA image using CaptchaGenerator called from CaptchaGenerateHandler and acquired from a system repository.</p>
+<p class="last">Compare the CAPTCHA information generated by calling from form, etc. with the input string.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>b) Action class (handler)</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CaptchaGenerateHandler</td>
+<td>Handler class that creates and returns a CAPTCHA image.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>c) Other classes</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Class name</th>
+<th class="head">Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Captcha</td>
+<td>Class that retains the generated CAPTCHA information.</td>
+</tr>
+<tr class="row-odd"><td>CaptchaDataManager</td>
+<td>Class that saves and reads the generated CAPTCHA information in the database.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="table-definition">
+<h5>Table definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">¶</a></h5>
+<p>The definition of the CAPTCHA management table used in this sample is shown below.</p>
+<p><strong>CAPTCHA management (CAPTCHA_MANAGE)</strong></p>
+<p>The CAPTCHA management table contains the keys and generated strings of the generated CAPTCHA information.
+Since the image information is not used for determination, it is not stored.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="23%" />
+<col width="18%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Logical name</th>
+<th class="head">Physical name</th>
+<th class="head">Java type</th>
+<th class="head">Limitations</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Identification key</td>
+<td>CAPTCHA_KEY</td>
+<td>java.lang.String</td>
+<td>Primary key</td>
+</tr>
+<tr class="row-odd"><td>CAPTCHA string</td>
+<td>CAPTCHA_TEXT</td>
+<td>java.lang.String</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Date and time of generation</td>
+<td>GENERATE_DATE_TIME</td>
+<td>java.sql.Timestamp</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Only the attributes required for this sample are listed in the above table definition.
+In the Nablarch implementation project, design the table to meet the requirements, such as adding the required management information to the table.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to use the CAPTCHA function.</p>
+<div class="section" id="how-to-use-captchautil">
+<h3>How to Use CaptchaUtil<a class="headerlink" href="#how-to-use-captchautil" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to use CaptchaUtil.</p>
+<p>CaptchaUtil implements the following utility methods.
+Since the component name when retrieving the component from the system repository must be matched to each component name registered in <a class="reference internal" href="#captchageneratehandler-settings-label"><span>How to configure the CaptchaGenerateHandler</span></a>  described below,
+the source code needs to be modified to register with a component name that is different from the above configuration example.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>generateKey</td>
+<td>Generate an identification key and save it in the database.Also, return the generated identification key to the caller.
+RandomUUID of java.util.UUID is used to generate the identification key.
+Although the possibility of duplication is unlikely to be a practical problem,
+but if you want to use a more unique key and want to use another generation method then modify the source code.</td>
+</tr>
+<tr class="row-odd"><td>generateImage</td>
+<td><p class="first">From the system repository, get captchaGenerator under the component name captchaGenerator,
+generate CAPTCHA information, and store it in the database.</p>
+<p class="last">This method is used with CaptchaGenerateHandler and is not used from business actions.</p>
+</td>
+</tr>
+<tr class="row-even"><td>authenticate</td>
+<td>Use the identification key passed by the caller to retrieve the previously generated CAPTCHA information from the database.
+Compare the retrieved information with the entered string and return the result to the caller.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-configure-the-captchageneratehandler">
+<span id="captchageneratehandler-settings-label"></span><h3>How to configure the CaptchaGenerateHandler<a class="headerlink" href="#how-to-configure-the-captchageneratehandler" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to configure the CaptchaGenerateHandler.</p>
+<blockquote>
+<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- CaptchaGenerator configuration --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;captchaGenerator&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.captcha.CaptchaGenerator&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;imageType&quot;</span> <span class="na">value=</span><span class="s">&quot;jpg&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;configParameters&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;map&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;kaptcha.textproducer.char.string&quot;</span> <span class="na">value=</span><span class="s">&quot;abcdegfynmnpwx&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;kaptcha.textproducer.char.length&quot;</span> <span class="na">value=</span><span class="s">&quot;4&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/map&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- CaptchaGenerateHandler configuration--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;captchaGenerateHandler&quot;</span> <span class="na">class=</span><span class="s">&quot;please.change.me.common.captcha.CaptchaGenerateHandler&quot;</span><span class="nt">/&gt;</span>
+
+<span class="c">&lt;!-- Handler queue structure --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;webFrontController&quot;</span>
+            <span class="na">class=</span><span class="s">&quot;nablarch.fw.web.servlet.WebFrontController&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handlerQueue&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+
+      ～(Middle is omitted)～
+
+      <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.fw.RequestHandlerEntry&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;requestPattern&quot;</span> <span class="na">value=</span><span class="s">&quot;/action/path/to/hoge&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;handler&quot;</span> <span class="na">ref=</span><span class="s">&quot;captchaGenerateHandler&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/component&gt;</span>
+
+      ～(Middle is omitted)～
+
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>For captchaGenerator components, the following property settings can be performed to control the contents of the generated string and the image format.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">property name</th>
+<th class="head">Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>imageType</td>
+<td><p class="first">Define the format of the image to be generated.</p>
+<p>The possible values are the values that can be retrieved by <cite>javax.imageio.ImageIO#getWriterFormatNames()</cite>. However, &#8220;wbmp&#8221; cannot be used.</p>
+<p class="last">If omitted, it will be &#8220;jpeg&#8221;.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>configParameters</td>
+<td><p class="first">Define the configuration value for kaptcha in Map format.</p>
+<p>For more specific configurable values, visit the kaptcha site (<a class="reference external" href="https://code.google.com/p/kaptcha/wiki/ConfigParameters">https://code.google.com/p/kaptcha/wiki/ConfigParameters</a>)</p>
+<p class="last">If omitted, all the set values become default values specified in kaptcha.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="section" id="precautions-regarding-the-insertion-position-of-the-handler-and-settings-for-other-handlers">
+<h4>Precautions regarding the insertion position of the handler and settings for other handlers<a class="headerlink" href="#precautions-regarding-the-insertion-position-of-the-handler-and-settings-for-other-handlers" title="Permalink to this headline">¶</a></h4>
+<p>A Captcha GenerateHandler generates CAPTCHA information and does not delegate processing to a subsequent handler in order to return an HTTP response. It is assumed that the RequestHandlerEntry is used to configure and use the request pattern, as in the above example.</p>
+<p>In addition, as in the above example, when mapping under /action and acting as a single action, it is necessary to set additional settings for other handlers or change the contents of the request.</p>
+<p>The following are some points to consider for other handlers included in the standard handler configuration of the web application runtime platform.</p>
+<ul>
+<li><p class="first">Database connection management handlers and transaction control handlers</p>
+<p>CaptchaGenerateHandler stores management information in the database and needs to be placed after these handlers.</p>
+</li>
+<li><p class="first">Nablarch custom tag control handler</p>
+<p>GET request that does not include hidden item are considered as a tampering error by the hidden encryption function of Nablarch custom tag control handler.</p>
+<p>This can be avoided by setting the request ID of this function in the noHiddenEncryptionRequestIds property of CustomTagConfig component.</p>
+</li>
+<li><p class="first">Service availability check control handler</p>
+<p>In order to implement it as an action, it is necessary to set the request ID and service operating state on the request table.</p>
+</li>
+<li><p class="first">Permission check control handler</p>
+<p>As described in the overview, since this function is expected to be used before login, it is necessary to set the request ID of this function in ignoreRequestIds property of authorization check handler.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-to-acquire-the-captcha-identification-key">
+<h3>How to acquire the CAPTCHA identification key<a class="headerlink" href="#how-to-acquire-the-captcha-identification-key" title="Permalink to this headline">¶</a></h3>
+<p>The following is an example implementation of the action to acquire the CAPTCHA identification key.</p>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">xxxxx</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">XxxForm</span> <span class="n">form</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XxxForm</span><span class="o">();</span>
+    <span class="n">form</span><span class="o">.</span><span class="na">setCaptchaKey</span><span class="o">(</span><span class="n">CaptchaUtil</span><span class="o">.</span><span class="na">generateKey</span><span class="o">());</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;form&quot;</span><span class="o">,</span> <span class="n">form</span><span class="o">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/xxxx/xxxx.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="how-to-acquire-the-captcha-image">
+<h3>How to acquire the CAPTCHA image<a class="headerlink" href="#how-to-acquire-the-captcha-image" title="Permalink to this headline">¶</a></h3>
+<p>The following is an example of implementation of JSP to acquire the CAPTCHA image.</p>
+<blockquote>
+<div><div class="highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:form&gt;</span>
+  <span class="nt">&lt;n:img</span> <span class="na">src=</span><span class="s">&quot;/action/path/to/hoge?captchaKey=${form.captchaKey}&quot;</span> <span class="na">alt=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;n:plainHidden</span> <span class="na">name=</span><span class="s">&quot;form.captchaKey&quot;</span><span class="nt">&gt;&lt;/n:plainHidden&gt;</span>
+  <span class="nt">&lt;n:text</span> <span class="na">title=</span><span class="s">&quot;Enter the character displayed&quot;</span> <span class="na">name=</span><span class="s">&quot;form.captchaValue&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/n:form&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="how-to-determine-the-input-string">
+<h3>How to determine the input string<a class="headerlink" href="#how-to-determine-the-input-string" title="Permalink to this headline">¶</a></h3>
+<p>The determination of the input string is assumed to be called from the validation process of the action class or form class on the server side.</p>
+<p>An example of implementation as a form class validation process is shown below.</p>
+<blockquote>
+<div><div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ValidateFor</span><span class="o">(</span><span class="s">&quot;xxxxxxxxxx&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">validateForCaptcha</span><span class="o">(</span><span class="n">ValidationContext</span><span class="o">&lt;</span><span class="n">XxxForm</span><span class="o">&gt;</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Single item validation</span>
+    <span class="n">ValidationUtil</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;captchaKey&quot;</span><span class="o">,</span> <span class="s">&quot;captchaValue&quot;</span><span class="o">});</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">context</span><span class="o">.</span><span class="na">isValid</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// CAPTCHA string determination</span>
+    <span class="n">XxxForm</span> <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">createObject</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">CaptchaUtil</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">form</span><span class="o">.</span><span class="na">getCaptchaKey</span><span class="o">(),</span> <span class="n">form</span><span class="o">.</span><span class="na">getCaptchaVal</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">addResultMessage</span><span class="o">(</span><span class="s">&quot;captchaValue&quot;</span><span class="o">,</span> <span class="s">&quot;MSG90001&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="how-to-retrieve-a-captcha-image-when-an-authentication-error-occurs">
+<h3>How to retrieve a CAPTCHA image when an authentication error occurs<a class="headerlink" href="#how-to-retrieve-a-captcha-image-when-an-authentication-error-occurs" title="Permalink to this headline">¶</a></h3>
+<p>When an authentication error occurs, it is necessary to reacquire the authentication image and display it on the authentication screen.
+However, when an authentication error occurs, an exception is thrown and the transaction is rolled back, so there is a problem that information cannot be saved in the CAPTCHA management table even if an identification key is generated by an action.</p>
+<p>Therefore, when an authentication error occurs, generate the identification key, and acquire the CAPTCHA image by the following method.</p>
+<dl class="docutils">
+<dt>Use internal forward to generate identification keys and display the CAPTCHA images.</dt>
+<dd><p class="first">Specify the action for displaying the authentication screen in the transition destination at the time of error of Action for performing authentication process.
+If an internal forward is used in a standard handler configuration, the internal forward action can be handled by another transaction, thus avoiding the problem of being rolled back.</p>
+<p>An example is shown below.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Authentication screen display process</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">index</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Generate an identification key and set it in the request scope</span>
+  <span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;captchaKey&quot;</span><span class="o">,</span> <span class="n">CaptchaUtil</span><span class="o">.</span><span class="na">generateKey</span><span class="o">());</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">HttpResponse</span><span class="o">(</span><span class="s">&quot;/WEB-INF/view/login/index.jsp&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Authentication process</span>
+<span class="c1">// The authentication screen display action described above will be the transition destination when an error occurs</span>
+<span class="nd">@OnErrors</span><span class="o">({</span>
+        <span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ApplicationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;forward://index&quot;</span><span class="o">),</span>
+        <span class="nd">@OnError</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">AuthenticationException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;forward://index&quot;</span><span class="o">)</span>
+<span class="o">})</span>
+<span class="kd">public</span> <span class="n">HttpResponse</span> <span class="nf">login</span><span class="o">(</span><span class="n">HttpRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">ExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Omit authentication process</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

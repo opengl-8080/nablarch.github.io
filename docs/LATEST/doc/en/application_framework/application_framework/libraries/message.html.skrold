@@ -1,0 +1,820 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='content-language' content='ja'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.11. Message Management &mdash; ∇Nablarch  5u19 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+
+  
+  <link rel="canonical" href="https://nablarch.github.io/docs/LATEST/doc/application_framework/application_framework/libraries/message.html" />
+  
+    <link rel="top" title="∇Nablarch  5u19 documentation" href="../../../index.html"/>
+        <link rel="up" title="7. Libraries Provided by Nablarch" href="index.html"/>
+        <link rel="next" title="7.12. Exclusive Control" href="exclusive_control.html"/>
+        <link rel="prev" title="7.10.3. Comparison of Function between Bean Validation and Nablarch Validation" href="validation/functional_comparison.html"/>
+ 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+  <a href="../../../index.html" id="sidebar-title" class="icon"> ∇Nablarch 
+  
+
+  
+    <div id="sidebar-version">Version: 5u19</div>
+  </a>
+
+  <div role="search">
+    <form id="google-search-form" class="wy-form" method="get" action="https://www.google.co.jp/search">
+      <input type="text" name="text" placeholder="Search docs on google" id="text"/>
+      <input type="hidden" name="q" id="q"/>
+    </form>
+  </div>
+    
+    
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about_nablarch/index.html">What is the Nablarch?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/concept.html">Nablarch Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#robustness">Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#testability">Testability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../about_nablarch/concept.html#ready-to-use">Ready-to-Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/mvn_module.html">Module List of Nablarch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../about_nablarch/license.html">Information on Nablarch License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Nablarch Application Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Application Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../nablarch/index.html">1. What is Nablarch Application Framework?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/index.html">2. Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web_service/index.html">3. Web Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../batch/index.html">4. Batch Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../messaging/index.html">5. Messaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../handlers/index.html">6. Standard Handler Provided by Nablarch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">7. Libraries Provided by Nablarch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blank_project/index.html">8. Blank Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../setting_guide/index.html">9. Nablarch Application Framework Configuration Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">10. Default Configuration List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_native/index.html">11. Nablarch Cloud Native Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../adaptors/index.html">Adaptor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/log_adaptor.html">log Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/router_adaptor.html">Routing Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/webspheremq_adaptor.html">IBM WebSphere MQ Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jaxrs_adaptor.html">JAX-RS Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/doma_adaptor.html">Doma Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/jsr310_adaptor.html">JSR310(Date and Time API)Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_freemarker_adaptor.html">E-mail FreeMarker Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_thymeleaf_adaptor.html">E-mail Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/mail_sender_velocity_adaptor.html">E-mail Velocity Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/web_thymeleaf_adaptor.html">Web Application Thymeleaf Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/lettuce_adaptor.html">Lettuce Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/slf4j_adaptor.html">SLF4J Adapter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adaptors/micrometer_adaptor.html">Micrometer Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../example/index.html">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#procedure-to-build-the-environment">Procedure to build the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../example/index.html#application-execution-procedure">Application execution procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension_components/index.html">Nablarch extension component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/report/index.html">1. Form library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/doc/index.html">2. Workflow library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/workflow/tool/index.html">3. Workflow definition data generation tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/index.html">4. ETL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../extension_components/etl/etl_maven_plugin.html">5. ETL Maven plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development_tools/index.html">Nablarch development tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html">1. Efficient Java Static Checks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#conduct-syntax-check">1.1. Conduct syntax check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#unify-the-format">1.2. Unify the format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/java_static_analysis/index.html#check-if-unauthorized-apis-are-being-used">1.3. Check if unauthorized APIs are being used</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/ui_dev/index.html">2. Front-end UI development platform for advanced users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/testing_framework/index.html">3. Testing framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/05_UnitTestGuide/index.html">3.1. How to Execute Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/06_TestFWGuide/index.html">3.2. How to Use the Automated Test Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/testing_framework/guide/development_guide/08_TestTools/index.html">3.3. Tools Used in the Programming Phase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development_tools/toolbox/index.html">4. Useful Tools When Developing Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspStaticAnalysis/index.html">4.1. JSP Static Analysis Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/SqlExecutor/SqlExecutor.html">4.2. Nablarch SQL Executor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_tools/toolbox/JspVerifier/JspVerifier.html">4.3. Job Screen JSP Validation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Nablarch Implementation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/01/index.html">Sample Password Encryption Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/0101_PBKDF2PasswordEncryptor.html">Sample Password Encryption Function Using PBKDF2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/01/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/02/index.html">Extended Validation Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#email-address-validation">Email address validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#validation-of-japan-telephone-numbers">Validation of Japan telephone numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/02/index.html#code-value-validation">Code value validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/03/index.html">Display a List of Search Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-use">How to Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchinfo-class">ListSearchInfo class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#listsearchresult-tag">listSearchResult tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#sort-search-results">Sort search results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-displaying-a-list-of-all-search-results-on-a-single-screen">How to implement displaying a list of all search results on a single screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-implement-the-initial-display-of-search-results-with-the-default-search-conditions">How to implement the initial display of search results with the default search conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#default-settings-for-the-search-result-list-display-function">Default settings for the search result list display function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#how-to-import-a-sample-implementation-tag-file-into-the-business-application">How to import a sample implementation (tag file) into the business application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/03/index.html#tag-reference">Tag Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/04/index.html">Extended Formatter Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0401_ExtendedDataFormatter.html">Data Formatter Expansion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/04/0402_ExtendedFieldType.html">Field Type Expansion in the Data Formatter Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/05/index.html">Sample File Management Function Using Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/05/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/06/index.html">CAPTCHA Function Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/06_Captcha_guide.html">How to Incorporate the CAPTCHA Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#delivery-package">Delivery package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/06/index.html#how-to-use">How to Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/07/index.html">Sample UserAgent Information Acquisition Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#description-of-configuration">Description of configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/07/index.html#use-case">Use case</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/08/index.html">Sample of HTML Email Send Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/08/index.html#implementation-examples">Implementation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/09/index.html">How to Use a Sample to Send a Digitally Signed Email Using Bouncycastle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#environment-preparation">Environment preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#structure-of-digitally-signed-email-send-function">Structure of digitally signed email send function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#preparation-of-configuration-file">Preparation of configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/09/index.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/10/index.html">How to Use the Log Aggregation Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/10/index.html#list-of-samples-provided">List of samples provided</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/11/index.html">Messaging Platform Test Simulator Sample</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#uses">Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#how-to-use">How to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/11/index.html#expansion-example">Expansion example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nablarch_api/index.html">Nablarch API</a></li>
+</ul>
+
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">∇Nablarch </a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Nablarch Application Framework</a> &raquo;</li>
+      
+          <li><a href="../index.html">Application Framework</a> &raquo;</li>
+      
+          <li><a href="index.html">7. Libraries Provided by Nablarch</a> &raquo;</li>
+      
+    <li>7.11. Message Management</li>
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/nablarch" class="fa fa-github">GitHub</a>
+    </li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://nablarch.github.io/docs/LATEST/doc/index.html" class="ja">日本語</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="message-management">
+<span id="message"></span><h1>7.11. Message Management<a class="headerlink" href="#message-management" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#function-overview" id="id1">Function overview</a><ul>
+<li><a class="reference internal" href="#location-to-define-the-message-can-be-specified" id="id2">Location to define the message can be specified</a></li>
+<li><a class="reference internal" href="#messages-can-be-formatted" id="id3">Messages can be formatted</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-list" id="id4">Module list</a></li>
+<li><a class="reference internal" href="#how-to-use" id="id5">How to use</a><ul>
+<li><a class="reference internal" href="#creation-unit-of-property-files" id="id6">Creation unit of property files</a></li>
+<li><a class="reference internal" href="#defining-messages-in-property-files" id="id7">Defining messages in property files</a></li>
+<li><a class="reference internal" href="#multi-lingual-support" id="id8">Multi-lingual support</a></li>
+<li><a class="reference internal" href="#throws-business-exception-with-message" id="id9">Throws business exception with message</a></li>
+<li><a class="reference internal" href="#use-pad-characters" id="id10">Use pad characters</a></li>
+<li><a class="reference internal" href="#acquire-fixed-screen-text-from-message" id="id11">Acquire fixed screen text from message</a></li>
+<li><a class="reference internal" href="#use-different-message-levels" id="id12">Use different message levels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expansion-example" id="id13">Expansion example</a><ul>
+<li><a class="reference internal" href="#change-the-property-file-name-and-storage-location" id="id14">Change the property file name and storage location</a></li>
+<li><a class="reference internal" href="#manage-messages-in-a-database" id="id15">Manage messages in a database</a></li>
+<li><a class="reference internal" href="#change-how-messages-are-formatted" id="id16">Change how messages are formatted</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Message refers to a fixed text on the screen (such as item title) or an error message.</p>
+<p>Fixed text on the screen can be directly embedded in JSP if there is no requirement for internationalization.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Messages should be defined individually defined and not simply used in common.</p>
+<p>The below problems are likely to occur if the messages are simply used in common.</p>
+<p class="last">For example, suppose a message is used because there is a message that can be used from the messages of another business.
+If the message is changed due to change in the specifications of other business, then a message irrelevant to the place where the message is being used, will be displayed.</p>
+</div>
+<div class="section" id="function-overview">
+<h2><a class="toc-backref" href="#id1">7.11.1. Function overview</a><a class="headerlink" href="#function-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="location-to-define-the-message-can-be-specified">
+<h3><a class="toc-backref" href="#id2">7.11.1.1. Location to define the message can be specified</a><a class="headerlink" href="#location-to-define-the-message-can-be-specified" title="Permalink to this headline">¶</a></h3>
+<p>Messages can be managed in a database or property file. The properties file is used for management by default.</p>
+<p>Below are the reasons for configuring the properties file as default.</p>
+<p>When managed by the property file, additions, changes and confirmations of messages is easy.
+For example, when adding to messages, adding a line in the property file is easier than inserting in a database.</p>
+<p>Refer below for details on managing with the property file.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#message-property-unit"><span>Creation unit of property files</span></a></li>
+<li><a class="reference internal" href="#message-property-definition"><span>Defining messages in property files</span></a></li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Irrespective of where the message is defined, a function is not provided to update the message while the application is running.
+The application has to be restarted for messages to be updated.</p>
+</div>
+</div>
+<div class="section" id="messages-can-be-formatted">
+<h3><a class="toc-backref" href="#id3">7.11.1.2. Messages can be formatted</a><a class="headerlink" href="#messages-can-be-formatted" title="Permalink to this headline">¶</a></h3>
+<p>Messages are formatted with the extension function of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">java.text.MessageFormat</a>.
+If the value stored during runtime is to be embedded in the message, a pattern string is defined according to <a class="reference internal" href="#message-format-spec"><span>Use pad characters</span></a>.</p>
+</div>
+</div>
+<div class="section" id="module-list">
+<h2><a class="toc-backref" href="#id4">7.11.2. Module list</a><a class="headerlink" href="#module-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-core-message<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- Only when managing messages in the database --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nablarch.framework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nablarch-common-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use">
+<h2><a class="toc-backref" href="#id5">7.11.3. How to use</a><a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creation-unit-of-property-files">
+<span id="message-property-unit"></span><h3><a class="toc-backref" href="#id6">7.11.3.1. Creation unit of property files</a><a class="headerlink" href="#creation-unit-of-property-files" title="Permalink to this headline">¶</a></h3>
+<p>Create for each application.
+Even if only one system is used, if there are internal and consumer applications, separate property files are to be created for each.</p>
+<p>By creating for individual applications, there is an advantage of limiting the impact range of the message within the application.
+(It is possible to proactively prevent the commonly occurring problem, &#8220;I did not think it was being used in this application&#8221;.)</p>
+<dl class="docutils">
+<dt>Example</dt>
+<dd><dl class="first last docutils">
+<dt>Applications for consumers</dt>
+<dd>consumer/main/resources/messages.properties</dd>
+<dt>Applications for employees</dt>
+<dd>intra/main/resources/messages.properties</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="defining-messages-in-property-files">
+<span id="message-property-definition"></span><h3><a class="toc-backref" href="#id7">7.11.3.2. Defining messages in property files</a><a class="headerlink" href="#defining-messages-in-property-files" title="Permalink to this headline">¶</a></h3>
+<p>By default, the property file path is <code class="docutils literal"><span class="pre">classpath:messages.properties</span></code>.</p>
+<p>Message is loaded using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html" title="java.util.Properties">java.util.Properties</a>.
+Since Nablarch assumes that Java6 or higher is used, Unicode conversion (native2ascii) is not required as long as the messages are created in <strong>UTF-8</strong>.</p>
+<dl class="docutils">
+<dt>Example of property files</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="na">Label.user.register.title</span> <span class="o">=</span> <span class="s">User registration screen</span>
+<span class="na">errors.login.alreadyExist</span><span class="o">=</span> <span class="s">The login ID entered has already been registered. Enter a different login ID.</span>
+<span class="na">Errors.login</span> <span class="o">=</span> <span class="s">Login failed. The login ID or password is incorrect.</span>
+<span class="na">errors.compare.date</span> <span class="o">=</span> <span class="s">For {0}, enter a date after {1}.</span>
+<span class="na">success.delete.project</span><span class="o">=</span> <span class="s">Deletion of the project is completed.Deletion of the project is completed.</span>
+<span class="na">success.update.project</span><span class="o">=</span> <span class="s">Updation of the project is completed.</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="multi-lingual-support">
+<span id="message-multi-lang"></span><h3><a class="toc-backref" href="#id8">7.11.3.3. Multi-lingual support</a><a class="headerlink" href="#multi-lingual-support" title="Permalink to this headline">¶</a></h3>
+<p>For multilingual messages, prepare a property file for each language and configure the supported languages to <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/PropertiesStringResourceLoader.html#setLocales-java.util.List-" title="nablarch.core.message.PropertiesStringResourceLoader.setLocales(java.util.List)">PropertiesStringResourceLoader.locales</a>.
+Note that the language corresponding to the default locale ( <cite>Locale.getDefault().getLanguage()</cite> ) is not required to be added to the supported languages.</p>
+<p>When acquiring the message, the language used is determined by the locale returned by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html#getLanguage--" title="nablarch.core.ThreadContext.getLanguage()">ThreadContext#getLanguage</a>.
+If the locale can not be acquired from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/ThreadContext.html#getLanguage--" title="nablarch.core.ThreadContext.getLanguage()">ThreadContext#getLanguage</a> , <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#getDefault--" title="java.util.Locale.getDefault()">Locale.getDefault()</a> is used.</p>
+<dl class="docutils">
+<dt>Language configuration to PropertiesStringResourceLoader</dt>
+<dd><p class="first">An example of configuring <code class="docutils literal"><span class="pre">en</span></code>, <code class="docutils literal"><span class="pre">zh</span></code> and <code class="docutils literal"><span class="pre">de</span></code> as the supported languages is shown.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.cache.BasicStaticDataCache&quot;</span> <span class="na">name=</span><span class="s">&quot;messageCache&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loader&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Definition of Multilingualized PropertiesStringResourceLoader--&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.message.PropertiesStringResourceLoader&quot;</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- Supported languages --&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;locales&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;list&gt;</span>
+          <span class="nt">&lt;value&gt;</span>en<span class="nt">&lt;/value&gt;</span>
+          <span class="nt">&lt;value&gt;</span>zh<span class="nt">&lt;/value&gt;</span>
+          <span class="nt">&lt;value&gt;</span>de<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/list&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+
+      <span class="c">&lt;!-- Default language--&gt;</span>
+      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;defaultLocale&quot;</span> <span class="na">value=</span><span class="s">&quot;ja&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;stringResourceHolder&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.message.StringResourceHolder&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Configure BasicStaticDataCache with Multilingualized PropertiesStringResourceLoader--&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;stringResourceCache&quot;</span> <span class="na">ref=</span><span class="s">&quot;messageCache&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;initializer&quot;</span>
+           <span class="na">class=</span><span class="s">&quot;nablarch.core.repository.initialization.BasicApplicationInitializer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;initializeList&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;list&gt;</span>
+      <span class="c">&lt;!-- Add BasicStaticDataCache to initialize --&gt;</span>
+      <span class="nt">&lt;component-ref</span> <span class="na">name=</span><span class="s">&quot;messageCache&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+  <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Creating a property file for each language</dt>
+<dd><p class="first">An example for creating a property file corresponding to the supported language configured in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/PropertiesStringResourceLoader.html" title="nablarch.core.message.PropertiesStringResourceLoader">PropertiesStringResourceLoader</a> above is shown.</p>
+<p>Create a property file corresponding to the language configured in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/PropertiesStringResourceLoader.html" title="nablarch.core.message.PropertiesStringResourceLoader">PropertiesStringResourceLoader</a>.
+The file name is <strong>messages_language.properties</strong>.</p>
+<p>The property file corresponding to the default locale is created as <strong>messages.properties</strong>, without entering any language.
+Note that the process will end with an error if <strong>messages.properties</strong> does not exist.</p>
+<div class="last highlight-none"><div class="highlight"><pre><span></span>main/resources/messages.properties       # file corresponding to the default language
+               messages_en.properties    # File corresponding to en
+               messages_zh.properties    # File corresponding to zh
+               messages_de.properties    # File corresponding to de
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="throws-business-exception-with-message">
+<h3><a class="toc-backref" href="#id9">7.11.3.4. Throws business exception with message</a><a class="headerlink" href="#throws-business-exception-with-message" title="Permalink to this headline">¶</a></h3>
+<p>Below is an example of throwing a business exception ( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> ) with the message configured in the property file.</p>
+<p>To acquire the message configured in the property file, <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/MessageUtil.html" title="nablarch.core.message.MessageUtil">MessageUtil</a> class is used.
+Business exception ( <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a> ) is generated and thrown based on <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/Message.html" title="nablarch.core.message.Message">Message</a> acquired from <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/MessageUtil.html" title="nablarch.core.message.MessageUtil">MessageUtil</a>.</p>
+<dl class="docutils">
+<dt>Property file</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="na">errors.login.alreadyExist</span><span class="o">=</span> <span class="s">The login ID entered has already been registered. Enter a different login ID.</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">&quot;errors.login.alreadyExist&quot;</span><span class="o">);</span>
+
+<span class="k">throw</span> <span class="k">new</span> <span class="n">ApplicationException</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="use-pad-characters">
+<span id="message-format-spec"></span><h3><a class="toc-backref" href="#id10">7.11.3.5. Use pad characters</a><a class="headerlink" href="#use-pad-characters" title="Permalink to this headline">¶</a></h3>
+<p>Pad characters in the <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">java.text.MessageFormat</a> format are supported.
+When only <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> is specified as the value to be embedded in a message,
+the extension function which embeds the value based on the key value of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> without using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">java.text.MessageFormat</a>.</p>
+<p>When using pad characters, use pattern characters in the message, and specify the pad characters when acquiring the message.</p>
+<dl class="docutils">
+<dt>When other than <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> is used as the pad characters</dt>
+<dd><dl class="first last docutils">
+<dt>Property file</dt>
+<dd><p class="first">Define messages according to the specifications of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">java.text.MessageFormat</a>.</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="na">Success.upload.project</span><span class="o">=</span> <span class="s">{0} projects have been registered.</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">When the <cite>projects.size()</cite> returns <strong>5</strong>, the acquired message becomes &#8220;5 projects have been registered&#8221;.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">&quot;success.upload.project&quot;</span><span class="o">,</span> <span class="n">projects</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>When only <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> is used as the embedded characters</dt>
+<dd><dl class="first last docutils">
+<dt>Property file</dt>
+<dd><p class="first">The pad characters portion is defined by enclosing the key name of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> with <code class="docutils literal"><span class="pre">{</span></code> and <code class="docutils literal"><span class="pre">}</span></code>.</p>
+<div class="last highlight-properties"><div class="highlight"><pre><span></span><span class="na">success.upload.project</span><span class="o">=</span><span class="s">{projectCount} projects have been registered.</span>
+</pre></div>
+</div>
+</dd>
+<dt>Implementation examples</dt>
+<dd><p class="first">Specify <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> as the pad character specified when acquiring the message.</p>
+<p>When the <cite>projects.size()</cite> returns <strong>5</strong>, the acquired message becomes &#8220;5 projects have been registered&#8221;.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">options</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;projectCount&quot;</span><span class="o">,</span> <span class="n">projects</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+
+<span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">&quot;success.upload.project&quot;</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="last admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The value that can be set as the pad character is only <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>.
+When multiple <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>, or a value other than <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a> is specified as a set,
+the value of <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">java.text.MessageFormat</a> is used for padding.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>To change the format method of the message, refer and support according to <a class="reference internal" href="#message-change-formatter"><span>Change how messages are formatted</span></a>.</p>
+</div>
+<div class="section" id="acquire-fixed-screen-text-from-message">
+<h3><a class="toc-backref" href="#id11">7.11.3.6. Acquire fixed screen text from message</a><a class="headerlink" href="#acquire-fixed-screen-text-from-message" title="Permalink to this headline">¶</a></h3>
+<p>To output the message value in the fixed text of the screen, use the <cite>message</cite> tag from the custom tag library.</p>
+<p>For detailed usage of the <cite>message</cite> tag, see <a class="reference internal" href="tag.html#tag-write-message"><span>Output of messages</span></a>.</p>
+<dl class="docutils">
+<dt>Property file</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="c"># &quot;ログイン&quot; means login.</span>
+<span class="na">Login.title</span><span class="o">=</span> <span class="s">ログイン</span>
+</pre></div>
+</div>
+</dd>
+<dt>JSP</dt>
+<dd><div class="first last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;title-nav&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span&gt;&lt;n:message</span> <span class="na">messageId=</span><span class="s">&quot;login.title&quot;</span> <span class="nt">/&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Screen display results</dt>
+<dd><p class="first">The message defined in the property file is displayed as fixed text.</p>
+<img alt="../../../_images/jsp_title.png" class="last" src="../../../_images/jsp_title.png" />
+</dd>
+</dl>
+</div>
+<div class="section" id="use-different-message-levels">
+<span id="message-level"></span><h3><a class="toc-backref" href="#id12">7.11.3.7. Use different message levels</a><a class="headerlink" href="#use-different-message-levels" title="Permalink to this headline">¶</a></h3>
+<p>By using different message levels, the style when the screen is displayed can be switched.
+Style can be switched by using the <a class="reference internal" href="tag.html#tag-write-error-errors-tag"><span>errors</span></a> tag from the custom tag library.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The following are the problems when changing the style using message levels and custom tags.</p>
+<ul class="simple">
+<li>There is a restriction on the DOM structure output by the custom tag library, which makes it incompatible with general CSS frameworks.</li>
+<li>There are only 3 message levels and further classification is not possible</li>
+<li>Cannot be used with template engines other than JSP.</li>
+</ul>
+<p>Therefore, the following implementation method is recommended instead of <a class="reference internal" href="#message-level-with-tag"><span>style switching according to message level using errors tag</span></a>.</p>
+<dl class="last docutils">
+<dt>Server</dt>
+<dd><p class="first">Message strings are prepared in the server and set in the request scope.
+As a message level is required when generating a message, it is better to specify the INFO level.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">context</span><span class="o">.</span><span class="na">setRequestScopedVar</span><span class="o">(</span><span class="s">&quot;message&quot;</span><span class="o">,</span>
+    <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">&quot;login.message&quot;</span><span class="o">).</span><span class="na">formatMessage</span><span class="o">());</span>
+</pre></div>
+</div>
+</dd>
+<dt>View</dt>
+<dd><p class="first">The message configured in request scope is output in View (JSP etc.).
+When using JSP, the message configured in the request scope is output using the <a class="reference internal" href="tag/tag_reference.html#tag-write-tag"><span>write</span></a>.</p>
+<div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-success&quot;</span> <span class="na">role=</span><span class="s">&quot;alert&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;n:write</span> <span class="na">name=</span><span class="s">&quot;message&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<dl class="docutils" id="message-level-with-tag">
+<dt>Example of switching the style according to the message level using the errors tag</dt>
+<dd><p class="first">There are three message levels: <cite>INFO</cite>, <cite>WARN</cite>, <cite>ERROR</cite>,
+which are defined in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/MessageLevel.html" title="nablarch.core.message.MessageLevel">MessageLevel</a>.</p>
+<p>When errors tag is used, the following css classes are applied according to the message level.
+For detailed usage of the <cite>errors</cite> tag, see <a class="reference internal" href="tag.html#tag-write-error"><span>Performing error display</span></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">INFO:</th><td class="field-body">nablarch_info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">WARN:</th><td class="field-body">nablarch_warn</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">ERROR:</th><td class="field-body">nablarch_error</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">All the messages of business exception (<a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/ApplicationException.html" title="nablarch.core.message.ApplicationException">ApplicationException</a>) thrown from the <a class="reference internal" href="validation.html"><em>Validation function</em></a>
+are of the ERROR level.</p>
+</div>
+<dl class="last docutils">
+<dt>Property file</dt>
+<dd><div class="first last highlight-properties"><div class="highlight"><pre><span></span><span class="na">Info</span><span class="o">=</span> <span class="s">Information</span>
+<span class="na">warn</span><span class="o">=</span> <span class="s">Warning</span>
+<span class="na">error</span><span class="o">=</span> <span class="s">Error</span>
+</pre></div>
+</div>
+</dd>
+<dt>Style sheet</dt>
+<dd><p class="first">Perform style definition corresponding to the message level.</p>
+<div class="last highlight-css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">nablarch_info</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#3333BB</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nablarch_warn</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#EA8128</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nablarch_error</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#ff0000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>action class</dt>
+<dd><p class="first">Messages output with <cite>errors</cite> tags are stored in the request scope using <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/WebUtil.html#notifyMessages-nablarch.fw.ExecutionContext-nablarch.core.message.Message...-" title="nablarch.common.web.WebUtil.notifyMessages(nablarch.fw.ExecutionContext-nablarch.core.message.Message...)">WebUtil.notifyMessages</a>.</p>
+<div class="last highlight-java"><div class="highlight"><pre><span></span><span class="n">WebUtil</span><span class="o">.</span><span class="na">notifyMessages</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">&quot;info&quot;</span><span class="o">));</span>
+<span class="n">WebUtil</span><span class="o">.</span><span class="na">notifyMessages</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">WARN</span><span class="o">,</span> <span class="s">&quot;warn&quot;</span><span class="o">));</span>
+<span class="n">WebUtil</span><span class="o">.</span><span class="na">notifyMessages</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">MessageUtil</span><span class="o">.</span><span class="na">createMessage</span><span class="o">(</span><span class="n">MessageLevel</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">&quot;error&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</dd>
+<dt>JSP</dt>
+<dd><p class="first">Messages stored in <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/common/web/WebUtil.html" title="nablarch.common.web.WebUtil">WebUtil</a> are displayed on the screen using the <cite>errors</cite> tags.</p>
+<div class="last highlight-jsp"><div class="highlight"><pre><span></span><span class="nt">&lt;n:errors</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+<dt>Screen display results</dt>
+<dd><p class="first">The change in style according to the message level can be noticed.</p>
+<img alt="../../../_images/message_level.png" class="last" src="../../../_images/message_level.png" />
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="expansion-example">
+<h2><a class="toc-backref" href="#id13">7.11.4. Expansion example</a><a class="headerlink" href="#expansion-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-the-property-file-name-and-storage-location">
+<h3><a class="toc-backref" href="#id14">7.11.4.1. Change the property file name and storage location</a><a class="headerlink" href="#change-the-property-file-name-and-storage-location" title="Permalink to this headline">¶</a></h3>
+<p>Properties for changing the file name and directory path are provided by <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/PropertiesStringResourceLoader.html" title="nablarch.core.message.PropertiesStringResourceLoader">PropertiesStringResourceLoader</a>.
+To change the default configuration, these properties are used to make changes.</p>
+</div>
+<div class="section" id="manage-messages-in-a-database">
+<h3><a class="toc-backref" href="#id15">7.11.4.2. Manage messages in a database</a><a class="headerlink" href="#manage-messages-in-a-database" title="Permalink to this headline">¶</a></h3>
+<p>To manage messages in a database, it is necessary to use <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/BasicStringResourceLoader.html" title="nablarch.core.message.BasicStringResourceLoader">BasicStringResourceLoader</a> to load the messages.</p>
+<p>Below is a configuration example for using a message managed by a database.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Component that loads messages from the database --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;stringResourceLoader&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.message.BasicStringResourceLoader&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dbManager&quot;</span> <span class="na">ref=</span><span class="s">&quot;defaultDbManager&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;tableName&quot;</span> <span class="na">value=</span><span class="s">&quot;MESSAGE&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;idColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;ID&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;langColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;LANG&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;valueColumnName&quot;</span> <span class="na">value=</span><span class="s">&quot;MESSAGE&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!-- Component that caches loaded messages --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;stringResourceCache&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.cache.BasicStaticDataCache&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Loader specifies the class that loads messages from the database --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loader&quot;</span> <span class="na">ref=</span><span class="s">&quot;stringResourceLoader&quot;</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Load all at startup --&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;loadOnStartup&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">Component that holds the character resource that is the source of the message</span>
+<span class="c">Component name must be stringResourceHolder</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;stringResourceHolder&quot;</span> <span class="na">class=</span><span class="s">&quot;nablarch.core.message.StringResourceHolder&quot;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Specify the components that cache messages--&gt;</span>
+  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;stringResourceCache&quot;</span> <span class="na">ref=</span><span class="s">&quot;stringResourceCache&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-how-messages-are-formatted">
+<span id="message-change-formatter"></span><h3><a class="toc-backref" href="#id16">7.11.4.3. Change how messages are formatted</a><a class="headerlink" href="#change-how-messages-are-formatted" title="Permalink to this headline">¶</a></h3>
+<p>The formatting method of messages can be changed by creating an implementation class of <a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/MessageFormatter.html" title="nablarch.core.message.MessageFormatter">MessageFormatter</a> and defining the component.</p>
+<p>An example is shown below.</p>
+<dl class="docutils">
+<dt>Implementation class of MessageFormatter</dt>
+<dd><div class="first last highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">sample</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">nablarch.core.message.MessageFormatter</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleMessageFormatter</span> <span class="kd">implements</span> <span class="n">MessageFormatter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">format</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">template</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">options</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">template</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Component configuration file</dt>
+<dd><p class="first">Set the component name as <code class="docutils literal"><span class="pre">messageFormatter</span></code> and configure the implementation class for <cite>MessageFormatter</cite>.</p>
+<div class="last highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Define the component name as a messageFormatter. --&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&quot;messageFormatter&quot;</span> <span class="na">class=</span><span class="s">&quot;sample.SampleMessageFormatter&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Also, the following classes are provided for the implementation of <cite>MessageFormatter</cite>.</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/BasicMessageFormatter.html" title="nablarch.core.message.BasicMessageFormatter">BasicMessageFormatter</a>:</dt>
+<dd>Format the message in accordance with <a class="reference internal" href="#message-format-spec"><span>pad character specifications</span></a>.
+This class is used if the implementation class of <cite>MessageFormatter</cite> is not defined as a component.</dd>
+<dt><a class="reference external" href="https://nablarch.github.io/docs/LATEST/javadoc/nablarch/core/message/JavaMessageFormatBaseMessageFormatter.html" title="nablarch.core.message.JavaMessageFormatBaseMessageFormatter">JavaMessageFormatBaseMessageFormatter</a>:</dt>
+<dd>Format the message using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html" title="java.text.MessageFormat">MessageFormat</a>.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+
+    <hr/>
+
+    <div role="contentinfo">
+        <p>
+            &copy; Copyright 2010-2021, TIS Inc.
+        </p>
+    </div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'5u19',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/custom.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
